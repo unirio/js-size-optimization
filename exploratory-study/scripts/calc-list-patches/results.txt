@@ -1,0 +1,98 @@
+> size
+# A tibble: 11 x 3
+   lib             meanSize medianSize
+   <chr>              <dbl>      <dbl>
+ 1 exectimer         1.28       0.513 
+ 2 jade              1.24       0.25  
+ 3 jquery            0.0463     0.0131
+ 4 lodash            0.0454     0.0185
+ 5 minimist          0.575      0.518 
+ 6 node-browserify   0.216      0.132 
+ 7 plivo-node        0.318      0.164 
+ 8 tleaf             1.98       0.752 
+ 9 underscore        0.0764     0.0675
+10 uuid              0.903      0.478 
+11 xml2js            0.277      0.190 
+
+> overallSize
+# A tibble: 1 x 2
+  meanSize medianSize
+     <dbl>      <dbl>
+1    0.375     0.0675
+
+> distance
+# A tibble: 11 x 3
+   lib             meanDistance medianDistance
+   <chr>                  <dbl>          <dbl>
+ 1 exectimer              21.4         17.4   
+ 2 jade                   14.8          9.75  
+ 3 jquery                 13.7         10.3   
+ 4 lodash                  2.21         0.0278
+ 5 minimist               22.2         20.5   
+ 6 node-browserify        13.0          7.93  
+ 7 plivo-node             10.4          0.657 
+ 8 tleaf                  26.7         18.4   
+ 9 underscore             15.2         12.4   
+10 uuid                   20.2         12.0   
+11 xml2js                 19.2         14.8   
+
+> overallDistance
+# A tibble: 1 x 2
+  meanDistance medianDistance
+         <dbl>          <dbl>
+1         11.7           1.91
+
+> correlationMeanSizeLoc
+[1] -0.9272727
+
+> correlationMedianSizeLoc
+[1] -0.9909091
+
+> correlationMeanDistanceLoc
+[1] -0.8727273
+
+> correlationMedianDistanceLoc
+[1] -0.7545455
+
+
+==============================================================
+
+> patchCountFrequency
+# A tibble: 11 x 7
+   lib                n0    n1    n2    n3    n4   n5p
+   <chr>           <dbl> <int> <dbl> <int> <dbl> <dbl>
+ 1 exectimer          13    23    13     8     3     0
+ 2 jade                4     9    13     8     6    20
+ 3 jquery              0     4     3     6     7    40
+ 4 lodash              0     4     2     3     2    49
+ 5 minimist           33    11     7     8     0     1
+ 6 node-browserify    37     9     5     1     3     5
+ 7 plivo-node          2     3     7     6    10    32
+ 8 tleaf               5     6     7     4     5    33
+ 9 underscore          3     5    12     4     8    28
+10 uuid               12    12    19     8     5     4
+11 xml2js             39    16     0     2     2     1
+
+> pZeroPatches
+[1] 22.42424
+
+> pOnePatch
+[1] 15.45455
+
+> pTwoPatches
+[1] 13.33333
+
+> pThreePatches
+[1] 8.787879
+
+> pFourPatches
+[1] 7.727273
+
+> pFiveMorePatches
+[1] 32.27273
+
+> correlationFiveMorePatchesLoc
+[1] 0.5649217
+
+==============================================================
+
