@@ -68,11 +68,11 @@ for (instance_ in focusInstances) {
 # Analise de correlacao
 improvementsToCorrelation <- improvements %>% inner_join(instances, by=c("Lib" = "lib"));
 
-cor(improvementsToCorrelation$sfahc_mean, improvementsToCorrelation$loc, method="spearman");
-cor(improvementsToCorrelation$sfahc_mean, improvementsToCorrelation$tests, method="spearman");
-cor(improvementsToCorrelation$sfahc_mean, improvementsToCorrelation$cov, method="spearman");
+cor(improvementsToCorrelation$imp, improvementsToCorrelation$loc, method="spearman");
+cor(improvementsToCorrelation$imp, improvementsToCorrelation$tests, method="spearman");
+cor(improvementsToCorrelation$imp, improvementsToCorrelation$cov, method="spearman");
 
-cor(improvementsToCorrelation$imp - improvementsToCorrelation$sfahc_median, improvementsToCorrelation$loc, method="spearman");
-cor(improvementsToCorrelation$imp - improvementsToCorrelation$sfahc_median, improvementsToCorrelation$tests, method="spearman");
-cor(improvementsToCorrelation$imp - improvementsToCorrelation$sfahc_median, improvementsToCorrelation$cov, method="spearman");
+cor(improvementsToCorrelation$sfahc_median - improvementsToCorrelation$imp, improvementsToCorrelation$loc, method="spearman");
+cor(improvementsToCorrelation$sfahc_median - improvementsToCorrelation$imp, improvementsToCorrelation$tests, method="spearman");
+cor(improvementsToCorrelation$sfahc_median - improvementsToCorrelation$imp, improvementsToCorrelation$cov, method="spearman");
 
