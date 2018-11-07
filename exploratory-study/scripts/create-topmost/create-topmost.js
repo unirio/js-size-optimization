@@ -8,8 +8,6 @@ var fs = require('fs');
 var libs_inicial = 
 [
 	'exectimer',
-	'express-ifttt-webhook', 
-	'gulp-cccr', 
 	'jade', 
 	'jquery', 
 	'lodash', 

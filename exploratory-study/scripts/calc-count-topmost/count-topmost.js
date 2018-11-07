@@ -36,9 +36,11 @@ function handleFile(item, index) {
 			var key = jsonTopmost[j];
 			
 			if (counter[key] == null) {
+				// console.log(key);
 				counter[key] = 1;
 			}
 			else {
+				// console.log(key);
 				counter[key] = counter[key] + 1;
 			}
 		}

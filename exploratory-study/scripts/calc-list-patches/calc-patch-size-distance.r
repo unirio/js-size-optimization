@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/exploratory-study/scripts";
+baseDir <- "/Users/Marcio.Barros/Desktop/Codigos/js-size-optimization/exploratory-study/scripts";
 
 #
 # Load files
@@ -62,5 +62,5 @@ distanceToCorrelation <- distance %>%
 		inner_join(instances, by_x="lib", by_y="lib") %>%
 		select(-c("tests", "cov"));
 
-correlationMeanSizeDistance <- cor(distanceToCorrelation$meanDistance, distanceToCorrelation$loc, method="spearman");
-correlationMedianSizeDistance <- cor(distanceToCorrelation$medianDistance, distanceToCorrelation$loc, method="spearman");
+correlationMeanDistanceLoc <- cor(distanceToCorrelation$meanDistance, distanceToCorrelation$loc, method="spearman");
+correlationMedianDistanceLoc <- cor(distanceToCorrelation$medianDistance, distanceToCorrelation$loc, method="spearman");

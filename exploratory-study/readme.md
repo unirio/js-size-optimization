@@ -49,4 +49,8 @@ the scripts directory have some scripts used to generate information reported in
 * Figure 1 was generated using the "calc-barcode/create-barcode-chart.r" script that reads the
   "patch.csv" file described above;
 
-* Table 5 ...
+* Table 5 was generated using the script "calc-count-topmost/count-topmost.js" script to count 
+  the topmost node types for all instances under analysis and save this information to the 
+  "calc-count-topmost/topmost-nodetype-count.csv" file. This file is then processed by the
+  "calc-count-topmost/calc-node-type-importance.r" to calculate the rank of each node type
+  and create the "node-importance.csv" file with the data reported in Table 5.

@@ -1,3 +1,4 @@
+type	count
 BinaryExpression	386
 IfStatement	550
 Identifier	827
