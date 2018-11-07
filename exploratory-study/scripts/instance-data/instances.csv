@@ -1,12 +1,12 @@
 lib,loc,tests,cov
 exectimer,195,37,91
-jade,400,240,98
-jquery,7607,937,91
+jade,317,240,98
+jquery,7414,937,91
 lodash,10795,2077,94
 minimist,193,140,99
-node-browserify,757,570,99
-plivo-node,609,26,91
-tleaf,133,131,96
+node-browserify,755,570,99
+plivo-node,928,26,91
+tleaf,282,131,96
 underscore,1481,198,95
 uuid,209,21,91
 xml2js,526,83,93

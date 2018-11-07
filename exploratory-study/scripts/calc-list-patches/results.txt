@@ -3,13 +3,13 @@
    lib             meanSize medianSize
    <chr>              <dbl>      <dbl>
  1 exectimer         1.28       0.513 
- 2 jade              1.24       0.25  
- 3 jquery            0.0463     0.0131
+ 2 jade              1.56       0.315 
+ 3 jquery            0.0475     0.0135
  4 lodash            0.0454     0.0185
  5 minimist          0.575      0.518 
  6 node-browserify   0.216      0.132 
- 7 plivo-node        0.318      0.164 
- 8 tleaf             1.98       0.752 
+ 7 plivo-node        0.209      0.108 
+ 8 tleaf             0.936      0.355 
  9 underscore        0.0764     0.0675
 10 uuid              0.903      0.478 
 11 xml2js            0.277      0.190 
@@ -18,41 +18,41 @@
 # A tibble: 1 x 2
   meanSize medianSize
      <dbl>      <dbl>
-1    0.375     0.0675
+1    0.293     0.0675
 
 > distance
 # A tibble: 11 x 3
    lib             meanDistance medianDistance
    <chr>                  <dbl>          <dbl>
  1 exectimer              21.4         17.4   
- 2 jade                   14.8          9.75  
- 3 jquery                 13.7         10.3   
+ 2 jade                   18.7         12.3   
+ 3 jquery                 14.1         10.6   
  4 lodash                  2.21         0.0278
  5 minimist               22.2         20.5   
- 6 node-browserify        13.0          7.93  
- 7 plivo-node             10.4          0.657 
- 8 tleaf                  26.7         18.4   
+ 6 node-browserify        13.0          7.95  
+ 7 plivo-node              6.84         0.431 
+ 8 tleaf                  12.6          8.69  
  9 underscore             15.2         12.4   
 10 uuid                   20.2         12.0   
-11 xml2js                 19.2         14.8   
-
+11 xml2js                 19.2         14.8  
+ 
 > overallDistance
 # A tibble: 1 x 2
   meanDistance medianDistance
          <dbl>          <dbl>
-1         11.7           1.91
+1         10.1           1.59
 
 > correlationMeanSizeLoc
-[1] -0.9272727
+[1] -0.8454545
 
 > correlationMedianSizeLoc
 [1] -0.9909091
 
 > correlationMeanDistanceLoc
-[1] -0.8727273
+[1] -0.7636364
 
 > correlationMedianDistanceLoc
-[1] -0.7545455
+[1] -0.6545455
 
 
 ==============================================================
