@@ -1,24 +1,27 @@
 > size
-# A tibble: 11 x 3
-   lib             meanSize medianSize
-   <chr>              <dbl>      <dbl>
- 1 exectimer         1.28       0.513 
- 2 jade              1.56       0.315 
- 3 jquery            0.0475     0.0135
- 4 lodash            0.0454     0.0185
- 5 minimist          0.575      0.518 
- 6 node-browserify   0.216      0.132 
- 7 plivo-node        0.209      0.108 
- 8 tleaf             0.936      0.355 
- 9 underscore        0.0764     0.0675
-10 uuid              0.903      0.478 
-11 xml2js            0.277      0.190 
+# A tibble: 11 x 4
+   lib             meanSize medianSize meanTotalSize
+   <chr>              <dbl>      <dbl>         <dbl>
+ 1 exectimer         1.28       0.513          1.81 
+ 2 jade              1.56       0.315          5.43 
+ 3 jquery            0.0475     0.0135         0.272
+ 4 lodash            0.0454     0.0185         1.37 
+ 5 minimist          0.575      0.518          0.527
+ 6 node-browserify   0.216      0.132          0.245
+ 7 plivo-node        0.209      0.108          1.73 
+ 8 tleaf             0.936      0.355          4.85 
+ 9 underscore        0.0764     0.0675         0.331
+10 uuid              0.903      0.478          1.73 
+11 xml2js            0.277      0.190          0.162
 
 > overallSize
 # A tibble: 1 x 2
   meanSize medianSize
      <dbl>      <dbl>
 1    0.293     0.0675
+
+> meanMeanTotalSize
+[1] 2.16327
 
 > distance
 # A tibble: 11 x 3
@@ -47,6 +50,9 @@
 
 > correlationMedianSizeLoc
 [1] -0.9909091
+
+> correlationMeanTotalSizeLoc
+[1] -0.4181818
 
 > correlationMeanDistanceLoc
 [1] -0.7636364
