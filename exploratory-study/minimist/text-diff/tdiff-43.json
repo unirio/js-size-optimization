@@ -1,0 +1,61 @@
+Comparing files MINIMIST\RD\43.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\43.js
+   43:      }
+   44:      function argDefined(key) {
+   45:          return flags.allBools && /^--[^=]+$/.test(arg) || flags.strings[key] || flags.bools[key] || aliases[key];
+***** MINIMIST\RD\ORIGINAL.JS
+   43:      }
+   44:      function argDefined(key, arg) {
+   45:          return flags.allBools && /^--[^=]+$/.test(arg) || flags.strings[key] || flags.bools[key] || aliases[key];
+*****
+
+***** MINIMIST\RD\43.js
+  105:              } else if (/^(true|false)$/.test(next)) {
+  106:                  setArg(key, next === 'true');
+  107:                  i++;
+***** MINIMIST\RD\ORIGINAL.JS
+  105:              } else if (/^(true|false)$/.test(next)) {
+  106:                  setArg(key, next === 'true', arg);
+  107:                  i++;
+*****
+
+***** MINIMIST\RD\43.js
+  125:                  if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+  126:                      setArg(letters[j], next);
+  127:                      broken = true;
+***** MINIMIST\RD\ORIGINAL.JS
+  125:                  if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+  126:                      setArg(letters[j], next, arg);
+  127:                      broken = true;
+*****
+
+***** MINIMIST\RD\43.js
+  144:                  } else if (args[i + 1] && /true|false/.test(args[i + 1])) {
+  145:                      setArg(key, args[i + 1] === 'true');
+  146:                      i++;
+***** MINIMIST\RD\ORIGINAL.JS
+  144:                  } else if (args[i + 1] && /true|false/.test(args[i + 1])) {
+  145:                      setArg(key, args[i + 1] === 'true', arg);
+  146:                      i++;
+*****
+
+***** MINIMIST\RD\43.js
+  147:                  } else {
+  148:                      setArg(key, flags.strings[key] ? '' : true);
+  149:                  }
+***** MINIMIST\RD\ORIGINAL.JS
+  147:                  } else {
+  148:                      setArg(key, flags.strings[key] ? '' : true, arg);
+  149:                  }
+*****
+
+***** MINIMIST\RD\43.js
+  190:      if (typeof x === 'number')
+  191:          return;
+  192:      if (/^0x[0-9a-f]+$/i.test(x))
+***** MINIMIST\RD\ORIGINAL.JS
+  190:      if (typeof x === 'number')
+  191:          return true;
+  192:      if (/^0x[0-9a-f]+$/i.test(x))
+*****
+

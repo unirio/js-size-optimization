@@ -1,0 +1,48 @@
+Comparing files NODE-BROWSERIFY\RD\41.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\41.js
+  252:      }
+  253:      return;
+  254:  };
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  252:      }
+  253:      return this;
+  254:  };
+*****
+
+***** NODE-BROWSERIFY\RD\41.js
+  451:              }
+  452:              if (file) {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  451:              }
+  452:              if (file && self._ignore.length) {
+  453:                  var nm = file.split('/node_modules/')[1];
+  454:                  if (nm) {
+  455:                      nm = nm.split('/')[0];
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+  457:                          return cb(null, paths.empty, {});
+  458:                      }
+  459:                  }
+  460:              }
+  461:              if (file) {
+*****
+
+***** NODE-BROWSERIFY\RD\41.js
+  459:                  }
+  460:                  if (self._ignore.indexOf() >= 0) {
+  461:                      return cb(null, paths.empty, {});
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  468:                  }
+  469:                  if (self._ignore.indexOf(ex) >= 0) {
+  470:                      return cb(null, paths.empty, {});
+*****
+
+***** NODE-BROWSERIFY\RD\41.js
+  510:              return through();
+  511:          if (no.indexOf() >= 0)
+  512:              return through();
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  519:              return through();
+  520:          if (no.indexOf(file) >= 0)
+  521:              return through();
+*****
+

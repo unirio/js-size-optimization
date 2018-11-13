@@ -1,0 +1,80 @@
+Comparing files JQUERY\RD\37.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\37.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\37.js
+ 2844:      jQuery.ready.then = readyList.then;
+ 2845:      // Catch cases where $(document).ready() is called
+***** JQUERY\RD\ORIGINAL.JS
+ 2845:      jQuery.ready.then = readyList.then;
+ 2846:      // The ready event handler and self cleanup method
+ 2847:      function completed() {
+ 2848:          document.removeEventListener('DOMContentLoaded', completed);
+ 2849:          window.removeEventListener('load', completed);
+ 2850:          jQuery.ready();
+ 2851:      }
+ 2852:      // Catch cases where $(document).ready() is called
+*****
+
+***** JQUERY\RD\37.js
+ 3053:          hasData: function (elem) {
+ 3054:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 3060:          hasData: function (elem) {
+ 3061:              return dataUser.hasData(elem) || dataPriv.hasData(elem);
+ 3062:          },
+*****
+
+***** JQUERY\RD\37.js
+ 3347:                  }
+ 3348:                  if (elem.style.display === '' && isHiddenWithinTree()) {
+ 3349:                      values[index] = getDefaultDisplay(elem);
+***** JQUERY\RD\ORIGINAL.JS
+ 3355:                  }
+ 3356:                  if (elem.style.display === '' && isHiddenWithinTree(elem)) {
+ 3357:                      values[index] = getDefaultDisplay(elem);
+*****
+
+***** JQUERY\RD\37.js
+ 4313:              return access(this, function (value) {
+ 4314:                  return value === undefined ? jQuery.text(this) : this.empty().each();
+ 4315:              }, null, value, arguments.length);
+***** JQUERY\RD\ORIGINAL.JS
+ 4321:              return access(this, function (value) {
+ 4322:                  return value === undefined ? jQuery.text(this) : this.empty().each(function () {
+ 4323:                      if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
+ 4324:                          this.textContent = value;
+ 4325:                      }
+ 4326:                  });
+ 4327:              }, null, value, arguments.length);
+*****
+
+***** JQUERY\RD\37.js
+ 6062:              // Attach a single capturing handler on the document while someone wants focusin/focusout
+ 6063:              var handler = function () {
+ 6064:                  jQuery.event.simulate(fix, event.target, jQuery.event.fix(event));
+***** JQUERY\RD\ORIGINAL.JS
+ 6074:              // Attach a single capturing handler on the document while someone wants focusin/focusout
+ 6075:              var handler = function (event) {
+ 6076:                  jQuery.event.simulate(fix, event.target, jQuery.event.fix(event));
+*****
+
+***** JQUERY\RD\37.js
+ 7129:                  if (overwritten === undefined) {
+ 7130:                  } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 7141:                  if (overwritten === undefined) {
+ 7142:                      jQuery(window).removeProp(callbackName);    // Otherwise restore preexisting value
+ 7143:                  } else {
+*****
+

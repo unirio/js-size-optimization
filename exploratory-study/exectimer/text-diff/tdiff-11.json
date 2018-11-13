@@ -1,0 +1,27 @@
+Comparing files EXECTIMER\RD\11.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\11.js
+  107:  };
+  108:  function isGeneratorFunction(obj) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  107:  };
+  108:  /**
+  109:   * Check if `obj` is a generator function.
+  110:   *
+  111:   * @param {Mixed} obj
+  112:   * @return {Boolean}
+  113:   * @api private
+  114:   */
+  115:  function isGeneratorFunction(obj) {
+*****
+
+***** EXECTIMER\RD\11.js
+  109:      var constructor = obj.constructor;
+  110:      if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  116:      var constructor = obj.constructor;
+  117:      if (!constructor) {
+  118:          return false;
+  119:      }
+  120:      if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
+*****
+

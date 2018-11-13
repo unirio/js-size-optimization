@@ -1,0 +1,79 @@
+Comparing files JADE\RD\54.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\54.js
+   64:              var str = fs.readFileSync(filename, 'utf8');
+   65:              return str;
+***** JADE\RD\ORIGINAL.JS
+   64:              var str = fs.readFileSync(filename, 'utf8');
+   65:              debug_sources[filename] = str;
+   66:              return str;
+*****
+
+***** JADE\RD\54.js
+  144:          includeSources: options.compileDebug === true,
+  145:          debug: options.debug
+  146:      });
+***** JADE\RD\ORIGINAL.JS
+  145:          includeSources: options.compileDebug === true,
+  146:          debug: options.debug,
+  147:          templateName: 'template'
+  148:      });
+*****
+
+***** JADE\RD\54.js
+  224:  };
+  225:  exports.render = function (str, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  226:  };
+  227:  /**
+  228:   * Render the given `str` of pug.
+  229:   *
+  230:   * Options:
+  231:   *
+  232:   *   - `cache` enable template caching
+  233:   *   - `filename` filename required for `include` / `extends` and caching
+  234:   *
+  235:   * @param {String} str
+  236:   * @param {Object|Function} options or fn
+  237:   * @param {Function|undefined} fn
+  238:   * @returns {String}
+  239:   * @api public
+  240:   */
+  241:  exports.render = function (str, options, fn) {
+*****
+
+***** JADE\RD\54.js
+  236:          }
+  237:      }
+***** JADE\RD\ORIGINAL.JS
+  252:          }
+  253:          return fn(null, res);
+  254:      }
+*****
+
+***** JADE\RD\54.js
+  244:  };
+  245:  exports.renderFile = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  261:  };
+  262:  /**
+  263:   * Render a Pug file at the given `path`.
+  264:   *
+  265:   * @param {String} path
+  266:   * @param {Object|Function} options or callback
+  267:   * @param {Function|undefined} fn
+  268:   * @returns {String}
+  269:   * @api public
+  270:   */
+  271:  exports.renderFile = function (path, options, fn) {
+*****
+
+***** JADE\RD\54.js
+  290:      }
+  291:      exports.renderFile(path, options);
+  292:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

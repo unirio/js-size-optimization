@@ -1,0 +1,22 @@
+Comparing files UUID\RD\28.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\28.js
+   93:      if (this.hex !== uuid.hex) {
+   94:          return;
+   95:      }
+***** UUID\RD\ORIGINAL.JS
+   93:      if (this.hex !== uuid.hex) {
+   94:          return false;
+   95:      }
+*****
+
+***** UUID\RD\28.js
+  178:          2,
+  179:          2
+  180:      ];
+***** UUID\RD\ORIGINAL.JS
+  178:          2,
+  179:          2,
+  180:          6
+  181:      ];
+*****
+

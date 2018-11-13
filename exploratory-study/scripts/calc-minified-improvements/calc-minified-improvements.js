@@ -71,4 +71,4 @@ function getFileSize(item, algorithm, name) {
  * Main program
  */
 libs.forEach(handleFile);
-console.log(result);
+fs.writeFileSync("results\\minified-improvement-ga-shc.csv", result, 'utf8');

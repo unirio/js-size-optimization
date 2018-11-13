@@ -1,0 +1,10 @@
+Comparing files MINIMIST\RD\46.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\46.js
+   85:              // Using [\s\S] instead of . because js doesn't support the
+   86:              // http://stackoverflow.com/a/1068308/13216
+***** MINIMIST\RD\ORIGINAL.JS
+   85:              // Using [\s\S] instead of . because js doesn't support the
+   86:              // 'dotall' regex modifier. See:
+   87:              // http://stackoverflow.com/a/1068308/13216
+*****
+

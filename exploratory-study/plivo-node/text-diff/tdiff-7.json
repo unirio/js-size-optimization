@@ -1,0 +1,50 @@
+Comparing files PLIVO-NODE\RD\7.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\7.js
+  241:  plivo.play_conference_member = function (params, callback) {
+  242:      var action;
+  243:      delete params.conference_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  241:  plivo.play_conference_member = function (params, callback) {
+  242:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Play/';
+  243:      delete params.conference_id;
+*****
+
+***** PLIVO-NODE\RD\7.js
+  264:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Speak/';
+  265:      delete params.member_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  264:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Speak/';
+  265:      delete params.conference_id;
+  266:      delete params.member_id;
+*****
+
+***** PLIVO-NODE\RD\7.js
+  685:      addPreAnswer: function () {
+  686:          return this.add(new PreAnswer(Response), '');
+  687:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  686:      addPreAnswer: function () {
+  687:          return this.add(new PreAnswer(Response), '', {});
+  688:      },
+*****
+
+***** PLIVO-NODE\RD\7.js
+  773:          'callbackUrl',
+  774:          'digitsMatch',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  774:          'callbackUrl',
+  775:          'callbackMethod',
+  776:          'digitsMatch',
+*****
+
+***** PLIVO-NODE\RD\7.js
+  916:      }
+  917:      if (!config.authId || !config.authToken) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  918:      }
+  919:      if (typeof config != 'object') {
+  920:          throw new PlivoError('Config for RestAPI must be provided as an object.');
+  921:      }
+  922:      if (!config.authId || !config.authToken) {
+*****
+

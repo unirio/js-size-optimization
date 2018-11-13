@@ -1,0 +1,11 @@
+Comparing files EXECTIMER\RD\55.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\55.js
+  117:      if (!constructor) {
+  118:          return;
+  119:      }
+***** EXECTIMER\RD\ORIGINAL.JS
+  117:      if (!constructor) {
+  118:          return false;
+  119:      }
+*****
+

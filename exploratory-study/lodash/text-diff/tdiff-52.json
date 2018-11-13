@@ -1,0 +1,51 @@
+Comparing files LODASH\RD\52.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\52.js
+  818:          }
+  819:          function LodashWrapper(value, chainAll, actions) {
+***** LODASH\RD\ORIGINAL.JS
+  818:          }
+  819:          /**
+  820:       * The base constructor for creating `lodash` wrapper objects.
+  821:       *
+  822:       * @private
+  823:       * @param {*} value The value to wrap.
+  824:       * @param {boolean} [chainAll] Enable chaining for all wrapper methods.
+  825:       * @param {Array} [actions=[]] Actions to peform to resolve the unwrapped value.
+  826:       */
+  827:          function LodashWrapper(value, chainAll, actions) {
+*****
+
+***** LODASH\RD\52.js
+ 9467:              // If `variable` is not specified wrap a with-statement around the generated
+ 9468:              var variable = options.variable;
+***** LODASH\RD\ORIGINAL.JS
+ 9475:              // If `variable` is not specified wrap a with-statement around the generated
+ 9476:              // code to add the data object to the top of the scope chain.
+ 9477:              var variable = options.variable;
+*****
+
+***** LODASH\RD\52.js
+ 9472:              // Cleanup code by stripping empty strings.
+ 9473:              source = (isEvaluating ? source.replace(reEmptyStringLeading) : source).replace(reEmptyStringMiddle, '$1').replace(
+ 9474:  reEmptyStringTrailing, '$1;');
+ 9475:              // Frame code as the function body.
+***** LODASH\RD\ORIGINAL.JS
+ 9481:              // Cleanup code by stripping empty strings.
+ 9482:              source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source).replace(reEmptyStringMiddle, '$1').repl
+ 9483:  ace(reEmptyStringTrailing, '$1;');
+ 9484:              // Frame code as the function body.
+*****
+
+***** LODASH\RD\52.js
+10729:          // Add `LazyWrapper` methods for `_.initial` and `_.rest`.
+10730:          arrayEach(['initial'], function (methodName, index) {
+10731:              var dropName = 'drop' + (index ? '' : 'Right');
+***** LODASH\RD\ORIGINAL.JS
+10738:          // Add `LazyWrapper` methods for `_.initial` and `_.rest`.
+10739:          arrayEach([
+10740:              'initial',
+10741:              'rest'
+10742:          ], function (methodName, index) {
+10743:              var dropName = 'drop' + (index ? '' : 'Right');
+*****
+

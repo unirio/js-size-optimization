@@ -1,0 +1,36 @@
+Comparing files JQUERY\RD\22.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\22.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\22.js
+ 4673:          },
+ 4674:          cssNumber: {
+***** JQUERY\RD\ORIGINAL.JS
+ 4674:          },
+ 4675:          // Don't automatically add "px" to these possibly-unitless properties
+ 4676:          cssNumber: {
+*****
+
+***** JQUERY\RD\22.js
+ 7385:              // Subtract parent offsets and element margins
+ 7386:              return { top: offset.top - parentOffset.top - jQuery.css(elem, 'marginTop', true) };
+ 7387:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 7387:              // Subtract parent offsets and element margins
+ 7388:              return {
+ 7389:                  top: offset.top - parentOffset.top - jQuery.css(elem, 'marginTop', true),
+ 7390:                  left: offset.left - parentOffset.left - jQuery.css(elem, 'marginLeft', true)
+ 7391:              };
+ 7392:          },
+*****
+

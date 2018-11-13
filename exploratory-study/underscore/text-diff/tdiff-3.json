@@ -1,0 +1,47 @@
+Comparing files UNDERSCORE\RD\3.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\3.js
+  486:      _.without = function (array) {
+  487:          return _.difference(array, slice.call(arguments));
+  488:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  486:      _.without = function (array) {
+  487:          return _.difference(array, slice.call(arguments, 1));
+  488:      };
+*****
+
+***** UNDERSCORE\RD\3.js
+  637:      // If the array is large and already in sort order, pass `true`
+  638:      _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  637:      // If the array is large and already in sort order, pass `true`
+  638:      // for **isSorted** to use binary search.
+  639:      _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
+*****
+
+***** UNDERSCORE\RD\3.js
+ 1134:              length = keys.length;
+ 1135:              if (_.keys(b).length !== length)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1135:              length = keys.length;
+ 1136:              // Ensure that both objects contain the same number of properties before comparing deep equality.
+ 1137:              if (_.keys(b).length !== length)
+*****
+
+***** UNDERSCORE\RD\3.js
+ 1264:      };
+ 1265:      _.times = function (n, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1266:      };
+ 1267:      // Run a function **n** times.
+ 1268:      _.times = function (n, iteratee, context) {
+*****
+
+***** UNDERSCORE\RD\3.js
+ 1293:      var unescapeMap = _.invert(escapeMap);
+ 1294:      var createEscaper = function (map) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1296:      var unescapeMap = _.invert(escapeMap);
+ 1297:      // Functions for escaping and unescaping strings to/from HTML interpolation.
+ 1298:      var createEscaper = function (map) {
+*****
+

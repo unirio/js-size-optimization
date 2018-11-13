@@ -1,0 +1,11 @@
+Comparing files LODASH\RD\51.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\51.js
+ 1081:          function cachePush(value) {
+ 1082:              var data;
+ 1083:              if (typeof value == 'string' || isObject(value)) {
+***** LODASH\RD\ORIGINAL.JS
+ 1081:          function cachePush(value) {
+ 1082:              var data = this.data;
+ 1083:              if (typeof value == 'string' || isObject(value)) {
+*****
+

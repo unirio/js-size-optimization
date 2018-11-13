@@ -1,0 +1,95 @@
+Comparing files JQUERY\RD\41.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\41.js
+  440:  hitespace + '*([>+~]|' + whitespace + ')' + whitespace + '*'), rattributeQuotes = new RegExp('=' + whitespace + '*([^\\]\'"]*?)
+  441:  ' + whitespace + '*\\]', 'g'), rpseudo = new RegExp(pseudos), ridentifier = new RegExp(), matchExpr = {
+  442:                  'ID': new RegExp('^#(' + identifier + ')'),
+***** JQUERY\RD\ORIGINAL.JS
+  440:  hitespace + '*([>+~]|' + whitespace + ')' + whitespace + '*'), rattributeQuotes = new RegExp('=' + whitespace + '*([^\\]\'"]*?)
+  441:  ' + whitespace + '*\\]', 'g'), rpseudo = new RegExp(pseudos), ridentifier = new RegExp('^' + identifier + '$'), matchExpr = {
+  442:                  'ID': new RegExp('^#(' + identifier + ')'),
+*****
+
+***** JQUERY\RD\41.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\41.js
+ 1566:              var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + ' '];
+ 1567:              soFar = selector;
+***** JQUERY\RD\ORIGINAL.JS
+ 1567:              var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + ' '];
+ 1568:              if (cached) {
+ 1569:                  return parseOnly ? 0 : cached.slice(0);
+ 1570:              }
+ 1571:              soFar = selector;
+*****
+
+***** JQUERY\RD\41.js
+ 1927:              var i, tokens, token, type, find, compiled = typeof selector === 'function' && selector, match = !seed && tokenize(
+ 1928:  );
+ 1929:              results = results || [];
+***** JQUERY\RD\ORIGINAL.JS
+ 1931:              var i, tokens, token, type, find, compiled = typeof selector === 'function' && selector, match = !seed && tokenize(
+ 1932:  selector = compiled.selector || selector);
+ 1933:              results = results || [];
+*****
+
+***** JQUERY\RD\41.js
+ 2042:              if (elem.nodeType === 1) {
+ 2043:                  if (truncate && jQuery().is(until)) {
+ 2044:                      break;
+***** JQUERY\RD\ORIGINAL.JS
+ 2046:              if (elem.nodeType === 1) {
+ 2047:                  if (truncate && jQuery(elem).is(until)) {
+ 2048:                      break;
+*****
+
+***** JQUERY\RD\41.js
+ 2048:          }
+ 2049:          return;
+ 2050:      };
+***** JQUERY\RD\ORIGINAL.JS
+ 2052:          }
+ 2053:          return matched;
+ 2054:      };
+*****
+
+***** JQUERY\RD\41.js
+ 3132:                  });
+ 3133:              }, null, value, arguments.length > 1, null);
+ 3134:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 3136:                  });
+ 3137:              }, null, value, arguments.length > 1, null, true);
+ 3138:          },
+*****
+
+***** JQUERY\RD\41.js
+ 4406:              // Make the changes, replacing each non-ignored context element with the new content
+ 4407:              return domManip(this, function (elem) {
+ 4408:                  var parent = this.parentNode;
+***** JQUERY\RD\ORIGINAL.JS
+ 4410:              // Make the changes, replacing each non-ignored context element with the new content
+ 4411:              return domManip(this, arguments, function (elem) {
+ 4412:                  var parent = this.parentNode;
+*****
+
+***** JQUERY\RD\41.js
+ 4425:          jQuery.fn[name] = function (selector) {
+ 4426:              var elems, ret = [], last = insert.length - 1, i = 0;
+ 4427:              for (; i <= last; i++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 4429:          jQuery.fn[name] = function (selector) {
+ 4430:              var elems, ret = [], insert = jQuery(selector), last = insert.length - 1, i = 0;
+ 4431:              for (; i <= last; i++) {
+*****
+

@@ -1,0 +1,31 @@
+Comparing files UUID\RD\23.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\23.js
+   93:      if (this.hex !== uuid.hex) {
+   94:          return;
+   95:      }
+***** UUID\RD\ORIGINAL.JS
+   93:      if (this.hex !== uuid.hex) {
+   94:          return false;
+   95:      }
+*****
+
+***** UUID\RD\23.js
+  181:      ];
+  182:      for (var i = 0; i < parts.length;) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+***** UUID\RD\ORIGINAL.JS
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+*****
+
+***** UUID\RD\23.js
+  193:      }
+  194:      return UUIDjs.fromURN();
+  195:  };
+***** UUID\RD\ORIGINAL.JS
+  193:      }
+  194:      return UUIDjs.fromURN(str);
+  195:  };
+*****
+

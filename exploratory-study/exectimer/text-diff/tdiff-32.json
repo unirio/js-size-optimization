@@ -1,0 +1,37 @@
+Comparing files EXECTIMER\RD\32.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\32.js
+   22:                  if (this.ticks.length > 1) {
+   23:                      this.ticks.sort();
+   24:                      const l = this.ticks.length;
+***** EXECTIMER\RD\ORIGINAL.JS
+   22:                  if (this.ticks.length > 1) {
+   23:                      this.ticks.sort(function (a, b) {
+   24:                          return a && b && a.getDiff() - b.getDiff() || 0;
+   25:                      });
+   26:                      const l = this.ticks.length;
+*****
+
+***** EXECTIMER\RD\32.js
+  105:  };
+  106:  function isGeneratorFunction(obj) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  107:  };
+  108:  /**
+  109:   * Check if `obj` is a generator function.
+  110:   *
+  111:   * @param {Mixed} obj
+  112:   * @return {Boolean}
+  113:   * @api private
+  114:   */
+  115:  function isGeneratorFunction(obj) {
+*****
+
+***** EXECTIMER\RD\32.js
+  146:          callback();
+  147:      }
+***** EXECTIMER\RD\ORIGINAL.JS
+  155:          callback();
+  156:          tick.stop();
+  157:      }
+*****
+

@@ -1,0 +1,79 @@
+Comparing files UNDERSCORE\RD\12.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\12.js
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Create a safe reference to the Underscore object for use below.
+***** UNDERSCORE\RD\ORIGINAL.JS
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Naked function reference for surrogate-prototype-swapping.
+   21:      var Ctor = function () {
+   22:      };
+   23:      // Create a safe reference to the Underscore object for use below.
+*****
+
+***** UNDERSCORE\RD\12.js
+  391:      });
+  392:      _.toArray = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  394:      });
+  395:      // Safely create a real, live array from anything iterable.
+  396:      _.toArray = function (obj) {
+*****
+
+***** UNDERSCORE\RD\12.js
+  411:          var pass = [], fail = [];
+  412:          _.each(obj, function (value, key) {
+  413:              (predicate(value, key, obj) ? pass : fail).push(value);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  415:          var pass = [], fail = [];
+  416:          _.each(obj, function (value, key, obj) {
+  417:              (predicate(value, key, obj) ? pass : fail).push(value);
+*****
+
+***** UNDERSCORE\RD\12.js
+  528:                  continue;
+  529:              for (var j = 1;; j++) {
+  530:                  if (!_.contains(arguments[j], item))
+***** UNDERSCORE\RD\ORIGINAL.JS
+  532:                  continue;
+  533:              for (var j = 1; j < argsLength; j++) {
+  534:                  if (!_.contains(arguments[j], item))
+*****
+
+***** UNDERSCORE\RD\12.js
+  777:      _.debounce = function (func, wait, immediate) {
+  778:          var timeout, args, context, result;
+  779:          var later = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  781:      _.debounce = function (func, wait, immediate) {
+  782:          var timeout, args, context, timestamp, result;
+  783:          var later = function () {
+*****
+
+***** UNDERSCORE\RD\12.js
+ 1004:          } else {
+ 1005:              var keys = _.map(flatten(arguments, false, false), String);
+ 1006:              iteratee = function (value, key) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1008:          } else {
+ 1009:              var keys = _.map(flatten(arguments, false, false, 1), String);
+ 1010:              iteratee = function (value, key) {
+*****
+
+***** UNDERSCORE\RD\12.js
+ 1351:      // Underscore templating handles arbitrary delimiters, preserves whitespace,
+ 1352:      // NB: `oldSettings` only exists for backwards compatibility.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1355:      // Underscore templating handles arbitrary delimiters, preserves whitespace,
+ 1356:      // and correctly escapes quotes within interpolated code.
+ 1357:      // NB: `oldSettings` only exists for backwards compatibility.
+*****
+
+***** UNDERSCORE\RD\12.js
+ 1472:      // an AMD load request. Those cases could generate an error when an
+ 1473:      if (typeof define === 'function' && define.amd) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1477:      // an AMD load request. Those cases could generate an error when an
+ 1478:      // anonymous define() is called outside of a loader request.
+ 1479:      if (typeof define === 'function' && define.amd) {
+*****
+

@@ -1,0 +1,10 @@
+Comparing files NODE-BROWSERIFY\RD\13.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\13.js
+  664:              if (self._external.indexOf(afile) >= 0) {
+  665:              }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  664:              if (self._external.indexOf(afile) >= 0) {
+  665:                  row.deps[key] = rfile;
+  666:              }
+*****
+

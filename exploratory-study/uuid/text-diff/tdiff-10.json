@@ -1,0 +1,26 @@
+Comparing files UUID\RD\10.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\10.js
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6]));
+  166:      }
+***** UUID\RD\ORIGINAL.JS
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+
+***** UUID\RD\10.js
+  174:      var pos = 0;
+  175:      for (var i = 0; i < parts.length; i++) {
+***** UUID\RD\ORIGINAL.JS
+  174:      var pos = 0;
+  175:      var parts = [
+  176:          4,
+  177:          2,
+  178:          2,
+  179:          2,
+  180:          6
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+*****
+

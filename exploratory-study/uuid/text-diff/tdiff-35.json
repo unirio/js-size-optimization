@@ -1,0 +1,33 @@
+Comparing files UUID\RD\35.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\35.js
+   98:  UUIDjs.getTimeFieldValues = function (time) {
+   99:      var ts = time - Date.UTC(1582, 9);
+  100:      var hm = ts / 4294967296 * 10000 & 268435455;
+***** UUID\RD\ORIGINAL.JS
+   98:  UUIDjs.getTimeFieldValues = function (time) {
+   99:      var ts = time - Date.UTC(1582, 9, 15);
+  100:      var hm = ts / 4294967296 * 10000 & 268435455;
+*****
+
+***** UUID\RD\35.js
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet;
+  185:              if (octet.length == 1) {
+***** UUID\RD\ORIGINAL.JS
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+  185:              if (octet.length == 1) {
+*****
+
+***** UUID\RD\35.js
+  197:      var ints = [];
+  198:      for (var i = 0; i < binary.length;) {
+  199:          ints[i] = binary.charCodeAt();
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+***** UUID\RD\ORIGINAL.JS
+  197:      var ints = [];
+  198:      for (var i = 0; i < binary.length; i++) {
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+*****
+

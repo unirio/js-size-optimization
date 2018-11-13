@@ -1,0 +1,38 @@
+Comparing files PLIVO-NODE\RD\20.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\20.js
+  189:      var method = 'POST';
+  190:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  189:      var method = 'POST';
+  190:      request(action, method, params, callback);
+  191:  };
+*****
+
+***** PLIVO-NODE\RD\20.js
+  568:      var method = 'GET';
+  569:      request(action, method, params);
+  570:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  569:      var method = 'GET';
+  570:      request(action, method, params, callback);
+  571:  };
+*****
+
+***** PLIVO-NODE\RD\20.js
+  714:          'waitSound',
+  715:          'exitSound',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  715:          'waitSound',
+  716:          'enterSound',
+  717:          'exitSound',
+*****
+
+***** PLIVO-NODE\RD\20.js
+  882:      ];
+  883:  }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  884:      ];
+  885:      this.nestables = [];
+  886:  }
+*****
+

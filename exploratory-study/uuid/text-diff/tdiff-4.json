@@ -1,0 +1,12 @@
+Comparing files UUID\RD\4.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\4.js
+  199:          ints[i] = binary.charCodeAt(i);
+  200:      }
+***** UUID\RD\ORIGINAL.JS
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+  201:              throw new Error('Unexpected byte in binary data.');
+  202:          }
+  203:      }
+*****
+

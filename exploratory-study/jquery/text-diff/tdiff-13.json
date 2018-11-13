@@ -1,0 +1,53 @@
+Comparing files JQUERY\RD\13.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\13.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\13.js
+ 3152:                      if (!queue || jQuery.isArray(data)) {
+ 3153:                          queue = dataPriv.access(elem, type, jQuery.makeArray());
+ 3154:                      } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 3153:                      if (!queue || jQuery.isArray(data)) {
+ 3154:                          queue = dataPriv.access(elem, type, jQuery.makeArray(data));
+ 3155:                      } else {
+*****
+
+***** JQUERY\RD\13.js
+ 4821:          css: function (name, value) {
+ 4822:              return access(this, function (elem, value) {
+ 4823:                  var styles, len, map = {}, i = 0;
+***** JQUERY\RD\ORIGINAL.JS
+ 4822:          css: function (name, value) {
+ 4823:              return access(this, function (elem, name, value) {
+ 4824:                  var styles, len, map = {}, i = 0;
+*****
+
+***** JQUERY\RD\13.js
+ 5385:                          timers[index].anim.stop(true);
+ 5386:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 5386:                          timers[index].anim.stop(true);
+ 5387:                          timers.splice(index, 1);
+ 5388:                      }
+*****
+
+***** JQUERY\RD\13.js
+ 5798:              while (elem = this[i++]) {
+ 5799:                  if (elem.nodeType === 1 && (' ' + getClass() + ' ').replace(rclass, ' ').indexOf(className) > -1) {
+ 5800:                      return true;
+***** JQUERY\RD\ORIGINAL.JS
+ 5800:              while (elem = this[i++]) {
+ 5801:                  if (elem.nodeType === 1 && (' ' + getClass(elem) + ' ').replace(rclass, ' ').indexOf(className) > -1) {
+ 5802:                      return true;
+*****
+

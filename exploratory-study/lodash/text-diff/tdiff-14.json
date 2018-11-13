@@ -1,0 +1,193 @@
+Comparing files LODASH\RD\14.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\14.js
+  868:         */
+  869:              'variable': ''
+  870:          };
+***** LODASH\RD\ORIGINAL.JS
+  868:         */
+  869:              'variable': '',
+  870:              /**
+  871:         * Used to import variables into the compiled template.
+  872:         *
+  873:         * @memberOf _.templateSettings
+  874:         * @type Object
+  875:         */
+  876:              'imports': {
+  877:                  /**
+  878:           * A reference to the `lodash` function.
+  879:           *
+  880:           * @memberOf _.templateSettings.imports
+  881:           * @type Function
+  882:           */
+  883:                  '_': lodash
+  884:              }
+  885:          };
+*****
+
+***** LODASH\RD\14.js
+ 1026:          /*------------------------------------------------------------------------*/
+ 1027:          function SetCache(values) {
+***** LODASH\RD\ORIGINAL.JS
+ 1041:          /*------------------------------------------------------------------------*/
+ 1042:          /**
+ 1043:       *
+ 1044:       * Creates a cache object to store unique values.
+ 1045:       *
+ 1046:       * @private
+ 1047:       * @param {Array} [values] The values to cache.
+ 1048:       */
+ 1049:          function SetCache(values) {
+*****
+
+***** LODASH\RD\14.js
+ 1033:              while (length--) {
+ 1034:                  this.push();
+ 1035:              }
+***** LODASH\RD\ORIGINAL.JS
+ 1055:              while (length--) {
+ 1056:                  this.push(values[length]);
+ 1057:              }
+*****
+
+***** LODASH\RD\14.js
+ 2239:                  result = predicate(value, index, collection);
+ 2240:              });
+***** LODASH\RD\ORIGINAL.JS
+ 2261:                  result = predicate(value, index, collection);
+ 2262:                  return !result;
+ 2263:              });
+*****
+
+***** LODASH\RD\14.js
+ 2726:                  case 1:
+ 2727:                  case 2:
+***** LODASH\RD\ORIGINAL.JS
+ 2749:                  case 1:
+ 2750:                      return new Ctor(args[0]);
+ 2751:                  case 2:
+*****
+
+***** LODASH\RD\14.js
+ 3477:          }
+ 3478:          function isLength(value) {
+ 3479:              return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+ 3480:          }
+ 3481:          /**
+ 3482:       * Checks if `value` is a prototype.
+ 3483:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3501:          }
+ 3502:          /**
+ 3503:       * Checks if `value` is a valid array-like length.
+ 3504:       *
+ 3505:       * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+ 3506:       *
+*****
+
+***** LODASH\RD\14.js
+ 3485:       * @param {*} value The value to check.
+ 3486:       * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ 3487:       */
+ 3488:          function isPrototype(value) {
+ 3489:              var Ctor = !!value && value.constructor, proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+ 3490:              return value === proto;
+ 3491:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3508:       * @param {*} value The value to check.
+ 3509:       * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ 3510:       */
+ 3511:          function isLength(value) {
+ 3512:              return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+ 3513:          }
+*****
+
+***** LODASH\RD\14.js
+ 3492:          /**
+ 3493:       * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ 3494:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3514:          /**
+ 3515:       * Checks if `value` is a prototype.
+ 3516:       *
+*****
+
+***** LODASH\RD\14.js
+ 3496:       * @param {*} value The value to check.
+ 3497:       * @returns {boolean} Returns `true` if `value` if suitable for strict
+ 3498:       *  equality comparisons, else `false`.
+ 3499:       */
+ 3500:          function isStrictComparable(value) {
+ 3501:              return value === value && !isObject(value);
+ 3502:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3518:       * @param {*} value The value to check.
+ 3519:       * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ 3520:       */
+ 3521:          function isPrototype(value) {
+ 3522:              var Ctor = !!value && value.constructor, proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+ 3523:              return value === proto;
+ 3524:          }
+*****
+
+***** LODASH\RD\14.js
+ 3503:          /**
+ 3504:       * Merges the function metadata of `source` into `data`.
+ 3505:       *
+ 3506:       * Merging metadata reduces the number of wrappers required to invoke a function.
+ 3507:       * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+ 3508:       * may be applied regardless of execution order. Methods like `_.ary` and `_.rearg`
+ 3509:       * augment function arguments, making the order in which they are executed important,
+ 3510:       * preventing the merging of metadata. However, we make an exception for a safe
+ 3511:       * common case where curried functions have `_.ary` and or `_.rearg` applied.
+ 3512:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3525:          /**
+ 3526:       * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ 3527:       *
+*****
+
+***** LODASH\RD\14.js
+ 3513:       * @private
+ 3514:       * @param {Array} data The destination metadata.
+***** LODASH\RD\ORIGINAL.JS
+ 3528:       * @private
+ 3529:       * @param {*} value The value to check.
+ 3530:       * @returns {boolean} Returns `true` if `value` if suitable for strict
+ 3531:       *  equality comparisons, else `false`.
+ 3532:       */
+ 3533:          function isStrictComparable(value) {
+ 3534:              return value === value && !isObject(value);
+ 3535:          }
+ 3536:          /**
+ 3537:       * Merges the function metadata of `source` into `data`.
+ 3538:       *
+ 3539:       * Merging metadata reduces the number of wrappers required to invoke a function.
+ 3540:       * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+ 3541:       * may be applied regardless of execution order. Methods like `_.ary` and `_.rearg`
+ 3542:       * augment function arguments, making the order in which they are executed important,
+ 3543:       * preventing the merging of metadata. However, we make an exception for a safe
+ 3544:       * common case where curried functions have `_.ary` and or `_.rearg` applied.
+ 3545:       *
+ 3546:       * @private
+ 3547:       * @param {Array} data The destination metadata.
+*****
+
+***** LODASH\RD\14.js
+ 6381:                      } else if (!maxTimeoutId) {
+ 6382:                          maxTimeoutId = setTimeout(maxDelayed);
+ 6383:                      }
+***** LODASH\RD\ORIGINAL.JS
+ 6414:                      } else if (!maxTimeoutId) {
+ 6415:                          maxTimeoutId = setTimeout(maxDelayed, remaining);
+ 6416:                      }
+*****
+
+***** LODASH\RD\14.js
+ 9458:              // Provide the compiled function's source by its `toString` method or
+ 9459:              result.source = source;
+***** LODASH\RD\ORIGINAL.JS
+ 9491:              // Provide the compiled function's source by its `toString` method or
+ 9492:              // the `source` property as a convenience for inlining compiled templates.
+ 9493:              result.source = source;
+*****
+

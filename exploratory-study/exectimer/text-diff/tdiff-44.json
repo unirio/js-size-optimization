@@ -1,0 +1,12 @@
+Comparing files EXECTIMER\RD\44.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\44.js
+  165:  };
+  166:  Tick.prototype.stop = function () {
+***** EXECTIMER\RD\ORIGINAL.JS
+  165:  };
+  166:  /**
+  167:   * Ends the tick.
+  168:   */
+  169:  Tick.prototype.stop = function () {
+*****
+

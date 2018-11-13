@@ -1,0 +1,86 @@
+Comparing files JQUERY\RD\53.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\53.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\53.js
+ 1800:  a descendant combinator, insert an implicit any-element `*`
+ 1801:                          tokens.slice(0, i - 1).concat()).replace(rtrim, '$1'), matcher, i < j && matcherFromTokens(tokens.slice
+ 1802:  (i, j)), j < len && matcherFromTokens(tokens = tokens.slice(j)), j < len && toSelector(tokens));
+ 1803:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 1801:  a descendant combinator, insert an implicit any-element `*`
+ 1802:                          tokens.slice(0, i - 1).concat({ value: tokens[i - 2].type === ' ' ? '*' : '' })).replace(rtrim, '$1'), 
+ 1803:  matcher, i < j && matcherFromTokens(tokens.slice(i, j)), j < len && matcherFromTokens(tokens = tokens.slice(j)), j < len && toS
+ 1804:  elector(tokens));
+ 1805:                      }
+*****
+
+***** JQUERY\RD\53.js
+ 1848:                              if (seed) {
+ 1849:                              }
+***** JQUERY\RD\ORIGINAL.JS
+ 1850:                              if (seed) {
+ 1851:                                  unmatched.push(elem);
+ 1852:                              }
+*****
+
+***** JQUERY\RD\53.js
+ 3371:      }
+ 3372:      var rcheckableType = /^(?:checkbox|radio)$/i;
+***** JQUERY\RD\ORIGINAL.JS
+ 3374:      }
+ 3375:      jQuery.fn.extend({
+ 3376:          show: function () {
+ 3377:              return showHide(this, true);
+ 3378:          },
+ 3379:          hide: function () {
+ 3380:              return showHide(this);
+ 3381:          },
+ 3382:          toggle: function (state) {
+ 3383:              if (typeof state === 'boolean') {
+ 3384:                  return state ? this.show() : this.hide();
+ 3385:              }
+ 3386:              return this.each(function () {
+ 3387:                  if (isHiddenWithinTree(this)) {
+ 3388:                      jQuery(this).show();
+ 3389:                  } else {
+ 3390:                      jQuery(this).hide();
+ 3391:                  }
+ 3392:              });
+ 3393:          }
+ 3394:      });
+ 3395:      var rcheckableType = /^(?:checkbox|radio)$/i;
+*****
+
+***** JQUERY\RD\53.js
+ 5113:                  for (index in value) {
+ 5114:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 5136:                  for (index in value) {
+ 5137:                      if (!(index in props)) {
+ 5138:                          props[index] = value[index];
+ 5139:                          specialEasing[index] = easing;
+ 5140:                      }
+ 5141:                  }
+*****
+
+***** JQUERY\RD\53.js
+ 6528:                      // Status-dependent callbacks
+ 6529:                      statusCode: function () {
+ 6530:                          var code;
+***** JQUERY\RD\ORIGINAL.JS
+ 6555:                      // Status-dependent callbacks
+ 6556:                      statusCode: function (map) {
+ 6557:                          var code;
+*****
+

@@ -1,0 +1,91 @@
+Comparing files JQUERY\RD\45.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\45.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\45.js
+  827:                      return function (elem) {
+  828:                      };
+***** JQUERY\RD\ORIGINAL.JS
+  828:                      return function (elem) {
+  829:                          return elem.getAttribute('id') === attrId;
+  830:                      };
+*****
+
+***** JQUERY\RD\45.js
+ 1689:          function condense(unmatched, map, filter, context, xml) {
+ 1690:              var elem, i = 0, len = unmatched.length, mapped = map != null;
+ 1691:              for (; i < len; i++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1691:          function condense(unmatched, map, filter, context, xml) {
+ 1692:              var elem, newUnmatched = [], i = 0, len = unmatched.length, mapped = map != null;
+ 1693:              for (; i < len; i++) {
+*****
+
+***** JQUERY\RD\45.js
+ 1761:                      if (postFinder) {
+ 1762:                          postFinder(null, results, matcherOut);
+ 1763:                      } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 1763:                      if (postFinder) {
+ 1764:                          postFinder(null, results, matcherOut, xml);
+ 1765:                      } else {
+*****
+
+***** JQUERY\RD\45.js
+ 4121:          var match = rscriptTypeMasked.exec(elem.type);
+ 4122:          return elem;
+***** JQUERY\RD\ORIGINAL.JS
+ 4123:          var match = rscriptTypeMasked.exec(elem.type);
+ 4124:          if (match) {
+ 4125:              elem.type = match[1];
+ 4126:          } else {
+ 4127:              elem.removeAttribute('type');
+ 4128:          }
+ 4129:          return elem;
+*****
+
+***** JQUERY\RD\45.js
+ 4345:          after: function () {
+ 4346:              return domManip(this, arguments);
+ 4347:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 4352:          after: function () {
+ 4353:              return domManip(this, arguments, function (elem) {
+ 4354:                  if (this.parentNode) {
+ 4355:                      this.parentNode.insertBefore(elem, this.nextSibling);
+ 4356:                  }
+ 4357:              });
+ 4358:          },
+*****
+
+***** JQUERY\RD\45.js
+ 5147:                      // Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
+ 5148:                      temp, percent = 1 - temp, index = 0, length = animation.tweens.length;
+ 5149:                  for (; index < length; index++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5158:                      // Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
+ 5159:                      temp = remaining / animation.duration || 0, percent = 1 - temp, index = 0, length = animation.tweens.length
+ 5160:  ;
+ 5161:                  for (; index < length; index++) {
+*****
+
+***** JQUERY\RD\45.js
+ 6249:          }
+ 6250:          return inspect() || !inspected['*'] && inspect('*');
+ 6251:      }
+***** JQUERY\RD\ORIGINAL.JS
+ 6261:          }
+ 6262:          return inspect(options.dataTypes[0]) || !inspected['*'] && inspect('*');
+ 6263:      }
+*****
+

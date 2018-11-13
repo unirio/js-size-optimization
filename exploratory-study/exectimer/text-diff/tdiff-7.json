@@ -1,0 +1,11 @@
+Comparing files EXECTIMER\RD\7.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\7.js
+  132:      this.name = name;
+  133:      return;
+  134:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  132:      this.name = name;
+  133:      return this;
+  134:  }
+*****
+

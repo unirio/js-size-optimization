@@ -1,0 +1,11 @@
+Comparing files XML2JS\RD\25.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\25.js
+  173:                                      element = element.raw(wrapCDATA(child));
+  174:                                  }
+***** XML2JS\RD\ORIGINAL.JS
+  173:                                      element = element.raw(wrapCDATA(child));
+  174:                                  } else {
+  175:                                      element = element.txt(child);
+  176:                                  }
+*****
+

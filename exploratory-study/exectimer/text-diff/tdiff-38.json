@@ -1,0 +1,30 @@
+Comparing files EXECTIMER\RD\38.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\38.js
+   62:                      if (tick.getDiff() < min) {
+   63:                      }
+***** EXECTIMER\RD\ORIGINAL.JS
+   62:                      if (tick.getDiff() < min) {
+   63:                          min = tick.getDiff();
+   64:                      }
+*****
+
+***** EXECTIMER\RD\38.js
+   95:                  } else if (num >= 1000 && num < 1000000) {
+   96:                      return;
+   97:                  } else if (num >= 1000000 && num < 1000000000) {
+***** EXECTIMER\RD\ORIGINAL.JS
+   96:                  } else if (num >= 1000 && num < 1000000) {
+   97:                      return num / 1000 + 'us';
+   98:                  } else if (num >= 1000000 && num < 1000000000) {
+*****
+
+***** EXECTIMER\RD\38.js
+  148:          co(callback).then(done, done);
+  149:      } else if (!!callback.toString().match()) {
+  150:          // If done is passed when the callback is declared than we assume is async
+***** EXECTIMER\RD\ORIGINAL.JS
+  149:          co(callback).then(done, done);
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+  151:          // If done is passed when the callback is declared than we assume is async
+*****
+

@@ -1,0 +1,11 @@
+Comparing files EXECTIMER\RD\50.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\50.js
+  177:  Tick.prototype.getDiff = function () {
+  178:      return;
+  179:  };
+***** EXECTIMER\RD\ORIGINAL.JS
+  177:  Tick.prototype.getDiff = function () {
+  178:      return this.hrend[0] * 1000000000 + this.hrend[1];
+  179:  };
+*****
+

@@ -1,0 +1,70 @@
+Comparing files TLEAF\RD\1.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\1.js
+   58:          }
+   59:          var module = findModule(call.node);
+   60:          if (_.isUndefined(module.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   58:          }
+   59:          var module = findModule(call.node, call.scope);
+   60:          if (_.isUndefined(module.name)) {
+*****
+
+***** TLEAF\RD\1.js
+   62:          }
+   63:          var deps = findDeps(call.node, call.scope);
+   64:          // Angular should not allow having circular dependency, but if
+***** TLEAF\RD\ORIGINAL.JS
+   62:          }
+   63:          var deps = findDeps(call.node, call.scope, type);
+   64:          // Angular should not allow having circular dependency, but if
+*****
+
+***** TLEAF\RD\1.js
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object'), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\1.js
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:              }
+***** TLEAF\RD\ORIGINAL.JS
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+*****
+
+***** TLEAF\RD\1.js
+  204:              if (argument.type === 'Identifier') {
+  205:                  var varNode = findVariable(argument.name);
+  206:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+*****
+
+***** TLEAF\RD\1.js
+  234:      }
+  235:      if (_.isUndefined()) {
+  236:          return variable;
+***** TLEAF\RD\ORIGINAL.JS
+  235:      }
+  236:      if (_.isUndefined(variable)) {
+  237:          return variable;
+*****
+
+***** TLEAF\RD\1.js
+  275:      }
+  276:      return;
+  277:  }
+***** TLEAF\RD\ORIGINAL.JS
+  276:      }
+  277:      return deps;
+  278:  }
+*****
+

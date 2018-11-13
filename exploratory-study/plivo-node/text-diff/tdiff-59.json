@@ -1,0 +1,39 @@
+Comparing files PLIVO-NODE\RD\59.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\59.js
+  109:  req.header('X-Plivo-Signature');
+  110:          }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  109:  req.header('X-Plivo-Signature');
+  110:              next(new Error(msg));
+  111:          }
+*****
+
+***** PLIVO-NODE\RD\59.js
+  280:      var method = 'DELETE';
+  281:      request(action, method, params);
+  282:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  281:      var method = 'DELETE';
+  282:      request(action, method, params, callback);
+  283:  };
+*****
+
+***** PLIVO-NODE\RD\59.js
+  393:      var method = 'GET';
+  394:      request(action, method, params);
+  395:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  394:      var method = 'GET';
+  395:      request(action, method, params, callback);
+  396:  };
+*****
+
+***** PLIVO-NODE\RD\59.js
+  691:      addRedirect: function (body, attributes) {
+  692:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  692:      addRedirect: function (body, attributes) {
+  693:          return this.add(new Redirect(Response), body, attributes);
+  694:      },
+*****
+

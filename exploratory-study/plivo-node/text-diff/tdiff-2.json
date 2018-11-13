@@ -1,0 +1,39 @@
+Comparing files PLIVO-NODE\RD\2.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\2.js
+  159:      var method = 'DELETE';
+  160:      request(action, method, params);
+  161:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  159:      var method = 'DELETE';
+  160:      request(action, method, params, callback);
+  161:  };
+*****
+
+***** PLIVO-NODE\RD\2.js
+  374:      var action = 'Application/' + params['app_id'] + '/';
+  375:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  374:      var action = 'Application/' + params['app_id'] + '/';
+  375:      delete params.app_id;
+  376:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\2.js
+  576:  };
+  577:  plivo.create_outgoing_carrier_routing = function (params) {
+  578:      var action = 'OutgoingCarrierRouting/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  577:  };
+  578:  plivo.create_outgoing_carrier_routing = function (params, callback) {
+  579:      var action = 'OutgoingCarrierRouting/';
+*****
+
+***** PLIVO-NODE\RD\2.js
+  765:          'hangupOnStar',
+  766:          'callerId',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  766:          'hangupOnStar',
+  767:          'timeLimit',
+  768:          'callerId',
+*****
+

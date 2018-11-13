@@ -1,0 +1,21 @@
+Comparing files NODE-BROWSERIFY\RD\38.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\38.js
+  187:              if (typeof f === 'object') {
+  188:                  self.external(f);
+  189:              } else
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  187:              if (typeof f === 'object') {
+  188:                  self.external(f, xtend(opts, f));
+  189:              } else
+*****
+
+***** NODE-BROWSERIFY\RD\38.js
+  551:  };
+  552:  Browserify.prototype._recorder = function () {
+  553:      var self = this;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  551:  };
+  552:  Browserify.prototype._recorder = function (opts) {
+  553:      var self = this;
+*****
+

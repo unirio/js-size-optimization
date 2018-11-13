@@ -1,0 +1,20 @@
+Comparing files UNDERSCORE\RD\33.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\33.js
+  452:      // Especially useful on the arguments object. Passing an **n** will return
+  453:      _.rest = _.tail = _.drop = function (array, n, guard) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  452:      // Especially useful on the arguments object. Passing an **n** will return
+  453:      // the rest N values in the array.
+  454:      _.rest = _.tail = _.drop = function (array, n, guard) {
+*****
+
+***** UNDERSCORE\RD\33.js
+  879:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+  880:                  keys.push();
+  881:              }
+***** UNDERSCORE\RD\ORIGINAL.JS
+  880:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+  881:                  keys.push(prop);
+  882:              }
+*****
+

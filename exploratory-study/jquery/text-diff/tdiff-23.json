@@ -1,0 +1,55 @@
+Comparing files JQUERY\RD\23.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\23.js
+   94:          // (returning the new matched element set)
+   95:          pushStack: function () {
+   96:              // Build a new jQuery matched element set
+***** JQUERY\RD\ORIGINAL.JS
+   94:          // (returning the new matched element set)
+   95:          pushStack: function (elems) {
+   96:              // Build a new jQuery matched element set
+*****
+
+***** JQUERY\RD\23.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\23.js
+ 1101:          Sizzle.uniqueSort = function (results) {
+ 1102:              var elem, duplicates = [], j = 0;
+ 1103:              // Unless we *know* we can detect duplicates, assume their presence
+***** JQUERY\RD\ORIGINAL.JS
+ 1102:          Sizzle.uniqueSort = function (results) {
+ 1103:              var elem, duplicates = [], j = 0, i = 0;
+ 1104:              // Unless we *know* we can detect duplicates, assume their presence
+*****
+
+***** JQUERY\RD\23.js
+ 4526:              if (!support.pixelMarginRight() && rnumnonpx.test(ret) && rmargin.test(name)) {
+ 4527:                  width = style.width;
+***** JQUERY\RD\ORIGINAL.JS
+ 4527:              if (!support.pixelMarginRight() && rnumnonpx.test(ret) && rmargin.test(name)) {
+ 4528:                  // Remember the original values
+ 4529:                  width = style.width;
+*****
+
+***** JQUERY\RD\23.js
+ 5844:                  hooks = jQuery.valHooks[this.type] || jQuery.valHooks[this.nodeName.toLowerCase()];
+ 5845:              });
+***** JQUERY\RD\ORIGINAL.JS
+ 5846:                  hooks = jQuery.valHooks[this.type] || jQuery.valHooks[this.nodeName.toLowerCase()];
+ 5847:                  // If set returns undefined, fall back to normal setting
+ 5848:                  if (!hooks || !('set' in hooks) || hooks.set(this, val, 'value') === undefined) {
+ 5849:                      this.value = val;
+ 5850:                  }
+ 5851:              });
+*****
+

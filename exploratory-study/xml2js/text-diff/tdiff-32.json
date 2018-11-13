@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\32.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\32.js
+   92:              strict: true,
+   93:              attrValueProcessors: null,
+***** XML2JS\RD\ORIGINAL.JS
+   92:              strict: true,
+   93:              attrNameProcessors: null,
+   94:              attrValueProcessors: null,
+*****
+

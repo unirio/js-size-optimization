@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio.Barros/Desktop/Codigos/js-size-optimization/exploratory-study/scripts";
+baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/exploratory-study";
 
 #
 # Load files
@@ -9,7 +9,7 @@ baseDir <- "/Users/Marcio.Barros/Desktop/Codigos/js-size-optimization/explorator
 instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
 instances <- read_delim(instancesFilename, delim=",");
 
-patchesFilename <- paste(baseDir, "/calc-list-patches/patches.csv", sep="");
+patchesFilename <- paste(baseDir, "/results/patches.csv", sep="");
 patches <- read_delim(patchesFilename, delim="\t");
 
 #

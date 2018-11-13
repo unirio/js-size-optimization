@@ -1,0 +1,22 @@
+Comparing files JADE\RD\44.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\44.js
+    6:   */
+    7:  var fs = require('fs');
+***** JADE\RD\ORIGINAL.JS
+    6:   */
+    7:  /**
+    8:   * Module dependencies.
+    9:   */
+   10:  var fs = require('fs');
+*****
+
+***** JADE\RD\44.js
+   44:          parse: function (tokens, filename) {
+   45:              tokens = stripComments(tokens);
+   46:              return parse(tokens, filename);
+***** JADE\RD\ORIGINAL.JS
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+*****
+

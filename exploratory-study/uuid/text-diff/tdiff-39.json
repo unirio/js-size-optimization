@@ -1,0 +1,27 @@
+Comparing files UUID\RD\39.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\39.js
+  126:          tick += 1 + UUIDjs.randomUI04();
+  127:      }
+***** UUID\RD\ORIGINAL.JS
+  126:          tick += 1 + UUIDjs.randomUI04();
+  127:      } else {
+  128:          sequence++;
+  129:      }
+*****
+
+***** UUID\RD\39.js
+  172:      var pos = 0;
+  173:      var parts;
+  174:      for (var i = 0; i < parts.length; i++) {
+***** UUID\RD\ORIGINAL.JS
+  174:      var pos = 0;
+  175:      var parts = [
+  176:          4,
+  177:          2,
+  178:          2,
+  179:          2,
+  180:          6
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+*****
+

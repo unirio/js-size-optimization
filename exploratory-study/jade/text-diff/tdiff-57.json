@@ -1,0 +1,21 @@
+Comparing files JADE\RD\57.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\57.js
+  250:          } catch (ex) {
+  251:              return;
+  252:          }
+***** JADE\RD\ORIGINAL.JS
+  250:          } catch (ex) {
+  251:              return fn(ex);
+  252:          }
+*****
+
+***** JADE\RD\57.js
+  303:      }
+  304:      var str = fs.readFileSync(options.filename);
+  305:      var out = exports.compileClient(str, options);
+***** JADE\RD\ORIGINAL.JS
+  303:      }
+  304:      var str = fs.readFileSync(options.filename, 'utf8');
+  305:      var out = exports.compileClient(str, options);
+*****
+

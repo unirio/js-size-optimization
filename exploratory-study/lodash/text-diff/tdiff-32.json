@@ -1,0 +1,28 @@
+Comparing files LODASH\RD\32.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\32.js
+ 2388:          }
+ 2389:          function baseWrapperValue(value, actions) {
+***** LODASH\RD\ORIGINAL.JS
+ 2388:          }
+ 2389:          /**
+ 2390:       * The base implementation of `wrapperValue` which returns the result of
+ 2391:       * performing a sequence of actions on the unwrapped `value`, where each
+ 2392:       * successive action is supplied the return value of the previous.
+ 2393:       *
+ 2394:       * @private
+ 2395:       * @param {*} value The unwrapped value.
+ 2396:       * @param {Array} actions Actions to peform to resolve the unwrapped value.
+ 2397:       * @returns {*} Returns the resolved value.
+ 2398:       */
+ 2399:          function baseWrapperValue(value, actions) {
+*****
+
+***** LODASH\RD\32.js
+ 3006:                  mergeData(newData, data);
+ 3007:                  arity = newData[9];
+***** LODASH\RD\ORIGINAL.JS
+ 3016:                  mergeData(newData, data);
+ 3017:                  bitmask = newData[1];
+ 3018:                  arity = newData[9];
+*****
+

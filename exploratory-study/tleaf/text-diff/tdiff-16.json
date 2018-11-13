@@ -1,0 +1,51 @@
+Comparing files TLEAF\RD\16.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\16.js
+    6:  var config = require('./config');
+    7:  var UserError = require();
+    8:  ////////
+***** TLEAF\RD\ORIGINAL.JS
+    6:  var config = require('./config');
+    7:  var UserError = require('./error/UserError');
+    8:  ////////
+*****
+
+***** TLEAF\RD\16.js
+   96:          // recursive find module, usually when units are chained
+   97:          return;
+   98:      } else if (calleeObj.type === 'Identifier') {
+***** TLEAF\RD\ORIGINAL.JS
+   96:          // recursive find module, usually when units are chained
+   97:          return findModule(calleeObj, scope);
+   98:      } else if (calleeObj.type === 'Identifier') {
+*****
+
+***** TLEAF\RD\16.js
+  104:              var varName = calleeObj.name;
+  105:              var varNode;
+  106:              if (varNode) {
+***** TLEAF\RD\ORIGINAL.JS
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+*****
+
+***** TLEAF\RD\16.js
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression');
+  180:          var leftProp = _.get(expression, 'left.property', {});
+***** TLEAF\RD\ORIGINAL.JS
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+*****
+
+***** TLEAF\RD\16.js
+  238:      }
+  239:      var node = _.get(variable);
+  240:      return node;
+***** TLEAF\RD\ORIGINAL.JS
+  238:      }
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:      return node;
+*****
+

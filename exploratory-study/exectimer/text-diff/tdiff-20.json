@@ -1,0 +1,40 @@
+Comparing files EXECTIMER\RD\20.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\20.js
+   16:              ticks: [],
+   17:              median: function () {
+***** EXECTIMER\RD\ORIGINAL.JS
+   16:              ticks: [],
+   17:              /**
+   18:               * Get the median of all ticks.
+   19:               * @returns {*}
+   20:               */
+   21:              median: function () {
+*****
+
+***** EXECTIMER\RD\20.js
+   94:                  } else if (num >= 1000000 && num < 1000000000) {
+   95:                  } else if (num >= 1000000000) {
+***** EXECTIMER\RD\ORIGINAL.JS
+   98:                  } else if (num >= 1000000 && num < 1000000000) {
+   99:                      return num / 1000000 + 'ms';
+  100:                  } else if (num >= 1000000000) {
+*****
+
+***** EXECTIMER\RD\20.js
+  127:      this.name = name;
+  128:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  132:      this.name = name;
+  133:      return this;
+  134:  }
+*****
+
+***** EXECTIMER\RD\20.js
+  144:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+  145:          callback(done);
+***** EXECTIMER\RD\ORIGINAL.JS
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+  151:          // If done is passed when the callback is declared than we assume is async
+  152:          callback(done);
+*****
+

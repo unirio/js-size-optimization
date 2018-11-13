@@ -1,0 +1,97 @@
+Comparing files LODASH\RD\27.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\27.js
+   78:      }();
+   79:      var contextProps = [
+***** LODASH\RD\ORIGINAL.JS
+   78:      }();
+   79:      /** Used to assign default `context` object properties. */
+   80:      var contextProps = [
+*****
+
+***** LODASH\RD\27.js
+  105:          'isFinite',
+  106:          'parseInt',
+***** LODASH\RD\ORIGINAL.JS
+  106:          'isFinite',
+  107:          'parseFloat',
+  108:          'parseInt',
+*****
+
+***** LODASH\RD\27.js
+  610:      /*--------------------------------------------------------------------------*/
+  611:      function runInContext(context) {
+***** LODASH\RD\ORIGINAL.JS
+  612:      /*--------------------------------------------------------------------------*/
+  613:      /**
+  614:     * Create a new pristine `lodash` function using the given `context` object.
+  615:     *
+  616:     * @static
+  617:     * @memberOf _
+  618:     * @category Utility
+  619:     * @param {Object} [context=root] The context object.
+  620:     * @returns {Function} Returns a new `lodash` function.
+  621:     * @example
+  622:     *
+  623:     * _.mixin({ 'foo': _.constant('foo') });
+  624:     *
+  625:     * var lodash = _.runInContext();
+  626:     * lodash.mixin({ 'bar': lodash.constant('bar') });
+  627:     *
+  628:     * _.isFunction(_.foo);
+  629:     * // => true
+  630:     * _.isFunction(_.bar);
+  631:     * // => false
+  632:     *
+  633:     * lodash.isFunction(lodash.foo);
+  634:     * // => false
+  635:     * lodash.isFunction(lodash.bar);
+  636:     * // => true
+  637:     *
+  638:     * // using `context` to mock `Date#getTime` use in `_.now`
+  639:     * var mock = _.runInContext({
+  640:     *   'Date': function() {
+  641:     *     return { 'getTime': getTimeMock };
+  642:     *   }
+  643:     * });
+  644:     *
+  645:     * // or creating a suped-up `defer` in Node.js
+  646:     * var defer = _.runInContext({ 'setTimeout': setImmediate }).defer;
+  647:     */
+  648:      function runInContext(context) {
+*****
+
+***** LODASH\RD\27.js
+ 5704:          }
+ 5705:          function sample(collection, n, guard) {
+***** LODASH\RD\ORIGINAL.JS
+ 5741:          }
+ 5742:          /**
+ 5743:       * Gets a random element or `n` random elements from a collection.
+ 5744:       *
+ 5745:       * @static
+ 5746:       * @memberOf _
+ 5747:       * @category Collection
+ 5748:       * @param {Array|Object} collection The collection to sample.
+ 5749:       * @param {number} [n] The number of elements to sample.
+ 5750:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 5751:       * @returns {*} Returns the random sample(s).
+ 5752:       * @example
+ 5753:       *
+ 5754:       * _.sample([1, 2, 3, 4]);
+ 5755:       * // => 2
+ 5756:       *
+ 5757:       * _.sample([1, 2, 3, 4], 2);
+ 5758:       * // => [3, 1]
+ 5759:       */
+ 5760:          function sample(collection, n, guard) {
+*****
+
+***** LODASH\RD\27.js
+ 9202:              // Leverage the exponentiation by squaring algorithm for a faster repeat.
+ 9203:              do {
+***** LODASH\RD\ORIGINAL.JS
+ 9257:              // Leverage the exponentiation by squaring algorithm for a faster repeat.
+ 9258:              // See https://en.wikipedia.org/wiki/Exponentiation_by_squaring for more details.
+ 9259:              do {
+*****
+

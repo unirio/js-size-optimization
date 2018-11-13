@@ -1,0 +1,41 @@
+Comparing files PLIVO-NODE\RD\31.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\31.js
+   88:      });
+   89:      var signature = crypto.createHmac('sha1', plivo.options.authToken).update(new Buffer(toSign)).digest('base64');
+   90:      return signature;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   88:      });
+   89:      var signature = crypto.createHmac('sha1', plivo.options.authToken).update(new Buffer(toSign, 'utf-8')).digest('base64');
+   90:      return signature;
+*****
+
+***** PLIVO-NODE\RD\31.js
+  231:      var method = 'DELETE';
+  232:      request(action, method, params);
+  233:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  231:      var method = 'DELETE';
+  232:      request(action, method, params, callback);
+  233:  };
+*****
+
+***** PLIVO-NODE\RD\31.js
+  262:  };
+  263:  plivo.stop_speak_conference_member = function (params) {
+  264:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Speak/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  262:  };
+  263:  plivo.stop_speak_conference_member = function (params, callback) {
+  264:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Speak/';
+*****
+
+***** PLIVO-NODE\RD\31.js
+  362:  plivo.get_application = function (params, callback) {
+  363:      var action;
+  364:      delete params.app_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  362:  plivo.get_application = function (params, callback) {
+  363:      var action = 'Application/' + params['app_id'] + '/';
+  364:      delete params.app_id;
+*****
+

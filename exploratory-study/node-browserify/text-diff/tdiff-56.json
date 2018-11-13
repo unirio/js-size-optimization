@@ -1,0 +1,11 @@
+Comparing files NODE-BROWSERIFY\RD\56.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\56.js
+  642:          if (self._external.indexOf(row.id) >= 0)
+  643:              return;
+  644:          if (self._external.indexOf('/' + path.relative(basedir, row.id)) >= 0) {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  642:          if (self._external.indexOf(row.id) >= 0)
+  643:              return next();
+  644:          if (self._external.indexOf('/' + path.relative(basedir, row.id)) >= 0) {
+*****
+

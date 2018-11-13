@@ -1,0 +1,53 @@
+Comparing files PLIVO-NODE\RD\28.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\28.js
+  370:      var method = 'POST';
+  371:      request(action, params, callback);
+  372:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  370:      var method = 'POST';
+  371:      request(action, method, params, callback);
+  372:  };
+*****
+
+***** PLIVO-NODE\RD\28.js
+  397:  plivo.delete_recording = function (params, callback) {
+  398:      var action;
+  399:      delete params.recording_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  397:  plivo.delete_recording = function (params, callback) {
+  398:      var action = 'Recording/' + params['recording_id'] + '/';
+  399:      delete params.recording_id;
+*****
+
+***** PLIVO-NODE\RD\28.js
+  402:  };
+  403:  plivo.get_endpoints = function (params, callback) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  402:  };
+  403:  // Endpoints
+  404:  plivo.get_endpoints = function (params, callback) {
+*****
+
+***** PLIVO-NODE\RD\28.js
+  507:  // Incoming Carriers
+  508:  plivo.get_incoming_carriers = function (params) {
+  509:      var action = 'IncomingCarrier/';
+  510:      var method;
+  511:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  508:  // Incoming Carriers
+  509:  plivo.get_incoming_carriers = function (params, callback) {
+  510:      var action = 'IncomingCarrier/';
+  511:      var method = 'GET';
+  512:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\28.js
+  516:      var method = 'GET';
+  517:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  517:      var method = 'GET';
+  518:      request(action, method, params, callback);
+  519:  };
+*****
+

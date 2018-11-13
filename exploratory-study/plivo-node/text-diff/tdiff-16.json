@@ -1,0 +1,11 @@
+Comparing files PLIVO-NODE\RD\16.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\16.js
+  367:  };
+  368:  plivo.create_application = function (params) {
+  369:      var action = 'Application/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  367:  };
+  368:  plivo.create_application = function (params, callback) {
+  369:      var action = 'Application/';
+*****
+

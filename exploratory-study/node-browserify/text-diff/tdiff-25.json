@@ -1,0 +1,11 @@
+Comparing files NODE-BROWSERIFY\RD\25.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\25.js
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+  457:                          return;
+  458:                      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+  457:                          return cb(null, paths.empty, {});
+  458:                      }
+*****
+

@@ -1,0 +1,23 @@
+Comparing files EXECTIMER\RD\54.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\54.js
+   60:                  let min = this.ticks[0].getDiff();
+   61:                  return min;
+***** EXECTIMER\RD\ORIGINAL.JS
+   60:                  let min = this.ticks[0].getDiff();
+   61:                  this.ticks.forEach(function (tick) {
+   62:                      if (tick.getDiff() < min) {
+   63:                          min = tick.getDiff();
+   64:                      }
+   65:                  });
+   66:                  return min;
+*****
+
+***** EXECTIMER\RD\54.js
+  172:  Tick.prototype.getDiff = function () {
+  173:  };
+***** EXECTIMER\RD\ORIGINAL.JS
+  177:  Tick.prototype.getDiff = function () {
+  178:      return this.hrend[0] * 1000000000 + this.hrend[1];
+  179:  };
+*****
+

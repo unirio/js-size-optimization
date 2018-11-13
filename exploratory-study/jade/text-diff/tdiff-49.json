@@ -1,0 +1,23 @@
+Comparing files JADE\RD\49.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\49.js
+  141:          doctype: options.doctype,
+  142:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\49.js
+***** JADE\RD\ORIGINAL.JS
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

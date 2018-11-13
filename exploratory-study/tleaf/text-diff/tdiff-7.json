@@ -1,0 +1,44 @@
+Comparing files TLEAF\RD\7.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\7.js
+   58:          }
+   59:          if (_.isUndefined(module.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   58:          }
+   59:          var module = findModule(call.node, call.scope);
+   60:          if (_.isUndefined(module.name)) {
+*****
+
+***** TLEAF\RD\7.js
+  137:      }
+  138:      if (depsArg.type === 'Identifier') {
+  139:          return;
+  140:      }
+***** TLEAF\RD\ORIGINAL.JS
+  138:      }
+  139:      // deps in a form of function expression can be stored in variable
+  140:      if (depsArg.type === 'Identifier') {
+  141:          return extractVariableDeps(depsArg.name, scope);
+  142:      }
+*****
+
+***** TLEAF\RD\7.js
+  233:      }
+  234:      var node = _.get(variable, 'defs[0].node');
+***** TLEAF\RD\ORIGINAL.JS
+  235:      }
+  236:      if (_.isUndefined(variable)) {
+  237:          return variable;
+  238:      }
+  239:      var node = _.get(variable, 'defs[0].node');
+*****
+
+***** TLEAF\RD\7.js
+  254:  }
+  255:  function extractObjectPropertyDeps(object, propName) {
+  256:      var prop = _.find(object.properties, function (property) {
+***** TLEAF\RD\ORIGINAL.JS
+  259:  }
+  260:  function extractObjectPropertyDeps(object, propName, scope) {
+  261:      var prop = _.find(object.properties, function (property) {
+*****
+

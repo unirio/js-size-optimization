@@ -1,0 +1,38 @@
+Comparing files EXECTIMER\RD\48.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\48.js
+   36:              },
+   37:              mean: function () {
+***** EXECTIMER\RD\ORIGINAL.JS
+   36:              },
+   37:              /**
+   38:               * Get the average duration of all ticks.
+   39:               * @returns {number}
+   40:               */
+   41:              mean: function () {
+*****
+
+***** EXECTIMER\RD\48.js
+  148:          callback(done);
+  149:      }
+***** EXECTIMER\RD\ORIGINAL.JS
+  152:          callback(done);
+  153:      } else {
+  154:          // Otherwise just call the function and stop the tick
+  155:          callback();
+  156:          tick.stop();
+  157:      }
+*****
+
+***** EXECTIMER\RD\48.js
+  176:  };
+  177:  function functionName(fun) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  184:  };
+  185:  /**
+  186:   * Helper function used to retrieve function name.
+  187:   * @param fun
+  188:   * @returns {string}
+  189:   */
+  190:  function functionName(fun) {
+*****
+

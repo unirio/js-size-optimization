@@ -1,0 +1,14 @@
+Comparing files XML2JS\RD\35.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\35.js
+  495:                  str = bom.stripBOM(str);
+  496:                  return this.saxParser.write(str).close();
+***** XML2JS\RD\ORIGINAL.JS
+  495:                  str = bom.stripBOM(str);
+  496:                  if (this.options.async) {
+  497:                      this.remaining = str;
+  498:                      setImmediate(this.processAsync);
+  499:                      return this.saxParser;
+  500:                  }
+  501:                  return this.saxParser.write(str).close();
+*****
+

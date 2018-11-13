@@ -1,0 +1,48 @@
+Comparing files TLEAF\RD\42.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\42.js
+   15:      } catch (err) {
+   16:      }
+***** TLEAF\RD\ORIGINAL.JS
+   15:      } catch (err) {
+   16:          throw new UserError('Source file is not valid.', err);
+   17:      }
+*****
+
+***** TLEAF\RD\42.js
+  179:          var leftProp = _.get(expression, 'left.property', {});
+  180:          var right = _.get(expression, {});
+  181:          // covers "this.$get = ..."
+***** TLEAF\RD\ORIGINAL.JS
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+*****
+
+***** TLEAF\RD\42.js
+  189:              if (right.type === 'Identifier') {
+  190:                  deps = extractVariableDeps(right.name);
+  191:                  return true;    // exit loop
+***** TLEAF\RD\ORIGINAL.JS
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+*****
+
+***** TLEAF\RD\42.js
+  247:      var varType = _.get(varNode, 'type');
+  248:      if (varType === 'FunctionDeclaration') {
+***** TLEAF\RD\ORIGINAL.JS
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+  250:      if (varType === 'FunctionDeclaration') {
+*****
+
+***** TLEAF\RD\42.js
+  250:      }
+  251:      if (varType === 'VariableDeclarator') {
+***** TLEAF\RD\ORIGINAL.JS
+  252:      }
+  253:      // covers "var someVar = ...";
+  254:      if (varType === 'VariableDeclarator') {
+*****
+

@@ -1,0 +1,38 @@
+Comparing files XML2JS\RD\10.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\10.js
+   57:              explicitArray: false,
+   58:              mergeAttrs: false,
+***** XML2JS\RD\ORIGINAL.JS
+   57:              explicitArray: false,
+   58:              ignoreAttrs: false,
+   59:              mergeAttrs: false,
+*****
+
+***** XML2JS\RD\10.js
+   86:              explicitChildren: false,
+   87:              childkey: '$$',
+***** XML2JS\RD\ORIGINAL.JS
+   87:              explicitChildren: false,
+   88:              preserveChildrenOrder: false,
+   89:              childkey: '$$',
+*****
+
+***** XML2JS\RD\10.js
+  165:                                          value = child[attr];
+  166:                                      }
+***** XML2JS\RD\ORIGINAL.JS
+  167:                                          value = child[attr];
+  168:                                          element = element.att(attr, value);
+  169:                                      }
+*****
+
+***** XML2JS\RD\10.js
+  452:                          if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChild
+  453:  ren && text.replace(/\\n/g).trim() !== '') {
+  454:                              s[_this.options.childkey] = s[_this.options.childkey] || [];
+***** XML2JS\RD\ORIGINAL.JS
+  455:                          if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChild
+  456:  ren && text.replace(/\\n/g, '').trim() !== '') {
+  457:                              s[_this.options.childkey] = s[_this.options.childkey] || [];
+*****
+

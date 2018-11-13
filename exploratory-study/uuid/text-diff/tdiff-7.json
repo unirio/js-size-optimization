@@ -1,0 +1,11 @@
+Comparing files UUID\RD\7.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\7.js
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+***** UUID\RD\ORIGINAL.JS
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+*****
+

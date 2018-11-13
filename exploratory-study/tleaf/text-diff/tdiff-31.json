@@ -1,0 +1,57 @@
+Comparing files TLEAF\RD\31.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\31.js
+    2:  var esprima = require('esprima');
+    3:  var escope = require('escope');
+***** TLEAF\RD\ORIGINAL.JS
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require('estraverse');
+    4:  var escope = require('escope');
+*****
+
+***** TLEAF\RD\31.js
+  165:  function findProviderDeps(depsFn) {
+  166:      var depsFnBody = _.get(depsFn, 'body', {});
+***** TLEAF\RD\ORIGINAL.JS
+  166:  function findProviderDeps(depsFn) {
+  167:      // function must have it's body
+  168:      var depsFnBody = _.get(depsFn, 'body', {});
+*****
+
+***** TLEAF\RD\31.js
+  173:      // iterate over all body expressions in provider
+  174:      var depsFnBodyExpressions = _.get(depsFnBody);
+  175:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+***** TLEAF\RD\ORIGINAL.JS
+  175:      // iterate over all body expressions in provider
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+*****
+
+***** TLEAF\RD\31.js
+  178:          var leftProp = _.get(expression, 'left.property', {});
+  179:          // covers "this.$get = ..."
+***** TLEAF\RD\ORIGINAL.JS
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+*****
+
+***** TLEAF\RD\31.js
+  223:      });
+  224:  }
+***** TLEAF\RD\ORIGINAL.JS
+  226:      });
+  227:      return deps;
+  228:  }
+*****
+
+***** TLEAF\RD\31.js
+  255:  }
+  256:  function extractObjectPropertyDeps(object, propName) {
+  257:      var prop = _.find(object.properties, function (property) {
+***** TLEAF\RD\ORIGINAL.JS
+  259:  }
+  260:  function extractObjectPropertyDeps(object, propName, scope) {
+  261:      var prop = _.find(object.properties, function (property) {
+*****
+

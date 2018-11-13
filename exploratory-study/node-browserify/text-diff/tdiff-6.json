@@ -1,0 +1,26 @@
+Comparing files NODE-BROWSERIFY\RD\6.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\6.js
+  598:  Browserify.prototype._unshebang = function () {
+  599:      return through.obj();
+  600:  };
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  598:  Browserify.prototype._unshebang = function () {
+  599:      return through.obj(function (row, enc, next) {
+  600:          if (/^#!/.test(row.source)) {
+  601:              row.source = row.source.replace(/^#![^\n]*\n/, '');
+  602:          }
+  603:          this.push(row);
+  604:          next();
+  605:      });
+  606:  };
+*****
+
+***** NODE-BROWSERIFY\RD\6.js
+  668:                      row.deps[key] = rfile + ex;
+  669:                  }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  674:                      row.deps[key] = rfile + ex;
+  675:                      break;
+  676:                  }
+*****
+

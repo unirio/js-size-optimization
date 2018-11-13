@@ -1,0 +1,38 @@
+Comparing files UUID\RD\58.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\58.js
+  113:      var now = new Date().getTime();
+  114:      var sequence;
+  115:      var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
+***** UUID\RD\ORIGINAL.JS
+  113:      var now = new Date().getTime();
+  114:      var sequence = UUIDjs.randomUI14();
+  115:      var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
+*****
+
+***** UUID\RD\58.js
+  170:      if (ints.length < 5) {
+  171:      }
+***** UUID\RD\ORIGINAL.JS
+  170:      if (ints.length < 5) {
+  171:          return null;
+  172:      }
+*****
+
+***** UUID\RD\58.js
+  177:          2,
+  178:          6
+***** UUID\RD\ORIGINAL.JS
+  178:          2,
+  179:          2,
+  180:          6
+*****
+
+***** UUID\RD\58.js
+  201:      }
+  202:  };
+***** UUID\RD\ORIGINAL.JS
+  203:      }
+  204:      return UUIDjs.fromBytes(ints);
+  205:  };
+*****
+

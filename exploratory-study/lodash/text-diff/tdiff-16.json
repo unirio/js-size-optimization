@@ -1,0 +1,1638 @@
+Comparing files LODASH\RD\16.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\16.js
+ 1161:          }
+ 1162:          function arrayExtremum(array, iteratee, comparator, exValue) {
+***** LODASH\RD\ORIGINAL.JS
+ 1161:          }
+ 1162:          /**
+ 1163:       * A specialized version of `baseExtremum` for arrays which invokes `iteratee`
+ 1164:       * with one argument: (value).
+ 1165:       *
+ 1166:       * @private
+ 1167:       * @param {Array} array The array to iterate over.
+ 1168:       * @param {Function} iteratee The function invoked per iteration.
+ 1169:       * @param {Function} comparator The function used to compare values.
+ 1170:       * @param {*} exValue The initial extremum value.
+ 1171:       * @returns {*} Returns the extremum value.
+ 1172:       */
+ 1173:          function arrayExtremum(array, iteratee, comparator, exValue) {
+*****
+
+***** LODASH\RD\16.js
+ 1478:              }
+ 1479:              var index = -1, indexOf = getIndexOf(), isCommon = indexOf === baseIndexOf, cache, valuesLength = values.length;
+ 1480:              if (cache) {
+***** LODASH\RD\ORIGINAL.JS
+ 1489:              }
+ 1490:              var index = -1, indexOf = getIndexOf(), isCommon = indexOf === baseIndexOf, cache = isCommon && values.length >= LA
+ 1491:  RGE_ARRAY_SIZE ? createCache(values) : null, valuesLength = values.length;
+ 1492:              if (cache) {
+*****
+
+***** LODASH\RD\16.js
+ 2358:          }
+ 2359:          function baseWhile(array, predicate, isDrop, fromRight) {
+***** LODASH\RD\ORIGINAL.JS
+ 2370:          }
+ 2371:          /**
+ 2372:       * The base implementation of methods like `_.dropWhile` and `_.takeWhile`
+ 2373:       * without support for callback shorthands.
+ 2374:       *
+ 2375:       * @private
+ 2376:       * @param {Array} array The array to query.
+ 2377:       * @param {Function} predicate The function invoked per iteration.
+ 2378:       * @param {boolean} [isDrop] Specify dropping elements instead of taking them.
+ 2379:       * @param {boolean} [fromRight] Specify iterating from right to left.
+ 2380:       * @returns {Array} Returns the slice of `array`.
+ 2381:       */
+ 2382:          function baseWhile(array, predicate, isDrop, fromRight) {
+*****
+
+***** LODASH\RD\16.js
+ 2734:                  case 5:
+ 2735:                      return new Ctor(args[0], args[1], args[3], args[4]);
+ 2736:                  case 6:
+***** LODASH\RD\ORIGINAL.JS
+ 2757:                  case 5:
+ 2758:                      return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+ 2759:                  case 6:
+*****
+
+***** LODASH\RD\16.js
+ 7132:          }
+ 7133:          var isArray = Array.isArray;
+ 7134:          /**
+ 7135:       * Checks if `value` is classified as a boolean primitive or object.
+ 7136:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7155:          }
+ 7156:          /**
+ 7157:       * Checks if `value` is classified as an `Array` object.
+ 7158:       *
+*****
+
+***** LODASH\RD\16.js
+ 7138:       * @memberOf _
+ 7139:       * @category Lang
+***** LODASH\RD\ORIGINAL.JS
+ 7160:       * @memberOf _
+ 7161:       * @type Function
+ 7162:       * @category Lang
+*****
+
+***** LODASH\RD\16.js
+ 7143:       *
+ 7144:       * _.isBoolean(false);
+ 7145:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7166:       *
+ 7167:       * _.isArray([1, 2, 3]);
+ 7168:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7146:       *
+ 7147:       * _.isBoolean(null);
+ 7148:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7169:       *
+ 7170:       * _.isArray(function() { return arguments; }());
+ 7171:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7149:       */
+ 7150:          function isBoolean(value) {
+ 7151:              return value === true || value === false || isObjectLike(value) && objToString.call(value) == boolTag;
+ 7152:          }
+ 7153:          /**
+ 7154:       * Checks if `value` is classified as a `Date` object.
+ 7155:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7172:       */
+ 7173:          var isArray = Array.isArray;
+ 7174:          /**
+ 7175:       * Checks if `value` is classified as a boolean primitive or object.
+ 7176:       *
+*****
+
+***** LODASH\RD\16.js
+ 7162:       *
+ 7163:       * _.isDate(new Date);
+ 7164:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7183:       *
+ 7184:       * _.isBoolean(false);
+ 7185:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7165:       *
+ 7166:       * _.isDate('Mon April 23 2012');
+ 7167:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7186:       *
+ 7187:       * _.isBoolean(null);
+ 7188:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7168:       */
+ 7169:          function isDate(value) {
+ 7170:              return isObjectLike(value) && objToString.call(value) == dateTag;
+ 7171:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7189:       */
+ 7190:          function isBoolean(value) {
+ 7191:              return value === true || value === false || isObjectLike(value) && objToString.call(value) == boolTag;
+ 7192:          }
+*****
+
+***** LODASH\RD\16.js
+ 7172:          /**
+ 7173:       * Checks if `value` is a DOM element.
+ 7174:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7193:          /**
+ 7194:       * Checks if `value` is classified as a `Date` object.
+ 7195:       *
+*****
+
+***** LODASH\RD\16.js
+ 7178:       * @param {*} value The value to check.
+ 7179:       * @returns {boolean} Returns `true` if `value` is a DOM element, else `false`.
+ 7180:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7199:       * @param {*} value The value to check.
+ 7200:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7201:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7181:       *
+ 7182:       * _.isElement(document.body);
+ 7183:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7202:       *
+ 7203:       * _.isDate(new Date);
+ 7204:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7184:       *
+ 7185:       * _.isElement('<body>');
+ 7186:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7205:       *
+ 7206:       * _.isDate('Mon April 23 2012');
+ 7207:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7187:       */
+ 7188:          function isElement(value) {
+ 7189:              return !!value && value.nodeType === 1 && isObjectLike(value) && !isPlainObject(value);
+ 7190:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7208:       */
+ 7209:          function isDate(value) {
+ 7210:              return isObjectLike(value) && objToString.call(value) == dateTag;
+ 7211:          }
+*****
+
+***** LODASH\RD\16.js
+ 7191:          /**
+ 7192:       * Checks if `value` is empty. A value is considered empty unless it's an
+ 7193:       * `arguments` object, array, string, or jQuery-like collection with a length
+ 7194:       * greater than `0` or an object with own enumerable properties.
+ 7195:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7212:          /**
+ 7213:       * Checks if `value` is a DOM element.
+ 7214:       *
+*****
+
+***** LODASH\RD\16.js
+ 7198:       * @category Lang
+ 7199:       * @param {Array|Object|string} value The value to inspect.
+ 7200:       * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+ 7201:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7217:       * @category Lang
+ 7218:       * @param {*} value The value to check.
+ 7219:       * @returns {boolean} Returns `true` if `value` is a DOM element, else `false`.
+ 7220:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7202:       *
+ 7203:       * _.isEmpty(null);
+ 7204:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7221:       *
+ 7222:       * _.isElement(document.body);
+ 7223:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7205:       *
+ 7206:       * _.isEmpty(true);
+ 7207:       * // => true
+ 7208:       *
+ 7209:       * _.isEmpty(1);
+ 7210:       * // => true
+ 7211:       *
+ 7212:       * _.isEmpty([1, 2, 3]);
+ 7213:       * // => false
+ 7214:       *
+ 7215:       * _.isEmpty({ 'a': 1 });
+ 7216:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7224:       *
+ 7225:       * _.isElement('<body>');
+ 7226:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7217:       */
+ 7218:          function isEmpty(value) {
+ 7219:              return !isObjectLike(value) || isFunction(value.splice) ? !size(value) : !keys(value).length;
+ 7220:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7227:       */
+ 7228:          function isElement(value) {
+ 7229:              return !!value && value.nodeType === 1 && isObjectLike(value) && !isPlainObject(value);
+ 7230:          }
+*****
+
+***** LODASH\RD\16.js
+ 7221:          /**
+ 7222:       * Performs a deep comparison between two values to determine if they are
+ 7223:       * equivalent.
+ 7224:       *
+ 7225:       * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ 7226:       * numbers, `Object` objects, regexes, and strings. Objects are compared by
+ 7227:       * their own, not inherited, enumerable properties. Functions and DOM nodes
+ 7228:       * are **not** supported.
+ 7229:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7231:          /**
+ 7232:       * Checks if `value` is empty. A value is considered empty unless it's an
+ 7233:       * `arguments` object, array, string, or jQuery-like collection with a length
+ 7234:       * greater than `0` or an object with own enumerable properties.
+ 7235:       *
+*****
+
+***** LODASH\RD\16.js
+ 7232:       * @category Lang
+ 7233:       * @param {*} value The value to compare.
+ 7234:       * @param {*} other The other value to compare.
+ 7235:       * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ 7236:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7238:       * @category Lang
+ 7239:       * @param {Array|Object|string} value The value to inspect.
+ 7240:       * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+ 7241:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7237:       *
+ 7238:       * var object = { 'user': 'fred' };
+ 7239:       * var other = { 'user': 'fred' };
+ 7240:       *
+ 7241:       * _.isEqual(object, other);
+ 7242:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7242:       *
+ 7243:       * _.isEmpty(null);
+ 7244:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7243:       *
+ 7244:       * object == other;
+ 7245:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7245:       *
+ 7246:       * _.isEmpty(true);
+ 7247:       * // => true
+ 7248:       *
+ 7249:       * _.isEmpty(1);
+ 7250:       * // => true
+ 7251:       *
+ 7252:       * _.isEmpty([1, 2, 3]);
+ 7253:       * // => false
+ 7254:       *
+ 7255:       * _.isEmpty({ 'a': 1 });
+ 7256:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7246:       */
+ 7247:          function isEqual(value, other) {
+ 7248:              return baseIsEqual(value, other);
+ 7249:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7257:       */
+ 7258:          function isEmpty(value) {
+ 7259:              return !isObjectLike(value) || isFunction(value.splice) ? !size(value) : !keys(value).length;
+ 7260:          }
+*****
+
+***** LODASH\RD\16.js
+ 7250:          /**
+ 7251:       * This method is like `_.isEqual` except that it accepts `customizer` which is
+ 7252:       * invoked to compare values. If `customizer` returns `undefined` comparisons are
+ 7253:       * handled by the method instead. The `customizer` is invoked with up to seven arguments:
+ 7254:       * (objValue, othValue [, index|key, object, other, stackA, stackB]).
+ 7255:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7261:          /**
+ 7262:       * Performs a deep comparison between two values to determine if they are
+ 7263:       * equivalent.
+ 7264:       *
+ 7265:       * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ 7266:       * numbers, `Object` objects, regexes, and strings. Objects are compared by
+ 7267:       * their own, not inherited, enumerable properties. Functions and DOM nodes
+ 7268:       * are **not** supported.
+ 7269:       *
+*****
+
+***** LODASH\RD\16.js
+ 7260:       * @param {*} other The other value to compare.
+ 7261:       * @param {Function} [customizer] The function to customize comparisons.
+ 7262:       * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+***** LODASH\RD\ORIGINAL.JS
+ 7274:       * @param {*} other The other value to compare.
+ 7275:       * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+*****
+
+***** LODASH\RD\16.js
+ 7264:       *
+ 7265:       * var array = ['hello', 'goodbye'];
+ 7266:       * var other = ['hi', 'goodbye'];
+ 7267:       *
+ 7268:       * _.isEqualWith(array, other, function(value, other) {
+ 7269:       *   var reHello = /^h(?:i|ello)$/;
+ 7270:       *   if (reHello.test(value) && reHello.test(other)) {
+ 7271:       *     return true;
+ 7272:       *   }
+ 7273:       * });
+ 7274:       * // => true
+ 7275:       */
+ 7276:          function isEqualWith(value, other, customizer) {
+ 7277:              customizer = typeof customizer == 'function' ? customizer : undefined;
+ 7278:              var result = customizer ? customizer(value, other) : undefined;
+ 7279:              return result === undefined ? baseIsEqual(value, other, customizer) : !!result;
+ 7280:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7277:       *
+ 7278:       * var object = { 'user': 'fred' };
+ 7279:       * var other = { 'user': 'fred' };
+ 7280:       *
+ 7281:       * _.isEqual(object, other);
+ 7282:       * // => true
+ 7283:       *
+ 7284:       * object == other;
+ 7285:       * // => false
+ 7286:       */
+ 7287:          function isEqual(value, other) {
+ 7288:              return baseIsEqual(value, other);
+ 7289:          }
+*****
+
+***** LODASH\RD\16.js
+ 7281:          /**
+ 7282:       * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
+ 7283:       * `SyntaxError`, `TypeError`, or `URIError` object.
+ 7284:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7290:          /**
+ 7291:       * This method is like `_.isEqual` except that it accepts `customizer` which is
+ 7292:       * invoked to compare values. If `customizer` returns `undefined` comparisons are
+ 7293:       * handled by the method instead. The `customizer` is invoked with up to seven arguments:
+ 7294:       * (objValue, othValue [, index|key, object, other, stackA, stackB]).
+ 7295:       *
+*****
+
+***** LODASH\RD\16.js
+ 7287:       * @category Lang
+ 7288:       * @param {*} value The value to check.
+ 7289:       * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
+ 7290:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7298:       * @category Lang
+ 7299:       * @param {*} value The value to compare.
+ 7300:       * @param {*} other The other value to compare.
+ 7301:       * @param {Function} [customizer] The function to customize comparisons.
+ 7302:       * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ 7303:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7291:       *
+ 7292:       * _.isError(new Error);
+ 7293:       * // => true
+ 7294:       *
+ 7295:       * _.isError(Error);
+ 7296:       * // => false
+ 7297:       */
+ 7298:          function isError(value) {
+ 7299:              return isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag;
+ 7300:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7304:       *
+ 7305:       * var array = ['hello', 'goodbye'];
+ 7306:       * var other = ['hi', 'goodbye'];
+ 7307:       *
+ 7308:       * _.isEqualWith(array, other, function(value, other) {
+ 7309:       *   var reHello = /^h(?:i|ello)$/;
+ 7310:       *   if (reHello.test(value) && reHello.test(other)) {
+ 7311:       *     return true;
+ 7312:       *   }
+ 7313:       * });
+ 7314:       * // => true
+ 7315:       */
+ 7316:          function isEqualWith(value, other, customizer) {
+ 7317:              customizer = typeof customizer == 'function' ? customizer : undefined;
+ 7318:              var result = customizer ? customizer(value, other) : undefined;
+ 7319:              return result === undefined ? baseIsEqual(value, other, customizer) : !!result;
+ 7320:          }
+*****
+
+***** LODASH\RD\16.js
+ 7301:          /**
+ 7302:       * Checks if `value` is a finite primitive number.
+ 7303:       *
+ 7304:       * **Note:** This method is based on [`Number.isFinite`](http://ecma-international.org/ecma-262/6.0/#sec-number.isfinite).
+ 7305:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7321:          /**
+ 7322:       * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
+ 7323:       * `SyntaxError`, `TypeError`, or `URIError` object.
+ 7324:       *
+*****
+
+***** LODASH\RD\16.js
+ 7309:       * @param {*} value The value to check.
+ 7310:       * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
+ 7311:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7328:       * @param {*} value The value to check.
+ 7329:       * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
+ 7330:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7312:       *
+ 7313:       * _.isFinite(10);
+ 7314:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7331:       *
+ 7332:       * _.isError(new Error);
+ 7333:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7315:       *
+ 7316:       * _.isFinite('10');
+ 7317:       * // => false
+ 7318:       *
+ 7319:       * _.isFinite(true);
+ 7320:       * // => false
+ 7321:       *
+ 7322:       * _.isFinite(Object(10));
+ 7323:       * // => false
+ 7324:       *
+ 7325:       * _.isFinite(Infinity);
+ 7326:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7334:       *
+ 7335:       * _.isError(Error);
+ 7336:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7327:       */
+ 7328:          function isFinite(value) {
+ 7329:              return typeof value == 'number' && nativeIsFinite(value);
+ 7330:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7337:       */
+ 7338:          function isError(value) {
+ 7339:              return isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag;
+ 7340:          }
+*****
+
+***** LODASH\RD\16.js
+ 7331:          /**
+ 7332:       * Checks if `value` is classified as a `Function` object.
+ 7333:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7341:          /**
+ 7342:       * Checks if `value` is a finite primitive number.
+ 7343:       *
+ 7344:       * **Note:** This method is based on [`Number.isFinite`](http://ecma-international.org/ecma-262/6.0/#sec-number.isfinite).
+ 7345:       *
+*****
+
+***** LODASH\RD\16.js
+ 7337:       * @param {*} value The value to check.
+ 7338:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7339:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7349:       * @param {*} value The value to check.
+ 7350:       * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
+ 7351:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7340:       *
+ 7341:       * _.isFunction(_);
+ 7342:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7352:       *
+ 7353:       * _.isFinite(10);
+ 7354:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7343:       *
+ 7344:       * _.isFunction(/abc/);
+ 7345:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7355:       *
+ 7356:       * _.isFinite('10');
+ 7357:       * // => false
+ 7358:       *
+ 7359:       * _.isFinite(true);
+ 7360:       * // => false
+ 7361:       *
+ 7362:       * _.isFinite(Object(10));
+ 7363:       * // => false
+ 7364:       *
+ 7365:       * _.isFinite(Infinity);
+ 7366:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7346:       */
+ 7347:          function isFunction(value) {
+ 7348:              // The use of `Object#toString` avoids issues with the `typeof` operator
+ 7349:              // in Safari 8 which returns 'object' for typed array constructors, and
+ 7350:              // PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+ 7351:              return isObject(value) && objToString.call(value) == funcTag;
+ 7352:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7367:       */
+ 7368:          function isFinite(value) {
+ 7369:              return typeof value == 'number' && nativeIsFinite(value);
+ 7370:          }
+*****
+
+***** LODASH\RD\16.js
+ 7353:          /**
+ 7354:       * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ 7355:       * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ 7356:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7371:          /**
+ 7372:       * Checks if `value` is classified as a `Function` object.
+ 7373:       *
+*****
+
+***** LODASH\RD\16.js
+ 7360:       * @param {*} value The value to check.
+ 7361:       * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ 7362:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7377:       * @param {*} value The value to check.
+ 7378:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7379:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7363:       *
+ 7364:       * _.isObject({});
+ 7365:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7380:       *
+ 7381:       * _.isFunction(_);
+ 7382:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7366:       *
+ 7367:       * _.isObject([1, 2, 3]);
+ 7368:       * // => true
+ 7369:       *
+ 7370:       * _.isObject(1);
+ 7371:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7383:       *
+ 7384:       * _.isFunction(/abc/);
+ 7385:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7372:       */
+ 7373:          function isObject(value) {
+ 7374:              // Avoid a V8 JIT bug in Chrome 19-20.
+ 7375:              // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+ 7376:              var type = typeof value;
+ 7377:              return !!value && (type == 'object' || type == 'function');
+ 7378:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7386:       */
+ 7387:          function isFunction(value) {
+ 7388:              // The use of `Object#toString` avoids issues with the `typeof` operator
+ 7389:              // in Safari 8 which returns 'object' for typed array constructors, and
+ 7390:              // PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+ 7391:              return isObject(value) && objToString.call(value) == funcTag;
+ 7392:          }
+*****
+
+***** LODASH\RD\16.js
+ 7379:          /**
+ 7380:       * Performs a deep comparison between `object` and `source` to determine if
+ 7381:       * `object` contains equivalent property values.
+ 7382:       *
+ 7383:       * **Note:** This method supports comparing properties of arrays, booleans,
+ 7384:       * `Date` objects, numbers, `Object` objects, regexes, and strings. Functions
+ 7385:       * and DOM nodes are **not** supported. Provide a customizer function to extend
+ 7386:       * support for comparing other values.
+ 7387:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7393:          /**
+ 7394:       * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ 7395:       * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ 7396:       *
+*****
+
+***** LODASH\RD\16.js
+ 7390:       * @category Lang
+ 7391:       * @param {Object} object The object to inspect.
+ 7392:       * @param {Object} source The object of property values to match.
+ 7393:       * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ 7394:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7399:       * @category Lang
+ 7400:       * @param {*} value The value to check.
+ 7401:       * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ 7402:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7395:       *
+ 7396:       * var object = { 'user': 'fred', 'age': 40 };
+ 7397:       *
+ 7398:       * _.isMatch(object, { 'age': 40 });
+ 7399:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7403:       *
+ 7404:       * _.isObject({});
+ 7405:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7400:       *
+ 7401:       * _.isMatch(object, { 'age': 36 });
+ 7402:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7406:       *
+ 7407:       * _.isObject([1, 2, 3]);
+ 7408:       * // => true
+ 7409:       *
+ 7410:       * _.isObject(1);
+ 7411:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7403:       */
+ 7404:          function isMatch(object, source) {
+ 7405:              return baseIsMatch(object, source, getMatchData(source));
+ 7406:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7412:       */
+ 7413:          function isObject(value) {
+ 7414:              // Avoid a V8 JIT bug in Chrome 19-20.
+ 7415:              // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+ 7416:              var type = typeof value;
+ 7417:              return !!value && (type == 'object' || type == 'function');
+ 7418:          }
+*****
+
+***** LODASH\RD\16.js
+ 7407:          /**
+ 7408:       * This method is like `_.isMatch` except that it accepts `customizer` which
+ 7409:       * is invoked to compare values. If `customizer` returns `undefined` comparisons
+ 7410:       * are handled by the method instead. The `customizer` is invoked with three
+ 7411:       * arguments: (objValue, srcValue, index|key, object, source).
+ 7412:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7419:          /**
+ 7420:       * Performs a deep comparison between `object` and `source` to determine if
+ 7421:       * `object` contains equivalent property values.
+ 7422:       *
+ 7423:       * **Note:** This method supports comparing properties of arrays, booleans,
+ 7424:       * `Date` objects, numbers, `Object` objects, regexes, and strings. Functions
+ 7425:       * and DOM nodes are **not** supported. Provide a customizer function to extend
+ 7426:       * support for comparing other values.
+ 7427:       *
+*****
+
+***** LODASH\RD\16.js
+ 7417:       * @param {Object} source The object of property values to match.
+ 7418:       * @param {Function} [customizer] The function to customize comparisons.
+ 7419:       * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+***** LODASH\RD\ORIGINAL.JS
+ 7432:       * @param {Object} source The object of property values to match.
+ 7433:       * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+*****
+
+***** LODASH\RD\16.js
+ 7421:       *
+ 7422:       * var object = { 'greeting': 'hello' };
+ 7423:       * var source = { 'greeting': 'hi' };
+ 7424:       *
+ 7425:       * _.isMatchWith(object, source, function(value, other) {
+ 7426:       *   var reHello = /^h(?:i|ello)$/;
+ 7427:       *   if (reHello.test(value) && reHello.test(other)) {
+ 7428:       *     return true;
+ 7429:       *   }
+ 7430:       * });
+ 7431:       * // => true
+ 7432:       */
+ 7433:          function isMatchWith(object, source, customizer) {
+ 7434:              customizer = typeof customizer == 'function' ? customizer : undefined;
+ 7435:              return baseIsMatch(object, source, getMatchData(source), customizer);
+ 7436:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7435:       *
+ 7436:       * var object = { 'user': 'fred', 'age': 40 };
+ 7437:       *
+ 7438:       * _.isMatch(object, { 'age': 40 });
+ 7439:       * // => true
+ 7440:       *
+ 7441:       * _.isMatch(object, { 'age': 36 });
+ 7442:       * // => false
+ 7443:       */
+ 7444:          function isMatch(object, source) {
+ 7445:              return baseIsMatch(object, source, getMatchData(source));
+ 7446:          }
+*****
+
+***** LODASH\RD\16.js
+ 7437:          /**
+ 7438:       * Checks if `value` is `NaN`.
+ 7439:       *
+ 7440:       * **Note:** This method is not the same as [`isNaN`](https://es5.github.io/#x15.1.2.4)
+ 7441:       * which returns `true` for `undefined` and other non-numeric values.
+ 7442:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7447:          /**
+ 7448:       * This method is like `_.isMatch` except that it accepts `customizer` which
+ 7449:       * is invoked to compare values. If `customizer` returns `undefined` comparisons
+ 7450:       * are handled by the method instead. The `customizer` is invoked with three
+ 7451:       * arguments: (objValue, srcValue, index|key, object, source).
+ 7452:       *
+*****
+
+***** LODASH\RD\16.js
+ 7445:       * @category Lang
+ 7446:       * @param {*} value The value to check.
+ 7447:       * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+ 7448:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7455:       * @category Lang
+ 7456:       * @param {Object} object The object to inspect.
+ 7457:       * @param {Object} source The object of property values to match.
+ 7458:       * @param {Function} [customizer] The function to customize comparisons.
+ 7459:       * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ 7460:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7449:       *
+ 7450:       * _.isNaN(NaN);
+ 7451:       * // => true
+ 7452:       *
+ 7453:       * _.isNaN(new Number(NaN));
+ 7454:       * // => true
+ 7455:       *
+ 7456:       * isNaN(undefined);
+ 7457:       * // => true
+ 7458:       *
+ 7459:       * _.isNaN(undefined);
+ 7460:       * // => false
+ 7461:       */
+ 7462:          function isNaN(value) {
+ 7463:              // An `NaN` primitive is the only value that is not equal to itself.
+ 7464:              // Perform the `toStringTag` check first to avoid errors with some ActiveX objects in IE.
+ 7465:              return isNumber(value) && value != +value;
+ 7466:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7461:       *
+ 7462:       * var object = { 'greeting': 'hello' };
+ 7463:       * var source = { 'greeting': 'hi' };
+ 7464:       *
+ 7465:       * _.isMatchWith(object, source, function(value, other) {
+ 7466:       *   var reHello = /^h(?:i|ello)$/;
+ 7467:       *   if (reHello.test(value) && reHello.test(other)) {
+ 7468:       *     return true;
+ 7469:       *   }
+ 7470:       * });
+ 7471:       * // => true
+ 7472:       */
+ 7473:          function isMatchWith(object, source, customizer) {
+ 7474:              customizer = typeof customizer == 'function' ? customizer : undefined;
+ 7475:              return baseIsMatch(object, source, getMatchData(source), customizer);
+ 7476:          }
+*****
+
+***** LODASH\RD\16.js
+ 7467:          /**
+ 7468:       * Checks if `value` is a native function.
+ 7469:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7477:          /**
+ 7478:       * Checks if `value` is `NaN`.
+ 7479:       *
+ 7480:       * **Note:** This method is not the same as [`isNaN`](https://es5.github.io/#x15.1.2.4)
+ 7481:       * which returns `true` for `undefined` and other non-numeric values.
+ 7482:       *
+*****
+
+***** LODASH\RD\16.js
+ 7473:       * @param {*} value The value to check.
+ 7474:       * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
+ 7475:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7486:       * @param {*} value The value to check.
+ 7487:       * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+ 7488:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7476:       *
+ 7477:       * _.isNative(Array.prototype.push);
+ 7478:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7489:       *
+ 7490:       * _.isNaN(NaN);
+ 7491:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7479:       *
+ 7480:       * _.isNative(_);
+ 7481:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7492:       *
+ 7493:       * _.isNaN(new Number(NaN));
+ 7494:       * // => true
+ 7495:       *
+ 7496:       * isNaN(undefined);
+ 7497:       * // => true
+ 7498:       *
+ 7499:       * _.isNaN(undefined);
+ 7500:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7482:       */
+ 7483:          function isNative(value) {
+ 7484:              if (value == null) {
+ 7485:                  return false;
+ 7486:              }
+ 7487:              if (isFunction(value)) {
+ 7488:                  return reIsNative.test(fnToString.call(value));
+ 7489:              }
+ 7490:              return isObjectLike(value) && (isHostObject(value) ? reIsNative : reIsHostCtor).test(value);
+ 7491:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7501:       */
+ 7502:          function isNaN(value) {
+ 7503:              // An `NaN` primitive is the only value that is not equal to itself.
+ 7504:              // Perform the `toStringTag` check first to avoid errors with some ActiveX objects in IE.
+ 7505:              return isNumber(value) && value != +value;
+ 7506:          }
+*****
+
+***** LODASH\RD\16.js
+ 7492:          /**
+ 7493:       * Checks if `value` is `null`.
+ 7494:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7507:          /**
+ 7508:       * Checks if `value` is a native function.
+ 7509:       *
+*****
+
+***** LODASH\RD\16.js
+ 7498:       * @param {*} value The value to check.
+ 7499:       * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
+ 7500:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7513:       * @param {*} value The value to check.
+ 7514:       * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
+ 7515:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7501:       *
+ 7502:       * _.isNull(null);
+ 7503:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7516:       *
+ 7517:       * _.isNative(Array.prototype.push);
+ 7518:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7504:       *
+ 7505:       * _.isNull(void 0);
+ 7506:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7519:       *
+ 7520:       * _.isNative(_);
+ 7521:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7507:       */
+ 7508:          function isNull(value) {
+ 7509:              return value === null;
+ 7510:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7522:       */
+ 7523:          function isNative(value) {
+ 7524:              if (value == null) {
+ 7525:                  return false;
+ 7526:              }
+ 7527:              if (isFunction(value)) {
+ 7528:                  return reIsNative.test(fnToString.call(value));
+ 7529:              }
+ 7530:              return isObjectLike(value) && (isHostObject(value) ? reIsNative : reIsHostCtor).test(value);
+ 7531:          }
+*****
+
+***** LODASH\RD\16.js
+ 7511:          /**
+ 7512:       * Checks if `value` is `null` or `undefined`.
+ 7513:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7532:          /**
+ 7533:       * Checks if `value` is `null`.
+ 7534:       *
+*****
+
+***** LODASH\RD\16.js
+ 7517:       * @param {*} value The value to check.
+ 7518:       * @returns {boolean} Returns `true` if `value` is `null` or `undefined`, else `false`.
+ 7519:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7538:       * @param {*} value The value to check.
+ 7539:       * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
+ 7540:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7520:       *
+ 7521:       * _.isNil(null);
+ 7522:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7541:       *
+ 7542:       * _.isNull(null);
+ 7543:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7523:       *
+ 7524:       * _.isNil();
+ 7525:       * // => true
+ 7526:       *
+ 7527:       * _.isNil(undefined);
+ 7528:       * // => true
+ 7529:       *
+ 7530:       * _.isNil(NaN);
+ 7531:       * // => false
+ 7532:       *
+ 7533:       * _.isNil(void 0);
+ 7534:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7544:       *
+ 7545:       * _.isNull(void 0);
+ 7546:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7535:       */
+ 7536:          function isNil(value) {
+ 7537:              return value == null;
+ 7538:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7547:       */
+ 7548:          function isNull(value) {
+ 7549:              return value === null;
+ 7550:          }
+*****
+
+***** LODASH\RD\16.js
+ 7539:          /**
+ 7540:       * Checks if `value` is classified as a `Number` primitive or object.
+ 7541:       *
+ 7542:       * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are classified
+ 7543:       * as numbers, use the `_.isFinite` method.
+ 7544:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7551:          /**
+ 7552:       * Checks if `value` is `null` or `undefined`.
+ 7553:       *
+*****
+
+***** LODASH\RD\16.js
+ 7548:       * @param {*} value The value to check.
+ 7549:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7550:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7557:       * @param {*} value The value to check.
+ 7558:       * @returns {boolean} Returns `true` if `value` is `null` or `undefined`, else `false`.
+ 7559:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7551:       *
+ 7552:       * _.isNumber(8.4);
+ 7553:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7560:       *
+ 7561:       * _.isNil(null);
+ 7562:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7554:       *
+ 7555:       * _.isNumber(NaN);
+ 7556:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7563:       *
+ 7564:       * _.isNil();
+ 7565:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7557:       *
+ 7558:       * _.isNumber('8.4');
+ 7559:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7566:       *
+ 7567:       * _.isNil(undefined);
+ 7568:       * // => true
+ 7569:       *
+ 7570:       * _.isNil(NaN);
+ 7571:       * // => false
+ 7572:       *
+ 7573:       * _.isNil(void 0);
+ 7574:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7560:       */
+ 7561:          function isNumber(value) {
+ 7562:              return typeof value == 'number' || isObjectLike(value) && objToString.call(value) == numberTag;
+ 7563:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7575:       */
+ 7576:          function isNil(value) {
+ 7577:              return value == null;
+ 7578:          }
+*****
+
+***** LODASH\RD\16.js
+ 7564:          /**
+ 7565:       * Checks if `value` is a plain object, that is, an object created by the
+ 7566:       * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ 7567:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7579:          /**
+ 7580:       * Checks if `value` is classified as a `Number` primitive or object.
+ 7581:       *
+ 7582:       * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are classified
+ 7583:       * as numbers, use the `_.isFinite` method.
+ 7584:       *
+*****
+
+***** LODASH\RD\16.js
+ 7571:       * @param {*} value The value to check.
+ 7572:       * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ 7573:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7588:       * @param {*} value The value to check.
+ 7589:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7590:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7574:       *
+ 7575:       * function Foo() {
+ 7576:       *   this.a = 1;
+ 7577:       * }
+ 7578:       *
+ 7579:       * _.isPlainObject(new Foo);
+ 7580:       * // => false
+ 7581:       *
+ 7582:       * _.isPlainObject([1, 2, 3]);
+ 7583:       * // => false
+ 7584:       *
+ 7585:       * _.isPlainObject({ 'x': 0, 'y': 0 });
+ 7586:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7591:       *
+ 7592:       * _.isNumber(8.4);
+ 7593:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7587:       *
+ 7588:       * _.isPlainObject(Object.create(null));
+ 7589:       * // => true
+ 7590:       */
+ 7591:          function isPlainObject(value) {
+ 7592:              if (!isObjectLike(value) || objToString.call(value) != objectTag || isHostObject(value)) {
+ 7593:                  return false;
+ 7594:              }
+ 7595:              var proto = typeof value.constructor == 'function' ? getPrototypeOf(value) : objectProto;
+ 7596:              if (proto === null) {
+ 7597:                  return true;
+ 7598:              }
+ 7599:              var Ctor = proto.constructor;
+ 7600:              return typeof Ctor == 'function' && Ctor instanceof Ctor && fnToString.call(Ctor) == objCtorString;
+ 7601:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7594:       *
+ 7595:       * _.isNumber(NaN);
+ 7596:       * // => true
+ 7597:       *
+ 7598:       * _.isNumber('8.4');
+ 7599:       * // => false
+ 7600:       */
+ 7601:          function isNumber(value) {
+ 7602:              return typeof value == 'number' || isObjectLike(value) && objToString.call(value) == numberTag;
+ 7603:          }
+*****
+
+***** LODASH\RD\16.js
+ 7602:          /**
+ 7603:       * Checks if `value` is classified as a `RegExp` object.
+ 7604:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7604:          /**
+ 7605:       * Checks if `value` is a plain object, that is, an object created by the
+ 7606:       * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ 7607:       *
+*****
+
+***** LODASH\RD\16.js
+ 7608:       * @param {*} value The value to check.
+ 7609:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7610:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7611:       * @param {*} value The value to check.
+ 7612:       * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ 7613:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7611:       *
+ 7612:       * _.isRegExp(/abc/);
+ 7613:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7614:       *
+ 7615:       * function Foo() {
+ 7616:       *   this.a = 1;
+ 7617:       * }
+ 7618:       *
+ 7619:       * _.isPlainObject(new Foo);
+ 7620:       * // => false
+ 7621:       *
+ 7622:       * _.isPlainObject([1, 2, 3]);
+ 7623:       * // => false
+ 7624:       *
+ 7625:       * _.isPlainObject({ 'x': 0, 'y': 0 });
+ 7626:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7614:       *
+ 7615:       * _.isRegExp('/abc/');
+ 7616:       * // => false
+ 7617:       */
+ 7618:          function isRegExp(value) {
+ 7619:              return isObject(value) && objToString.call(value) == regexpTag;
+ 7620:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7627:       *
+ 7628:       * _.isPlainObject(Object.create(null));
+ 7629:       * // => true
+ 7630:       */
+ 7631:          function isPlainObject(value) {
+ 7632:              if (!isObjectLike(value) || objToString.call(value) != objectTag || isHostObject(value)) {
+ 7633:                  return false;
+ 7634:              }
+ 7635:              var proto = typeof value.constructor == 'function' ? getPrototypeOf(value) : objectProto;
+ 7636:              if (proto === null) {
+ 7637:                  return true;
+ 7638:              }
+ 7639:              var Ctor = proto.constructor;
+ 7640:              return typeof Ctor == 'function' && Ctor instanceof Ctor && fnToString.call(Ctor) == objCtorString;
+ 7641:          }
+*****
+
+***** LODASH\RD\16.js
+ 7621:          /**
+ 7622:       * Checks if `value` is classified as a `String` primitive or object.
+ 7623:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7642:          /**
+ 7643:       * Checks if `value` is classified as a `RegExp` object.
+ 7644:       *
+*****
+
+***** LODASH\RD\16.js
+ 7630:       *
+ 7631:       * _.isString('abc');
+ 7632:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7651:       *
+ 7652:       * _.isRegExp(/abc/);
+ 7653:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7633:       *
+ 7634:       * _.isString(1);
+ 7635:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7654:       *
+ 7655:       * _.isRegExp('/abc/');
+ 7656:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7636:       */
+ 7637:          function isString(value) {
+ 7638:              return typeof value == 'string' || isObjectLike(value) && objToString.call(value) == stringTag;
+ 7639:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7657:       */
+ 7658:          function isRegExp(value) {
+ 7659:              return isObject(value) && objToString.call(value) == regexpTag;
+ 7660:          }
+*****
+
+***** LODASH\RD\16.js
+ 7640:          /**
+ 7641:       * Checks if `value` is classified as a typed array.
+ 7642:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7661:          /**
+ 7662:       * Checks if `value` is classified as a `String` primitive or object.
+ 7663:       *
+*****
+
+***** LODASH\RD\16.js
+ 7649:       *
+ 7650:       * _.isTypedArray(new Uint8Array);
+ 7651:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7670:       *
+ 7671:       * _.isString('abc');
+ 7672:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7652:       *
+ 7653:       * _.isTypedArray([]);
+ 7654:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7673:       *
+ 7674:       * _.isString(1);
+ 7675:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7655:       */
+ 7656:          function isTypedArray(value) {
+ 7657:              return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
+ 7658:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7676:       */
+ 7677:          function isString(value) {
+ 7678:              return typeof value == 'string' || isObjectLike(value) && objToString.call(value) == stringTag;
+ 7679:          }
+*****
+
+***** LODASH\RD\16.js
+ 7659:          /**
+ 7660:       * Checks if `value` is `undefined`.
+ 7661:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7680:          /**
+ 7681:       * Checks if `value` is classified as a typed array.
+ 7682:       *
+*****
+
+***** LODASH\RD\16.js
+ 7665:       * @param {*} value The value to check.
+ 7666:       * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+ 7667:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7686:       * @param {*} value The value to check.
+ 7687:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7688:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7668:       *
+ 7669:       * _.isUndefined(void 0);
+ 7670:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7689:       *
+ 7690:       * _.isTypedArray(new Uint8Array);
+ 7691:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7671:       *
+ 7672:       * _.isUndefined(null);
+ 7673:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7692:       *
+ 7693:       * _.isTypedArray([]);
+ 7694:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7674:       */
+ 7675:          function isUndefined(value) {
+ 7676:              return value === undefined;
+ 7677:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7695:       */
+ 7696:          function isTypedArray(value) {
+ 7697:              return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
+ 7698:          }
+*****
+
+***** LODASH\RD\16.js
+ 7678:          /**
+ 7679:       * Checks if `value` is less than `other`.
+ 7680:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7699:          /**
+ 7700:       * Checks if `value` is `undefined`.
+ 7701:       *
+*****
+
+***** LODASH\RD\16.js
+ 7683:       * @category Lang
+ 7684:       * @param {*} value The value to compare.
+ 7685:       * @param {*} other The other value to compare.
+ 7686:       * @returns {boolean} Returns `true` if `value` is less than `other`, else `false`.
+ 7687:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7704:       * @category Lang
+ 7705:       * @param {*} value The value to check.
+ 7706:       * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+ 7707:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7688:       *
+ 7689:       * _.lt(1, 3);
+ 7690:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7708:       *
+ 7709:       * _.isUndefined(void 0);
+ 7710:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7691:       *
+ 7692:       * _.lt(3, 3);
+ 7693:       * // => false
+ 7694:       *
+ 7695:       * _.lt(3, 1);
+ 7696:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7711:       *
+ 7712:       * _.isUndefined(null);
+ 7713:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7697:       */
+ 7698:          function lt(value, other) {
+ 7699:              return value < other;
+ 7700:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7714:       */
+ 7715:          function isUndefined(value) {
+ 7716:              return value === undefined;
+ 7717:          }
+*****
+
+***** LODASH\RD\16.js
+ 7701:          /**
+ 7702:       * Checks if `value` is less than or equal to `other`.
+ 7703:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7718:          /**
+ 7719:       * Checks if `value` is less than `other`.
+ 7720:       *
+*****
+
+***** LODASH\RD\16.js
+ 7708:       * @param {*} other The other value to compare.
+ 7709:       * @returns {boolean} Returns `true` if `value` is less than or equal to `other`, else `false`.
+ 7710:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7725:       * @param {*} other The other value to compare.
+ 7726:       * @returns {boolean} Returns `true` if `value` is less than `other`, else `false`.
+ 7727:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7711:       *
+ 7712:       * _.lte(1, 3);
+ 7713:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7728:       *
+ 7729:       * _.lt(1, 3);
+ 7730:       * // => true
+*****
+
+***** LODASH\RD\16.js
+ 7714:       *
+ 7715:       * _.lte(3, 3);
+ 7716:       * // => true
+ 7717:       *
+ 7718:       * _.lte(3, 1);
+ 7719:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7731:       *
+ 7732:       * _.lt(3, 3);
+ 7733:       * // => false
+ 7734:       *
+ 7735:       * _.lt(3, 1);
+ 7736:       * // => false
+*****
+
+***** LODASH\RD\16.js
+ 7720:       */
+ 7721:          function lte(value, other) {
+ 7722:              return value <= other;
+ 7723:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7737:       */
+ 7738:          function lt(value, other) {
+ 7739:              return value < other;
+ 7740:          }
+*****
+
+***** LODASH\RD\16.js
+ 7724:          /**
+ 7725:       * Converts `value` to an array.
+ 7726:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7741:          /**
+ 7742:       * Checks if `value` is less than or equal to `other`.
+ 7743:       *
+*****
+
+***** LODASH\RD\16.js
+ 7729:       * @category Lang
+ 7730:       * @param {*} value The value to convert.
+ 7731:       * @returns {Array} Returns the converted array.
+ 7732:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7746:       * @category Lang
+ 7747:       * @param {*} value The value to compare.
+ 7748:       * @param {*} other The other value to compare.
+ 7749:       * @returns {boolean} Returns `true` if `value` is less than or equal to `other`, else `false`.
+ 7750:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7733:       *
+ 7734:       * (function() {
+ 7735:       *   return _.toArray(arguments).slice(1);
+ 7736:       * }(1, 2, 3));
+ 7737:       * // => [2, 3]
+ 7738:       */
+ 7739:          function toArray(value) {
+ 7740:              if (!isArrayLike(value)) {
+ 7741:                  return values(value);
+ 7742:              }
+ 7743:              return value.length ? copyArray(value) : [];
+ 7744:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7751:       *
+ 7752:       * _.lte(1, 3);
+ 7753:       * // => true
+ 7754:       *
+ 7755:       * _.lte(3, 3);
+ 7756:       * // => true
+ 7757:       *
+ 7758:       * _.lte(3, 1);
+ 7759:       * // => false
+ 7760:       */
+ 7761:          function lte(value, other) {
+ 7762:              return value <= other;
+ 7763:          }
+*****
+
+***** LODASH\RD\16.js
+ 7745:          /**
+ 7746:       * Converts `value` to a plain object flattening inherited enumerable
+ 7747:       * properties of `value` to own properties of the plain object.
+ 7748:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7764:          /**
+ 7765:       * Converts `value` to an array.
+ 7766:       *
+*****
+
+***** LODASH\RD\16.js
+ 7752:       * @param {*} value The value to convert.
+ 7753:       * @returns {Object} Returns the converted plain object.
+ 7754:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7770:       * @param {*} value The value to convert.
+ 7771:       * @returns {Array} Returns the converted array.
+ 7772:       * @example
+*****
+
+***** LODASH\RD\16.js
+ 7755:       *
+ 7756:       * function Foo() {
+***** LODASH\RD\ORIGINAL.JS
+ 7773:       *
+ 7774:       * (function() {
+ 7775:       *   return _.toArray(arguments).slice(1);
+ 7776:       * }(1, 2, 3));
+ 7777:       * // => [2, 3]
+ 7778:       */
+ 7779:          function toArray(value) {
+ 7780:              if (!isArrayLike(value)) {
+ 7781:                  return values(value);
+ 7782:              }
+ 7783:              return value.length ? copyArray(value) : [];
+ 7784:          }
+ 7785:          /**
+ 7786:       * Converts `value` to a plain object flattening inherited enumerable
+ 7787:       * properties of `value` to own properties of the plain object.
+ 7788:       *
+ 7789:       * @static
+ 7790:       * @memberOf _
+ 7791:       * @category Lang
+ 7792:       * @param {*} value The value to convert.
+ 7793:       * @returns {Object} Returns the converted plain object.
+ 7794:       * @example
+ 7795:       *
+ 7796:       * function Foo() {
+*****
+
+***** LODASH\RD\16.js
+ 9404:  tsValues = baseValues(imports, importsKeys);
+ 9405:              var isEscaping, isEvaluating, index, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+ 9406:              // Compile the regexp to match each delimiter.
+***** LODASH\RD\ORIGINAL.JS
+ 9444:  tsValues = baseValues(imports, importsKeys);
+ 9445:              var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+ 9446:              // Compile the regexp to match each delimiter.
+*****
+
+***** LODASH\RD\16.js
+ 9601:              var result = string.slice(0, end);
+ 9602:              if (isRegExp(separator)) {
+***** LODASH\RD\ORIGINAL.JS
+ 9641:              var result = string.slice(0, end);
+ 9642:              if (separator == null) {
+ 9643:                  return result + omission;
+ 9644:              }
+ 9645:              if (isRegExp(separator)) {
+*****
+
+***** LODASH\RD\16.js
+10113:                      result[index] = iteratee(index);
+10114:                  }
+***** LODASH\RD\ORIGINAL.JS
+10156:                      result[index] = iteratee(index);
+10157:                  } else {
+10158:                      iteratee(index);
+10159:                  }
+*****
+

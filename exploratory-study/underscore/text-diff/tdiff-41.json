@@ -1,0 +1,30 @@
+Comparing files UNDERSCORE\RD\41.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\41.js
+  342:          iteratee = cb(iteratee, context);
+  343:          return _.pluck(_.map(obj, function (value, index) {
+  344:              return {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  342:          iteratee = cb(iteratee, context);
+  343:          return _.pluck(_.map(obj, function (value, index, list) {
+  344:              return {
+*****
+
+***** UNDERSCORE\RD\41.js
+  346:                  index: index,
+  347:                  criteria: iteratee(value, index)
+  348:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  346:                  index: index,
+  347:                  criteria: iteratee(value, index, list)
+  348:              };
+*****
+
+***** UNDERSCORE\RD\41.js
+  834:      };
+  835:      _.after = function (times, func) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  834:      };
+  835:      // Returns a function that will only be executed on and after the Nth call.
+  836:      _.after = function (times, func) {
+*****
+

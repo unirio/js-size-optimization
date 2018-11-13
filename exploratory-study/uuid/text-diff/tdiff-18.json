@@ -1,0 +1,49 @@
+Comparing files UUID\RD\18.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\18.js
+  126:          tick += 1 + UUIDjs.randomUI04();
+  127:      }
+***** UUID\RD\ORIGINAL.JS
+  126:          tick += 1 + UUIDjs.randomUI04();
+  127:      } else {
+  128:          sequence++;
+  129:      }
+*****
+
+***** UUID\RD\18.js
+  158:  UUIDjs.fromURN = function (strId) {
+  159:      var r, p;
+  160:      if (r = p.exec(strId)) {
+  161:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2]), parseInt(r[3]), parseInt(r[4], 16), parseInt(r[5], 16
+  162:  ), parseInt(r[6]));
+  163:      }
+***** UUID\RD\ORIGINAL.JS
+  160:  UUIDjs.fromURN = function (strId) {
+  161:      var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i
+  162:  ;
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+
+***** UUID\RD\18.js
+  169:      }
+  170:      var str;
+  171:      var pos = 0;
+***** UUID\RD\ORIGINAL.JS
+  172:      }
+  173:      var str = '';
+  174:      var pos = 0;
+*****
+
+***** UUID\RD\18.js
+  196:          ints[i] = binary.charCodeAt(i);
+  197:      }
+***** UUID\RD\ORIGINAL.JS
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+  201:              throw new Error('Unexpected byte in binary data.');
+  202:          }
+  203:      }
+*****
+

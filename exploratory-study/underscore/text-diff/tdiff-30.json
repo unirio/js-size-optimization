@@ -1,0 +1,48 @@
+Comparing files UNDERSCORE\RD\30.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\30.js
+  132:      // The cornerstone, an `each` implementation, aka `forEach`.
+  133:      // sparse array-likes as if they were dense.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  132:      // The cornerstone, an `each` implementation, aka `forEach`.
+  133:      // Handles raw objects in addition to array-likes. Treats all
+  134:      // sparse array-likes as if they were dense.
+*****
+
+***** UNDERSCORE\RD\30.js
+  292:      _.min = function (obj, iteratee, context) {
+  293:          var result = Infinity, lastComputed = Infinity, value;
+  294:          if (iteratee == null && obj != null) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  293:      _.min = function (obj, iteratee, context) {
+  294:          var result = Infinity, lastComputed = Infinity, value, computed;
+  295:          if (iteratee == null && obj != null) {
+*****
+
+***** UNDERSCORE\RD\30.js
+  594:      _.sortedIndex = function (array, obj, iteratee, context) {
+  595:          iteratee = cb(iteratee, context, 1);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  595:      // Use a comparator function to figure out the smallest index at which
+  596:      // an object should be inserted so as to maintain order. Uses binary search.
+  597:      _.sortedIndex = function (array, obj, iteratee, context) {
+  598:          iteratee = cb(iteratee, context, 1);
+*****
+
+***** UNDERSCORE\RD\30.js
+  774:      // Returns a function, that, as long as it continues to be invoked, will not
+  775:      // N milliseconds. If `immediate` is passed, trigger the function on the
+***** UNDERSCORE\RD\ORIGINAL.JS
+  777:      // Returns a function, that, as long as it continues to be invoked, will not
+  778:      // be triggered. The function will be called after it stops being called for
+  779:      // N milliseconds. If `immediate` is passed, trigger the function on the
+*****
+
+***** UNDERSCORE\RD\30.js
+ 1135:              while (length--) {
+ 1136:                  key = keys[length];
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1139:              while (length--) {
+ 1140:                  // Deep compare each member
+ 1141:                  key = keys[length];
+*****
+

@@ -1,0 +1,11 @@
+Comparing files XML2JS\RD\14.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\14.js
+  188:                                      } else {
+  189:                                          element = render(element.ele(), entry).up();
+  190:                                      }
+***** XML2JS\RD\ORIGINAL.JS
+  188:                                      } else {
+  189:                                          element = render(element.ele(key), entry).up();
+  190:                                      }
+*****
+

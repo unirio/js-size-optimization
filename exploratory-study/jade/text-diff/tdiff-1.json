@@ -1,0 +1,63 @@
+Comparing files JADE\RD\1.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\1.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+*****
+
+***** JADE\RD\1.js
+   78:      });
+   79:      return {
+***** JADE\RD\ORIGINAL.JS
+   81:      });
+   82:      // Debug compiler
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+   86:      return {
+*****
+
+***** JADE\RD\1.js
+  141:      });
+  142:      var res = options.inlineRuntimeFunctions ? new Function('')() : runtimeWrap(parsed.body);
+  143:      res.dependencies = parsed.dependencies;
+***** JADE\RD\ORIGINAL.JS
+  148:      });
+  149:      var res = options.inlineRuntimeFunctions ? new Function('', parsed.body + ';return template;')() : runtimeWrap(parsed.body)
+  150:  ;
+  151:      res.dependencies = parsed.dependencies;
+*****
+
+***** JADE\RD\1.js
+  253:  };
+  254:  exports.renderFile = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  261:  };
+  262:  /**
+  263:   * Render a Pug file at the given `path`.
+  264:   *
+  265:   * @param {String} path
+  266:   * @param {Object|Function} options or callback
+  267:   * @param {Function|undefined} fn
+  268:   * @returns {String}
+  269:   * @api public
+  270:   */
+  271:  exports.renderFile = function (path, options, fn) {
+*****
+
+***** JADE\RD\1.js
+  292:  };
+  293:  exports.__express = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  309:  };
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+*****
+

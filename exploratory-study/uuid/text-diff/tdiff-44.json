@@ -1,0 +1,50 @@
+Comparing files UUID\RD\44.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\44.js
+   88:  };
+   89:  UUIDjs.prototype.equals = function () {
+   90:      if (!(uuid instanceof UUID)) {
+***** UUID\RD\ORIGINAL.JS
+   88:  };
+   89:  UUIDjs.prototype.equals = function (uuid) {
+   90:      if (!(uuid instanceof UUID)) {
+*****
+
+***** UUID\RD\44.js
+   92:      }
+   93:      return true;
+***** UUID\RD\ORIGINAL.JS
+   92:      }
+   93:      if (this.hex !== uuid.hex) {
+   94:          return false;
+   95:      }
+   96:      return true;
+*****
+
+***** UUID\RD\44.js
+  187:          if (parts[i] !== 6) {
+  188:          }
+***** UUID\RD\ORIGINAL.JS
+  190:          if (parts[i] !== 6) {
+  191:              str += '-';
+  192:          }
+*****
+
+***** UUID\RD\44.js
+  202:  // Aliases to support legacy code. Do not use these when writing new code as
+  203:  UUIDjs['new'] = function () {
+***** UUID\RD\ORIGINAL.JS
+  206:  // Aliases to support legacy code. Do not use these when writing new code as
+  207:  // they may be removed in future versions!
+  208:  UUIDjs['new'] = function () {
+*****
+
+***** UUID\RD\44.js
+  206:  UUIDjs.newTS = function () {
+  207:      return this.create();
+  208:  };
+***** UUID\RD\ORIGINAL.JS
+  211:  UUIDjs.newTS = function () {
+  212:      return this.create(1);
+  213:  };
+*****
+

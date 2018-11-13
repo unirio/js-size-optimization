@@ -1,0 +1,69 @@
+Comparing files JQUERY\RD\39.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\39.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\39.js
+ 1145:              } else if (nodeType === 3 || nodeType === 4) {
+ 1146:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 1146:              } else if (nodeType === 3 || nodeType === 4) {
+ 1147:                  return elem.nodeValue;
+ 1148:              }
+*****
+
+***** JQUERY\RD\39.js
+ 1269:                                      node = elem;
+ 1270:                                      // Reverse direction for :only-* (if we haven't yet done so)
+***** JQUERY\RD\ORIGINAL.JS
+ 1271:                                      node = elem;
+ 1272:                                      while (node = node[dir]) {
+ 1273:                                          if (ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) {
+ 1274:                                              return false;
+ 1275:                                          }
+ 1276:                                      }
+ 1277:                                      // Reverse direction for :only-* (if we haven't yet done so)
+*****
+
+***** JQUERY\RD\39.js
+ 4478:          // Support: IE <=9 - 11 only
+ 4479:          div.style.backgroundClip = 'content-box';
+***** JQUERY\RD\ORIGINAL.JS
+ 4485:          // Support: IE <=9 - 11 only
+ 4486:          // Style of cloned element affects source element cloned (#8908)
+ 4487:          div.style.backgroundClip = 'content-box';
+*****
+
+***** JQUERY\RD\39.js
+ 5408:          slideToggle: genFx('toggle'),
+ 5409:          fadeIn: {},
+ 5410:          fadeOut: { opacity: 'hide' },
+***** JQUERY\RD\ORIGINAL.JS
+ 5416:          slideToggle: genFx('toggle'),
+ 5417:          fadeIn: { opacity: 'show' },
+ 5418:          fadeOut: { opacity: 'hide' },
+*****
+
+***** JQUERY\RD\39.js
+ 6138:      jQuery.param = function (a, traditional) {
+ 6139:          var prefix, s = [], add;
+ 6140:          // If an array was passed in, assume that it is an array of form elements.
+***** JQUERY\RD\ORIGINAL.JS
+ 6146:      jQuery.param = function (a, traditional) {
+ 6147:          var prefix, s = [], add = function (key, valueOrFunction) {
+ 6148:                  // If value is a function, invoke it and use its return value
+ 6149:                  var value = jQuery.isFunction(valueOrFunction) ? valueOrFunction() : valueOrFunction;
+ 6150:                  s[s.length] = encodeURIComponent(key) + '=' + encodeURIComponent(value == null ? '' : value);
+ 6151:              };
+ 6152:          // If an array was passed in, assume that it is an array of form elements.
+*****
+

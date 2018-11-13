@@ -1,0 +1,73 @@
+Comparing files JQUERY\RD\54.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\54.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\54.js
+ 2919:                  value = {};
+ 2920:              }
+ 2921:              return value;
+ 2922:          },
+ 2923:          set: function (owner, data, value) {
+ 2924:              var prop, cache = this.cache(owner);
+ 2925:              // Handle: [ owner, key, value ] args
+ 2926:              // Always use camelCase key (gh-2257)
+ 2927:              if (typeof data === 'string') {
+ 2928:                  cache[jQuery.camelCase(data)] = value;    // Handle: [ owner, { properties } ] args
+ 2929:              } else {
+ 2930:                  // Copy the properties one-by-one to the cache object
+ 2931:                  for (prop in data) {
+ 2932:                      cache[jQuery.camelCase(prop)] = data[prop];
+ 2933:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 2920:                  value = {};
+ 2921:                  // We can accept data for non-element nodes in modern browsers,
+ 2922:                  // but we should not, see #8335.
+ 2923:                  // Always return an empty object.
+ 2924:                  if (acceptData(owner)) {
+ 2925:                      // If it is a node unlikely to be stringify-ed or looped over
+ 2926:                      // use plain assignment
+ 2927:                      if (owner.nodeType) {
+ 2928:                          owner[this.expando] = value;    // Otherwise secure it in a non-enumerable property
+ 2929:                                                          // configurable must be true to allow the property to be
+ 2930:                                                          // deleted when data is removed
+ 2931:                      } else {
+ 2932:                          Object.defineProperty(owner, this.expando, {
+ 2933:                              value: value,
+ 2934:                              configurable: true
+ 2935:                          });
+ 2936:                      }
+ 2937:                  }
+*****
+
+***** JQUERY\RD\54.js
+ 2934:              }
+ 2935:              return cache;
+***** JQUERY\RD\ORIGINAL.JS
+ 2938:              }
+ 2939:              return value;
+ 2940:          },
+ 2941:          set: function (owner, data, value) {
+ 2942:              var prop, cache = this.cache(owner);
+ 2943:              // Handle: [ owner, key, value ] args
+ 2944:              // Always use camelCase key (gh-2257)
+ 2945:              if (typeof data === 'string') {
+ 2946:                  cache[jQuery.camelCase(data)] = value;    // Handle: [ owner, { properties } ] args
+ 2947:              } else {
+ 2948:                  // Copy the properties one-by-one to the cache object
+ 2949:                  for (prop in data) {
+ 2950:                      cache[jQuery.camelCase(prop)] = data[prop];
+ 2951:                  }
+ 2952:              }
+ 2953:              return cache;
+*****
+

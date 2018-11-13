@@ -1,0 +1,109 @@
+Comparing files JQUERY\RD\30.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\30.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\30.js
+ 1411:                  'contains': markFunction(function (text) {
+ 1412:                      text = text.replace(runescape);
+ 1413:                      return function (elem) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1412:                  'contains': markFunction(function (text) {
+ 1413:                      text = text.replace(runescape, funescape);
+ 1414:                      return function (elem) {
+*****
+
+***** JQUERY\RD\30.js
+ 1798:                          }
+ 1799:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 1799:                          }
+ 1800:                          return setMatcher(i > 1 && elementMatcher(matchers), i > 1 && toSelector(// If the preceding token was 
+ 1801:  a descendant combinator, insert an implicit any-element `*`
+ 1802:                          tokens.slice(0, i - 1).concat({ value: tokens[i - 2].type === ' ' ? '*' : '' })).replace(rtrim, '$1'), 
+ 1803:  matcher, i < j && matcherFromTokens(tokens.slice(i, j)), j < len && matcherFromTokens(tokens = tokens.slice(j)), j < len && toS
+ 1804:  elector(tokens));
+ 1805:                      }
+*****
+
+***** JQUERY\RD\30.js
+ 3066:              return dataPriv.access(elem, name, data);
+ 3067:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 3072:              return dataPriv.access(elem, name, data);
+ 3073:          },
+ 3074:          _removeData: function (elem, name) {
+ 3075:              dataPriv.remove(elem, name);
+ 3076:          }
+*****
+
+***** JQUERY\RD\30.js
+ 3393:              1,
+ 3394:              "<select multiple='multiple'>"
+ 3395:          ],
+***** JQUERY\RD\ORIGINAL.JS
+ 3402:              1,
+ 3403:              "<select multiple='multiple'>",
+ 3404:              '</select>'
+ 3405:          ],
+*****
+
+***** JQUERY\RD\30.js
+ 3510:      }
+ 3511:      var documentElement = document.documentElement;
+***** JQUERY\RD\ORIGINAL.JS
+ 3520:      }
+ 3521:      (function () {
+ 3522:          var fragment = document.createDocumentFragment(), div = fragment.appendChild(document.createElement('div')), input = do
+ 3523:  cument.createElement('input');
+ 3524:          // Support: Android 4.0 - 4.3 only
+ 3525:          // Check state lost if the name is set (#11217)
+ 3526:          // Support: Windows Web Apps (WWA)
+ 3527:          // `name` and `type` must use .setAttribute for WWA (#14901)
+ 3528:          input.setAttribute('type', 'radio');
+ 3529:          input.setAttribute('checked', 'checked');
+ 3530:          input.setAttribute('name', 't');
+ 3531:          div.appendChild(input);
+ 3532:          // Support: Android <=4.1 only
+ 3533:          // Older WebKit doesn't clone checked state correctly in fragments
+ 3534:          support.checkClone = div.cloneNode(true).cloneNode(true).lastChild.checked;
+ 3535:          // Support: IE <=11 only
+ 3536:          // Make sure textarea (and checkbox) defaultValue is properly cloned
+ 3537:          div.innerHTML = '<textarea>x</textarea>';
+ 3538:          support.noCloneChecked = !!div.cloneNode(true).lastChild.defaultValue;
+ 3539:      }());
+ 3540:      var documentElement = document.documentElement;
+*****
+
+***** JQUERY\RD\30.js
+ 3890:      };
+ 3891:      jQuery.Event = function (src, props) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3919:      };
+ 3920:      jQuery.removeEvent = function (elem, type, handle) {
+ 3921:          // This "if" is needed for plain objects
+ 3922:          if (elem.removeEventListener) {
+ 3923:              elem.removeEventListener(type, handle);
+ 3924:          }
+ 3925:      };
+ 3926:      jQuery.Event = function (src, props) {
+*****
+
+***** JQUERY\RD\30.js
+ 3895:          }
+ 3896:          if (src && src.type) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3930:          }
+ 3931:          // Event object
+ 3932:          if (src && src.type) {
+*****
+

@@ -1,0 +1,29 @@
+Comparing files PLIVO-NODE\RD\57.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\57.js
+   12:  plivo.options.authId = '';
+   13:  var UserAgent = 'NodePlivo';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   12:  plivo.options.authId = '';
+   13:  plivo.options.authToken = '';
+   14:  var UserAgent = 'NodePlivo';
+*****
+
+***** PLIVO-NODE\RD\57.js
+  375:      var method = 'POST';
+  376:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  376:      var method = 'POST';
+  377:      request(action, method, params, callback);
+  378:  };
+*****
+
+***** PLIVO-NODE\RD\57.js
+  496:      var action = 'Message/';
+  497:      var method;
+  498:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  498:      var action = 'Message/';
+  499:      var method = 'GET';
+  500:      request(action, method, params, callback);
+*****
+

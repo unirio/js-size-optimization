@@ -1,0 +1,24 @@
+Comparing files UUID\RD\42.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\42.js
+  166:      }
+  167:  };
+  168:  UUIDjs.fromBytes = function () {
+  169:      if (ints.length < 5) {
+***** UUID\RD\ORIGINAL.JS
+  166:      }
+  167:      return null;
+  168:  };
+  169:  UUIDjs.fromBytes = function (ints) {
+  170:      if (ints.length < 5) {
+*****
+
+***** UUID\RD\42.js
+  192:      }
+  193:      return;
+  194:  };
+***** UUID\RD\ORIGINAL.JS
+  193:      }
+  194:      return UUIDjs.fromURN(str);
+  195:  };
+*****
+

@@ -1,0 +1,422 @@
+Comparing files LODASH\RD\7.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\7.js
+  565:          while (++index < length) {
+  566:              var value = array[index], computed = iteratee ? iteratee(value, index) : value;
+  567:              if (!index || seen !== computed) {
+***** LODASH\RD\ORIGINAL.JS
+  565:          while (++index < length) {
+  566:              var value = array[index], computed = iteratee ? iteratee(value, index, array) : value;
+  567:              if (!index || seen !== computed) {
+*****
+
+***** LODASH\RD\7.js
+  811:          }
+  812:          function baseLodash() {
+  813:          }
+  814:          /**
+  815:       * The base constructor for creating `lodash` wrapper objects.
+  816:       *
+***** LODASH\RD\ORIGINAL.JS
+  811:          }
+  812:          /**
+  813:       * The function whose prototype all chaining wrappers inherit from.
+  814:       *
+*****
+
+***** LODASH\RD\7.js
+  817:       * @private
+  818:       * @param {*} value The value to wrap.
+***** LODASH\RD\ORIGINAL.JS
+  815:       * @private
+  816:       */
+  817:          function baseLodash() {
+  818:          }
+  819:          /**
+  820:       * The base constructor for creating `lodash` wrapper objects.
+  821:       *
+  822:       * @private
+  823:       * @param {*} value The value to wrap.
+*****
+
+***** LODASH\RD\7.js
+  864:              'variable': '',
+  865:              'imports': {
+***** LODASH\RD\ORIGINAL.JS
+  869:              'variable': '',
+  870:              /**
+  871:         * Used to import variables into the compiled template.
+  872:         *
+  873:         * @memberOf _.templateSettings
+  874:         * @type Object
+  875:         */
+  876:              'imports': {
+*****
+
+***** LODASH\RD\7.js
+ 3306:              }
+ 3307:              return result || isLength(object && object.length) && isIndex(path) && (isArray(object) || isArguments(object) || i
+ 3308:  sString(object));
+ 3309:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3317:              }
+ 3318:              return result || isLength(object && object.length) && isIndex(path, object.length) && (isArray(object) || isArgumen
+ 3319:  ts(object) || isString(object));
+ 3320:          }
+*****
+
+***** LODASH\RD\7.js
+ 3560:              }
+ 3561:              if (value) {
+***** LODASH\RD\ORIGINAL.JS
+ 3571:              }
+ 3572:              // Compose partial right arguments.
+ 3573:              value = source[5];
+ 3574:              if (value) {
+*****
+
+***** LODASH\RD\7.js
+ 9763:          }
+ 9764:          function iteratee(func) {
+ 9765:              return isObjectLike(func) && !isArray(func) ? matches(func) : baseIteratee(func);
+ 9766:          }
+ 9767:          /**
+ 9768:       * Creates a function that performs a deep comparison between a given object
+ 9769:       * and `source`, returning `true` if the given object has equivalent property
+ 9770:       * values, else `false`.
+ 9771:       *
+ 9772:       * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ 9773:       * numbers, `Object` objects, regexes, and strings. Objects are compared by
+ 9774:       * their own and inherited enumerable properties. For comparing a single
+ 9775:       * value see `_.matchesProperty`.
+ 9776:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9776:          }
+ 9777:          /**
+ 9778:       * Creates a function that invokes `func` with the arguments of the created
+ 9779:       * function. If `func` is a property name the created callback returns the
+ 9780:       * property value for a given element. If `func` is an object the created
+ 9781:       * callback returns `true` for elements that contain the equivalent object properties, otherwise it returns `false`.
+ 9782:       *
+*****
+
+***** LODASH\RD\7.js
+ 9779:       * @category Utility
+ 9780:       * @param {Object} source The object of property values to match.
+ 9781:       * @returns {Function} Returns the new function.
+ 9782:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9785:       * @category Utility
+ 9786:       * @param {*} [func=_.identity] The value to convert to a callback.
+ 9787:       * @returns {Function} Returns the callback.
+ 9788:       * @example
+*****
+
+***** LODASH\RD\7.js
+ 9784:       * var users = [
+ 9785:       *   { 'user': 'barney', 'age': 36, 'active': true },
+ 9786:       *   { 'user': 'fred',   'age': 40, 'active': false }
+ 9787:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 9790:       * var users = [
+ 9791:       *   { 'user': 'barney', 'age': 36 },
+ 9792:       *   { 'user': 'fred',   'age': 40 }
+ 9793:       * ];
+*****
+
+***** LODASH\RD\7.js
+ 9788:       *
+ 9789:       * _.filter(users, _.matches({ 'age': 40, 'active': false }));
+ 9790:       * // => [{ 'user': 'fred', 'age': 40, 'active': false }]
+ 9791:       */
+ 9792:          function matches(source) {
+ 9793:              return baseMatches(baseClone(source, true));
+ 9794:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9794:       *
+ 9795:       * // wrap to create custom callback shorthands
+ 9796:       * _.iteratee = _.wrap(_.iteratee, function(callback, func, thisArg) {
+ 9797:       *   var match = /^(.+?)__([gl]t)(.+)$/.exec(func);
+ 9798:       *   if (!match) {
+ 9799:       *     return callback(func, thisArg);
+ 9800:       *   }
+ 9801:       *   return function(object) {
+ 9802:       *     return match[2] == 'gt'
+ 9803:       *       ? object[match[1]] > match[3]
+ 9804:       *       : object[match[1]] < match[3];
+ 9805:       *   };
+ 9806:       * });
+ 9807:       *
+ 9808:       * _.filter(users, 'age__gt36');
+ 9809:       * // => [{ 'user': 'fred', 'age': 40 }]
+ 9810:       */
+ 9811:          function iteratee(func) {
+ 9812:              return isObjectLike(func) && !isArray(func) ? matches(func) : baseIteratee(func);
+ 9813:          }
+*****
+
+***** LODASH\RD\7.js
+ 9795:          /**
+ 9796:       * Creates a function that compares the value at `path` of a given object
+ 9797:       * to `srcValue`.
+ 9798:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9814:          /**
+ 9815:       * Creates a function that performs a deep comparison between a given object
+ 9816:       * and `source`, returning `true` if the given object has equivalent property
+ 9817:       * values, else `false`.
+ 9818:       *
+*****
+
+***** LODASH\RD\7.js
+ 9799:       * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ 9800:       * numbers, `Object` objects, regexes, and strings.
+ 9801:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9819:       * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ 9820:       * numbers, `Object` objects, regexes, and strings. Objects are compared by
+ 9821:       * their own and inherited enumerable properties. For comparing a single
+ 9822:       * value see `_.matchesProperty`.
+ 9823:       *
+*****
+
+***** LODASH\RD\7.js
+ 9804:       * @category Utility
+ 9805:       * @param {Array|string} path The path of the property to get.
+ 9806:       * @param {*} srcValue The value to match.
+ 9807:       * @returns {Function} Returns the new function.
+***** LODASH\RD\ORIGINAL.JS
+ 9826:       * @category Utility
+ 9827:       * @param {Object} source The object of property values to match.
+ 9828:       * @returns {Function} Returns the new function.
+*****
+
+***** LODASH\RD\7.js
+ 9810:       * var users = [
+ 9811:       *   { 'user': 'barney' },
+ 9812:       *   { 'user': 'fred' }
+ 9813:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 9831:       * var users = [
+ 9832:       *   { 'user': 'barney', 'age': 36, 'active': true },
+ 9833:       *   { 'user': 'fred',   'age': 40, 'active': false }
+ 9834:       * ];
+*****
+
+***** LODASH\RD\7.js
+ 9814:       *
+ 9815:       * _.find(users, _.matchesProperty('user', 'fred'));
+ 9816:       * // => { 'user': 'fred' }
+ 9817:       */
+ 9818:          function matchesProperty(path, srcValue) {
+ 9819:              return baseMatchesProperty(path, baseClone(srcValue, true));
+ 9820:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9835:       *
+ 9836:       * _.filter(users, _.matches({ 'age': 40, 'active': false }));
+ 9837:       * // => [{ 'user': 'fred', 'age': 40, 'active': false }]
+ 9838:       */
+ 9839:          function matches(source) {
+ 9840:              return baseMatches(baseClone(source, true));
+ 9841:          }
+*****
+
+***** LODASH\RD\7.js
+ 9821:          /**
+ 9822:       * Creates a function that invokes the method at `path` of a given object.
+ 9823:       * Any additional arguments are provided to the invoked method.
+ 9824:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9842:          /**
+ 9843:       * Creates a function that compares the value at `path` of a given object
+ 9844:       * to `srcValue`.
+ 9845:       *
+ 9846:       * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ 9847:       * numbers, `Object` objects, regexes, and strings.
+ 9848:       *
+*****
+
+***** LODASH\RD\7.js
+ 9827:       * @category Utility
+ 9828:       * @param {Array|string} path The path of the method to invoke.
+ 9829:       * @param {...*} [args] The arguments to invoke the method with.
+ 9830:       * @returns {Function} Returns the new function.
+***** LODASH\RD\ORIGINAL.JS
+ 9851:       * @category Utility
+ 9852:       * @param {Array|string} path The path of the property to get.
+ 9853:       * @param {*} srcValue The value to match.
+ 9854:       * @returns {Function} Returns the new function.
+*****
+
+***** LODASH\RD\7.js
+ 9832:       *
+ 9833:       * var objects = [
+ 9834:       *   { 'a': { 'b': { 'c': _.constant(2) } } },
+ 9835:       *   { 'a': { 'b': { 'c': _.constant(1) } } }
+ 9836:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 9856:       *
+ 9857:       * var users = [
+ 9858:       *   { 'user': 'barney' },
+ 9859:       *   { 'user': 'fred' }
+ 9860:       * ];
+*****
+
+***** LODASH\RD\7.js
+ 9837:       *
+ 9838:       * _.map(objects, _.method('a.b.c'));
+ 9839:       * // => [2, 1]
+ 9840:       *
+ 9841:       * _.invoke(_.sortBy(objects, _.method(['a', 'b', 'c'])), 'a.b.c');
+ 9842:       * // => [1, 2]
+ 9843:       */
+ 9844:          var method = restParam(function (path, args) {
+ 9845:              return function (object) {
+ 9846:                  return invokePath(object, path, args);
+ 9847:              };
+ 9848:          });
+ 9849:          /**
+ 9850:       * The opposite of `_.method`; this method creates a function that invokes
+ 9851:       * the method at a given path of `object`. Any additional arguments are
+ 9852:       * provided to the invoked method.
+ 9853:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9861:       *
+ 9862:       * _.find(users, _.matchesProperty('user', 'fred'));
+ 9863:       * // => { 'user': 'fred' }
+ 9864:       */
+ 9865:          function matchesProperty(path, srcValue) {
+ 9866:              return baseMatchesProperty(path, baseClone(srcValue, true));
+ 9867:          }
+ 9868:          /**
+ 9869:       * Creates a function that invokes the method at `path` of a given object.
+ 9870:       * Any additional arguments are provided to the invoked method.
+ 9871:       *
+*****
+
+***** LODASH\RD\7.js
+ 9856:       * @category Utility
+ 9857:       * @param {Object} object The object to query.
+ 9858:       * @param {...*} [args] The arguments to invoke the method with.
+***** LODASH\RD\ORIGINAL.JS
+ 9874:       * @category Utility
+ 9875:       * @param {Array|string} path The path of the method to invoke.
+ 9876:       * @param {...*} [args] The arguments to invoke the method with.
+*****
+
+***** LODASH\RD\7.js
+ 9861:       *
+ 9862:       * var array = _.times(3, _.constant),
+ 9863:       *     object = { 'a': array, 'b': array, 'c': array };
+ 9864:       *
+ 9865:       * _.map(['a[2]', 'c[0]'], _.methodOf(object));
+ 9866:       * // => [2, 0]
+ 9867:       *
+ 9868:       * _.map([['a', '2'], ['c', '0']], _.methodOf(object));
+ 9869:       * // => [2, 0]
+ 9870:       */
+ 9871:          var methodOf = restParam(function (object, args) {
+ 9872:              return function (path) {
+ 9873:                  return invokePath(object, path, args);
+***** LODASH\RD\ORIGINAL.JS
+ 9879:       *
+ 9880:       * var objects = [
+ 9881:       *   { 'a': { 'b': { 'c': _.constant(2) } } },
+ 9882:       *   { 'a': { 'b': { 'c': _.constant(1) } } }
+ 9883:       * ];
+ 9884:       *
+ 9885:       * _.map(objects, _.method('a.b.c'));
+ 9886:       * // => [2, 1]
+ 9887:       *
+ 9888:       * _.invoke(_.sortBy(objects, _.method(['a', 'b', 'c'])), 'a.b.c');
+ 9889:       * // => [1, 2]
+ 9890:       */
+ 9891:          var method = restParam(function (path, args) {
+ 9892:              return function (object) {
+ 9893:                  return invokePath(object, path, args);
+*****
+
+***** LODASH\RD\7.js
+ 9876:          /**
+ 9877:       * Adds all own enumerable function properties of a source object to the
+ 9878:       * destination object. If `object` is a function then methods are added to
+ 9879:       * its prototype as well.
+ 9880:       *
+ 9881:       * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
+ 9882:       * avoid conflicts caused by modifying the original.
+ 9883:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9896:          /**
+ 9897:       * The opposite of `_.method`; this method creates a function that invokes
+ 9898:       * the method at a given path of `object`. Any additional arguments are
+ 9899:       * provided to the invoked method.
+ 9900:       *
+*****
+
+***** LODASH\RD\7.js
+ 9886:       * @category Utility
+ 9887:       * @param {Function|Object} [object=lodash] The destination object.
+ 9888:       * @param {Object} source The object of functions to add.
+ 9889:       * @param {Object} [options] The options object.
+ 9890:       * @param {boolean} [options.chain=true] Specify whether the functions added
+ 9891:       *  are chainable.
+ 9892:       * @returns {Function|Object} Returns `object`.
+ 9893:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9903:       * @category Utility
+ 9904:       * @param {Object} object The object to query.
+ 9905:       * @param {...*} [args] The arguments to invoke the method with.
+ 9906:       * @returns {Function} Returns the new function.
+ 9907:       * @example
+*****
+
+***** LODASH\RD\7.js
+ 9894:       *
+ 9895:       * function vowels(string) {
+***** LODASH\RD\ORIGINAL.JS
+ 9908:       *
+ 9909:       * var array = _.times(3, _.constant),
+ 9910:       *     object = { 'a': array, 'b': array, 'c': array };
+ 9911:       *
+ 9912:       * _.map(['a[2]', 'c[0]'], _.methodOf(object));
+ 9913:       * // => [2, 0]
+ 9914:       *
+ 9915:       * _.map([['a', '2'], ['c', '0']], _.methodOf(object));
+ 9916:       * // => [2, 0]
+ 9917:       */
+ 9918:          var methodOf = restParam(function (object, args) {
+ 9919:              return function (path) {
+ 9920:                  return invokePath(object, path, args);
+ 9921:              };
+ 9922:          });
+ 9923:          /**
+ 9924:       * Adds all own enumerable function properties of a source object to the
+ 9925:       * destination object. If `object` is a function then methods are added to
+ 9926:       * its prototype as well.
+ 9927:       *
+ 9928:       * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
+ 9929:       * avoid conflicts caused by modifying the original.
+ 9930:       *
+ 9931:       * @static
+ 9932:       * @memberOf _
+ 9933:       * @category Utility
+ 9934:       * @param {Function|Object} [object=lodash] The destination object.
+ 9935:       * @param {Object} source The object of functions to add.
+ 9936:       * @param {Object} [options] The options object.
+ 9937:       * @param {boolean} [options.chain=true] Specify whether the functions added
+ 9938:       *  are chainable.
+ 9939:       * @returns {Function|Object} Returns `object`.
+ 9940:       * @example
+ 9941:       *
+ 9942:       * function vowels(string) {
+*****
+
+***** LODASH\RD\7.js
+10104:              }
+10105:              var index = -1, result = Array(nativeMin(n));
+10106:              iteratee = toFunction(iteratee);
+***** LODASH\RD\ORIGINAL.JS
+10151:              }
+10152:              var index = -1, result = Array(nativeMin(n, MAX_ARRAY_LENGTH));
+10153:              iteratee = toFunction(iteratee);
+*****
+

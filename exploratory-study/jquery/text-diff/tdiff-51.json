@@ -1,0 +1,52 @@
+Comparing files JQUERY\RD\51.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\51.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\51.js
+ 1526:                  }),
+ 1527:                  'gt': createPositionalPseudo(function (matchIndexes, length, argument) {
+ 1528:                      var i = argument < 0 ? argument + length : argument;
+ 1529:                      for (; ++i < length;) {
+ 1530:                          matchIndexes.push(i);
+***** JQUERY\RD\ORIGINAL.JS
+ 1527:                  }),
+ 1528:                  'lt': createPositionalPseudo(function (matchIndexes, length, argument) {
+ 1529:                      var i = argument < 0 ? argument + length : argument;
+ 1530:                      for (; --i >= 0;) {
+ 1531:                          matchIndexes.push(i);
+*****
+
+***** JQUERY\RD\51.js
+ 1532:                      return matchIndexes;
+ 1533:                  })
+***** JQUERY\RD\ORIGINAL.JS
+ 1533:                      return matchIndexes;
+ 1534:                  }),
+ 1535:                  'gt': createPositionalPseudo(function (matchIndexes, length, argument) {
+ 1536:                      var i = argument < 0 ? argument + length : argument;
+ 1537:                      for (; ++i < length;) {
+ 1538:                          matchIndexes.push(i);
+ 1539:                      }
+ 1540:                      return matchIndexes;
+ 1541:                  })
+*****
+
+***** JQUERY\RD\51.js
+ 3653:                  type = (selector ? special.delegateType : special.bindType) || type;
+ 3654:                  special = jQuery.event.special[type] || {};
+***** JQUERY\RD\ORIGINAL.JS
+ 3661:                  type = (selector ? special.delegateType : special.bindType) || type;
+ 3662:                  // Update special based on newly reset type
+ 3663:                  special = jQuery.event.special[type] || {};
+*****
+

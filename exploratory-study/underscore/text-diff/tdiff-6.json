@@ -1,0 +1,38 @@
+Comparing files UNDERSCORE\RD\6.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\6.js
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, args.concat(slice.call(arguments)));
+  681:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, this, args.concat(slice.call(arguments)));
+  681:          };
+*****
+
+***** UNDERSCORE\RD\6.js
+ 1015:      };
+ 1016:      _.defaults = createAssigner(_.allKeys, true);
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1015:      };
+ 1016:      // Fill in a given object with default properties.
+ 1017:      _.defaults = createAssigner(_.allKeys, true);
+*****
+
+***** UNDERSCORE\RD\6.js
+ 1057:              return a !== 0 || 1 / a === 1 / b;
+ 1058:          if (a == null || b == null)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1058:              return a !== 0 || 1 / a === 1 / b;
+ 1059:          // A strict comparison is necessary because `null == undefined`.
+ 1060:          if (a == null || b == null)
+*****
+
+***** UNDERSCORE\RD\6.js
+ 1411:      // can be used OO-style. This wrapper holds altered versions of all the
+ 1412:      // Helper function to continue chaining intermediate results.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1413:      // can be used OO-style. This wrapper holds altered versions of all the
+ 1414:      // underscore functions. Wrapped objects may be chained.
+ 1415:      // Helper function to continue chaining intermediate results.
+*****
+

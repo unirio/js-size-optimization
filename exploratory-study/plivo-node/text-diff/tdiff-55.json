@@ -1,0 +1,58 @@
+Comparing files PLIVO-NODE\RD\55.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\55.js
+   17:      Error.call(this);
+   18:      Error.captureStackTrace(this);
+   19:      this.message = (msg || '') + '\n';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   17:      Error.call(this);
+   18:      Error.captureStackTrace(this, arguments.callee);
+   19:      this.message = (msg || '') + '\n';
+*****
+
+***** PLIVO-NODE\RD\55.js
+  324:      var action = '';
+  325:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  324:      var action = '';
+  325:      var method = 'POST';
+  326:      request(action, method, params, callback);
+  327:  };
+*****
+
+***** PLIVO-NODE\RD\55.js
+  420:      delete params.endpoint_id;
+  421:      var method;
+  422:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  422:      delete params.endpoint_id;
+  423:      var method = 'POST';
+  424:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\55.js
+  483:  plivo.buy_phone_number = function (params, callback) {
+  484:      var action;
+  485:      delete params.number;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  485:  plivo.buy_phone_number = function (params, callback) {
+  486:      var action = 'PhoneNumber/' + params['number'] + '/';
+  487:      delete params.number;
+*****
+
+***** PLIVO-NODE\RD\55.js
+  585:      request(action, params, callback);
+  586:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  587:      request(action, method, params, callback);
+  588:  };
+*****
+
+***** PLIVO-NODE\RD\55.js
+  769:          'dialMusic',
+  770:          'redirect',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  771:          'dialMusic',
+  772:          'confirmKey',
+  773:          'redirect',
+*****
+

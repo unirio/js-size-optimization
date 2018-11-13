@@ -1,0 +1,21 @@
+Comparing files EXECTIMER\RD\51.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\51.js
+   61:                  this.ticks.forEach(function (tick) {
+   62:                  });
+***** EXECTIMER\RD\ORIGINAL.JS
+   61:                  this.ticks.forEach(function (tick) {
+   62:                      if (tick.getDiff() < min) {
+   63:                          min = tick.getDiff();
+   64:                      }
+   65:                  });
+*****
+
+***** EXECTIMER\RD\51.js
+   97:                  } else if (num >= 1000000000) {
+   98:                  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  100:                  } else if (num >= 1000000000) {
+  101:                      return num / 1000000000 + 's';
+  102:                  }
+*****
+

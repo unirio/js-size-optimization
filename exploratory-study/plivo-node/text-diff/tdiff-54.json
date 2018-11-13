@@ -1,0 +1,80 @@
+Comparing files PLIVO-NODE\RD\54.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\54.js
+   76:          request_options.body = body, Request.put(request_options, function (error, response, body) {
+   77:              callback(response.statusCode);
+   78:          });
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   76:          request_options.body = body, Request.put(request_options, function (error, response, body) {
+   77:              callback(response.statusCode, body);
+   78:          });
+*****
+
+***** PLIVO-NODE\RD\54.js
+  230:      delete params.conference_id;
+  231:      var method;
+  232:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  230:      delete params.conference_id;
+  231:      var method = 'DELETE';
+  232:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\54.js
+  270:  plivo.deaf_conference_member = function (params, callback) {
+  271:      var action;
+  272:      delete params.conference_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  270:  plivo.deaf_conference_member = function (params, callback) {
+  271:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Deaf/';
+  272:      delete params.conference_id;
+*****
+
+***** PLIVO-NODE\RD\54.js
+  295:      var method = 'DELETE';
+  296:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  295:      var method = 'DELETE';
+  296:      request(action, method, params, callback);
+  297:  };
+*****
+
+***** PLIVO-NODE\RD\54.js
+  480:      var action = 'PhoneNumber/';
+  481:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  481:      var action = 'PhoneNumber/';
+  482:      var method = 'GET';
+  483:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\54.js
+  515:      var method = 'GET';
+  516:      request(action, method, params);
+  517:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  517:      var method = 'GET';
+  518:      request(action, method, params, callback);
+  519:  };
+*****
+
+***** PLIVO-NODE\RD\54.js
+  690:      addRedirect: function (body, attributes) {
+  691:          return this.add(new Redirect(Response), body);
+  692:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  692:      addRedirect: function (body, attributes) {
+  693:          return this.add(new Redirect(Response), body, attributes);
+  694:      },
+*****
+
+***** PLIVO-NODE\RD\54.js
+  752:          'sendDigits',
+  753:          'sendOnPreanswer'
+  754:      ];
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  754:          'sendDigits',
+  755:          'sendOnPreanswer',
+  756:          'sipHeaders'
+  757:      ];
+*****
+

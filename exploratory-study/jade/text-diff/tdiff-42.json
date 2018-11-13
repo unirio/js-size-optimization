@@ -1,0 +1,30 @@
+Comparing files JADE\RD\42.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\42.js
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          globals: options.globals,
+   78:          self: options.self,
+*****
+
+***** JADE\RD\42.js
+  140:          doctype: options.doctype,
+  141:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\42.js
+  146:      });
+  147:      var res = options.inlineRuntimeFunctions ? new Function('')() : runtimeWrap(parsed.body);
+  148:      res.dependencies = parsed.dependencies;
+***** JADE\RD\ORIGINAL.JS
+  148:      });
+  149:      var res = options.inlineRuntimeFunctions ? new Function('', parsed.body + ';return template;')() : runtimeWrap(parsed.body)
+  150:  ;
+  151:      res.dependencies = parsed.dependencies;
+*****
+

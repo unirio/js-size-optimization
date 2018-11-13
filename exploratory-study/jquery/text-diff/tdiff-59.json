@@ -1,0 +1,54 @@
+Comparing files JQUERY\RD\59.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\59.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\59.js
+ 1519:                  }),
+ 1520:                  'odd': createPositionalPseudo(function (matchIndexes) {
+ 1521:                      var i = 1;
+***** JQUERY\RD\ORIGINAL.JS
+ 1520:                  }),
+ 1521:                  'odd': createPositionalPseudo(function (matchIndexes, length) {
+ 1522:                      var i = 1;
+*****
+
+***** JQUERY\RD\59.js
+ 3269:      };
+ 3270:      var swap = function (elem, options, callback) {
+ 3271:          var ret, name, old = {};
+***** JQUERY\RD\ORIGINAL.JS
+ 3270:      };
+ 3271:      var swap = function (elem, options, callback, args) {
+ 3272:          var ret, name, old = {};
+*****
+
+***** JQUERY\RD\59.js
+ 4179:                  }
+ 4180:                  domManip(self, callback, ignored);
+ 4181:              });
+***** JQUERY\RD\ORIGINAL.JS
+ 4180:                  }
+ 4181:                  domManip(self, args, callback, ignored);
+ 4182:              });
+*****
+
+***** JQUERY\RD\59.js
+ 6173:                  // Can add propHook for "elements" to filter or add form elements
+ 6174:                  var elements = jQuery.prop(this);
+ 6175:                  return elements ? jQuery.makeArray(elements) : this;
+***** JQUERY\RD\ORIGINAL.JS
+ 6174:                  // Can add propHook for "elements" to filter or add form elements
+ 6175:                  var elements = jQuery.prop(this, 'elements');
+ 6176:                  return elements ? jQuery.makeArray(elements) : this;
+*****
+

@@ -1,0 +1,121 @@
+Comparing files LODASH\RD\47.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\47.js
+  231:          'B': 'x42',
+  232:          'D': 'x44',
+***** LODASH\RD\ORIGINAL.JS
+  231:          'B': 'x42',
+  232:          'C': 'x43',
+  233:          'D': 'x44',
+*****
+
+***** LODASH\RD\47.js
+ 1809:              }
+ 1810:              var objIsObj = objTag == objectTag && !isHostObject(object), othIsObj = othTag == objectTag && !isHostObject(), isS
+ 1811:  ameTag = objTag == othTag;
+ 1812:              if (isSameTag && !(objIsArr || objIsObj)) {
+***** LODASH\RD\ORIGINAL.JS
+ 1810:              }
+ 1811:              var objIsObj = objTag == objectTag && !isHostObject(object), othIsObj = othTag == objectTag && !isHostObject(other)
+ 1812:  , isSameTag = objTag == othTag;
+ 1813:              if (isSameTag && !(objIsArr || objIsObj)) {
+*****
+
+***** LODASH\RD\47.js
+ 2147:          }
+ 2148:          function baseRandom(min, max) {
+ 2149:              return min + nativeFloor(nativeRandom() * (max - min + 1));
+ 2150:          }
+ 2151:          /**
+ 2152:       * The base implementation of `_.reduce` and `_.reduceRight` without support
+ 2153:       * for callback shorthands, which iterates over `collection` using the provided
+ 2154:       * `eachFunc`.
+ 2155:       *
+***** LODASH\RD\ORIGINAL.JS
+ 2148:          }
+ 2149:          /**
+ 2150:       * The base implementation of `_.random` without support for returning
+ 2151:       * floating-point numbers.
+ 2152:       *
+*****
+
+***** LODASH\RD\47.js
+ 2156:       * @private
+ 2157:       * @param {Array|Object} collection The collection to iterate over.
+***** LODASH\RD\ORIGINAL.JS
+ 2153:       * @private
+ 2154:       * @param {number} min The minimum possible value.
+ 2155:       * @param {number} max The maximum possible value.
+ 2156:       * @returns {number} Returns the random number.
+ 2157:       */
+ 2158:          function baseRandom(min, max) {
+ 2159:              return min + nativeFloor(nativeRandom() * (max - min + 1));
+ 2160:          }
+ 2161:          /**
+ 2162:       * The base implementation of `_.reduce` and `_.reduceRight` without support
+ 2163:       * for callback shorthands, which iterates over `collection` using the provided
+ 2164:       * `eachFunc`.
+ 2165:       *
+ 2166:       * @private
+ 2167:       * @param {Array|Object} collection The collection to iterate over.
+*****
+
+***** LODASH\RD\47.js
+ 3055:                      if (!arraySome(other, function (othValue) {
+ 3056:                              return arrValue === othValue || equalFunc(arrValue, othValue, customizer, stackA, stackB);
+ 3057:                          })) {
+***** LODASH\RD\ORIGINAL.JS
+ 3065:                      if (!arraySome(other, function (othValue) {
+ 3066:                              return arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB);
+ 3067:                          })) {
+*****
+
+***** LODASH\RD\47.js
+ 3359:              case float64Tag:
+ 3360:              default:
+ 3361:              case int16Tag:
+***** LODASH\RD\ORIGINAL.JS
+ 3369:              case float64Tag:
+ 3370:              case int8Tag:
+ 3371:              case int16Tag:
+*****
+
+***** LODASH\RD\47.js
+ 3481:          function isLaziable(func) {
+ 3482:              var funcName = getFuncName(func), other;
+ 3483:              if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+***** LODASH\RD\ORIGINAL.JS
+ 3491:          function isLaziable(func) {
+ 3492:              var funcName = getFuncName(func), other = lodash[funcName];
+ 3493:              if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+*****
+
+***** LODASH\RD\47.js
+ 3565:                  partials = data[5];
+ 3566:                  data[5] = partials ? composeArgsRight(partials, value) : copyArray(value);
+ 3567:                  data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : copyArray(source[6]);
+***** LODASH\RD\ORIGINAL.JS
+ 3575:                  partials = data[5];
+ 3576:                  data[5] = partials ? composeArgsRight(partials, value, source[6]) : copyArray(value);
+ 3577:                  data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : copyArray(source[6]);
+*****
+
+***** LODASH\RD\47.js
+ 8450:              iteratee = getIteratee(iteratee);
+ 8451:              baseForOwn(object, function (value, key) {
+ 8452:                  result[key] = iteratee(value, key, object);
+***** LODASH\RD\ORIGINAL.JS
+ 8460:              iteratee = getIteratee(iteratee);
+ 8461:              baseForOwn(object, function (value, key, object) {
+ 8462:                  result[key] = iteratee(value, key, object);
+*****
+
+***** LODASH\RD\47.js
+ 9213:                  radix = 0;
+ 9214:              }
+***** LODASH\RD\ORIGINAL.JS
+ 9223:                  radix = 0;
+ 9224:              } else if (radix) {
+ 9225:                  radix = +radix;
+ 9226:              }
+*****
+

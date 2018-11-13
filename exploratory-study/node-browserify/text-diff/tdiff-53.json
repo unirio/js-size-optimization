@@ -1,0 +1,56 @@
+Comparing files NODE-BROWSERIFY\RD\53.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\53.js
+   34:      } else
+   35:          opts = xtend(files);
+   36:      self._options = opts;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   34:      } else
+   35:          opts = xtend(files, opts);
+   36:      self._options = opts;
+*****
+
+***** NODE-BROWSERIFY\RD\53.js
+   39:      if (opts.basedir !== undefined && typeof opts.basedir !== 'string') {
+   40:          throw new Error();
+   41:      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   39:      if (opts.basedir !== undefined && typeof opts.basedir !== 'string') {
+   40:          throw new Error('opts.basedir must be either undefined or a string.');
+   41:      }
+*****
+
+***** NODE-BROWSERIFY\RD\53.js
+  453:                  var nm = file.split('/node_modules/')[1];
+  454:              }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  453:                  var nm = file.split('/node_modules/')[1];
+  454:                  if (nm) {
+  455:                      nm = nm.split('/')[0];
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+  457:                          return cb(null, paths.empty, {});
+  458:                      }
+  459:                  }
+  460:              }
+*****
+
+***** NODE-BROWSERIFY\RD\53.js
+  481:          mopts.modules = {};
+  482:      } else if (opts.builtins && typeof opts.builtins === 'object') {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  487:          mopts.modules = {};
+  488:          opts.builtins.forEach(function (key) {
+  489:              mopts.modules[key] = builtins[key];
+  490:          });
+  491:      } else if (opts.builtins && typeof opts.builtins === 'object') {
+*****
+
+***** NODE-BROWSERIFY\RD\53.js
+  699:      var hadExports = this._bpack.hasExports;
+  700:      this.pipeline = this._createPipeline();
+  701:      this._bpack.hasExports = hadExports;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  708:      var hadExports = this._bpack.hasExports;
+  709:      this.pipeline = this._createPipeline(xtend(opts, this._options));
+  710:      this._bpack.hasExports = hadExports;
+*****
+

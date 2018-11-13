@@ -1,0 +1,42 @@
+Comparing files JQUERY\RD\19.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\19.js
+  485:              // Removing the function wrapper causes a "Permission Denied"
+  486:              unloadHandler = function () {
+***** JQUERY\RD\ORIGINAL.JS
+  485:              // Removing the function wrapper causes a "Permission Denied"
+  486:              // error in IE
+  487:              unloadHandler = function () {
+*****
+
+***** JQUERY\RD\19.js
+  719:  k non-disabled form elements for fieldset[disabled] ancestors
+  720:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  721:  ion> under fieldset[disabled] is disabled
+  722:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\19.js
+ 3434:      wrapMap.optgroup = wrapMap.option;
+ 3435:      wrapMap.th = wrapMap.td;
+***** JQUERY\RD\ORIGINAL.JS
+ 3436:      wrapMap.optgroup = wrapMap.option;
+ 3437:      wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+ 3438:      wrapMap.th = wrapMap.td;
+*****
+
+***** JQUERY\RD\19.js
+ 4061:          on: function (types, selector, data, fn) {
+ 4062:              return on(this, types, data, fn);
+ 4063:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 4064:          on: function (types, selector, data, fn) {
+ 4065:              return on(this, types, selector, data, fn);
+ 4066:          },
+*****
+

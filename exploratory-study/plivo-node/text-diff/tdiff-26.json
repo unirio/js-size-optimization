@@ -1,0 +1,29 @@
+Comparing files PLIVO-NODE\RD\26.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\26.js
+  157:      var action = 'Call/' + params['call_uuid'] + '/';
+  158:      var method = 'DELETE';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  157:      var action = 'Call/' + params['call_uuid'] + '/';
+  158:      delete params.call_uuid;
+  159:      var method = 'DELETE';
+*****
+
+***** PLIVO-NODE\RD\26.js
+  676:      addHangup: function (attributes) {
+  677:          return this.add(new Hangup(), '', attributes);
+  678:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  677:      addHangup: function (attributes) {
+  678:          return this.add(new Hangup(Response), '', attributes);
+  679:      },
+*****
+
+***** PLIVO-NODE\RD\26.js
+  915:      if (!config) {
+  916:      }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  916:      if (!config) {
+  917:          throw new PlivoError('Auth ID and Auth Token must be provided.');
+  918:      }
+*****
+

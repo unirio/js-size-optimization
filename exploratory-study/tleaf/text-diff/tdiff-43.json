@@ -1,0 +1,99 @@
+Comparing files TLEAF\RD\43.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\43.js
+    3:  var estraverse = require('estraverse');
+    4:  var escope;
+    5:  var _ = require('lodash');
+***** TLEAF\RD\ORIGINAL.JS
+    3:  var estraverse = require('estraverse');
+    4:  var escope = require('escope');
+    5:  var _ = require('lodash');
+*****
+
+***** TLEAF\RD\43.js
+   62:          }
+   63:          var deps = findDeps(call.node, type);
+   64:          // Angular should not allow having circular dependency, but if
+***** TLEAF\RD\ORIGINAL.JS
+   62:          }
+   63:          var deps = findDeps(call.node, call.scope, type);
+   64:          // Angular should not allow having circular dependency, but if
+*****
+
+***** TLEAF\RD\43.js
+   68:          }
+   69:          var unit;
+   70:          units.unshift(unit);
+***** TLEAF\RD\ORIGINAL.JS
+   68:          }
+   69:          var unit = {
+   70:              name: name,
+   71:              type: type,
+   72:              module: module,
+   73:              deps: deps
+   74:          };
+   75:          units.unshift(unit);
+*****
+
+***** TLEAF\RD\43.js
+   88:      var module = {};
+   89:      var calleeObj = _.get(callExpression, 'callee.object', {});
+   90:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\43.js
+  109:  function findDeps(callExpression, scope, type) {
+  110:      var cantHaveDeps;
+  111:      if (_.contains(cantHaveDeps, type)) {
+***** TLEAF\RD\ORIGINAL.JS
+  114:  function findDeps(callExpression, scope, type) {
+  115:      var cantHaveDeps = [
+  116:          'filter',
+  117:          'value',
+  118:          'constant'
+  119:      ];
+  120:      if (_.contains(cantHaveDeps, type)) {
+*****
+
+***** TLEAF\RD\43.js
+  158:      // function must have it's body
+  159:      var depsFnBody = _.get(depsFn, {});
+  160:      if (depsFnBody.type !== 'BlockStatement') {
+***** TLEAF\RD\ORIGINAL.JS
+  167:      // function must have it's body
+  168:      var depsFnBody = _.get(depsFn, 'body', {});
+  169:      if (depsFnBody.type !== 'BlockStatement') {
+*****
+
+***** TLEAF\RD\43.js
+  165:      var deps = [];
+  166:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+***** TLEAF\RD\ORIGINAL.JS
+  174:      var deps = [];
+  175:      // iterate over all body expressions in provider
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+*****
+
+***** TLEAF\RD\43.js
+  168:          var expression = _.get(bodyExpression, 'expression', {});
+  169:          var right = _.get(expression, 'right', {});
+***** TLEAF\RD\ORIGINAL.JS
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+*****
+
+***** TLEAF\RD\43.js
+  227:      var node = _.get(variable, 'defs[0].node');
+  228:      return;
+  229:  }
+***** TLEAF\RD\ORIGINAL.JS
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:      return node;
+  241:  }
+*****
+

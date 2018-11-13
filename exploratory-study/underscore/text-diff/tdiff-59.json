@@ -1,0 +1,97 @@
+Comparing files UNDERSCORE\RD\59.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\59.js
+   56:              return function (value, other) {
+   57:                  return func.call(context, other);
+   58:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+   56:              return function (value, other) {
+   57:                  return func.call(context, value, other);
+   58:              };
+*****
+
+***** UNDERSCORE\RD\59.js
+   73:      // to each element in a collection, returning the desired result — either
+   74:      var cb = function (value, context, argCount) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   73:      // to each element in a collection, returning the desired result — either
+   74:      // identity, an arbitrary callback, a property matcher, or a property accessor.
+   75:      var cb = function (value, context, argCount) {
+*****
+
+***** UNDERSCORE\RD\59.js
+  202:          _.each(obj, function (value, index, list) {
+  203:              if (predicate(value, index))
+  204:                  results.push(value);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  203:          _.each(obj, function (value, index, list) {
+  204:              if (predicate(value, index, list))
+  205:                  results.push(value);
+*****
+
+***** UNDERSCORE\RD\59.js
+  397:              return [];
+  398:          if (_.isArray())
+  399:              return slice.call(obj);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  398:              return [];
+  399:          if (_.isArray(obj))
+  400:              return slice.call(obj);
+*****
+
+***** UNDERSCORE\RD\59.js
+  594:      // Use a comparator function to figure out the smallest index at which
+  595:      _.sortedIndex = function (array, obj, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  595:      // Use a comparator function to figure out the smallest index at which
+  596:      // an object should be inserted so as to maintain order. Uses binary search.
+  597:      _.sortedIndex = function (array, obj, iteratee, context) {
+*****
+
+***** UNDERSCORE\RD\59.js
+  987:          } else {
+  988:              keys = flatten(arguments, false, false);
+  989:              iteratee = function (value, key, obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  989:          } else {
+  990:              keys = flatten(arguments, false, false, 1);
+  991:              iteratee = function (value, key, obj) {
+*****
+
+***** UNDERSCORE\RD\59.js
+ 1211:      };
+ 1212:      _.isBoolean = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1213:      };
+ 1214:      // Is a given value a boolean?
+ 1215:      _.isBoolean = function (obj) {
+*****
+
+***** UNDERSCORE\RD\59.js
+ 1351:      // JavaScript micro-templating, similar to John Resig's implementation.
+ 1352:      // and correctly escapes quotes within interpolated code.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1354:      // JavaScript micro-templating, similar to John Resig's implementation.
+ 1355:      // Underscore templating handles arbitrary delimiters, preserves whitespace,
+ 1356:      // and correctly escapes quotes within interpolated code.
+*****
+
+***** UNDERSCORE\RD\59.js
+ 1449:          'concat',
+ 1450:          'join'
+ 1451:      ], function (name) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1453:          'concat',
+ 1454:          'join',
+ 1455:          'slice'
+ 1456:      ], function (name) {
+*****
+
+***** UNDERSCORE\RD\59.js
+ 1469:      // practice for AMD registration is to be anonymous, underscore registers
+ 1470:      // popular enough to be bundled in a third party lib, but not be part of
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1474:      // practice for AMD registration is to be anonymous, underscore registers
+ 1475:      // as a named module because, like jQuery, it is a base library that is
+ 1476:      // popular enough to be bundled in a third party lib, but not be part of
+*****
+

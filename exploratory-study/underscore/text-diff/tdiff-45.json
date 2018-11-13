@@ -1,0 +1,10 @@
+Comparing files UNDERSCORE\RD\45.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\45.js
+ 1461:      });
+ 1462:      _.prototype.value = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1461:      });
+ 1462:      // Extracts the result from a wrapped and chained object.
+ 1463:      _.prototype.value = function () {
+*****
+

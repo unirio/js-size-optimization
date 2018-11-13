@@ -1,0 +1,62 @@
+Comparing files NODE-BROWSERIFY\RD\55.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\55.js
+   88:          });
+   89:          return;
+   90:      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   88:          });
+   89:          return this;
+   90:      }
+*****
+
+***** NODE-BROWSERIFY\RD\55.js
+  333:      var self = this;
+  334:      this._mdeps = this._createDeps(opts);
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  333:      var self = this;
+  334:      if (!opts)
+  335:          opts = {};
+  336:      this._mdeps = this._createDeps(opts);
+*****
+
+***** NODE-BROWSERIFY\RD\55.js
+  434:          if (self._external.indexOf(id) >= 0)
+  435:              return;
+  436:          if (self._exclude.indexOf(id) >= 0)
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  436:          if (self._external.indexOf(id) >= 0)
+  437:              return false;
+  438:          if (self._exclude.indexOf(id) >= 0)
+*****
+
+***** NODE-BROWSERIFY\RD\55.js
+  447:              if (file && self._ignore.indexOf(file) >= 0) {
+  448:                  return cb(null, paths.empty);
+  449:              }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  449:              if (file && self._ignore.indexOf(file) >= 0) {
+  450:                  return cb(null, paths.empty, {});
+  451:              }
+*****
+
+***** NODE-BROWSERIFY\RD\55.js
+  658:              var rfile = '/' + path.relative(basedir, afile);
+  659:              if (self._external.indexOf(afile) >= 0) {
+  660:                  row.deps[key] = rfile;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  660:              var rfile = '/' + path.relative(basedir, afile);
+  661:              if (self._external.indexOf(rfile) >= 0) {
+  662:                  row.deps[key] = rfile;
+*****
+
+***** NODE-BROWSERIFY\RD\55.js
+  661:              }
+  662:              if (self._external.indexOf(key) >= 0) {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  663:              }
+  664:              if (self._external.indexOf(afile) >= 0) {
+  665:                  row.deps[key] = rfile;
+  666:              }
+  667:              if (self._external.indexOf(key) >= 0) {
+*****
+

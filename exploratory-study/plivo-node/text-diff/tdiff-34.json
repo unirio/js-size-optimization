@@ -1,0 +1,266 @@
+Comparing files PLIVO-NODE\RD\34.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\34.js
+   75:          request_options.json = true;
+   76:          request_options.body = body, Request.put(request_options, function (error, body) {
+   77:              callback(response.statusCode, body);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   75:          request_options.json = true;
+   76:          request_options.body = body, Request.put(request_options, function (error, response, body) {
+   77:              callback(response.statusCode, body);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  136:  };
+  137:  plivo.transfer_call = function (params, callback) {
+  138:      var action = 'Call/' + params['call_uuid'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  136:  };
+  137:  plivo.get_live_call = function (params, callback) {
+  138:      var action = 'Call/' + params['call_uuid'] + '/';
+*****
+
+***** PLIVO-NODE\RD\34.js
+  139:      delete params.call_uuid;
+  140:      var method = 'POST';
+  141:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  139:      delete params.call_uuid;
+  140:      var method = 'GET';
+  141:      params.status = 'live';
+  142:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  142:  };
+  143:  plivo.hangup_all_calls = function (callback) {
+  144:      var action = 'Call/';
+  145:      var method = 'DELETE';
+  146:      var params = {};
+  147:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  143:  };
+  144:  plivo.transfer_call = function (params, callback) {
+  145:      var action = 'Call/' + params['call_uuid'] + '/';
+  146:      delete params.call_uuid;
+  147:      var method = 'POST';
+  148:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  148:  };
+  149:  plivo.hangup_call = function (params, callback) {
+  150:      var action = 'Call/' + params['call_uuid'] + '/';
+  151:      delete params.call_uuid;
+  152:      var method = 'DELETE';
+  153:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  149:  };
+  150:  plivo.hangup_all_calls = function (callback) {
+  151:      var action = 'Call/';
+  152:      var method = 'DELETE';
+  153:      var params = {};
+  154:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  154:  };
+  155:  plivo.record = function (params, callback) {
+  156:      var action = 'Call/' + params['call_uuid'] + '/Record/';
+  157:      delete params.call_uuid;
+  158:      var method = 'POST';
+  159:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  155:  };
+  156:  plivo.hangup_call = function (params, callback) {
+  157:      var action = 'Call/' + params['call_uuid'] + '/';
+  158:      delete params.call_uuid;
+  159:      var method = 'DELETE';
+  160:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  160:  };
+  161:  plivo.record_stop = function (params, callback) {
+  162:      var action = 'Call/' + params['call_uuid'] + '/Record/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  161:  };
+  162:  plivo.record = function (params, callback) {
+  163:      var action = 'Call/' + params['call_uuid'] + '/Record/';
+*****
+
+***** PLIVO-NODE\RD\34.js
+  163:      delete params.call_uuid;
+  164:      var method = 'DELETE';
+  165:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  164:      delete params.call_uuid;
+  165:      var method = 'POST';
+  166:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  166:  };
+  167:  plivo.play = function (params, callback) {
+  168:      var action = 'Call/' + params['call_uuid'] + '/Play/';
+  169:      delete params.call_uuid;
+  170:      var method = 'POST';
+  171:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  167:  };
+  168:  plivo.record_stop = function (params, callback) {
+  169:      var action = 'Call/' + params['call_uuid'] + '/Record/';
+  170:      delete params.call_uuid;
+  171:      var method = 'DELETE';
+  172:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  172:  };
+  173:  plivo.play_stop = function (params, callback) {
+  174:      var action = 'Call/' + params['call_uuid'] + '/Play/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  173:  };
+  174:  plivo.play = function (params, callback) {
+  175:      var action = 'Call/' + params['call_uuid'] + '/Play/';
+*****
+
+***** PLIVO-NODE\RD\34.js
+  175:      delete params.call_uuid;
+  176:      var method = 'DELETE';
+  177:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  176:      delete params.call_uuid;
+  177:      var method = 'POST';
+  178:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  178:  };
+  179:  plivo.speak = function (params, callback) {
+  180:      var action = 'Call/' + params['call_uuid'] + '/Speak/';
+  181:      delete params.call_uuid;
+  182:      var method = 'POST';
+  183:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  179:  };
+  180:  plivo.play_stop = function (params, callback) {
+  181:      var action = 'Call/' + params['call_uuid'] + '/Play/';
+  182:      delete params.call_uuid;
+  183:      var method = 'DELETE';
+  184:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  184:  };
+  185:  plivo.speak_stop = function (params, callback) {
+  186:      var action = 'Call/' + params['call_uuid'] + '/Speak/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  185:  };
+  186:  plivo.speak = function (params, callback) {
+  187:      var action = 'Call/' + params['call_uuid'] + '/Speak/';
+*****
+
+***** PLIVO-NODE\RD\34.js
+  187:      delete params.call_uuid;
+  188:      var method = 'DELETE';
+  189:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  188:      delete params.call_uuid;
+  189:      var method = 'POST';
+  190:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  190:  };
+  191:  plivo.send_digits = function (params, callback) {
+  192:      var action = 'Call/' + params['call_uuid'] + '/DTMF/';
+  193:      delete params.call_uuid;
+  194:      var method = 'POST';
+  195:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  191:  };
+  192:  plivo.speak_stop = function (params, callback) {
+  193:      var action = 'Call/' + params['call_uuid'] + '/Speak/';
+  194:      delete params.call_uuid;
+  195:      var method = 'DELETE';
+  196:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  196:  };
+  197:  // Request
+  198:  plivo.hangup_request = function (params, callback) {
+  199:      var action = 'Request/' + params['request_uuid'] + '/';
+  200:      delete params.request_uuid;
+  201:      var method = 'DELETE';
+  202:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  197:  };
+  198:  plivo.send_digits = function (params, callback) {
+  199:      var action = 'Call/' + params['call_uuid'] + '/DTMF/';
+  200:      delete params.call_uuid;
+  201:      var method = 'POST';
+  202:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  203:  };
+  204:  // Conferences
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  203:  };
+  204:  // Request
+  205:  plivo.hangup_request = function (params, callback) {
+  206:      var action = 'Request/' + params['request_uuid'] + '/';
+  207:      delete params.request_uuid;
+  208:      var method = 'DELETE';
+  209:      request(action, method, params, callback);
+  210:  };
+  211:  // Conferences
+*****
+
+***** PLIVO-NODE\RD\34.js
+  245:      var method = 'DELETE';
+  246:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  252:      var method = 'DELETE';
+  253:      request(action, method, params, callback);
+  254:  };
+*****
+
+***** PLIVO-NODE\RD\34.js
+  300:      var method = 'POST';
+  301:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  308:      var method = 'POST';
+  309:      request(action, method, params, callback);
+  310:  };
+*****
+
+***** PLIVO-NODE\RD\34.js
+  326:      delete params.subauth_id;
+  327:      var method;
+  328:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  335:      delete params.subauth_id;
+  336:      var method = 'GET';
+  337:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\34.js
+  723:          'transcriptionType',
+  724:          'transcriptionMethod',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  732:          'transcriptionType',
+  733:          'transcriptionUrl',
+  734:          'transcriptionMethod',
+*****
+
+***** PLIVO-NODE\RD\34.js
+  804:      ];
+  805:  }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  814:      ];
+  815:      this.nestables = [];
+  816:  }
+*****
+

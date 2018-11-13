@@ -1,0 +1,97 @@
+Comparing files JADE\RD\46.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\46.js
+    6:   */
+    7:  var fs = require('fs');
+***** JADE\RD\ORIGINAL.JS
+    6:   */
+    7:  /**
+    8:   * Module dependencies.
+    9:   */
+   10:  var fs = require('fs');
+*****
+
+***** JADE\RD\46.js
+   67:      ast = link(ast);
+   68:      var js = generateCode(ast, {
+***** JADE\RD\ORIGINAL.JS
+   70:      ast = link(ast);
+   71:      // Compile
+   72:      var js = generateCode(ast, {
+*****
+
+***** JADE\RD\46.js
+   77:      });
+   78:      if (options.debug) {
+***** JADE\RD\ORIGINAL.JS
+   81:      });
+   82:      // Debug compiler
+   83:      if (options.debug) {
+*****
+
+***** JADE\RD\46.js
+   85:  }
+   86:  function handleTemplateCache(options, str) {
+***** JADE\RD\ORIGINAL.JS
+   90:  }
+   91:  /**
+   92:   * Get the template from a string or a file, either compiled on-the-fly or
+   93:   * read from cache (if enabled), and cache the template if needed.
+   94:   *
+   95:   * If `str` is not set, the file specified in `options.filename` will be read.
+   96:   *
+   97:   * If `options.cache` is true, this function reads the file from
+   98:   * `options.filename` so it must be set prior to calling this function.
+   99:   *
+  100:   * @param {Object} options
+  101:   * @param {String=} str
+  102:   * @return {Function}
+  103:   * @api private
+  104:   */
+  105:  function handleTemplateCache(options, str) {
+*****
+
+***** JADE\RD\46.js
+  134:  };
+  135:  exports.compileClientWithDependenciesTracked = function (str, options) {
+***** JADE\RD\ORIGINAL.JS
+  153:  };
+  154:  /**
+  155:   * Compile a JavaScript source representation of the given pug `str`.
+  156:   *
+  157:   * Options:
+  158:   *
+  159:   *   - `compileDebug` When it is `true`, the source code is included in
+  160:   *     the compiled template for better error messages.
+  161:   *   - `filename` used to improve errors when `compileDebug` is not `true` and to resolve imports/extends
+  162:   *   - `name` the name of the resulting function (defaults to "template")
+  163:   *
+  164:   * @param {String} str
+  165:   * @param {Options} options
+  166:   * @return {Object}
+  167:   * @api public
+  168:   */
+  169:  exports.compileClientWithDependenciesTracked = function (str, options) {
+*****
+
+***** JADE\RD\46.js
+  192:  };
+  193:  exports.render = function (str, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  226:  };
+  227:  /**
+  228:   * Render the given `str` of pug.
+  229:   *
+  230:   * Options:
+  231:   *
+  232:   *   - `cache` enable template caching
+  233:   *   - `filename` filename required for `include` / `extends` and caching
+  234:   *
+  235:   * @param {String} str
+  236:   * @param {Object|Function} options or fn
+  237:   * @param {Function|undefined} fn
+  238:   * @returns {String}
+  239:   * @api public
+  240:   */
+  241:  exports.render = function (str, options, fn) {
+*****
+

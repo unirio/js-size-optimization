@@ -1,0 +1,10 @@
+Comparing files NODE-BROWSERIFY\RD\49.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\49.js
+  484:          mopts.modules = {};
+  485:      } else if (opts.builtins && isArray(opts.builtins)) {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  484:          mopts.modules = {};
+  485:          self._exclude.push.apply(self._exclude, Object.keys(builtins));
+  486:      } else if (opts.builtins && isArray(opts.builtins)) {
+*****
+

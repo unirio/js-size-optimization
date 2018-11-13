@@ -1,0 +1,33 @@
+Comparing files XML2JS\RD\29.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\29.js
+   89:              childkey: '$$',
+   90:              async: false,
+***** XML2JS\RD\ORIGINAL.JS
+   89:              childkey: '$$',
+   90:              charsAsChildren: false,
+   91:              async: false,
+*****
+
+***** XML2JS\RD\29.js
+  153:                          if (_this.options.cdata && requiresCDATA(obj)) {
+  154:                              element.raw();
+  155:                          } else {
+  156:                          }
+***** XML2JS\RD\ORIGINAL.JS
+  154:                          if (_this.options.cdata && requiresCDATA(obj)) {
+  155:                              element.raw(wrapCDATA(obj));
+  156:                          } else {
+  157:                              element.txt(obj);
+  158:                          }
+*****
+
+***** XML2JS\RD\29.js
+  185:                                          }
+  186:                                      }
+***** XML2JS\RD\ORIGINAL.JS
+  187:                                          }
+  188:                                      } else {
+  189:                                          element = render(element.ele(key), entry).up();
+  190:                                      }
+*****
+

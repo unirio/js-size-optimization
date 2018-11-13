@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\22.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\22.js
+  293:                  trim: false,
+  294:                  xmlns: this.options.xmlns
+***** XML2JS\RD\ORIGINAL.JS
+  293:                  trim: false,
+  294:                  normalize: false,
+  295:                  xmlns: this.options.xmlns
+*****
+

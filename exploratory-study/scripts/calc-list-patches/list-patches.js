@@ -4,7 +4,8 @@
  */
 var fs = require('fs');
 
-var libs_inicial = [
+var libs = 
+[
 	'exectimer', 
 	'jade', 
 	'jquery', 
@@ -18,7 +19,6 @@ var libs_inicial = [
 	'xml2js'
 ];
 
-var libs = libs_inicial;
 var rounds = 60;
 var result = "";
 
@@ -69,4 +69,5 @@ function handleFile(item, index) {
 }
 
 libs.forEach(handleFile);
-fs.writeFileSync("patches.csv", result, 'utf8');
+result = "lib\tround\tstart\tfinish\n" + result;
+fs.writeFileSync("results\\patches.csv", result, 'utf8');

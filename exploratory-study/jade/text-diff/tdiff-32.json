@@ -1,0 +1,62 @@
+Comparing files JADE\RD\32.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\32.js
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          globals: options.globals,
+   78:          self: options.self,
+*****
+
+***** JADE\RD\32.js
+   82:      if (options.debug) {
+   83:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm));
+   84:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+
+***** JADE\RD\32.js
+  109:          if (str === undefined)
+  110:              str = fs.readFileSync(options.filename);
+  111:          var templ = exports.compile(str, options);
+***** JADE\RD\ORIGINAL.JS
+  110:          if (str === undefined)
+  111:              str = fs.readFileSync(options.filename, 'utf8');
+  112:          var templ = exports.compile(str, options);
+*****
+
+***** JADE\RD\32.js
+  179:          self: options.self,
+  180:          debug: options.debug,
+***** JADE\RD\ORIGINAL.JS
+  180:          self: options.self,
+  181:          includeSources: options.compileDebug,
+  182:          debug: options.debug,
+*****
+
+***** JADE\RD\32.js
+  250:          }
+  251:          return;
+  252:      }
+***** JADE\RD\ORIGINAL.JS
+  252:          }
+  253:          return fn(null, res);
+  254:      }
+*****
+
+***** JADE\RD\32.js
+***** JADE\RD\ORIGINAL.JS
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

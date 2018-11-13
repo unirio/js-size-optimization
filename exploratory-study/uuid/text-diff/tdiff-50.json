@@ -1,0 +1,50 @@
+Comparing files UUID\RD\50.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\50.js
+   18:  UUIDjs.limitUI32 = UUIDjs.maxFromBits(32);
+   19:  UUIDjs.limitUI40 = UUIDjs.maxFromBits();
+   20:  UUIDjs.limitUI48 = UUIDjs.maxFromBits(48);
+***** UUID\RD\ORIGINAL.JS
+   18:  UUIDjs.limitUI32 = UUIDjs.maxFromBits(32);
+   19:  UUIDjs.limitUI40 = UUIDjs.maxFromBits(40);
+   20:  UUIDjs.limitUI48 = UUIDjs.maxFromBits(48);
+*****
+
+***** UUID\RD\50.js
+  146:      var thav = tf.hi & 4095 | 4096;
+  147:      if (last === false) {
+***** UUID\RD\ORIGINAL.JS
+  146:      var thav = tf.hi & 4095 | 4096;
+  147:      // set version '0001'
+  148:      if (last === false) {
+*****
+
+***** UUID\RD\50.js
+  181:      for (var i = 0; i < parts.length; i++) {
+  182:          for (var j; j < parts[i]; j++) {
+  183:              var octet = ints[pos++].toString(16);
+***** UUID\RD\ORIGINAL.JS
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+*****
+
+***** UUID\RD\50.js
+  192:      }
+  193:  };
+***** UUID\RD\ORIGINAL.JS
+  193:      }
+  194:      return UUIDjs.fromURN(str);
+  195:  };
+*****
+
+***** UUID\RD\50.js
+  197:          ints[i] = binary.charCodeAt(i);
+  198:      }
+***** UUID\RD\ORIGINAL.JS
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+  201:              throw new Error('Unexpected byte in binary data.');
+  202:          }
+  203:      }
+*****
+

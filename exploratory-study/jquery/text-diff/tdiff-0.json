@@ -1,0 +1,52 @@
+Comparing files JQUERY\RD\0.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\0.js
+ 2868:          var i = 0, len = elems.length, bulk = key == null;
+ 2869:          if (jQuery.type(key) === 'object') {
+***** JQUERY\RD\ORIGINAL.JS
+ 2868:          var i = 0, len = elems.length, bulk = key == null;
+ 2869:          // Sets many values
+ 2870:          if (jQuery.type(key) === 'object') {
+*****
+
+***** JQUERY\RD\0.js
+ 3277:          ret = callback.apply(elem, args || []);
+ 3278:          return ret;
+***** JQUERY\RD\ORIGINAL.JS
+ 3278:          ret = callback.apply(elem, args || []);
+ 3279:          // Revert the old values
+ 3280:          for (name in options) {
+ 3281:              elem.style[name] = old[name];
+ 3282:          }
+ 3283:          return ret;
+*****
+
+***** JQUERY\RD\0.js
+ 3943:          }
+ 3944:          if (props) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3948:          }
+ 3949:          // Put explicitly provided properties onto the event object
+ 3950:          if (props) {
+*****
+
+***** JQUERY\RD\0.js
+ 5733:                          while (clazz = classes[j++]) {
+ 5734:                          }
+***** JQUERY\RD\ORIGINAL.JS
+ 5739:                          while (clazz = classes[j++]) {
+ 5740:                              // Remove *all* instances
+ 5741:                              while (cur.indexOf(' ' + clazz + ' ') > -1) {
+ 5742:                                  cur = cur.replace(' ' + clazz + ' ', ' ');
+ 5743:                              }
+ 5744:                          }
+*****
+
+***** JQUERY\RD\0.js
+ 5777:                      // then remove the whole classname (if there was one, the above saved it).
+ 5778:                      // falling back to the empty string if nothing was stored.
+***** JQUERY\RD\ORIGINAL.JS
+ 5787:                      // then remove the whole classname (if there was one, the above saved it).
+ 5788:                      // Otherwise bring back whatever was previously saved (if anything),
+ 5789:                      // falling back to the empty string if nothing was stored.
+*****
+

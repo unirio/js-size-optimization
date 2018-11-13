@@ -1,0 +1,20 @@
+Comparing files LODASH\RD\43.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\43.js
+  103:          'WeakMap',
+  104:          'clearTimeout',
+***** LODASH\RD\ORIGINAL.JS
+  103:          'WeakMap',
+  104:          '_',
+  105:          'clearTimeout',
+*****
+
+***** LODASH\RD\43.js
+ 3064:                      if (!arraySome(other, function (othValue) {
+ 3065:                              return arrValue === othValue || equalFunc(arrValue, othValue, customizer, stackA, stackB);
+ 3066:                          })) {
+***** LODASH\RD\ORIGINAL.JS
+ 3065:                      if (!arraySome(other, function (othValue) {
+ 3066:                              return arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB);
+ 3067:                          })) {
+*****
+

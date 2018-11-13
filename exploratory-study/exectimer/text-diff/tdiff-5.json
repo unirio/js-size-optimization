@@ -1,0 +1,23 @@
+Comparing files EXECTIMER\RD\5.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\5.js
+   22:                  if (this.ticks.length > 1) {
+   23:                      this.ticks.sort();
+   24:                      const l = this.ticks.length;
+***** EXECTIMER\RD\ORIGINAL.JS
+   22:                  if (this.ticks.length > 1) {
+   23:                      this.ticks.sort(function (a, b) {
+   24:                          return a && b && a.getDiff() - b.getDiff() || 0;
+   25:                      });
+   26:                      const l = this.ticks.length;
+*****
+
+***** EXECTIMER\RD\5.js
+  120:      }
+  121:      return;
+  122:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  122:      }
+  123:      return 'function' === typeof constructor.prototype.next && 'function' === typeof constructor.prototype.throw;
+  124:  }
+*****
+

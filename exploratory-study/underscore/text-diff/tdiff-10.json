@@ -1,0 +1,40 @@
+Comparing files UNDERSCORE\RD\10.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\10.js
+  401:          if (isArrayLike(obj))
+  402:              return _.map(obj);
+  403:          return _.values(obj);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  401:          if (isArrayLike(obj))
+  402:              return _.map(obj, _.identity);
+  403:          return _.values(obj);
+*****
+
+***** UNDERSCORE\RD\10.js
+  458:      _.compact = function (array) {
+  459:          return _.filter(array);
+  460:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  458:      _.compact = function (array) {
+  459:          return _.filter(array, _.identity);
+  460:      };
+*****
+
+***** UNDERSCORE\RD\10.js
+ 1125:              if (length !== b.length)
+ 1126:                  return;
+ 1127:              // Deep compare the contents, ignoring non-numeric properties.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1125:              if (length !== b.length)
+ 1126:                  return false;
+ 1127:              // Deep compare the contents, ignoring non-numeric properties.
+*****
+
+***** UNDERSCORE\RD\10.js
+ 1367:          ].join('|') + '|$', 'g');
+ 1368:          var index = 0;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1367:          ].join('|') + '|$', 'g');
+ 1368:          // Compile the template source, escaping string literals appropriately.
+ 1369:          var index = 0;
+*****
+

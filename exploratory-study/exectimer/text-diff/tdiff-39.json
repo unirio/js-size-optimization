@@ -1,0 +1,35 @@
+Comparing files EXECTIMER\RD\39.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\39.js
+  101:                  }
+  102:              }
+***** EXECTIMER\RD\ORIGINAL.JS
+  101:                      return num / 1000000000 + 's';
+  102:                  }
+  103:              }
+*****
+
+***** EXECTIMER\RD\39.js
+  106:  };
+  107:  function isGeneratorFunction(obj) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  107:  };
+  108:  /**
+  109:   * Check if `obj` is a generator function.
+  110:   *
+  111:   * @param {Mixed} obj
+  112:   * @return {Boolean}
+  113:   * @api private
+  114:   */
+  115:  function isGeneratorFunction(obj) {
+*****
+
+***** EXECTIMER\RD\39.js
+  124:      this.name = name;
+  125:      return;
+  126:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  132:      this.name = name;
+  133:      return this;
+  134:  }
+*****
+

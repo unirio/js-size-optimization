@@ -1,0 +1,111 @@
+Comparing files UNDERSCORE\RD\43.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\43.js
+   58:              };
+   59:          case 4:
+***** UNDERSCORE\RD\ORIGINAL.JS
+   58:              };
+   59:          case 3:
+   60:              return function (value, index, collection) {
+   61:                  return func.call(context, value, index, collection);
+   62:              };
+   63:          case 4:
+*****
+
+***** UNDERSCORE\RD\43.js
+   60:              return function (accumulator, value, index, collection) {
+   61:                  return func.call(context, accumulator, value, collection);
+   62:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+   64:              return function (accumulator, value, index, collection) {
+   65:                  return func.call(context, accumulator, value, index, collection);
+   66:              };
+*****
+
+***** UNDERSCORE\RD\43.js
+  127:      // --------------------
+  128:      // Handles raw objects in addition to array-likes. Treats all
+***** UNDERSCORE\RD\ORIGINAL.JS
+  131:      // --------------------
+  132:      // The cornerstone, an `each` implementation, aka `forEach`.
+  133:      // Handles raw objects in addition to array-likes. Treats all
+*****
+
+***** UNDERSCORE\RD\43.js
+  314:          var length = set.length;
+  315:          var shuffled = Array();
+  316:          for (var index = 0, rand; index < length; index++) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  319:          var length = set.length;
+  320:          var shuffled = Array(length);
+  321:          for (var index = 0, rand; index < length; index++) {
+*****
+
+***** UNDERSCORE\RD\43.js
+  393:              return [];
+  394:          if (_.isArray())
+  395:              return slice.call(obj);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  398:              return [];
+  399:          if (_.isArray(obj))
+  400:              return slice.call(obj);
+*****
+
+***** UNDERSCORE\RD\43.js
+  746:              result = func.apply(context, args);
+  747:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  751:              result = func.apply(context, args);
+  752:              if (!timeout)
+  753:                  context = args = null;
+  754:          };
+*****
+
+***** UNDERSCORE\RD\43.js
+  796:              if (callNow) {
+  797:                  result = func.apply(context);
+  798:                  context = args = null;
+***** UNDERSCORE\RD\ORIGINAL.JS
+  803:              if (callNow) {
+  804:                  result = func.apply(context, args);
+  805:                  context = args = null;
+*****
+
+***** UNDERSCORE\RD\43.js
+  865:          var constructor = obj.constructor;
+  866:          var proto;
+  867:          // Constructor is a special case.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  872:          var constructor = obj.constructor;
+  873:          var proto = _.isFunction(constructor) && constructor.prototype || ObjProto;
+  874:          // Constructor is a special case.
+*****
+
+***** UNDERSCORE\RD\43.js
+  868:          var prop = 'constructor';
+  869:          if (_.has(obj, prop) && !_.contains(keys))
+  870:              keys.push(prop);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+*****
+
+***** UNDERSCORE\RD\43.js
+ 1163:      _.isArray = nativeIsArray || function (obj) {
+ 1164:          return;
+ 1165:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1170:      _.isArray = nativeIsArray || function (obj) {
+ 1171:          return toString.call(obj) === '[object Array]';
+ 1172:      };
+*****
+
+***** UNDERSCORE\RD\43.js
+ 1315:      // Generate a unique integer id (unique within the entire client session).
+ 1316:      var idCounter = 0;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1322:      // Generate a unique integer id (unique within the entire client session).
+ 1323:      // Useful for temporary DOM ids.
+ 1324:      var idCounter = 0;
+*****
+

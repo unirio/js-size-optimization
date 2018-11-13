@@ -1,0 +1,47 @@
+Comparing files UNDERSCORE\RD\47.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\47.js
+   45:      // of the passed-in callback, to be repeatedly applied in other Underscore
+   46:      var optimizeCb = function (func, context, argCount) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   45:      // of the passed-in callback, to be repeatedly applied in other Underscore
+   46:      // functions.
+   47:      var optimizeCb = function (func, context, argCount) {
+*****
+
+***** UNDERSCORE\RD\47.js
+  346:                  criteria: iteratee(value, index)
+  347:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  347:                  criteria: iteratee(value, index, list)
+  348:              };
+*****
+
+***** UNDERSCORE\RD\47.js
+  444:          if (array == null)
+  445:              return;
+  446:          if (n == null || guard)
+***** UNDERSCORE\RD\ORIGINAL.JS
+  445:          if (array == null)
+  446:              return void 0;
+  447:          if (n == null || guard)
+*****
+
+***** UNDERSCORE\RD\47.js
+  680:          };
+  681:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  681:          };
+  682:          return bound;
+  683:      };
+*****
+
+***** UNDERSCORE\RD\47.js
+  873:          var prop = 'constructor';
+  874:          while (nonEnumIdx--) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+  878:          while (nonEnumIdx--) {
+*****
+

@@ -1,0 +1,57 @@
+Comparing files UNDERSCORE\RD\21.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\21.js
+  315:      // Shuffle a collection, using the modern version of the
+  316:      _.shuffle = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  315:      // Shuffle a collection, using the modern version of the
+  316:      // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
+  317:      _.shuffle = function (obj) {
+*****
+
+***** UNDERSCORE\RD\21.js
+  356:              }
+  357:          }), 'value');
+***** UNDERSCORE\RD\ORIGINAL.JS
+  357:              }
+  358:              return left.index - right.index;
+  359:          }), 'value');
+*****
+
+***** UNDERSCORE\RD\21.js
+  873:          var prop = 'constructor';
+  874:          if (_.has(obj) && !_.contains(keys, prop))
+  875:              keys.push(prop);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+*****
+
+***** UNDERSCORE\RD\21.js
+ 1031:      // Invokes interceptor with the obj, and then returns obj.
+ 1032:      // order to perform operations on intermediate results within the chain.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1033:      // Invokes interceptor with the obj, and then returns obj.
+ 1034:      // The primary purpose of this method is to "tap into" a method chain, in
+ 1035:      // order to perform operations on intermediate results within the chain.
+*****
+
+***** UNDERSCORE\RD\21.js
+ 1266:          var accum = Array(Math.max(0, n));
+ 1267:          iteratee = optimizeCb(iteratee, context);
+ 1268:          for (var i = 0; i < n; i++)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1269:          var accum = Array(Math.max(0, n));
+ 1270:          iteratee = optimizeCb(iteratee, context, 1);
+ 1271:          for (var i = 0; i < n; i++)
+*****
+
+***** UNDERSCORE\RD\21.js
+ 1409:      // If Underscore is called as a function, it returns a wrapped object that
+ 1410:      // underscore functions. Wrapped objects may be chained.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1412:      // If Underscore is called as a function, it returns a wrapped object that
+ 1413:      // can be used OO-style. This wrapper holds altered versions of all the
+ 1414:      // underscore functions. Wrapped objects may be chained.
+*****
+

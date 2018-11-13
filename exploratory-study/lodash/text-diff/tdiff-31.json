@@ -1,0 +1,539 @@
+Comparing files LODASH\RD\31.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\31.js
+  218:      /** Used to escape characters for inclusion in compiled regexes. */
+  219:      var regexpEscapes;
+  220:      /** Used to escape characters for inclusion in compiled string literals. */
+***** LODASH\RD\ORIGINAL.JS
+  218:      /** Used to escape characters for inclusion in compiled regexes. */
+  219:      var regexpEscapes = {
+  220:          '0': 'x30',
+  221:          '1': 'x31',
+  222:          '2': 'x32',
+  223:          '3': 'x33',
+  224:          '4': 'x34',
+  225:          '5': 'x35',
+  226:          '6': 'x36',
+  227:          '7': 'x37',
+  228:          '8': 'x38',
+  229:          '9': 'x39',
+  230:          'A': 'x41',
+  231:          'B': 'x42',
+  232:          'C': 'x43',
+  233:          'D': 'x44',
+  234:          'E': 'x45',
+  235:          'F': 'x46',
+  236:          'a': 'x61',
+  237:          'b': 'x62',
+  238:          'c': 'x63',
+  239:          'd': 'x64',
+  240:          'e': 'x65',
+  241:          'f': 'x66',
+  242:          'n': 'x6e',
+  243:          'r': 'x72',
+  244:          't': 'x74',
+  245:          'u': 'x75',
+  246:          'v': 'x76',
+  247:          'x': 'x78'
+  248:      };
+  249:      /** Used to escape characters for inclusion in compiled string literals. */
+*****
+
+***** LODASH\RD\31.js
+ 1658:          }
+ 1659:          function baseForOwnRight(object, iteratee) {
+ 1660:              return object && baseForRight(object, iteratee, keys);
+ 1661:          }
+ 1662:          /**
+ 1663:       * The base implementation of `_.functions` which creates an array of
+ 1664:       * `object` function property names filtered from those provided.
+ 1665:       *
+***** LODASH\RD\ORIGINAL.JS
+ 1687:          }
+ 1688:          /**
+ 1689:       * The base implementation of `_.forOwnRight` without support for callback shorthands.
+ 1690:       *
+*****
+
+***** LODASH\RD\31.js
+ 1666:       * @private
+ 1667:       * @param {Object} object The object to inspect.
+***** LODASH\RD\ORIGINAL.JS
+ 1691:       * @private
+ 1692:       * @param {Object} object The object to iterate over.
+ 1693:       * @param {Function} iteratee The function invoked per iteration.
+ 1694:       * @returns {Object} Returns `object`.
+ 1695:       */
+ 1696:          function baseForOwnRight(object, iteratee) {
+ 1697:              return object && baseForRight(object, iteratee, keys);
+ 1698:          }
+ 1699:          /**
+ 1700:       * The base implementation of `_.functions` which creates an array of
+ 1701:       * `object` function property names filtered from those provided.
+ 1702:       *
+ 1703:       * @private
+ 1704:       * @param {Object} object The object to inspect.
+*****
+
+***** LODASH\RD\31.js
+ 1736:              if (value == null || other == null || !isObject(value) && !isObjectLike(other)) {
+ 1737:              }
+***** LODASH\RD\ORIGINAL.JS
+ 1773:              if (value == null || other == null || !isObject(value) && !isObjectLike(other)) {
+ 1774:                  return value !== value && other !== other;
+ 1775:              }
+*****
+
+***** LODASH\RD\31.js
+ 2719:                  case 5:
+ 2720:                      return new Ctor(args[0], args[1], args[2], args[4]);
+ 2721:                  case 6:
+***** LODASH\RD\ORIGINAL.JS
+ 2757:                  case 5:
+ 2758:                      return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+ 2759:                  case 6:
+*****
+
+***** LODASH\RD\31.js
+ 2891:                  // converting it to an array before providing it `func`.
+ 2892:                  var argsIndex = -1, argsLength = arguments.length, leftIndex = -1, leftLength = partials.length, args = Array()
+ 2893:  ;
+ 2894:                  while (++leftIndex < leftLength) {
+***** LODASH\RD\ORIGINAL.JS
+ 2929:                  // converting it to an array before providing it `func`.
+ 2930:                  var argsIndex = -1, argsLength = arguments.length, leftIndex = -1, leftLength = partials.length, args = Array(l
+ 2931:  eftLength + argsLength);
+ 2932:                  while (++leftIndex < leftLength) {
+*****
+
+***** LODASH\RD\31.js
+ 9072:          });
+ 9073:          function pad(string, length, chars) {
+ 9074:              string = baseToString(string);
+ 9075:              length = +length;
+ 9076:              var strLength = string.length;
+ 9077:              if (strLength >= length || !nativeIsFinite(length)) {
+ 9078:                  return string;
+ 9079:              }
+ 9080:              var mid = (length - strLength) / 2, leftLength = nativeFloor(mid), rightLength = nativeCeil(mid);
+ 9081:              chars = createPadding('', rightLength, chars);
+ 9082:              return chars.slice(0, leftLength) + string + chars;
+ 9083:          }
+ 9084:          /**
+ 9085:       * Pads `string` on the left side if it's shorter than `length`. Padding
+ 9086:       * characters are truncated if they exceed `length`.
+ 9087:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9110:          });
+ 9111:          /**
+ 9112:       * Pads `string` on the left and right sides if it's shorter than `length`.
+ 9113:       * Padding characters are truncated if they can't be evenly divided by `length`.
+ 9114:       *
+*****
+
+***** LODASH\RD\31.js
+ 9096:       *
+ 9097:       * _.padLeft('abc', 6);
+ 9098:       * // => '   abc'
+ 9099:       *
+ 9100:       * _.padLeft('abc', 6, '_-');
+ 9101:       * // => '_-_abc'
+ 9102:       *
+ 9103:       * _.padLeft('abc', 3);
+ 9104:       * // => 'abc'
+***** LODASH\RD\ORIGINAL.JS
+ 9123:       *
+ 9124:       * _.pad('abc', 8);
+ 9125:       * // => '  abc   '
+ 9126:       *
+ 9127:       * _.pad('abc', 8, '_-');
+ 9128:       * // => '_-abc_-_'
+ 9129:       *
+ 9130:       * _.pad('abc', 3);
+ 9131:       * // => 'abc'
+*****
+
+***** LODASH\RD\31.js
+ 9105:       */
+ 9106:          function padLeft(string, length, chars) {
+ 9107:              string = baseToString(string);
+ 9108:              return createPadding(string, length, chars) + string;
+ 9109:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9132:       */
+ 9133:          function pad(string, length, chars) {
+ 9134:              string = baseToString(string);
+ 9135:              length = +length;
+ 9136:              var strLength = string.length;
+ 9137:              if (strLength >= length || !nativeIsFinite(length)) {
+ 9138:                  return string;
+ 9139:              }
+ 9140:              var mid = (length - strLength) / 2, leftLength = nativeFloor(mid), rightLength = nativeCeil(mid);
+ 9141:              chars = createPadding('', rightLength, chars);
+ 9142:              return chars.slice(0, leftLength) + string + chars;
+ 9143:          }
+*****
+
+***** LODASH\RD\31.js
+ 9110:          /**
+ 9111:       * Pads `string` on the right side if it's shorter than `length`. Padding
+ 9112:       * characters are truncated if they exceed `length`.
+***** LODASH\RD\ORIGINAL.JS
+ 9144:          /**
+ 9145:       * Pads `string` on the left side if it's shorter than `length`. Padding
+ 9146:       * characters are truncated if they exceed `length`.
+*****
+
+***** LODASH\RD\31.js
+ 9122:       *
+ 9123:       * _.padRight('abc', 6);
+ 9124:       * // => 'abc   '
+ 9125:       *
+ 9126:       * _.padRight('abc', 6, '_-');
+ 9127:       * // => 'abc_-_'
+ 9128:       *
+ 9129:       * _.padRight('abc', 3);
+ 9130:       * // => 'abc'
+***** LODASH\RD\ORIGINAL.JS
+ 9156:       *
+ 9157:       * _.padLeft('abc', 6);
+ 9158:       * // => '   abc'
+ 9159:       *
+ 9160:       * _.padLeft('abc', 6, '_-');
+ 9161:       * // => '_-_abc'
+ 9162:       *
+ 9163:       * _.padLeft('abc', 3);
+ 9164:       * // => 'abc'
+*****
+
+***** LODASH\RD\31.js
+ 9131:       */
+ 9132:          function padRight(string, length, chars) {
+ 9133:              string = baseToString(string);
+ 9134:              return string + createPadding(string, length, chars);
+ 9135:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9165:       */
+ 9166:          function padLeft(string, length, chars) {
+ 9167:              string = baseToString(string);
+ 9168:              return createPadding(string, length, chars) + string;
+ 9169:          }
+*****
+
+***** LODASH\RD\31.js
+ 9136:          /**
+ 9137:       * Converts `string` to an integer of the specified radix. If `radix` is
+ 9138:       * `undefined` or `0`, a `radix` of `10` is used unless `value` is a hexadecimal,
+ 9139:       * in which case a `radix` of `16` is used.
+ 9140:       *
+ 9141:       * **Note:** This method aligns with the [ES5 implementation](https://es5.github.io/#E)
+ 9142:       * of `parseInt`.
+ 9143:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9170:          /**
+ 9171:       * Pads `string` on the right side if it's shorter than `length`. Padding
+ 9172:       * characters are truncated if they exceed `length`.
+ 9173:       *
+*****
+
+***** LODASH\RD\31.js
+ 9146:       * @category String
+ 9147:       * @param {string} string The string to convert.
+ 9148:       * @param {number} [radix] The radix to interpret `value` by.
+ 9149:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9150:       * @returns {number} Returns the converted integer.
+ 9151:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9176:       * @category String
+ 9177:       * @param {string} [string=''] The string to pad.
+ 9178:       * @param {number} [length=0] The padding length.
+ 9179:       * @param {string} [chars=' '] The string used as padding.
+ 9180:       * @returns {string} Returns the padded string.
+ 9181:       * @example
+*****
+
+***** LODASH\RD\31.js
+ 9152:       *
+ 9153:       * _.parseInt('08');
+ 9154:       * // => 8
+ 9155:       *
+ 9156:       * _.map(['6', '08', '10'], _.parseInt);
+ 9157:       * // => [6, 8, 10]
+ 9158:       */
+ 9159:          function parseInt(string, radix, guard) {
+ 9160:              // Chrome fails to trim leading <BOM> whitespace characters.
+ 9161:              // See https://code.google.com/p/v8/issues/detail?id=3109 for more details.
+ 9162:              if (guard || radix == null) {
+ 9163:                  radix = 0;
+ 9164:              } else if (radix) {
+ 9165:                  radix = +radix;
+ 9166:              }
+ 9167:              string = trim(string);
+ 9168:              return nativeParseInt(string, radix || (reHasHexPrefix.test(string) ? 16 : 10));
+ 9169:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9182:       *
+ 9183:       * _.padRight('abc', 6);
+ 9184:       * // => 'abc   '
+ 9185:       *
+ 9186:       * _.padRight('abc', 6, '_-');
+ 9187:       * // => 'abc_-_'
+ 9188:       *
+ 9189:       * _.padRight('abc', 3);
+ 9190:       * // => 'abc'
+ 9191:       */
+ 9192:          function padRight(string, length, chars) {
+ 9193:              string = baseToString(string);
+ 9194:              return string + createPadding(string, length, chars);
+ 9195:          }
+*****
+
+***** LODASH\RD\31.js
+ 9170:          /**
+ 9171:       * Repeats the given string `n` times.
+ 9172:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9196:          /**
+ 9197:       * Converts `string` to an integer of the specified radix. If `radix` is
+ 9198:       * `undefined` or `0`, a `radix` of `10` is used unless `value` is a hexadecimal,
+ 9199:       * in which case a `radix` of `16` is used.
+ 9200:       *
+ 9201:       * **Note:** This method aligns with the [ES5 implementation](https://es5.github.io/#E)
+ 9202:       * of `parseInt`.
+ 9203:       *
+*****
+
+***** LODASH\RD\31.js
+ 9175:       * @category String
+ 9176:       * @param {string} [string=''] The string to repeat.
+ 9177:       * @param {number} [n=0] The number of times to repeat the string.
+ 9178:       * @returns {string} Returns the repeated string.
+ 9179:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9206:       * @category String
+ 9207:       * @param {string} string The string to convert.
+ 9208:       * @param {number} [radix] The radix to interpret `value` by.
+ 9209:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9210:       * @returns {number} Returns the converted integer.
+ 9211:       * @example
+*****
+
+***** LODASH\RD\31.js
+ 9180:       *
+ 9181:       * _.repeat('*', 3);
+ 9182:       * // => '***'
+ 9183:       *
+ 9184:       * _.repeat('abc', 2);
+ 9185:       * // => 'abcabc'
+ 9186:       *
+ 9187:       * _.repeat('abc', 0);
+ 9188:       * // => ''
+ 9189:       */
+ 9190:          function repeat(string, n) {
+ 9191:              var result = '';
+ 9192:              string = baseToString(string);
+ 9193:              n = +n;
+ 9194:              if (n < 1 || !string || !nativeIsFinite(n)) {
+ 9195:                  return result;
+ 9196:              }
+ 9197:              // Leverage the exponentiation by squaring algorithm for a faster repeat.
+ 9198:              // See https://en.wikipedia.org/wiki/Exponentiation_by_squaring for more details.
+ 9199:              do {
+ 9200:                  if (n % 2) {
+ 9201:                      result += string;
+ 9202:                  }
+ 9203:                  n = nativeFloor(n / 2);
+ 9204:                  string += string;
+ 9205:              } while (n);
+ 9206:              return result;
+ 9207:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9212:       *
+ 9213:       * _.parseInt('08');
+ 9214:       * // => 8
+ 9215:       *
+ 9216:       * _.map(['6', '08', '10'], _.parseInt);
+ 9217:       * // => [6, 8, 10]
+ 9218:       */
+ 9219:          function parseInt(string, radix, guard) {
+ 9220:              // Chrome fails to trim leading <BOM> whitespace characters.
+ 9221:              // See https://code.google.com/p/v8/issues/detail?id=3109 for more details.
+ 9222:              if (guard || radix == null) {
+ 9223:                  radix = 0;
+ 9224:              } else if (radix) {
+ 9225:                  radix = +radix;
+ 9226:              }
+ 9227:              string = trim(string);
+ 9228:              return nativeParseInt(string, radix || (reHasHexPrefix.test(string) ? 16 : 10));
+ 9229:          }
+*****
+
+***** LODASH\RD\31.js
+ 9208:          /**
+ 9209:       * Converts `string` to [snake case](https://en.wikipedia.org/wiki/Snake_case).
+ 9210:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9230:          /**
+ 9231:       * Repeats the given string `n` times.
+ 9232:       *
+*****
+
+***** LODASH\RD\31.js
+ 9213:       * @category String
+ 9214:       * @param {string} [string=''] The string to convert.
+ 9215:       * @returns {string} Returns the snake cased string.
+ 9216:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9235:       * @category String
+ 9236:       * @param {string} [string=''] The string to repeat.
+ 9237:       * @param {number} [n=0] The number of times to repeat the string.
+ 9238:       * @returns {string} Returns the repeated string.
+ 9239:       * @example
+*****
+
+***** LODASH\RD\31.js
+ 9217:       *
+ 9218:       * _.snakeCase('Foo Bar');
+ 9219:       * // => 'foo_bar'
+ 9220:       *
+ 9221:       * _.snakeCase('fooBar');
+ 9222:       * // => 'foo_bar'
+ 9223:       *
+ 9224:       * _.snakeCase('--foo-bar');
+ 9225:       * // => 'foo_bar'
+ 9226:       */
+ 9227:          var snakeCase = createCompounder(function (result, word, index) {
+ 9228:              return result + (index ? '_' : '') + word.toLowerCase();
+ 9229:          });
+ 9230:          /**
+ 9231:       * Converts `string` to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+ 9232:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9240:       *
+ 9241:       * _.repeat('*', 3);
+ 9242:       * // => '***'
+ 9243:       *
+ 9244:       * _.repeat('abc', 2);
+ 9245:       * // => 'abcabc'
+ 9246:       *
+ 9247:       * _.repeat('abc', 0);
+ 9248:       * // => ''
+ 9249:       */
+ 9250:          function repeat(string, n) {
+ 9251:              var result = '';
+ 9252:              string = baseToString(string);
+ 9253:              n = +n;
+ 9254:              if (n < 1 || !string || !nativeIsFinite(n)) {
+ 9255:                  return result;
+ 9256:              }
+ 9257:              // Leverage the exponentiation by squaring algorithm for a faster repeat.
+ 9258:              // See https://en.wikipedia.org/wiki/Exponentiation_by_squaring for more details.
+ 9259:              do {
+ 9260:                  if (n % 2) {
+ 9261:                      result += string;
+ 9262:                  }
+ 9263:                  n = nativeFloor(n / 2);
+ 9264:                  string += string;
+ 9265:              } while (n);
+ 9266:              return result;
+ 9267:          }
+ 9268:          /**
+ 9269:       * Converts `string` to [snake case](https://en.wikipedia.org/wiki/Snake_case).
+ 9270:       *
+*****
+
+***** LODASH\RD\31.js
+ 9236:       * @param {string} [string=''] The string to convert.
+ 9237:       * @returns {string} Returns the start cased string.
+ 9238:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9274:       * @param {string} [string=''] The string to convert.
+ 9275:       * @returns {string} Returns the snake cased string.
+ 9276:       * @example
+*****
+
+***** LODASH\RD\31.js
+ 9239:       *
+ 9240:       * _.startCase('--foo-bar');
+ 9241:       * // => 'Foo Bar'
+ 9242:       *
+ 9243:       * _.startCase('fooBar');
+ 9244:       * // => 'Foo Bar'
+ 9245:       *
+ 9246:       * _.startCase('__foo_bar__');
+ 9247:       * // => 'Foo Bar'
+ 9248:       */
+ 9249:          var startCase = createCompounder(function (result, word, index) {
+ 9250:              return result + (index ? ' ' : '') + (word.charAt(0).toUpperCase() + word.slice(1));
+ 9251:          });
+***** LODASH\RD\ORIGINAL.JS
+ 9277:       *
+ 9278:       * _.snakeCase('Foo Bar');
+ 9279:       * // => 'foo_bar'
+ 9280:       *
+ 9281:       * _.snakeCase('fooBar');
+ 9282:       * // => 'foo_bar'
+ 9283:       *
+ 9284:       * _.snakeCase('--foo-bar');
+ 9285:       * // => 'foo_bar'
+ 9286:       */
+ 9287:          var snakeCase = createCompounder(function (result, word, index) {
+ 9288:              return result + (index ? '_' : '') + word.toLowerCase();
+ 9289:          });
+*****
+
+***** LODASH\RD\31.js
+ 9252:          /**
+ 9253:       * Checks if `string` starts with the given target string.
+ 9254:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9290:          /**
+ 9291:       * Converts `string` to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+ 9292:       *
+*****
+
+***** LODASH\RD\31.js
+ 9257:       * @category String
+ 9258:       * @param {string} [string=''] The string to search.
+ 9259:       * @param {string} [target] The string to search for.
+ 9260:       * @param {number} [position=0] The position to search from.
+ 9261:       * @returns {boolean} Returns `true` if `string` starts with `target`, else `false`.
+ 9262:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9295:       * @category String
+ 9296:       * @param {string} [string=''] The string to convert.
+ 9297:       * @returns {string} Returns the start cased string.
+ 9298:       * @example
+*****
+
+***** LODASH\RD\31.js
+ 9263:       *
+ 9264:       * _.startsWith('abc', 'a');
+***** LODASH\RD\ORIGINAL.JS
+ 9299:       *
+ 9300:       * _.startCase('--foo-bar');
+ 9301:       * // => 'Foo Bar'
+ 9302:       *
+ 9303:       * _.startCase('fooBar');
+ 9304:       * // => 'Foo Bar'
+ 9305:       *
+ 9306:       * _.startCase('__foo_bar__');
+ 9307:       * // => 'Foo Bar'
+ 9308:       */
+ 9309:          var startCase = createCompounder(function (result, word, index) {
+ 9310:              return result + (index ? ' ' : '') + (word.charAt(0).toUpperCase() + word.slice(1));
+ 9311:          });
+ 9312:          /**
+ 9313:       * Checks if `string` starts with the given target string.
+ 9314:       *
+ 9315:       * @static
+ 9316:       * @memberOf _
+ 9317:       * @category String
+ 9318:       * @param {string} [string=''] The string to search.
+ 9319:       * @param {string} [target] The string to search for.
+ 9320:       * @param {number} [position=0] The position to search from.
+ 9321:       * @returns {boolean} Returns `true` if `string` starts with `target`, else `false`.
+ 9322:       * @example
+ 9323:       *
+ 9324:       * _.startsWith('abc', 'a');
+*****
+

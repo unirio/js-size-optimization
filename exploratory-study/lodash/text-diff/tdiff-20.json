@@ -1,0 +1,184 @@
+Comparing files LODASH\RD\20.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\20.js
+ 3718:          /*------------------------------------------------------------------------*/
+ 3719:          function chunk(array, size) {
+ 3720:              size = nativeMax(toInteger(size), 0);
+ 3721:              var length = array ? array.length : 0;
+ 3722:              if (!length || size < 1) {
+ 3723:                  return [];
+ 3724:              }
+ 3725:              var index = 0, resIndex = -1, result = Array(nativeCeil(length / size));
+ 3726:              while (index < length) {
+ 3727:                  result[++resIndex] = baseSlice(array, index, index += size);
+ 3728:              }
+ 3729:              return result;
+ 3730:          }
+ 3731:          /**
+ 3732:       * Creates an array with all falsey values removed. The values `false`, `null`,
+ 3733:       * `0`, `""`, `undefined`, and `NaN` are falsey.
+ 3734:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3718:          /*------------------------------------------------------------------------*/
+ 3719:          /**
+ 3720:       * Creates an array of elements split into groups the length of `size`.
+ 3721:       * If `collection` can't be split evenly, the final chunk will be the remaining
+ 3722:       * elements.
+ 3723:       *
+*****
+
+***** LODASH\RD\20.js
+ 3737:       * @category Array
+ 3738:       * @param {Array} array The array to compact.
+ 3739:       * @returns {Array} Returns the new array of filtered values.
+ 3740:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 3726:       * @category Array
+ 3727:       * @param {Array} array The array to process.
+ 3728:       * @param {number} [size=0] The length of each chunk.
+ 3729:       * @returns {Array} Returns the new array containing chunks.
+ 3730:       * @example
+*****
+
+***** LODASH\RD\20.js
+ 3741:       *
+ 3742:       * _.compact([0, 1, false, 2, '', 3]);
+ 3743:       * // => [1, 2, 3]
+ 3744:       */
+ 3745:          function compact(array) {
+ 3746:              var index = -1, length = array ? array.length : 0, resIndex = -1, result = [];
+ 3747:              while (++index < length) {
+ 3748:                  var value = array[index];
+ 3749:                  if (value) {
+ 3750:                      result[++resIndex] = value;
+ 3751:                  }
+ 3752:              }
+***** LODASH\RD\ORIGINAL.JS
+ 3731:       *
+ 3732:       * _.chunk(['a', 'b', 'c', 'd'], 2);
+ 3733:       * // => [['a', 'b'], ['c', 'd']]
+ 3734:       *
+ 3735:       * _.chunk(['a', 'b', 'c', 'd'], 3);
+ 3736:       * // => [['a', 'b', 'c'], ['d']]
+ 3737:       */
+ 3738:          function chunk(array, size) {
+ 3739:              size = nativeMax(toInteger(size), 0);
+ 3740:              var length = array ? array.length : 0;
+ 3741:              if (!length || size < 1) {
+ 3742:                  return [];
+ 3743:              }
+ 3744:              var index = 0, resIndex = -1, result = Array(nativeCeil(length / size));
+ 3745:              while (index < length) {
+ 3746:                  result[++resIndex] = baseSlice(array, index, index += size);
+ 3747:              }
+*****
+
+***** LODASH\RD\20.js
+ 3755:          /**
+ 3756:       * Creates an array of unique `array` values not included in the other
+ 3757:       * provided arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 3758:       * for equality comparisons.
+ 3759:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3750:          /**
+ 3751:       * Creates an array with all falsey values removed. The values `false`, `null`,
+ 3752:       * `0`, `""`, `undefined`, and `NaN` are falsey.
+ 3753:       *
+*****
+
+***** LODASH\RD\20.js
+ 3762:       * @category Array
+ 3763:       * @param {Array} array The array to inspect.
+ 3764:       * @param {...Array} [values] The arrays of values to exclude.
+ 3765:       * @returns {Array} Returns the new array of filtered values.
+***** LODASH\RD\ORIGINAL.JS
+ 3756:       * @category Array
+ 3757:       * @param {Array} array The array to compact.
+ 3758:       * @returns {Array} Returns the new array of filtered values.
+*****
+
+***** LODASH\RD\20.js
+ 3767:       *
+ 3768:       * _.difference([1, 2, 3], [4, 2]);
+ 3769:       * // => [1, 3]
+ 3770:       */
+ 3771:          var difference = restParam(function (array, values) {
+ 3772:              return isObject(array) && isArrayLike(array) ? baseDifference(array, baseFlatten(values, false, true)) : [];
+ 3773:          });
+ 3774:          /**
+ 3775:       * Creates a slice of `array` with `n` elements dropped from the beginning.
+ 3776:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3760:       *
+ 3761:       * _.compact([0, 1, false, 2, '', 3]);
+ 3762:       * // => [1, 2, 3]
+ 3763:       */
+ 3764:          function compact(array) {
+ 3765:              var index = -1, length = array ? array.length : 0, resIndex = -1, result = [];
+ 3766:              while (++index < length) {
+ 3767:                  var value = array[index];
+ 3768:                  if (value) {
+ 3769:                      result[++resIndex] = value;
+ 3770:                  }
+ 3771:              }
+ 3772:              return result;
+ 3773:          }
+ 3774:          /**
+ 3775:       * Creates an array of unique `array` values not included in the other
+ 3776:       * provided arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 3777:       * for equality comparisons.
+ 3778:       *
+*****
+
+***** LODASH\RD\20.js
+ 3779:       * @category Array
+ 3780:       * @param {Array} array The array to query.
+ 3781:       * @param {number} [n=1] The number of elements to drop.
+ 3782:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 3783:       * @returns {Array} Returns the slice of `array`.
+ 3784:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 3781:       * @category Array
+ 3782:       * @param {Array} array The array to inspect.
+ 3783:       * @param {...Array} [values] The arrays of values to exclude.
+ 3784:       * @returns {Array} Returns the new array of filtered values.
+ 3785:       * @example
+*****
+
+***** LODASH\RD\20.js
+ 3785:       *
+ 3786:       * _.drop([1, 2, 3]);
+***** LODASH\RD\ORIGINAL.JS
+ 3786:       *
+ 3787:       * _.difference([1, 2, 3], [4, 2]);
+ 3788:       * // => [1, 3]
+ 3789:       */
+ 3790:          var difference = restParam(function (array, values) {
+ 3791:              return isObject(array) && isArrayLike(array) ? baseDifference(array, baseFlatten(values, false, true)) : [];
+ 3792:          });
+ 3793:          /**
+ 3794:       * Creates a slice of `array` with `n` elements dropped from the beginning.
+ 3795:       *
+ 3796:       * @static
+ 3797:       * @memberOf _
+ 3798:       * @category Array
+ 3799:       * @param {Array} array The array to query.
+ 3800:       * @param {number} [n=1] The number of elements to drop.
+ 3801:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 3802:       * @returns {Array} Returns the slice of `array`.
+ 3803:       * @example
+ 3804:       *
+ 3805:       * _.drop([1, 2, 3]);
+*****
+
+***** LODASH\RD\20.js
+ 9423:              options = extendWith({}, otherOptions || options, settings, extendDefaults);
+ 9424:              var imports = extendWith({}, options.imports, extendDefaults), importsKeys = keys(imports), importsValues = baseVal
+ 9425:  ues(imports, importsKeys);
+ 9426:              var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+***** LODASH\RD\ORIGINAL.JS
+ 9442:              options = extendWith({}, otherOptions || options, settings, extendDefaults);
+ 9443:              var imports = extendWith({}, options.imports, settings.imports, extendDefaults), importsKeys = keys(imports), impor
+ 9444:  tsValues = baseValues(imports, importsKeys);
+ 9445:              var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+*****
+

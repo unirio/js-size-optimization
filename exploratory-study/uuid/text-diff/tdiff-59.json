@@ -1,0 +1,25 @@
+Comparing files UUID\RD\59.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\59.js
+   66:      this.version = timeHiAndVersion >> 12 & 15;
+   67:      this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16)) + '-' + UUIDjs.pa
+   68:  ddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.padded
+   69:  String(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+   70:      return this;
+***** UUID\RD\ORIGINAL.JS
+   66:      this.version = timeHiAndVersion >> 12 & 15;
+   67:      this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs
+   68:  .paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.pad
+   69:  dedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+   70:      return this;
+*****
+
+***** UUID\RD\59.js
+  181:      ];
+  182:      for (var i = 0; i < parts.length;) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+***** UUID\RD\ORIGINAL.JS
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+*****
+

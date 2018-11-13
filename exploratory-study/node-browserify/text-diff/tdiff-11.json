@@ -1,0 +1,11 @@
+Comparing files NODE-BROWSERIFY\RD\11.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\11.js
+   70:      [].concat(opts.entries).filter(Boolean).forEach(function (file) {
+   71:          self.add(file, {});
+   72:      });
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   70:      [].concat(opts.entries).filter(Boolean).forEach(function (file) {
+   71:          self.add(file, { basedir: opts.basedir });
+   72:      });
+*****
+

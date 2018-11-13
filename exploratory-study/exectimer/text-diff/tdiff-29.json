@@ -1,0 +1,21 @@
+Comparing files EXECTIMER\RD\29.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\29.js
+  132:      this.name = name;
+  133:      return;
+  134:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  132:      this.name = name;
+  133:      return this;
+  134:  }
+*****
+
+***** EXECTIMER\RD\29.js
+  149:          co(callback).then(done, done);
+  150:      } else if (!!callback.toString().match()) {
+  151:          // If done is passed when the callback is declared than we assume is async
+***** EXECTIMER\RD\ORIGINAL.JS
+  149:          co(callback).then(done, done);
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+  151:          // If done is passed when the callback is declared than we assume is async
+*****
+

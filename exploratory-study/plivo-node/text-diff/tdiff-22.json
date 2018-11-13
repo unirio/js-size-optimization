@@ -1,0 +1,51 @@
+Comparing files PLIVO-NODE\RD\22.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\22.js
+   75:          request_options.json = true;
+   76:      }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   75:          request_options.json = true;
+   76:          request_options.body = body, Request.put(request_options, function (error, response, body) {
+   77:              callback(response.statusCode, body);
+   78:          });
+   79:      }
+*****
+
+***** PLIVO-NODE\RD\22.js
+  384:      var action = 'Recording/';
+  385:      var method;
+  386:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  387:      var action = 'Recording/';
+  388:      var method = 'GET';
+  389:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\22.js
+  451:  };
+  452:  plivo.get_number_group_details = function (params) {
+  453:      var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  454:  };
+  455:  plivo.get_number_group_details = function (params, callback) {
+  456:      var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\22.js
+  543:      var method = 'GET';
+  544:      request(action, method, params);
+  545:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  546:      var method = 'GET';
+  547:      request(action, method, params, callback);
+  548:  };
+*****
+
+***** PLIVO-NODE\RD\22.js
+  613:          'Hangup',
+  614:          'Conference',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  616:          'Hangup',
+  617:          'PreAnswer',
+  618:          'Conference',
+*****
+

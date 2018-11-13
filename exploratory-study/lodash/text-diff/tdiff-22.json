@@ -1,0 +1,166 @@
+Comparing files LODASH\RD\22.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\22.js
+  886:          /*------------------------------------------------------------------------*/
+  887:          function LazyWrapper(value) {
+***** LODASH\RD\ORIGINAL.JS
+  886:          /*------------------------------------------------------------------------*/
+  887:          /**
+  888:       * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
+  889:       *
+  890:       * @private
+  891:       * @param {*} value The value to wrap.
+  892:       */
+  893:          function LazyWrapper(value) {
+*****
+
+***** LODASH\RD\22.js
+ 2845:                      if (length < arity) {
+ 2846:                          var newArgPos = argPos ? copyArray(argPos) : undefined, newArity = nativeMax(arity - length), newsHolde
+ 2847:  rs = isCurry ? argsHolders : undefined, newHoldersRight = isCurry ? undefined : argsHolders, newPartials = isCurry ? args : und
+ 2848:  efined, newPartialsRight = isCurry ? undefined : args;
+ 2849:                          bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+***** LODASH\RD\ORIGINAL.JS
+ 2851:                      if (length < arity) {
+ 2852:                          var newArgPos = argPos ? copyArray(argPos) : undefined, newArity = nativeMax(arity - length, 0), newsHo
+ 2853:  lders = isCurry ? argsHolders : undefined, newHoldersRight = isCurry ? undefined : argsHolders, newPartials = isCurry ? args : 
+ 2854:  undefined, newPartialsRight = isCurry ? undefined : args;
+ 2855:                          bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+*****
+
+***** LODASH\RD\22.js
+ 3059:                      if (!arraySome(other, function (othValue) {
+ 3060:                              return arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackB);
+ 3061:                          })) {
+***** LODASH\RD\ORIGINAL.JS
+ 3065:                      if (!arraySome(other, function (othValue) {
+ 3066:                              return arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB);
+ 3067:                          })) {
+*****
+
+***** LODASH\RD\22.js
+ 3341:          }
+ 3342:          function initCloneByTag(object, tag, isDeep) {
+***** LODASH\RD\ORIGINAL.JS
+ 3347:          }
+ 3348:          /**
+ 3349:       * Initializes an object clone based on its `toStringTag`.
+ 3350:       *
+ 3351:       * **Note:** This function only supports cloning values with tags of
+ 3352:       * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ 3353:       *
+ 3354:       * @private
+ 3355:       * @param {Object} object The object to clone.
+ 3356:       * @param {string} tag The `toStringTag` of the object to clone.
+ 3357:       * @param {boolean} [isDeep] Specify a deep clone.
+ 3358:       * @returns {Object} Returns the initialized clone.
+ 3359:       */
+ 3360:          function initCloneByTag(object, tag, isDeep) {
+*****
+
+***** LODASH\RD\22.js
+ 5521:                  var func = isFunc ? path : isProp && value != null ? value[path] : undefined;
+ 5522:                  result[++index] = func ? func.apply(value, args) : invokePath(value, path);
+ 5523:              });
+***** LODASH\RD\ORIGINAL.JS
+ 5539:                  var func = isFunc ? path : isProp && value != null ? value[path] : undefined;
+ 5540:                  result[++index] = func ? func.apply(value, args) : invokePath(value, path, args);
+ 5541:              });
+*****
+
+***** LODASH\RD\22.js
+ 5985:                  if (--n < 1) {
+ 5986:                      return func.apply(this);
+ 5987:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 6003:                  if (--n < 1) {
+ 6004:                      return func.apply(this, arguments);
+ 6005:                  }
+*****
+
+***** LODASH\RD\22.js
+ 6478:          var flow = createFlow();
+ 6479:          var flowRight = createFlow(true);
+ 6480:          /**
+ 6481:       * Creates a function that memoizes the result of `func`. If `resolver` is
+ 6482:       * provided it determines the cache key for storing the result based on the
+ 6483:       * arguments provided to the memoized function. By default, the first argument
+ 6484:       * provided to the memoized function is coerced to a string and used as the
+ 6485:       * cache key. The `func` is invoked with the `this` binding of the memoized
+ 6486:       * function.
+ 6487:       *
+ 6488:       * **Note:** The cache is exposed as the `cache` property on the memoized
+ 6489:       * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ 6490:       * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of
+ 6491:  -the-map-prototype-object)
+ 6492:       * method interface of `get`, `has`, and `set`.
+ 6493:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6496:          var flow = createFlow();
+ 6497:          /**
+ 6498:       * This method is like `_.flow` except that it creates a function that
+ 6499:       * invokes the provided functions from right to left.
+ 6500:       *
+*****
+
+***** LODASH\RD\22.js
+ 6496:       * @category Function
+ 6497:       * @param {Function} func The function to have its output memoized.
+ 6498:       * @param {Function} [resolver] The function to resolve the cache key.
+ 6499:       * @returns {Function} Returns the new memoizing function.
+ 6500:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6503:       * @category Function
+ 6504:       * @param {...Function} [funcs] Functions to invoke.
+ 6505:       * @returns {Function} Returns the new function.
+ 6506:       * @example
+*****
+
+***** LODASH\RD\22.js
+ 6501:       *
+ 6502:       * var upperCase = _.memoize(function(string) {
+***** LODASH\RD\ORIGINAL.JS
+ 6507:       *
+ 6508:       * function square(n) {
+ 6509:       *   return n * n;
+ 6510:       * }
+ 6511:       *
+ 6512:       * var addSquare = _.flowRight(square, _.add);
+ 6513:       * addSquare(1, 2);
+ 6514:       * // => 9
+ 6515:       */
+ 6516:          var flowRight = createFlow(true);
+ 6517:          /**
+ 6518:       * Creates a function that memoizes the result of `func`. If `resolver` is
+ 6519:       * provided it determines the cache key for storing the result based on the
+ 6520:       * arguments provided to the memoized function. By default, the first argument
+ 6521:       * provided to the memoized function is coerced to a string and used as the
+ 6522:       * cache key. The `func` is invoked with the `this` binding of the memoized
+ 6523:       * function.
+ 6524:       *
+ 6525:       * **Note:** The cache is exposed as the `cache` property on the memoized
+ 6526:       * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ 6527:       * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of
+ 6528:  -the-map-prototype-object)
+ 6529:       * method interface of `get`, `has`, and `set`.
+ 6530:       *
+ 6531:       * @static
+ 6532:       * @memberOf _
+ 6533:       * @category Function
+ 6534:       * @param {Function} func The function to have its output memoized.
+ 6535:       * @param {Function} [resolver] The function to resolve the cache key.
+ 6536:       * @returns {Function} Returns the new memoizing function.
+ 6537:       * @example
+ 6538:       *
+ 6539:       * var upperCase = _.memoize(function(string) {
+*****
+
+***** LODASH\RD\22.js
+ 6782:                  }
+ 6783:                  var otherArgs = Array();
+ 6784:                  index = -1;
+***** LODASH\RD\ORIGINAL.JS
+ 6819:                  }
+ 6820:                  var otherArgs = Array(start + 1);
+ 6821:                  index = -1;
+*****
+

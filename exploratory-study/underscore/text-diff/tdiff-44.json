@@ -1,0 +1,49 @@
+Comparing files UNDERSCORE\RD\44.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\44.js
+  398:              return [];
+  399:          if (isArrayLike(obj))
+***** UNDERSCORE\RD\ORIGINAL.JS
+  398:              return [];
+  399:          if (_.isArray(obj))
+  400:              return slice.call(obj);
+  401:          if (isArrayLike(obj))
+*****
+
+***** UNDERSCORE\RD\44.js
+  553:      // Complement of _.zip. Unzip accepts an array of arrays and groups
+  554:      _.unzip = function (array) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  555:      // Complement of _.zip. Unzip accepts an array of arrays and groups
+  556:      // each array's elements on shared indices
+  557:      _.unzip = function (array) {
+*****
+
+***** UNDERSCORE\RD\44.js
+ 1000:      };
+ 1001:      _.omit = function (obj, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1003:      };
+ 1004:      // Return a copy of the object without the blacklisted properties.
+ 1005:      _.omit = function (obj, iteratee, context) {
+*****
+
+***** UNDERSCORE\RD\44.js
+ 1056:          if (a == null || b == null)
+ 1057:              return;
+ 1058:          // Unwrap any wrapped objects.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1060:          if (a == null || b == null)
+ 1061:              return a === b;
+ 1062:          // Unwrap any wrapped objects.
+*****
+
+***** UNDERSCORE\RD\44.js
+ 1264:      _.times = function (n, iteratee, context) {
+ 1265:          var accum = Array();
+ 1266:          iteratee = optimizeCb(iteratee, context, 1);
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1268:      _.times = function (n, iteratee, context) {
+ 1269:          var accum = Array(Math.max(0, n));
+ 1270:          iteratee = optimizeCb(iteratee, context, 1);
+*****
+

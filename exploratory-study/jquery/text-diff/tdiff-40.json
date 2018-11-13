@@ -1,0 +1,82 @@
+Comparing files JQUERY\RD\40.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\40.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\40.js
+ 1565:          tokenize = Sizzle.tokenize = function (selector, parseOnly) {
+ 1566:              var matched, match, tokens, type, groups, preFilters, cached = tokenCache[selector + ' '];
+ 1567:              if (cached) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1566:          tokenize = Sizzle.tokenize = function (selector, parseOnly) {
+ 1567:              var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + ' '];
+ 1568:              if (cached) {
+*****
+
+***** JQUERY\RD\40.js
+ 2219:                  var i = 0;
+ 2220:              });
+***** JQUERY\RD\ORIGINAL.JS
+ 2220:                  var i = 0;
+ 2221:                  for (; i < l; i++) {
+ 2222:                      if (jQuery.contains(this, targets[i])) {
+ 2223:                          return true;
+ 2224:                      }
+ 2225:                  }
+ 2226:              });
+*****
+
+***** JQUERY\RD\40.js
+ 3845:                      if (this.originalEvent) {
+ 3846:                          return;
+ 3847:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 3851:                      if (this.originalEvent) {
+ 3852:                          return hook(this.originalEvent);
+ 3853:                      }
+*****
+
+***** JQUERY\RD\40.js
+ 6595:                      urlAnchor.href = s.url;
+ 6596:                      s.crossDomain = originAnchor.protocol + '//' + originAnchor.host !== urlAnchor.protocol + '//' + urlAnchor.
+***** JQUERY\RD\ORIGINAL.JS
+ 6601:                      urlAnchor.href = s.url;
+ 6602:                      // Support: IE <=8 - 11 only
+ 6603:                      // Anchor's host property isn't correctly set when s.url is relative
+ 6604:                      urlAnchor.href = urlAnchor.href;
+ 6605:                      s.crossDomain = originAnchor.protocol + '//' + originAnchor.host !== urlAnchor.protocol + '//' + urlAnchor.
+*****
+
+***** JQUERY\RD\40.js
+ 6646:              } else if (s.data && s.processData && (s.contentType || '').indexOf('application/x-www-form-urlencoded') === 0) {
+ 6647:                  s.data = s.data.replace(r20);
+ 6648:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 6655:              } else if (s.data && s.processData && (s.contentType || '').indexOf('application/x-www-form-urlencoded') === 0) {
+ 6656:                  s.data = s.data.replace(r20, '+');
+ 6657:              }
+*****
+
+***** JQUERY\RD\40.js
+ 6797:                  if (fireGlobals) {
+ 6798:                      globalEventContext.trigger(isSuccess ? 'ajaxSuccess' : 'ajaxError');
+ 6799:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 6806:                  if (fireGlobals) {
+ 6807:                      globalEventContext.trigger(isSuccess ? 'ajaxSuccess' : 'ajaxError', [
+ 6808:                          jqXHR,
+ 6809:                          s,
+ 6810:                          isSuccess ? success : error
+ 6811:                      ]);
+ 6812:                  }
+*****
+

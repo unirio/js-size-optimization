@@ -1,0 +1,29 @@
+Comparing files UNDERSCORE\RD\31.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\31.js
+  486:      _.without = function (array) {
+  487:          return _.difference(array, slice.call(arguments));
+  488:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  486:      _.without = function (array) {
+  487:          return _.difference(array, slice.call(arguments, 1));
+  488:      };
+*****
+
+***** UNDERSCORE\RD\31.js
+  907:              keys.push(key);
+  908:          if (hasEnumBug)
+***** UNDERSCORE\RD\ORIGINAL.JS
+  907:              keys.push(key);
+  908:          // Ahem, IE < 9.
+  909:          if (hasEnumBug)
+*****
+
+***** UNDERSCORE\RD\31.js
+ 1471:      // AMD registration happens at the end for compatibility with AMD loaders
+ 1472:      // practice for AMD registration is to be anonymous, underscore registers
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1472:      // AMD registration happens at the end for compatibility with AMD loaders
+ 1473:      // that may not enforce next-turn semantics on modules. Even though general
+ 1474:      // practice for AMD registration is to be anonymous, underscore registers
+*****
+

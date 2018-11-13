@@ -1,0 +1,79 @@
+Comparing files LODASH\RD\30.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\30.js
+  565:          while (++index < length) {
+  566:              var value = array[index], computed = iteratee ? iteratee(value, array) : value;
+  567:              if (!index || seen !== computed) {
+***** LODASH\RD\ORIGINAL.JS
+  565:          while (++index < length) {
+  566:              var value = array[index], computed = iteratee ? iteratee(value, index, array) : value;
+  567:              if (!index || seen !== computed) {
+*****
+
+***** LODASH\RD\30.js
+ 1419:              }
+ 1420:              stackA || (stackA = []);
+***** LODASH\RD\ORIGINAL.JS
+ 1419:              }
+ 1420:              // Check for circular references and return its corresponding clone.
+ 1421:              stackA || (stackA = []);
+*****
+
+***** LODASH\RD\30.js
+ 1876:  ckA, stackB) : undefined;
+ 1877:                      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, stackA, stackB) : result)) {
+ 1878:                          return false;
+***** LODASH\RD\ORIGINAL.JS
+ 1877:  ckA, stackB) : undefined;
+ 1878:                      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true, stackA, stackB) : result)) {
+ 1879:                          return false;
+*****
+
+***** LODASH\RD\30.js
+ 2321:              var index = -1, indexOf = getIndexOf(), length = array.length, isCommon = indexOf === baseIndexOf, isLarge = isComm
+ 2322:  on && length >= LARGE_ARRAY_SIZE, seen, result = [];
+ 2323:              if (seen) {
+***** LODASH\RD\ORIGINAL.JS
+ 2322:              var index = -1, indexOf = getIndexOf(), length = array.length, isCommon = indexOf === baseIndexOf, isLarge = isComm
+ 2323:  on && length >= LARGE_ARRAY_SIZE, seen = isLarge ? createCache() : null, result = [];
+ 2324:              if (seen) {
+*****
+
+***** LODASH\RD\30.js
+ 2587:              }
+ 2588:          }
+***** LODASH\RD\ORIGINAL.JS
+ 2588:              }
+ 2589:              return object;
+ 2590:          }
+*****
+
+***** LODASH\RD\30.js
+ 2753:                  case 4:
+ 2754:                      return new Ctor(args[0], args[1], args[2]);
+ 2755:                  case 5:
+***** LODASH\RD\ORIGINAL.JS
+ 2755:                  case 4:
+ 2756:                      return new Ctor(args[0], args[1], args[2], args[3]);
+ 2757:                  case 5:
+*****
+
+***** LODASH\RD\30.js
+ 2761:                  }
+ 2762:                  var thisBinding = baseCreate(Ctor.prototype), result;
+ 2763:                  // Mimic the constructor's `return` behavior.
+***** LODASH\RD\ORIGINAL.JS
+ 2763:                  }
+ 2764:                  var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding, args);
+ 2765:                  // Mimic the constructor's `return` behavior.
+*****
+
+***** LODASH\RD\30.js
+ 3567:                  data[3] = partials ? composeArgs(partials, value, source[4]) : copyArray(value);
+ 3568:                  data[4] = partials ? replaceHolders(data[3]) : copyArray(source[4]);
+ 3569:              }
+***** LODASH\RD\ORIGINAL.JS
+ 3569:                  data[3] = partials ? composeArgs(partials, value, source[4]) : copyArray(value);
+ 3570:                  data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : copyArray(source[4]);
+ 3571:              }
+*****
+

@@ -1,0 +1,31 @@
+Comparing files MINIMIST\RD\58.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\58.js
+   43:      }
+   44:      function argDefined(key) {
+   45:          return flags.allBools && /^--[^=]+$/.test(arg) || flags.strings[key] || flags.bools[key] || aliases[key];
+***** MINIMIST\RD\ORIGINAL.JS
+   43:      }
+   44:      function argDefined(key, arg) {
+   45:          return flags.allBools && /^--[^=]+$/.test(arg) || flags.strings[key] || flags.bools[key] || aliases[key];
+*****
+
+***** MINIMIST\RD\58.js
+   76:      }
+   77:      function aliasIsBoolean() {
+   78:          return aliases[key].some(function (x) {
+***** MINIMIST\RD\ORIGINAL.JS
+   76:      }
+   77:      function aliasIsBoolean(key) {
+   78:          return aliases[key].some(function (x) {
+*****
+
+***** MINIMIST\RD\58.js
+  134:                  } else {
+  135:                      setArg(letters[j], flags.strings[letters[j]] ? '' : true);
+  136:                  }
+***** MINIMIST\RD\ORIGINAL.JS
+  134:                  } else {
+  135:                      setArg(letters[j], flags.strings[letters[j]] ? '' : true, arg);
+  136:                  }
+*****
+

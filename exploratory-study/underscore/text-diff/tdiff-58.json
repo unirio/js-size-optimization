@@ -1,0 +1,40 @@
+Comparing files UNDERSCORE\RD\58.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\58.js
+  320:          var shuffled = Array(length);
+  321:          for (var index = 0; index < length; index++) {
+  322:              rand = _.random(0, index);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  320:          var shuffled = Array(length);
+  321:          for (var index = 0, rand; index < length; index++) {
+  322:              rand = _.random(0, index);
+*****
+
+***** UNDERSCORE\RD\58.js
+  458:      _.compact = function (array) {
+  459:          return _.filter(array);
+  460:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  458:      _.compact = function (array) {
+  459:          return _.filter(array, _.identity);
+  460:      };
+*****
+
+***** UNDERSCORE\RD\58.js
+  660:      var executeBound = function (sourceFunc, boundFunc, context, callingContext, args) {
+  661:          if (!(callingContext instanceof boundFunc))
+***** UNDERSCORE\RD\ORIGINAL.JS
+  660:      // or a normal function with the provided arguments
+  661:      var executeBound = function (sourceFunc, boundFunc, context, callingContext, args) {
+  662:          if (!(callingContext instanceof boundFunc))
+*****
+
+***** UNDERSCORE\RD\58.js
+  703:      _.bindAll = function (obj) {
+  704:          var i, length = arguments.length;
+  705:          if (length <= 1)
+***** UNDERSCORE\RD\ORIGINAL.JS
+  704:      _.bindAll = function (obj) {
+  705:          var i, length = arguments.length, key;
+  706:          if (length <= 1)
+*****
+

@@ -1,0 +1,80 @@
+Comparing files NODE-BROWSERIFY\RD\57.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\57.js
+  433:      mopts.filter = function (id) {
+  434:          if (opts.filter && !opts.filter())
+  435:              return false;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  433:      mopts.filter = function (id) {
+  434:          if (opts.filter && !opts.filter(id))
+  435:              return false;
+*****
+
+***** NODE-BROWSERIFY\RD\57.js
+  452:              if (file && self._ignore.length) {
+  453:              }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  452:              if (file && self._ignore.length) {
+  453:                  var nm = file.split('/node_modules/')[1];
+  454:                  if (nm) {
+  455:                      nm = nm.split('/')[0];
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+  457:                          return cb(null, paths.empty, {});
+  458:                      }
+  459:                  }
+  460:              }
+*****
+
+***** NODE-BROWSERIFY\RD\57.js
+  481:          opts.builtins.forEach(function (key) {
+  482:          });
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  488:          opts.builtins.forEach(function (key) {
+  489:              mopts.modules[key] = builtins[key];
+  490:          });
+*****
+
+***** NODE-BROWSERIFY\RD\57.js
+  590:  Browserify.prototype._unshebang = function () {
+  591:      return through.obj();
+  592:  };
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  598:  Browserify.prototype._unshebang = function () {
+  599:      return through.obj(function (row, enc, next) {
+  600:          if (/^#!/.test(row.source)) {
+  601:              row.source = row.source.replace(/^#![^\n]*\n/, '');
+  602:          }
+  603:          this.push(row);
+  604:          next();
+  605:      });
+  606:  };
+*****
+
+***** NODE-BROWSERIFY\RD\57.js
+  650:              if (self._external.indexOf(afile) >= 0) {
+  651:              }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  664:              if (self._external.indexOf(afile) >= 0) {
+  665:                  row.deps[key] = rfile;
+  666:              }
+*****
+
+***** NODE-BROWSERIFY\RD\57.js
+  683:              row.sourceRoot = 'file://localhost';
+  684:              row.sourceFile = path.relative(basedir, row.file).replace(/\\/g);
+  685:          }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  698:              row.sourceRoot = 'file://localhost';
+  699:              row.sourceFile = path.relative(basedir, row.file).replace(/\\/g, '/');
+  700:          }
+*****
+
+***** NODE-BROWSERIFY\RD\57.js
+  697:      this._bundled = false;
+  698:      this.emit();
+  699:  };
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  712:      this._bundled = false;
+  713:      this.emit('reset');
+  714:  };
+*****
+

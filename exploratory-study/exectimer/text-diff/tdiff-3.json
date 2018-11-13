@@ -1,0 +1,28 @@
+Comparing files EXECTIMER\RD\3.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\3.js
+  101:                  }
+  102:              }
+***** EXECTIMER\RD\ORIGINAL.JS
+  101:                      return num / 1000000000 + 's';
+  102:                  }
+  103:              }
+*****
+
+***** EXECTIMER\RD\3.js
+  131:      this.name = name;
+  132:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  132:      this.name = name;
+  133:      return this;
+  134:  }
+*****
+
+***** EXECTIMER\RD\3.js
+  175:  Tick.prototype.getDiff = function () {
+  176:  };
+***** EXECTIMER\RD\ORIGINAL.JS
+  177:  Tick.prototype.getDiff = function () {
+  178:      return this.hrend[0] * 1000000000 + this.hrend[1];
+  179:  };
+*****
+

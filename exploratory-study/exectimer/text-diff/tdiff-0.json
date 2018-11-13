@@ -1,0 +1,14 @@
+Comparing files EXECTIMER\RD\0.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\0.js
+    7:  const timers = {};
+    8:  const timer = function (name) {
+***** EXECTIMER\RD\ORIGINAL.JS
+    7:  const timers = {};
+    8:  /**
+    9:   * Timers factory object.
+   10:   * @param name
+   11:   * @returns {*}
+   12:   */
+   13:  const timer = function (name) {
+*****
+

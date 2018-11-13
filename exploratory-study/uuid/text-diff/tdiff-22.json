@@ -1,0 +1,20 @@
+Comparing files UUID\RD\22.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\22.js
+  120:          if (now < timestamp) {
+  121:          }
+***** UUID\RD\ORIGINAL.JS
+  120:          if (now < timestamp) {
+  121:              sequence++;
+  122:          }
+*****
+
+***** UUID\RD\22.js
+  180:      ];
+  181:      for (var i = 0; i < parts.length;) {
+  182:          for (var j = 0; j < parts[i]; j++) {
+***** UUID\RD\ORIGINAL.JS
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+*****
+

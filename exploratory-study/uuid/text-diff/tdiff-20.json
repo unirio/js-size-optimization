@@ -1,0 +1,20 @@
+Comparing files UUID\RD\20.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\20.js
+  187:              }
+  188:          }
+***** UUID\RD\ORIGINAL.JS
+  187:              }
+  188:              str += octet;
+  189:          }
+*****
+
+***** UUID\RD\20.js
+  210:  UUIDjs.newTS = function () {
+  211:      return;
+  212:  };
+***** UUID\RD\ORIGINAL.JS
+  211:  UUIDjs.newTS = function () {
+  212:      return this.create(1);
+  213:  };
+*****
+

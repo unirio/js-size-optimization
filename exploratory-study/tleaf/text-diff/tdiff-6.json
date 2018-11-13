@@ -1,0 +1,11 @@
+Comparing files TLEAF\RD\6.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\6.js
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, {});
+   95:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+

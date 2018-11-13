@@ -1,0 +1,35 @@
+Comparing files EXECTIMER\RD\47.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\47.js
+   36:              },
+   37:              mean: function () {
+***** EXECTIMER\RD\ORIGINAL.JS
+   36:              },
+   37:              /**
+   38:               * Get the average duration of all ticks.
+   39:               * @returns {number}
+   40:               */
+   41:              mean: function () {
+*****
+
+***** EXECTIMER\RD\47.js
+   56:                  let min = this.ticks[0].getDiff();
+   57:                  return min;
+***** EXECTIMER\RD\ORIGINAL.JS
+   60:                  let min = this.ticks[0].getDiff();
+   61:                  this.ticks.forEach(function (tick) {
+   62:                      if (tick.getDiff() < min) {
+   63:                          min = tick.getDiff();
+   64:                      }
+   65:                  });
+   66:                  return min;
+*****
+
+***** EXECTIMER\RD\47.js
+  113:      }
+  114:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  122:      }
+  123:      return 'function' === typeof constructor.prototype.next && 'function' === typeof constructor.prototype.throw;
+  124:  }
+*****
+

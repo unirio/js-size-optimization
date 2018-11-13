@@ -1,0 +1,15 @@
+Comparing files XML2JS\RD\30.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\30.js
+  244:              }
+  245:              this.reset();
+***** XML2JS\RD\ORIGINAL.JS
+  244:              }
+  245:              if (this.options.normalizeTags) {
+  246:                  if (!this.options.tagNameProcessors) {
+  247:                      this.options.tagNameProcessors = [];
+  248:                  }
+  249:                  this.options.tagNameProcessors.unshift(processors.normalize);
+  250:              }
+  251:              this.reset();
+*****
+

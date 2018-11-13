@@ -1,0 +1,32 @@
+Comparing files MINIMIST\RD\22.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\22.js
+    5:          bools: {},
+    6:          strings: {}
+    7:      };
+***** MINIMIST\RD\ORIGINAL.JS
+    5:          bools: {},
+    6:          strings: {},
+    7:          unknownFn: null
+    8:      };
+*****
+
+***** MINIMIST\RD\22.js
+  124:                  if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+  125:                      setArg(letters[j], next);
+  126:                      broken = true;
+***** MINIMIST\RD\ORIGINAL.JS
+  125:                  if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+  126:                      setArg(letters[j], next, arg);
+  127:                      broken = true;
+*****
+
+***** MINIMIST\RD\22.js
+  189:      if (typeof x === 'number')
+  190:          return;
+  191:      if (/^0x[0-9a-f]+$/i.test(x))
+***** MINIMIST\RD\ORIGINAL.JS
+  190:      if (typeof x === 'number')
+  191:          return true;
+  192:      if (/^0x[0-9a-f]+$/i.test(x))
+*****
+

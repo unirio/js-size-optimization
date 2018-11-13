@@ -1,0 +1,33 @@
+Comparing files UUID\RD\31.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\31.js
+   67:      this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs
+   68:  .paddedString(timeHiAndVersion.toString(16)) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.padded
+   69:  String(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+   70:      return this;
+***** UUID\RD\ORIGINAL.JS
+   67:      this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs
+   68:  .paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.pad
+   69:  dedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+   70:      return this;
+*****
+
+***** UUID\RD\31.js
+  120:          if (now < timestamp) {
+  121:          }
+***** UUID\RD\ORIGINAL.JS
+  120:          if (now < timestamp) {
+  121:              sequence++;
+  122:          }
+*****
+
+***** UUID\RD\31.js
+  162:      if (r = p.exec(strId)) {
+  163:          return;
+  164:      }
+***** UUID\RD\ORIGINAL.JS
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+

@@ -1,0 +1,39 @@
+Comparing files NODE-BROWSERIFY\RD\46.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\46.js
+  314:          opts = p[1];
+  315:      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  314:          opts = p[1];
+  315:          p = p[0];
+  316:      }
+*****
+
+***** NODE-BROWSERIFY\RD\46.js
+  372:          [this._label(opts)],
+  373:          [this._emitDeps()],
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  373:          [this._label(opts)],
+  374:          'emit-deps',
+  375:          [this._emitDeps()],
+*****
+
+***** NODE-BROWSERIFY\RD\46.js
+  454:                      if (self._ignore.indexOf(nm) >= 0) {
+  455:                          return cb(null, {});
+  456:                      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+  457:                          return cb(null, paths.empty, {});
+  458:                      }
+*****
+
+***** NODE-BROWSERIFY\RD\46.js
+  485:          mopts.modules = {};
+  486:          opts.builtins.forEach(function () {
+  487:              mopts.modules[key] = builtins[key];
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  487:          mopts.modules = {};
+  488:          opts.builtins.forEach(function (key) {
+  489:              mopts.modules[key] = builtins[key];
+*****
+

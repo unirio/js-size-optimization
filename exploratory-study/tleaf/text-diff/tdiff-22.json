@@ -1,0 +1,213 @@
+Comparing files TLEAF\RD\22.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\22.js
+    4:  var escope = require('escope');
+    5:  var _ = require();
+    6:  var config = require('./config');
+***** TLEAF\RD\ORIGINAL.JS
+    4:  var escope = require('escope');
+    5:  var _ = require('lodash');
+    6:  var config = require('./config');
+*****
+
+***** TLEAF\RD\22.js
+   19:      // global scope
+   20:      var currentScope = scopeManager.acquire();
+   21:      var calls = [];
+***** TLEAF\RD\ORIGINAL.JS
+   19:      // global scope
+   20:      var currentScope = scopeManager.acquire(ast);
+   21:      var calls = [];
+*****
+
+***** TLEAF\RD\22.js
+   48:      var units = [];
+   49:      _.forEach(calls);
+   50:      return units;
+***** TLEAF\RD\ORIGINAL.JS
+   48:      var units = [];
+   49:      _.forEach(calls, function (call) {
+   50:          // for now use only completely parsed units
+   51:          var name = findName(call.node, call.scope);
+   52:          if (_.isUndefined(name)) {
+   53:              return;
+   54:          }
+   55:          var type = findType(call.node, call.scope);
+   56:          if (_.isUndefined(type)) {
+   57:              return;
+   58:          }
+   59:          var module = findModule(call.node, call.scope);
+   60:          if (_.isUndefined(module.name)) {
+   61:              return;
+   62:          }
+   63:          var deps = findDeps(call.node, call.scope, type);
+   64:          // Angular should not allow having circular dependency, but if
+   65:          // there is any in a source code, do not continue execution
+   66:          if (_.findWhere(deps, { name: name })) {
+   67:              throw new UserError('Circular dependency for ' + type + ' "' + name + '".');
+   68:          }
+   69:          var unit = {
+   70:              name: name,
+   71:              type: type,
+   72:              module: module,
+   73:              deps: deps
+   74:          };
+   75:          units.unshift(unit);
+   76:      });
+   77:      return units;
+*****
+
+***** TLEAF\RD\22.js
+   54:      var name;
+   55:      var nameArg = _.get(callExpression, 'arguments[0]');
+   56:      if (nameArg.type === 'Literal') {
+***** TLEAF\RD\ORIGINAL.JS
+   81:      var name;
+   82:      var nameArg = _.get(callExpression, 'arguments[0]', {});
+   83:      if (nameArg.type === 'Literal') {
+*****
+
+***** TLEAF\RD\22.js
+  101:      if (type === 'component') {
+  102:          return;
+  103:      }
+***** TLEAF\RD\ORIGINAL.JS
+  128:      if (type === 'component') {
+  129:          return findComponentDeps(depsArg, scope);
+  130:      }
+*****
+
+***** TLEAF\RD\22.js
+  148:      // iterate over all body expressions in provider
+  149:      var depsFnBodyExpressions = _.get(depsFnBody);
+  150:      return deps;
+  151:  }
+  152:  function extractDeps(params) {
+  153:      if (!_.isArray(params)) {
+  154:          return;
+  155:      }
+  156:      var deps = [];
+  157:      _.forEach(params, function (param) {
+  158:          if (param.type === 'Identifier') {
+  159:              var dep = { name: param.name };
+  160:              deps.push(dep);
+  161:          }
+***** TLEAF\RD\ORIGINAL.JS
+  175:      // iterate over all body expressions in provider
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+  183:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+  184:              // covers "this.$get = function (...) { ... };"
+  185:              if (right.type === 'FunctionExpression') {
+  186:                  deps = extractDeps(right.params);
+  187:                  return true;    // exit loop
+  188:              }
+  189:              // covert "this.$get = someVar;"
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+  194:          }
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+  196:          // covers "return ...;"
+  197:          if (type === 'ReturnStatement') {
+  198:              // covers "return { $get: function () {} };"
+  199:              // covers "return { $get: someVar };"
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+  204:              // covers "return someVar;"
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+  211:              }
+  212:          }
+*****
+
+***** TLEAF\RD\22.js
+  164:  }
+  165:  function findVariable(varName, scope) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+  228:  }
+  229:  function findVariable(varName, scope) {
+*****
+
+***** TLEAF\RD\22.js
+  174:      }
+  175:      var node;
+  176:      return node;
+***** TLEAF\RD\ORIGINAL.JS
+  238:      }
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:      return node;
+*****
+
+***** TLEAF\RD\22.js
+  177:  }
+  178:  function extractVariableDeps(varName) {
+  179:      var varNode = findVariable(varName, scope);
+***** TLEAF\RD\ORIGINAL.JS
+  241:  }
+  242:  function extractVariableDeps(varName, scope) {
+  243:      var varNode = findVariable(varName, scope);
+*****
+
+***** TLEAF\RD\22.js
+  180:      if (!varNode) {
+  181:      }
+***** TLEAF\RD\ORIGINAL.JS
+  244:      if (!varNode) {
+  245:          return [];
+  246:      }
+*****
+
+***** TLEAF\RD\22.js
+  182:      var params = [];
+  183:      var varType = _.get(varNode);
+  184:      // covers "function someVar() {}"
+***** TLEAF\RD\ORIGINAL.JS
+  247:      var params = [];
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+*****
+
+***** TLEAF\RD\22.js
+  189:      if (varType === 'VariableDeclarator') {
+  190:          params = _.get(varNode, 'init.params');
+  191:      }
+***** TLEAF\RD\ORIGINAL.JS
+  254:      if (varType === 'VariableDeclarator') {
+  255:          params = _.get(varNode, 'init.params', []);
+  256:      }
+*****
+
+***** TLEAF\RD\22.js
+***** TLEAF\RD\ORIGINAL.JS
+  279:  function findScope(ast) {
+  280:      var scopeManager = escope.analyze(ast);
+  281:      var scope = scopeManager.acquire(ast);
+  282:      return scope;
+  283:  }
+*****
+

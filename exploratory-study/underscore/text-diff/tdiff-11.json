@@ -1,0 +1,57 @@
+Comparing files UNDERSCORE\RD\11.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\11.js
+   37:          }
+   38:      } else {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   37:          }
+   38:          exports._ = _;
+   39:      } else {
+*****
+
+***** UNDERSCORE\RD\11.js
+  670:      // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
+  671:      _.bind = function (func, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  671:      // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
+  672:      // available.
+  673:      _.bind = function (func, context) {
+*****
+
+***** UNDERSCORE\RD\11.js
+  968:      _.extendOwn = _.assign = createAssigner(_.keys);
+  969:      _.findKey = function (obj, predicate, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  970:      _.extendOwn = _.assign = createAssigner(_.keys);
+  971:      // Returns the first key on an object that passes a predicate test
+  972:      _.findKey = function (obj, predicate, context) {
+*****
+
+***** UNDERSCORE\RD\11.js
+  970:          predicate = cb(predicate, context);
+  971:          var keys = _.keys(obj);
+  972:          for (var i = 0, length = keys.length; i < length; i++) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  973:          predicate = cb(predicate, context);
+  974:          var keys = _.keys(obj), key;
+  975:          for (var i = 0, length = keys.length; i < length; i++) {
+*****
+
+***** UNDERSCORE\RD\11.js
+ 1190:      // there isn't any inspectable "Arguments" type.
+ 1191:      if (!_.isArguments()) {
+ 1192:          _.isArguments = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1193:      // there isn't any inspectable "Arguments" type.
+ 1194:      if (!_.isArguments(arguments)) {
+ 1195:          _.isArguments = function (obj) {
+*****
+
+***** UNDERSCORE\RD\11.js
+ 1463:      // Provide unwrapping proxy for some methods used in engine operations
+ 1464:      _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1466:      // Provide unwrapping proxy for some methods used in engine operations
+ 1467:      // such as arithmetic and JSON stringification.
+ 1468:      _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
+*****
+

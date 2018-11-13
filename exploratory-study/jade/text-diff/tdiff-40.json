@@ -1,0 +1,37 @@
+Comparing files JADE\RD\40.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\40.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+   26:  exports.filters = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+   29:  /**
+   30:   * Object for custom filters
+   31:   */
+   32:  exports.filters = {};
+*****
+
+***** JADE\RD\40.js
+  297:      }
+  298:      var str = fs.readFileSync(options.filename);
+  299:      var out = exports.compileClient(str, options);
+***** JADE\RD\ORIGINAL.JS
+  303:      }
+  304:      var str = fs.readFileSync(options.filename, 'utf8');
+  305:      var out = exports.compileClient(str, options);
+*****
+
+***** JADE\RD\40.js
+  306:   */
+  307:  exports.__express = function (path, fn) {
+  308:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+***** JADE\RD\ORIGINAL.JS
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+*****
+

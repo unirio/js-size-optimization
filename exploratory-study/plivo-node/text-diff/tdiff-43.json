@@ -1,0 +1,184 @@
+Comparing files PLIVO-NODE\RD\43.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\43.js
+  147:      var method = 'POST';
+  148:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  147:      var method = 'POST';
+  148:      request(action, method, params, callback);
+  149:  };
+*****
+
+***** PLIVO-NODE\RD\43.js
+  224:      var method = 'DELETE';
+  225:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  225:      var method = 'DELETE';
+  226:      request(action, method, params, callback);
+  227:  };
+*****
+
+***** PLIVO-NODE\RD\43.js
+  540:  };
+  541:  plivo.create_outgoing_carrier = function (params, callback) {
+  542:      var action = 'OutgoingCarrier/';
+  543:      var method = 'POST';
+  544:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  542:  };
+  543:  plivo.get_outgoing_carrier = function (params, callback) {
+  544:      var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
+  545:      delete params.carrier_id;
+  546:      var method = 'GET';
+  547:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\43.js
+  545:  };
+  546:  plivo.modify_outgoing_carrier = function (params, callback) {
+  547:      var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
+  548:      delete params.carrier_id;
+  549:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  548:  };
+  549:  plivo.create_outgoing_carrier = function (params, callback) {
+  550:      var action = 'OutgoingCarrier/';
+  551:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\43.js
+  551:  };
+  552:  plivo.delete_outgoing_carrier = function (params, callback) {
+  553:      var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  553:  };
+  554:  plivo.modify_outgoing_carrier = function (params, callback) {
+  555:      var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\43.js
+  554:      delete params.carrier_id;
+  555:      var method = 'DELETE';
+  556:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  556:      delete params.carrier_id;
+  557:      var method = 'POST';
+  558:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\43.js
+  557:  };
+  558:  // Outgoing Carrier Routings
+  559:  plivo.get_outgoing_carrier_routings = function (params, callback) {
+  560:      var action = 'OutgoingCarrierRouting/';
+  561:      var method = 'GET';
+  562:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  559:  };
+  560:  plivo.delete_outgoing_carrier = function (params, callback) {
+  561:      var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
+  562:      delete params.carrier_id;
+  563:      var method = 'DELETE';
+  564:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\43.js
+  563:  };
+  564:  plivo.get_outgoing_carrier_routing = function (params, callback) {
+  565:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  566:      delete params.routing_id;
+  567:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  565:  };
+  566:  // Outgoing Carrier Routings
+  567:  plivo.get_outgoing_carrier_routings = function (params, callback) {
+  568:      var action = 'OutgoingCarrierRouting/';
+  569:      var method = 'GET';
+*****
+
+***** PLIVO-NODE\RD\43.js
+  569:  };
+  570:  plivo.create_outgoing_carrier_routing = function (params, callback) {
+  571:      var action = 'OutgoingCarrierRouting/';
+  572:      var method = 'POST';
+  573:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  571:  };
+  572:  plivo.get_outgoing_carrier_routing = function (params, callback) {
+  573:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  574:      delete params.routing_id;
+  575:      var method = 'GET';
+  576:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\43.js
+  574:  };
+  575:  plivo.modify_outgoing_carrier_routing = function (params, callback) {
+  576:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  577:      delete params.routing_id;
+  578:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  577:  };
+  578:  plivo.create_outgoing_carrier_routing = function (params, callback) {
+  579:      var action = 'OutgoingCarrierRouting/';
+  580:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\43.js
+  580:  };
+  581:  plivo.delete_outgoing_carrier_routing = function (params, callback) {
+  582:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  582:  };
+  583:  plivo.modify_outgoing_carrier_routing = function (params, callback) {
+  584:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\43.js
+  583:      delete params.routing_id;
+  584:      var method = 'DELETE';
+  585:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  585:      delete params.routing_id;
+  586:      var method = 'POST';
+  587:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\43.js
+  586:  };
+  587:  // Pricing
+  588:  plivo.get_pricing = function (params, callback) {
+  589:      var action = 'Pricing/';
+  590:      var method = 'GET';
+  591:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  588:  };
+  589:  plivo.delete_outgoing_carrier_routing = function (params, callback) {
+  590:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  591:      delete params.routing_id;
+  592:      var method = 'DELETE';
+  593:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\43.js
+  592:  };
+  593:  /**
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  594:  };
+  595:  // Pricing
+  596:  plivo.get_pricing = function (params, callback) {
+  597:      var action = 'Pricing/';
+  598:      var method = 'GET';
+  599:      request(action, method, params, callback);
+  600:  };
+  601:  /**
+*****
+
+***** PLIVO-NODE\RD\43.js
+  681:      addRecord: function (attributes) {
+  682:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  689:      addRecord: function (attributes) {
+  690:          return this.add(new Record(Response), '', attributes);
+  691:      },
+*****
+

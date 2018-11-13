@@ -1,0 +1,98 @@
+Comparing files PLIVO-NODE\RD\33.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\33.js
+  141:      params.status = 'live';
+  142:      request(action, params, callback);
+  143:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  141:      params.status = 'live';
+  142:      request(action, method, params, callback);
+  143:  };
+*****
+
+***** PLIVO-NODE\RD\33.js
+  171:      var method = 'DELETE';
+  172:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  171:      var method = 'DELETE';
+  172:      request(action, method, params, callback);
+  173:  };
+*****
+
+***** PLIVO-NODE\RD\33.js
+  316:  // Accounts
+  317:  plivo.get_account = function (params) {
+  318:      var action = '';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  317:  // Accounts
+  318:  plivo.get_account = function (params, callback) {
+  319:      var action = '';
+*****
+
+***** PLIVO-NODE\RD\33.js
+  409:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+  410:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  410:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+  411:      delete params.endpoint_id;
+  412:      var method = 'GET';
+*****
+
+***** PLIVO-NODE\RD\33.js
+  467:      delete params.number;
+  468:      var method;
+  469:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  469:      delete params.number;
+  470:      var method = 'POST';
+  471:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\33.js
+  511:  };
+  512:  plivo.get_incoming_carrier = function (params) {
+  513:      var action = 'IncomingCarrier/' + params['carrier_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  513:  };
+  514:  plivo.get_incoming_carrier = function (params, callback) {
+  515:      var action = 'IncomingCarrier/' + params['carrier_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\33.js
+  552:  plivo.modify_outgoing_carrier = function (params, callback) {
+  553:      var action;
+  554:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  554:  plivo.modify_outgoing_carrier = function (params, callback) {
+  555:      var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
+  556:      delete params.carrier_id;
+  557:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\33.js
+  594:      var action = 'Pricing/';
+  595:      var method;
+  596:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  597:      var action = 'Pricing/';
+  598:      var method = 'GET';
+  599:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\33.js
+  600:   */
+  601:  function Response() {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  603:   */
+  604:  // Decalaring a class Response
+  605:  function Response() {
+*****
+
+***** PLIVO-NODE\RD\33.js
+  766:          'confirmSound',
+  767:          'confirmKey',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  770:          'confirmSound',
+  771:          'dialMusic',
+  772:          'confirmKey',
+*****
+

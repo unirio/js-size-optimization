@@ -1,0 +1,67 @@
+Comparing files UNDERSCORE\RD\50.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\50.js
+   31:      // Export the Underscore object for **Node.js**, with
+   32:      // the browser, add `_` as a global object.
+***** UNDERSCORE\RD\ORIGINAL.JS
+   31:      // Export the Underscore object for **Node.js**, with
+   32:      // backwards-compatibility for the old `require()` API. If we're in
+   33:      // the browser, add `_` as a global object.
+*****
+
+***** UNDERSCORE\RD\50.js
+   85:      };
+   86:      var createAssigner = function (keysFunc, undefinedOnly) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   86:      };
+   87:      // An internal function for creating assigner functions.
+   88:      var createAssigner = function (keysFunc, undefinedOnly) {
+*****
+
+***** UNDERSCORE\RD\50.js
+  593:      // Use a comparator function to figure out the smallest index at which
+  594:      _.sortedIndex = function (array, obj, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  595:      // Use a comparator function to figure out the smallest index at which
+  596:      // an object should be inserted so as to maintain order. Uses binary search.
+  597:      _.sortedIndex = function (array, obj, iteratee, context) {
+*****
+
+***** UNDERSCORE\RD\50.js
+  765:                  result = func.apply(context, args);
+  766:              } else if (!timeout && options.trailing !== false) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  768:                  result = func.apply(context, args);
+  769:                  if (!timeout)
+  770:                      context = args = null;
+  771:              } else if (!timeout && options.trailing !== false) {
+*****
+
+***** UNDERSCORE\RD\50.js
+  860:          'toString',
+  861:          'hasOwnProperty',
+***** UNDERSCORE\RD\ORIGINAL.JS
+  865:          'toString',
+  866:          'propertyIsEnumerable',
+  867:          'hasOwnProperty',
+*****
+
+***** UNDERSCORE\RD\50.js
+  868:          // Constructor is a special case.
+  869:          var prop;
+  870:          if (_.has(obj, prop) && !_.contains(keys, prop))
+***** UNDERSCORE\RD\ORIGINAL.JS
+  874:          // Constructor is a special case.
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+*****
+
+***** UNDERSCORE\RD\50.js
+  892:              collectNonEnumProps(obj, keys);
+  893:          return;
+  894:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  898:              collectNonEnumProps(obj, keys);
+  899:          return keys;
+  900:      };
+*****
+

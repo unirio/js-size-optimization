@@ -1,0 +1,53 @@
+Comparing files JQUERY\RD\6.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\6.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\6.js
+ 1672:          function elementMatcher(matchers) {
+ 1673:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 1673:          function elementMatcher(matchers) {
+ 1674:              return matchers.length > 1 ? function (elem, context, xml) {
+ 1675:                  var i = matchers.length;
+ 1676:                  while (i--) {
+ 1677:                      if (!matchers[i](elem, context, xml)) {
+ 1678:                          return false;
+ 1679:                      }
+ 1680:                  }
+ 1681:                  return true;
+ 1682:              } : matchers[0];
+ 1683:          }
+*****
+
+***** JQUERY\RD\6.js
+ 3094:              if (typeof key === 'object') {
+ 3095:                  return;
+ 3096:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 3104:              if (typeof key === 'object') {
+ 3105:                  return this.each(function () {
+ 3106:                      dataUser.set(this, key);
+ 3107:                  });
+ 3108:              }
+*****
+
+***** JQUERY\RD\6.js
+ 4179:              if (first || ignored) {
+ 4180:                  scripts = jQuery.map(getAll(fragment), disableScript);
+ 4181:                  hasScripts = scripts.length;
+***** JQUERY\RD\ORIGINAL.JS
+ 4191:              if (first || ignored) {
+ 4192:                  scripts = jQuery.map(getAll(fragment, 'script'), disableScript);
+ 4193:                  hasScripts = scripts.length;
+*****
+

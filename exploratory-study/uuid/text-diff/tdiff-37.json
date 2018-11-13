@@ -1,0 +1,32 @@
+Comparing files UUID\RD\37.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\37.js
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString();
+  185:              if (octet.length == 1) {
+***** UUID\RD\ORIGINAL.JS
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+  185:              if (octet.length == 1) {
+*****
+
+***** UUID\RD\37.js
+  199:          ints[i] = binary.charCodeAt(i);
+  200:      }
+***** UUID\RD\ORIGINAL.JS
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+  201:              throw new Error('Unexpected byte in binary data.');
+  202:          }
+  203:      }
+*****
+
+***** UUID\RD\37.js
+  208:  UUIDjs.newTS = function () {
+  209:      return this.create();
+  210:  };
+***** UUID\RD\ORIGINAL.JS
+  211:  UUIDjs.newTS = function () {
+  212:      return this.create(1);
+  213:  };
+*****
+

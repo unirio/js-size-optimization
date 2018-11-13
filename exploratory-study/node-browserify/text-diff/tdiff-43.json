@@ -1,0 +1,12 @@
+Comparing files NODE-BROWSERIFY\RD\43.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\43.js
+   75:      });
+   76:  }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   75:      });
+   76:      [].concat(opts.plugin).filter(Boolean).forEach(function (p) {
+   77:          self.plugin(p, { basedir: opts.basedir });
+   78:      });
+   79:  }
+*****
+

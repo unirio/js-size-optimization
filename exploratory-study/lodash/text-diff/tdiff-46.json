@@ -1,0 +1,152 @@
+Comparing files LODASH\RD\46.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\46.js
+ 2794:  4].length && data[9] == 1) {
+ 2795:                          wrapper = wrapper[getFuncName(data[0])].apply(wrapper);
+ 2796:                      } else {
+***** LODASH\RD\ORIGINAL.JS
+ 2794:  4].length && data[9] == 1) {
+ 2795:                          wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+ 2796:                      } else {
+*****
+
+***** LODASH\RD\46.js
+ 5906:          });
+ 5907:          function sortByOrder(collection, iteratees, orders, guard) {
+ 5908:              if (collection == null) {
+ 5909:                  return [];
+ 5910:              }
+ 5911:              if (!isArray(iteratees)) {
+ 5912:                  iteratees = iteratees == null ? [] : [iteratees];
+ 5913:              }
+ 5914:              orders = guard ? undefined : orders;
+ 5915:              if (!isArray(orders)) {
+ 5916:                  orders = orders == null ? [] : [orders];
+ 5917:              }
+ 5918:              return baseSortByOrder(collection, iteratees, orders);
+ 5919:          }
+ 5920:          /*------------------------------------------------------------------------*/
+ 5921:          /**
+ 5922:       * Gets the timestamp of the number of milliseconds that have elapsed since
+ 5923:       * the Unix epoch (1 January 1970 00:00:00 UTC).
+ 5924:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5906:          });
+ 5907:          /**
+ 5908:       * This method is like `_.sortBy` except that it allows specifying the
+ 5909:       * sort orders of the iteratees to sort by. If `orders` is unspecified, all
+ 5910:       * values are sorted in ascending order. Otherwise, a value is sorted in
+ 5911:       * ascending order if its corresponding order is "asc", and descending if "desc".
+ 5912:       *
+*****
+
+***** LODASH\RD\46.js
+ 5926:       * @memberOf _
+ 5927:       * @type Function
+ 5928:       * @category Date
+ 5929:       * @returns {number} Returns the timestamp.
+ 5930:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5914:       * @memberOf _
+ 5915:       * @category Collection
+ 5916:       * @param {Array|Object} collection The collection to iterate over.
+ 5917:       * @param {Function[]|Object[]|string[]} [iteratees=[_.identity]] The iteratees to sort by.
+ 5918:       * @param {string[]} [orders] The sort orders of `iteratees`.
+ 5919:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.reduce`.
+ 5920:       * @returns {Array} Returns the new sorted array.
+ 5921:       * @example
+*****
+
+***** LODASH\RD\46.js
+ 5931:       *
+ 5932:       * _.defer(function(stamp) {
+ 5933:       *   console.log(_.now() - stamp);
+ 5934:       * }, _.now());
+ 5935:       * // => logs the number of milliseconds it took for the deferred function to be invoked
+ 5936:       */
+ 5937:          var now = Date.now;
+ 5938:          /*------------------------------------------------------------------------*/
+***** LODASH\RD\ORIGINAL.JS
+ 5922:       *
+ 5923:       * var resolve = _.partial(_.map, _, _.values);
+ 5924:       *
+ 5925:       * var users = [
+ 5926:       *   { 'user': 'fred',   'age': 48 },
+ 5927:       *   { 'user': 'barney', 'age': 34 },
+ 5928:       *   { 'user': 'fred',   'age': 42 },
+ 5929:       *   { 'user': 'barney', 'age': 36 }
+ 5930:       * ];
+ 5931:       *
+ 5932:       * // sort by `user` in ascending order and by `age` in descending order
+ 5933:       * resolve( _.sortByOrder(users, ['user', 'age'], ['asc', 'desc']) );
+ 5934:       * // => [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 42]]
+ 5935:       */
+ 5936:          function sortByOrder(collection, iteratees, orders, guard) {
+ 5937:              if (collection == null) {
+ 5938:                  return [];
+ 5939:              }
+ 5940:              if (!isArray(iteratees)) {
+ 5941:                  iteratees = iteratees == null ? [] : [iteratees];
+ 5942:              }
+ 5943:              orders = guard ? undefined : orders;
+ 5944:              if (!isArray(orders)) {
+ 5945:                  orders = orders == null ? [] : [orders];
+ 5946:              }
+ 5947:              return baseSortByOrder(collection, iteratees, orders);
+ 5948:          }
+ 5949:          /*------------------------------------------------------------------------*/
+*****
+
+***** LODASH\RD\46.js
+ 5939:          /**
+ 5940:       * The opposite of `_.before`; this method creates a function that invokes
+ 5941:       * `func` once it's called `n` or more times.
+ 5942:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5950:          /**
+ 5951:       * Gets the timestamp of the number of milliseconds that have elapsed since
+ 5952:       * the Unix epoch (1 January 1970 00:00:00 UTC).
+ 5953:       *
+*****
+
+***** LODASH\RD\46.js
+ 5944:       * @memberOf _
+ 5945:       * @category Function
+ 5946:       * @param {number} n The number of calls before `func` is invoked.
+ 5947:       * @param {Function} func The function to restrict.
+ 5948:       * @returns {Function} Returns the new restricted function.
+ 5949:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5955:       * @memberOf _
+ 5956:       * @type Function
+ 5957:       * @category Date
+ 5958:       * @returns {number} Returns the timestamp.
+ 5959:       * @example
+*****
+
+***** LODASH\RD\46.js
+ 5950:       *
+ 5951:       * var saves = ['profile', 'settings'];
+***** LODASH\RD\ORIGINAL.JS
+ 5960:       *
+ 5961:       * _.defer(function(stamp) {
+ 5962:       *   console.log(_.now() - stamp);
+ 5963:       * }, _.now());
+ 5964:       * // => logs the number of milliseconds it took for the deferred function to be invoked
+ 5965:       */
+ 5966:          var now = Date.now;
+ 5967:          /*------------------------------------------------------------------------*/
+ 5968:          /**
+ 5969:       * The opposite of `_.before`; this method creates a function that invokes
+ 5970:       * `func` once it's called `n` or more times.
+ 5971:       *
+ 5972:       * @static
+ 5973:       * @memberOf _
+ 5974:       * @category Function
+ 5975:       * @param {number} n The number of calls before `func` is invoked.
+ 5976:       * @param {Function} func The function to restrict.
+ 5977:       * @returns {Function} Returns the new restricted function.
+ 5978:       * @example
+ 5979:       *
+ 5980:       * var saves = ['profile', 'settings'];
+*****
+

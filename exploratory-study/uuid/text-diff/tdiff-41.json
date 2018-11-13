@@ -1,0 +1,51 @@
+Comparing files UUID\RD\41.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\41.js
+  177:          2,
+  178:          2
+  179:      ];
+  180:      return UUIDjs.fromURN(str);
+  181:  };
+  182:  UUIDjs.fromBinary = function (binary) {
+  183:      var ints = [];
+  184:      for (var i = 0;; i++) {
+  185:          ints[i] = binary.charCodeAt(i);
+  186:          if (ints[i] > 255 || ints[i] < 0) {
+  187:              throw new Error();
+  188:          }
+***** UUID\RD\ORIGINAL.JS
+  177:          2,
+  178:          2,
+  179:          2,
+  180:          6
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+  185:              if (octet.length == 1) {
+  186:                  octet = '0' + octet;
+  187:              }
+  188:              str += octet;
+  189:          }
+  190:          if (parts[i] !== 6) {
+  191:              str += '-';
+  192:          }
+*****
+
+***** UUID\RD\41.js
+  189:      }
+  190:      return UUIDjs.fromBytes(ints);
+***** UUID\RD\ORIGINAL.JS
+  193:      }
+  194:      return UUIDjs.fromURN(str);
+  195:  };
+  196:  UUIDjs.fromBinary = function (binary) {
+  197:      var ints = [];
+  198:      for (var i = 0; i < binary.length; i++) {
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+  201:              throw new Error('Unexpected byte in binary data.');
+  202:          }
+  203:      }
+  204:      return UUIDjs.fromBytes(ints);
+*****
+

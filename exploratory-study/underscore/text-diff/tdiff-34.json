@@ -1,0 +1,31 @@
+Comparing files UNDERSCORE\RD\34.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\34.js
+  397:          if (!obj)
+  398:              return;
+  399:          if (_.isArray(obj))
+***** UNDERSCORE\RD\ORIGINAL.JS
+  397:          if (!obj)
+  398:              return [];
+  399:          if (_.isArray(obj))
+*****
+
+***** UNDERSCORE\RD\34.js
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, args.concat(slice.call(arguments)));
+  681:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, this, args.concat(slice.call(arguments)));
+  681:          };
+*****
+
+***** UNDERSCORE\RD\34.js
+ 1202:          _.isFunction = function (obj) {
+ 1203:              return;
+ 1204:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1202:          _.isFunction = function (obj) {
+ 1203:              return typeof obj == 'function' || false;
+ 1204:          };
+*****
+

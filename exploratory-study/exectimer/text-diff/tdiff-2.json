@@ -1,0 +1,28 @@
+Comparing files EXECTIMER\RD\2.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\2.js
+   93:              parse: function (num) {
+   94:              }
+***** EXECTIMER\RD\ORIGINAL.JS
+   93:              parse: function (num) {
+   94:                  if (num < 1000) {
+   95:                      return num + 'ns';
+   96:                  } else if (num >= 1000 && num < 1000000) {
+   97:                      return num / 1000 + 'us';
+   98:                  } else if (num >= 1000000 && num < 1000000000) {
+   99:                      return num / 1000000 + 'ms';
+  100:                  } else if (num >= 1000000000) {
+  101:                      return num / 1000000000 + 's';
+  102:                  }
+  103:              }
+*****
+
+***** EXECTIMER\RD\2.js
+  139:      if (isGeneratorFunction(callback)) {
+  140:          co(callback).then(done);
+  141:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  148:      if (isGeneratorFunction(callback)) {
+  149:          co(callback).then(done, done);
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+*****
+

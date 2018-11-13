@@ -1,0 +1,65 @@
+Comparing files UNDERSCORE\RD\22.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\22.js
+    7:      // --------------
+    8:      var root = this;
+***** UNDERSCORE\RD\ORIGINAL.JS
+    7:      // --------------
+    8:      // Establish the root object, `window` in the browser, or `exports` on the server.
+    9:      var root = this;
+*****
+
+***** UNDERSCORE\RD\22.js
+   63:              return function (accumulator, value, index, collection) {
+   64:                  return func.call(context, accumulator, value, index);
+   65:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+   64:              return function (accumulator, value, index, collection) {
+   65:                  return func.call(context, accumulator, value, index, collection);
+   66:              };
+*****
+
+***** UNDERSCORE\RD\22.js
+  236:      // Determine if the array or object contains a given item (using `===`).
+  237:      _.contains = _.includes = _.include = function (obj, item, fromIndex, guard) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  237:      // Determine if the array or object contains a given item (using `===`).
+  238:      // Aliased as `includes` and `include`.
+  239:      _.contains = _.includes = _.include = function (obj, item, fromIndex, guard) {
+*****
+
+***** UNDERSCORE\RD\22.js
+  675:              throw new TypeError('Bind must be called on a function');
+  676:          var bound = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  677:              throw new TypeError('Bind must be called on a function');
+  678:          var args = slice.call(arguments, 2);
+  679:          var bound = function () {
+*****
+
+***** UNDERSCORE\RD\22.js
+  895:              collectNonEnumProps(obj, keys);
+  896:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  898:              collectNonEnumProps(obj, keys);
+  899:          return keys;
+  900:      };
+*****
+
+***** UNDERSCORE\RD\22.js
+  964:      // Assigns a given object with all the own properties in the passed-in object(s)
+  965:      _.extendOwn = _.assign = createAssigner(_.keys);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  968:      // Assigns a given object with all the own properties in the passed-in object(s)
+  969:      // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+  970:      _.extendOwn = _.assign = createAssigner(_.keys);
+*****
+
+***** UNDERSCORE\RD\22.js
+ 1101:          // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+ 1102:          // It's done here since we only need them for objects and arrays comparison.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1106:          // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+ 1107:          // Initializing stack of traversed objects.
+ 1108:          // It's done here since we only need them for objects and arrays comparison.
+*****
+

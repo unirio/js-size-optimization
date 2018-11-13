@@ -1,0 +1,11 @@
+Comparing files MINIMIST\RD\25.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\25.js
+  116:                  if (next === '-') {
+  117:                      setArg(letters[j], next);
+  118:                      continue;
+***** MINIMIST\RD\ORIGINAL.JS
+  116:                  if (next === '-') {
+  117:                      setArg(letters[j], next, arg);
+  118:                      continue;
+*****
+

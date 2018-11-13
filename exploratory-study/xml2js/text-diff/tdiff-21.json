@@ -1,0 +1,11 @@
+Comparing files XML2JS\RD\21.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\21.js
+  455:                          if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChild
+  456:  ren && text.replace(/\\n/g).trim() !== '') {
+  457:                              s[_this.options.childkey] = s[_this.options.childkey] || [];
+***** XML2JS\RD\ORIGINAL.JS
+  455:                          if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChild
+  456:  ren && text.replace(/\\n/g, '').trim() !== '') {
+  457:                              s[_this.options.childkey] = s[_this.options.childkey] || [];
+*****
+

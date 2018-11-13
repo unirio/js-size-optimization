@@ -1,0 +1,29 @@
+Comparing files LODASH\RD\10.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\10.js
+ 2220:              metaMap.set(func, data);
+ 2221:          };
+***** LODASH\RD\ORIGINAL.JS
+ 2220:              metaMap.set(func, data);
+ 2221:              return func;
+ 2222:          };
+*****
+
+***** LODASH\RD\10.js
+ 3258:              var value = object == null ? undefined : object[key];
+ 3259:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3259:              var value = object == null ? undefined : object[key];
+ 3260:              return isNative(value) ? value : undefined;
+ 3261:          }
+*****
+
+***** LODASH\RD\10.js
+ 9644:                  if (string.slice(end).search(separator)) {
+ 9645:                      var match, newEnd, substring = string.slice(0);
+ 9646:                      if (!separator.global) {
+***** LODASH\RD\ORIGINAL.JS
+ 9646:                  if (string.slice(end).search(separator)) {
+ 9647:                      var match, newEnd, substring = string.slice(0, end);
+ 9648:                      if (!separator.global) {
+*****
+

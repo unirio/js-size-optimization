@@ -1,0 +1,767 @@
+Comparing files LODASH\RD\4.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\4.js
+  930:                  var result = new LazyWrapper(this);
+  931:                  result.__filtered__ = true;
+***** LODASH\RD\ORIGINAL.JS
+  930:                  var result = new LazyWrapper(this);
+  931:                  result.__dir__ = -1;
+  932:                  result.__filtered__ = true;
+*****
+
+***** LODASH\RD\4.js
+ 1585:                  if (predicate(value, index, collection)) {
+ 1586:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 1586:                  if (predicate(value, index, collection)) {
+ 1587:                      result.push(value);
+ 1588:                  }
+*****
+
+***** LODASH\RD\4.js
+ 2093:          }
+ 2094:          function baseProperty(key) {
+***** LODASH\RD\ORIGINAL.JS
+ 2095:          }
+ 2096:          /**
+ 2097:       * The base implementation of `_.property` without support for deep paths.
+ 2098:       *
+ 2099:       * @private
+ 2100:       * @param {string} key The key of the property to get.
+ 2101:       * @returns {Function} Returns the new function.
+ 2102:       */
+ 2103:          function baseProperty(key) {
+*****
+
+***** LODASH\RD\4.js
+ 3236:              while (length--) {
+ 3237:              }
+***** LODASH\RD\ORIGINAL.JS
+ 3245:              while (length--) {
+ 3246:                  result[length][2] = isStrictComparable(result[length][1]);
+ 3247:              }
+*****
+
+***** LODASH\RD\4.js
+ 3488:              }
+ 3489:              var data;
+ 3490:              return !!data && func === data[0];
+***** LODASH\RD\ORIGINAL.JS
+ 3498:              }
+ 3499:              var data = getData(other);
+ 3500:              return !!data && func === data[0];
+*****
+
+***** LODASH\RD\4.js
+ 3645:          var setData = function () {
+ 3646:              var count, lastCalled = 0;
+ 3647:              return function (key, value) {
+***** LODASH\RD\ORIGINAL.JS
+ 3655:          var setData = function () {
+ 3656:              var count = 0, lastCalled = 0;
+ 3657:              return function (key, value) {
+*****
+
+***** LODASH\RD\4.js
+ 4495:          }
+ 4496:          function take(array, n, guard) {
+ 4497:              if (!(array && array.length)) {
+ 4498:                  return [];
+ 4499:              }
+ 4500:              n = guard || n == null ? 1 : n;
+ 4501:              return baseSlice(array, 0, n < 0 ? 0 : n);
+ 4502:          }
+ 4503:          /**
+ 4504:       * Creates a slice of `array` with `n` elements taken from the end.
+ 4505:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4505:          }
+ 4506:          /**
+ 4507:       * Creates a slice of `array` with `n` elements taken from the beginning.
+ 4508:       *
+*****
+
+***** LODASH\RD\4.js
+ 4514:       *
+ 4515:       * _.takeRight([1, 2, 3]);
+ 4516:       * // => [3]
+ 4517:       *
+ 4518:       * _.takeRight([1, 2, 3], 2);
+ 4519:       * // => [2, 3]
+ 4520:       *
+ 4521:       * _.takeRight([1, 2, 3], 5);
+ 4522:       * // => [1, 2, 3]
+***** LODASH\RD\ORIGINAL.JS
+ 4517:       *
+ 4518:       * _.take([1, 2, 3]);
+ 4519:       * // => [1]
+ 4520:       *
+ 4521:       * _.take([1, 2, 3], 2);
+ 4522:       * // => [1, 2]
+ 4523:       *
+ 4524:       * _.take([1, 2, 3], 5);
+ 4525:       * // => [1, 2, 3]
+*****
+
+***** LODASH\RD\4.js
+ 4523:       *
+ 4524:       * _.takeRight([1, 2, 3], 0);
+ 4525:       * // => []
+***** LODASH\RD\ORIGINAL.JS
+ 4526:       *
+ 4527:       * _.take([1, 2, 3], 0);
+ 4528:       * // => []
+*****
+
+***** LODASH\RD\4.js
+ 4526:       */
+ 4527:          function takeRight(array, n, guard) {
+ 4528:              var length = array ? array.length : 0;
+ 4529:              if (!length) {
+ 4530:                  return [];
+***** LODASH\RD\ORIGINAL.JS
+ 4529:       */
+ 4530:          function take(array, n, guard) {
+ 4531:              if (!(array && array.length)) {
+ 4532:                  return [];
+*****
+
+***** LODASH\RD\4.js
+ 4531:              }
+ 4532:              n = guard || n == null ? 1 : toInteger(n);
+ 4533:              n = length - n;
+ 4534:              return baseSlice(array, n < 0 ? 0 : n);
+ 4535:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4533:              }
+ 4534:              n = guard || n == null ? 1 : n;
+ 4535:              return baseSlice(array, 0, n < 0 ? 0 : n);
+ 4536:          }
+*****
+
+***** LODASH\RD\4.js
+ 4536:          /**
+ 4537:       * Creates a slice of `array` with elements taken from the end. Elements are
+ 4538:       * taken until `predicate` returns falsey. The predicate is invoked with three
+ 4539:       * arguments: (value, index, array).
+ 4540:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4537:          /**
+ 4538:       * Creates a slice of `array` with `n` elements taken from the end.
+ 4539:       *
+*****
+
+***** LODASH\RD\4.js
+ 4544:       * @param {Array} array The array to query.
+ 4545:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 4546:       * @returns {Array} Returns the slice of `array`.
+***** LODASH\RD\ORIGINAL.JS
+ 4543:       * @param {Array} array The array to query.
+ 4544:       * @param {number} [n=1] The number of elements to take.
+ 4545:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 4546:       * @returns {Array} Returns the slice of `array`.
+*****
+
+***** LODASH\RD\4.js
+ 4548:       *
+ 4549:       * var resolve = _.partial(_.map, _, 'user');
+ 4550:       *
+ 4551:       * var users = [
+ 4552:       *   { 'user': 'barney',  'active': true },
+ 4553:       *   { 'user': 'fred',    'active': false },
+ 4554:       *   { 'user': 'pebbles', 'active': false }
+ 4555:       * ];
+ 4556:       *
+ 4557:       * resolve( _.takeRightWhile(users, function(o) { return !o.active; }) );
+ 4558:       * // => ['fred', 'pebbles']
+ 4559:       *
+ 4560:       * // using the `_.matches` callback shorthand
+ 4561:       * resolve( _.takeRightWhile(users, { 'user': 'pebbles', 'active': false }) );
+ 4562:       * // => ['pebbles']
+ 4563:       *
+ 4564:       * // using the `_.matchesProperty` callback shorthand
+ 4565:       * resolve( _.takeRightWhile(users, ['active', false]) );
+ 4566:       * // => ['fred', 'pebbles']
+ 4567:       *
+ 4568:       * // using the `_.property` callback shorthand
+ 4569:       * resolve( _.takeRightWhile(users, 'active') );
+ 4570:       * // => []
+***** LODASH\RD\ORIGINAL.JS
+ 4548:       *
+ 4549:       * _.takeRight([1, 2, 3]);
+ 4550:       * // => [3]
+ 4551:       *
+ 4552:       * _.takeRight([1, 2, 3], 2);
+ 4553:       * // => [2, 3]
+ 4554:       *
+ 4555:       * _.takeRight([1, 2, 3], 5);
+ 4556:       * // => [1, 2, 3]
+ 4557:       *
+ 4558:       * _.takeRight([1, 2, 3], 0);
+ 4559:       * // => []
+*****
+
+***** LODASH\RD\4.js
+ 4571:       */
+ 4572:          function takeRightWhile(array, predicate) {
+ 4573:              return array && array.length ? baseWhile(array, getIteratee(predicate), false, true) : [];
+ 4574:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4560:       */
+ 4561:          function takeRight(array, n, guard) {
+ 4562:              var length = array ? array.length : 0;
+ 4563:              if (!length) {
+ 4564:                  return [];
+ 4565:              }
+ 4566:              n = guard || n == null ? 1 : toInteger(n);
+ 4567:              n = length - n;
+ 4568:              return baseSlice(array, n < 0 ? 0 : n);
+ 4569:          }
+*****
+
+***** LODASH\RD\4.js
+ 4575:          /**
+ 4576:       * Creates a slice of `array` with elements taken from the beginning. Elements
+ 4577:       * are taken until `predicate` returns falsey. The predicate is invoked with
+ 4578:       * three arguments: (value, index, array).
+ 4579:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4570:          /**
+ 4571:       * Creates a slice of `array` with elements taken from the end. Elements are
+ 4572:       * taken until `predicate` returns falsey. The predicate is invoked with three
+ 4573:       * arguments: (value, index, array).
+ 4574:       *
+*****
+
+***** LODASH\RD\4.js
+ 4590:       * var users = [
+ 4591:       *   { 'user': 'barney',  'active': false },
+ 4592:       *   { 'user': 'fred',    'active': false},
+ 4593:       *   { 'user': 'pebbles', 'active': true }
+ 4594:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 4585:       * var users = [
+ 4586:       *   { 'user': 'barney',  'active': true },
+ 4587:       *   { 'user': 'fred',    'active': false },
+ 4588:       *   { 'user': 'pebbles', 'active': false }
+ 4589:       * ];
+*****
+
+***** LODASH\RD\4.js
+ 4595:       *
+ 4596:       * resolve( _.takeWhile(users, function(o) { return !o.active; }) );
+ 4597:       * // => ['barney', 'fred']
+ 4598:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4590:       *
+ 4591:       * resolve( _.takeRightWhile(users, function(o) { return !o.active; }) );
+ 4592:       * // => ['fred', 'pebbles']
+ 4593:       *
+*****
+
+***** LODASH\RD\4.js
+ 4599:       * // using the `_.matches` callback shorthand
+ 4600:       * resolve( _.takeWhile(users, { 'user': 'barney', 'active': false }) );
+ 4601:       * // => ['barney']
+ 4602:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4594:       * // using the `_.matches` callback shorthand
+ 4595:       * resolve( _.takeRightWhile(users, { 'user': 'pebbles', 'active': false }) );
+ 4596:       * // => ['pebbles']
+ 4597:       *
+*****
+
+***** LODASH\RD\4.js
+ 4603:       * // using the `_.matchesProperty` callback shorthand
+ 4604:       * resolve( _.takeWhile(users, ['active', false]) );
+ 4605:       * // => ['barney', 'fred']
+ 4606:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4598:       * // using the `_.matchesProperty` callback shorthand
+ 4599:       * resolve( _.takeRightWhile(users, ['active', false]) );
+ 4600:       * // => ['fred', 'pebbles']
+ 4601:       *
+*****
+
+***** LODASH\RD\4.js
+ 4607:       * // using the `_.property` callback shorthand
+ 4608:       * resolve( _.takeWhile(users, 'active') );
+ 4609:       * // => []
+***** LODASH\RD\ORIGINAL.JS
+ 4602:       * // using the `_.property` callback shorthand
+ 4603:       * resolve( _.takeRightWhile(users, 'active') );
+ 4604:       * // => []
+*****
+
+***** LODASH\RD\4.js
+ 4610:       */
+ 4611:          function takeWhile(array, predicate) {
+ 4612:              return array && array.length ? baseWhile(array, getIteratee(predicate)) : [];
+ 4613:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4605:       */
+ 4606:          function takeRightWhile(array, predicate) {
+ 4607:              return array && array.length ? baseWhile(array, getIteratee(predicate), false, true) : [];
+ 4608:          }
+*****
+
+***** LODASH\RD\4.js
+ 4614:          /**
+ 4615:       * Creates an array of unique values, in order, from all of the provided arrays
+ 4616:       * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4617:       * for equality comparisons.
+ 4618:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4609:          /**
+ 4610:       * Creates a slice of `array` with elements taken from the beginning. Elements
+ 4611:       * are taken until `predicate` returns falsey. The predicate is invoked with
+ 4612:       * three arguments: (value, index, array).
+ 4613:       *
+*****
+
+***** LODASH\RD\4.js
+ 4621:       * @category Array
+ 4622:       * @param {...Array} [arrays] The arrays to inspect.
+ 4623:       * @returns {Array} Returns the new array of combined values.
+ 4624:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4616:       * @category Array
+ 4617:       * @param {Array} array The array to query.
+ 4618:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 4619:       * @returns {Array} Returns the slice of `array`.
+ 4620:       * @example
+*****
+
+***** LODASH\RD\4.js
+ 4625:       *
+ 4626:       * _.union([1, 2], [4, 2], [2, 1]);
+ 4627:       * // => [1, 2, 4]
+ 4628:       */
+ 4629:          var union = restParam(function (arrays) {
+ 4630:              return baseUniq(baseFlatten(arrays, false, true));
+ 4631:          });
+ 4632:          /**
+ 4633:       * Creates a duplicate-free version of an array, using
+ 4634:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4635:       * for equality comparisons, in which only the first occurence of each element
+ 4636:       * is kept. Providing `true` for `isSorted` performs a faster search algorithm
+ 4637:       * for sorted arrays.
+ 4638:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4621:       *
+ 4622:       * var resolve = _.partial(_.map, _, 'user');
+ 4623:       *
+ 4624:       * var users = [
+ 4625:       *   { 'user': 'barney',  'active': false },
+ 4626:       *   { 'user': 'fred',    'active': false},
+ 4627:       *   { 'user': 'pebbles', 'active': true }
+ 4628:       * ];
+ 4629:       *
+ 4630:       * resolve( _.takeWhile(users, function(o) { return !o.active; }) );
+ 4631:       * // => ['barney', 'fred']
+ 4632:       *
+ 4633:       * // using the `_.matches` callback shorthand
+ 4634:       * resolve( _.takeWhile(users, { 'user': 'barney', 'active': false }) );
+ 4635:       * // => ['barney']
+ 4636:       *
+ 4637:       * // using the `_.matchesProperty` callback shorthand
+ 4638:       * resolve( _.takeWhile(users, ['active', false]) );
+ 4639:       * // => ['barney', 'fred']
+ 4640:       *
+ 4641:       * // using the `_.property` callback shorthand
+ 4642:       * resolve( _.takeWhile(users, 'active') );
+ 4643:       * // => []
+ 4644:       */
+ 4645:          function takeWhile(array, predicate) {
+ 4646:              return array && array.length ? baseWhile(array, getIteratee(predicate)) : [];
+ 4647:          }
+ 4648:          /**
+ 4649:       * Creates an array of unique values, in order, from all of the provided arrays
+ 4650:       * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4651:       * for equality comparisons.
+ 4652:       *
+*****
+
+***** LODASH\RD\4.js
+ 4641:       * @category Array
+ 4642:       * @param {Array} array The array to inspect.
+ 4643:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4644:       * @returns {Array} Returns the new duplicate free array.
+ 4645:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4655:       * @category Array
+ 4656:       * @param {...Array} [arrays] The arrays to inspect.
+ 4657:       * @returns {Array} Returns the new array of combined values.
+ 4658:       * @example
+*****
+
+***** LODASH\RD\4.js
+ 4646:       *
+ 4647:       * _.uniq([2, 1, 2]);
+ 4648:       * // => [2, 1]
+ 4649:       *
+ 4650:       * // using `isSorted`
+ 4651:       * _.uniq([1, 1, 2], true);
+ 4652:       * // => [1, 2]
+ 4653:       */
+ 4654:          function uniq(array, isSorted) {
+ 4655:              if (!(array && array.length)) {
+ 4656:                  return [];
+ 4657:              }
+ 4658:              return isSorted && typeof isSorted == 'boolean' && getIndexOf() === baseIndexOf ? sortedUniq(array) : baseUniq(arra
+ 4659:  y);
+ 4660:          }
+ 4661:          /**
+ 4662:       * This method is like `_.uniq` except that it accepts `iteratee` which is
+ 4663:       * invoked for each element in `array` to generate the criterion by which
+ 4664:       * uniqueness is computed. The iteratee is invoked with one argument: (value).
+ 4665:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4659:       *
+ 4660:       * _.union([1, 2], [4, 2], [2, 1]);
+ 4661:       * // => [1, 2, 4]
+ 4662:       */
+ 4663:          var union = restParam(function (arrays) {
+ 4664:              return baseUniq(baseFlatten(arrays, false, true));
+ 4665:          });
+ 4666:          /**
+ 4667:       * Creates a duplicate-free version of an array, using
+ 4668:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4669:       * for equality comparisons, in which only the first occurence of each element
+ 4670:       * is kept. Providing `true` for `isSorted` performs a faster search algorithm
+ 4671:       * for sorted arrays.
+ 4672:       *
+*****
+
+***** LODASH\RD\4.js
+ 4670:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4671:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4672:       * @returns {Array} Returns the new duplicate free array.
+***** LODASH\RD\ORIGINAL.JS
+ 4677:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4678:       * @returns {Array} Returns the new duplicate free array.
+*****
+
+***** LODASH\RD\4.js
+ 4674:       *
+ 4675:       * _.uniqBy([1, 2.5, 1.5, 2], function(n) {
+ 4676:       *   return Math.floor(n);
+ 4677:       * });
+ 4678:       * // => [1, 2.5]
+ 4679:       *
+ 4680:       * // using the `_.property` callback shorthand
+ 4681:       * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+ 4682:       * // => [{ 'x': 1 }, { 'x': 2 }]
+ 4683:       */
+ 4684:          function uniqBy(array, isSorted, iteratee) {
+ 4685:              if (!(array && array.length)) {
+***** LODASH\RD\ORIGINAL.JS
+ 4680:       *
+ 4681:       * _.uniq([2, 1, 2]);
+ 4682:       * // => [2, 1]
+ 4683:       *
+ 4684:       * // using `isSorted`
+ 4685:       * _.uniq([1, 1, 2], true);
+ 4686:       * // => [1, 2]
+ 4687:       */
+ 4688:          function uniq(array, isSorted) {
+ 4689:              if (!(array && array.length)) {
+*****
+
+***** LODASH\RD\4.js
+ 4687:              }
+ 4688:              if (isSorted != null && typeof isSorted != 'boolean') {
+ 4689:                  iteratee = isSorted;
+ 4690:                  isSorted = false;
+ 4691:              }
+ 4692:              var toIteratee = getIteratee();
+ 4693:              if (!(iteratee == null && toIteratee === baseIteratee)) {
+ 4694:                  iteratee = toIteratee(iteratee);
+ 4695:              }
+ 4696:              return isSorted && getIndexOf() === baseIndexOf ? sortedUniq(array, iteratee) : baseUniq(array, iteratee);
+ 4697:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4691:              }
+ 4692:              return isSorted && typeof isSorted == 'boolean' && getIndexOf() === baseIndexOf ? sortedUniq(array) : baseUniq(arra
+ 4693:  y);
+ 4694:          }
+*****
+
+***** LODASH\RD\4.js
+ 4698:          /**
+ 4699:       * This method is like `_.zip` except that it accepts an array of grouped
+ 4700:       * elements and creates an array regrouping the elements to their pre-zip
+ 4701:       * configuration.
+ 4702:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4695:          /**
+ 4696:       * This method is like `_.uniq` except that it accepts `iteratee` which is
+ 4697:       * invoked for each element in `array` to generate the criterion by which
+ 4698:       * uniqueness is computed. The iteratee is invoked with one argument: (value).
+ 4699:       *
+*****
+
+***** LODASH\RD\4.js
+ 4705:       * @category Array
+ 4706:       * @param {Array} array The array of grouped elements to process.
+ 4707:       * @returns {Array} Returns the new array of regrouped elements.
+ 4708:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4702:       * @category Array
+ 4703:       * @param {Array} array The array to inspect.
+ 4704:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4705:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4706:       * @returns {Array} Returns the new duplicate free array.
+ 4707:       * @example
+*****
+
+***** LODASH\RD\4.js
+ 4709:       *
+ 4710:       * var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+ 4711:       * // => [['fred', 30, true], ['barney', 40, false]]
+ 4712:       *
+ 4713:       * _.unzip(zipped);
+ 4714:       * // => [['fred', 'barney'], [30, 40], [true, false]]
+ 4715:       */
+ 4716:          function unzip(array) {
+ 4717:              if (!(array && array.length)) {
+***** LODASH\RD\ORIGINAL.JS
+ 4708:       *
+ 4709:       * _.uniqBy([1, 2.5, 1.5, 2], function(n) {
+ 4710:       *   return Math.floor(n);
+ 4711:       * });
+ 4712:       * // => [1, 2.5]
+ 4713:       *
+ 4714:       * // using the `_.property` callback shorthand
+ 4715:       * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+ 4716:       * // => [{ 'x': 1 }, { 'x': 2 }]
+ 4717:       */
+ 4718:          function uniqBy(array, isSorted, iteratee) {
+ 4719:              if (!(array && array.length)) {
+*****
+
+***** LODASH\RD\4.js
+ 4719:              }
+ 4720:              var index = -1, length = 0;
+ 4721:              array = arrayFilter(array, function (group) {
+ 4722:                  if (isObject(group) && isArrayLike(group)) {
+ 4723:                      length = nativeMax(group.length, length);
+ 4724:                      return true;
+ 4725:                  }
+ 4726:              });
+ 4727:              var result = Array(length);
+ 4728:              while (++index < length) {
+ 4729:                  result[index] = arrayMap(array, baseProperty(index));
+ 4730:              }
+ 4731:              return result;
+ 4732:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4721:              }
+ 4722:              if (isSorted != null && typeof isSorted != 'boolean') {
+ 4723:                  iteratee = isSorted;
+ 4724:                  isSorted = false;
+ 4725:              }
+ 4726:              var toIteratee = getIteratee();
+ 4727:              if (!(iteratee == null && toIteratee === baseIteratee)) {
+ 4728:                  iteratee = toIteratee(iteratee);
+ 4729:              }
+ 4730:              return isSorted && getIndexOf() === baseIndexOf ? sortedUniq(array, iteratee) : baseUniq(array, iteratee);
+ 4731:          }
+*****
+
+***** LODASH\RD\4.js
+ 4733:          /**
+ 4734:       * This method is like `_.unzip` except that it accepts `iteratee` to specify
+ 4735:       * how regrouped values should be combined. The iteratee is invoked with four
+ 4736:       * arguments: (accumulator, value, index, group).
+ 4737:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4732:          /**
+ 4733:       * This method is like `_.zip` except that it accepts an array of grouped
+ 4734:       * elements and creates an array regrouping the elements to their pre-zip
+ 4735:       * configuration.
+ 4736:       *
+*****
+
+***** LODASH\RD\4.js
+ 4741:       * @param {Array} array The array of grouped elements to process.
+ 4742:       * @param {Function} [iteratee=_.identity] The function to combine regrouped values.
+ 4743:       * @returns {Array} Returns the new array of regrouped elements.
+***** LODASH\RD\ORIGINAL.JS
+ 4740:       * @param {Array} array The array of grouped elements to process.
+ 4741:       * @returns {Array} Returns the new array of regrouped elements.
+*****
+
+***** LODASH\RD\4.js
+ 4745:       *
+ 4746:       * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+ 4747:       * // => [[1, 10, 100], [2, 20, 200]]
+ 4748:       *
+ 4749:       * _.unzipWith(zipped, _.add);
+ 4750:       * // => [3, 30, 300]
+ 4751:       */
+ 4752:          function unzipWith(array, iteratee) {
+ 4753:              if (!(array && array.length)) {
+***** LODASH\RD\ORIGINAL.JS
+ 4743:       *
+ 4744:       * var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+ 4745:       * // => [['fred', 30, true], ['barney', 40, false]]
+ 4746:       *
+ 4747:       * _.unzip(zipped);
+ 4748:       * // => [['fred', 'barney'], [30, 40], [true, false]]
+ 4749:       */
+ 4750:          function unzip(array) {
+ 4751:              if (!(array && array.length)) {
+*****
+
+***** LODASH\RD\4.js
+ 4755:              }
+ 4756:              var result = unzip(array);
+ 4757:              if (iteratee == null) {
+ 4758:                  return result;
+ 4759:              }
+ 4760:              return arrayMap(result, function (group) {
+ 4761:                  return arrayReduce(group, iteratee, undefined, true);
+ 4762:              });
+ 4763:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4753:              }
+ 4754:              var index = -1, length = 0;
+ 4755:              array = arrayFilter(array, function (group) {
+ 4756:                  if (isObject(group) && isArrayLike(group)) {
+ 4757:                      length = nativeMax(group.length, length);
+ 4758:                      return true;
+ 4759:                  }
+ 4760:              });
+ 4761:              var result = Array(length);
+ 4762:              while (++index < length) {
+ 4763:                  result[index] = arrayMap(array, baseProperty(index));
+ 4764:              }
+ 4765:              return result;
+ 4766:          }
+*****
+
+***** LODASH\RD\4.js
+ 4764:          /**
+ 4765:       * Creates an array excluding all provided values using
+ 4766:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4767:       * for equality comparisons.
+ 4768:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4767:          /**
+ 4768:       * This method is like `_.unzip` except that it accepts `iteratee` to specify
+ 4769:       * how regrouped values should be combined. The iteratee is invoked with four
+ 4770:       * arguments: (accumulator, value, index, group).
+ 4771:       *
+*****
+
+***** LODASH\RD\4.js
+ 4771:       * @category Array
+ 4772:       * @param {Array} array The array to filter.
+ 4773:       * @param {...*} [values] The values to exclude.
+ 4774:       * @returns {Array} Returns the new array of filtered values.
+ 4775:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4774:       * @category Array
+ 4775:       * @param {Array} array The array of grouped elements to process.
+ 4776:       * @param {Function} [iteratee=_.identity] The function to combine regrouped values.
+ 4777:       * @returns {Array} Returns the new array of regrouped elements.
+ 4778:       * @example
+*****
+
+***** LODASH\RD\4.js
+ 4776:       *
+ 4777:       * _.without([1, 2, 1, 3], 1, 2);
+ 4778:       * // => [3]
+ 4779:       */
+ 4780:          var without = restParam(function (array, values) {
+ 4781:              return isObject(array) && isArrayLike(array) ? baseDifference(array, values) : [];
+ 4782:          });
+ 4783:          /**
+ 4784:       * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+ 4785:       * of the provided arrays.
+ 4786:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4779:       *
+ 4780:       * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+ 4781:       * // => [[1, 10, 100], [2, 20, 200]]
+ 4782:       *
+ 4783:       * _.unzipWith(zipped, _.add);
+ 4784:       * // => [3, 30, 300]
+ 4785:       */
+ 4786:          function unzipWith(array, iteratee) {
+ 4787:              if (!(array && array.length)) {
+ 4788:                  return [];
+ 4789:              }
+ 4790:              var result = unzip(array);
+ 4791:              if (iteratee == null) {
+ 4792:                  return result;
+ 4793:              }
+ 4794:              return arrayMap(result, function (group) {
+ 4795:                  return arrayReduce(group, iteratee, undefined, true);
+ 4796:              });
+ 4797:          }
+ 4798:          /**
+ 4799:       * Creates an array excluding all provided values using
+ 4800:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4801:       * for equality comparisons.
+ 4802:       *
+*****
+
+***** LODASH\RD\4.js
+ 4789:       * @category Array
+ 4790:       * @param {...Array} [arrays] The arrays to inspect.
+ 4791:       * @returns {Array} Returns the new array of values.
+ 4792:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4805:       * @category Array
+ 4806:       * @param {Array} array The array to filter.
+ 4807:       * @param {...*} [values] The values to exclude.
+ 4808:       * @returns {Array} Returns the new array of filtered values.
+ 4809:       * @example
+*****
+
+***** LODASH\RD\4.js
+ 4793:       *
+ 4794:       * _.xor([1, 2], [4, 2]);
+***** LODASH\RD\ORIGINAL.JS
+ 4810:       *
+ 4811:       * _.without([1, 2, 1, 3], 1, 2);
+ 4812:       * // => [3]
+ 4813:       */
+ 4814:          var without = restParam(function (array, values) {
+ 4815:              return isObject(array) && isArrayLike(array) ? baseDifference(array, values) : [];
+ 4816:          });
+ 4817:          /**
+ 4818:       * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+ 4819:       * of the provided arrays.
+ 4820:       *
+ 4821:       * @static
+ 4822:       * @memberOf _
+ 4823:       * @category Array
+ 4824:       * @param {...Array} [arrays] The arrays to inspect.
+ 4825:       * @returns {Array} Returns the new array of values.
+ 4826:       * @example
+ 4827:       *
+ 4828:       * _.xor([1, 2], [4, 2]);
+*****
+
+***** LODASH\RD\4.js
+10735:              if (start < 0) {
+10736:              } else if (start) {
+***** LODASH\RD\ORIGINAL.JS
+10769:              if (start < 0) {
+10770:                  result = result.takeRight(-start);
+10771:              } else if (start) {
+*****
+
+***** LODASH\RD\4.js
+10771:                          'func': thru,
+10772:                          'args': [interceptor]
+10773:                      }, chainAll = this.__chain__, isHybrid = !!this.__actions__.length, isUnwrapped = retUnwrapped && !chainAll
+***** LODASH\RD\ORIGINAL.JS
+10806:                          'func': thru,
+10807:                          'args': [interceptor],
+10808:                          'thisArg': undefined
+10809:                      }, chainAll = this.__chain__, isHybrid = !!this.__actions__.length, isUnwrapped = retUnwrapped && !chainAll
+*****
+

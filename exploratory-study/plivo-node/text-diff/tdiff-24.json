@@ -1,0 +1,21 @@
+Comparing files PLIVO-NODE\RD\24.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\24.js
+  181:      var action = 'Call/' + params['call_uuid'] + '/Play/';
+  182:      var method = 'DELETE';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  181:      var action = 'Call/' + params['call_uuid'] + '/Play/';
+  182:      delete params.call_uuid;
+  183:      var method = 'DELETE';
+*****
+
+***** PLIVO-NODE\RD\24.js
+  687:      },
+  688:      addRedirect: function (body, attributes) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  688:      },
+  689:      addRecord: function (attributes) {
+  690:          return this.add(new Record(Response), '', attributes);
+  691:      },
+  692:      addRedirect: function (body, attributes) {
+*****
+

@@ -1,0 +1,71 @@
+Comparing files UNDERSCORE\RD\39.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\39.js
+   37:          }
+   38:      } else {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   37:          }
+   38:          exports._ = _;
+   39:      } else {
+*****
+
+***** UNDERSCORE\RD\39.js
+  292:      _.min = function (obj, iteratee, context) {
+  293:          var result = Infinity, lastComputed = Infinity, computed;
+  294:          if (iteratee == null && obj != null) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  293:      _.min = function (obj, iteratee, context) {
+  294:          var result = Infinity, lastComputed = Infinity, value, computed;
+  295:          if (iteratee == null && obj != null) {
+*****
+
+***** UNDERSCORE\RD\39.js
+  450:      // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  451:      // the rest N values in the array.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  451:      // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  452:      // Especially useful on the arguments object. Passing an **n** will return
+  453:      // the rest N values in the array.
+*****
+
+***** UNDERSCORE\RD\39.js
+  675:              throw new TypeError('Bind must be called on a function');
+  676:          var args = slice.call(arguments);
+  677:          var bound = function () {
+  678:              return executeBound(func, bound, context, this);
+  679:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  677:              throw new TypeError('Bind must be called on a function');
+  678:          var args = slice.call(arguments, 2);
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, this, args.concat(slice.call(arguments)));
+  681:          };
+*****
+
+***** UNDERSCORE\RD\39.js
+ 1168:      _.isArray = nativeIsArray || function (obj) {
+ 1169:          return;
+ 1170:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1170:      _.isArray = nativeIsArray || function (obj) {
+ 1171:          return toString.call(obj) === '[object Array]';
+ 1172:      };
+*****
+
+***** UNDERSCORE\RD\39.js
+ 1294:      var unescapeMap = _.invert(escapeMap);
+ 1295:      var createEscaper = function (map) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1296:      var unescapeMap = _.invert(escapeMap);
+ 1297:      // Functions for escaping and unescaping strings to/from HTML interpolation.
+ 1298:      var createEscaper = function (map) {
+*****
+
+***** UNDERSCORE\RD\39.js
+ 1463:      // Provide unwrapping proxy for some methods used in engine operations
+ 1464:      _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1466:      // Provide unwrapping proxy for some methods used in engine operations
+ 1467:      // such as arithmetic and JSON stringification.
+ 1468:      _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
+*****
+

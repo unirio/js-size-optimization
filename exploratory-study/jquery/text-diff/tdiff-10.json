@@ -1,0 +1,34 @@
+Comparing files JQUERY\RD\10.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\10.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\10.js
+ 3072:          },
+ 3073:          _removeData: function (elem) {
+ 3074:              dataPriv.remove(elem, name);
+***** JQUERY\RD\ORIGINAL.JS
+ 3073:          },
+ 3074:          _removeData: function (elem, name) {
+ 3075:              dataPriv.remove(elem, name);
+*****
+
+***** JQUERY\RD\10.js
+ 5621:              if (hooks && 'get' in hooks && (ret = hooks.get(elem, name)) !== null) {
+ 5622:                  return;
+ 5623:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 5622:              if (hooks && 'get' in hooks && (ret = hooks.get(elem, name)) !== null) {
+ 5623:                  return ret;
+ 5624:              }
+*****
+

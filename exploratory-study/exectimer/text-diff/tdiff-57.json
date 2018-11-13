@@ -1,0 +1,12 @@
+Comparing files EXECTIMER\RD\57.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\57.js
+  116:      var constructor = obj.constructor;
+  117:      if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  116:      var constructor = obj.constructor;
+  117:      if (!constructor) {
+  118:          return false;
+  119:      }
+  120:      if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
+*****
+

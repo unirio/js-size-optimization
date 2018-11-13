@@ -1,0 +1,126 @@
+Comparing files TLEAF\RD\40.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\40.js
+    3:  var estraverse = require('estraverse');
+    4:  var escope;
+    5:  var _;
+    6:  var config = require('./config');
+***** TLEAF\RD\ORIGINAL.JS
+    3:  var estraverse = require('estraverse');
+    4:  var escope = require('escope');
+    5:  var _ = require('lodash');
+    6:  var config = require('./config');
+*****
+
+***** TLEAF\RD\40.js
+   71:              type: type,
+   72:              module: module
+   73:          };
+   74:      });
+***** TLEAF\RD\ORIGINAL.JS
+   71:              type: type,
+   72:              module: module,
+   73:              deps: deps
+   74:          };
+   75:          units.unshift(unit);
+   76:      });
+*****
+
+***** TLEAF\RD\40.js
+   79:      var name;
+   80:      var nameArg = _.get(callExpression, 'arguments[0]');
+   81:      if (nameArg.type === 'Literal') {
+***** TLEAF\RD\ORIGINAL.JS
+   81:      var name;
+   82:      var nameArg = _.get(callExpression, 'arguments[0]', {});
+   83:      if (nameArg.type === 'Literal') {
+*****
+
+***** TLEAF\RD\40.js
+  103:              var varNode = findVariable(varName, scope);
+  104:          }
+***** TLEAF\RD\ORIGINAL.JS
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode, 'init.arguments[0].value');
+  108:              }
+  109:          }
+*****
+
+***** TLEAF\RD\40.js
+  109:  function findDeps(callExpression, scope, type) {
+  110:      var cantHaveDeps;
+  111:      if (_.contains(cantHaveDeps, type)) {
+***** TLEAF\RD\ORIGINAL.JS
+  114:  function findDeps(callExpression, scope, type) {
+  115:      var cantHaveDeps = [
+  116:          'filter',
+  117:          'value',
+  118:          'constant'
+  119:      ];
+  120:      if (_.contains(cantHaveDeps, type)) {
+*****
+
+***** TLEAF\RD\40.js
+  116:      var deps = [];
+  117:      // deps can be provided explicitly as an array
+***** TLEAF\RD\ORIGINAL.JS
+  125:      var deps = [];
+  126:      // component differs in a way that an object is used to describe it
+  127:      // when other unit types use functions for instantiation
+  128:      if (type === 'component') {
+  129:          return findComponentDeps(depsArg, scope);
+  130:      }
+  131:      // deps can be provided explicitly as an array
+*****
+
+***** TLEAF\RD\40.js
+  124:      }
+  125:      if (depsArg.type === 'Identifier') {
+***** TLEAF\RD\ORIGINAL.JS
+  138:      }
+  139:      // deps in a form of function expression can be stored in variable
+  140:      if (depsArg.type === 'Identifier') {
+*****
+
+***** TLEAF\RD\40.js
+  142:      if (object.type === 'Identifier') {
+  143:      }
+***** TLEAF\RD\ORIGINAL.JS
+  157:      if (object.type === 'Identifier') {
+  158:          object = _.get(findVariable(object.name, scope), 'init', {});
+  159:      }
+*****
+
+***** TLEAF\RD\40.js
+  145:      if (object.type !== 'ObjectExpression') {
+  146:      }
+  147:      return extractObjectPropertyDeps(object, 'controller');
+  148:  }
+***** TLEAF\RD\ORIGINAL.JS
+  161:      if (object.type !== 'ObjectExpression') {
+  162:          return [];
+  163:      }
+  164:      return extractObjectPropertyDeps(object, 'controller', scope);
+  165:  }
+*****
+
+***** TLEAF\RD\40.js
+  169:                  deps = extractDeps(right.params);
+  170:                  return;    // exit loop
+  171:              }
+***** TLEAF\RD\ORIGINAL.JS
+  186:                  deps = extractDeps(right.params);
+  187:                  return true;    // exit loop
+  188:              }
+*****
+
+***** TLEAF\RD\40.js
+  183:              if (argument.type === 'ObjectExpression') {
+  184:                  deps = extractObjectPropertyDeps(argument, '$get');
+  185:                  return true;
+***** TLEAF\RD\ORIGINAL.JS
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+*****
+

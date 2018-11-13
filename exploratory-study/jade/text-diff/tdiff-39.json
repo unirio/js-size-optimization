@@ -1,0 +1,32 @@
+Comparing files JADE\RD\39.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\39.js
+  141:          doctype: options.doctype,
+  142:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\39.js
+  225:  };
+  226:  exports.render = function (str, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  226:  };
+  227:  /**
+  228:   * Render the given `str` of pug.
+  229:   *
+  230:   * Options:
+  231:   *
+  232:   *   - `cache` enable template caching
+  233:   *   - `filename` filename required for `include` / `extends` and caching
+  234:   *
+  235:   * @param {String} str
+  236:   * @param {Object|Function} options or fn
+  237:   * @param {Function|undefined} fn
+  238:   * @returns {String}
+  239:   * @api public
+  240:   */
+  241:  exports.render = function (str, options, fn) {
+*****
+

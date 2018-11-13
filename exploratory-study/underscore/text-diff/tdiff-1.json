@@ -1,0 +1,48 @@
+Comparing files UNDERSCORE\RD\1.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\1.js
+  387:      // either a string attribute to count by, or a function that returns the
+  388:      _.countBy = group(function (result, value, key) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  387:      // either a string attribute to count by, or a function that returns the
+  388:      // criterion.
+  389:      _.countBy = group(function (result, value, key) {
+*****
+
+***** UNDERSCORE\RD\1.js
+  703:      _.bindAll = function (obj) {
+  704:          var i, length = arguments.length;
+  705:          if (length <= 1)
+***** UNDERSCORE\RD\ORIGINAL.JS
+  704:      _.bindAll = function (obj) {
+  705:          var i, length = arguments.length, key;
+  706:          if (length <= 1)
+*****
+
+***** UNDERSCORE\RD\1.js
+  780:      _.debounce = function (func, wait, immediate) {
+  781:          var timeout, context, timestamp, result;
+  782:          var later = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  781:      _.debounce = function (func, wait, immediate) {
+  782:          var timeout, args, context, timestamp, result;
+  783:          var later = function () {
+*****
+
+***** UNDERSCORE\RD\1.js
+  982:          var result = {}, obj = object, iteratee;
+  983:          if (obj == null)
+***** UNDERSCORE\RD\ORIGINAL.JS
+  983:          var result = {}, obj = object, iteratee, keys;
+  984:          if (obj == null)
+*****
+
+***** UNDERSCORE\RD\1.js
+ 1132:              // Deep compare objects.
+ 1133:              var keys = _.keys(a);
+ 1134:              length = keys.length;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1133:              // Deep compare objects.
+ 1134:              var keys = _.keys(a), key;
+ 1135:              length = keys.length;
+*****
+

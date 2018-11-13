@@ -1,0 +1,40 @@
+Comparing files PLIVO-NODE\RD\53.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\53.js
+  281:      var method = 'DELETE';
+  282:      request(action, params, callback);
+  283:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  281:      var method = 'DELETE';
+  282:      request(action, method, params, callback);
+  283:  };
+*****
+
+***** PLIVO-NODE\RD\53.js
+  384:  };
+  385:  plivo.get_recordings = function (params, callback) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  384:  };
+  385:  // Recordings
+  386:  plivo.get_recordings = function (params, callback) {
+*****
+
+***** PLIVO-NODE\RD\53.js
+  413:  };
+  414:  plivo.create_endpoint = function (params) {
+  415:      var action = 'Endpoint/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  414:  };
+  415:  plivo.create_endpoint = function (params, callback) {
+  416:      var action = 'Endpoint/';
+*****
+
+***** PLIVO-NODE\RD\53.js
+  484:  plivo.buy_phone_number = function (params, callback) {
+  485:      var action;
+  486:      delete params.number;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  485:  plivo.buy_phone_number = function (params, callback) {
+  486:      var action = 'PhoneNumber/' + params['number'] + '/';
+  487:      delete params.number;
+*****
+

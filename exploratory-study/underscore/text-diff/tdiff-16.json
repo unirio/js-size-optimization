@@ -1,0 +1,19 @@
+Comparing files UNDERSCORE\RD\16.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\16.js
+    7:      // --------------
+    8:      var root = this;
+***** UNDERSCORE\RD\ORIGINAL.JS
+    7:      // --------------
+    8:      // Establish the root object, `window` in the browser, or `exports` on the server.
+    9:      var root = this;
+*****
+
+***** UNDERSCORE\RD\16.js
+  932:      };
+  933:      _.pairs = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  933:      };
+  934:      // Convert an object into a list of `[key, value]` pairs.
+  935:      _.pairs = function (obj) {
+*****
+

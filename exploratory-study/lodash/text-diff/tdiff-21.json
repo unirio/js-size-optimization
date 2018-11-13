@@ -1,0 +1,65 @@
+Comparing files LODASH\RD\21.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\21.js
+ 2325:                  indexOf = cacheIndexOf;
+ 2326:              } else {
+***** LODASH\RD\ORIGINAL.JS
+ 2325:                  indexOf = cacheIndexOf;
+ 2326:                  isCommon = false;
+ 2327:              } else {
+*****
+
+***** LODASH\RD\21.js
+ 3460:              var type = typeof index;
+ 3461:              if (type == 'number' ? isArrayLike(object) && isIndex(index) : type == 'string' && index in object) {
+ 3462:                  var other = object[index];
+***** LODASH\RD\ORIGINAL.JS
+ 3461:              var type = typeof index;
+ 3462:              if (type == 'number' ? isArrayLike(object) && isIndex(index, object.length) : type == 'string' && index in object) 
+ 3463:  {
+ 3464:                  var other = object[index];
+*****
+
+***** LODASH\RD\21.js
+ 3464:              }
+ 3465:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3466:              }
+ 3467:              return false;
+ 3468:          }
+*****
+
+***** LODASH\RD\21.js
+ 8457:              iteratee = getIteratee(iteratee);
+ 8458:              baseForOwn(object, function (value, key) {
+ 8459:                  result[key] = iteratee(value, key, object);
+***** LODASH\RD\ORIGINAL.JS
+ 8460:              iteratee = getIteratee(iteratee);
+ 8461:              baseForOwn(object, function (value, key, object) {
+ 8462:                  result[key] = iteratee(value, key, object);
+*****
+
+***** LODASH\RD\21.js
+10731:              LazyWrapper.prototype[methodName] = function () {
+10732:                  return this[takeName]().value()[0];
+10733:              };
+***** LODASH\RD\ORIGINAL.JS
+10734:              LazyWrapper.prototype[methodName] = function () {
+10735:                  return this[takeName](1).value()[0];
+10736:              };
+*****
+
+***** LODASH\RD\21.js
+10889:      else if (freeExports && freeModule) {
+10890:      } else {
+***** LODASH\RD\ORIGINAL.JS
+10892:      else if (freeExports && freeModule) {
+10893:          // Export for Node.js or RingoJS.
+10894:          if (moduleExports) {
+10895:              (freeModule.exports = _)._ = _;
+10896:          }    // Export for Rhino with CommonJS support.
+10897:          else {
+10898:              freeExports._ = _;
+10899:          }
+10900:      } else {
+*****
+

@@ -1,0 +1,19 @@
+Comparing files UNDERSCORE\RD\8.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\8.js
+  120:      // Helper for collection methods to determine whether a collection
+  121:      // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+***** UNDERSCORE\RD\ORIGINAL.JS
+  120:      // Helper for collection methods to determine whether a collection
+  121:      // should be iterated as an array or as an object
+  122:      // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+*****
+
+***** UNDERSCORE\RD\8.js
+  263:      // Convenience version of a common use case of `find`: getting the first object
+  264:      _.findWhere = function (obj, attrs) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  264:      // Convenience version of a common use case of `find`: getting the first object
+  265:      // containing specific `key:value` pairs.
+  266:      _.findWhere = function (obj, attrs) {
+*****
+

@@ -1,0 +1,83 @@
+Comparing files TLEAF\RD\56.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\56.js
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+*****
+
+***** TLEAF\RD\56.js
+   81:      var name;
+   82:      var nameArg = _.get(callExpression, 'arguments[0]');
+   83:      return name;
+***** TLEAF\RD\ORIGINAL.JS
+   81:      var name;
+   82:      var nameArg = _.get(callExpression, 'arguments[0]', {});
+   83:      if (nameArg.type === 'Literal') {
+   84:          name = nameArg.value;
+   85:      }
+   86:      return name;
+*****
+
+***** TLEAF\RD\56.js
+   95:      } else if (calleeObj.type === 'Identifier') {
+   96:          if (calleeProp.name === 'module' && calleeObj.name === 'angular') {
+***** TLEAF\RD\ORIGINAL.JS
+   98:      } else if (calleeObj.type === 'Identifier') {
+   99:          // when reaching module variable it can be in a form of "angular.module(..)"
+  100:          if (calleeProp.name === 'module' && calleeObj.name === 'angular') {
+*****
+
+***** TLEAF\RD\56.js
+  146:          // it may vary a lot, covering common cases
+  147:          return;
+  148:      }
+***** TLEAF\RD\ORIGINAL.JS
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps(depsArg);
+  152:      }
+*****
+
+***** TLEAF\RD\56.js
+  196:              if (argument.type === 'ObjectExpression') {
+  197:                  deps = extractObjectPropertyDeps(argument, depsFnScope);
+  198:                  return true;
+***** TLEAF\RD\ORIGINAL.JS
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+*****
+
+***** TLEAF\RD\56.js
+  211:  }
+  212:  function (params) {
+  213:      if (!_.isArray(params)) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+*****
+
+***** TLEAF\RD\56.js
+  218:          if (param.type === 'Identifier') {
+  219:              var dep = {};
+  220:              deps.push(dep);
+***** TLEAF\RD\ORIGINAL.JS
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+*****
+
+***** TLEAF\RD\56.js
+  274:  }
+  275:  function (ast) {
+  276:      var scopeManager = escope.analyze(ast);
+***** TLEAF\RD\ORIGINAL.JS
+  278:  }
+  279:  function findScope(ast) {
+  280:      var scopeManager = escope.analyze(ast);
+*****
+

@@ -1,0 +1,105 @@
+Comparing files UNDERSCORE\RD\27.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\27.js
+   45:      // of the passed-in callback, to be repeatedly applied in other Underscore
+   46:      var optimizeCb = function (func, context, argCount) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   45:      // of the passed-in callback, to be repeatedly applied in other Underscore
+   46:      // functions.
+   47:      var optimizeCb = function (func, context, argCount) {
+*****
+
+***** UNDERSCORE\RD\27.js
+  151:          iteratee = cb(iteratee, context);
+  152:          var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, results = Array();
+  153:          for (var index = 0; index < length; index++) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  152:          iteratee = cb(iteratee, context);
+  153:          var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, results = Array(length);
+  154:          for (var index = 0; index < length; index++) {
+*****
+
+***** UNDERSCORE\RD\27.js
+  424:      // ---------------
+  425:      // values in the array. Aliased as `head` and `take`. The **guard** check
+***** UNDERSCORE\RD\ORIGINAL.JS
+  425:      // ---------------
+  426:      // Get the first element of an array. Passing **n** will return the first N
+  427:      // values in the array. Aliased as `head` and `take`. The **guard** check
+*****
+
+***** UNDERSCORE\RD\27.js
+  484:      _.without = function (array) {
+  485:          return _.difference(array, slice.call(arguments));
+  486:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  486:      _.without = function (array) {
+  487:          return _.difference(array, slice.call(arguments, 1));
+  488:      };
+*****
+
+***** UNDERSCORE\RD\27.js
+  548:      // Zip together multiple lists into a single array -- elements that share
+  549:      _.zip = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  550:      // Zip together multiple lists into a single array -- elements that share
+  551:      // an index go together.
+  552:      _.zip = function () {
+*****
+
+***** UNDERSCORE\RD\27.js
+  656:      // Determines whether to execute a function as a constructor
+  657:      var executeBound = function (sourceFunc, boundFunc, context, callingContext, args) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  659:      // Determines whether to execute a function as a constructor
+  660:      // or a normal function with the provided arguments
+  661:      var executeBound = function (sourceFunc, boundFunc, context, callingContext, args) {
+*****
+
+***** UNDERSCORE\RD\27.js
+  871:          var prop = 'constructor';
+  872:          while (nonEnumIdx--) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+  878:          while (nonEnumIdx--) {
+*****
+
+***** UNDERSCORE\RD\27.js
+  962:      // Assigns a given object with all the own properties in the passed-in object(s)
+  963:      _.extendOwn = _.assign = createAssigner(_.keys);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  968:      // Assigns a given object with all the own properties in the passed-in object(s)
+  969:      // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+  970:      _.extendOwn = _.assign = createAssigner(_.keys);
+*****
+
+***** UNDERSCORE\RD\27.js
+ 1066:          case '[object RegExp]':
+ 1067:          case '[object String]':
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1073:          case '[object RegExp]':
+ 1074:          // RegExps are coerced to strings for comparison (Note: '' + /a/i === '/a/i')
+ 1075:          case '[object String]':
+*****
+
+***** UNDERSCORE\RD\27.js
+ 1193:      if (typeof /./ != 'function' && typeof Int8Array != 'object') {
+ 1194:      }
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1201:      if (typeof /./ != 'function' && typeof Int8Array != 'object') {
+ 1202:          _.isFunction = function (obj) {
+ 1203:              return typeof obj == 'function' || false;
+ 1204:          };
+ 1205:      }
+*****
+
+***** UNDERSCORE\RD\27.js
+ 1442:          'concat',
+ 1443:          'slice'
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1453:          'concat',
+ 1454:          'join',
+ 1455:          'slice'
+*****
+

@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\24.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\24.js
+  505:                      this.emit('error', err);
+  506:                  } else if (this.saxParser.ended) {
+***** XML2JS\RD\ORIGINAL.JS
+  505:                      this.emit('error', err);
+  506:                      return this.saxParser.errThrown = true;
+  507:                  } else if (this.saxParser.ended) {
+*****
+

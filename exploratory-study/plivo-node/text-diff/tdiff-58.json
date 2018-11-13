@@ -1,0 +1,41 @@
+Comparing files PLIVO-NODE\RD\58.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\58.js
+  370:      var method = 'POST';
+  371:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  370:      var method = 'POST';
+  371:      request(action, method, params, callback);
+  372:  };
+*****
+
+***** PLIVO-NODE\RD\58.js
+  545:      var method = 'GET';
+  546:      request(action, params, callback);
+  547:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  546:      var method = 'GET';
+  547:      request(action, method, params, callback);
+  548:  };
+*****
+
+***** PLIVO-NODE\RD\58.js
+  660:      },
+  661:      addNumber: function (body, attributes) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  661:      },
+  662:      addConference: function (body, attributes) {
+  663:          return this.add(new Conference(Response), body, attributes);
+  664:      },
+  665:      addNumber: function (body, attributes) {
+*****
+
+***** PLIVO-NODE\RD\58.js
+  679:      addPlay: function (body, attributes) {
+  680:          return this.add(new Play(Response), attributes);
+  681:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  683:      addPlay: function (body, attributes) {
+  684:          return this.add(new Play(Response), body, attributes);
+  685:      },
+*****
+

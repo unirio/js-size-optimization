@@ -1,0 +1,49 @@
+Comparing files PLIVO-NODE\RD\5.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\5.js
+    4:  var Request = require('request');
+    5:  var xmlBuilder = require('xmlbuilder');
+***** PLIVO-NODE\RD\ORIGINAL.JS
+    4:  var Request = require('request');
+    5:  var qs = require('querystring');
+    6:  var xmlBuilder = require('xmlbuilder');
+*****
+
+***** PLIVO-NODE\RD\5.js
+  340:      var method = 'POST';
+  341:      request(action, method, params);
+  342:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  341:      var method = 'POST';
+  342:      request(action, method, params, callback);
+  343:  };
+*****
+
+***** PLIVO-NODE\RD\5.js
+  500:  };
+  501:  plivo.get_message = function (params) {
+  502:      var action = 'Message/' + params['record_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  501:  };
+  502:  plivo.get_message = function (params, callback) {
+  503:      var action = 'Message/' + params['record_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\5.js
+  567:      var action = 'OutgoingCarrierRouting/';
+  568:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  568:      var action = 'OutgoingCarrierRouting/';
+  569:      var method = 'GET';
+  570:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\5.js
+  827:  util.inherits(Message, Response);
+  828:  function Play() {
+  829:      this.element = 'Play';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  829:  util.inherits(Message, Response);
+  830:  function Play(Response) {
+  831:      this.element = 'Play';
+*****
+

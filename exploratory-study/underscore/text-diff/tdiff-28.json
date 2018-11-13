@@ -1,0 +1,67 @@
+Comparing files UNDERSCORE\RD\28.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\28.js
+  702:      // are the method names to be bound. Useful for ensuring that all callbacks
+  703:      _.bindAll = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  702:      // are the method names to be bound. Useful for ensuring that all callbacks
+  703:      // defined on an object belong to it.
+  704:      _.bindAll = function (obj) {
+*****
+
+***** UNDERSCORE\RD\28.js
+  741:      _.throttle = function (func, wait, options) {
+  742:          var context, result;
+  743:          var timeout = null;
+***** UNDERSCORE\RD\ORIGINAL.JS
+  742:      _.throttle = function (func, wait, options) {
+  743:          var context, args, result;
+  744:          var timeout = null;
+*****
+
+***** UNDERSCORE\RD\28.js
+  841:      };
+  842:      _.before = function (times, func) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  842:      };
+  843:      // Returns a function that will only be executed up to (but not including) the Nth call.
+  844:      _.before = function (times, func) {
+*****
+
+***** UNDERSCORE\RD\28.js
+  870:          var constructor = obj.constructor;
+  871:          var proto;
+  872:          // Constructor is a special case.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  872:          var constructor = obj.constructor;
+  873:          var proto = _.isFunction(constructor) && constructor.prototype || ObjProto;
+  874:          // Constructor is a special case.
+*****
+
+***** UNDERSCORE\RD\28.js
+  877:              prop = nonEnumerableProps[nonEnumIdx];
+  878:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys)) {
+  879:                  keys.push(prop);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  879:              prop = nonEnumerableProps[nonEnumIdx];
+  880:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+  881:                  keys.push(prop);
+*****
+
+***** UNDERSCORE\RD\28.js
+ 1143:          }
+ 1144:          aStack.pop();
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1145:          }
+ 1146:          // Remove the first object from the stack of traversed objects.
+ 1147:          aStack.pop();
+*****
+
+***** UNDERSCORE\RD\28.js
+ 1473:      // popular enough to be bundled in a third party lib, but not be part of
+ 1474:      // anonymous define() is called outside of a loader request.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1476:      // popular enough to be bundled in a third party lib, but not be part of
+ 1477:      // an AMD load request. Those cases could generate an error when an
+ 1478:      // anonymous define() is called outside of a loader request.
+*****
+

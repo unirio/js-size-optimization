@@ -1,0 +1,26 @@
+Comparing files EXECTIMER\RD\46.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\46.js
+  107:  };
+  108:  function isGeneratorFunction(obj) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  107:  };
+  108:  /**
+  109:   * Check if `obj` is a generator function.
+  110:   *
+  111:   * @param {Mixed} obj
+  112:   * @return {Boolean}
+  113:   * @api private
+  114:   */
+  115:  function isGeneratorFunction(obj) {
+*****
+
+***** EXECTIMER\RD\46.js
+  170:  Tick.prototype.getDiff = function () {
+  171:      return;
+  172:  };
+***** EXECTIMER\RD\ORIGINAL.JS
+  177:  Tick.prototype.getDiff = function () {
+  178:      return this.hrend[0] * 1000000000 + this.hrend[1];
+  179:  };
+*****
+

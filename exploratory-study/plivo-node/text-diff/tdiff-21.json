@@ -1,0 +1,21 @@
+Comparing files PLIVO-NODE\RD\21.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\21.js
+  227:  };
+  228:  plivo.hangup_conference = function (params) {
+  229:      var action = 'Conference/' + params['conference_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  227:  };
+  228:  plivo.hangup_conference = function (params, callback) {
+  229:      var action = 'Conference/' + params['conference_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\21.js
+  540:      var method = 'GET';
+  541:      request(action, method, callback);
+  542:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  540:      var method = 'GET';
+  541:      request(action, method, params, callback);
+  542:  };
+*****
+

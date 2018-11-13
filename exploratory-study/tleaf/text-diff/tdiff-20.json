@@ -1,0 +1,206 @@
+Comparing files TLEAF\RD\20.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\20.js
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process)) {
+   29:                      // save matching node with an appropriate scope
+***** TLEAF\RD\ORIGINAL.JS
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+   29:                      // save matching node with an appropriate scope
+*****
+
+***** TLEAF\RD\20.js
+   74:          };
+   75:      });
+***** TLEAF\RD\ORIGINAL.JS
+   74:          };
+   75:          units.unshift(unit);
+   76:      });
+*****
+
+***** TLEAF\RD\20.js
+   86:  }
+   87:  // TODO: multiple variable definitions
+   88:  function findDeps(callExpression, scope, type) {
+   89:      var cantHaveDeps = [
+   90:          'filter',
+   91:          'value',
+   92:          'constant'
+   93:      ];
+   94:      if (_.contains(cantHaveDeps, type)) {
+   95:          return [];
+   96:      }
+   97:      // first argument is a name of the unit, second - usually has deps
+   98:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+   99:      var deps = [];
+  100:      // component differs in a way that an object is used to describe it
+  101:      // when other unit types use functions for instantiation
+  102:      if (type === 'component') {
+  103:          return findComponentDeps(depsArg, scope);
+  104:      }
+  105:      // deps can be provided explicitly as an array
+  106:      // in this case a body of the unit is the last array element
+  107:      if (depsArg.type === 'ArrayExpression') {
+  108:          var lastDepsArg = _.last(depsArg.elements) || {};
+  109:          if (lastDepsArg.type === 'FunctionExpression') {
+  110:              return extractDeps(lastDepsArg.params);
+  111:          }
+***** TLEAF\RD\ORIGINAL.JS
+   87:  }
+   88:  function findType(callExpression) {
+   89:      return _.get(callExpression, 'callee.property.name');
+   90:  }
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+   96:          // recursive find module, usually when units are chained
+   97:          return findModule(calleeObj, scope);
+   98:      } else if (calleeObj.type === 'Identifier') {
+   99:          // when reaching module variable it can be in a form of "angular.module(..)"
+  100:          if (calleeProp.name === 'module' && calleeObj.name === 'angular') {
+  101:              module.name = _.get(callExpression, 'arguments[0].value');    // or module can be stored in variable; find this var
+  102:  iable then
+  103:          } else if (_.contains(config.units.process, calleeProp.name)) {
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode, 'init.arguments[0].value');
+  108:              }
+  109:          }
+*****
+
+***** TLEAF\RD\20.js
+  112:      }
+  113:      // deps in a form of function expression can be stored in variable
+  114:      if (depsArg.type === 'Identifier') {
+  115:          return extractVariableDeps(depsArg.name, scope);
+  116:      }
+  117:      // deps in a form of function expression
+  118:      if (depsArg.type === 'FunctionExpression') {
+  119:          // everything except provider usually stores deps as function arguments
+  120:          if (type !== 'provider') {
+  121:              return extractDeps(depsArg.params);
+  122:          }
+  123:          // provider has a lot more complex structure because of $get construct
+  124:          // it may vary a lot, covering common cases
+  125:          return findProviderDeps(depsArg);
+  126:      }
+  127:      return deps;
+  128:  }
+  129:  function findComponentDeps(object, scope) {
+  130:      // covers { controller: someVar }
+  131:      if (object.type === 'Identifier') {
+  132:          object = _.get(findVariable(object.name, scope), 'init', {});
+  133:      }
+  134:      // if not object - not sure what to do with it
+  135:      if (object.type !== 'ObjectExpression') {
+  136:          return [];
+***** TLEAF\RD\ORIGINAL.JS
+  110:      }
+  111:      return module;
+  112:  }
+  113:  // TODO: multiple variable definitions
+  114:  function findDeps(callExpression, scope, type) {
+  115:      var cantHaveDeps = [
+  116:          'filter',
+  117:          'value',
+  118:          'constant'
+  119:      ];
+  120:      if (_.contains(cantHaveDeps, type)) {
+  121:          return [];
+*****
+
+***** TLEAF\RD\20.js
+  137:      }
+  138:      return extractObjectPropertyDeps(object, 'controller', scope);
+  139:  }
+  140:  function findProviderDeps(depsFn) {
+  141:      // function must have it's body
+  142:      var depsFnBody = _.get(depsFn, 'body', {});
+  143:      if (depsFnBody.type !== 'BlockStatement') {
+  144:          return [];
+***** TLEAF\RD\ORIGINAL.JS
+  122:      }
+  123:      // first argument is a name of the unit, second - usually has deps
+  124:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+  125:      var deps = [];
+  126:      // component differs in a way that an object is used to describe it
+  127:      // when other unit types use functions for instantiation
+  128:      if (type === 'component') {
+  129:          return findComponentDeps(depsArg, scope);
+  130:      }
+  131:      // deps can be provided explicitly as an array
+  132:      // in this case a body of the unit is the last array element
+  133:      if (depsArg.type === 'ArrayExpression') {
+  134:          var lastDepsArg = _.last(depsArg.elements) || {};
+  135:          if (lastDepsArg.type === 'FunctionExpression') {
+  136:              return extractDeps(lastDepsArg.params);
+  137:          }
+  138:      }
+  139:      // deps in a form of function expression can be stored in variable
+  140:      if (depsArg.type === 'Identifier') {
+  141:          return extractVariableDeps(depsArg.name, scope);
+  142:      }
+  143:      // deps in a form of function expression
+  144:      if (depsArg.type === 'FunctionExpression') {
+  145:          // everything except provider usually stores deps as function arguments
+  146:          if (type !== 'provider') {
+  147:              return extractDeps(depsArg.params);
+  148:          }
+  149:          // provider has a lot more complex structure because of $get construct
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps(depsArg);
+  152:      }
+  153:      return deps;
+  154:  }
+  155:  function findComponentDeps(object, scope) {
+  156:      // covers { controller: someVar }
+  157:      if (object.type === 'Identifier') {
+  158:          object = _.get(findVariable(object.name, scope), 'init', {});
+  159:      }
+  160:      // if not object - not sure what to do with it
+  161:      if (object.type !== 'ObjectExpression') {
+  162:          return [];
+*****
+
+***** TLEAF\RD\20.js
+  145:      }
+  146:      // find a scope of provider body
+***** TLEAF\RD\ORIGINAL.JS
+  163:      }
+  164:      return extractObjectPropertyDeps(object, 'controller', scope);
+  165:  }
+  166:  function findProviderDeps(depsFn) {
+  167:      // function must have it's body
+  168:      var depsFnBody = _.get(depsFn, 'body', {});
+  169:      if (depsFnBody.type !== 'BlockStatement') {
+  170:          return [];
+  171:      }
+  172:      // find a scope of provider body
+*****
+
+***** TLEAF\RD\20.js
+  162:              }
+  163:          }
+***** TLEAF\RD\ORIGINAL.JS
+  188:              }
+  189:              // covert "this.$get = someVar;"
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+  194:          }
+*****
+
+***** TLEAF\RD\20.js
+  169:              if (argument.type === 'ObjectExpression') {
+  170:                  deps = extractObjectPropertyDeps(argument, '$get');
+  171:                  return true;
+***** TLEAF\RD\ORIGINAL.JS
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+*****
+

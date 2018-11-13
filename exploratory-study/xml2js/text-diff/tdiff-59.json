@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\59.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\59.js
+  264:                      this.saxParser = this.saxParser.write(chunk);
+  265:                  }
+***** XML2JS\RD\ORIGINAL.JS
+  264:                      this.saxParser = this.saxParser.write(chunk);
+  265:                      return setImmediate(this.processAsync);
+  266:                  }
+*****
+

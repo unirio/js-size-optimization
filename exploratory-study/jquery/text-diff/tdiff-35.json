@@ -1,0 +1,94 @@
+Comparing files JQUERY\RD\35.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\35.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\35.js
+ 2389:                      while (++firingIndex < list.length) {
+ 2390:                          if (list[firingIndex].apply(memory[0], memory[1]) === false && options.stopOnFalse) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2390:                      while (++firingIndex < list.length) {
+ 2391:                          // Run callback and check for early termination
+ 2392:                          if (list[firingIndex].apply(memory[0], memory[1]) === false && options.stopOnFalse) {
+*****
+
+***** JQUERY\RD\35.js
+ 3759:   'events') || {})[event.type] || [], special = jQuery.event.special[event.type] || {};
+ 3760:              for (i = 1; i < arguments.length; i++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3761:   'events') || {})[event.type] || [], special = jQuery.event.special[event.type] || {};
+ 3762:              // Use the fix-ed jQuery.Event rather than the (read-only) native event
+ 3763:              args[0] = event;
+ 3764:              for (i = 1; i < arguments.length; i++) {
+*****
+
+***** JQUERY\RD\35.js
+ 4103:          rnoInnerhtml = /<script|<style|<link/i,
+ 4104:          rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i, rscriptTypeMasked = /^true\/(.*)/, rcleanScript = /^\s*<!(?:\[CDATA\[|-
+***** JQUERY\RD\ORIGINAL.JS
+ 4107:          rnoInnerhtml = /<script|<style|<link/i,
+ 4108:          // checked="checked" or checked
+ 4109:          rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i, rscriptTypeMasked = /^true\/(.*)/, rcleanScript = /^\s*<!(?:\[CDATA\[|-
+*****
+
+***** JQUERY\RD\35.js
+ 4727:                  if (hooks && 'get' in hooks && (ret = hooks.get(elem, false, extra)) !== undefined) {
+ 4728:                      return;
+ 4729:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 4732:                  if (hooks && 'get' in hooks && (ret = hooks.get(elem, false, extra)) !== undefined) {
+ 4733:                      return ret;
+ 4734:                  }
+*****
+
+***** JQUERY\RD\35.js
+ 4936:          });
+ 4937:      }
+***** JQUERY\RD\ORIGINAL.JS
+ 4941:          });
+ 4942:          return fxNow = jQuery.now();
+ 4943:      }
+*****
+
+***** JQUERY\RD\35.js
+ 5334:              return this.each(function () {
+ 5335:                  var dequeue = true, index = type != null && type + 'queueHooks', data = dataPriv.get(this);
+ 5336:                  if (index) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5340:              return this.each(function () {
+ 5341:                  var dequeue = true, index = type != null && type + 'queueHooks', timers = jQuery.timers, data = dataPriv.get(th
+ 5342:  is);
+ 5343:                  if (index) {
+*****
+
+***** JQUERY\RD\35.js
+ 6029:          trigger: function (type, data) {
+ 6030:              return this.each();
+ 6031:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 6036:          trigger: function (type, data) {
+ 6037:              return this.each(function () {
+ 6038:                  jQuery.event.trigger(type, data, this);
+ 6039:              });
+ 6040:          },
+*****
+
+***** JQUERY\RD\35.js
+ 6618:              if (fireGlobals && jQuery.active++ === 0) {
+ 6619:                  jQuery.event.trigger();
+ 6620:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 6627:              if (fireGlobals && jQuery.active++ === 0) {
+ 6628:                  jQuery.event.trigger('ajaxStart');
+ 6629:              }
+*****
+

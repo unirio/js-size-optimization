@@ -1,0 +1,137 @@
+Comparing files LODASH\RD\25.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\25.js
+   54:      var reComboMark = /[\u0300-\u036f\ufe20-\ufe23]/g;
+   55:      var reEscapeChar = /\\(\\)?/g;
+***** LODASH\RD\ORIGINAL.JS
+   54:      var reComboMark = /[\u0300-\u036f\ufe20-\ufe23]/g;
+   55:      /** Used to match backslashes in property paths. */
+   56:      var reEscapeChar = /\\(\\)?/g;
+*****
+
+***** LODASH\RD\25.js
+ 1224:          }
+ 1225:          function arrayPush(array, values) {
+***** LODASH\RD\ORIGINAL.JS
+ 1225:          }
+ 1226:          /**
+ 1227:       * Appends the elements of `values` to `array`.
+ 1228:       *
+ 1229:       * @private
+ 1230:       * @param {Array} array The array to modify.
+ 1231:       * @param {Array} values The values to append.
+ 1232:       * @returns {Array} Returns `array`.
+ 1233:       */
+ 1234:          function arrayPush(array, values) {
+*****
+
+***** LODASH\RD\25.js
+ 2993:              arity = arity == null ? arity : toInteger(arity);
+ 2994:              var data, newData = [
+ 2995:                      func,
+***** LODASH\RD\ORIGINAL.JS
+ 3002:              arity = arity == null ? arity : toInteger(arity);
+ 3003:              var data = isBindKey ? undefined : getData(func), newData = [
+ 3004:                      func,
+*****
+
+***** LODASH\RD\25.js
+ 3389:              var length = object.length;
+ 3390:              length = length && isLength(length) && (isArray(object) || isArguments() || isString(object)) && length || 0;
+ 3391:              var index = -1, result = Array(length);
+***** LODASH\RD\ORIGINAL.JS
+ 3398:              var length = object.length;
+ 3399:              length = length && isLength(length) && (isArray(object) || isArguments(object) || isString(object)) && length || 0;
+ 3400:              var index = -1, result = Array(length);
+*****
+
+***** LODASH\RD\25.js
+ 9647:                  }
+ 9648:              } else if (string.indexOf(separator) != end) {
+ 9649:                  var index = result.lastIndexOf(separator);
+***** LODASH\RD\ORIGINAL.JS
+ 9656:                  }
+ 9657:              } else if (string.indexOf(separator, end) != end) {
+ 9658:                  var index = result.lastIndexOf(separator);
+*****
+
+***** LODASH\RD\25.js
+10036:          }
+10037:          function propertyOf(object) {
+10038:              return function (path) {
+10039:                  return object == null ? undefined : baseGet(object, path);
+10040:              };
+10041:          }
+10042:          /**
+10043:       * Creates an array of numbers (positive and/or negative) progressing from
+10044:       * `start` up to, but not including, `end`. If `end` is not specified it's
+10045:       * set to `start` with `start` then set to `0`. If `end` is less than `start`
+10046:       * a zero-length range is created unless a negative `step` is specified.
+10047:       *
+***** LODASH\RD\ORIGINAL.JS
+10045:          }
+10046:          /**
+10047:       * The opposite of `_.property`; this method creates a function that returns
+10048:       * the value at a given path of `object`.
+10049:       *
+*****
+
+***** LODASH\RD\25.js
+10050:       * @category Utility
+10051:       * @param {number} [start=0] The start of the range.
+10052:       * @param {number} end The end of the range.
+10053:       * @param {number} [step=1] The value to increment or decrement by.
+10054:       * @returns {Array} Returns the new array of numbers.
+10055:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10052:       * @category Utility
+10053:       * @param {Object} object The object to query.
+10054:       * @returns {Function} Returns the new function.
+10055:       * @example
+*****
+
+***** LODASH\RD\25.js
+10056:       *
+10057:       * _.range(4);
+***** LODASH\RD\ORIGINAL.JS
+10056:       *
+10057:       * var array = [0, 1, 2],
+10058:       *     object = { 'a': array, 'b': array, 'c': array };
+10059:       *
+10060:       * _.map(['a[2]', 'c[0]'], _.propertyOf(object));
+10061:       * // => [2, 0]
+10062:       *
+10063:       * _.map([['a', '2'], ['c', '0']], _.propertyOf(object));
+10064:       * // => [2, 0]
+10065:       */
+10066:          function propertyOf(object) {
+10067:              return function (path) {
+10068:                  return object == null ? undefined : baseGet(object, path);
+10069:              };
+10070:          }
+10071:          /**
+10072:       * Creates an array of numbers (positive and/or negative) progressing from
+10073:       * `start` up to, but not including, `end`. If `end` is not specified it's
+10074:       * set to `start` with `start` then set to `0`. If `end` is less than `start`
+10075:       * a zero-length range is created unless a negative `step` is specified.
+10076:       *
+10077:       * @static
+10078:       * @memberOf _
+10079:       * @category Utility
+10080:       * @param {number} [start=0] The start of the range.
+10081:       * @param {number} end The end of the range.
+10082:       * @param {number} [step=1] The value to increment or decrement by.
+10083:       * @returns {Array} Returns the new array of numbers.
+10084:       * @example
+10085:       *
+10086:       * _.range(4);
+*****
+
+***** LODASH\RD\25.js
+10510:          /*------------------------------------------------------------------------*/
+10511:          lodash.add = add;
+***** LODASH\RD\ORIGINAL.JS
+10539:          /*------------------------------------------------------------------------*/
+10540:          // Add functions that return unwrapped values when chaining.
+10541:          lodash.add = add;
+*****
+

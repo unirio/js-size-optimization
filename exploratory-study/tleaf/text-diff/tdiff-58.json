@@ -1,0 +1,57 @@
+Comparing files TLEAF\RD\58.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\58.js
+    1:  'use strict';
+    2:  var esprima = require();
+    3:  var estraverse = require('estraverse');
+***** TLEAF\RD\ORIGINAL.JS
+    1:  'use strict';
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require('estraverse');
+*****
+
+***** TLEAF\RD\58.js
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property');
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+*****
+
+***** TLEAF\RD\58.js
+  149:          // provider has a lot more complex structure because of $get construct
+  150:          return findProviderDeps(depsArg);
+***** TLEAF\RD\ORIGINAL.JS
+  149:          // provider has a lot more complex structure because of $get construct
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps(depsArg);
+*****
+
+***** TLEAF\RD\58.js
+  190:                  deps = extractVariableDeps(right.name, depsFnScope);
+  191:              }
+***** TLEAF\RD\ORIGINAL.JS
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+*****
+
+***** TLEAF\RD\58.js
+  231:          variable = _.findWhere(currentScope.variables, { name: varName });
+  232:      }
+***** TLEAF\RD\ORIGINAL.JS
+  233:          variable = _.findWhere(currentScope.variables, { name: varName });
+  234:          currentScope = currentScope.upper;
+  235:      }
+*****
+
+***** TLEAF\RD\58.js
+  273:      }
+  274:  }
+***** TLEAF\RD\ORIGINAL.JS
+  276:      }
+  277:      return deps;
+  278:  }
+*****
+

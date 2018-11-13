@@ -1,0 +1,40 @@
+Comparing files PLIVO-NODE\RD\23.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\23.js
+   82:  plivo.request = request;
+   83:  plivo.create_signature = function (url, params) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   82:  plivo.request = request;
+   83:  // For verifying the plivo server signature
+   84:  plivo.create_signature = function (url, params) {
+*****
+
+***** PLIVO-NODE\RD\23.js
+  126:      delete params.call_uuid;
+  127:      var method;
+  128:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  127:      delete params.call_uuid;
+  128:      var method = 'GET';
+  129:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\23.js
+  544:      delete params.carrier_id;
+  545:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  545:      delete params.carrier_id;
+  546:      var method = 'GET';
+  547:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\23.js
+  689:      },
+  690:      addSpeak: function (body, attributes) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  691:      },
+  692:      addRedirect: function (body, attributes) {
+  693:          return this.add(new Redirect(Response), body, attributes);
+  694:      },
+  695:      addSpeak: function (body, attributes) {
+*****
+

@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\38.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\38.js
+  262:                      chunk = this.remaining.substr(0, this.options.chunkSize);
+  263:                      this.saxParser = this.saxParser.write(chunk);
+***** XML2JS\RD\ORIGINAL.JS
+  262:                      chunk = this.remaining.substr(0, this.options.chunkSize);
+  263:                      this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+  264:                      this.saxParser = this.saxParser.write(chunk);
+*****
+

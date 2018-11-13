@@ -1,0 +1,11 @@
+Comparing files JADE\RD\18.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\18.js
+  312:   */
+  313:  exports.__express = function (path, options) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+***** JADE\RD\ORIGINAL.JS
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+*****
+

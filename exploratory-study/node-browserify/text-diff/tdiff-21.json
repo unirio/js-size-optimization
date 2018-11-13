@@ -1,0 +1,11 @@
+Comparing files NODE-BROWSERIFY\RD\21.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\21.js
+  420:          if (opts.postFilter && !opts.postFilter(id, file, pkg))
+  421:              return;
+  422:          if (self._external.indexOf(file) >= 0)
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  420:          if (opts.postFilter && !opts.postFilter(id, file, pkg))
+  421:              return false;
+  422:          if (self._external.indexOf(file) >= 0)
+*****
+

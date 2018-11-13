@@ -1,0 +1,40 @@
+Comparing files TLEAF\RD\14.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\14.js
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function () {
+  178:          var type = _.get(bodyExpression, 'type');
+***** TLEAF\RD\ORIGINAL.JS
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  178:          var type = _.get(bodyExpression, 'type');
+*****
+
+***** TLEAF\RD\14.js
+  217:      if (!_.isArray(params)) {
+  218:          return;
+  219:      }
+***** TLEAF\RD\ORIGINAL.JS
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+*****
+
+***** TLEAF\RD\14.js
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:  }
+***** TLEAF\RD\ORIGINAL.JS
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:      return node;
+  241:  }
+*****
+
+***** TLEAF\RD\14.js
+  246:      var params = [];
+  247:      var varType = _.get(varNode);
+  248:      // covers "function someVar() {}"
+***** TLEAF\RD\ORIGINAL.JS
+  247:      var params = [];
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+*****
+

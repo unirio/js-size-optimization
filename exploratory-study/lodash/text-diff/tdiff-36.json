@@ -1,0 +1,180 @@
+Comparing files LODASH\RD\36.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\36.js
+  262:      /** Detect free variable `global` from Node.js. */
+  263:      var freeGlobal = checkGlobal();
+  264:      /** Detect free variable `self`. */
+***** LODASH\RD\ORIGINAL.JS
+  262:      /** Detect free variable `global` from Node.js. */
+  263:      var freeGlobal = checkGlobal(freeExports && freeModule && typeof global == 'object' && global);
+  264:      /** Detect free variable `self`. */
+*****
+
+***** LODASH\RD\36.js
+ 1654:          var baseFor = createBaseFor();
+ 1655:          var baseForRight = createBaseFor(true);
+ 1656:          /**
+ 1657:       * The base implementation of `_.forIn` without support for callback shorthands.
+ 1658:       *
+***** LODASH\RD\ORIGINAL.JS
+ 1654:          var baseFor = createBaseFor();
+ 1655:          /**
+ 1656:       * This function is like `baseFor` except that it iterates over properties
+ 1657:       * in the opposite order.
+ 1658:       *
+*****
+
+***** LODASH\RD\36.js
+ 1661:       * @param {Function} iteratee The function invoked per iteration.
+ 1662:       * @returns {Object} Returns `object`.
+***** LODASH\RD\ORIGINAL.JS
+ 1661:       * @param {Function} iteratee The function invoked per iteration.
+ 1662:       * @param {Function} keysFunc The function to get the keys of `object`.
+ 1663:       * @returns {Object} Returns `object`.
+*****
+
+***** LODASH\RD\36.js
+ 1663:       */
+ 1664:          function baseForIn(object, iteratee) {
+ 1665:              return object == null ? object : baseFor(object, iteratee, keysIn);
+ 1666:          }
+ 1667:          /**
+ 1668:       * The base implementation of `_.forOwn` without support for callback shorthands.
+ 1669:       *
+***** LODASH\RD\ORIGINAL.JS
+ 1664:       */
+ 1665:          var baseForRight = createBaseFor(true);
+ 1666:          /**
+ 1667:       * The base implementation of `_.forIn` without support for callback shorthands.
+ 1668:       *
+*****
+
+***** LODASH\RD\36.js
+ 1674:       */
+ 1675:          function baseForOwn(object, iteratee) {
+ 1676:              return object && baseFor(object, iteratee, keys);
+ 1677:          }
+***** LODASH\RD\ORIGINAL.JS
+ 1673:       */
+ 1674:          function baseForIn(object, iteratee) {
+ 1675:              return object == null ? object : baseFor(object, iteratee, keysIn);
+ 1676:          }
+*****
+
+***** LODASH\RD\36.js
+ 1678:          /**
+ 1679:       * The base implementation of `_.forOwnRight` without support for callback shorthands.
+ 1680:       *
+***** LODASH\RD\ORIGINAL.JS
+ 1677:          /**
+ 1678:       * The base implementation of `_.forOwn` without support for callback shorthands.
+ 1679:       *
+*****
+
+***** LODASH\RD\36.js
+ 1685:       */
+ 1686:          function baseForOwnRight(object, iteratee) {
+ 1687:              return object && baseForRight(object, iteratee, keys);
+ 1688:          }
+***** LODASH\RD\ORIGINAL.JS
+ 1684:       */
+ 1685:          function baseForOwn(object, iteratee) {
+ 1686:              return object && baseFor(object, iteratee, keys);
+ 1687:          }
+*****
+
+***** LODASH\RD\36.js
+ 1689:          /**
+ 1690:       * The base implementation of `_.functions` which creates an array of
+ 1691:       * `object` function property names filtered from those provided.
+ 1692:       *
+***** LODASH\RD\ORIGINAL.JS
+ 1688:          /**
+ 1689:       * The base implementation of `_.forOwnRight` without support for callback shorthands.
+ 1690:       *
+*****
+
+***** LODASH\RD\36.js
+ 1693:       * @private
+ 1694:       * @param {Object} object The object to inspect.
+***** LODASH\RD\ORIGINAL.JS
+ 1691:       * @private
+ 1692:       * @param {Object} object The object to iterate over.
+ 1693:       * @param {Function} iteratee The function invoked per iteration.
+ 1694:       * @returns {Object} Returns `object`.
+ 1695:       */
+ 1696:          function baseForOwnRight(object, iteratee) {
+ 1697:              return object && baseForRight(object, iteratee, keys);
+ 1698:          }
+ 1699:          /**
+ 1700:       * The base implementation of `_.functions` which creates an array of
+ 1701:       * `object` function property names filtered from those provided.
+ 1702:       *
+ 1703:       * @private
+ 1704:       * @param {Object} object The object to inspect.
+*****
+
+***** LODASH\RD\36.js
+ 2751:                  case 7:
+ 2752:                      return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+ 2753:                  }
+ 2754:                  var thisBinding = baseCreate(Ctor.prototype), result;
+ 2755:                  // Mimic the constructor's `return` behavior.
+***** LODASH\RD\ORIGINAL.JS
+ 2761:                  case 7:
+ 2762:                      return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+ 2763:                  }
+ 2764:                  var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding, args);
+ 2765:                  // Mimic the constructor's `return` behavior.
+*****
+
+***** LODASH\RD\36.js
+ 3159:          }
+ 3160:          var getData = !metaMap ? noop : function (func) {
+ 3161:              return metaMap.get(func);
+ 3162:          };
+ 3163:          /**
+ 3164:       * Gets the name of `func`.
+ 3165:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3169:          }
+ 3170:          /**
+ 3171:       * Gets metadata for `func`.
+ 3172:       *
+*****
+
+***** LODASH\RD\36.js
+ 3167:       * @param {Function} func The function to query.
+ 3168:       * @returns {string} Returns the function name.
+***** LODASH\RD\ORIGINAL.JS
+ 3174:       * @param {Function} func The function to query.
+ 3175:       * @returns {*} Returns the metadata for `func`.
+ 3176:       */
+ 3177:          var getData = !metaMap ? noop : function (func) {
+ 3178:              return metaMap.get(func);
+ 3179:          };
+ 3180:          /**
+ 3181:       * Gets the name of `func`.
+ 3182:       *
+ 3183:       * @private
+ 3184:       * @param {Function} func The function to query.
+ 3185:       * @returns {string} Returns the function name.
+*****
+
+***** LODASH\RD\36.js
+ 7486:              // An `NaN` primitive is the only value that is not equal to itself.
+ 7487:              return isNumber(value) && value != +value;
+***** LODASH\RD\ORIGINAL.JS
+ 7503:              // An `NaN` primitive is the only value that is not equal to itself.
+ 7504:              // Perform the `toStringTag` check first to avoid errors with some ActiveX objects in IE.
+ 7505:              return isNumber(value) && value != +value;
+*****
+
+***** LODASH\RD\36.js
+10868:          // Define as an anonymous module so, through path mapping, it can be
+10869:          define(function () {
+***** LODASH\RD\ORIGINAL.JS
+10886:          // Define as an anonymous module so, through path mapping, it can be
+10887:          // referenced as the "underscore" module.
+10888:          define(function () {
+*****
+

@@ -1,0 +1,50 @@
+Comparing files TLEAF\RD\46.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\46.js
+   66:          if (_.findWhere(deps, { name: name })) {
+   67:          }
+***** TLEAF\RD\ORIGINAL.JS
+   66:          if (_.findWhere(deps, { name: name })) {
+   67:              throw new UserError('Circular dependency for ' + type + ' "' + name + '".');
+   68:          }
+*****
+
+***** TLEAF\RD\46.js
+   90:  // TODO: multiple variable definitions
+   91:  function (callExpression, scope) {
+   92:      var module;
+   93:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, {});
+   94:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\46.js
+  101:  iable then
+  102:          }
+***** TLEAF\RD\ORIGINAL.JS
+  102:  iable then
+  103:          } else if (_.contains(config.units.process, calleeProp.name)) {
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode, 'init.arguments[0].value');
+  108:              }
+  109:          }
+*****
+
+***** TLEAF\RD\46.js
+  199:                  var varNode = findVariable(argument.name, depsFnScope);
+  200:              }
+***** TLEAF\RD\ORIGINAL.JS
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+  211:              }
+*****
+

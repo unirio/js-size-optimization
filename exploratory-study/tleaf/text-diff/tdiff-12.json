@@ -1,0 +1,21 @@
+Comparing files TLEAF\RD\12.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\12.js
+   92:  function findModule(callExpression, scope) {
+   93:      var module;
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+***** TLEAF\RD\ORIGINAL.JS
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+*****
+
+***** TLEAF\RD\12.js
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get');
+  209:                      return true;
+***** TLEAF\RD\ORIGINAL.JS
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+*****
+

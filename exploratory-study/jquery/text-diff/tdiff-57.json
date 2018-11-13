@@ -1,0 +1,91 @@
+Comparing files JQUERY\RD\57.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\57.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\57.js
+ 4127:          }
+ 4128:          return;
+ 4129:      }
+***** JQUERY\RD\ORIGINAL.JS
+ 4128:          }
+ 4129:          return elem;
+ 4130:      }
+*****
+
+***** JQUERY\RD\57.js
+ 5310:              return this.filter(isHiddenWithinTree).css('opacity', 0).show()    // Animate to the value specified
+ 5311:  .end().animate({}, speed, easing, callback);
+ 5312:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 5311:              return this.filter(isHiddenWithinTree).css('opacity', 0).show()    // Animate to the value specified
+ 5312:  .end().animate({ opacity: to }, speed, easing, callback);
+ 5313:          },
+*****
+
+***** JQUERY\RD\57.js
+ 5674:          'readOnly',
+ 5675:          'cellSpacing',
+***** JQUERY\RD\ORIGINAL.JS
+ 5675:          'readOnly',
+ 5676:          'maxLength',
+ 5677:          'cellSpacing',
+*****
+
+***** JQUERY\RD\57.js
+ 6001:              if (!onlyHandlers && !event.isDefaultPrevented()) {
+ 6002:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 6003:              if (!onlyHandlers && !event.isDefaultPrevented()) {
+ 6004:                  if ((!special._default || special._default.apply(eventPath.pop(), data) === false) && acceptData(elem)) {
+ 6005:                      // Call a native DOM method on the target with the same name as the event.
+ 6006:                      // Don't do default actions on window, that's where global variables be (#6170)
+ 6007:                      if (ontype && jQuery.isFunction(elem[type]) && !jQuery.isWindow(elem)) {
+ 6008:                          // Don't re-trigger an onFOO event when we call its FOO() method
+ 6009:                          tmp = elem[ontype];
+ 6010:                          if (tmp) {
+ 6011:                              elem[ontype] = null;
+ 6012:                          }
+ 6013:                          // Prevent re-triggering of the same event, since we already bubbled it above
+ 6014:                          jQuery.event.triggered = type;
+ 6015:                          elem[type]();
+ 6016:                          jQuery.event.triggered = undefined;
+ 6017:                          if (tmp) {
+ 6018:                              elem[ontype] = tmp;
+ 6019:                          }
+ 6020:                      }
+ 6021:                  }
+ 6022:              }
+*****
+
+***** JQUERY\RD\57.js
+ 6344:                              tmp = conv2.split(' ');
+ 6345:                          }
+***** JQUERY\RD\ORIGINAL.JS
+ 6364:                              tmp = conv2.split(' ');
+ 6365:                              if (tmp[1] === current) {
+ 6366:                                  // If prev can be converted to accepted input
+ 6367:                                  conv = converters[prev + ' ' + tmp[0]] || converters['* ' + tmp[0]];
+ 6368:                                  if (conv) {
+ 6369:                                      // Condense equivalence converters
+ 6370:                                      if (conv === true) {
+ 6371:                                          conv = converters[conv2];    // Otherwise, insert the intermediate dataType
+ 6372:                                      } else if (converters[conv2] !== true) {
+ 6373:                                          current = tmp[0];
+ 6374:                                          dataTypes.unshift(tmp[1]);
+ 6375:                                      }
+ 6376:                                      break;
+ 6377:                                  }
+ 6378:                              }
+ 6379:                          }
+*****
+

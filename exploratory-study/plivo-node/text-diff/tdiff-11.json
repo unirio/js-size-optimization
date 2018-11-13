@@ -1,0 +1,24 @@
+Comparing files PLIVO-NODE\RD\11.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\11.js
+  214:      var method = 'GET';
+  215:      request(action, method, params, true);
+  216:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  214:      var method = 'GET';
+  215:      request(action, method, params, callback, true);
+  216:  };
+*****
+
+***** PLIVO-NODE\RD\11.js
+  801:      ];
+  802:  }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  801:      ];
+  802:      this.nestables = [
+  803:          'Speak',
+  804:          'Play',
+  805:          'Wait'
+  806:      ];
+  807:  }
+*****
+

@@ -1,0 +1,11 @@
+Comparing files NODE-BROWSERIFY\RD\7.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\7.js
+  516:          if (opts.detectGlobals === false)
+  517:              return;
+  518:          if (opts.noParse === true)
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  516:          if (opts.detectGlobals === false)
+  517:              return through();
+  518:          if (opts.noParse === true)
+*****
+

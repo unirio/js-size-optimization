@@ -1,0 +1,34 @@
+Comparing files JADE\RD\12.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\12.js
+  153:  };
+  154:  exports.compileClientWithDependenciesTracked = function (str, options) {
+***** JADE\RD\ORIGINAL.JS
+  153:  };
+  154:  /**
+  155:   * Compile a JavaScript source representation of the given pug `str`.
+  156:   *
+  157:   * Options:
+  158:   *
+  159:   *   - `compileDebug` When it is `true`, the source code is included in
+  160:   *     the compiled template for better error messages.
+  161:   *   - `filename` used to improve errors when `compileDebug` is not `true` and to resolve imports/extends
+  162:   *   - `name` the name of the resulting function (defaults to "template")
+  163:   *
+  164:   * @param {String} str
+  165:   * @param {Options} options
+  166:   * @return {Object}
+  167:   * @api public
+  168:   */
+  169:  exports.compileClientWithDependenciesTracked = function (str, options) {
+*****
+
+***** JADE\RD\12.js
+  235:          } catch (ex) {
+  236:              return;
+  237:          }
+***** JADE\RD\ORIGINAL.JS
+  250:          } catch (ex) {
+  251:              return fn(ex);
+  252:          }
+*****
+

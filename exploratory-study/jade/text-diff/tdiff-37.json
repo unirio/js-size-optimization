@@ -1,0 +1,83 @@
+Comparing files JADE\RD\37.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\37.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+*****
+
+***** JADE\RD\37.js
+   44:          parse: function (tokens, filename) {
+   45:              tokens = stripComments(tokens, {});
+   46:              return parse(tokens, filename);
+***** JADE\RD\ORIGINAL.JS
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+*****
+
+***** JADE\RD\37.js
+   61:              var str = fs.readFileSync(filename, 'utf8');
+   62:              return str;
+***** JADE\RD\ORIGINAL.JS
+   64:              var str = fs.readFileSync(filename, 'utf8');
+   65:              debug_sources[filename] = str;
+   66:              return str;
+*****
+
+***** JADE\RD\37.js
+   79:      if (options.debug) {
+   80:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m');
+   81:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+
+***** JADE\RD\37.js
+   86:  }
+   87:  function handleTemplateCache(options, str) {
+***** JADE\RD\ORIGINAL.JS
+   90:  }
+   91:  /**
+   92:   * Get the template from a string or a file, either compiled on-the-fly or
+   93:   * read from cache (if enabled), and cache the template if needed.
+   94:   *
+   95:   * If `str` is not set, the file specified in `options.filename` will be read.
+   96:   *
+   97:   * If `options.cache` is true, this function reads the file from
+   98:   * `options.filename` so it must be set prior to calling this function.
+   99:   *
+  100:   * @param {Object} options
+  101:   * @param {String=} str
+  102:   * @return {Function}
+  103:   * @api private
+  104:   */
+  105:  function handleTemplateCache(options, str) {
+*****
+
+***** JADE\RD\37.js
+   92:          if (str === undefined)
+   93:              str = fs.readFileSync(options.filename);
+   94:          var templ = exports.compile(str, options);
+***** JADE\RD\ORIGINAL.JS
+  110:          if (str === undefined)
+  111:              str = fs.readFileSync(options.filename, 'utf8');
+  112:          var templ = exports.compile(str, options);
+*****
+
+***** JADE\RD\37.js
+  298:      }
+  299:      exports.renderFile(path, options);
+  300:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

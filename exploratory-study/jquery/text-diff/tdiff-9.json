@@ -1,0 +1,33 @@
+Comparing files JQUERY\RD\9.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\9.js
+  379:          // regarding Nodelist length in IE
+  380:          var length = !!obj && 'length' in obj && obj.length, type;
+  381:          if (type === 'function' || jQuery.isWindow(obj)) {
+***** JQUERY\RD\ORIGINAL.JS
+  379:          // regarding Nodelist length in IE
+  380:          var length = !!obj && 'length' in obj && obj.length, type = jQuery.type(obj);
+  381:          if (type === 'function' || jQuery.isWindow(obj)) {
+*****
+
+***** JQUERY\RD\9.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\9.js
+ 2468:                  // Abort any current/pending executions
+ 2469:                  disable: function () {
+***** JQUERY\RD\ORIGINAL.JS
+ 2469:                  // Abort any current/pending executions
+ 2470:                  // Clear all callbacks and values
+ 2471:                  disable: function () {
+*****
+

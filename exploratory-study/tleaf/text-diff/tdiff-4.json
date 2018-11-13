@@ -1,0 +1,31 @@
+Comparing files TLEAF\RD\4.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\4.js
+   56:          if (_.isUndefined(type)) {
+   57:          }
+***** TLEAF\RD\ORIGINAL.JS
+   56:          if (_.isUndefined(type)) {
+   57:              return;
+   58:          }
+*****
+
+***** TLEAF\RD\4.js
+   89:  }
+   90:  function findModule(callExpression, scope) {
+***** TLEAF\RD\ORIGINAL.JS
+   90:  }
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+*****
+
+***** TLEAF\RD\4.js
+  258:  function extractObjectPropertyDeps(object, propName, scope) {
+  259:      var prop = _.find(object.properties);
+  260:      if (!prop) {
+***** TLEAF\RD\ORIGINAL.JS
+  260:  function extractObjectPropertyDeps(object, propName, scope) {
+  261:      var prop = _.find(object.properties, function (property) {
+  262:          return _.get(property, 'key.name') === propName;
+  263:      });
+  264:      if (!prop) {
+*****
+

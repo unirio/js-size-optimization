@@ -1,0 +1,24 @@
+Comparing files JQUERY\RD\20.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\20.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\20.js
+ 5307:      jQuery.fn.extend({
+ 5308:          fadeTo: function (speed, easing, callback) {
+ 5309:              // Show any hidden elements after setting opacity to 0
+***** JQUERY\RD\ORIGINAL.JS
+ 5308:      jQuery.fn.extend({
+ 5309:          fadeTo: function (speed, to, easing, callback) {
+ 5310:              // Show any hidden elements after setting opacity to 0
+*****
+

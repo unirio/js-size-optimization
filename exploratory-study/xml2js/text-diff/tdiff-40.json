@@ -1,0 +1,49 @@
+Comparing files XML2JS\RD\40.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\40.js
+   53:              normalize: true,
+   54:              attrkey: '@',
+***** XML2JS\RD\ORIGINAL.JS
+   53:              normalize: true,
+   54:              normalizeTags: false,
+   55:              attrkey: '@',
+*****
+
+***** XML2JS\RD\40.js
+   91:              strict: true,
+   92:              attrValueProcessors: null,
+***** XML2JS\RD\ORIGINAL.JS
+   92:              strict: true,
+   93:              attrNameProcessors: null,
+   94:              attrValueProcessors: null,
+*****
+
+***** XML2JS\RD\40.js
+  108:              chunkSize: 10000,
+  109:              emptyTag: ''
+  110:          }
+***** XML2JS\RD\ORIGINAL.JS
+  110:              chunkSize: 10000,
+  111:              emptyTag: '',
+  112:              cdata: false
+  113:          }
+*****
+
+***** XML2JS\RD\40.js
+  245:                  }
+  246:                  this.options.tagNameProcessors.unshift();
+  247:              }
+***** XML2JS\RD\ORIGINAL.JS
+  248:                  }
+  249:                  this.options.tagNameProcessors.unshift(processors.normalize);
+  250:              }
+*****
+
+***** XML2JS\RD\40.js
+  495:                      setImmediate(this.processAsync);
+  496:                  }
+***** XML2JS\RD\ORIGINAL.JS
+  498:                      setImmediate(this.processAsync);
+  499:                      return this.saxParser;
+  500:                  }
+*****
+

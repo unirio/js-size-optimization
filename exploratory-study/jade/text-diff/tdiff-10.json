@@ -1,0 +1,32 @@
+Comparing files JADE\RD\10.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\10.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+*****
+
+***** JADE\RD\10.js
+  175:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+  176:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+  178:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+  179:          globals: options.globals,
+  180:          self: options.self,
+*****
+
+***** JADE\RD\10.js
+  305:  };
+  306:  exports.__express = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  309:  };
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+*****
+

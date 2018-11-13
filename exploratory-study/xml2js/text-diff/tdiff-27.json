@@ -1,0 +1,11 @@
+Comparing files XML2JS\RD\27.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\27.js
+   15:              child.__super__ = parent.prototype;
+   16:              return;
+   17:          }, hasProp = {}.hasOwnProperty, bind = function (fn, me) {
+***** XML2JS\RD\ORIGINAL.JS
+   15:              child.__super__ = parent.prototype;
+   16:              return child;
+   17:          }, hasProp = {}.hasOwnProperty, bind = function (fn, me) {
+*****
+

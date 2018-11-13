@@ -1,0 +1,101 @@
+Comparing files TLEAF\RD\23.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\23.js
+    1:  'use strict';
+    2:  var esprima;
+    3:  var estraverse = require('estraverse');
+***** TLEAF\RD\ORIGINAL.JS
+    1:  'use strict';
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require('estraverse');
+*****
+
+***** TLEAF\RD\23.js
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property');
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+*****
+
+***** TLEAF\RD\23.js
+   58:          }
+   59:          var module = findModule(call.node);
+   60:          if (_.isUndefined(module.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   58:          }
+   59:          var module = findModule(call.node, call.scope);
+   60:          if (_.isUndefined(module.name)) {
+*****
+
+***** TLEAF\RD\23.js
+   64:          // Angular should not allow having circular dependency, but if
+   65:          if (_.findWhere(deps, { name: name })) {
+***** TLEAF\RD\ORIGINAL.JS
+   64:          // Angular should not allow having circular dependency, but if
+   65:          // there is any in a source code, do not continue execution
+   66:          if (_.findWhere(deps, { name: name })) {
+*****
+
+***** TLEAF\RD\23.js
+   69:              name: name,
+   70:              module: module,
+***** TLEAF\RD\ORIGINAL.JS
+   70:              name: name,
+   71:              type: type,
+   72:              module: module,
+*****
+
+***** TLEAF\RD\23.js
+   83:      }
+   84:  }
+***** TLEAF\RD\ORIGINAL.JS
+   85:      }
+   86:      return name;
+   87:  }
+*****
+
+***** TLEAF\RD\23.js
+   88:  // TODO: multiple variable definitions
+   89:  function findModule(callExpression) {
+   90:      var module = {};
+   91:      var calleeObj = _.get(callExpression, 'callee.object', {});
+   92:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\23.js
+  233:      if (_.isUndefined(variable)) {
+  234:      }
+***** TLEAF\RD\ORIGINAL.JS
+  236:      if (_.isUndefined(variable)) {
+  237:          return variable;
+  238:      }
+*****
+
+***** TLEAF\RD\23.js
+  238:  function extractVariableDeps(varName, scope) {
+  239:      var varNode;
+  240:      if (!varNode) {
+***** TLEAF\RD\ORIGINAL.JS
+  242:  function extractVariableDeps(varName, scope) {
+  243:      var varNode = findVariable(varName, scope);
+  244:      if (!varNode) {
+*****
+
+***** TLEAF\RD\23.js
+  250:      if (varType === 'VariableDeclarator') {
+  251:          params = _.get(varNode, 'init.params');
+  252:      }
+***** TLEAF\RD\ORIGINAL.JS
+  254:      if (varType === 'VariableDeclarator') {
+  255:          params = _.get(varNode, 'init.params', []);
+  256:      }
+*****
+

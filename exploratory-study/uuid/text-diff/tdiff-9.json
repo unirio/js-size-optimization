@@ -1,0 +1,11 @@
+Comparing files UUID\RD\9.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\9.js
+  197:      var ints = [];
+  198:      for (var i = 0; i < binary.length;) {
+  199:          ints[i] = binary.charCodeAt(i);
+***** UUID\RD\ORIGINAL.JS
+  197:      var ints = [];
+  198:      for (var i = 0; i < binary.length; i++) {
+  199:          ints[i] = binary.charCodeAt(i);
+*****
+

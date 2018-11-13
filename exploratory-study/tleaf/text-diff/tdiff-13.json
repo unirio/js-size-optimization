@@ -1,0 +1,117 @@
+Comparing files TLEAF\RD\13.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\13.js
+    1:  'use strict';
+    2:  var estraverse = require('estraverse');
+***** TLEAF\RD\ORIGINAL.JS
+    1:  'use strict';
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require('estraverse');
+*****
+
+***** TLEAF\RD\13.js
+   48:      _.forEach(calls, function (call) {
+   49:          var name = findName(call.node, call.scope);
+***** TLEAF\RD\ORIGINAL.JS
+   49:      _.forEach(calls, function (call) {
+   50:          // for now use only completely parsed units
+   51:          var name = findName(call.node, call.scope);
+*****
+
+***** TLEAF\RD\13.js
+   79:      var name;
+   80:      var nameArg;
+   81:      if (nameArg.type === 'Literal') {
+***** TLEAF\RD\ORIGINAL.JS
+   81:      var name;
+   82:      var nameArg = _.get(callExpression, 'arguments[0]', {});
+   83:      if (nameArg.type === 'Literal') {
+*****
+
+***** TLEAF\RD\13.js
+   91:      var module = {};
+   92:      var calleeObj, calleeProp = _.get(callExpression, 'callee.property', {});
+   93:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\13.js
+  148:          // it may vary a lot, covering common cases
+  149:          return findProviderDeps();
+  150:      }
+***** TLEAF\RD\ORIGINAL.JS
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps(depsArg);
+  152:      }
+*****
+
+***** TLEAF\RD\13.js
+  157:      }
+  158:      return extractObjectPropertyDeps(object, 'controller', scope);
+***** TLEAF\RD\ORIGINAL.JS
+  159:      }
+  160:      // if not object - not sure what to do with it
+  161:      if (object.type !== 'ObjectExpression') {
+  162:          return [];
+  163:      }
+  164:      return extractObjectPropertyDeps(object, 'controller', scope);
+*****
+
+***** TLEAF\RD\13.js
+  173:          var expression = _.get(bodyExpression, 'expression', {});
+  174:          var leftProp = _.get(expression, 'left.property');
+  175:          var right = _.get(expression, 'right', {});
+***** TLEAF\RD\ORIGINAL.JS
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+*****
+
+***** TLEAF\RD\13.js
+  189:          var argument = _.get(bodyExpression, 'argument', {});
+  190:      });
+***** TLEAF\RD\ORIGINAL.JS
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+  196:          // covers "return ...;"
+  197:          if (type === 'ReturnStatement') {
+  198:              // covers "return { $get: function () {} };"
+  199:              // covers "return { $get: someVar };"
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+  204:              // covers "return someVar;"
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+  211:              }
+  212:          }
+  213:      });
+*****
+
+***** TLEAF\RD\13.js
+  192:  }
+  193:  function findVariable(varName, scope) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+  228:  }
+  229:  function findVariable(varName, scope) {
+*****
+

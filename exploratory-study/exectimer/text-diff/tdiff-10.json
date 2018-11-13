@@ -1,0 +1,23 @@
+Comparing files EXECTIMER\RD\10.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\10.js
+  117:      if (!constructor) {
+  118:          return;
+  119:      }
+***** EXECTIMER\RD\ORIGINAL.JS
+  117:      if (!constructor) {
+  118:          return false;
+  119:      }
+*****
+
+***** EXECTIMER\RD\10.js
+  152:          callback(done);
+  153:      }
+***** EXECTIMER\RD\ORIGINAL.JS
+  152:          callback(done);
+  153:      } else {
+  154:          // Otherwise just call the function and stop the tick
+  155:          callback();
+  156:          tick.stop();
+  157:      }
+*****
+

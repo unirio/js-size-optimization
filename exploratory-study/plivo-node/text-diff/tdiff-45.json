@@ -1,0 +1,138 @@
+Comparing files PLIVO-NODE\RD\45.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\45.js
+  183:      var method = 'DELETE';
+  184:      request(action, params, callback);
+  185:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  183:      var method = 'DELETE';
+  184:      request(action, method, params, callback);
+  185:  };
+*****
+
+***** PLIVO-NODE\RD\45.js
+  254:  };
+  255:  plivo.speak_conference_member = function (params) {
+  256:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Speak/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  254:  };
+  255:  plivo.speak_conference_member = function (params, callback) {
+  256:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Speak/';
+*****
+
+***** PLIVO-NODE\RD\45.js
+  417:      var method = 'POST';
+  418:      request(action, method, params);
+  419:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  417:      var method = 'POST';
+  418:      request(action, method, params, callback);
+  419:  };
+*****
+
+***** PLIVO-NODE\RD\45.js
+  517:      var method = 'GET';
+  518:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  517:      var method = 'GET';
+  518:      request(action, method, params, callback);
+  519:  };
+*****
+
+***** PLIVO-NODE\RD\45.js
+  570:  };
+  571:  plivo.create_outgoing_carrier_routing = function (params, callback) {
+  572:      var action = 'OutgoingCarrierRouting/';
+  573:      var method = 'POST';
+  574:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  571:  };
+  572:  plivo.get_outgoing_carrier_routing = function (params, callback) {
+  573:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  574:      delete params.routing_id;
+  575:      var method = 'GET';
+  576:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\45.js
+  575:  };
+  576:  plivo.modify_outgoing_carrier_routing = function (params, callback) {
+  577:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  578:      delete params.routing_id;
+  579:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  577:  };
+  578:  plivo.create_outgoing_carrier_routing = function (params, callback) {
+  579:      var action = 'OutgoingCarrierRouting/';
+  580:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\45.js
+  581:  };
+  582:  plivo.delete_outgoing_carrier_routing = function (params, callback) {
+  583:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  582:  };
+  583:  plivo.modify_outgoing_carrier_routing = function (params, callback) {
+  584:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\45.js
+  584:      delete params.routing_id;
+  585:      var method = 'DELETE';
+  586:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  585:      delete params.routing_id;
+  586:      var method = 'POST';
+  587:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\45.js
+  587:  };
+  588:  // Pricing
+  589:  plivo.get_pricing = function (params, callback) {
+  590:      var action = 'Pricing/';
+  591:      var method = 'GET';
+  592:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  588:  };
+  589:  plivo.delete_outgoing_carrier_routing = function (params, callback) {
+  590:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  591:      delete params.routing_id;
+  592:      var method = 'DELETE';
+  593:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\45.js
+  593:  };
+  594:  /**
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  594:  };
+  595:  // Pricing
+  596:  plivo.get_pricing = function (params, callback) {
+  597:      var action = 'Pricing/';
+  598:      var method = 'GET';
+  599:      request(action, method, params, callback);
+  600:  };
+  601:  /**
+*****
+
+***** PLIVO-NODE\RD\45.js
+  679:      addPreAnswer: function () {
+  680:          return this.add(new PreAnswer(), '', {});
+  681:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  686:      addPreAnswer: function () {
+  687:          return this.add(new PreAnswer(Response), '', {});
+  688:      },
+*****
+
+***** PLIVO-NODE\RD\45.js
+  842:  util.inherits(PreAnswer, Response);
+  843:  function Record() {
+  844:      this.element = 'Record';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  849:  util.inherits(PreAnswer, Response);
+  850:  function Record(Response) {
+  851:      this.element = 'Record';
+*****
+

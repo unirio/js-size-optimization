@@ -1,0 +1,78 @@
+Comparing files UNDERSCORE\RD\18.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\18.js
+    9:      var root = this;
+   10:      // Save bytes in the minified (but not gzipped) version:
+***** UNDERSCORE\RD\ORIGINAL.JS
+    9:      var root = this;
+   10:      // Save the previous value of the `_` variable.
+   11:      var previousUnderscore = root._;
+   12:      // Save bytes in the minified (but not gzipped) version:
+*****
+
+***** UNDERSCORE\RD\18.js
+  169:          return function (obj, iteratee, memo, context) {
+  170:              iteratee = optimizeCb(iteratee, context);
+  171:              var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, index = dir > 0 ? 0 : length - 1;
+***** UNDERSCORE\RD\ORIGINAL.JS
+  171:          return function (obj, iteratee, memo, context) {
+  172:              iteratee = optimizeCb(iteratee, context, 4);
+  173:              var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, index = dir > 0 ? 0 : length - 1;
+*****
+
+***** UNDERSCORE\RD\18.js
+  808:      // Returns the first function passed as an argument to the second,
+  809:      // conditionally execute the original function.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  810:      // Returns the first function passed as an argument to the second,
+  811:      // allowing you to adjust arguments, run code before and after, and
+  812:      // conditionally execute the original function.
+*****
+
+***** UNDERSCORE\RD\18.js
+  873:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  874:              keys.push();
+  875:          while (nonEnumIdx--) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+  878:          while (nonEnumIdx--) {
+*****
+
+***** UNDERSCORE\RD\18.js
+  894:          if (hasEnumBug)
+  895:              collectNonEnumProps(obj);
+  896:          return keys;
+***** UNDERSCORE\RD\ORIGINAL.JS
+  897:          if (hasEnumBug)
+  898:              collectNonEnumProps(obj, keys);
+  899:          return keys;
+*****
+
+***** UNDERSCORE\RD\18.js
+ 1005:          } else {
+ 1006:              var keys = _.map(flatten(arguments, false, false), String);
+ 1007:              iteratee = function (value, key) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1008:          } else {
+ 1009:              var keys = _.map(flatten(arguments, false, false, 1), String);
+ 1010:              iteratee = function (value, key) {
+*****
+
+***** UNDERSCORE\RD\18.js
+ 1196:      // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
+ 1197:      if (typeof /./ != 'function' && typeof Int8Array != 'object') {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1199:      // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
+ 1200:      // IE 11 (#1621), and in Safari 8 (#1929).
+ 1201:      if (typeof /./ != 'function' && typeof Int8Array != 'object') {
+*****
+
+***** UNDERSCORE\RD\18.js
+ 1262:      };
+ 1263:      _.times = function (n, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1266:      };
+ 1267:      // Run a function **n** times.
+ 1268:      _.times = function (n, iteratee, context) {
+*****
+

@@ -1,0 +1,19 @@
+Comparing files PLIVO-NODE\RD\42.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\42.js
+  201:      var method = 'POST';
+  202:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  201:      var method = 'POST';
+  202:      request(action, method, params, callback);
+  203:  };
+*****
+
+***** PLIVO-NODE\RD\42.js
+  397:      var action = 'Recording/' + params['recording_id'] + '/';
+  398:      var method = 'DELETE';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  398:      var action = 'Recording/' + params['recording_id'] + '/';
+  399:      delete params.recording_id;
+  400:      var method = 'DELETE';
+*****
+

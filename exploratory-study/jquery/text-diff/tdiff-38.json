@@ -1,0 +1,126 @@
+Comparing files JQUERY\RD\38.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\38.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\38.js
+ 1199:                          match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === 'even' || match[3] === 'odd'));
+ 1200:                      } else if (match[3]) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1200:                          match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === 'even' || match[3] === 'odd'));
+ 1201:                          match[5] = +(match[7] + match[8] || match[3] === 'odd');    // other types prohibit arguments
+ 1202:                      } else if (match[3]) {
+*****
+
+***** JQUERY\RD\38.js
+ 1858:                      // equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+ 1859:                      // Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+***** JQUERY\RD\ORIGINAL.JS
+ 1860:                      // equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+ 1861:                      // no element matchers and no seed.
+ 1862:                      // Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+*****
+
+***** JQUERY\RD\38.js
+ 2859:      }
+ 2860:      // Multifunctional method to get and set values of a collection
+***** JQUERY\RD\ORIGINAL.JS
+ 2862:          // A fallback to window.onload, that will always work
+ 2863:          window.addEventListener('load', completed);
+ 2864:      }
+ 2865:      // Multifunctional method to get and set values of a collection
+*****
+
+***** JQUERY\RD\38.js
+ 2944:                  for (prop in data) {
+ 2945:                      cache[jQuery.camelCase()] = data[prop];
+ 2946:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 2949:                  for (prop in data) {
+ 2950:                      cache[jQuery.camelCase(prop)] = data[prop];
+ 2951:                  }
+*****
+
+***** JQUERY\RD\38.js
+ 3507:                  while (elem = tmp[j++]) {
+ 3508:                      if (rscriptType.test()) {
+ 3509:                          scripts.push(elem);
+***** JQUERY\RD\ORIGINAL.JS
+ 3512:                  while (elem = tmp[j++]) {
+ 3513:                      if (rscriptType.test(elem.type || '')) {
+ 3514:                          scripts.push(elem);
+*****
+
+***** JQUERY\RD\38.js
+ 4766:                  if (computed) {
+ 4767:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 4771:                  if (computed) {
+ 4772:                      // Certain elements can have dimension info if we invisibly show them
+ 4773:                      // but it must have a current display style that would benefit
+ 4774:                      return rdisplayswap.test(jQuery.css(elem, 'display')) && (!elem.getClientRects().length || !elem.getBoundin
+ 4775:  gClientRect().width) ? swap(elem, cssShow, function () {
+ 4776:                          return getWidthOrHeight(elem, name, extra);
+ 4777:                      }) : getWidthOrHeight(elem, name, extra);
+ 4778:                  }
+*****
+
+***** JQUERY\RD\38.js
+ 5749:              if (jQuery.isFunction(value)) {
+ 5750:                  return this.each(function () {
+ 5751:                      jQuery(this).toggleClass(value.call(this, i, getClass(this), stateVal), stateVal);
+***** JQUERY\RD\ORIGINAL.JS
+ 5760:              if (jQuery.isFunction(value)) {
+ 5761:                  return this.each(function (i) {
+ 5762:                      jQuery(this).toggleClass(value.call(this, i, getClass(this), stateVal), stateVal);
+*****
+
+***** JQUERY\RD\38.js
+ 6016:          simulate: function (type, elem, event) {
+ 6017:              var e = jQuery.extend(new jQuery.Event(), event, { type: type });
+ 6018:              jQuery.event.trigger(e, null, elem);
+***** JQUERY\RD\ORIGINAL.JS
+ 6027:          simulate: function (type, elem, event) {
+ 6028:              var e = jQuery.extend(new jQuery.Event(), event, {
+ 6029:                  type: type,
+ 6030:                  isSimulated: true
+ 6031:              });
+ 6032:              jQuery.event.trigger(e, null, elem);
+*****
+
+***** JQUERY\RD\38.js
+ 6040:      });
+ 6041:      jQuery.fn.extend({});
+ 6042:      support.focusin = 'onfocusin' in window;
+***** JQUERY\RD\ORIGINAL.JS
+ 6054:      });
+ 6055:      jQuery.fn.extend({
+ 6056:          hover: function (fnOver, fnOut) {
+ 6057:              return this.mouseenter(fnOver).mouseleave(fnOut || fnOver);
+ 6058:          }
+ 6059:      });
+ 6060:      support.focusin = 'onfocusin' in window;
+*****
+
+***** JQUERY\RD\38.js
+ 6381:          }
+ 6382:          return { state: 'success' };
+ 6383:      }
+***** JQUERY\RD\ORIGINAL.JS
+ 6399:          }
+ 6400:          return {
+ 6401:              state: 'success',
+ 6402:              data: response
+ 6403:          };
+ 6404:      }
+*****
+

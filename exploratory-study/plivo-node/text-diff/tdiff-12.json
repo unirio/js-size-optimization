@@ -1,0 +1,38 @@
+Comparing files PLIVO-NODE\RD\12.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\12.js
+   17:      Error.call(this);
+   18:      this.message = (msg || '') + '\n';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   17:      Error.call(this);
+   18:      Error.captureStackTrace(this, arguments.callee);
+   19:      this.message = (msg || '') + '\n';
+*****
+
+***** PLIVO-NODE\RD\12.js
+  306:      delete params.conference_id;
+  307:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  307:      delete params.conference_id;
+  308:      var method = 'POST';
+  309:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\12.js
+  431:  plivo.get_numbers = function (params, callback) {
+  432:      var action;
+  433:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  433:  plivo.get_numbers = function (params, callback) {
+  434:      var action = 'Number/';
+  435:      var method = 'GET';
+*****
+
+***** PLIVO-NODE\RD\12.js
+  788:          'method',
+  789:          'digitTimeout',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  790:          'method',
+  791:          'timeout',
+  792:          'digitTimeout',
+*****
+

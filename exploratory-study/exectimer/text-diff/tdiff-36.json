@@ -1,0 +1,40 @@
+Comparing files EXECTIMER\RD\36.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\36.js
+   67:              },
+   68:              max: function () {
+***** EXECTIMER\RD\ORIGINAL.JS
+   67:              },
+   68:              /**
+   69:               * Get the longest tick.
+   70:               * @returns {number}
+   71:               */
+   72:              max: function () {
+*****
+
+***** EXECTIMER\RD\36.js
+   92:                  } else if (num >= 1000 && num < 1000000) {
+   93:                  } else if (num >= 1000000 && num < 1000000000) {
+***** EXECTIMER\RD\ORIGINAL.JS
+   96:                  } else if (num >= 1000 && num < 1000000) {
+   97:                      return num / 1000 + 'us';
+   98:                  } else if (num >= 1000000 && num < 1000000000) {
+*****
+
+***** EXECTIMER\RD\36.js
+  117:      }
+  118:  }
+***** EXECTIMER\RD\ORIGINAL.JS
+  122:      }
+  123:      return 'function' === typeof constructor.prototype.next && 'function' === typeof constructor.prototype.throw;
+  124:  }
+*****
+
+***** EXECTIMER\RD\36.js
+  149:          callback();
+  150:      }
+***** EXECTIMER\RD\ORIGINAL.JS
+  155:          callback();
+  156:          tick.stop();
+  157:      }
+*****
+

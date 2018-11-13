@@ -1,0 +1,12 @@
+Comparing files UUID\RD\14.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\14.js
+  184:              var octet = ints[pos++].toString(16);
+  185:              str += octet;
+***** UUID\RD\ORIGINAL.JS
+  184:              var octet = ints[pos++].toString(16);
+  185:              if (octet.length == 1) {
+  186:                  octet = '0' + octet;
+  187:              }
+  188:              str += octet;
+*****
+

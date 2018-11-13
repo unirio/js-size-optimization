@@ -1,0 +1,75 @@
+Comparing files TLEAF\RD\29.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\29.js
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName);
+  106:              if (varNode) {
+***** TLEAF\RD\ORIGINAL.JS
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+*****
+
+***** TLEAF\RD\29.js
+  113:  // TODO: multiple variable definitions
+  114:  function findDeps(callExpression, scope) {
+  115:      var cantHaveDeps = [
+***** TLEAF\RD\ORIGINAL.JS
+  113:  // TODO: multiple variable definitions
+  114:  function findDeps(callExpression, scope, type) {
+  115:      var cantHaveDeps = [
+*****
+
+***** TLEAF\RD\29.js
+  138:      }
+  139:      // deps in a form of function expression
+***** TLEAF\RD\ORIGINAL.JS
+  138:      }
+  139:      // deps in a form of function expression can be stored in variable
+  140:      if (depsArg.type === 'Identifier') {
+  141:          return extractVariableDeps(depsArg.name, scope);
+  142:      }
+  143:      // deps in a form of function expression
+*****
+
+***** TLEAF\RD\29.js
+  150:  }
+  151:  function (object, scope) {
+  152:      // covers { controller: someVar }
+***** TLEAF\RD\ORIGINAL.JS
+  154:  }
+  155:  function findComponentDeps(object, scope) {
+  156:      // covers { controller: someVar }
+*****
+
+***** TLEAF\RD\29.js
+  171:      // iterate over all body expressions in provider
+  172:      var depsFnBodyExpressions = _.get(depsFnBody);
+  173:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+***** TLEAF\RD\ORIGINAL.JS
+  175:      // iterate over all body expressions in provider
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+*****
+
+***** TLEAF\RD\29.js
+  227:      var currentScope = scope;
+  228:      if (_.isUndefined(variable)) {
+***** TLEAF\RD\ORIGINAL.JS
+  231:      var currentScope = scope;
+  232:      while (!variable && currentScope) {
+  233:          variable = _.findWhere(currentScope.variables, { name: varName });
+  234:          currentScope = currentScope.upper;
+  235:      }
+  236:      if (_.isUndefined(variable)) {
+*****
+
+***** TLEAF\RD\29.js
+  266:      if (value.type === 'Identifier') {
+  267:          deps = extractVariableDeps(value.name);
+  268:      }
+***** TLEAF\RD\ORIGINAL.JS
+  274:      if (value.type === 'Identifier') {
+  275:          deps = extractVariableDeps(value.name, scope);
+  276:      }
+*****
+

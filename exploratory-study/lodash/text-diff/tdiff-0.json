@@ -1,0 +1,67 @@
+Comparing files LODASH\RD\0.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\0.js
+  405:          }
+  406:          return;
+  407:      }
+***** LODASH\RD\ORIGINAL.JS
+  405:          }
+  406:          return 0;
+  407:      }
+*****
+
+***** LODASH\RD\0.js
+ 1586:                  if (predicate(value, index, collection)) {
+ 1587:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 1586:                  if (predicate(value, index, collection)) {
+ 1587:                      result.push(value);
+ 1588:                  }
+*****
+
+***** LODASH\RD\0.js
+ 2159:          }
+ 2160:          function baseReduce(collection, iteratee, accumulator, initFromCollection, eachFunc) {
+ 2161:              eachFunc(collection, function (value, index, collection) {
+ 2162:                  accumulator = initFromCollection ? (initFromCollection = false, value) : iteratee(accumulator, value, index, co
+ 2163:  llection);
+ 2164:              });
+ 2165:              return accumulator;
+ 2166:          }
+ 2167:          /**
+ 2168:       * The base implementation of `_.set`.
+ 2169:       *
+***** LODASH\RD\ORIGINAL.JS
+ 2160:          }
+ 2161:          /**
+ 2162:       * The base implementation of `_.reduce` and `_.reduceRight` without support
+ 2163:       * for callback shorthands, which iterates over `collection` using the provided
+ 2164:       * `eachFunc`.
+ 2165:       *
+*****
+
+***** LODASH\RD\0.js
+ 2170:       * @private
+ 2171:       * @param {Object} object The object to query.
+***** LODASH\RD\ORIGINAL.JS
+ 2166:       * @private
+ 2167:       * @param {Array|Object} collection The collection to iterate over.
+ 2168:       * @param {Function} iteratee The function invoked per iteration.
+ 2169:       * @param {*} accumulator The initial value.
+ 2170:       * @param {boolean} initFromCollection Specify using the first or last element of `collection` as the initial value.
+ 2171:       * @param {Function} eachFunc The function to iterate over `collection`.
+ 2172:       * @returns {*} Returns the accumulated value.
+ 2173:       */
+ 2174:          function baseReduce(collection, iteratee, accumulator, initFromCollection, eachFunc) {
+ 2175:              eachFunc(collection, function (value, index, collection) {
+ 2176:                  accumulator = initFromCollection ? (initFromCollection = false, value) : iteratee(accumulator, value, index, co
+ 2177:  llection);
+ 2178:              });
+ 2179:              return accumulator;
+ 2180:          }
+ 2181:          /**
+ 2182:       * The base implementation of `_.set`.
+ 2183:       *
+ 2184:       * @private
+ 2185:       * @param {Object} object The object to query.
+*****
+

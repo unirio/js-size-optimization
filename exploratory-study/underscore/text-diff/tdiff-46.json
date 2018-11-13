@@ -1,0 +1,20 @@
+Comparing files UNDERSCORE\RD\46.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\46.js
+ 1232:      // -----------------
+ 1233:      // previous owner. Returns a reference to the Underscore object.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1232:      // -----------------
+ 1233:      // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+ 1234:      // previous owner. Returns a reference to the Underscore object.
+*****
+
+***** UNDERSCORE\RD\46.js
+ 1478:      if (typeof define === 'function' && define.amd) {
+ 1479:          define('underscore', function () {
+ 1480:              return _;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1479:      if (typeof define === 'function' && define.amd) {
+ 1480:          define('underscore', [], function () {
+ 1481:              return _;
+*****
+

@@ -1,0 +1,11 @@
+Comparing files NODE-BROWSERIFY\RD\8.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\8.js
+  708:      var hadExports = this._bpack.hasExports;
+  709:      this.pipeline = this._createPipeline(xtend(opts));
+  710:      this._bpack.hasExports = hadExports;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  708:      var hadExports = this._bpack.hasExports;
+  709:      this.pipeline = this._createPipeline(xtend(opts, this._options));
+  710:      this._bpack.hasExports = hadExports;
+*****
+

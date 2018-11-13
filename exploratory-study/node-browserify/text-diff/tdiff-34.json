@@ -1,0 +1,100 @@
+Comparing files NODE-BROWSERIFY\RD\34.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\34.js
+   61:          if (isArray(tr)) {
+   62:              return;
+   63:          }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   61:          if (isArray(tr)) {
+   62:              return ignoreTransform.indexOf(tr[0]) === -1;
+   63:          }
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+   96:          expose = '/' + path.relative(basedir, expose);
+   97:          expose = expose.replace(/\\/g);
+   98:      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+   96:          expose = '/' + path.relative(basedir, expose);
+   97:          expose = expose.replace(/\\/g, '/');
+   98:      }
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  119:                  source: buf.toString('utf8'),
+  120:                  entry: defined(opts.entry),
+  121:                  file: filename,
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  119:                  source: buf.toString('utf8'),
+  120:                  entry: defined(opts.entry, false),
+  121:                  file: filename,
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  133:      }
+  134:      if (typeof file === 'object') {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  133:      }
+  134:      var row;
+  135:      if (typeof file === 'object') {
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  297:              paths: (self._options.paths || []).map(function (p) {
+  298:                  return;
+  299:              })
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  298:              paths: (self._options.paths || []).map(function (p) {
+  299:                  return path.resolve(basedir, p);
+  300:              })
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  302:              if (err)
+  303:                  return self.emit('error');
+  304:              rec.transform = res;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  303:              if (err)
+  304:                  return self.emit('error', err);
+  305:              rec.transform = res;
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  317:          opts = {};
+  318:      var basedir = defined(opts.basedir, this._options.basedir);
+  319:      if (typeof p === 'function') {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  318:          opts = {};
+  319:      var basedir = defined(opts.basedir, this._options.basedir, process.cwd());
+  320:      if (typeof p === 'function') {
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  344:      this._mdeps.on('transform', function (tr, file) {
+  345:          pipeline.emit('transform', tr);
+  346:          self.emit('transform', tr, file);
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  345:      this._mdeps.on('transform', function (tr, file) {
+  346:          pipeline.emit('transform', tr, file);
+  347:          self.emit('transform', tr, file);
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  432:      mopts.filter = function (id) {
+  433:          if (opts.filter && !opts.filter())
+  434:              return false;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  433:      mopts.filter = function (id) {
+  434:          if (opts.filter && !opts.filter(id))
+  435:              return false;
+*****
+
+***** NODE-BROWSERIFY\RD\34.js
+  646:          if (self._external.indexOf(row.file) >= 0)
+  647:              return;
+  648:          if (row.index)
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  647:          if (self._external.indexOf(row.file) >= 0)
+  648:              return next();
+  649:          if (row.index)
+*****
+

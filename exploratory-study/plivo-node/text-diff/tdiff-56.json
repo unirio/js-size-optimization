@@ -1,0 +1,43 @@
+Comparing files PLIVO-NODE\RD\56.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\56.js
+  165:      var method = 'POST';
+  166:      request(action, method, params);
+  167:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  165:      var method = 'POST';
+  166:      request(action, method, params, callback);
+  167:  };
+*****
+
+***** PLIVO-NODE\RD\56.js
+  292:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Mute/';
+  293:      delete params.member_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  292:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Mute/';
+  293:      delete params.conference_id;
+  294:      delete params.member_id;
+*****
+
+***** PLIVO-NODE\RD\56.js
+  416:      var method = 'POST';
+  417:      request(action, params, callback);
+  418:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  417:      var method = 'POST';
+  418:      request(action, method, params, callback);
+  419:  };
+*****
+
+***** PLIVO-NODE\RD\56.js
+  800:      ];
+  801:  }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  801:      ];
+  802:      this.nestables = [
+  803:          'Speak',
+  804:          'Play',
+  805:          'Wait'
+  806:      ];
+  807:  }
+*****
+

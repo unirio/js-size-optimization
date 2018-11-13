@@ -1,0 +1,29 @@
+Comparing files PLIVO-NODE\RD\18.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\18.js
+  445:      var action = 'Number/' + params['number'] + '/';
+  446:      var method = 'DELETE';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  445:      var action = 'Number/' + params['number'] + '/';
+  446:      delete params.number;
+  447:      var method = 'DELETE';
+*****
+
+***** PLIVO-NODE\RD\18.js
+  513:  plivo.get_incoming_carrier = function (params, callback) {
+  514:      var action;
+  515:      delete params.carrier_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  514:  plivo.get_incoming_carrier = function (params, callback) {
+  515:      var action = 'IncomingCarrier/' + params['carrier_id'] + '/';
+  516:      delete params.carrier_id;
+*****
+
+***** PLIVO-NODE\RD\18.js
+  768:          'callerName',
+  769:          'dialMusic',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  769:          'callerName',
+  770:          'confirmSound',
+  771:          'dialMusic',
+*****
+

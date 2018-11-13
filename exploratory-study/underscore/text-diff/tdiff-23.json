@@ -1,0 +1,57 @@
+Comparing files UNDERSCORE\RD\23.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\23.js
+  112:          Ctor.prototype = null;
+  113:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  112:          Ctor.prototype = null;
+  113:          return result;
+  114:      };
+*****
+
+***** UNDERSCORE\RD\23.js
+  314:      // Shuffle a collection, using the modern version of the
+  315:      _.shuffle = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  315:      // Shuffle a collection, using the modern version of the
+  316:      // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
+  317:      _.shuffle = function (obj) {
+*****
+
+***** UNDERSCORE\RD\23.js
+  675:              throw new TypeError('Bind must be called on a function');
+  676:          var args = slice.call(arguments);
+  677:          var bound = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  677:              throw new TypeError('Bind must be called on a function');
+  678:          var args = slice.call(arguments, 2);
+  679:          var bound = function () {
+*****
+
+***** UNDERSCORE\RD\23.js
+  781:          var later = function () {
+  782:              var last;
+  783:              if (last < wait && last >= 0) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  783:          var later = function () {
+  784:              var last = _.now() - timestamp;
+  785:              if (last < wait && last >= 0) {
+*****
+
+***** UNDERSCORE\RD\23.js
+  921:      // Returns the results of applying the iteratee to each element of the object
+  922:      _.mapObject = function (obj, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  923:      // Returns the results of applying the iteratee to each element of the object
+  924:      // In contrast to _.map it returns an object
+  925:      _.mapObject = function (obj, iteratee, context) {
+*****
+
+***** UNDERSCORE\RD\23.js
+ 1447:      });
+ 1448:      _.each([
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1450:      });
+ 1451:      // Add all accessor Array functions to the wrapper.
+ 1452:      _.each([
+*****
+

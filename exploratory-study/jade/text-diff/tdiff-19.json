@@ -1,0 +1,19 @@
+Comparing files JADE\RD\19.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\19.js
+  180:          self: options.self,
+  181:          debug: options.debug,
+***** JADE\RD\ORIGINAL.JS
+  180:          self: options.self,
+  181:          includeSources: options.compileDebug,
+  182:          debug: options.debug,
+*****
+
+***** JADE\RD\19.js
+  240:  exports.render = function (str, options, fn) {
+  241:      if ('function' == typeof options) {
+***** JADE\RD\ORIGINAL.JS
+  241:  exports.render = function (str, options, fn) {
+  242:      // support callback API
+  243:      if ('function' == typeof options) {
+*****
+

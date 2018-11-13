@@ -1,0 +1,1033 @@
+Comparing files LODASH\RD\56.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\56.js
+ 8161:          }
+ 8162:          function forOwnRight(object, iteratee) {
+ 8163:              return object && baseForOwnRight(object, toFunction(iteratee));
+ 8164:          }
+ 8165:          /**
+ 8166:       * Creates an array of function property names from all enumerable properties,
+ 8167:       * own and inherited, of `object`.
+ 8168:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8161:          }
+ 8162:          /**
+ 8163:       * This method is like `_.forOwn` except that it iterates over properties of
+ 8164:       * `object` in the opposite order.
+ 8165:       *
+*****
+
+***** LODASH\RD\56.js
+ 8171:       * @category Object
+ 8172:       * @param {Object} object The object to inspect.
+ 8173:       * @returns {Array} Returns the new array of property names.
+ 8174:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8168:       * @category Object
+ 8169:       * @param {Object} object The object to iterate over.
+ 8170:       * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ 8171:       * @returns {Object} Returns `object`.
+ 8172:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8175:       *
+ 8176:       * _.functions(_);
+ 8177:       * // => ['after', 'ary', 'assign', ...]
+ 8178:       */
+ 8179:          function functions(object) {
+ 8180:              return object == null ? [] : baseFunctions(object, keysIn(object));
+ 8181:          }
+***** LODASH\RD\ORIGINAL.JS
+ 8173:       *
+ 8174:       * function Foo() {
+ 8175:       *   this.a = 1;
+ 8176:       *   this.b = 2;
+ 8177:       * }
+ 8178:       *
+ 8179:       * Foo.prototype.c = 3;
+ 8180:       *
+ 8181:       * _.forOwnRight(new Foo, function(value, key) {
+ 8182:       *   console.log(key);
+ 8183:       * });
+ 8184:       * // => logs 'b' then 'a' assuming `_.forOwn` logs 'a' then 'b'
+ 8185:       */
+ 8186:          function forOwnRight(object, iteratee) {
+ 8187:              return object && baseForOwnRight(object, toFunction(iteratee));
+ 8188:          }
+*****
+
+***** LODASH\RD\56.js
+ 8182:          /**
+ 8183:       * Gets the value at `path` of `object`. If the resolved value is
+ 8184:       * `undefined` the `defaultValue` is used in its place.
+ 8185:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8189:          /**
+ 8190:       * Creates an array of function property names from all enumerable properties,
+ 8191:       * own and inherited, of `object`.
+ 8192:       *
+*****
+
+***** LODASH\RD\56.js
+ 8188:       * @category Object
+ 8189:       * @param {Object} object The object to query.
+ 8190:       * @param {Array|string} path The path of the property to get.
+ 8191:       * @param {*} [defaultValue] The value returned if the resolved value is `undefined`.
+ 8192:       * @returns {*} Returns the resolved value.
+ 8193:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8195:       * @category Object
+ 8196:       * @param {Object} object The object to inspect.
+ 8197:       * @returns {Array} Returns the new array of property names.
+ 8198:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8194:       *
+ 8195:       * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 8196:       *
+ 8197:       * _.get(object, 'a[0].b.c');
+ 8198:       * // => 3
+ 8199:       *
+ 8200:       * _.get(object, ['a', '0', 'b', 'c']);
+ 8201:       * // => 3
+ 8202:       *
+ 8203:       * _.get(object, 'a.b.c', 'default');
+ 8204:       * // => 'default'
+ 8205:       */
+ 8206:          function get(object, path, defaultValue) {
+ 8207:              var result = object == null ? undefined : baseGet(object, path);
+ 8208:              return result === undefined ? defaultValue : result;
+ 8209:          }
+***** LODASH\RD\ORIGINAL.JS
+ 8199:       *
+ 8200:       * _.functions(_);
+ 8201:       * // => ['after', 'ary', 'assign', ...]
+ 8202:       */
+ 8203:          function functions(object) {
+ 8204:              return object == null ? [] : baseFunctions(object, keysIn(object));
+ 8205:          }
+*****
+
+***** LODASH\RD\56.js
+ 8210:          /**
+ 8211:       * Checks if `path` is a direct property of `object`.
+ 8212:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8206:          /**
+ 8207:       * Gets the value at `path` of `object`. If the resolved value is
+ 8208:       * `undefined` the `defaultValue` is used in its place.
+ 8209:       *
+*****
+
+***** LODASH\RD\56.js
+ 8216:       * @param {Object} object The object to query.
+ 8217:       * @param {Array|string} path The path to check.
+ 8218:       * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ 8219:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8213:       * @param {Object} object The object to query.
+ 8214:       * @param {Array|string} path The path of the property to get.
+ 8215:       * @param {*} [defaultValue] The value returned if the resolved value is `undefined`.
+ 8216:       * @returns {*} Returns the resolved value.
+ 8217:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8220:       *
+ 8221:       * var object = { 'a': { 'b': { 'c': 3 } } },
+ 8222:       *     other = _.create({ 'a': _.create({ 'b': _.create({ 'c': 3 }) }) });
+ 8223:       *
+ 8224:       * _.has(object, 'a');
+ 8225:       * // => true
+ 8226:       *
+ 8227:       * _.has(object, 'a.b.c');
+ 8228:       * // => true
+ 8229:       *
+ 8230:       * _.has(object, ['a', 'b', 'c']);
+ 8231:       * // => true
+ 8232:       *
+ 8233:       * _.has(other, 'a');
+ 8234:       * // => false
+ 8235:       */
+ 8236:          function has(object, path) {
+ 8237:              return hasPath(object, path, baseHas);
+ 8238:          }
+***** LODASH\RD\ORIGINAL.JS
+ 8218:       *
+ 8219:       * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 8220:       *
+ 8221:       * _.get(object, 'a[0].b.c');
+ 8222:       * // => 3
+ 8223:       *
+ 8224:       * _.get(object, ['a', '0', 'b', 'c']);
+ 8225:       * // => 3
+ 8226:       *
+ 8227:       * _.get(object, 'a.b.c', 'default');
+ 8228:       * // => 'default'
+ 8229:       */
+ 8230:          function get(object, path, defaultValue) {
+ 8231:              var result = object == null ? undefined : baseGet(object, path);
+ 8232:              return result === undefined ? defaultValue : result;
+ 8233:          }
+*****
+
+***** LODASH\RD\56.js
+ 8239:          /**
+ 8240:       * Checks if `path` is a direct or inherited property of `object`.
+ 8241:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8234:          /**
+ 8235:       * Checks if `path` is a direct property of `object`.
+ 8236:       *
+*****
+
+***** LODASH\RD\56.js
+ 8249:       *
+ 8250:       * var object = _.create({ 'a': _.create({ 'b': _.create({ 'c': 3 }) }) });
+ 8251:       *
+ 8252:       * _.hasIn(object, 'a');
+ 8253:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 8244:       *
+ 8245:       * var object = { 'a': { 'b': { 'c': 3 } } },
+ 8246:       *     other = _.create({ 'a': _.create({ 'b': _.create({ 'c': 3 }) }) });
+ 8247:       *
+ 8248:       * _.has(object, 'a');
+ 8249:       * // => true
+*****
+
+***** LODASH\RD\56.js
+ 8254:       *
+ 8255:       * _.hasIn(object, 'a.b.c');
+ 8256:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 8250:       *
+ 8251:       * _.has(object, 'a.b.c');
+ 8252:       * // => true
+*****
+
+***** LODASH\RD\56.js
+ 8257:       *
+ 8258:       * _.hasIn(object, ['a', 'b', 'c']);
+ 8259:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 8253:       *
+ 8254:       * _.has(object, ['a', 'b', 'c']);
+ 8255:       * // => true
+*****
+
+***** LODASH\RD\56.js
+ 8260:       *
+ 8261:       * _.hasIn(object, 'b');
+ 8262:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 8256:       *
+ 8257:       * _.has(other, 'a');
+ 8258:       * // => false
+*****
+
+***** LODASH\RD\56.js
+ 8263:       */
+ 8264:          function hasIn(object, path) {
+ 8265:              return hasPath(object, path, baseHasIn);
+ 8266:          }
+***** LODASH\RD\ORIGINAL.JS
+ 8259:       */
+ 8260:          function has(object, path) {
+ 8261:              return hasPath(object, path, baseHas);
+ 8262:          }
+*****
+
+***** LODASH\RD\56.js
+ 8267:          /**
+ 8268:       * Creates an object composed of the inverted keys and values of `object`.
+ 8269:       * If `object` contains duplicate values, subsequent values overwrite property
+ 8270:       * assignments of previous values unless `multiValue` is `true`.
+ 8271:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8263:          /**
+ 8264:       * Checks if `path` is a direct or inherited property of `object`.
+ 8265:       *
+*****
+
+***** LODASH\RD\56.js
+ 8274:       * @category Object
+ 8275:       * @param {Object} object The object to invert.
+ 8276:       * @param {boolean} [multiValue] Allow multiple values per key.
+ 8277:       * @returns {Object} Returns the new inverted object.
+ 8278:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8268:       * @category Object
+ 8269:       * @param {Object} object The object to query.
+ 8270:       * @param {Array|string} path The path to check.
+ 8271:       * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ 8272:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8279:       *
+ 8280:       * var object = { 'a': 1, 'b': 2, 'c': 1 };
+ 8281:       *
+ 8282:       * _.invert(object);
+ 8283:       * // => { '1': 'c', '2': 'b' }
+ 8284:       *
+ 8285:       * // with `multiValue`
+ 8286:       * _.invert(object, true);
+ 8287:       * // => { '1': ['a', 'c'], '2': ['b'] }
+ 8288:       */
+ 8289:          function invert(object, multiValue) {
+ 8290:              multiValue = typeof multiValue == 'boolean' && multiValue;
+ 8291:              var index = -1, props = keys(object), length = props.length, result = {};
+ 8292:              while (++index < length) {
+ 8293:                  var key = props[index], value = object[key];
+ 8294:                  if (multiValue) {
+ 8295:                      if (hasOwnProperty.call(result, value)) {
+ 8296:                          result[value].push(key);
+ 8297:                      } else {
+ 8298:                          result[value] = [key];
+ 8299:                      }
+ 8300:                  } else {
+ 8301:                      result[value] = key;
+ 8302:                  }
+ 8303:              }
+ 8304:              return result;
+ 8305:          }
+***** LODASH\RD\ORIGINAL.JS
+ 8273:       *
+ 8274:       * var object = _.create({ 'a': _.create({ 'b': _.create({ 'c': 3 }) }) });
+ 8275:       *
+ 8276:       * _.hasIn(object, 'a');
+ 8277:       * // => true
+ 8278:       *
+ 8279:       * _.hasIn(object, 'a.b.c');
+ 8280:       * // => true
+ 8281:       *
+ 8282:       * _.hasIn(object, ['a', 'b', 'c']);
+ 8283:       * // => true
+ 8284:       *
+ 8285:       * _.hasIn(object, 'b');
+ 8286:       * // => false
+ 8287:       */
+ 8288:          function hasIn(object, path) {
+ 8289:              return hasPath(object, path, baseHasIn);
+ 8290:          }
+*****
+
+***** LODASH\RD\56.js
+ 8306:          /**
+ 8307:       * Creates an array of the own enumerable property names of `object`.
+ 8308:       *
+ 8309:       * **Note:** Non-object values are coerced to objects. See the
+ 8310:       * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
+ 8311:       * for more details.
+ 8312:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8291:          /**
+ 8292:       * Creates an object composed of the inverted keys and values of `object`.
+ 8293:       * If `object` contains duplicate values, subsequent values overwrite property
+ 8294:       * assignments of previous values unless `multiValue` is `true`.
+ 8295:       *
+*****
+
+***** LODASH\RD\56.js
+ 8315:       * @category Object
+ 8316:       * @param {Object} object The object to query.
+ 8317:       * @returns {Array} Returns the array of property names.
+ 8318:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8298:       * @category Object
+ 8299:       * @param {Object} object The object to invert.
+ 8300:       * @param {boolean} [multiValue] Allow multiple values per key.
+ 8301:       * @returns {Object} Returns the new inverted object.
+ 8302:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8319:       *
+ 8320:       * function Foo() {
+ 8321:       *   this.a = 1;
+ 8322:       *   this.b = 2;
+ 8323:       * }
+ 8324:       *
+ 8325:       * Foo.prototype.c = 3;
+ 8326:       *
+ 8327:       * _.keys(new Foo);
+ 8328:       * // => ['a', 'b'] (iteration order is not guaranteed)
+ 8329:       *
+ 8330:       * _.keys('hi');
+ 8331:       * // => ['0', '1']
+ 8332:       */
+ 8333:          function keys(object) {
+ 8334:              object = Object(object);
+ 8335:              var isProto = isPrototype(object);
+ 8336:              if (!(isProto || isArrayLike(object))) {
+ 8337:                  return nativeKeys(object);
+ 8338:              }
+ 8339:              var result = initKeys(object), length = result.length, skipIndexes = !!length;
+ 8340:              for (var key in object) {
+ 8341:                  if (hasOwnProperty.call(object, key) && !(skipIndexes && isIndex(key, length)) && !(isProto && key == 'construc
+ 8342:  tor')) {
+ 8343:                      result.push(key);
+ 8344:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 8303:       *
+ 8304:       * var object = { 'a': 1, 'b': 2, 'c': 1 };
+ 8305:       *
+ 8306:       * _.invert(object);
+ 8307:       * // => { '1': 'c', '2': 'b' }
+ 8308:       *
+ 8309:       * // with `multiValue`
+ 8310:       * _.invert(object, true);
+ 8311:       * // => { '1': ['a', 'c'], '2': ['b'] }
+ 8312:       */
+ 8313:          function invert(object, multiValue) {
+ 8314:              multiValue = typeof multiValue == 'boolean' && multiValue;
+ 8315:              var index = -1, props = keys(object), length = props.length, result = {};
+ 8316:              while (++index < length) {
+ 8317:                  var key = props[index], value = object[key];
+ 8318:                  if (multiValue) {
+ 8319:                      if (hasOwnProperty.call(result, value)) {
+ 8320:                          result[value].push(key);
+ 8321:                      } else {
+ 8322:                          result[value] = [key];
+ 8323:                      }
+ 8324:                  } else {
+ 8325:                      result[value] = key;
+ 8326:                  }
+*****
+
+***** LODASH\RD\56.js
+ 8348:          /**
+ 8349:       * Creates an array of the own and inherited enumerable property names of `object`.
+ 8350:       *
+ 8351:       * **Note:** Non-object values are coerced to objects.
+ 8352:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8330:          /**
+ 8331:       * Creates an array of the own enumerable property names of `object`.
+ 8332:       *
+ 8333:       * **Note:** Non-object values are coerced to objects. See the
+ 8334:       * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
+ 8335:       * for more details.
+ 8336:       *
+*****
+
+***** LODASH\RD\56.js
+ 8366:       *
+ 8367:       * _.keysIn(new Foo);
+ 8368:       * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ 8369:       */
+ 8370:          function keysIn(object) {
+ 8371:              object = Object(object);
+ 8372:              var index = -1, isProto = isPrototype(object), props = baseKeysIn(object), propsLength = props.length, result = ini
+ 8373:  tKeys(object), length = result.length, skipIndexes = !!length;
+ 8374:              while (++index < propsLength) {
+ 8375:                  var key = props[index];
+ 8376:                  if (!(skipIndexes && isIndex(key, length)) && !(key == 'constructor' && (isProto || !hasOwnProperty.call(object
+ 8377:  , key)))) {
+ 8378:                      result.push(key);
+***** LODASH\RD\ORIGINAL.JS
+ 8350:       *
+ 8351:       * _.keys(new Foo);
+ 8352:       * // => ['a', 'b'] (iteration order is not guaranteed)
+ 8353:       *
+ 8354:       * _.keys('hi');
+ 8355:       * // => ['0', '1']
+ 8356:       */
+ 8357:          function keys(object) {
+ 8358:              object = Object(object);
+ 8359:              var isProto = isPrototype(object);
+ 8360:              if (!(isProto || isArrayLike(object))) {
+ 8361:                  return nativeKeys(object);
+ 8362:              }
+ 8363:              var result = initKeys(object), length = result.length, skipIndexes = !!length;
+ 8364:              for (var key in object) {
+ 8365:                  if (hasOwnProperty.call(object, key) && !(skipIndexes && isIndex(key, length)) && !(isProto && key == 'construc
+ 8366:  tor')) {
+ 8367:                      result.push(key);
+*****
+
+***** LODASH\RD\56.js
+ 8383:          /**
+ 8384:       * The opposite of `_.mapValues`; this method creates an object with the
+ 8385:       * same values as `object` and keys generated by running each own enumerable
+ 8386:       * property of `object` through `iteratee`.
+ 8387:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8372:          /**
+ 8373:       * Creates an array of the own and inherited enumerable property names of `object`.
+ 8374:       *
+ 8375:       * **Note:** Non-object values are coerced to objects.
+ 8376:       *
+*****
+
+***** LODASH\RD\56.js
+ 8390:       * @category Object
+ 8391:       * @param {Object} object The object to iterate over.
+ 8392:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 8393:       * @returns {Object} Returns the new mapped object.
+ 8394:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8379:       * @category Object
+ 8380:       * @param {Object} object The object to query.
+ 8381:       * @returns {Array} Returns the array of property names.
+ 8382:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8395:       *
+ 8396:       * _.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
+ 8397:       *   return key + value;
+ 8398:       * });
+ 8399:       * // => { 'a1': 1, 'b2': 2 }
+ 8400:       */
+ 8401:          function mapKeys(object, iteratee) {
+ 8402:              var result = {};
+ 8403:              iteratee = getIteratee(iteratee);
+ 8404:              baseForOwn(object, function (value, key, object) {
+ 8405:                  result[iteratee(value, key, object)] = value;
+ 8406:              });
+ 8407:              return result;
+***** LODASH\RD\ORIGINAL.JS
+ 8383:       *
+ 8384:       * function Foo() {
+ 8385:       *   this.a = 1;
+ 8386:       *   this.b = 2;
+ 8387:       * }
+ 8388:       *
+ 8389:       * Foo.prototype.c = 3;
+ 8390:       *
+ 8391:       * _.keysIn(new Foo);
+ 8392:       * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ 8393:       */
+ 8394:          function keysIn(object) {
+ 8395:              object = Object(object);
+ 8396:              var index = -1, isProto = isPrototype(object), props = baseKeysIn(object), propsLength = props.length, result = ini
+ 8397:  tKeys(object), length = result.length, skipIndexes = !!length;
+ 8398:              while (++index < propsLength) {
+ 8399:                  var key = props[index];
+ 8400:                  if (!(skipIndexes && isIndex(key, length)) && !(key == 'constructor' && (isProto || !hasOwnProperty.call(object
+ 8401:  , key)))) {
+ 8402:                      result.push(key);
+ 8403:                  }
+ 8404:              }
+ 8405:              return result;
+*****
+
+***** LODASH\RD\56.js
+ 8409:          /**
+ 8410:       * Creates an object with the same keys as `object` and values generated by
+ 8411:       * running each own enumerable property of `object` through `iteratee`. The
+ 8412:       * iteratee function is invoked with three arguments: (value, key, object).
+ 8413:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8407:          /**
+ 8408:       * The opposite of `_.mapValues`; this method creates an object with the
+ 8409:       * same values as `object` and keys generated by running each own enumerable
+ 8410:       * property of `object` through `iteratee`.
+ 8411:       *
+*****
+
+***** LODASH\RD\56.js
+ 8421:       *
+ 8422:       * var users = {
+ 8423:       *   'fred':    { 'user': 'fred',    'age': 40 },
+ 8424:       *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+ 8425:       * };
+ 8426:       *
+ 8427:       * _.mapValues(users, function(o) { return o.age; });
+ 8428:       * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ 8429:       *
+ 8430:       * // using the `_.property` callback shorthand
+ 8431:       * _.mapValues(users, 'age');
+ 8432:       * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ 8433:       */
+ 8434:          function mapValues(object, iteratee) {
+ 8435:              var result = {};
+***** LODASH\RD\ORIGINAL.JS
+ 8419:       *
+ 8420:       * _.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
+ 8421:       *   return key + value;
+ 8422:       * });
+ 8423:       * // => { 'a1': 1, 'b2': 2 }
+ 8424:       */
+ 8425:          function mapKeys(object, iteratee) {
+ 8426:              var result = {};
+*****
+
+***** LODASH\RD\56.js
+ 8437:              baseForOwn(object, function (value, key, object) {
+ 8438:                  result[key] = iteratee(value, key, object);
+ 8439:              });
+***** LODASH\RD\ORIGINAL.JS
+ 8428:              baseForOwn(object, function (value, key, object) {
+ 8429:                  result[iteratee(value, key, object)] = value;
+ 8430:              });
+*****
+
+***** LODASH\RD\56.js
+ 8442:          /**
+ 8443:       * Recursively merges own enumerable properties of the source object(s) into the
+ 8444:       * destination object, for source properties which don't resolve to `undefined`.
+ 8445:       * Subsequent sources overwrite property assignments of previous sources.
+ 8446:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8433:          /**
+ 8434:       * Creates an object with the same keys as `object` and values generated by
+ 8435:       * running each own enumerable property of `object` through `iteratee`. The
+ 8436:       * iteratee function is invoked with three arguments: (value, key, object).
+ 8437:       *
+*****
+
+***** LODASH\RD\56.js
+ 8449:       * @category Object
+ 8450:       * @param {Object} object The destination object.
+ 8451:       * @param {...Object} [sources] The source objects.
+ 8452:       * @returns {Object} Returns `object`.
+ 8453:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8440:       * @category Object
+ 8441:       * @param {Object} object The object to iterate over.
+ 8442:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 8443:       * @returns {Object} Returns the new mapped object.
+ 8444:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8455:       * var users = {
+ 8456:       *   'data': [{ 'user': 'barney' }, { 'user': 'fred' }]
+ 8457:       * };
+***** LODASH\RD\ORIGINAL.JS
+ 8446:       * var users = {
+ 8447:       *   'fred':    { 'user': 'fred',    'age': 40 },
+ 8448:       *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+ 8449:       * };
+*****
+
+***** LODASH\RD\56.js
+ 8458:       *
+ 8459:       * var ages = {
+ 8460:       *   'data': [{ 'age': 36 }, { 'age': 40 }]
+ 8461:       * };
+ 8462:       *
+ 8463:       * _.merge(users, ages);
+ 8464:       * // => { 'data': [{ 'user': 'barney', 'age': 36 }, { 'user': 'fred', 'age': 40 }] }
+ 8465:       */
+ 8466:          var merge = createAssigner(function (object, source) {
+ 8467:              baseMerge(object, source);
+ 8468:          });
+ 8469:          /**
+ 8470:       * This method is like `_.merge` except that it accepts `customizer` which
+ 8471:       * is invoked to produce the merged values of the destination and source
+ 8472:       * properties. If `customizer` returns `undefined` merging is handled by the
+ 8473:       * method instead. The `customizer` is invoked with seven arguments:
+ 8474:       * (objValue, srcValue, key, object, source, stackA, stackB).
+ 8475:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8450:       *
+ 8451:       * _.mapValues(users, function(o) { return o.age; });
+ 8452:       * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ 8453:       *
+ 8454:       * // using the `_.property` callback shorthand
+ 8455:       * _.mapValues(users, 'age');
+ 8456:       * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ 8457:       */
+ 8458:          function mapValues(object, iteratee) {
+ 8459:              var result = {};
+ 8460:              iteratee = getIteratee(iteratee);
+ 8461:              baseForOwn(object, function (value, key, object) {
+ 8462:                  result[key] = iteratee(value, key, object);
+ 8463:              });
+ 8464:              return result;
+ 8465:          }
+ 8466:          /**
+ 8467:       * Recursively merges own enumerable properties of the source object(s) into the
+ 8468:       * destination object, for source properties which don't resolve to `undefined`.
+ 8469:       * Subsequent sources overwrite property assignments of previous sources.
+ 8470:       *
+*****
+
+***** LODASH\RD\56.js
+ 8479:       * @param {Object} object The destination object.
+ 8480:       * @param {...Object} sources The source objects.
+ 8481:       * @param {Function} customizer The function to customize assigned values.
+ 8482:       * @returns {Object} Returns `object`.
+***** LODASH\RD\ORIGINAL.JS
+ 8474:       * @param {Object} object The destination object.
+ 8475:       * @param {...Object} [sources] The source objects.
+ 8476:       * @returns {Object} Returns `object`.
+*****
+
+***** LODASH\RD\56.js
+ 8484:       *
+ 8485:       * var object = {
+ 8486:       *   'fruits': ['apple'],
+ 8487:       *   'vegetables': ['beet']
+ 8488:       * };
+***** LODASH\RD\ORIGINAL.JS
+ 8478:       *
+ 8479:       * var users = {
+ 8480:       *   'data': [{ 'user': 'barney' }, { 'user': 'fred' }]
+ 8481:       * };
+*****
+
+***** LODASH\RD\56.js
+ 8489:       *
+ 8490:       * var other = {
+ 8491:       *   'fruits': ['banana'],
+ 8492:       *   'vegetables': ['carrot']
+ 8493:       * };
+***** LODASH\RD\ORIGINAL.JS
+ 8482:       *
+ 8483:       * var ages = {
+ 8484:       *   'data': [{ 'age': 36 }, { 'age': 40 }]
+ 8485:       * };
+*****
+
+***** LODASH\RD\56.js
+ 8494:       *
+ 8495:       * _.mergeWith(object, other, function(a, b) {
+ 8496:       *   if (_.isArray(a)) {
+ 8497:       *     return a.concat(b);
+ 8498:       *   }
+ 8499:       * });
+ 8500:       * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot'] }
+ 8501:       */
+ 8502:          var mergeWith = createAssigner(function (object, source, customizer) {
+ 8503:              baseMerge(object, source, customizer);
+ 8504:          });
+***** LODASH\RD\ORIGINAL.JS
+ 8486:       *
+ 8487:       * _.merge(users, ages);
+ 8488:       * // => { 'data': [{ 'user': 'barney', 'age': 36 }, { 'user': 'fred', 'age': 40 }] }
+ 8489:       */
+ 8490:          var merge = createAssigner(function (object, source) {
+ 8491:              baseMerge(object, source);
+ 8492:          });
+*****
+
+***** LODASH\RD\56.js
+ 8505:          /**
+ 8506:       * The opposite of `_.pick`; this method creates an object composed of the
+ 8507:       * own and inherited enumerable properties of `object` that are not omitted.
+ 8508:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8493:          /**
+ 8494:       * This method is like `_.merge` except that it accepts `customizer` which
+ 8495:       * is invoked to produce the merged values of the destination and source
+ 8496:       * properties. If `customizer` returns `undefined` merging is handled by the
+ 8497:       * method instead. The `customizer` is invoked with seven arguments:
+ 8498:       * (objValue, srcValue, key, object, source, stackA, stackB).
+ 8499:       *
+*****
+
+***** LODASH\RD\56.js
+ 8511:       * @category Object
+ 8512:       * @param {Object} object The source object.
+ 8513:       * @param {string|string[]} [props] The property names to omit, specified
+ 8514:       *  individually or in arrays..
+ 8515:       * @returns {Object} Returns the new object.
+ 8516:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8502:       * @category Object
+ 8503:       * @param {Object} object The destination object.
+ 8504:       * @param {...Object} sources The source objects.
+ 8505:       * @param {Function} customizer The function to customize assigned values.
+ 8506:       * @returns {Object} Returns `object`.
+ 8507:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8517:       *
+ 8518:       * var object = { 'user': 'fred', 'age': 40 };
+ 8519:       *
+ 8520:       * _.omit(object, 'age');
+ 8521:       * // => { 'user': 'fred' }
+ 8522:       */
+ 8523:          var omit = restParam(function (object, props) {
+ 8524:              if (object == null) {
+ 8525:                  return {};
+ 8526:              }
+ 8527:              props = arrayMap(baseFlatten(props), String);
+ 8528:              return basePick(object, baseDifference(keysIn(object), props));
+ 8529:          });
+***** LODASH\RD\ORIGINAL.JS
+ 8508:       *
+ 8509:       * var object = {
+ 8510:       *   'fruits': ['apple'],
+ 8511:       *   'vegetables': ['beet']
+ 8512:       * };
+ 8513:       *
+ 8514:       * var other = {
+ 8515:       *   'fruits': ['banana'],
+ 8516:       *   'vegetables': ['carrot']
+ 8517:       * };
+ 8518:       *
+ 8519:       * _.mergeWith(object, other, function(a, b) {
+ 8520:       *   if (_.isArray(a)) {
+ 8521:       *     return a.concat(b);
+ 8522:       *   }
+ 8523:       * });
+ 8524:       * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot'] }
+ 8525:       */
+ 8526:          var mergeWith = createAssigner(function (object, source, customizer) {
+ 8527:              baseMerge(object, source, customizer);
+ 8528:          });
+*****
+
+***** LODASH\RD\56.js
+ 8530:          /**
+ 8531:       * The opposite of `_.pickBy`; this method creates an object composed of the
+ 8532:       * own and inherited enumerable properties of `object` that `predicate`
+ 8533:       * doesn't return truthy for.
+ 8534:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8529:          /**
+ 8530:       * The opposite of `_.pick`; this method creates an object composed of the
+ 8531:       * own and inherited enumerable properties of `object` that are not omitted.
+ 8532:       *
+*****
+
+***** LODASH\RD\56.js
+ 8538:       * @param {Object} object The source object.
+ 8539:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 8540:       * @returns {Object} Returns the new object.
+***** LODASH\RD\ORIGINAL.JS
+ 8536:       * @param {Object} object The source object.
+ 8537:       * @param {string|string[]} [props] The property names to omit, specified
+ 8538:       *  individually or in arrays..
+ 8539:       * @returns {Object} Returns the new object.
+*****
+
+***** LODASH\RD\56.js
+ 8544:       *
+ 8545:       * _.omitBy(object, _.isNumber);
+ 8546:       * // => { 'user': 'fred' }
+***** LODASH\RD\ORIGINAL.JS
+ 8543:       *
+ 8544:       * _.omit(object, 'age');
+ 8545:       * // => { 'user': 'fred' }
+*****
+
+***** LODASH\RD\56.js
+ 8547:       */
+ 8548:          function omitBy(object, predicate) {
+ 8549:              predicate = getIteratee(predicate);
+ 8550:              return basePickBy(object, function (value, key, object) {
+ 8551:                  return !predicate(value, key, object);
+ 8552:              });
+ 8553:          }
+ 8554:          /**
+ 8555:       * Creates a two dimensional array of the key-value pairs for `object`,
+ 8556:       * e.g. `[[key1, value1], [key2, value2]]`.
+ 8557:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8546:       */
+ 8547:          var omit = restParam(function (object, props) {
+ 8548:              if (object == null) {
+ 8549:                  return {};
+ 8550:              }
+ 8551:              props = arrayMap(baseFlatten(props), String);
+ 8552:              return basePick(object, baseDifference(keysIn(object), props));
+ 8553:          });
+ 8554:          /**
+ 8555:       * The opposite of `_.pickBy`; this method creates an object composed of the
+ 8556:       * own and inherited enumerable properties of `object` that `predicate`
+ 8557:       * doesn't return truthy for.
+ 8558:       *
+*****
+
+***** LODASH\RD\56.js
+ 8560:       * @category Object
+ 8561:       * @param {Object} object The object to query.
+ 8562:       * @returns {Array} Returns the new array of key-value pairs.
+ 8563:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8561:       * @category Object
+ 8562:       * @param {Object} object The source object.
+ 8563:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 8564:       * @returns {Object} Returns the new object.
+ 8565:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8564:       *
+ 8565:       * _.pairs({ 'barney': 36, 'fred': 40 });
+ 8566:       * // => [['barney', 36], ['fred', 40]] (iteration order is not guaranteed)
+ 8567:       */
+ 8568:          function pairs(object) {
+ 8569:              object = Object(object);
+ 8570:              var index = -1, props = keys(object), length = props.length, result = Array(length);
+ 8571:              while (++index < length) {
+ 8572:                  var key = props[index];
+ 8573:                  result[index] = [
+ 8574:                      key,
+ 8575:                      object[key]
+ 8576:                  ];
+ 8577:              }
+ 8578:              return result;
+ 8579:          }
+***** LODASH\RD\ORIGINAL.JS
+ 8566:       *
+ 8567:       * var object = { 'user': 'fred', 'age': 40 };
+ 8568:       *
+ 8569:       * _.omitBy(object, _.isNumber);
+ 8570:       * // => { 'user': 'fred' }
+ 8571:       */
+ 8572:          function omitBy(object, predicate) {
+ 8573:              predicate = getIteratee(predicate);
+ 8574:              return basePickBy(object, function (value, key, object) {
+ 8575:                  return !predicate(value, key, object);
+ 8576:              });
+ 8577:          }
+*****
+
+***** LODASH\RD\56.js
+ 8580:          /**
+ 8581:       * Creates an object composed of the picked `object` properties.
+ 8582:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8578:          /**
+ 8579:       * Creates a two dimensional array of the key-value pairs for `object`,
+ 8580:       * e.g. `[[key1, value1], [key2, value2]]`.
+ 8581:       *
+*****
+
+***** LODASH\RD\56.js
+ 8585:       * @category Object
+ 8586:       * @param {Object} object The source object.
+ 8587:       * @param {string|string[]} [props] The property names to pick, specified
+ 8588:       *  individually or in arrays.
+ 8589:       * @returns {Object} Returns the new object.
+ 8590:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8584:       * @category Object
+ 8585:       * @param {Object} object The object to query.
+ 8586:       * @returns {Array} Returns the new array of key-value pairs.
+ 8587:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8591:       *
+ 8592:       * var object = { 'user': 'fred', 'age': 40 };
+ 8593:       *
+ 8594:       * _.pick(object, 'user');
+ 8595:       * // => { 'user': 'fred' }
+ 8596:       */
+ 8597:          var pick = restParam(function (object, props) {
+ 8598:              return object == null ? {} : basePick(object, baseFlatten(props));
+ 8599:          });
+ 8600:          /**
+ 8601:       * Creates an object composed of the `object` properties `predicate` returns
+ 8602:       * truthy for. The predicate is invoked with three arguments: (value, key, object).
+ 8603:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8588:       *
+ 8589:       * _.pairs({ 'barney': 36, 'fred': 40 });
+ 8590:       * // => [['barney', 36], ['fred', 40]] (iteration order is not guaranteed)
+ 8591:       */
+ 8592:          function pairs(object) {
+ 8593:              object = Object(object);
+ 8594:              var index = -1, props = keys(object), length = props.length, result = Array(length);
+ 8595:              while (++index < length) {
+ 8596:                  var key = props[index];
+ 8597:                  result[index] = [
+ 8598:                      key,
+ 8599:                      object[key]
+ 8600:                  ];
+ 8601:              }
+ 8602:              return result;
+ 8603:          }
+ 8604:          /**
+ 8605:       * Creates an object composed of the picked `object` properties.
+ 8606:       *
+*****
+
+***** LODASH\RD\56.js
+ 8607:       * @param {Object} object The source object.
+ 8608:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 8609:       * @returns {Object} Returns the new object.
+***** LODASH\RD\ORIGINAL.JS
+ 8610:       * @param {Object} object The source object.
+ 8611:       * @param {string|string[]} [props] The property names to pick, specified
+ 8612:       *  individually or in arrays.
+ 8613:       * @returns {Object} Returns the new object.
+*****
+
+***** LODASH\RD\56.js
+ 8613:       *
+ 8614:       * _.pickBy(object, _.isString);
+ 8615:       * // => { 'user': 'fred' }
+***** LODASH\RD\ORIGINAL.JS
+ 8617:       *
+ 8618:       * _.pick(object, 'user');
+ 8619:       * // => { 'user': 'fred' }
+*****
+
+***** LODASH\RD\56.js
+ 8616:       */
+ 8617:          function pickBy(object, predicate) {
+ 8618:              return object == null ? {} : basePickBy(object, getIteratee(predicate));
+ 8619:          }
+ 8620:          /**
+ 8621:       * This method is like `_.get` except that if the resolved value is a function
+ 8622:       * it's invoked with the `this` binding of its parent object and its result
+ 8623:       * is returned.
+ 8624:       *
+***** LODASH\RD\ORIGINAL.JS
+ 8620:       */
+ 8621:          var pick = restParam(function (object, props) {
+ 8622:              return object == null ? {} : basePick(object, baseFlatten(props));
+ 8623:          });
+ 8624:          /**
+ 8625:       * Creates an object composed of the `object` properties `predicate` returns
+ 8626:       * truthy for. The predicate is invoked with three arguments: (value, key, object).
+ 8627:       *
+*****
+
+***** LODASH\RD\56.js
+ 8627:       * @category Object
+ 8628:       * @param {Object} object The object to query.
+ 8629:       * @param {Array|string} path The path of the property to resolve.
+ 8630:       * @param {*} [defaultValue] The value returned if the resolved value is `undefined`.
+ 8631:       * @returns {*} Returns the resolved value.
+ 8632:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 8630:       * @category Object
+ 8631:       * @param {Object} object The source object.
+ 8632:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 8633:       * @returns {Object} Returns the new object.
+ 8634:       * @example
+*****
+
+***** LODASH\RD\56.js
+ 8633:       *
+ 8634:       * var object = { 'a': [{ 'b': { 'c1': 3, 'c2': _.constant(4) } }] };
+***** LODASH\RD\ORIGINAL.JS
+ 8635:       *
+ 8636:       * var object = { 'user': 'fred', 'age': 40 };
+ 8637:       *
+ 8638:       * _.pickBy(object, _.isString);
+ 8639:       * // => { 'user': 'fred' }
+ 8640:       */
+ 8641:          function pickBy(object, predicate) {
+ 8642:              return object == null ? {} : basePickBy(object, getIteratee(predicate));
+ 8643:          }
+ 8644:          /**
+ 8645:       * This method is like `_.get` except that if the resolved value is a function
+ 8646:       * it's invoked with the `this` binding of its parent object and its result
+ 8647:       * is returned.
+ 8648:       *
+ 8649:       * @static
+ 8650:       * @memberOf _
+ 8651:       * @category Object
+ 8652:       * @param {Object} object The object to query.
+ 8653:       * @param {Array|string} path The path of the property to resolve.
+ 8654:       * @param {*} [defaultValue] The value returned if the resolved value is `undefined`.
+ 8655:       * @returns {*} Returns the resolved value.
+ 8656:       * @example
+ 8657:       *
+ 8658:       * var object = { 'a': [{ 'b': { 'c1': 3, 'c2': _.constant(4) } }] };
+*****
+

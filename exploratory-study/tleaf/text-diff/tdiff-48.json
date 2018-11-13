@@ -1,0 +1,80 @@
+Comparing files TLEAF\RD\48.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\48.js
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require();
+    4:  var escope = require('escope');
+***** TLEAF\RD\ORIGINAL.JS
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require('estraverse');
+    4:  var escope = require('escope');
+*****
+
+***** TLEAF\RD\48.js
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property');
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+*****
+
+***** TLEAF\RD\48.js
+   54:          }
+   55:          if (_.isUndefined(type)) {
+***** TLEAF\RD\ORIGINAL.JS
+   54:          }
+   55:          var type = findType(call.node, call.scope);
+   56:          if (_.isUndefined(type)) {
+*****
+
+***** TLEAF\RD\48.js
+   87:  function findType(callExpression) {
+   88:  }
+***** TLEAF\RD\ORIGINAL.JS
+   88:  function findType(callExpression) {
+   89:      return _.get(callExpression, 'callee.property.name');
+   90:  }
+*****
+
+***** TLEAF\RD\48.js
+  102:              var varName = calleeObj.name;
+  103:              var varNode;
+  104:              if (varNode) {
+***** TLEAF\RD\ORIGINAL.JS
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+*****
+
+***** TLEAF\RD\48.js
+  174:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  175:      _.some(depsFnBodyExpressions, function () {
+  176:          var type = _.get(bodyExpression, 'type');
+***** TLEAF\RD\ORIGINAL.JS
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  178:          var type = _.get(bodyExpression, 'type');
+*****
+
+***** TLEAF\RD\48.js
+  245:      var params = [];
+  246:      // covers "function someVar() {}"
+***** TLEAF\RD\ORIGINAL.JS
+  247:      var params = [];
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+*****
+
+***** TLEAF\RD\48.js
+  257:  function extractObjectPropertyDeps(object, propName, scope) {
+  258:      var prop = _.find(object.properties);
+  259:      if (!prop) {
+***** TLEAF\RD\ORIGINAL.JS
+  260:  function extractObjectPropertyDeps(object, propName, scope) {
+  261:      var prop = _.find(object.properties, function (property) {
+  262:          return _.get(property, 'key.name') === propName;
+  263:      });
+  264:      if (!prop) {
+*****
+

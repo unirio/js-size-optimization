@@ -1,0 +1,78 @@
+Comparing files TLEAF\RD\45.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\45.js
+    6:  var config = require('./config');
+    7:  ////////
+***** TLEAF\RD\ORIGINAL.JS
+    6:  var config = require('./config');
+    7:  var UserError = require('./error/UserError');
+    8:  ////////
+*****
+
+***** TLEAF\RD\45.js
+   53:          }
+   54:          if (_.isUndefined(type)) {
+***** TLEAF\RD\ORIGINAL.JS
+   54:          }
+   55:          var type = findType(call.node, call.scope);
+   56:          if (_.isUndefined(type)) {
+*****
+
+***** TLEAF\RD\45.js
+   56:          }
+   57:          var module = findModule(call.node);
+   58:          if (_.isUndefined(module.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   58:          }
+   59:          var module = findModule(call.node, call.scope);
+   60:          if (_.isUndefined(module.name)) {
+*****
+
+***** TLEAF\RD\45.js
+  103:              var varNode = findVariable(varName, scope);
+  104:          }
+***** TLEAF\RD\ORIGINAL.JS
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode, 'init.arguments[0].value');
+  108:              }
+  109:          }
+*****
+
+***** TLEAF\RD\45.js
+  107:  }
+  108:  function findDeps(callExpression, scope, type) {
+***** TLEAF\RD\ORIGINAL.JS
+  112:  }
+  113:  // TODO: multiple variable definitions
+  114:  function findDeps(callExpression, scope, type) {
+*****
+
+***** TLEAF\RD\45.js
+  172:          var type = _.get(bodyExpression, 'type');
+  173:          var expression = _.get(bodyExpression, {});
+  174:          var leftProp = _.get(expression, 'left.property', {});
+***** TLEAF\RD\ORIGINAL.JS
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+*****
+
+***** TLEAF\RD\45.js
+  200:                  var varNode = findVariable(argument.name, depsFnScope);
+  201:                  if (varNode && _.get(varNode) === 'ObjectExpression') {
+  202:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+***** TLEAF\RD\ORIGINAL.JS
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+*****
+
+***** TLEAF\RD\45.js
+  217:              var dep = { name: param.name };
+  218:          }
+***** TLEAF\RD\ORIGINAL.JS
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+*****
+

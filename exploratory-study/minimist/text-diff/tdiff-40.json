@@ -1,0 +1,31 @@
+Comparing files MINIMIST\RD\40.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\40.js
+   46:      }
+   47:      function setArg(key, val) {
+   48:          if (arg && flags.unknownFn && !argDefined(key, arg)) {
+***** MINIMIST\RD\ORIGINAL.JS
+   46:      }
+   47:      function setArg(key, val, arg) {
+   48:          if (arg && flags.unknownFn && !argDefined(key, arg)) {
+*****
+
+***** MINIMIST\RD\40.js
+   96:              var key = arg.match(/^--no-(.+)/)[1];
+   97:              setArg(key, false);
+   98:          } else if (/^--.+/.test(arg)) {
+***** MINIMIST\RD\ORIGINAL.JS
+   96:              var key = arg.match(/^--no-(.+)/)[1];
+   97:              setArg(key, false, arg);
+   98:          } else if (/^--.+/.test(arg)) {
+*****
+
+***** MINIMIST\RD\40.js
+  144:                  } else if (args[i + 1] && /true|false/.test(args[i + 1])) {
+  145:                      setArg(key, args[i + 1] === 'true');
+  146:                      i++;
+***** MINIMIST\RD\ORIGINAL.JS
+  144:                  } else if (args[i + 1] && /true|false/.test(args[i + 1])) {
+  145:                      setArg(key, args[i + 1] === 'true', arg);
+  146:                      i++;
+*****
+

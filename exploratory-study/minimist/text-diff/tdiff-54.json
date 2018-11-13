@@ -1,0 +1,11 @@
+Comparing files MINIMIST\RD\54.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\54.js
+  119:                  }
+  120:                  if (/[A-Za-z]/.test() && /=/.test(next)) {
+  121:                      setArg(letters[j], next.split('=')[1], arg);
+***** MINIMIST\RD\ORIGINAL.JS
+  119:                  }
+  120:                  if (/[A-Za-z]/.test(letters[j]) && /=/.test(next)) {
+  121:                      setArg(letters[j], next.split('=')[1], arg);
+*****
+

@@ -1,0 +1,48 @@
+Comparing files JADE\RD\24.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\24.js
+   83:      if (options.debug) {
+   84:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+
+***** JADE\RD\24.js
+  144:          includeSources: options.compileDebug === true,
+  145:          debug: options.debug
+  146:      });
+***** JADE\RD\ORIGINAL.JS
+  145:          includeSources: options.compileDebug === true,
+  146:          debug: options.debug,
+  147:          templateName: 'template'
+  148:      });
+*****
+
+***** JADE\RD\24.js
+  178:          self: options.self,
+  179:          debug: options.debug,
+***** JADE\RD\ORIGINAL.JS
+  180:          self: options.self,
+  181:          includeSources: options.compileDebug,
+  182:          debug: options.debug,
+*****
+
+***** JADE\RD\24.js
+  240:      if ('function' == typeof options) {
+  241:      }
+***** JADE\RD\ORIGINAL.JS
+  243:      if ('function' == typeof options) {
+  244:          fn = options, options = undefined;
+  245:      }
+*****
+
+***** JADE\RD\24.js
+  251:      options = options || {};
+  252:      if (options.cache && !options.filename) {
+***** JADE\RD\ORIGINAL.JS
+  255:      options = options || {};
+  256:      // cache requires .filename
+  257:      if (options.cache && !options.filename) {
+*****
+

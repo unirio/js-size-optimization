@@ -1,0 +1,11 @@
+Comparing files UUID\RD\25.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\25.js
+  195:  };
+  196:  UUIDjs.fromBinary = function () {
+  197:      var ints = [];
+***** UUID\RD\ORIGINAL.JS
+  195:  };
+  196:  UUIDjs.fromBinary = function (binary) {
+  197:      var ints = [];
+*****
+

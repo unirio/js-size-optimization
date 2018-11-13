@@ -1,0 +1,56 @@
+Comparing files UUID\RD\0.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\0.js
+  122:          }
+  123:          tick = UUIDjs.randomUI04();
+***** UUID\RD\ORIGINAL.JS
+  122:          }
+  123:          timestamp = now;
+  124:          tick = UUIDjs.randomUI04();
+*****
+
+***** UUID\RD\0.js
+  158:  };
+  159:  UUIDjs.fromURN = function () {
+  160:      var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i
+***** UUID\RD\ORIGINAL.JS
+  159:  };
+  160:  UUIDjs.fromURN = function (strId) {
+  161:      var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i
+*****
+
+***** UUID\RD\0.js
+  162:      if (r = p.exec(strId)) {
+  163:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3]), parseInt(r[4], 16), parseInt(r[5]
+  164:  , 16), parseInt(r[6], 16));
+  165:      }
+  166:  };
+***** UUID\RD\ORIGINAL.JS
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+  167:      return null;
+  168:  };
+*****
+
+***** UUID\RD\0.js
+  171:      var str = '';
+  172:      var parts = [
+***** UUID\RD\ORIGINAL.JS
+  173:      var str = '';
+  174:      var pos = 0;
+  175:      var parts = [
+*****
+
+***** UUID\RD\0.js
+  174:          2,
+  175:          2
+  176:      ];
+***** UUID\RD\ORIGINAL.JS
+  177:          2,
+  178:          2,
+  179:          2,
+  180:          6
+  181:      ];
+*****
+

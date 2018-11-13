@@ -1,0 +1,50 @@
+Comparing files PLIVO-NODE\RD\0.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\0.js
+  382:      var method = 'DELETE';
+  383:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  382:      var method = 'DELETE';
+  383:      request(action, method, params, callback);
+  384:  };
+*****
+
+***** PLIVO-NODE\RD\0.js
+  533:      var method = 'DELETE';
+  534:      request(action, method, params);
+  535:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  534:      var method = 'DELETE';
+  535:      request(action, method, params, callback);
+  536:  };
+*****
+
+***** PLIVO-NODE\RD\0.js
+  579:      var method = 'POST';
+  580:      request(action, method, params);
+  581:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  580:      var method = 'POST';
+  581:      request(action, method, params, callback);
+  582:  };
+*****
+
+***** PLIVO-NODE\RD\0.js
+  619:      ];
+  620:      this.elem = doc.begin(this.element);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  620:      ];
+  621:      this.valid_attributes = [];
+  622:      this.elem = doc.begin(this.element);
+*****
+
+***** PLIVO-NODE\RD\0.js
+  801:          'Speak',
+  802:          'Play'
+  803:      ];
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  803:          'Speak',
+  804:          'Play',
+  805:          'Wait'
+  806:      ];
+*****
+

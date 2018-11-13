@@ -1,0 +1,29 @@
+Comparing files UNDERSCORE\RD\26.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\26.js
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      var Ctor = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Naked function reference for surrogate-prototype-swapping.
+   21:      var Ctor = function () {
+*****
+
+***** UNDERSCORE\RD\26.js
+  777:      // be triggered. The function will be called after it stops being called for
+  778:      // leading edge, instead of the trailing.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  778:      // be triggered. The function will be called after it stops being called for
+  779:      // N milliseconds. If `immediate` is passed, trigger the function on the
+  780:      // leading edge, instead of the trailing.
+*****
+
+***** UNDERSCORE\RD\26.js
+  788:                      result = func.apply(context, args);
+  789:                  }
+***** UNDERSCORE\RD\ORIGINAL.JS
+  790:                      result = func.apply(context, args);
+  791:                      if (!timeout)
+  792:                          context = args = null;
+  793:                  }
+*****
+

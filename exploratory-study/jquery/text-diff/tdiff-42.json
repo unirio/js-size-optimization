@@ -1,0 +1,53 @@
+Comparing files JQUERY\RD\42.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\42.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\42.js
+ 3899:                          this.click();
+ 3900:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 3900:                          this.click();
+ 3901:                          return false;
+ 3902:                      }
+*****
+
+***** JQUERY\RD\42.js
+ 4251:          clone: function (elem, dataAndEvents, deepDataAndEvents) {
+ 4252:              var i, l, srcElements, destElements, clone, inPage = jQuery.contains(elem.ownerDocument, elem);
+ 4253:              // Fix IE cloning issues
+***** JQUERY\RD\ORIGINAL.JS
+ 4253:          clone: function (elem, dataAndEvents, deepDataAndEvents) {
+ 4254:              var i, l, srcElements, destElements, clone = elem.cloneNode(true), inPage = jQuery.contains(elem.ownerDocument, ele
+ 4255:  m);
+ 4256:              // Fix IE cloning issues
+*****
+
+***** JQUERY\RD\42.js
+ 5424:          var timer, i = 0, timers = jQuery.timers;
+ 5425:          for (; i < timers.length; i++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5427:          var timer, i = 0, timers = jQuery.timers;
+ 5428:          fxNow = jQuery.now();
+ 5429:          for (; i < timers.length; i++) {
+*****
+
+***** JQUERY\RD\42.js
+ 5631:                      // Use proper attribute retrieval(#12072)
+ 5632:                      var tabindex = jQuery.find.attr(elem);
+ 5633:                      return tabindex ? parseInt(tabindex, 10) : rfocusable.test(elem.nodeName) || rclickable.test(elem.nodeName)
+***** JQUERY\RD\ORIGINAL.JS
+ 5635:                      // Use proper attribute retrieval(#12072)
+ 5636:                      var tabindex = jQuery.find.attr(elem, 'tabindex');
+ 5637:                      return tabindex ? parseInt(tabindex, 10) : rfocusable.test(elem.nodeName) || rclickable.test(elem.nodeName)
+*****
+

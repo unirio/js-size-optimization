@@ -1,0 +1,20 @@
+Comparing files TLEAF\RD\21.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\21.js
+  152:      }
+  153:      return;
+  154:  }
+***** TLEAF\RD\ORIGINAL.JS
+  152:      }
+  153:      return deps;
+  154:  }
+*****
+
+***** TLEAF\RD\21.js
+  155:  function findComponentDeps(object, scope) {
+  156:      if (object.type === 'Identifier') {
+***** TLEAF\RD\ORIGINAL.JS
+  155:  function findComponentDeps(object, scope) {
+  156:      // covers { controller: someVar }
+  157:      if (object.type === 'Identifier') {
+*****
+

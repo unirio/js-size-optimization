@@ -1,0 +1,20 @@
+Comparing files UNDERSCORE\RD\56.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\56.js
+  491:      // Aliased as `unique`.
+  492:      _.uniq = _.unique = function (array, isSorted, iteratee) {
+  493:          if (!_.isBoolean(isSorted)) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  491:      // Aliased as `unique`.
+  492:      _.uniq = _.unique = function (array, isSorted, iteratee, context) {
+  493:          if (!_.isBoolean(isSorted)) {
+*****
+
+***** UNDERSCORE\RD\56.js
+ 1296:      var unescapeMap = _.invert(escapeMap);
+ 1297:      var createEscaper = function (map) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1296:      var unescapeMap = _.invert(escapeMap);
+ 1297:      // Functions for escaping and unescaping strings to/from HTML interpolation.
+ 1298:      var createEscaper = function (map) {
+*****
+

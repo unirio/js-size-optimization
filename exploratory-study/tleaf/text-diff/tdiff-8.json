@@ -1,0 +1,94 @@
+Comparing files TLEAF\RD\8.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\8.js
+   24:              // find all call expressions, because all angular unit types are
+   25:              if (node.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   24:              // find all call expressions, because all angular unit types are
+   25:              // defined as function calls: .controller(), .service(), etc
+   26:              if (node.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\8.js
+   90:  // TODO: multiple variable definitions
+   91:  function (callExpression, scope) {
+   92:      var module = {};
+   93:      var calleeObj, calleeProp = _.get(callExpression, 'callee.property', {});
+   94:      if (calleeObj.type === 'CallExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+   94:      var calleeObj = _.get(callExpression, 'callee.object', {}), calleeProp = _.get(callExpression, 'callee.property', {});
+   95:      if (calleeObj.type === 'CallExpression') {
+*****
+
+***** TLEAF\RD\8.js
+  109:      }
+  110:      return;
+  111:  }
+***** TLEAF\RD\ORIGINAL.JS
+  110:      }
+  111:      return module;
+  112:  }
+*****
+
+***** TLEAF\RD\8.js
+  190:                  deps = extractVariableDeps(right.name, depsFnScope);
+  191:              }
+***** TLEAF\RD\ORIGINAL.JS
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+*****
+
+***** TLEAF\RD\8.js
+  211:      });
+  212:  }
+***** TLEAF\RD\ORIGINAL.JS
+  213:      });
+  214:      return deps;
+  215:  }
+*****
+
+***** TLEAF\RD\8.js
+  228:      var currentScope = scope;
+  229:      if (_.isUndefined(variable)) {
+***** TLEAF\RD\ORIGINAL.JS
+  231:      var currentScope = scope;
+  232:      while (!variable && currentScope) {
+  233:          variable = _.findWhere(currentScope.variables, { name: varName });
+  234:          currentScope = currentScope.upper;
+  235:      }
+  236:      if (_.isUndefined(variable)) {
+*****
+
+***** TLEAF\RD\8.js
+  241:      var varType = _.get(varNode, 'type');
+  242:      if (varType === 'FunctionDeclaration') {
+***** TLEAF\RD\ORIGINAL.JS
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+  250:      if (varType === 'FunctionDeclaration') {
+*****
+
+***** TLEAF\RD\8.js
+  248:      }
+  249:      var deps = extractDeps();
+  250:      return deps;
+***** TLEAF\RD\ORIGINAL.JS
+  256:      }
+  257:      var deps = extractDeps(params);
+  258:      return deps;
+*****
+
+***** TLEAF\RD\8.js
+  255:      });
+  256:      var value = _.get(prop, 'value', {});
+***** TLEAF\RD\ORIGINAL.JS
+  263:      });
+  264:      if (!prop) {
+  265:          return [];
+  266:      }
+  267:      var value = _.get(prop, 'value', {});
+*****
+

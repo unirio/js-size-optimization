@@ -1,0 +1,73 @@
+Comparing files LODASH\RD\33.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\33.js
+  673:          /** Used to restore the original `_` reference in `_.noConflict`. */
+  674:          var oldDash;
+  675:          /** Used to detect if a method is native. */
+***** LODASH\RD\ORIGINAL.JS
+  673:          /** Used to restore the original `_` reference in `_.noConflict`. */
+  674:          var oldDash = root._;
+  675:          /** Used to detect if a method is native. */
+*****
+
+***** LODASH\RD\33.js
+ 2759:                  case 6:
+ 2760:                      return new Ctor(args[0], args[2], args[3], args[4], args[5]);
+ 2761:                  case 7:
+***** LODASH\RD\ORIGINAL.JS
+ 2759:                  case 6:
+ 2760:                      return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+ 2761:                  case 7:
+*****
+
+***** LODASH\RD\33.js
+ 2792:                      var funcName = getFuncName(func), data = funcName == 'wrapper' ? getData(func) : undefined;
+ 2793:                      if (data && isLaziable() && data[1] == (ARY_FLAG | CURRY_FLAG | PARTIAL_FLAG | REARG_FLAG) && !data[4].leng
+ 2794:  th && data[9] == 1) {
+ 2795:                          wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+***** LODASH\RD\ORIGINAL.JS
+ 2792:                      var funcName = getFuncName(func), data = funcName == 'wrapper' ? getData(func) : undefined;
+ 2793:                      if (data && isLaziable(data[0]) && data[1] == (ARY_FLAG | CURRY_FLAG | PARTIAL_FLAG | REARG_FLAG) && !data[
+ 2794:  4].length && data[9] == 1) {
+ 2795:                          wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+*****
+
+***** LODASH\RD\33.js
+ 2856:                          bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG);
+ 2857:                          var newData = [
+***** LODASH\RD\ORIGINAL.JS
+ 2856:                          bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG);
+ 2857:                          if (!isCurryBound) {
+ 2858:                              bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG);
+ 2859:                          }
+ 2860:                          var newData = [
+*****
+
+***** LODASH\RD\33.js
+ 3025:              var setter = data ? baseSetData : setData;
+ 3026:              return setter(result);
+ 3027:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3028:              var setter = data ? baseSetData : setData;
+ 3029:              return setter(result, newData);
+ 3030:          }
+*****
+
+***** LODASH\RD\33.js
+ 3548:          function mergeData(data, source) {
+ 3549:              var bitmask = data[1], srcBitmask = source[1], newBitmask = bitmask | srcBitmask;
+ 3550:              var isCombo = srcBitmask == ARY_FLAG && bitmask == CURRY_FLAG || srcBitmask == ARY_FLAG && bitmask == REARG_FLAG &&
+***** LODASH\RD\ORIGINAL.JS
+ 3551:          function mergeData(data, source) {
+ 3552:              var bitmask = data[1], srcBitmask = source[1], newBitmask = bitmask | srcBitmask, isCommon = newBitmask < ARY_FLAG;
+ 3553:              var isCombo = srcBitmask == ARY_FLAG && bitmask == CURRY_FLAG || srcBitmask == ARY_FLAG && bitmask == REARG_FLAG &&
+*****
+
+***** LODASH\RD\33.js
+10536:          /*------------------------------------------------------------------------*/
+10537:          lodash.add = add;
+***** LODASH\RD\ORIGINAL.JS
+10539:          /*------------------------------------------------------------------------*/
+10540:          // Add functions that return unwrapped values when chaining.
+10541:          lodash.add = add;
+*****
+

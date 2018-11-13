@@ -1,0 +1,91 @@
+Comparing files TLEAF\RD\35.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\35.js
+    5:  var _ = require('lodash');
+    6:  var UserError = require('./error/UserError');
+***** TLEAF\RD\ORIGINAL.JS
+    5:  var _ = require('lodash');
+    6:  var config = require('./config');
+    7:  var UserError = require('./error/UserError');
+*****
+
+***** TLEAF\RD\35.js
+   27:                  if (_.contains(config.units.process, calleeProp.name)) {
+   28:                      calls.push({
+***** TLEAF\RD\ORIGINAL.JS
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+   29:                      // save matching node with an appropriate scope
+   30:                      calls.push({
+*****
+
+***** TLEAF\RD\35.js
+   46:      var units = [];
+   47:      _.forEach(calls, function () {
+   48:          // for now use only completely parsed units
+***** TLEAF\RD\ORIGINAL.JS
+   48:      var units = [];
+   49:      _.forEach(calls, function (call) {
+   50:          // for now use only completely parsed units
+*****
+
+***** TLEAF\RD\35.js
+   89:  // TODO: multiple variable definitions
+   90:  function (callExpression, scope) {
+   91:      var module = {};
+***** TLEAF\RD\ORIGINAL.JS
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+*****
+
+***** TLEAF\RD\35.js
+  104:              if (varNode) {
+  105:              }
+***** TLEAF\RD\ORIGINAL.JS
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode, 'init.arguments[0].value');
+  108:              }
+*****
+
+***** TLEAF\RD\35.js
+  143:          if (type !== 'provider') {
+  144:              return extractDeps();
+  145:          }
+***** TLEAF\RD\ORIGINAL.JS
+  146:          if (type !== 'provider') {
+  147:              return extractDeps(depsArg.params);
+  148:          }
+*****
+
+***** TLEAF\RD\35.js
+  180:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+  181:              if (right.type === 'FunctionExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  183:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+  184:              // covers "this.$get = function (...) { ... };"
+  185:              if (right.type === 'FunctionExpression') {
+*****
+
+***** TLEAF\RD\35.js
+  197:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  198:              }
+***** TLEAF\RD\ORIGINAL.JS
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+*****
+
+***** TLEAF\RD\35.js
+  215:      var deps = [];
+  216:      _.forEach(params);
+  217:      return deps;
+***** TLEAF\RD\ORIGINAL.JS
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+*****
+

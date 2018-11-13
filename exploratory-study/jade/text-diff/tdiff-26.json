@@ -1,0 +1,20 @@
+Comparing files JADE\RD\26.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\26.js
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m');
+   85:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+
+***** JADE\RD\26.js
+  271:  exports.renderFile = function (path, options, fn) {
+  272:      if ('function' == typeof options) {
+***** JADE\RD\ORIGINAL.JS
+  271:  exports.renderFile = function (path, options, fn) {
+  272:      // support callback API
+  273:      if ('function' == typeof options) {
+*****
+

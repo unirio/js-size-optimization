@@ -1,0 +1,233 @@
+Comparing files LODASH\RD\48.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\48.js
+ 1845:          }
+ 1846:          function baseIsMatch(object, source, matchData, customizer) {
+***** LODASH\RD\ORIGINAL.JS
+ 1845:          }
+ 1846:          /**
+ 1847:       * The base implementation of `_.isMatch` without support for callback shorthands.
+ 1848:       *
+ 1849:       * @private
+ 1850:       * @param {Object} object The object to inspect.
+ 1851:       * @param {Object} source The object of property values to match.
+ 1852:       * @param {Array} matchData The propery names, values, and compare flags to match.
+ 1853:       * @param {Function} [customizer] The function to customize comparisons.
+ 1854:       * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ 1855:       */
+ 1856:          function baseIsMatch(object, source, matchData, customizer) {
+*****
+
+***** LODASH\RD\48.js
+ 3148:          }
+ 3149:          function extendDefaults(objValue, srcValue) {
+ 3150:              return objValue === undefined ? srcValue : objValue;
+ 3151:          }
+ 3152:          /**
+ 3153:       * Gets metadata for `func`.
+ 3154:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3158:          }
+ 3159:          /**
+ 3160:       * Used by `_.defaults` to customize its `_.assign` use.
+ 3161:       *
+*****
+
+***** LODASH\RD\48.js
+ 3155:       * @private
+ 3156:       * @param {Function} func The function to query.
+ 3157:       * @returns {*} Returns the metadata for `func`.
+ 3158:       */
+ 3159:          var getData = !metaMap ? noop : function (func) {
+ 3160:              return metaMap.get(func);
+ 3161:          };
+ 3162:          /**
+ 3163:       * Gets the name of `func`.
+ 3164:       *
+***** LODASH\RD\ORIGINAL.JS
+ 3162:       * @private
+ 3163:       * @param {*} objValue The destination object property value.
+ 3164:       * @param {*} srcValue The source object property value.
+ 3165:       * @returns {*} Returns the value to assign to the destination object.
+ 3166:       */
+ 3167:          function extendDefaults(objValue, srcValue) {
+ 3168:              return objValue === undefined ? srcValue : objValue;
+ 3169:          }
+ 3170:          /**
+ 3171:       * Gets metadata for `func`.
+ 3172:       *
+*****
+
+***** LODASH\RD\48.js
+ 3166:       * @param {Function} func The function to query.
+ 3167:       * @returns {string} Returns the function name.
+***** LODASH\RD\ORIGINAL.JS
+ 3174:       * @param {Function} func The function to query.
+ 3175:       * @returns {*} Returns the metadata for `func`.
+ 3176:       */
+ 3177:          var getData = !metaMap ? noop : function (func) {
+ 3178:              return metaMap.get(func);
+ 3179:          };
+ 3180:          /**
+ 3181:       * Gets the name of `func`.
+ 3182:       *
+ 3183:       * @private
+ 3184:       * @param {Function} func The function to query.
+ 3185:       * @returns {string} Returns the function name.
+*****
+
+***** LODASH\RD\48.js
+ 3302:          }
+ 3303:          function initCloneArray(array) {
+***** LODASH\RD\ORIGINAL.JS
+ 3320:          }
+ 3321:          /**
+ 3322:       * Initializes an array clone.
+ 3323:       *
+ 3324:       * @private
+ 3325:       * @param {Array} array The array to clone.
+ 3326:       * @returns {Array} Returns the initialized clone.
+ 3327:       */
+ 3328:          function initCloneArray(array) {
+*****
+
+***** LODASH\RD\48.js
+ 5881:          });
+ 5882:          function sortByOrder(collection, iteratees, orders, guard) {
+ 5883:              if (collection == null) {
+ 5884:                  return [];
+ 5885:              }
+ 5886:              if (!isArray(iteratees)) {
+ 5887:                  iteratees = iteratees == null ? [] : [iteratees];
+ 5888:              }
+ 5889:              orders = guard ? undefined : orders;
+ 5890:              if (!isArray(orders)) {
+ 5891:                  orders = orders == null ? [] : [orders];
+ 5892:              }
+ 5893:              return baseSortByOrder(collection, iteratees, orders);
+ 5894:          }
+ 5895:          /*------------------------------------------------------------------------*/
+ 5896:          /**
+ 5897:       * Gets the timestamp of the number of milliseconds that have elapsed since
+ 5898:       * the Unix epoch (1 January 1970 00:00:00 UTC).
+ 5899:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5906:          });
+ 5907:          /**
+ 5908:       * This method is like `_.sortBy` except that it allows specifying the
+ 5909:       * sort orders of the iteratees to sort by. If `orders` is unspecified, all
+ 5910:       * values are sorted in ascending order. Otherwise, a value is sorted in
+ 5911:       * ascending order if its corresponding order is "asc", and descending if "desc".
+ 5912:       *
+*****
+
+***** LODASH\RD\48.js
+ 5901:       * @memberOf _
+ 5902:       * @type Function
+ 5903:       * @category Date
+ 5904:       * @returns {number} Returns the timestamp.
+ 5905:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5914:       * @memberOf _
+ 5915:       * @category Collection
+ 5916:       * @param {Array|Object} collection The collection to iterate over.
+ 5917:       * @param {Function[]|Object[]|string[]} [iteratees=[_.identity]] The iteratees to sort by.
+ 5918:       * @param {string[]} [orders] The sort orders of `iteratees`.
+ 5919:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.reduce`.
+ 5920:       * @returns {Array} Returns the new sorted array.
+ 5921:       * @example
+*****
+
+***** LODASH\RD\48.js
+ 5906:       *
+ 5907:       * _.defer(function(stamp) {
+ 5908:       *   console.log(_.now() - stamp);
+ 5909:       * }, _.now());
+ 5910:       * // => logs the number of milliseconds it took for the deferred function to be invoked
+ 5911:       */
+ 5912:          var now = Date.now;
+ 5913:          /*------------------------------------------------------------------------*/
+***** LODASH\RD\ORIGINAL.JS
+ 5922:       *
+ 5923:       * var resolve = _.partial(_.map, _, _.values);
+ 5924:       *
+ 5925:       * var users = [
+ 5926:       *   { 'user': 'fred',   'age': 48 },
+ 5927:       *   { 'user': 'barney', 'age': 34 },
+ 5928:       *   { 'user': 'fred',   'age': 42 },
+ 5929:       *   { 'user': 'barney', 'age': 36 }
+ 5930:       * ];
+ 5931:       *
+ 5932:       * // sort by `user` in ascending order and by `age` in descending order
+ 5933:       * resolve( _.sortByOrder(users, ['user', 'age'], ['asc', 'desc']) );
+ 5934:       * // => [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 42]]
+ 5935:       */
+ 5936:          function sortByOrder(collection, iteratees, orders, guard) {
+ 5937:              if (collection == null) {
+ 5938:                  return [];
+ 5939:              }
+ 5940:              if (!isArray(iteratees)) {
+ 5941:                  iteratees = iteratees == null ? [] : [iteratees];
+ 5942:              }
+ 5943:              orders = guard ? undefined : orders;
+ 5944:              if (!isArray(orders)) {
+ 5945:                  orders = orders == null ? [] : [orders];
+ 5946:              }
+ 5947:              return baseSortByOrder(collection, iteratees, orders);
+ 5948:          }
+ 5949:          /*------------------------------------------------------------------------*/
+*****
+
+***** LODASH\RD\48.js
+ 5914:          /**
+ 5915:       * The opposite of `_.before`; this method creates a function that invokes
+ 5916:       * `func` once it's called `n` or more times.
+ 5917:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5950:          /**
+ 5951:       * Gets the timestamp of the number of milliseconds that have elapsed since
+ 5952:       * the Unix epoch (1 January 1970 00:00:00 UTC).
+ 5953:       *
+*****
+
+***** LODASH\RD\48.js
+ 5919:       * @memberOf _
+ 5920:       * @category Function
+ 5921:       * @param {number} n The number of calls before `func` is invoked.
+ 5922:       * @param {Function} func The function to restrict.
+ 5923:       * @returns {Function} Returns the new restricted function.
+ 5924:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5955:       * @memberOf _
+ 5956:       * @type Function
+ 5957:       * @category Date
+ 5958:       * @returns {number} Returns the timestamp.
+ 5959:       * @example
+*****
+
+***** LODASH\RD\48.js
+ 5925:       *
+ 5926:       * var saves = ['profile', 'settings'];
+***** LODASH\RD\ORIGINAL.JS
+ 5960:       *
+ 5961:       * _.defer(function(stamp) {
+ 5962:       *   console.log(_.now() - stamp);
+ 5963:       * }, _.now());
+ 5964:       * // => logs the number of milliseconds it took for the deferred function to be invoked
+ 5965:       */
+ 5966:          var now = Date.now;
+ 5967:          /*------------------------------------------------------------------------*/
+ 5968:          /**
+ 5969:       * The opposite of `_.before`; this method creates a function that invokes
+ 5970:       * `func` once it's called `n` or more times.
+ 5971:       *
+ 5972:       * @static
+ 5973:       * @memberOf _
+ 5974:       * @category Function
+ 5975:       * @param {number} n The number of calls before `func` is invoked.
+ 5976:       * @param {Function} func The function to restrict.
+ 5977:       * @returns {Function} Returns the new restricted function.
+ 5978:       * @example
+ 5979:       *
+ 5980:       * var saves = ['profile', 'settings'];
+*****
+

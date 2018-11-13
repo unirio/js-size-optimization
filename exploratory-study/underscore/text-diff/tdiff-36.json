@@ -1,0 +1,20 @@
+Comparing files UNDERSCORE\RD\36.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\36.js
+  681:          };
+  682:          return;
+  683:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  681:          };
+  682:          return bound;
+  683:      };
+*****
+
+***** UNDERSCORE\RD\36.js
+ 1120:          bStack.push(b);
+ 1121:          if (areArrays) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1120:          bStack.push(b);
+ 1121:          // Recursively compare objects and arrays.
+ 1122:          if (areArrays) {
+*****
+

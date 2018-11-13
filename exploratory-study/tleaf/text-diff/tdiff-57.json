@@ -1,0 +1,62 @@
+Comparing files TLEAF\RD\57.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\57.js
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+   29:                  }
+***** TLEAF\RD\ORIGINAL.JS
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+   29:                      // save matching node with an appropriate scope
+   30:                      calls.push({
+   31:                          node: node,
+   32:                          scope: currentScope
+   33:                      });
+   34:                  }
+*****
+
+***** TLEAF\RD\57.js
+   90:      if (calleeObj.type === 'CallExpression') {
+   91:          return findModule(calleeObj, scope);
+***** TLEAF\RD\ORIGINAL.JS
+   95:      if (calleeObj.type === 'CallExpression') {
+   96:          // recursive find module, usually when units are chained
+   97:          return findModule(calleeObj, scope);
+*****
+
+***** TLEAF\RD\57.js
+  114:      if (_.contains(cantHaveDeps, type)) {
+  115:          return;
+  116:      }
+***** TLEAF\RD\ORIGINAL.JS
+  120:      if (_.contains(cantHaveDeps, type)) {
+  121:          return [];
+  122:      }
+*****
+
+***** TLEAF\RD\57.js
+  238:      if (!varNode) {
+  239:          return;
+  240:      }
+***** TLEAF\RD\ORIGINAL.JS
+  244:      if (!varNode) {
+  245:          return [];
+  246:      }
+*****
+
+***** TLEAF\RD\57.js
+  260:      }
+  261:      var value = _.get(prop, {});
+  262:      var deps = [];
+***** TLEAF\RD\ORIGINAL.JS
+  266:      }
+  267:      var value = _.get(prop, 'value', {});
+  268:      var deps = [];
+*****
+
+***** TLEAF\RD\57.js
+  270:      }
+  271:  }
+***** TLEAF\RD\ORIGINAL.JS
+  276:      }
+  277:      return deps;
+  278:  }
+*****
+

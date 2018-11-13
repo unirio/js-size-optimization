@@ -1,0 +1,72 @@
+Comparing files JQUERY\RD\26.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\26.js
+  516:          }
+  517:          function Sizzle(selector, context, results) {
+  518:              var m, i, elem, nid, match, groups, newSelector, newContext = context && context.ownerDocument,
+***** JQUERY\RD\ORIGINAL.JS
+  516:          }
+  517:          function Sizzle(selector, context, results, seed) {
+  518:              var m, i, elem, nid, match, groups, newSelector, newContext = context && context.ownerDocument,
+*****
+
+***** JQUERY\RD\26.js
+  705:                  var name = elem.nodeName.toLowerCase();
+  706:              };
+***** JQUERY\RD\ORIGINAL.JS
+  705:                  var name = elem.nodeName.toLowerCase();
+  706:                  return (name === 'input' || name === 'button') && elem.type === type;
+  707:              };
+*****
+
+***** JQUERY\RD\26.js
+  719:  k non-disabled form elements for fieldset[disabled] ancestors
+  720:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  721:  ion> under fieldset[disabled] is disabled
+  722:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\26.js
+ 1880:                          // Add matches to results
+ 1881:                          push.apply(results);
+ 1882:                          // Seedless set matches succeeding multiple successful matchers stipulate sorting
+***** JQUERY\RD\ORIGINAL.JS
+ 1882:                          // Add matches to results
+ 1883:                          push.apply(results, setMatched);
+ 1884:                          // Seedless set matches succeeding multiple successful matchers stipulate sorting
+*****
+
+***** JQUERY\RD\26.js
+ 6014:                          jQuery.event.triggered = undefined;
+ 6015:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 6016:                          jQuery.event.triggered = undefined;
+ 6017:                          if (tmp) {
+ 6018:                              elem[ontype] = tmp;
+ 6019:                          }
+ 6020:                      }
+*****
+
+***** JQUERY\RD\26.js
+ 6178:                  var val = jQuery(this).val();
+ 6179:                  return;
+ 6180:              }).get();
+***** JQUERY\RD\ORIGINAL.JS
+ 6183:                  var val = jQuery(this).val();
+ 6184:                  return val == null ? null : jQuery.isArray(val) ? jQuery.map(val, function (val) {
+ 6185:                      return {
+ 6186:                          name: elem.name,
+ 6187:                          value: val.replace(rCRLF, '\r\n')
+ 6188:                      };
+ 6189:                  }) : {
+ 6190:                      name: elem.name,
+ 6191:                      value: val.replace(rCRLF, '\r\n')
+ 6192:                  };
+ 6193:              }).get();
+*****
+

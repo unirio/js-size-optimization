@@ -1,0 +1,43 @@
+Comparing files UUID\RD\34.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\34.js
+   93:      if (this.hex !== uuid.hex) {
+   94:      }
+***** UUID\RD\ORIGINAL.JS
+   93:      if (this.hex !== uuid.hex) {
+   94:          return false;
+   95:      }
+*****
+
+***** UUID\RD\34.js
+  162:      if (r = p.exec(strId)) {
+  163:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(r[5], 16), parseInt(
+  164:  r[6], 16));
+  165:      }
+***** UUID\RD\ORIGINAL.JS
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+
+***** UUID\RD\34.js
+  181:      for (var i = 0; i < parts.length; i++) {
+  182:          for (var j; j < parts[i]; j++) {
+  183:              var octet = ints[pos++].toString(16);
+***** UUID\RD\ORIGINAL.JS
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+*****
+
+***** UUID\RD\34.js
+  198:          ints[i] = binary.charCodeAt(i);
+  199:      }
+***** UUID\RD\ORIGINAL.JS
+  199:          ints[i] = binary.charCodeAt(i);
+  200:          if (ints[i] > 255 || ints[i] < 0) {
+  201:              throw new Error('Unexpected byte in binary data.');
+  202:          }
+  203:      }
+*****
+

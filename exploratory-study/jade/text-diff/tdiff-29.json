@@ -1,0 +1,42 @@
+Comparing files JADE\RD\29.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\29.js
+   90:  }
+   91:  function handleTemplateCache(options, str) {
+***** JADE\RD\ORIGINAL.JS
+   90:  }
+   91:  /**
+   92:   * Get the template from a string or a file, either compiled on-the-fly or
+   93:   * read from cache (if enabled), and cache the template if needed.
+   94:   *
+   95:   * If `str` is not set, the file specified in `options.filename` will be read.
+   96:   *
+   97:   * If `options.cache` is true, this function reads the file from
+   98:   * `options.filename` so it must be set prior to calling this function.
+   99:   *
+  100:   * @param {Object} options
+  101:   * @param {String=} str
+  102:   * @return {Function}
+  103:   * @api private
+  104:   */
+  105:  function handleTemplateCache(options, str) {
+*****
+
+***** JADE\RD\29.js
+  131:          includeSources: options.compileDebug === true,
+  132:          templateName: 'template'
+***** JADE\RD\ORIGINAL.JS
+  145:          includeSources: options.compileDebug === true,
+  146:          debug: options.debug,
+  147:          templateName: 'template'
+*****
+
+***** JADE\RD\29.js
+  235:          } catch (ex) {
+  236:              return;
+  237:          }
+***** JADE\RD\ORIGINAL.JS
+  250:          } catch (ex) {
+  251:              return fn(ex);
+  252:          }
+*****
+

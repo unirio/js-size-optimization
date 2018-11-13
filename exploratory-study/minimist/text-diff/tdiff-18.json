@@ -1,0 +1,32 @@
+Comparing files MINIMIST\RD\18.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\18.js
+    5:          bools: {},
+    6:          strings: {}
+    7:      };
+***** MINIMIST\RD\ORIGINAL.JS
+    5:          bools: {},
+    6:          strings: {},
+    7:          unknownFn: null
+    8:      };
+*****
+
+***** MINIMIST\RD\18.js
+  104:              } else if (/^(true|false)$/.test(next)) {
+  105:                  setArg(key, next === 'true');
+  106:                  i++;
+***** MINIMIST\RD\ORIGINAL.JS
+  105:              } else if (/^(true|false)$/.test(next)) {
+  106:                  setArg(key, next === 'true', arg);
+  107:                  i++;
+*****
+
+***** MINIMIST\RD\18.js
+  129:                  if (letters[j + 1] && letters[j + 1].match(/\W/)) {
+  130:                      setArg(letters[j], arg.slice(j + 2));
+  131:                      broken = true;
+***** MINIMIST\RD\ORIGINAL.JS
+  130:                  if (letters[j + 1] && letters[j + 1].match(/\W/)) {
+  131:                      setArg(letters[j], arg.slice(j + 2), arg);
+  132:                      broken = true;
+*****
+

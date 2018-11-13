@@ -1,0 +1,59 @@
+Comparing files PLIVO-NODE\RD\6.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\6.js
+  103:          toSign += req.originalUrl;
+  104:          var expectedSignature;
+  105:          if (expectedSignature === req.header('X-Plivo-Signature')) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  103:          toSign += req.originalUrl;
+  104:          var expectedSignature = plivo.create_signature(toSign, req.body);
+  105:          if (expectedSignature === req.header('X-Plivo-Signature')) {
+*****
+
+***** PLIVO-NODE\RD\6.js
+  164:      delete params.call_uuid;
+  165:      var method;
+  166:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  164:      delete params.call_uuid;
+  165:      var method = 'POST';
+  166:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\6.js
+  323:  plivo.modify_account = function (params, callback) {
+  324:      var action;
+  325:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  323:  plivo.modify_account = function (params, callback) {
+  324:      var action = '';
+  325:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\6.js
+  330:      var method = 'GET';
+  331:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  330:      var method = 'GET';
+  331:      request(action, method, params, callback);
+  332:  };
+*****
+
+***** PLIVO-NODE\RD\6.js
+  384:  // Recordings
+  385:  plivo.get_recordings = function (params) {
+  386:      var action = 'Recording/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  385:  // Recordings
+  386:  plivo.get_recordings = function (params, callback) {
+  387:      var action = 'Recording/';
+*****
+
+***** PLIVO-NODE\RD\6.js
+  745:      ];
+  746:  }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  746:      ];
+  747:      this.nestables = [];
+  748:  }
+*****
+

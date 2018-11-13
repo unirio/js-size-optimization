@@ -1,0 +1,50 @@
+Comparing files UNDERSCORE\RD\24.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\24.js
+   62:              };
+   63:          }
+***** UNDERSCORE\RD\ORIGINAL.JS
+   62:              };
+   63:          case 4:
+   64:              return function (accumulator, value, index, collection) {
+   65:                  return func.call(context, accumulator, value, index, collection);
+   66:              };
+   67:          }
+*****
+
+***** UNDERSCORE\RD\24.js
+  377:      // Indexes the object's values by a criterion, similar to `groupBy`, but for
+  378:      _.indexBy = group(function (result, value, key) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  381:      // Indexes the object's values by a criterion, similar to `groupBy`, but for
+  382:      // when you know that your index values will be unique.
+  383:      _.indexBy = group(function (result, value, key) {
+*****
+
+***** UNDERSCORE\RD\24.js
+  446:      // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  447:      // the rest N values in the array.
+***** UNDERSCORE\RD\ORIGINAL.JS
+  451:      // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  452:      // Especially useful on the arguments object. Passing an **n** will return
+  453:      // the rest N values in the array.
+*****
+
+***** UNDERSCORE\RD\24.js
+  976:      _.pick = function (object, oiteratee, context) {
+  977:          var result = {}, obj = object, iteratee;
+  978:          if (obj == null)
+***** UNDERSCORE\RD\ORIGINAL.JS
+  982:      _.pick = function (object, oiteratee, context) {
+  983:          var result = {}, obj = object, iteratee, keys;
+  984:          if (obj == null)
+*****
+
+***** UNDERSCORE\RD\24.js
+ 1280:      };
+ 1281:      var escapeMap = {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1286:      };
+ 1287:      // List of HTML entities for escaping.
+ 1288:      var escapeMap = {
+*****
+

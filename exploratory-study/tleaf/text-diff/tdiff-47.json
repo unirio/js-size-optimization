@@ -1,0 +1,89 @@
+Comparing files TLEAF\RD\47.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\47.js
+   83:      if (nameArg.type === 'Literal') {
+   84:      }
+***** TLEAF\RD\ORIGINAL.JS
+   83:      if (nameArg.type === 'Literal') {
+   84:          name = nameArg.value;
+   85:      }
+*****
+
+***** TLEAF\RD\47.js
+  119:      if (_.contains(cantHaveDeps, type)) {
+  120:      }
+***** TLEAF\RD\ORIGINAL.JS
+  120:      if (_.contains(cantHaveDeps, type)) {
+  121:          return [];
+  122:      }
+*****
+
+***** TLEAF\RD\47.js
+  179:          var right = _.get(expression, 'right', {});
+  180:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+***** TLEAF\RD\ORIGINAL.JS
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+  183:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+*****
+
+***** TLEAF\RD\47.js
+  185:              }
+  186:          }
+  187:          var argument = _.get(bodyExpression, 'argument');
+  188:          // covers "return ...;"
+***** TLEAF\RD\ORIGINAL.JS
+  188:              }
+  189:              // covert "this.$get = someVar;"
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+  194:          }
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+  196:          // covers "return ...;"
+*****
+
+***** TLEAF\RD\47.js
+  197:              if (argument.type === 'Identifier') {
+  198:                  var varNode = findVariable(argument.name);
+  199:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+*****
+
+***** TLEAF\RD\47.js
+  207:  }
+  208:  function (params) {
+  209:      if (!_.isArray(params)) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+*****
+
+***** TLEAF\RD\47.js
+  212:      var deps = [];
+  213:      _.forEach(params);
+  214:      return deps;
+***** TLEAF\RD\ORIGINAL.JS
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+*****
+
+***** TLEAF\RD\47.js
+***** TLEAF\RD\ORIGINAL.JS
+  279:  function findScope(ast) {
+  280:      var scopeManager = escope.analyze(ast);
+  281:      var scope = scopeManager.acquire(ast);
+  282:      return scope;
+  283:  }
+*****
+

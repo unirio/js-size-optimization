@@ -1,0 +1,81 @@
+Comparing files TLEAF\RD\54.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\54.js
+   13:      try {
+   14:          ast = esprima.parse();
+   15:      } catch (err) {
+***** TLEAF\RD\ORIGINAL.JS
+   13:      try {
+   14:          ast = esprima.parse(source);
+   15:      } catch (err) {
+*****
+
+***** TLEAF\RD\54.js
+   36:              // update current scope while traversing
+   37:              if (/Function/.test(node.type)) {
+***** TLEAF\RD\ORIGINAL.JS
+   36:              // update current scope while traversing
+   37:              // taken from original repository: https://github.com/estools/escope
+   38:              if (/Function/.test(node.type)) {
+*****
+
+***** TLEAF\RD\54.js
+  103:              var varName = calleeObj.name;
+  104:              var varNode = findVariable(varName);
+  105:              if (varNode) {
+***** TLEAF\RD\ORIGINAL.JS
+  104:              var varName = calleeObj.name;
+  105:              var varNode = findVariable(varName, scope);
+  106:              if (varNode) {
+*****
+
+***** TLEAF\RD\54.js
+  132:      if (depsArg.type === 'ArrayExpression') {
+  133:          var lastDepsArg = _.last() || {};
+  134:          if (lastDepsArg.type === 'FunctionExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  133:      if (depsArg.type === 'ArrayExpression') {
+  134:          var lastDepsArg = _.last(depsArg.elements) || {};
+  135:          if (lastDepsArg.type === 'FunctionExpression') {
+*****
+
+***** TLEAF\RD\54.js
+  180:          var right = _.get(expression, 'right', {});
+  181:          var argument = _.get(bodyExpression, 'argument', {});
+***** TLEAF\RD\ORIGINAL.JS
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+  183:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+  184:              // covers "this.$get = function (...) { ... };"
+  185:              if (right.type === 'FunctionExpression') {
+  186:                  deps = extractDeps(right.params);
+  187:                  return true;    // exit loop
+  188:              }
+  189:              // covert "this.$get = someVar;"
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+  194:          }
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+*****
+
+***** TLEAF\RD\54.js
+  229:      var varNode = findVariable(varName, scope);
+  230:      var params = [];
+***** TLEAF\RD\ORIGINAL.JS
+  243:      var varNode = findVariable(varName, scope);
+  244:      if (!varNode) {
+  245:          return [];
+  246:      }
+  247:      var params = [];
+*****
+
+***** TLEAF\RD\54.js
+  250:      var value = _.get(prop, 'value', {});
+  251:      // covers "{ key: function () {} }"
+***** TLEAF\RD\ORIGINAL.JS
+  267:      var value = _.get(prop, 'value', {});
+  268:      var deps = [];
+  269:      // covers "{ key: function () {} }"
+*****
+

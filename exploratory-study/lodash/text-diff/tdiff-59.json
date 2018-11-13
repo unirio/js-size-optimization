@@ -1,0 +1,814 @@
+Comparing files LODASH\RD\59.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\59.js
+  405:          }
+  406:      }
+***** LODASH\RD\ORIGINAL.JS
+  405:          }
+  406:          return 0;
+  407:      }
+*****
+
+***** LODASH\RD\59.js
+ 1260:          }
+ 1261:          function arrayReduceRight(array, iteratee, accumulator, initFromArray) {
+***** LODASH\RD\ORIGINAL.JS
+ 1261:          }
+ 1262:          /**
+ 1263:       * A specialized version of `_.reduceRight` for arrays without support for
+ 1264:       * callback shorthands.
+ 1265:       *
+ 1266:       * @private
+ 1267:       * @param {Array} array The array to iterate over.
+ 1268:       * @param {Function} iteratee The function invoked per iteration.
+ 1269:       * @param {*} [accumulator] The initial value.
+ 1270:       * @param {boolean} [initFromArray] Specify using the last element of `array` as the initial value.
+ 1271:       * @returns {*} Returns the accumulated value.
+ 1272:       */
+ 1273:          function arrayReduceRight(array, iteratee, accumulator, initFromArray) {
+*****
+
+***** LODASH\RD\59.js
+ 3955:              }
+ 3956:              if (start && typeof start != 'number' && isIterateeCall(array, value)) {
+ 3957:                  start = 0;
+***** LODASH\RD\ORIGINAL.JS
+ 3967:              }
+ 3968:              if (start && typeof start != 'number' && isIterateeCall(array, value, start)) {
+ 3969:                  start = 0;
+*****
+
+***** LODASH\RD\59.js
+ 5238:          }
+ 5239:          function filter(collection, predicate) {
+ 5240:              var func = isArray(collection) ? arrayFilter : baseFilter;
+ 5241:              return func(collection, getIteratee(predicate));
+ 5242:          }
+ 5243:          /**
+ 5244:       * Iterates over elements of `collection`, returning the first element
+ 5245:       * `predicate` returns truthy for. The predicate is invoked with three arguments:
+***** LODASH\RD\ORIGINAL.JS
+ 5250:          }
+ 5251:          /**
+ 5252:       * Iterates over elements of `collection`, returning an array of all elements
+ 5253:       * `predicate` returns truthy for. The predicate is invoked with three arguments:
+*****
+
+***** LODASH\RD\59.js
+ 5250:       * @category Collection
+ 5251:       * @param {Array|Object} collection The collection to search.
+ 5252:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 5253:       * @returns {*} Returns the matched element, else `undefined`.
+ 5254:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5258:       * @category Collection
+ 5259:       * @param {Array|Object} collection The collection to iterate over.
+ 5260:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 5261:       * @returns {Array} Returns the new filtered array.
+ 5262:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5255:       *
+ 5256:       * var resolve = _.partial(_.result, _, 'user');
+ 5257:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5263:       *
+ 5264:       * var resolve = _.partial(_.map, _, 'user');
+ 5265:       *
+*****
+
+***** LODASH\RD\59.js
+ 5258:       * var users = [
+ 5259:       *   { 'user': 'barney',  'age': 36, 'active': true },
+ 5260:       *   { 'user': 'fred',    'age': 40, 'active': false },
+ 5261:       *   { 'user': 'pebbles', 'age': 1,  'active': true }
+ 5262:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 5266:       * var users = [
+ 5267:       *   { 'user': 'barney', 'age': 36, 'active': true },
+ 5268:       *   { 'user': 'fred',   'age': 40, 'active': false }
+ 5269:       * ];
+*****
+
+***** LODASH\RD\59.js
+ 5263:       *
+ 5264:       * resolve( _.find(users, function(o) { return o.age < 40; }) );
+ 5265:       * // => 'barney'
+ 5266:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5270:       *
+ 5271:       * resolve( _.filter(users, function(o) { return !o.active; }) );
+ 5272:       * // => ['fred']
+ 5273:       *
+*****
+
+***** LODASH\RD\59.js
+ 5267:       * // using the `_.matches` callback shorthand
+ 5268:       * resolve( _.find(users, { 'age': 1, 'active': true }) );
+ 5269:       * // => 'pebbles'
+ 5270:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5274:       * // using the `_.matches` callback shorthand
+ 5275:       * resolve( _.filter(users, { 'age': 36, 'active': true }) );
+ 5276:       * // => ['barney']
+ 5277:       *
+*****
+
+***** LODASH\RD\59.js
+ 5271:       * // using the `_.matchesProperty` callback shorthand
+ 5272:       * resolve( _.find(users, ['active', false]) );
+ 5273:       * // => 'fred'
+ 5274:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5278:       * // using the `_.matchesProperty` callback shorthand
+ 5279:       * resolve( _.filter(users, ['active', false]) );
+ 5280:       * // => ['fred']
+ 5281:       *
+*****
+
+***** LODASH\RD\59.js
+ 5275:       * // using the `_.property` callback shorthand
+ 5276:       * resolve( _.find(users, 'active') );
+ 5277:       * // => 'barney'
+ 5278:       */
+ 5279:          function find(collection, predicate) {
+ 5280:              predicate = getIteratee(predicate);
+ 5281:              if (isArray(collection)) {
+ 5282:                  var index = baseFindIndex(collection, predicate);
+ 5283:                  return index > -1 ? collection[index] : undefined;
+ 5284:              }
+ 5285:              return baseFind(collection, predicate, baseEach);
+ 5286:          }
+***** LODASH\RD\ORIGINAL.JS
+ 5282:       * // using the `_.property` callback shorthand
+ 5283:       * resolve( _.filter(users, 'active') );
+ 5284:       * // => ['barney']
+ 5285:       */
+ 5286:          function filter(collection, predicate) {
+ 5287:              var func = isArray(collection) ? arrayFilter : baseFilter;
+ 5288:              return func(collection, getIteratee(predicate));
+ 5289:          }
+*****
+
+***** LODASH\RD\59.js
+ 5287:          /**
+ 5288:       * This method is like `_.find` except that it iterates over elements of
+ 5289:       * `collection` from right to left.
+ 5290:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5290:          /**
+ 5291:       * Iterates over elements of `collection`, returning the first element
+ 5292:       * `predicate` returns truthy for. The predicate is invoked with three arguments:
+ 5293:       * (value, index|key, collection).
+ 5294:       *
+*****
+
+***** LODASH\RD\59.js
+ 5298:       *
+ 5299:       * _.findLast([1, 2, 3, 4], function(n) {
+ 5300:       *   return n % 2 == 1;
+ 5301:       * });
+ 5302:       * // => 3
+ 5303:       */
+ 5304:          function findLast(collection, predicate) {
+ 5305:              predicate = getIteratee(predicate);
+***** LODASH\RD\ORIGINAL.JS
+ 5302:       *
+ 5303:       * var resolve = _.partial(_.result, _, 'user');
+ 5304:       *
+ 5305:       * var users = [
+ 5306:       *   { 'user': 'barney',  'age': 36, 'active': true },
+ 5307:       *   { 'user': 'fred',    'age': 40, 'active': false },
+ 5308:       *   { 'user': 'pebbles', 'age': 1,  'active': true }
+ 5309:       * ];
+ 5310:       *
+ 5311:       * resolve( _.find(users, function(o) { return o.age < 40; }) );
+ 5312:       * // => 'barney'
+ 5313:       *
+ 5314:       * // using the `_.matches` callback shorthand
+ 5315:       * resolve( _.find(users, { 'age': 1, 'active': true }) );
+ 5316:       * // => 'pebbles'
+ 5317:       *
+ 5318:       * // using the `_.matchesProperty` callback shorthand
+ 5319:       * resolve( _.find(users, ['active', false]) );
+ 5320:       * // => 'fred'
+ 5321:       *
+ 5322:       * // using the `_.property` callback shorthand
+ 5323:       * resolve( _.find(users, 'active') );
+ 5324:       * // => 'barney'
+ 5325:       */
+ 5326:          function find(collection, predicate) {
+ 5327:              predicate = getIteratee(predicate);
+*****
+
+***** LODASH\RD\59.js
+ 5306:              if (isArray(collection)) {
+ 5307:                  var index = baseFindIndex(collection, predicate, true);
+ 5308:                  return index > -1 ? collection[index] : undefined;
+***** LODASH\RD\ORIGINAL.JS
+ 5328:              if (isArray(collection)) {
+ 5329:                  var index = baseFindIndex(collection, predicate);
+ 5330:                  return index > -1 ? collection[index] : undefined;
+*****
+
+***** LODASH\RD\59.js
+ 5309:              }
+ 5310:              return baseFind(collection, predicate, baseEachRight);
+ 5311:          }
+***** LODASH\RD\ORIGINAL.JS
+ 5331:              }
+ 5332:              return baseFind(collection, predicate, baseEach);
+ 5333:          }
+*****
+
+***** LODASH\RD\59.js
+ 5312:          /**
+ 5313:       * Iterates over elements of `collection` invoking `iteratee` for each element.
+ 5314:       * The iteratee is invoked with three arguments: (value, index|key, collection).
+ 5315:       * Iteratee functions may exit iteration early by explicitly returning `false`.
+ 5316:       *
+ 5317:       * **Note:** As with other "Collections" methods, objects with a "length" property
+ 5318:       * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+ 5319:       * may be used for object iteration.
+ 5320:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5334:          /**
+ 5335:       * This method is like `_.find` except that it iterates over elements of
+ 5336:       * `collection` from right to left.
+ 5337:       *
+*****
+
+***** LODASH\RD\59.js
+ 5322:       * @memberOf _
+ 5323:       * @alias each
+ 5324:       * @category Collection
+ 5325:       * @param {Array|Object} collection The collection to iterate over.
+ 5326:       * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ 5327:       * @returns {Array|Object} Returns `collection`.
+ 5328:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5339:       * @memberOf _
+ 5340:       * @category Collection
+ 5341:       * @param {Array|Object} collection The collection to search.
+ 5342:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 5343:       * @returns {*} Returns the matched element, else `undefined`.
+ 5344:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5329:       *
+ 5330:       * _([1, 2]).forEach(function(value) {
+ 5331:       *   console.log(value);
+ 5332:       * });
+ 5333:       * // => logs `1` then `2`
+ 5334:       *
+ 5335:       * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+ 5336:       *   console.log(key);
+ 5337:       * });
+ 5338:       * // => logs 'a' then 'b' (iteration order is not guaranteed)
+ 5339:       */
+ 5340:          function forEach(collection, iteratee) {
+ 5341:              return typeof iteratee == 'function' && isArray(collection) ? arrayEach(collection, iteratee) : baseEach(collection
+ 5342:  , toFunction(iteratee));
+ 5343:          }
+***** LODASH\RD\ORIGINAL.JS
+ 5345:       *
+ 5346:       * _.findLast([1, 2, 3, 4], function(n) {
+ 5347:       *   return n % 2 == 1;
+ 5348:       * });
+ 5349:       * // => 3
+ 5350:       */
+ 5351:          function findLast(collection, predicate) {
+ 5352:              predicate = getIteratee(predicate);
+ 5353:              if (isArray(collection)) {
+ 5354:                  var index = baseFindIndex(collection, predicate, true);
+ 5355:                  return index > -1 ? collection[index] : undefined;
+ 5356:              }
+ 5357:              return baseFind(collection, predicate, baseEachRight);
+ 5358:          }
+*****
+
+***** LODASH\RD\59.js
+ 5344:          /**
+ 5345:       * This method is like `_.forEach` except that it iterates over elements of
+ 5346:       * `collection` from right to left.
+ 5347:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5359:          /**
+ 5360:       * Iterates over elements of `collection` invoking `iteratee` for each element.
+ 5361:       * The iteratee is invoked with three arguments: (value, index|key, collection).
+ 5362:       * Iteratee functions may exit iteration early by explicitly returning `false`.
+ 5363:       *
+ 5364:       * **Note:** As with other "Collections" methods, objects with a "length" property
+ 5365:       * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+ 5366:       * may be used for object iteration.
+ 5367:       *
+*****
+
+***** LODASH\RD\59.js
+ 5349:       * @memberOf _
+ 5350:       * @alias eachRight
+ 5351:       * @category Collection
+***** LODASH\RD\ORIGINAL.JS
+ 5369:       * @memberOf _
+ 5370:       * @alias each
+ 5371:       * @category Collection
+*****
+
+***** LODASH\RD\59.js
+ 5356:       *
+ 5357:       * _.forEachRight([1, 2], function(value) {
+ 5358:       *   console.log(value);
+***** LODASH\RD\ORIGINAL.JS
+ 5376:       *
+ 5377:       * _([1, 2]).forEach(function(value) {
+ 5378:       *   console.log(value);
+*****
+
+***** LODASH\RD\59.js
+ 5359:       * });
+ 5360:       * // => logs `2` then `1`
+ 5361:       */
+ 5362:          function forEachRight(collection, iteratee) {
+ 5363:              return typeof iteratee == 'function' && isArray(collection) ? arrayEachRight(collection, iteratee) : baseEachRight(
+ 5364:  collection, toFunction(iteratee));
+ 5365:          }
+***** LODASH\RD\ORIGINAL.JS
+ 5379:       * });
+ 5380:       * // => logs `1` then `2`
+ 5381:       *
+ 5382:       * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+ 5383:       *   console.log(key);
+ 5384:       * });
+ 5385:       * // => logs 'a' then 'b' (iteration order is not guaranteed)
+ 5386:       */
+ 5387:          function forEach(collection, iteratee) {
+ 5388:              return typeof iteratee == 'function' && isArray(collection) ? arrayEach(collection, iteratee) : baseEach(collection
+ 5389:  , toFunction(iteratee));
+ 5390:          }
+*****
+
+***** LODASH\RD\59.js
+ 5366:          /**
+ 5367:       * Creates an object composed of keys generated from the results of running
+ 5368:       * each element of `collection` through `iteratee`. The corresponding value
+ 5369:       * of each key is an array of the elements responsible for generating the key.
+ 5370:       * The iteratee is invoked with three arguments: (value, index|key, collection).
+ 5371:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5391:          /**
+ 5392:       * This method is like `_.forEach` except that it iterates over elements of
+ 5393:       * `collection` from right to left.
+ 5394:       *
+*****
+
+***** LODASH\RD\59.js
+ 5373:       * @memberOf _
+ 5374:       * @category Collection
+***** LODASH\RD\ORIGINAL.JS
+ 5396:       * @memberOf _
+ 5397:       * @alias eachRight
+ 5398:       * @category Collection
+*****
+
+***** LODASH\RD\59.js
+ 5375:       * @param {Array|Object} collection The collection to iterate over.
+ 5376:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 5377:       * @returns {Object} Returns the composed aggregate object.
+ 5378:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5399:       * @param {Array|Object} collection The collection to iterate over.
+ 5400:       * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ 5401:       * @returns {Array|Object} Returns `collection`.
+ 5402:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5379:       *
+ 5380:       * _.groupBy([4.2, 6.1, 6.4], function(n) {
+ 5381:       *   return Math.floor(n);
+ 5382:       * });
+ 5383:       * // => { '4': [4.2], '6': [6.1, 6.4] }
+ 5384:       *
+ 5385:       * // using the `_.property` callback shorthand
+ 5386:       * _.groupBy(['one', 'two', 'three'], 'length');
+ 5387:       * // => { '3': ['one', 'two'], '5': ['three'] }
+ 5388:       */
+ 5389:          var groupBy = createAggregator(function (result, value, key) {
+ 5390:              if (hasOwnProperty.call(result, key)) {
+ 5391:                  result[key].push(value);
+ 5392:              } else {
+ 5393:                  result[key] = [value];
+ 5394:              }
+ 5395:          });
+ 5396:          /**
+ 5397:       * Checks if `target` is in `collection` using
+ 5398:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 5399:       * for equality comparisons. If `fromIndex` is negative, it's used as the offset
+ 5400:       * from the end of `collection`.
+ 5401:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5403:       *
+ 5404:       * _.forEachRight([1, 2], function(value) {
+ 5405:       *   console.log(value);
+ 5406:       * });
+ 5407:       * // => logs `2` then `1`
+ 5408:       */
+ 5409:          function forEachRight(collection, iteratee) {
+ 5410:              return typeof iteratee == 'function' && isArray(collection) ? arrayEachRight(collection, iteratee) : baseEachRight(
+ 5411:  collection, toFunction(iteratee));
+ 5412:          }
+ 5413:          /**
+ 5414:       * Creates an object composed of keys generated from the results of running
+ 5415:       * each element of `collection` through `iteratee`. The corresponding value
+ 5416:       * of each key is an array of the elements responsible for generating the key.
+ 5417:       * The iteratee is invoked with three arguments: (value, index|key, collection).
+ 5418:       *
+*****
+
+***** LODASH\RD\59.js
+ 5404:       * @category Collection
+ 5405:       * @param {Array|Object|string} collection The collection to search.
+ 5406:       * @param {*} target The value to search for.
+ 5407:       * @param {number} [fromIndex=0] The index to search from.
+ 5408:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.reduce`.
+ 5409:       * @returns {boolean} Returns `true` if a matching element is found, else `false`.
+ 5410:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5421:       * @category Collection
+ 5422:       * @param {Array|Object} collection The collection to iterate over.
+ 5423:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 5424:       * @returns {Object} Returns the composed aggregate object.
+ 5425:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5411:       *
+ 5412:       * _.includes([1, 2, 3], 1);
+ 5413:       * // => true
+ 5414:       *
+ 5415:       * _.includes([1, 2, 3], 1, 2);
+ 5416:       * // => false
+ 5417:       *
+ 5418:       * _.includes({ 'user': 'fred', 'age': 40 }, 'fred');
+ 5419:       * // => true
+ 5420:       *
+ 5421:       * _.includes('pebbles', 'eb');
+ 5422:       * // => true
+ 5423:       */
+ 5424:          function includes(collection, target, fromIndex, guard) {
+ 5425:              collection = isArrayLike(collection) ? collection : values(collection);
+ 5426:              var length = collection.length;
+ 5427:              if (guard || typeof fromIndex != 'number') {
+ 5428:                  fromIndex = 0;
+ 5429:              } else {
+ 5430:                  fromIndex = toInteger(fromIndex);
+ 5431:                  fromIndex = fromIndex < 0 ? nativeMax(length + fromIndex, 0) : fromIndex;
+ 5432:              }
+ 5433:              return typeof collection == 'string' || !isArray(collection) && isString(collection) ? fromIndex <= length && colle
+ 5434:  ction.indexOf(target, fromIndex) > -1 : !!length && getIndexOf(collection, target, fromIndex) > -1;
+ 5435:          }
+ 5436:          /**
+ 5437:       * Creates an object composed of keys generated from the results of running
+ 5438:       * each element of `collection` through `iteratee`. The corresponding value
+ 5439:       * of each key is the last element responsible for generating the key. The
+ 5440:       * iteratee is invoked with three arguments: (value, index|key, collection).
+ 5441:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5426:       *
+ 5427:       * _.groupBy([4.2, 6.1, 6.4], function(n) {
+ 5428:       *   return Math.floor(n);
+ 5429:       * });
+ 5430:       * // => { '4': [4.2], '6': [6.1, 6.4] }
+ 5431:       *
+ 5432:       * // using the `_.property` callback shorthand
+ 5433:       * _.groupBy(['one', 'two', 'three'], 'length');
+ 5434:       * // => { '3': ['one', 'two'], '5': ['three'] }
+ 5435:       */
+ 5436:          var groupBy = createAggregator(function (result, value, key) {
+ 5437:              if (hasOwnProperty.call(result, key)) {
+ 5438:                  result[key].push(value);
+ 5439:              } else {
+ 5440:                  result[key] = [value];
+ 5441:              }
+ 5442:          });
+ 5443:          /**
+ 5444:       * Checks if `target` is in `collection` using
+ 5445:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 5446:       * for equality comparisons. If `fromIndex` is negative, it's used as the offset
+ 5447:       * from the end of `collection`.
+ 5448:       *
+*****
+
+***** LODASH\RD\59.js
+ 5444:       * @category Collection
+ 5445:       * @param {Array|Object} collection The collection to iterate over.
+ 5446:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 5447:       * @returns {Object} Returns the composed aggregate object.
+ 5448:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5451:       * @category Collection
+ 5452:       * @param {Array|Object|string} collection The collection to search.
+ 5453:       * @param {*} target The value to search for.
+ 5454:       * @param {number} [fromIndex=0] The index to search from.
+ 5455:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.reduce`.
+ 5456:       * @returns {boolean} Returns `true` if a matching element is found, else `false`.
+ 5457:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5449:       *
+ 5450:       * var keyData = [
+ 5451:       *   { 'dir': 'left', 'code': 97 },
+ 5452:       *   { 'dir': 'right', 'code': 100 }
+ 5453:       * ];
+ 5454:       *
+ 5455:       * _.indexBy(keyData, 'dir');
+ 5456:       * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+ 5457:       *
+ 5458:       * _.indexBy(keyData, function(o) {
+ 5459:       *   return String.fromCharCode(o.code);
+ 5460:       * });
+ 5461:       * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+ 5462:       */
+ 5463:          var indexBy = createAggregator(function (result, value, key) {
+ 5464:              result[key] = value;
+ 5465:          });
+ 5466:          /**
+ 5467:       * Invokes the method at `path` of each element in `collection`, returning
+ 5468:       * an array of the results of each invoked method. Any additional arguments
+ 5469:       * are provided to each invoked method. If `methodName` is a function it's
+ 5470:       * invoked for, and `this` bound to, each element in `collection`.
+ 5471:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5458:       *
+ 5459:       * _.includes([1, 2, 3], 1);
+ 5460:       * // => true
+ 5461:       *
+ 5462:       * _.includes([1, 2, 3], 1, 2);
+ 5463:       * // => false
+ 5464:       *
+ 5465:       * _.includes({ 'user': 'fred', 'age': 40 }, 'fred');
+ 5466:       * // => true
+ 5467:       *
+ 5468:       * _.includes('pebbles', 'eb');
+ 5469:       * // => true
+ 5470:       */
+ 5471:          function includes(collection, target, fromIndex, guard) {
+ 5472:              collection = isArrayLike(collection) ? collection : values(collection);
+ 5473:              var length = collection.length;
+ 5474:              if (guard || typeof fromIndex != 'number') {
+ 5475:                  fromIndex = 0;
+ 5476:              } else {
+ 5477:                  fromIndex = toInteger(fromIndex);
+ 5478:                  fromIndex = fromIndex < 0 ? nativeMax(length + fromIndex, 0) : fromIndex;
+ 5479:              }
+ 5480:              return typeof collection == 'string' || !isArray(collection) && isString(collection) ? fromIndex <= length && colle
+ 5481:  ction.indexOf(target, fromIndex) > -1 : !!length && getIndexOf(collection, target, fromIndex) > -1;
+ 5482:          }
+ 5483:          /**
+ 5484:       * Creates an object composed of keys generated from the results of running
+ 5485:       * each element of `collection` through `iteratee`. The corresponding value
+ 5486:       * of each key is the last element responsible for generating the key. The
+ 5487:       * iteratee is invoked with three arguments: (value, index|key, collection).
+ 5488:       *
+*****
+
+***** LODASH\RD\59.js
+ 5475:       * @param {Array|Object} collection The collection to iterate over.
+ 5476:       * @param {Array|Function|string} path The path of the method to invoke or
+ 5477:       *  the function invoked per iteration.
+ 5478:       * @param {...*} [args] The arguments to invoke the method with.
+ 5479:       * @returns {Array} Returns the array of results.
+ 5480:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5492:       * @param {Array|Object} collection The collection to iterate over.
+ 5493:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 5494:       * @returns {Object} Returns the composed aggregate object.
+ 5495:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5481:       *
+ 5482:       * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+ 5483:       * // => [[1, 5, 7], [1, 2, 3]]
+ 5484:       *
+ 5485:       * _.invoke([123, 456], String.prototype.split, '');
+ 5486:       * // => [['1', '2', '3'], ['4', '5', '6']]
+ 5487:       */
+ 5488:          var invoke = restParam(function (collection, path, args) {
+ 5489:              var index = -1, isFunc = typeof path == 'function', isProp = isKey(path), result = isArrayLike(collection) ? Array(
+ 5490:  collection.length) : [];
+ 5491:              baseEach(collection, function (value) {
+ 5492:                  var func = isFunc ? path : isProp && value != null ? value[path] : undefined;
+ 5493:                  result[++index] = func ? func.apply(value, args) : invokePath(value, path, args);
+ 5494:              });
+ 5495:              return result;
+ 5496:          });
+***** LODASH\RD\ORIGINAL.JS
+ 5496:       *
+ 5497:       * var keyData = [
+ 5498:       *   { 'dir': 'left', 'code': 97 },
+ 5499:       *   { 'dir': 'right', 'code': 100 }
+ 5500:       * ];
+ 5501:       *
+ 5502:       * _.indexBy(keyData, 'dir');
+ 5503:       * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+ 5504:       *
+ 5505:       * _.indexBy(keyData, function(o) {
+ 5506:       *   return String.fromCharCode(o.code);
+ 5507:       * });
+ 5508:       * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+ 5509:       */
+ 5510:          var indexBy = createAggregator(function (result, value, key) {
+ 5511:              result[key] = value;
+ 5512:          });
+*****
+
+***** LODASH\RD\59.js
+ 5497:          /**
+ 5498:       * Creates an array of values by running each element in `collection` through
+ 5499:       * `iteratee`. The iteratee is invoked with three arguments:
+ 5500:       * (value, index|key, collection).
+ 5501:       *
+ 5502:       * Many lodash methods are guarded to work as iteratees for methods like
+ 5503:       * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+ 5504:       *
+ 5505:       * The guarded methods are:
+ 5506:       * `ary`, `callback`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,
+ 5507:       * `fill`, `invert`, `parseInt`, `random`, `range`, `sample`, `slice`, `some`,
+ 5508:       * `sortBy`, `take`, `takeRight`, `template`, `trim`, `trimLeft`, `trimRight`,
+ 5509:       * `uniq`, and `words`
+ 5510:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5513:          /**
+ 5514:       * Invokes the method at `path` of each element in `collection`, returning
+ 5515:       * an array of the results of each invoked method. Any additional arguments
+ 5516:       * are provided to each invoked method. If `methodName` is a function it's
+ 5517:       * invoked for, and `this` bound to, each element in `collection`.
+ 5518:       *
+*****
+
+***** LODASH\RD\59.js
+ 5514:       * @param {Array|Object} collection The collection to iterate over.
+ 5515:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 5516:       * @returns {Array} Returns the new mapped array.
+ 5517:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5522:       * @param {Array|Object} collection The collection to iterate over.
+ 5523:       * @param {Array|Function|string} path The path of the method to invoke or
+ 5524:       *  the function invoked per iteration.
+ 5525:       * @param {...*} [args] The arguments to invoke the method with.
+ 5526:       * @returns {Array} Returns the array of results.
+ 5527:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5518:       *
+ 5519:       * function timesThree(n) {
+ 5520:       *   return n * 3;
+ 5521:       * }
+ 5522:       *
+ 5523:       * _.map([1, 2], timesThree);
+ 5524:       * // => [3, 6]
+ 5525:       *
+ 5526:       * _.map({ 'a': 1, 'b': 2 }, timesThree);
+ 5527:       * // => [3, 6] (iteration order is not guaranteed)
+ 5528:       *
+ 5529:       * var users = [
+ 5530:       *   { 'user': 'barney' },
+ 5531:       *   { 'user': 'fred' }
+ 5532:       * ];
+ 5533:       *
+ 5534:       * // using the `_.property` callback shorthand
+ 5535:       * _.map(users, 'user');
+ 5536:       * // => ['barney', 'fred']
+ 5537:       */
+ 5538:          function map(collection, iteratee) {
+ 5539:              var func = isArray(collection) ? arrayMap : baseMap;
+ 5540:              return func(collection, getIteratee(iteratee));
+ 5541:          }
+ 5542:          /**
+ 5543:       * Creates an array of elements split into two groups, the first of which
+ 5544:       * contains elements `predicate` returns truthy for, while the second of which
+ 5545:       * contains elements `predicate` returns falsey for. The predicate is invoked
+ 5546:       * with three arguments: (value, index|key, collection).
+ 5547:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5528:       *
+ 5529:       * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+ 5530:       * // => [[1, 5, 7], [1, 2, 3]]
+ 5531:       *
+ 5532:       * _.invoke([123, 456], String.prototype.split, '');
+ 5533:       * // => [['1', '2', '3'], ['4', '5', '6']]
+ 5534:       */
+ 5535:          var invoke = restParam(function (collection, path, args) {
+ 5536:              var index = -1, isFunc = typeof path == 'function', isProp = isKey(path), result = isArrayLike(collection) ? Array(
+ 5537:  collection.length) : [];
+ 5538:              baseEach(collection, function (value) {
+ 5539:                  var func = isFunc ? path : isProp && value != null ? value[path] : undefined;
+ 5540:                  result[++index] = func ? func.apply(value, args) : invokePath(value, path, args);
+ 5541:              });
+ 5542:              return result;
+ 5543:          });
+ 5544:          /**
+ 5545:       * Creates an array of values by running each element in `collection` through
+ 5546:       * `iteratee`. The iteratee is invoked with three arguments:
+ 5547:       * (value, index|key, collection).
+ 5548:       *
+ 5549:       * Many lodash methods are guarded to work as iteratees for methods like
+ 5550:       * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+ 5551:       *
+ 5552:       * The guarded methods are:
+ 5553:       * `ary`, `callback`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,
+ 5554:       * `fill`, `invert`, `parseInt`, `random`, `range`, `sample`, `slice`, `some`,
+ 5555:       * `sortBy`, `take`, `takeRight`, `template`, `trim`, `trimLeft`, `trimRight`,
+ 5556:       * `uniq`, and `words`
+ 5557:       *
+*****
+
+***** LODASH\RD\59.js
+ 5551:       * @param {Array|Object} collection The collection to iterate over.
+ 5552:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 5553:       * @returns {Array} Returns the array of grouped elements.
+ 5554:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5561:       * @param {Array|Object} collection The collection to iterate over.
+ 5562:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 5563:       * @returns {Array} Returns the new mapped array.
+ 5564:       * @example
+*****
+
+***** LODASH\RD\59.js
+ 5555:       *
+ 5556:       * var resolve = function(result) {
+ 5557:       *   return _.map(result, function(array) { return _.map(array, 'user'); });
+ 5558:       * };
+ 5559:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5565:       *
+ 5566:       * function timesThree(n) {
+ 5567:       *   return n * 3;
+ 5568:       * }
+ 5569:       *
+ 5570:       * _.map([1, 2], timesThree);
+ 5571:       * // => [3, 6]
+ 5572:       *
+ 5573:       * _.map({ 'a': 1, 'b': 2 }, timesThree);
+ 5574:       * // => [3, 6] (iteration order is not guaranteed)
+ 5575:       *
+*****
+
+***** LODASH\RD\59.js
+ 5560:       * var users = [
+ 5561:       *   { 'user': 'barney',  'age': 36, 'active': false },
+ 5562:       *   { 'user': 'fred',    'age': 40, 'active': true },
+ 5563:       *   { 'user': 'pebbles', 'age': 1,  'active': false }
+ 5564:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 5576:       * var users = [
+ 5577:       *   { 'user': 'barney' },
+ 5578:       *   { 'user': 'fred' }
+ 5579:       * ];
+*****
+
+***** LODASH\RD\59.js
+ 5565:       *
+ 5566:       * resolve( _.partition(users, function(o) { return o.active; }) );
+***** LODASH\RD\ORIGINAL.JS
+ 5580:       *
+ 5581:       * // using the `_.property` callback shorthand
+ 5582:       * _.map(users, 'user');
+ 5583:       * // => ['barney', 'fred']
+ 5584:       */
+ 5585:          function map(collection, iteratee) {
+ 5586:              var func = isArray(collection) ? arrayMap : baseMap;
+ 5587:              return func(collection, getIteratee(iteratee));
+ 5588:          }
+ 5589:          /**
+ 5590:       * Creates an array of elements split into two groups, the first of which
+ 5591:       * contains elements `predicate` returns truthy for, while the second of which
+ 5592:       * contains elements `predicate` returns falsey for. The predicate is invoked
+ 5593:       * with three arguments: (value, index|key, collection).
+ 5594:       *
+ 5595:       * @static
+ 5596:       * @memberOf _
+ 5597:       * @category Collection
+ 5598:       * @param {Array|Object} collection The collection to iterate over.
+ 5599:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 5600:       * @returns {Array} Returns the array of grouped elements.
+ 5601:       * @example
+ 5602:       *
+ 5603:       * var resolve = function(result) {
+ 5604:       *   return _.map(result, function(array) { return _.map(array, 'user'); });
+ 5605:       * };
+ 5606:       *
+ 5607:       * var users = [
+ 5608:       *   { 'user': 'barney',  'age': 36, 'active': false },
+ 5609:       *   { 'user': 'fred',    'age': 40, 'active': true },
+ 5610:       *   { 'user': 'pebbles', 'age': 1,  'active': false }
+ 5611:       * ];
+ 5612:       *
+ 5613:       * resolve( _.partition(users, function(o) { return o.active; }) );
+*****
+

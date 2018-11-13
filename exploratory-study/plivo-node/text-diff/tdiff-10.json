@@ -1,0 +1,49 @@
+Comparing files PLIVO-NODE\RD\10.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\10.js
+  162:  plivo.record = function (params, callback) {
+  163:      var action;
+  164:      delete params.call_uuid;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  162:  plivo.record = function (params, callback) {
+  163:      var action = 'Call/' + params['call_uuid'] + '/Record/';
+  164:      delete params.call_uuid;
+*****
+
+***** PLIVO-NODE\RD\10.js
+  274:      var method = 'POST';
+  275:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  274:      var method = 'POST';
+  275:      request(action, method, params, callback);
+  276:  };
+*****
+
+***** PLIVO-NODE\RD\10.js
+  476:      params.app_id = null;
+  477:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  477:      params.app_id = null;
+  478:      this.edit_number(params, callback);
+  479:  };
+*****
+
+***** PLIVO-NODE\RD\10.js
+  560:      delete params.carrier_id;
+  561:      var method;
+  562:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  562:      delete params.carrier_id;
+  563:      var method = 'DELETE';
+  564:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\10.js
+  595:      var action = 'Pricing/';
+  596:      var method;
+  597:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  597:      var action = 'Pricing/';
+  598:      var method = 'GET';
+  599:      request(action, method, params, callback);
+*****
+

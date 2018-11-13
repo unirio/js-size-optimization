@@ -1,0 +1,108 @@
+Comparing files TLEAF\RD\37.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\37.js
+    2:  var esprima = require('esprima');
+    3:  var estraverse;
+    4:  var escope = require('escope');
+***** TLEAF\RD\ORIGINAL.JS
+    2:  var esprima = require('esprima');
+    3:  var estraverse = require('estraverse');
+    4:  var escope = require('escope');
+*****
+
+***** TLEAF\RD\37.js
+   13:      try {
+   14:          ast = esprima.parse();
+   15:      } catch (err) {
+***** TLEAF\RD\ORIGINAL.JS
+   13:      try {
+   14:          ast = esprima.parse(source);
+   15:      } catch (err) {
+*****
+
+***** TLEAF\RD\37.js
+   49:      _.forEach(calls, function (call) {
+   50:          var name = findName(call.node, call.scope);
+***** TLEAF\RD\ORIGINAL.JS
+   49:      _.forEach(calls, function (call) {
+   50:          // for now use only completely parsed units
+   51:          var name = findName(call.node, call.scope);
+*****
+
+***** TLEAF\RD\37.js
+   54:          var type = findType(call.node, call.scope);
+   55:          if (_.isUndefined()) {
+   56:              return;
+***** TLEAF\RD\ORIGINAL.JS
+   55:          var type = findType(call.node, call.scope);
+   56:          if (_.isUndefined(type)) {
+   57:              return;
+*****
+
+***** TLEAF\RD\37.js
+  153:  }
+  154:  function findComponentDeps(object) {
+  155:      // covers { controller: someVar }
+***** TLEAF\RD\ORIGINAL.JS
+  154:  }
+  155:  function findComponentDeps(object, scope) {
+  156:      // covers { controller: someVar }
+*****
+
+***** TLEAF\RD\37.js
+  179:          var leftProp = _.get(expression, 'left.property', {});
+  180:          // covers "this.$get = ..."
+***** TLEAF\RD\ORIGINAL.JS
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+*****
+
+***** TLEAF\RD\37.js
+  188:              if (right.type === 'Identifier') {
+  189:                  deps = extractVariableDeps(right.name);
+  190:                  return true;    // exit loop
+***** TLEAF\RD\ORIGINAL.JS
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+*****
+
+***** TLEAF\RD\37.js
+  215:      if (!_.isArray(params)) {
+  216:          return;
+  217:      }
+***** TLEAF\RD\ORIGINAL.JS
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+*****
+
+***** TLEAF\RD\37.js
+  236:      }
+  237:      var node = _.get(variable);
+  238:      return node;
+***** TLEAF\RD\ORIGINAL.JS
+  238:      }
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:      return node;
+*****
+
+***** TLEAF\RD\37.js
+  254:      }
+  255:      var deps;
+  256:      return deps;
+***** TLEAF\RD\ORIGINAL.JS
+  256:      }
+  257:      var deps = extractDeps(params);
+  258:      return deps;
+*****
+
+***** TLEAF\RD\37.js
+  268:      if (value.type === 'FunctionExpression') {
+  269:      }
+***** TLEAF\RD\ORIGINAL.JS
+  270:      if (value.type === 'FunctionExpression') {
+  271:          deps = extractDeps(value.params);
+  272:      }
+*****
+

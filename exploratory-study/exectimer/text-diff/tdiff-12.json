@@ -1,0 +1,11 @@
+Comparing files EXECTIMER\RD\12.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\12.js
+   94:                  if (num < 1000) {
+   95:                      return;
+   96:                  } else if (num >= 1000 && num < 1000000) {
+***** EXECTIMER\RD\ORIGINAL.JS
+   94:                  if (num < 1000) {
+   95:                      return num + 'ns';
+   96:                  } else if (num >= 1000 && num < 1000000) {
+*****
+

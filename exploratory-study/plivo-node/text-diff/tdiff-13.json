@@ -1,0 +1,33 @@
+Comparing files PLIVO-NODE\RD\13.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\13.js
+   75:          request_options.json = true;
+   76:          request_options.body = body, Request.put(request_options);
+   77:      }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   75:          request_options.json = true;
+   76:          request_options.body = body, Request.put(request_options, function (error, response, body) {
+   77:              callback(response.statusCode, body);
+   78:          });
+   79:      }
+*****
+
+***** PLIVO-NODE\RD\13.js
+  680:      },
+  681:      addPreAnswer: function () {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  682:      },
+  683:      addPlay: function (body, attributes) {
+  684:          return this.add(new Play(Response), body, attributes);
+  685:      },
+  686:      addPreAnswer: function () {
+*****
+
+***** PLIVO-NODE\RD\13.js
+  788:          'finishOnKey',
+  789:          'retries',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  793:          'finishOnKey',
+  794:          'numDigits',
+  795:          'retries',
+*****
+

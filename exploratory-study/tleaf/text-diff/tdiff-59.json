@@ -1,0 +1,138 @@
+Comparing files TLEAF\RD\59.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\59.js
+   10:  ////////
+   11:  function (source) {
+   12:      var ast;
+***** TLEAF\RD\ORIGINAL.JS
+   10:  ////////
+   11:  function parse(source) {
+   12:      var ast;
+*****
+
+***** TLEAF\RD\59.js
+   81:      var name;
+   82:      var nameArg;
+   83:      if (nameArg.type === 'Literal') {
+***** TLEAF\RD\ORIGINAL.JS
+   81:      var name;
+   82:      var nameArg = _.get(callExpression, 'arguments[0]', {});
+   83:      if (nameArg.type === 'Literal') {
+*****
+
+***** TLEAF\RD\59.js
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode);
+  108:              }
+***** TLEAF\RD\ORIGINAL.JS
+  106:              if (varNode) {
+  107:                  module.name = _.get(varNode, 'init.arguments[0].value');
+  108:              }
+*****
+
+***** TLEAF\RD\59.js
+  142:      }
+  143:      if (depsArg.type === 'FunctionExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  142:      }
+  143:      // deps in a form of function expression
+  144:      if (depsArg.type === 'FunctionExpression') {
+*****
+
+***** TLEAF\RD\59.js
+  164:  }
+  165:  function extractDeps(params) {
+  166:      if (!_.isArray(params)) {
+  167:          return [];
+***** TLEAF\RD\ORIGINAL.JS
+  165:  }
+  166:  function findProviderDeps(depsFn) {
+  167:      // function must have it's body
+  168:      var depsFnBody = _.get(depsFn, 'body', {});
+  169:      if (depsFnBody.type !== 'BlockStatement') {
+  170:          return [];
+*****
+
+***** TLEAF\RD\59.js
+  168:      }
+  169:      var deps = [];
+  170:      _.forEach(params, function (param) {
+  171:          if (param.type === 'Identifier') {
+  172:              var dep = { name: param.name };
+  173:              deps.push(dep);
+  174:          }
+***** TLEAF\RD\ORIGINAL.JS
+  171:      }
+  172:      // find a scope of provider body
+  173:      var depsFnScope = findScope(depsFn);
+  174:      var deps = [];
+  175:      // iterate over all body expressions in provider
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+  183:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+  184:              // covers "this.$get = function (...) { ... };"
+  185:              if (right.type === 'FunctionExpression') {
+  186:                  deps = extractDeps(right.params);
+  187:                  return true;    // exit loop
+  188:              }
+  189:              // covert "this.$get = someVar;"
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+  194:          }
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+  196:          // covers "return ...;"
+  197:          if (type === 'ReturnStatement') {
+  198:              // covers "return { $get: function () {} };"
+  199:              // covers "return { $get: someVar };"
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+  204:              // covers "return someVar;"
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+  211:              }
+  212:          }
+*****
+
+***** TLEAF\RD\59.js
+  177:  }
+  178:  function findVariable(varName, scope) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+  228:  }
+  229:  function findVariable(varName, scope) {
+*****
+
+***** TLEAF\RD\59.js
+  179:      var variable;
+  180:      var currentScope;
+  181:      while (!variable && currentScope) {
+***** TLEAF\RD\ORIGINAL.JS
+  230:      var variable;
+  231:      var currentScope = scope;
+  232:      while (!variable && currentScope) {
+*****
+

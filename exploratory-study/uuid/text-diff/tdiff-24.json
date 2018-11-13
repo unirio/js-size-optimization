@@ -1,0 +1,40 @@
+Comparing files UUID\RD\24.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\24.js
+   93:      if (this.hex !== uuid.hex) {
+   94:          return;
+   95:      }
+***** UUID\RD\ORIGINAL.JS
+   93:      if (this.hex !== uuid.hex) {
+   94:          return false;
+   95:      }
+*****
+
+***** UUID\RD\24.js
+  173:      var str = '';
+  174:      var pos;
+  175:      var parts = [
+***** UUID\RD\ORIGINAL.JS
+  173:      var str = '';
+  174:      var pos = 0;
+  175:      var parts = [
+*****
+
+***** UUID\RD\24.js
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+***** UUID\RD\ORIGINAL.JS
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+*****
+
+***** UUID\RD\24.js
+  187:              }
+  188:          }
+***** UUID\RD\ORIGINAL.JS
+  187:              }
+  188:              str += octet;
+  189:          }
+*****
+

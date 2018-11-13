@@ -1,0 +1,57 @@
+Comparing files JQUERY\RD\4.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\4.js
+  362:          },
+  363:          now: Date.now
+  364:      });
+***** JQUERY\RD\ORIGINAL.JS
+  362:          },
+  363:          now: Date.now,
+  364:          // jQuery.support is not used in Core but other projects attach their
+  365:          // properties to it so it needs to exist.
+  366:          support: support
+  367:      });
+*****
+
+***** JQUERY\RD\4.js
+  717:  k non-disabled form elements for fieldset[disabled] ancestors
+  718:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  719:  ion> under fieldset[disabled] is disabled
+  720:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\4.js
+ 1507:                  'eq': createPositionalPseudo(function (matchIndexes, length, argument) {
+ 1508:                      return;
+ 1509:                  }),
+***** JQUERY\RD\ORIGINAL.JS
+ 1511:                  'eq': createPositionalPseudo(function (matchIndexes, length, argument) {
+ 1512:                      return [argument < 0 ? argument + length : argument];
+ 1513:                  }),
+*****
+
+***** JQUERY\RD\4.js
+ 3649:                  namespaces = (tmp[2] || '').split('.').sort();
+ 3650:                  if (!type) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3653:                  namespaces = (tmp[2] || '').split('.').sort();
+ 3654:                  // There *must* be a type, no attaching namespace-only handlers
+ 3655:                  if (!type) {
+*****
+
+***** JQUERY\RD\4.js
+ 5785:                      if (this.setAttribute) {
+ 5786:                          this.setAttribute('class', className || value === false ? '' : dataPriv.get(this) || '');
+ 5787:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 5790:                      if (this.setAttribute) {
+ 5791:                          this.setAttribute('class', className || value === false ? '' : dataPriv.get(this, '__className__') || '
+ 5792:  ');
+ 5793:                      }
+*****
+

@@ -1,0 +1,83 @@
+Comparing files TLEAF\RD\55.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\55.js
+    7:  var UserError = require('./error/UserError');
+    8:  module.exports = parse;
+***** TLEAF\RD\ORIGINAL.JS
+    7:  var UserError = require('./error/UserError');
+    8:  ////////
+    9:  module.exports = parse;
+*****
+
+***** TLEAF\RD\55.js
+   28:                      // save matching node with an appropriate scope
+   29:                      calls.push();
+   30:                  }
+***** TLEAF\RD\ORIGINAL.JS
+   29:                      // save matching node with an appropriate scope
+   30:                      calls.push({
+   31:                          node: node,
+   32:                          scope: currentScope
+   33:                      });
+   34:                  }
+*****
+
+***** TLEAF\RD\55.js
+  159:      }
+  160:      return;
+  161:  }
+***** TLEAF\RD\ORIGINAL.JS
+  163:      }
+  164:      return extractObjectPropertyDeps(object, 'controller', scope);
+  165:  }
+*****
+
+***** TLEAF\RD\55.js
+  197:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  198:              }
+***** TLEAF\RD\ORIGINAL.JS
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+*****
+
+***** TLEAF\RD\55.js
+  200:              if (argument.type === 'Identifier') {
+  201:                  var varNode = findVariable(argument.name);
+  202:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+*****
+
+***** TLEAF\RD\55.js
+  226:      var currentScope = scope;
+  227:      if (_.isUndefined(variable)) {
+***** TLEAF\RD\ORIGINAL.JS
+  231:      var currentScope = scope;
+  232:      while (!variable && currentScope) {
+  233:          variable = _.findWhere(currentScope.variables, { name: varName });
+  234:          currentScope = currentScope.upper;
+  235:      }
+  236:      if (_.isUndefined(variable)) {
+*****
+
+***** TLEAF\RD\55.js
+  250:  }
+  251:  function extractObjectPropertyDeps(object, propName) {
+  252:      var prop = _.find(object.properties, function (property) {
+***** TLEAF\RD\ORIGINAL.JS
+  259:  }
+  260:  function extractObjectPropertyDeps(object, propName, scope) {
+  261:      var prop = _.find(object.properties, function (property) {
+*****
+
+***** TLEAF\RD\55.js
+  261:      if (value.type === 'FunctionExpression') {
+  262:      }
+***** TLEAF\RD\ORIGINAL.JS
+  270:      if (value.type === 'FunctionExpression') {
+  271:          deps = extractDeps(value.params);
+  272:      }
+*****
+

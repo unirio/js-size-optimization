@@ -1,0 +1,53 @@
+Comparing files JQUERY\RD\11.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\11.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\11.js
+ 1020:                  }
+ 1021:                  var cur, i = 0, aup, bup = b.parentNode, ap = [a], bp = [b];
+ 1022:                  // Parentless nodes are either documents or disconnected
+***** JQUERY\RD\ORIGINAL.JS
+ 1021:                  }
+ 1022:                  var cur, i = 0, aup = a.parentNode, bup = b.parentNode, ap = [a], bp = [b];
+ 1023:                  // Parentless nodes are either documents or disconnected
+*****
+
+***** JQUERY\RD\11.js
+ 1601:                          });
+ 1602:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 1602:                          });
+ 1603:                          soFar = soFar.slice(matched.length);
+ 1604:                      }
+*****
+
+***** JQUERY\RD\11.js
+ 2943:              if (typeof data === 'string') {
+ 2944:                  cache[jQuery.camelCase()] = value;    // Handle: [ owner, { properties } ] args
+ 2945:              } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 2945:              if (typeof data === 'string') {
+ 2946:                  cache[jQuery.camelCase(data)] = value;    // Handle: [ owner, { properties } ] args
+ 2947:              } else {
+*****
+
+***** JQUERY\RD\11.js
+ 6147:                  var value = jQuery.isFunction(valueOrFunction) ? valueOrFunction() : valueOrFunction;
+ 6148:                  s[s.length] = encodeURIComponent() + '=' + encodeURIComponent(value == null ? '' : value);
+ 6149:              };
+***** JQUERY\RD\ORIGINAL.JS
+ 6149:                  var value = jQuery.isFunction(valueOrFunction) ? valueOrFunction() : valueOrFunction;
+ 6150:                  s[s.length] = encodeURIComponent(key) + '=' + encodeURIComponent(value == null ? '' : value);
+ 6151:              };
+*****
+

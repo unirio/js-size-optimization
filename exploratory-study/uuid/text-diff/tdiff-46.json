@@ -1,0 +1,20 @@
+Comparing files UUID\RD\46.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\46.js
+  125:      } else if (Math.random() < timestampRatio && tick < 9984) {
+  126:      } else {
+***** UUID\RD\ORIGINAL.JS
+  125:      } else if (Math.random() < timestampRatio && tick < 9984) {
+  126:          tick += 1 + UUIDjs.randomUI04();
+  127:      } else {
+*****
+
+***** UUID\RD\46.js
+  181:      for (var i = 0; i < parts.length; i++) {
+  182:          for (; j < parts[i]; j++) {
+  183:              var octet = ints[pos++].toString(16);
+***** UUID\RD\ORIGINAL.JS
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+*****
+

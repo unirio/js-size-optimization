@@ -1,0 +1,67 @@
+Comparing files JQUERY\RD\34.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\34.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\34.js
+ 1288:                                  // Support: IE <9 only
+ 1289:                                  uniqueCache = outerCache[node.uniqueID] || (outerCache[node.uniqueID] = {});
+***** JQUERY\RD\ORIGINAL.JS
+ 1289:                                  // Support: IE <9 only
+ 1290:                                  // Defend against cloned attroperties (jQuery gh-1709)
+ 1291:                                  uniqueCache = outerCache[node.uniqueID] || (outerCache[node.uniqueID] = {});
+*****
+
+***** JQUERY\RD\34.js
+ 2010:              })) {
+ 2011:              addHandle('value');
+ 2012:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 2012:              })) {
+ 2013:              addHandle('value', function (elem, name, isXML) {
+ 2014:                  if (!isXML && elem.nodeName.toLowerCase() === 'input') {
+ 2015:                      return elem.defaultValue;
+ 2016:                  }
+ 2017:              });
+ 2018:          }
+*****
+
+***** JQUERY\RD\34.js
+ 2965:              if (key === undefined || key && typeof key === 'string' && value === undefined) {
+ 2966:                  return this.get(owner);
+ 2967:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 2971:              if (key === undefined || key && typeof key === 'string' && value === undefined) {
+ 2972:                  return this.get(owner, key);
+ 2973:              }
+*****
+
+***** JQUERY\RD\34.js
+ 4388:                              if (elem.nodeType === 1) {
+ 4389:                                  jQuery.cleanData();
+ 4390:                                  elem.innerHTML = value;
+***** JQUERY\RD\ORIGINAL.JS
+ 4394:                              if (elem.nodeType === 1) {
+ 4395:                                  jQuery.cleanData(getAll(elem, false));
+ 4396:                                  elem.innerHTML = value;
+*****
+
+***** JQUERY\RD\34.js
+ 5885:                  set: function (elem, value) {
+ 5886:                      var optionSet, option, options = elem.options, values = jQuery.makeArray(value), i;
+ 5887:                      while (i--) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5891:                  set: function (elem, value) {
+ 5892:                      var optionSet, option, options = elem.options, values = jQuery.makeArray(value), i = options.length;
+ 5893:                      while (i--) {
+*****
+

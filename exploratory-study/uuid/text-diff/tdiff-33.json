@@ -1,0 +1,21 @@
+Comparing files UUID\RD\33.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\33.js
+  116:      var tick = UUIDjs.randomUI04();
+  117:      var timestamp;
+  118:      var timestampRatio = 1 / 4;
+***** UUID\RD\ORIGINAL.JS
+  116:      var tick = UUIDjs.randomUI04();
+  117:      var timestamp = 0;
+  118:      var timestampRatio = 1 / 4;
+*****
+
+***** UUID\RD\33.js
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16));
+  166:      }
+***** UUID\RD\ORIGINAL.JS
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+

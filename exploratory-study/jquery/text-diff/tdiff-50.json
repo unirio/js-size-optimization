@@ -1,0 +1,93 @@
+Comparing files JQUERY\RD\50.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\50.js
+  591:                              // Expand context for sibling selectors
+  592:                              newContext = rsibling.test(selector) && testContext() || context;
+  593:                          }
+***** JQUERY\RD\ORIGINAL.JS
+  591:                              // Expand context for sibling selectors
+  592:                              newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
+  593:                          }
+*****
+
+***** JQUERY\RD\50.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\50.js
+ 1672:          function elementMatcher(matchers) {
+ 1673:              return;
+ 1674:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 1673:          function elementMatcher(matchers) {
+ 1674:              return matchers.length > 1 ? function (elem, context, xml) {
+ 1675:                  var i = matchers.length;
+ 1676:                  while (i--) {
+ 1677:                      if (!matchers[i](elem, context, xml)) {
+ 1678:                          return false;
+ 1679:                      }
+ 1680:                  }
+ 1681:                  return true;
+ 1682:              } : matchers[0];
+ 1683:          }
+*****
+
+***** JQUERY\RD\50.js
+ 2059:      function winnow(elements, qualifier, not) {
+ 2060:          if (jQuery.isFunction()) {
+ 2061:              return jQuery.grep(elements, function (elem, i) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2068:      function winnow(elements, qualifier, not) {
+ 2069:          if (jQuery.isFunction(qualifier)) {
+ 2070:              return jQuery.grep(elements, function (elem, i) {
+*****
+
+***** JQUERY\RD\50.js
+ 2189:              } else if (jQuery.isFunction(selector)) {
+ 2190:                  return root.ready !== undefined ? root.ready(selector) : selector(jQuery);
+ 2191:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 2198:              } else if (jQuery.isFunction(selector)) {
+ 2199:                  return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
+ 2200:                  selector(jQuery);
+ 2201:              }
+*****
+
+***** JQUERY\RD\50.js
+ 4403:                  if (jQuery.inArray(this, ignored) < 0) {
+ 4404:                      jQuery.cleanData(getAll());
+ 4405:                      if (parent) {
+***** JQUERY\RD\ORIGINAL.JS
+ 4413:                  if (jQuery.inArray(this, ignored) < 0) {
+ 4414:                      jQuery.cleanData(getAll(this));
+ 4415:                      if (parent) {
+*****
+
+***** JQUERY\RD\50.js
+ 6374:                          if (conv && s.throws) {
+ 6375:                          } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 6384:                          if (conv && s.throws) {
+ 6385:                              response = conv(response);
+ 6386:                          } else {
+*****
+
+***** JQUERY\RD\50.js
+ 7255:          'ajaxError',
+ 7256:          'ajaxSuccess'
+ 7257:      ], function (i, type) {
+***** JQUERY\RD\ORIGINAL.JS
+ 7266:          'ajaxError',
+ 7267:          'ajaxSuccess',
+ 7268:          'ajaxSend'
+ 7269:      ], function (i, type) {
+*****
+

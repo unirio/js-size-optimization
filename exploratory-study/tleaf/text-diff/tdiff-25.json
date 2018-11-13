@@ -1,0 +1,31 @@
+Comparing files TLEAF\RD\25.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\25.js
+   17:      }
+   18:      var scopeManager = escope.analyze();
+   19:      // global scope
+***** TLEAF\RD\ORIGINAL.JS
+   17:      }
+   18:      var scopeManager = escope.analyze(ast);
+   19:      // global scope
+*****
+
+***** TLEAF\RD\25.js
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property');
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+*****
+
+***** TLEAF\RD\25.js
+  100:          if (calleeProp.name === 'module' && calleeObj.name === 'angular') {
+  101:          } else if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+  100:          if (calleeProp.name === 'module' && calleeObj.name === 'angular') {
+  101:              module.name = _.get(callExpression, 'arguments[0].value');    // or module can be stored in variable; find this var
+  102:  iable then
+  103:          } else if (_.contains(config.units.process, calleeProp.name)) {
+*****
+

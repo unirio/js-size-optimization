@@ -1,0 +1,494 @@
+Comparing files LODASH\RD\42.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\42.js
+  267:      var freeWindow = checkGlobal(objectTypes[typeof window] && window);
+  268:      /** Detect `this` as the global object. */
+***** LODASH\RD\ORIGINAL.JS
+  267:      var freeWindow = checkGlobal(objectTypes[typeof window] && window);
+  268:      /** Detect the popular CommonJS extension `module.exports`. */
+  269:      var moduleExports = freeModule && freeModule.exports === freeExports ? freeExports : null;
+  270:      /** Detect `this` as the global object. */
+*****
+
+***** LODASH\RD\42.js
+  610:      /*--------------------------------------------------------------------------*/
+  611:      function runInContext(context) {
+***** LODASH\RD\ORIGINAL.JS
+  612:      /*--------------------------------------------------------------------------*/
+  613:      /**
+  614:     * Create a new pristine `lodash` function using the given `context` object.
+  615:     *
+  616:     * @static
+  617:     * @memberOf _
+  618:     * @category Utility
+  619:     * @param {Object} [context=root] The context object.
+  620:     * @returns {Function} Returns a new `lodash` function.
+  621:     * @example
+  622:     *
+  623:     * _.mixin({ 'foo': _.constant('foo') });
+  624:     *
+  625:     * var lodash = _.runInContext();
+  626:     * lodash.mixin({ 'bar': lodash.constant('bar') });
+  627:     *
+  628:     * _.isFunction(_.foo);
+  629:     * // => true
+  630:     * _.isFunction(_.bar);
+  631:     * // => false
+  632:     *
+  633:     * lodash.isFunction(lodash.foo);
+  634:     * // => false
+  635:     * lodash.isFunction(lodash.bar);
+  636:     * // => true
+  637:     *
+  638:     * // using `context` to mock `Date#getTime` use in `_.now`
+  639:     * var mock = _.runInContext({
+  640:     *   'Date': function() {
+  641:     *     return { 'getTime': getTimeMock };
+  642:     *   }
+  643:     * });
+  644:     *
+  645:     * // or creating a suped-up `defer` in Node.js
+  646:     * var defer = _.runInContext({ 'setTimeout': setImmediate }).defer;
+  647:     */
+  648:      function runInContext(context) {
+*****
+
+***** LODASH\RD\42.js
+  818:              'evaluate': reEvaluate,
+  819:              'interpolate': reInterpolate,
+  820:              /**
+  821:         * Used to reference the data object in the template text.
+  822:         *
+***** LODASH\RD\ORIGINAL.JS
+  855:              'evaluate': reEvaluate,
+  856:              /**
+  857:         * Used to detect `data` property values to inject.
+  858:         *
+*****
+
+***** LODASH\RD\42.js
+  823:         * @memberOf _.templateSettings
+  824:         * @type string
+***** LODASH\RD\ORIGINAL.JS
+  859:         * @memberOf _.templateSettings
+  860:         * @type RegExp
+  861:         */
+  862:              'interpolate': reInterpolate,
+  863:              /**
+  864:         * Used to reference the data object in the template text.
+  865:         *
+  866:         * @memberOf _.templateSettings
+  867:         * @type string
+*****
+
+***** LODASH\RD\42.js
+  825:         */
+  826:              'variable': ''
+  827:          };
+***** LODASH\RD\ORIGINAL.JS
+  868:         */
+  869:              'variable': '',
+  870:              /**
+  871:         * Used to import variables into the compiled template.
+  872:         *
+  873:         * @memberOf _.templateSettings
+  874:         * @type Object
+  875:         */
+  876:              'imports': {
+  877:                  /**
+  878:           * A reference to the `lodash` function.
+  879:           *
+  880:           * @memberOf _.templateSettings.imports
+  881:           * @type Function
+  882:           */
+  883:                  '_': lodash
+  884:              }
+  885:          };
+*****
+
+***** LODASH\RD\42.js
+  861:          }
+  862:          function lazyReverse() {
+***** LODASH\RD\ORIGINAL.JS
+  919:          }
+  920:          /**
+  921:       * Reverses the direction of lazy iteration.
+  922:       *
+  923:       * @private
+  924:       * @name reverse
+  925:       * @memberOf LazyWrapper
+  926:       * @returns {Object} Returns the new reversed `LazyWrapper` object.
+  927:       */
+  928:          function lazyReverse() {
+*****
+
+***** LODASH\RD\42.js
+ 1811:  ckA, stackB) : undefined;
+ 1812:                      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true, stackA) : result)) {
+ 1813:                          return false;
+***** LODASH\RD\ORIGINAL.JS
+ 1877:  ckA, stackB) : undefined;
+ 1878:                      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true, stackA, stackB) : result)) {
+ 1879:                          return false;
+*****
+
+***** LODASH\RD\42.js
+ 2953:              }
+ 2954:              newData[9] = arity == null ? isBindKey ? 0 : func.length : nativeMax(arity - length);
+ 2955:              if (bitmask == BIND_FLAG) {
+***** LODASH\RD\ORIGINAL.JS
+ 3019:              }
+ 3020:              newData[9] = arity == null ? isBindKey ? 0 : func.length : nativeMax(arity - length, 0);
+ 3021:              if (bitmask == BIND_FLAG) {
+*****
+
+***** LODASH\RD\42.js
+ 3193:              var value = object == null ? undefined : object[key];
+ 3194:              return;
+ 3195:          }
+***** LODASH\RD\ORIGINAL.JS
+ 3259:              var value = object == null ? undefined : object[key];
+ 3260:              return isNative(value) ? value : undefined;
+ 3261:          }
+*****
+
+***** LODASH\RD\42.js
+ 3469:          }
+ 3470:          function mergeData(data, source) {
+***** LODASH\RD\ORIGINAL.JS
+ 3535:          }
+ 3536:          /**
+ 3537:       * Merges the function metadata of `source` into `data`.
+ 3538:       *
+ 3539:       * Merging metadata reduces the number of wrappers required to invoke a function.
+ 3540:       * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+ 3541:       * may be applied regardless of execution order. Methods like `_.ary` and `_.rearg`
+ 3542:       * augment function arguments, making the order in which they are executed important,
+ 3543:       * preventing the merging of metadata. However, we make an exception for a safe
+ 3544:       * common case where curried functions have `_.ary` and or `_.rearg` applied.
+ 3545:       *
+ 3546:       * @private
+ 3547:       * @param {Array} data The destination metadata.
+ 3548:       * @param {Array} source The source metadata.
+ 3549:       * @returns {Array} Returns `data`.
+ 3550:       */
+ 3551:          function mergeData(data, source) {
+*****
+
+***** LODASH\RD\42.js
+ 9256:          }
+ 9257:          function template(string, options, otherOptions) {
+ 9258:              // Based on John Resig's `tmpl` implementation (http://ejohn.org/blog/javascript-micro-templating/)
+ 9259:              // and Laura Doktorova's doT.js (https://github.com/olado/doT).
+ 9260:              var settings = lodash.templateSettings;
+ 9261:              if (otherOptions && isIterateeCall(string, options, otherOptions)) {
+ 9262:                  options = otherOptions = undefined;
+ 9263:              }
+ 9264:              string = baseToString(string);
+ 9265:              options = extendWith({}, otherOptions || options, settings, extendDefaults);
+ 9266:              var imports = extendWith({}, options.imports, settings.imports, extendDefaults), importsKeys = keys(imports), impor
+ 9267:  tsValues = baseValues(imports, importsKeys);
+ 9268:              var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+ 9269:              // Compile the regexp to match each delimiter.
+ 9270:              var reDelimiters = RegExp((options.escape || reNoMatch).source + '|' + interpolate.source + '|' + (interpolate === 
+ 9271:  reInterpolate ? reEsTemplate : reNoMatch).source + '|' + (options.evaluate || reNoMatch).source + '|$', 'g');
+ 9272:              // Use a sourceURL for easier debugging.
+ 9273:              var sourceURL = '//# sourceURL=' + ('sourceURL' in options ? options.sourceURL : 'lodash.templateSources[' + ++temp
+ 9274:  lateCounter + ']') + '\n';
+ 9275:              string.replace(reDelimiters, function (match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset
+ 9276:  ) {
+ 9277:                  interpolateValue || (interpolateValue = esTemplateValue);
+ 9278:                  // Escape characters that can't be included in string literals.
+ 9279:                  source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+ 9280:                  // Replace delimiters with snippets.
+ 9281:                  if (escapeValue) {
+ 9282:                      isEscaping = true;
+ 9283:                      source += "' +\n__e(" + escapeValue + ") +\n'";
+ 9284:                  }
+ 9285:                  if (evaluateValue) {
+ 9286:                      isEvaluating = true;
+ 9287:                      source += "';\n" + evaluateValue + ";\n__p += '";
+ 9288:                  }
+ 9289:                  if (interpolateValue) {
+ 9290:                      source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+ 9291:                  }
+ 9292:                  index = offset + match.length;
+ 9293:                  // The JS engine embedded in Adobe products requires returning the `match`
+ 9294:                  // string in order to produce the correct `offset` value.
+ 9295:                  return match;
+ 9296:              });
+ 9297:              source += "';\n";
+ 9298:              // If `variable` is not specified wrap a with-statement around the generated
+ 9299:              // code to add the data object to the top of the scope chain.
+ 9300:              var variable = options.variable;
+ 9301:              if (!variable) {
+ 9302:                  source = 'with (obj) {\n' + source + '\n}\n';
+ 9303:              }
+ 9304:              // Cleanup code by stripping empty strings.
+ 9305:              source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source).replace(reEmptyStringMiddle, '$1').repl
+ 9306:  ace(reEmptyStringTrailing, '$1;');
+ 9307:              // Frame code as the function body.
+ 9308:              source = 'function(' + (variable || 'obj') + ') {\n' + (variable ? '' : 'obj || (obj = {});\n') + "var __t, __p = '
+ 9309:  '" + (isEscaping ? ', __e = _.escape' : '') + (isEvaluating ? ', __j = Array.prototype.join;\n' + "function print() { __p += __
+ 9310:  j.call(arguments, '') }\n" : ';\n') + source + 'return __p\n}';
+ 9311:              var result = attempt(function () {
+ 9312:                  return Function(importsKeys, sourceURL + 'return ' + source).apply(undefined, importsValues);
+ 9313:              });
+ 9314:              // Provide the compiled function's source by its `toString` method or
+ 9315:              // the `source` property as a convenience for inlining compiled templates.
+ 9316:              result.source = source;
+ 9317:              if (isError(result)) {
+ 9318:                  throw result;
+ 9319:              }
+ 9320:              return result;
+ 9321:          }
+ 9322:          /**
+ 9323:       * Removes leading and trailing whitespace or specified characters from `string`.
+ 9324:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9337:          }
+ 9338:          /**
+ 9339:       * Creates a compiled template function that can interpolate data properties
+ 9340:       * in "interpolate" delimiters, HTML-escape interpolated data properties in
+ 9341:       * "escape" delimiters, and execute JavaScript in "evaluate" delimiters. Data
+ 9342:       * properties may be accessed as free variables in the template. If a setting
+ 9343:       * object is provided it takes precedence over `_.templateSettings` values.
+ 9344:       *
+ 9345:       * **Note:** In the development build `_.template` utilizes
+ 9346:       * [sourceURLs](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
+ 9347:       * for easier debugging.
+ 9348:       *
+ 9349:       * For more information on precompiling templates see
+ 9350:       * [lodash's custom builds documentation](https://lodash.com/custom-builds).
+ 9351:       *
+ 9352:       * For more information on Chrome extension sandboxes see
+ 9353:       * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
+ 9354:       *
+*****
+
+***** LODASH\RD\42.js
+ 9327:       * @category String
+ 9328:       * @param {string} [string=''] The string to trim.
+ 9329:       * @param {string} [chars=whitespace] The characters to trim.
+ 9330:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9331:       * @returns {string} Returns the trimmed string.
+ 9332:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9357:       * @category String
+ 9358:       * @param {string} [string=''] The template string.
+ 9359:       * @param {Object} [options] The options object.
+ 9360:       * @param {RegExp} [options.escape] The HTML "escape" delimiter.
+ 9361:       * @param {RegExp} [options.evaluate] The "evaluate" delimiter.
+ 9362:       * @param {Object} [options.imports] An object to import into the template as free variables.
+ 9363:       * @param {RegExp} [options.interpolate] The "interpolate" delimiter.
+ 9364:       * @param {string} [options.sourceURL] The sourceURL of the template's compiled source.
+ 9365:       * @param {string} [options.variable] The data object variable name.
+ 9366:       * @param- {Object} [otherOptions] Enables the legacy `options` param signature.
+ 9367:       * @returns {Function} Returns the compiled template function.
+ 9368:       * @example
+*****
+
+Resync Failed.  Files are too different.
+***** LODASH\RD\42.js
+ 9333:       *
+ 9334:       * _.trim('  abc  ');
+ 9335:       * // => 'abc'
+ 9336:       *
+ 9337:       * _.trim('-_-abc-_-', '_-');
+ 9338:       * // => 'abc'
+ 9339:       *
+ 9340:       * _.map(['  foo  ', '  bar  '], _.trim);
+ 9341:       * // => ['foo', 'bar']
+ 9342:       */
+ 9343:          function trim(string, chars, guard) {
+ 9344:              var value = string;
+ 9345:              string = baseToString(string);
+ 9346:              if (!string) {
+ 9347:                  return string;
+ 9348:              }
+ 9349:              if (guard || chars == null) {
+ 9350:                  return string.slice(trimmedLeftIndex(string), trimmedRightIndex(string) + 1);
+ 9351:              }
+ 9352:              chars = chars + '';
+ 9353:              return string.slice(charsLeftIndex(string, chars), charsRightIndex(string, chars) + 1);
+ 9354:          }
+ 9355:          /**
+ 9356:       * Removes leading whitespace or specified characters from `string`.
+ 9357:       *
+ 9358:       * @static
+ 9359:       * @memberOf _
+ 9360:       * @category String
+ 9361:       * @param {string} [string=''] The string to trim.
+ 9362:       * @param {string} [chars=whitespace] The characters to trim.
+ 9363:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9364:       * @returns {string} Returns the trimmed string.
+ 9365:       * @example
+ 9366:       *
+ 9367:       * _.trimLeft('  abc  ');
+ 9368:       * // => 'abc  '
+ 9369:       *
+ 9370:       * _.trimLeft('-_-abc-_-', '_-');
+ 9371:       * // => 'abc-_-'
+ 9372:       */
+ 9373:          function trimLeft(string, chars, guard) {
+ 9374:              var value = string;
+ 9375:              string = baseToString(string);
+ 9376:              if (!string) {
+ 9377:                  return string;
+ 9378:              }
+ 9379:              if (guard || chars == null) {
+ 9380:                  return string.slice(trimmedLeftIndex(string));
+ 9381:              }
+ 9382:              return string.slice(charsLeftIndex(string, chars + ''));
+ 9383:          }
+ 9384:          /**
+ 9385:       * Removes trailing whitespace or specified characters from `string`.
+ 9386:       *
+ 9387:       * @static
+ 9388:       * @memberOf _
+ 9389:       * @category String
+ 9390:       * @param {string} [string=''] The string to trim.
+ 9391:       * @param {string} [chars=whitespace] The characters to trim.
+ 9392:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9393:       * @returns {string} Returns the trimmed string.
+ 9394:       * @example
+ 9395:       *
+ 9396:       * _.trimRight('  abc  ');
+ 9397:       * // => '  abc'
+ 9398:       *
+ 9399:       * _.trimRight('-_-abc-_-', '_-');
+ 9400:       * // => '-_-abc'
+ 9401:       */
+ 9402:          function trimRight(string, chars, guard) {
+ 9403:              var value = string;
+ 9404:              string = baseToString(string);
+ 9405:              if (!string) {
+ 9406:                  return string;
+ 9407:              }
+ 9408:              if (guard || chars == null) {
+ 9409:                  return string.slice(0, trimmedRightIndex(string) + 1);
+ 9410:              }
+ 9411:              return string.slice(0, charsRightIndex(string, chars + '') + 1);
+ 9412:          }
+ 9413:          /**
+ 9414:       * Truncates `string` if it's longer than the given maximum string length.
+ 9415:       * The last characters of the truncated string are replaced with the omission
+ 9416:       * string which defaults to "...".
+ 9417:       *
+ 9418:       * @static
+ 9419:       * @memberOf _
+ 9420:       * @category String
+ 9421:       * @param {string} [string=''] The string to truncate.
+ 9422:       * @param {Object} [options] The options object.
+ 9423:       * @param {number} [options.length=30] The maximum string length.
+ 9424:       * @param {string} [options.omission='...'] The string to indicate text is omitted.
+ 9425:       * @param {RegExp|string} [options.separator] The separator pattern to truncate to.
+ 9426:       * @returns {string} Returns the truncated string.
+ 9427:       * @example
+ 9428:       *
+ 9429:       * _.trunc('hi-diddly-ho there, neighborino');
+ 9430:       * // => 'hi-diddly-ho there, neighbo...'
+ 9431:       *
+ 9432:       * _.trunc('hi-diddly-ho there, neighborino', {
+***** LODASH\RD\ORIGINAL.JS
+ 9369:       *
+ 9370:       * // using the "interpolate" delimiter to create a compiled template
+ 9371:       * var compiled = _.template('hello <%= user %>!');
+ 9372:       * compiled({ 'user': 'fred' });
+ 9373:       * // => 'hello fred!'
+ 9374:       *
+ 9375:       * // using the HTML "escape" delimiter to escape data property values
+ 9376:       * var compiled = _.template('<b><%- value %></b>');
+ 9377:       * compiled({ 'value': '<script>' });
+ 9378:       * // => '<b>&lt;script&gt;</b>'
+ 9379:       *
+ 9380:       * // using the "evaluate" delimiter to execute JavaScript and generate HTML
+ 9381:       * var compiled = _.template('<% _.forEach(users, function(user) { %><li><%- user %></li><% }); %>');
+ 9382:       * compiled({ 'users': ['fred', 'barney'] });
+ 9383:       * // => '<li>fred</li><li>barney</li>'
+ 9384:       *
+ 9385:       * // using the internal `print` function in "evaluate" delimiters
+ 9386:       * var compiled = _.template('<% print("hello " + user); %>!');
+ 9387:       * compiled({ 'user': 'barney' });
+ 9388:       * // => 'hello barney!'
+ 9389:       *
+ 9390:       * // using the ES delimiter as an alternative to the default "interpolate" delimiter
+ 9391:       * var compiled = _.template('hello ${ user }!');
+ 9392:       * compiled({ 'user': 'pebbles' });
+ 9393:       * // => 'hello pebbles!'
+ 9394:       *
+ 9395:       * // using custom template delimiters
+ 9396:       * _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+ 9397:       * var compiled = _.template('hello {{ user }}!');
+ 9398:       * compiled({ 'user': 'mustache' });
+ 9399:       * // => 'hello mustache!'
+ 9400:       *
+ 9401:       * // using backslashes to treat delimiters as plain text
+ 9402:       * var compiled = _.template('<%= "\\<%- value %\\>" %>');
+ 9403:       * compiled({ 'value': 'ignored' });
+ 9404:       * // => '<%- value %>'
+ 9405:       *
+ 9406:       * // using the `imports` option to import `jQuery` as `jq`
+ 9407:       * var text = '<% jq.each(users, function(user) { %><li><%- user %></li><% }); %>';
+ 9408:       * var compiled = _.template(text, { 'imports': { 'jq': jQuery } });
+ 9409:       * compiled({ 'users': ['fred', 'barney'] });
+ 9410:       * // => '<li>fred</li><li>barney</li>'
+ 9411:       *
+ 9412:       * // using the `sourceURL` option to specify a custom sourceURL for the template
+ 9413:       * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
+ 9414:       * compiled(data);
+ 9415:       * // => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
+ 9416:       *
+ 9417:       * // using the `variable` option to ensure a with-statement isn't used in the compiled template
+ 9418:       * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
+ 9419:       * compiled.source;
+ 9420:       * // => function(data) {
+ 9421:       * //   var __t, __p = '';
+ 9422:       * //   __p += 'hi ' + ((__t = ( data.user )) == null ? '' : __t) + '!';
+ 9423:       * //   return __p;
+ 9424:       * // }
+ 9425:       *
+ 9426:       * // using the `source` property to inline compiled templates for meaningful
+ 9427:       * // line numbers in error messages and a stack trace
+ 9428:       * fs.writeFileSync(path.join(cwd, 'jst.js'), '\
+ 9429:       *   var JST = {\
+ 9430:       *     "main": ' + _.template(mainText).source + '\
+ 9431:       *   };\
+ 9432:       * ');
+ 9433:       */
+ 9434:          function template(string, options, otherOptions) {
+ 9435:              // Based on John Resig's `tmpl` implementation (http://ejohn.org/blog/javascript-micro-templating/)
+ 9436:              // and Laura Doktorova's doT.js (https://github.com/olado/doT).
+ 9437:              var settings = lodash.templateSettings;
+ 9438:              if (otherOptions && isIterateeCall(string, options, otherOptions)) {
+ 9439:                  options = otherOptions = undefined;
+ 9440:              }
+ 9441:              string = baseToString(string);
+ 9442:              options = extendWith({}, otherOptions || options, settings, extendDefaults);
+ 9443:              var imports = extendWith({}, options.imports, settings.imports, extendDefaults), importsKeys = keys(imports), impor
+ 9444:  tsValues = baseValues(imports, importsKeys);
+ 9445:              var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+ 9446:              // Compile the regexp to match each delimiter.
+ 9447:              var reDelimiters = RegExp((options.escape || reNoMatch).source + '|' + interpolate.source + '|' + (interpolate === 
+ 9448:  reInterpolate ? reEsTemplate : reNoMatch).source + '|' + (options.evaluate || reNoMatch).source + '|$', 'g');
+ 9449:              // Use a sourceURL for easier debugging.
+ 9450:              var sourceURL = '//# sourceURL=' + ('sourceURL' in options ? options.sourceURL : 'lodash.templateSources[' + ++temp
+ 9451:  lateCounter + ']') + '\n';
+ 9452:              string.replace(reDelimiters, function (match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset
+ 9453:  ) {
+ 9454:                  interpolateValue || (interpolateValue = esTemplateValue);
+ 9455:                  // Escape characters that can't be included in string literals.
+ 9456:                  source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+ 9457:                  // Replace delimiters with snippets.
+ 9458:                  if (escapeValue) {
+ 9459:                      isEscaping = true;
+ 9460:                      source += "' +\n__e(" + escapeValue + ") +\n'";
+ 9461:                  }
+ 9462:                  if (evaluateValue) {
+ 9463:                      isEvaluating = true;
+ 9464:                      source += "';\n" + evaluateValue + ";\n__p += '";
+ 9465:                  }
+ 9466:                  if (interpolateValue) {
+ 9467:                      source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+ 9468:                  }
+*****
+

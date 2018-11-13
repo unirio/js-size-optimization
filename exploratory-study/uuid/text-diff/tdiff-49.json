@@ -1,0 +1,36 @@
+Comparing files UUID\RD\49.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\49.js
+   66:      this.version = timeHiAndVersion >> 12 & 15;
+   67:      this.hex = UUIDjs.paddedString(timeLow.toString(16)) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs.pa
+   68:  ddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.padded
+   69:  String(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+   70:      return this;
+***** UUID\RD\ORIGINAL.JS
+   66:      this.version = timeHiAndVersion >> 12 & 15;
+   67:      this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs
+   68:  .paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.pad
+   69:  dedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+   70:      return this;
+*****
+
+***** UUID\RD\49.js
+  103:          mid: hm & 65535,
+  104:          hi: hm >>> 16
+  105:      };
+***** UUID\RD\ORIGINAL.JS
+  103:          mid: hm & 65535,
+  104:          hi: hm >>> 16,
+  105:          timestamp: ts
+  106:      };
+*****
+
+***** UUID\RD\49.js
+  195:  UUIDjs.fromBinary = function (binary) {
+  196:      var ints;
+  197:      for (var i = 0; i < binary.length; i++) {
+***** UUID\RD\ORIGINAL.JS
+  196:  UUIDjs.fromBinary = function (binary) {
+  197:      var ints = [];
+  198:      for (var i = 0; i < binary.length; i++) {
+*****
+

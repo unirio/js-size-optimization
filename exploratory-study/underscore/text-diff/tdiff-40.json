@@ -1,0 +1,78 @@
+Comparing files UNDERSCORE\RD\40.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\40.js
+  152:          iteratee = cb(iteratee, context);
+  153:          var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, results = Array();
+  154:          for (var index = 0; index < length; index++) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  152:          iteratee = cb(iteratee, context);
+  153:          var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, results = Array(length);
+  154:          for (var index = 0; index < length; index++) {
+*****
+
+***** UNDERSCORE\RD\40.js
+  357:              }
+  358:          }), 'value');
+***** UNDERSCORE\RD\ORIGINAL.JS
+  357:              }
+  358:              return left.index - right.index;
+  359:          }), 'value');
+*****
+
+***** UNDERSCORE\RD\40.js
+  424:      // ---------------
+  425:      // values in the array. Aliased as `head` and `take`. The **guard** check
+***** UNDERSCORE\RD\ORIGINAL.JS
+  425:      // ---------------
+  426:      // Get the first element of an array. Passing **n** will return the first N
+  427:      // values in the array. Aliased as `head` and `take`. The **guard** check
+*****
+
+***** UNDERSCORE\RD\40.js
+  656:      // ------------------
+  657:      // or a normal function with the provided arguments
+***** UNDERSCORE\RD\ORIGINAL.JS
+  658:      // ------------------
+  659:      // Determines whether to execute a function as a constructor
+  660:      // or a normal function with the provided arguments
+*****
+
+***** UNDERSCORE\RD\40.js
+  782:              if (last < wait && last >= 0) {
+  783:                  timeout = setTimeout(later);
+  784:              } else {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  785:              if (last < wait && last >= 0) {
+  786:                  timeout = setTimeout(later, wait - last);
+  787:              } else {
+*****
+
+***** UNDERSCORE\RD\40.js
+  876:              prop = nonEnumerableProps[nonEnumIdx];
+  877:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys)) {
+  878:                  keys.push(prop);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  879:              prop = nonEnumerableProps[nonEnumIdx];
+  880:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+  881:                  keys.push(prop);
+*****
+
+***** UNDERSCORE\RD\40.js
+ 1192:          _.isArguments = function (obj) {
+ 1193:              return _.has(obj);
+ 1194:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1195:          _.isArguments = function (obj) {
+ 1196:              return _.has(obj, 'callee');
+ 1197:          };
+*****
+
+***** UNDERSCORE\RD\40.js
+ 1199:          _.isFunction = function (obj) {
+ 1200:              return;
+ 1201:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1202:          _.isFunction = function (obj) {
+ 1203:              return typeof obj == 'function' || false;
+ 1204:          };
+*****
+

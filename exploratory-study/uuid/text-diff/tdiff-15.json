@@ -1,0 +1,69 @@
+Comparing files UUID\RD\15.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\15.js
+   22:  // Using Math.round() will give you a non-uniform distribution!
+   23:  function getRandomInt(min, max) {
+***** UUID\RD\ORIGINAL.JS
+   22:  // Using Math.round() will give you a non-uniform distribution!
+   23:  // @see https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/random
+   24:  function getRandomInt(min, max) {
+*****
+
+***** UUID\RD\15.js
+  102:          mid: hm & 65535,
+  103:          hi: hm >>> 16
+  104:      };
+***** UUID\RD\ORIGINAL.JS
+  103:          mid: hm & 65535,
+  104:          hi: hm >>> 16,
+  105:          timestamp: ts
+  106:      };
+*****
+
+***** UUID\RD\15.js
+  141:      last = !last ? false : last;
+  142:      var tf = UUIDjs.getTimeFieldValues();
+  143:      var tl = tf.low;
+***** UUID\RD\ORIGINAL.JS
+  143:      last = !last ? false : last;
+  144:      var tf = UUIDjs.getTimeFieldValues(time);
+  145:      var tl = tf.low;
+*****
+
+***** UUID\RD\15.js
+  158:  UUIDjs.fromURN = function (strId) {
+  159:      var r;
+  160:      if (r = p.exec(strId)) {
+  161:          return new UUIDjs().fromParts(parseInt(r[1]), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(r[5]
+  162:  , 16), parseInt(r[6], 16));
+  163:      }
+***** UUID\RD\ORIGINAL.JS
+  160:  UUIDjs.fromURN = function (strId) {
+  161:      var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i
+  162:  ;
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+
+***** UUID\RD\15.js
+  186:          }
+  187:      }
+***** UUID\RD\ORIGINAL.JS
+  189:          }
+  190:          if (parts[i] !== 6) {
+  191:              str += '-';
+  192:          }
+  193:      }
+*****
+
+***** UUID\RD\15.js
+  197:      }
+  198:      return UUIDjs.fromBytes();
+  199:  };
+***** UUID\RD\ORIGINAL.JS
+  203:      }
+  204:      return UUIDjs.fromBytes(ints);
+  205:  };
+*****
+

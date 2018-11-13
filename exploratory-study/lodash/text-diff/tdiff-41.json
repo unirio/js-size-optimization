@@ -1,0 +1,1614 @@
+Comparing files LODASH\RD\41.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\41.js
+  689:          /** Used as references for the maximum length and index of an array. */
+  690:          var MAX_ARRAY_LENGTH = 4294967295, MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1, HALF_MAX_ARRAY_LENGTH;
+  691:          /**
+***** LODASH\RD\ORIGINAL.JS
+  689:          /** Used as references for the maximum length and index of an array. */
+  690:          var MAX_ARRAY_LENGTH = 4294967295, MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1, HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>>
+  691:   1;
+  692:          /**
+*****
+
+***** LODASH\RD\41.js
+ 2605:                          var value = collection[index];
+ 2606:                          setter(result, value, iteratee(value, index, collection));
+ 2607:                      }
+***** LODASH\RD\ORIGINAL.JS
+ 2606:                          var value = collection[index];
+ 2607:                          setter(result, value, iteratee(value, index, collection), collection);
+ 2608:                      }
+*****
+
+***** LODASH\RD\41.js
+ 2758:                  case 6:
+ 2759:                      return new Ctor(args[0], args[2], args[3], args[4], args[5]);
+ 2760:                  case 7:
+***** LODASH\RD\ORIGINAL.JS
+ 2759:                  case 6:
+ 2760:                      return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+ 2761:                  case 7:
+*****
+
+***** LODASH\RD\41.js
+ 2762:                  }
+ 2763:                  var thisBinding = baseCreate(Ctor.prototype);
+ 2764:                  // Mimic the constructor's `return` behavior.
+***** LODASH\RD\ORIGINAL.JS
+ 2763:                  }
+ 2764:                  var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding, args);
+ 2765:                  // Mimic the constructor's `return` behavior.
+*****
+
+***** LODASH\RD\41.js
+ 3278:                      break;
+ 3279:                  default:
+ 3280:                      end -= size;
+***** LODASH\RD\ORIGINAL.JS
+ 3279:                      break;
+ 3280:                  case 'dropRight':
+ 3281:                      end -= size;
+*****
+
+***** LODASH\RD\41.js
+ 4438:          }
+ 4439:          function sortedIndexBy(array, value, iteratee) {
+ 4440:              return binaryIndexBy(array, value, getIteratee(iteratee));
+ 4441:          }
+ 4442:          /**
+ 4443:       * This method is like `_.sortedIndex` except that it returns the highest
+ 4444:       * index at which `value` should be inserted into `array` in order to
+ 4445:       * maintain its sort order.
+ 4446:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4439:          }
+ 4440:          /**
+ 4441:       * This method is like `_.sortedIndex` except that it accepts `iteratee`
+ 4442:       * which is invoked for `value` and each element of `array` to compute their
+ 4443:       * sort ranking. The iteratee is invoked with one argument: (value).
+ 4444:       *
+*****
+
+***** LODASH\RD\41.js
+ 4451:       * @param {*} value The value to evaluate.
+ 4452:       * @returns {number} Returns the index at which `value` should be inserted into `array`.
+***** LODASH\RD\ORIGINAL.JS
+ 4449:       * @param {*} value The value to evaluate.
+ 4450:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4451:       * @returns {number} Returns the index at which `value` should be inserted into `array`.
+*****
+
+***** LODASH\RD\41.js
+ 4454:       *
+ 4455:       * _.sortedLastIndex([4, 5], 4);
+ 4456:       * // => 1
+ 4457:       */
+ 4458:          function sortedLastIndex(array, value) {
+ 4459:              return binaryIndex(array, value, true);
+ 4460:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4453:       *
+ 4454:       * var dict = { 'thirty': 30, 'forty': 40, 'fifty': 50 };
+ 4455:       *
+ 4456:       * _.sortedIndexBy(['thirty', 'fifty'], 'forty', _.propertyOf(dict));
+ 4457:       * // => 1
+ 4458:       *
+ 4459:       * // using the `_.property` callback shorthand
+ 4460:       * _.sortedIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
+ 4461:       * // => 0
+ 4462:       */
+ 4463:          function sortedIndexBy(array, value, iteratee) {
+ 4464:              return binaryIndexBy(array, value, getIteratee(iteratee));
+ 4465:          }
+*****
+
+***** LODASH\RD\41.js
+ 4461:          /**
+ 4462:       * This method is like `_.sortedLastIndex` except that it accepts `iteratee`
+ 4463:       * which is invoked for `value` and each element of `array` to compute their
+ 4464:       * sort ranking. The iteratee is invoked with one argument: (value).
+ 4465:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4466:          /**
+ 4467:       * This method is like `_.sortedIndex` except that it returns the highest
+ 4468:       * index at which `value` should be inserted into `array` in order to
+ 4469:       * maintain its sort order.
+ 4470:       *
+*****
+
+***** LODASH\RD\41.js
+ 4470:       * @param {*} value The value to evaluate.
+ 4471:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4472:       * @returns {number} Returns the index at which `value` should be inserted into `array`.
+***** LODASH\RD\ORIGINAL.JS
+ 4475:       * @param {*} value The value to evaluate.
+ 4476:       * @returns {number} Returns the index at which `value` should be inserted into `array`.
+*****
+
+***** LODASH\RD\41.js
+ 4474:       *
+ 4475:       * // using the `_.property` callback shorthand
+ 4476:       * _.sortedLastIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
+ 4477:       * // => 1
+***** LODASH\RD\ORIGINAL.JS
+ 4478:       *
+ 4479:       * _.sortedLastIndex([4, 5], 4);
+ 4480:       * // => 1
+*****
+
+***** LODASH\RD\41.js
+ 4478:       */
+ 4479:          function sortedLastIndexBy(array, value, iteratee) {
+ 4480:              return binaryIndexBy(array, value, getIteratee(iteratee), true);
+ 4481:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4481:       */
+ 4482:          function sortedLastIndex(array, value) {
+ 4483:              return binaryIndex(array, value, true);
+ 4484:          }
+*****
+
+***** LODASH\RD\41.js
+ 4482:          /**
+ 4483:       * Creates a slice of `array` with `n` elements taken from the beginning.
+ 4484:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4485:          /**
+ 4486:       * This method is like `_.sortedLastIndex` except that it accepts `iteratee`
+ 4487:       * which is invoked for `value` and each element of `array` to compute their
+ 4488:       * sort ranking. The iteratee is invoked with one argument: (value).
+ 4489:       *
+*****
+
+***** LODASH\RD\41.js
+ 4487:       * @category Array
+ 4488:       * @param {Array} array The array to query.
+ 4489:       * @param {number} [n=1] The number of elements to take.
+ 4490:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 4491:       * @returns {Array} Returns the slice of `array`.
+ 4492:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4492:       * @category Array
+ 4493:       * @param {Array} array The sorted array to inspect.
+ 4494:       * @param {*} value The value to evaluate.
+ 4495:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4496:       * @returns {number} Returns the index at which `value` should be inserted into `array`.
+ 4497:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 4493:       *
+ 4494:       * _.take([1, 2, 3]);
+ 4495:       * // => [1]
+ 4496:       *
+ 4497:       * _.take([1, 2, 3], 2);
+ 4498:       * // => [1, 2]
+ 4499:       *
+ 4500:       * _.take([1, 2, 3], 5);
+ 4501:       * // => [1, 2, 3]
+ 4502:       *
+ 4503:       * _.take([1, 2, 3], 0);
+ 4504:       * // => []
+ 4505:       */
+ 4506:          function take(array, n, guard) {
+ 4507:              if (!(array && array.length)) {
+ 4508:                  return [];
+ 4509:              }
+ 4510:              n = guard || n == null ? 1 : n;
+ 4511:              return baseSlice(array, 0, n < 0 ? 0 : n);
+ 4512:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4498:       *
+ 4499:       * // using the `_.property` callback shorthand
+ 4500:       * _.sortedLastIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
+ 4501:       * // => 1
+ 4502:       */
+ 4503:          function sortedLastIndexBy(array, value, iteratee) {
+ 4504:              return binaryIndexBy(array, value, getIteratee(iteratee), true);
+ 4505:          }
+*****
+
+***** LODASH\RD\41.js
+ 4513:          /**
+ 4514:       * Creates a slice of `array` with `n` elements taken from the end.
+ 4515:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4506:          /**
+ 4507:       * Creates a slice of `array` with `n` elements taken from the beginning.
+ 4508:       *
+*****
+
+***** LODASH\RD\41.js
+ 4524:       *
+ 4525:       * _.takeRight([1, 2, 3]);
+ 4526:       * // => [3]
+ 4527:       *
+ 4528:       * _.takeRight([1, 2, 3], 2);
+ 4529:       * // => [2, 3]
+ 4530:       *
+ 4531:       * _.takeRight([1, 2, 3], 5);
+ 4532:       * // => [1, 2, 3]
+***** LODASH\RD\ORIGINAL.JS
+ 4517:       *
+ 4518:       * _.take([1, 2, 3]);
+ 4519:       * // => [1]
+ 4520:       *
+ 4521:       * _.take([1, 2, 3], 2);
+ 4522:       * // => [1, 2]
+ 4523:       *
+ 4524:       * _.take([1, 2, 3], 5);
+ 4525:       * // => [1, 2, 3]
+*****
+
+***** LODASH\RD\41.js
+ 4533:       *
+ 4534:       * _.takeRight([1, 2, 3], 0);
+ 4535:       * // => []
+***** LODASH\RD\ORIGINAL.JS
+ 4526:       *
+ 4527:       * _.take([1, 2, 3], 0);
+ 4528:       * // => []
+*****
+
+***** LODASH\RD\41.js
+ 4536:       */
+ 4537:          function takeRight(array, n, guard) {
+ 4538:              var length = array ? array.length : 0;
+ 4539:              if (!length) {
+ 4540:                  return [];
+***** LODASH\RD\ORIGINAL.JS
+ 4529:       */
+ 4530:          function take(array, n, guard) {
+ 4531:              if (!(array && array.length)) {
+ 4532:                  return [];
+*****
+
+***** LODASH\RD\41.js
+ 4541:              }
+ 4542:              n = guard || n == null ? 1 : toInteger(n);
+ 4543:              n = length - n;
+ 4544:              return baseSlice(array, n < 0 ? 0 : n);
+ 4545:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4533:              }
+ 4534:              n = guard || n == null ? 1 : n;
+ 4535:              return baseSlice(array, 0, n < 0 ? 0 : n);
+ 4536:          }
+*****
+
+***** LODASH\RD\41.js
+ 4546:          /**
+ 4547:       * Creates a slice of `array` with elements taken from the end. Elements are
+ 4548:       * taken until `predicate` returns falsey. The predicate is invoked with three
+ 4549:       * arguments: (value, index, array).
+ 4550:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4537:          /**
+ 4538:       * Creates a slice of `array` with `n` elements taken from the end.
+ 4539:       *
+*****
+
+***** LODASH\RD\41.js
+ 4554:       * @param {Array} array The array to query.
+ 4555:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 4556:       * @returns {Array} Returns the slice of `array`.
+***** LODASH\RD\ORIGINAL.JS
+ 4543:       * @param {Array} array The array to query.
+ 4544:       * @param {number} [n=1] The number of elements to take.
+ 4545:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 4546:       * @returns {Array} Returns the slice of `array`.
+*****
+
+***** LODASH\RD\41.js
+ 4558:       *
+ 4559:       * var resolve = _.partial(_.map, _, 'user');
+ 4560:       *
+ 4561:       * var users = [
+ 4562:       *   { 'user': 'barney',  'active': true },
+ 4563:       *   { 'user': 'fred',    'active': false },
+ 4564:       *   { 'user': 'pebbles', 'active': false }
+ 4565:       * ];
+ 4566:       *
+ 4567:       * resolve( _.takeRightWhile(users, function(o) { return !o.active; }) );
+ 4568:       * // => ['fred', 'pebbles']
+ 4569:       *
+ 4570:       * // using the `_.matches` callback shorthand
+ 4571:       * resolve( _.takeRightWhile(users, { 'user': 'pebbles', 'active': false }) );
+ 4572:       * // => ['pebbles']
+ 4573:       *
+ 4574:       * // using the `_.matchesProperty` callback shorthand
+ 4575:       * resolve( _.takeRightWhile(users, ['active', false]) );
+ 4576:       * // => ['fred', 'pebbles']
+ 4577:       *
+ 4578:       * // using the `_.property` callback shorthand
+ 4579:       * resolve( _.takeRightWhile(users, 'active') );
+ 4580:       * // => []
+***** LODASH\RD\ORIGINAL.JS
+ 4548:       *
+ 4549:       * _.takeRight([1, 2, 3]);
+ 4550:       * // => [3]
+ 4551:       *
+ 4552:       * _.takeRight([1, 2, 3], 2);
+ 4553:       * // => [2, 3]
+ 4554:       *
+ 4555:       * _.takeRight([1, 2, 3], 5);
+ 4556:       * // => [1, 2, 3]
+ 4557:       *
+ 4558:       * _.takeRight([1, 2, 3], 0);
+ 4559:       * // => []
+*****
+
+***** LODASH\RD\41.js
+ 4581:       */
+ 4582:          function takeRightWhile(array, predicate) {
+ 4583:              return array && array.length ? baseWhile(array, getIteratee(predicate), false, true) : [];
+ 4584:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4560:       */
+ 4561:          function takeRight(array, n, guard) {
+ 4562:              var length = array ? array.length : 0;
+ 4563:              if (!length) {
+ 4564:                  return [];
+ 4565:              }
+ 4566:              n = guard || n == null ? 1 : toInteger(n);
+ 4567:              n = length - n;
+ 4568:              return baseSlice(array, n < 0 ? 0 : n);
+ 4569:          }
+*****
+
+***** LODASH\RD\41.js
+ 4585:          /**
+ 4586:       * Creates a slice of `array` with elements taken from the beginning. Elements
+ 4587:       * are taken until `predicate` returns falsey. The predicate is invoked with
+ 4588:       * three arguments: (value, index, array).
+ 4589:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4570:          /**
+ 4571:       * Creates a slice of `array` with elements taken from the end. Elements are
+ 4572:       * taken until `predicate` returns falsey. The predicate is invoked with three
+ 4573:       * arguments: (value, index, array).
+ 4574:       *
+*****
+
+***** LODASH\RD\41.js
+ 4600:       * var users = [
+ 4601:       *   { 'user': 'barney',  'active': false },
+ 4602:       *   { 'user': 'fred',    'active': false},
+ 4603:       *   { 'user': 'pebbles', 'active': true }
+ 4604:       * ];
+***** LODASH\RD\ORIGINAL.JS
+ 4585:       * var users = [
+ 4586:       *   { 'user': 'barney',  'active': true },
+ 4587:       *   { 'user': 'fred',    'active': false },
+ 4588:       *   { 'user': 'pebbles', 'active': false }
+ 4589:       * ];
+*****
+
+***** LODASH\RD\41.js
+ 4605:       *
+ 4606:       * resolve( _.takeWhile(users, function(o) { return !o.active; }) );
+ 4607:       * // => ['barney', 'fred']
+ 4608:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4590:       *
+ 4591:       * resolve( _.takeRightWhile(users, function(o) { return !o.active; }) );
+ 4592:       * // => ['fred', 'pebbles']
+ 4593:       *
+*****
+
+***** LODASH\RD\41.js
+ 4609:       * // using the `_.matches` callback shorthand
+ 4610:       * resolve( _.takeWhile(users, { 'user': 'barney', 'active': false }) );
+ 4611:       * // => ['barney']
+ 4612:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4594:       * // using the `_.matches` callback shorthand
+ 4595:       * resolve( _.takeRightWhile(users, { 'user': 'pebbles', 'active': false }) );
+ 4596:       * // => ['pebbles']
+ 4597:       *
+*****
+
+***** LODASH\RD\41.js
+ 4613:       * // using the `_.matchesProperty` callback shorthand
+ 4614:       * resolve( _.takeWhile(users, ['active', false]) );
+ 4615:       * // => ['barney', 'fred']
+ 4616:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4598:       * // using the `_.matchesProperty` callback shorthand
+ 4599:       * resolve( _.takeRightWhile(users, ['active', false]) );
+ 4600:       * // => ['fred', 'pebbles']
+ 4601:       *
+*****
+
+***** LODASH\RD\41.js
+ 4617:       * // using the `_.property` callback shorthand
+ 4618:       * resolve( _.takeWhile(users, 'active') );
+ 4619:       * // => []
+***** LODASH\RD\ORIGINAL.JS
+ 4602:       * // using the `_.property` callback shorthand
+ 4603:       * resolve( _.takeRightWhile(users, 'active') );
+ 4604:       * // => []
+*****
+
+***** LODASH\RD\41.js
+ 4620:       */
+ 4621:          function takeWhile(array, predicate) {
+ 4622:              return array && array.length ? baseWhile(array, getIteratee(predicate)) : [];
+ 4623:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4605:       */
+ 4606:          function takeRightWhile(array, predicate) {
+ 4607:              return array && array.length ? baseWhile(array, getIteratee(predicate), false, true) : [];
+ 4608:          }
+*****
+
+***** LODASH\RD\41.js
+ 4624:          /**
+ 4625:       * Creates an array of unique values, in order, from all of the provided arrays
+ 4626:       * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4627:       * for equality comparisons.
+ 4628:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4609:          /**
+ 4610:       * Creates a slice of `array` with elements taken from the beginning. Elements
+ 4611:       * are taken until `predicate` returns falsey. The predicate is invoked with
+ 4612:       * three arguments: (value, index, array).
+ 4613:       *
+*****
+
+***** LODASH\RD\41.js
+ 4631:       * @category Array
+ 4632:       * @param {...Array} [arrays] The arrays to inspect.
+ 4633:       * @returns {Array} Returns the new array of combined values.
+ 4634:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4616:       * @category Array
+ 4617:       * @param {Array} array The array to query.
+ 4618:       * @param {Function|Object|string} [predicate=_.identity] The function invoked per iteration.
+ 4619:       * @returns {Array} Returns the slice of `array`.
+ 4620:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 4635:       *
+ 4636:       * _.union([1, 2], [4, 2], [2, 1]);
+ 4637:       * // => [1, 2, 4]
+ 4638:       */
+ 4639:          var union = restParam(function (arrays) {
+ 4640:              return baseUniq(baseFlatten(arrays, false, true));
+ 4641:          });
+ 4642:          /**
+ 4643:       * Creates a duplicate-free version of an array, using
+ 4644:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4645:       * for equality comparisons, in which only the first occurence of each element
+ 4646:       * is kept. Providing `true` for `isSorted` performs a faster search algorithm
+ 4647:       * for sorted arrays.
+ 4648:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4621:       *
+ 4622:       * var resolve = _.partial(_.map, _, 'user');
+ 4623:       *
+ 4624:       * var users = [
+ 4625:       *   { 'user': 'barney',  'active': false },
+ 4626:       *   { 'user': 'fred',    'active': false},
+ 4627:       *   { 'user': 'pebbles', 'active': true }
+ 4628:       * ];
+ 4629:       *
+ 4630:       * resolve( _.takeWhile(users, function(o) { return !o.active; }) );
+ 4631:       * // => ['barney', 'fred']
+ 4632:       *
+ 4633:       * // using the `_.matches` callback shorthand
+ 4634:       * resolve( _.takeWhile(users, { 'user': 'barney', 'active': false }) );
+ 4635:       * // => ['barney']
+ 4636:       *
+ 4637:       * // using the `_.matchesProperty` callback shorthand
+ 4638:       * resolve( _.takeWhile(users, ['active', false]) );
+ 4639:       * // => ['barney', 'fred']
+ 4640:       *
+ 4641:       * // using the `_.property` callback shorthand
+ 4642:       * resolve( _.takeWhile(users, 'active') );
+ 4643:       * // => []
+ 4644:       */
+ 4645:          function takeWhile(array, predicate) {
+ 4646:              return array && array.length ? baseWhile(array, getIteratee(predicate)) : [];
+ 4647:          }
+ 4648:          /**
+ 4649:       * Creates an array of unique values, in order, from all of the provided arrays
+ 4650:       * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4651:       * for equality comparisons.
+ 4652:       *
+*****
+
+***** LODASH\RD\41.js
+ 4651:       * @category Array
+ 4652:       * @param {Array} array The array to inspect.
+ 4653:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4654:       * @returns {Array} Returns the new duplicate free array.
+ 4655:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4655:       * @category Array
+ 4656:       * @param {...Array} [arrays] The arrays to inspect.
+ 4657:       * @returns {Array} Returns the new array of combined values.
+ 4658:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 4656:       *
+ 4657:       * _.uniq([2, 1, 2]);
+ 4658:       * // => [2, 1]
+ 4659:       *
+ 4660:       * // using `isSorted`
+ 4661:       * _.uniq([1, 1, 2], true);
+ 4662:       * // => [1, 2]
+ 4663:       */
+ 4664:          function uniq(array, isSorted) {
+ 4665:              if (!(array && array.length)) {
+ 4666:                  return [];
+ 4667:              }
+ 4668:              return isSorted && typeof isSorted == 'boolean' && getIndexOf() === baseIndexOf ? sortedUniq(array) : baseUniq(arra
+ 4669:  y);
+ 4670:          }
+ 4671:          /**
+ 4672:       * This method is like `_.uniq` except that it accepts `iteratee` which is
+ 4673:       * invoked for each element in `array` to generate the criterion by which
+ 4674:       * uniqueness is computed. The iteratee is invoked with one argument: (value).
+ 4675:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4659:       *
+ 4660:       * _.union([1, 2], [4, 2], [2, 1]);
+ 4661:       * // => [1, 2, 4]
+ 4662:       */
+ 4663:          var union = restParam(function (arrays) {
+ 4664:              return baseUniq(baseFlatten(arrays, false, true));
+ 4665:          });
+ 4666:          /**
+ 4667:       * Creates a duplicate-free version of an array, using
+ 4668:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4669:       * for equality comparisons, in which only the first occurence of each element
+ 4670:       * is kept. Providing `true` for `isSorted` performs a faster search algorithm
+ 4671:       * for sorted arrays.
+ 4672:       *
+*****
+
+***** LODASH\RD\41.js
+ 4680:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4681:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4682:       * @returns {Array} Returns the new duplicate free array.
+***** LODASH\RD\ORIGINAL.JS
+ 4677:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4678:       * @returns {Array} Returns the new duplicate free array.
+*****
+
+***** LODASH\RD\41.js
+ 4684:       *
+ 4685:       * _.uniqBy([1, 2.5, 1.5, 2], function(n) {
+ 4686:       *   return Math.floor(n);
+ 4687:       * });
+ 4688:       * // => [1, 2.5]
+ 4689:       *
+ 4690:       * // using the `_.property` callback shorthand
+ 4691:       * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+ 4692:       * // => [{ 'x': 1 }, { 'x': 2 }]
+ 4693:       */
+ 4694:          function uniqBy(array, isSorted, iteratee) {
+ 4695:              if (!(array && array.length)) {
+***** LODASH\RD\ORIGINAL.JS
+ 4680:       *
+ 4681:       * _.uniq([2, 1, 2]);
+ 4682:       * // => [2, 1]
+ 4683:       *
+ 4684:       * // using `isSorted`
+ 4685:       * _.uniq([1, 1, 2], true);
+ 4686:       * // => [1, 2]
+ 4687:       */
+ 4688:          function uniq(array, isSorted) {
+ 4689:              if (!(array && array.length)) {
+*****
+
+***** LODASH\RD\41.js
+ 4697:              }
+ 4698:              if (isSorted != null && typeof isSorted != 'boolean') {
+ 4699:                  iteratee = isSorted;
+ 4700:                  isSorted = false;
+ 4701:              }
+ 4702:              var toIteratee = getIteratee();
+ 4703:              if (!(iteratee == null && toIteratee === baseIteratee)) {
+ 4704:                  iteratee = toIteratee(iteratee);
+ 4705:              }
+ 4706:              return isSorted && getIndexOf() === baseIndexOf ? sortedUniq(array, iteratee) : baseUniq(array, iteratee);
+ 4707:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4691:              }
+ 4692:              return isSorted && typeof isSorted == 'boolean' && getIndexOf() === baseIndexOf ? sortedUniq(array) : baseUniq(arra
+ 4693:  y);
+ 4694:          }
+*****
+
+***** LODASH\RD\41.js
+ 4708:          /**
+ 4709:       * This method is like `_.zip` except that it accepts an array of grouped
+ 4710:       * elements and creates an array regrouping the elements to their pre-zip
+ 4711:       * configuration.
+ 4712:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4695:          /**
+ 4696:       * This method is like `_.uniq` except that it accepts `iteratee` which is
+ 4697:       * invoked for each element in `array` to generate the criterion by which
+ 4698:       * uniqueness is computed. The iteratee is invoked with one argument: (value).
+ 4699:       *
+*****
+
+***** LODASH\RD\41.js
+ 4715:       * @category Array
+ 4716:       * @param {Array} array The array of grouped elements to process.
+ 4717:       * @returns {Array} Returns the new array of regrouped elements.
+ 4718:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4702:       * @category Array
+ 4703:       * @param {Array} array The array to inspect.
+ 4704:       * @param {boolean} [isSorted] Specify the array is sorted.
+ 4705:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+ 4706:       * @returns {Array} Returns the new duplicate free array.
+ 4707:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 4719:       *
+ 4720:       * var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+ 4721:       * // => [['fred', 30, true], ['barney', 40, false]]
+ 4722:       *
+ 4723:       * _.unzip(zipped);
+ 4724:       * // => [['fred', 'barney'], [30, 40], [true, false]]
+ 4725:       */
+ 4726:          function unzip(array) {
+ 4727:              if (!(array && array.length)) {
+***** LODASH\RD\ORIGINAL.JS
+ 4708:       *
+ 4709:       * _.uniqBy([1, 2.5, 1.5, 2], function(n) {
+ 4710:       *   return Math.floor(n);
+ 4711:       * });
+ 4712:       * // => [1, 2.5]
+ 4713:       *
+ 4714:       * // using the `_.property` callback shorthand
+ 4715:       * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+ 4716:       * // => [{ 'x': 1 }, { 'x': 2 }]
+ 4717:       */
+ 4718:          function uniqBy(array, isSorted, iteratee) {
+ 4719:              if (!(array && array.length)) {
+*****
+
+***** LODASH\RD\41.js
+ 4729:              }
+ 4730:              var index = -1, length = 0;
+ 4731:              array = arrayFilter(array, function (group) {
+ 4732:                  if (isObject(group) && isArrayLike(group)) {
+ 4733:                      length = nativeMax(group.length, length);
+ 4734:                      return true;
+ 4735:                  }
+ 4736:              });
+ 4737:              var result = Array(length);
+ 4738:              while (++index < length) {
+ 4739:                  result[index] = arrayMap(array, baseProperty(index));
+ 4740:              }
+ 4741:              return result;
+ 4742:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4721:              }
+ 4722:              if (isSorted != null && typeof isSorted != 'boolean') {
+ 4723:                  iteratee = isSorted;
+ 4724:                  isSorted = false;
+ 4725:              }
+ 4726:              var toIteratee = getIteratee();
+ 4727:              if (!(iteratee == null && toIteratee === baseIteratee)) {
+ 4728:                  iteratee = toIteratee(iteratee);
+ 4729:              }
+ 4730:              return isSorted && getIndexOf() === baseIndexOf ? sortedUniq(array, iteratee) : baseUniq(array, iteratee);
+ 4731:          }
+*****
+
+***** LODASH\RD\41.js
+ 4743:          /**
+ 4744:       * This method is like `_.unzip` except that it accepts `iteratee` to specify
+ 4745:       * how regrouped values should be combined. The iteratee is invoked with four
+ 4746:       * arguments: (accumulator, value, index, group).
+ 4747:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4732:          /**
+ 4733:       * This method is like `_.zip` except that it accepts an array of grouped
+ 4734:       * elements and creates an array regrouping the elements to their pre-zip
+ 4735:       * configuration.
+ 4736:       *
+*****
+
+***** LODASH\RD\41.js
+ 4751:       * @param {Array} array The array of grouped elements to process.
+ 4752:       * @param {Function} [iteratee=_.identity] The function to combine regrouped values.
+ 4753:       * @returns {Array} Returns the new array of regrouped elements.
+***** LODASH\RD\ORIGINAL.JS
+ 4740:       * @param {Array} array The array of grouped elements to process.
+ 4741:       * @returns {Array} Returns the new array of regrouped elements.
+*****
+
+***** LODASH\RD\41.js
+ 4755:       *
+ 4756:       * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+ 4757:       * // => [[1, 10, 100], [2, 20, 200]]
+ 4758:       *
+ 4759:       * _.unzipWith(zipped, _.add);
+ 4760:       * // => [3, 30, 300]
+ 4761:       */
+ 4762:          function unzipWith(array, iteratee) {
+ 4763:              if (!(array && array.length)) {
+***** LODASH\RD\ORIGINAL.JS
+ 4743:       *
+ 4744:       * var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+ 4745:       * // => [['fred', 30, true], ['barney', 40, false]]
+ 4746:       *
+ 4747:       * _.unzip(zipped);
+ 4748:       * // => [['fred', 'barney'], [30, 40], [true, false]]
+ 4749:       */
+ 4750:          function unzip(array) {
+ 4751:              if (!(array && array.length)) {
+*****
+
+***** LODASH\RD\41.js
+ 4765:              }
+ 4766:              var result = unzip(array);
+ 4767:              if (iteratee == null) {
+ 4768:                  return result;
+ 4769:              }
+ 4770:              return arrayMap(result, function (group) {
+ 4771:                  return arrayReduce(group, iteratee, undefined, true);
+ 4772:              });
+ 4773:          }
+***** LODASH\RD\ORIGINAL.JS
+ 4753:              }
+ 4754:              var index = -1, length = 0;
+ 4755:              array = arrayFilter(array, function (group) {
+ 4756:                  if (isObject(group) && isArrayLike(group)) {
+ 4757:                      length = nativeMax(group.length, length);
+ 4758:                      return true;
+ 4759:                  }
+ 4760:              });
+ 4761:              var result = Array(length);
+ 4762:              while (++index < length) {
+ 4763:                  result[index] = arrayMap(array, baseProperty(index));
+ 4764:              }
+ 4765:              return result;
+ 4766:          }
+*****
+
+***** LODASH\RD\41.js
+ 4774:          /**
+ 4775:       * Creates an array excluding all provided values using
+ 4776:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4777:       * for equality comparisons.
+ 4778:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4767:          /**
+ 4768:       * This method is like `_.unzip` except that it accepts `iteratee` to specify
+ 4769:       * how regrouped values should be combined. The iteratee is invoked with four
+ 4770:       * arguments: (accumulator, value, index, group).
+ 4771:       *
+*****
+
+***** LODASH\RD\41.js
+ 4781:       * @category Array
+ 4782:       * @param {Array} array The array to filter.
+ 4783:       * @param {...*} [values] The values to exclude.
+ 4784:       * @returns {Array} Returns the new array of filtered values.
+ 4785:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4774:       * @category Array
+ 4775:       * @param {Array} array The array of grouped elements to process.
+ 4776:       * @param {Function} [iteratee=_.identity] The function to combine regrouped values.
+ 4777:       * @returns {Array} Returns the new array of regrouped elements.
+ 4778:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 4786:       *
+ 4787:       * _.without([1, 2, 1, 3], 1, 2);
+ 4788:       * // => [3]
+ 4789:       */
+ 4790:          var without = restParam(function (array, values) {
+ 4791:              return isObject(array) && isArrayLike(array) ? baseDifference(array, values) : [];
+ 4792:          });
+ 4793:          /**
+ 4794:       * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+ 4795:       * of the provided arrays.
+ 4796:       *
+***** LODASH\RD\ORIGINAL.JS
+ 4779:       *
+ 4780:       * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+ 4781:       * // => [[1, 10, 100], [2, 20, 200]]
+ 4782:       *
+ 4783:       * _.unzipWith(zipped, _.add);
+ 4784:       * // => [3, 30, 300]
+ 4785:       */
+ 4786:          function unzipWith(array, iteratee) {
+ 4787:              if (!(array && array.length)) {
+ 4788:                  return [];
+ 4789:              }
+ 4790:              var result = unzip(array);
+ 4791:              if (iteratee == null) {
+ 4792:                  return result;
+ 4793:              }
+ 4794:              return arrayMap(result, function (group) {
+ 4795:                  return arrayReduce(group, iteratee, undefined, true);
+ 4796:              });
+ 4797:          }
+ 4798:          /**
+ 4799:       * Creates an array excluding all provided values using
+ 4800:       * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ 4801:       * for equality comparisons.
+ 4802:       *
+*****
+
+***** LODASH\RD\41.js
+ 4799:       * @category Array
+ 4800:       * @param {...Array} [arrays] The arrays to inspect.
+ 4801:       * @returns {Array} Returns the new array of values.
+ 4802:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 4805:       * @category Array
+ 4806:       * @param {Array} array The array to filter.
+ 4807:       * @param {...*} [values] The values to exclude.
+ 4808:       * @returns {Array} Returns the new array of filtered values.
+ 4809:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 4803:       *
+ 4804:       * _.xor([1, 2], [4, 2]);
+***** LODASH\RD\ORIGINAL.JS
+ 4810:       *
+ 4811:       * _.without([1, 2, 1, 3], 1, 2);
+ 4812:       * // => [3]
+ 4813:       */
+ 4814:          var without = restParam(function (array, values) {
+ 4815:              return isObject(array) && isArrayLike(array) ? baseDifference(array, values) : [];
+ 4816:          });
+ 4817:          /**
+ 4818:       * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+ 4819:       * of the provided arrays.
+ 4820:       *
+ 4821:       * @static
+ 4822:       * @memberOf _
+ 4823:       * @category Array
+ 4824:       * @param {...Array} [arrays] The arrays to inspect.
+ 4825:       * @returns {Array} Returns the new array of values.
+ 4826:       * @example
+ 4827:       *
+ 4828:       * _.xor([1, 2], [4, 2]);
+*****
+
+***** LODASH\RD\41.js
+ 5146:          }
+ 5147:          function wrapperValue() {
+***** LODASH\RD\ORIGINAL.JS
+ 5170:          }
+ 5171:          /**
+ 5172:       * Executes the chained sequence to extract the unwrapped value.
+ 5173:       *
+ 5174:       * @name value
+ 5175:       * @memberOf _
+ 5176:       * @alias run, toJSON, valueOf
+ 5177:       * @category Chain
+ 5178:       * @returns {*} Returns the resolved unwrapped value.
+ 5179:       * @example
+ 5180:       *
+ 5181:       * _([1, 2, 3]).value();
+ 5182:       * // => [1, 2, 3]
+ 5183:       */
+ 5184:          function wrapperValue() {
+*****
+
+***** LODASH\RD\41.js
+ 5869:          });
+ 5870:          function sortByOrder(collection, iteratees, orders, guard) {
+ 5871:              if (collection == null) {
+ 5872:                  return [];
+ 5873:              }
+ 5874:              if (!isArray(iteratees)) {
+ 5875:                  iteratees = iteratees == null ? [] : [iteratees];
+ 5876:              }
+ 5877:              orders = guard ? undefined : orders;
+ 5878:              if (!isArray(orders)) {
+ 5879:                  orders = orders == null ? [] : [orders];
+ 5880:              }
+ 5881:              return baseSortByOrder(collection, iteratees, orders);
+ 5882:          }
+ 5883:          /*------------------------------------------------------------------------*/
+ 5884:          /**
+ 5885:       * Gets the timestamp of the number of milliseconds that have elapsed since
+ 5886:       * the Unix epoch (1 January 1970 00:00:00 UTC).
+ 5887:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5906:          });
+ 5907:          /**
+ 5908:       * This method is like `_.sortBy` except that it allows specifying the
+ 5909:       * sort orders of the iteratees to sort by. If `orders` is unspecified, all
+ 5910:       * values are sorted in ascending order. Otherwise, a value is sorted in
+ 5911:       * ascending order if its corresponding order is "asc", and descending if "desc".
+ 5912:       *
+*****
+
+***** LODASH\RD\41.js
+ 5889:       * @memberOf _
+ 5890:       * @type Function
+ 5891:       * @category Date
+ 5892:       * @returns {number} Returns the timestamp.
+ 5893:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5914:       * @memberOf _
+ 5915:       * @category Collection
+ 5916:       * @param {Array|Object} collection The collection to iterate over.
+ 5917:       * @param {Function[]|Object[]|string[]} [iteratees=[_.identity]] The iteratees to sort by.
+ 5918:       * @param {string[]} [orders] The sort orders of `iteratees`.
+ 5919:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.reduce`.
+ 5920:       * @returns {Array} Returns the new sorted array.
+ 5921:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 5894:       *
+ 5895:       * _.defer(function(stamp) {
+ 5896:       *   console.log(_.now() - stamp);
+ 5897:       * }, _.now());
+ 5898:       * // => logs the number of milliseconds it took for the deferred function to be invoked
+ 5899:       */
+ 5900:          var now = Date.now;
+ 5901:          /*------------------------------------------------------------------------*/
+***** LODASH\RD\ORIGINAL.JS
+ 5922:       *
+ 5923:       * var resolve = _.partial(_.map, _, _.values);
+ 5924:       *
+ 5925:       * var users = [
+ 5926:       *   { 'user': 'fred',   'age': 48 },
+ 5927:       *   { 'user': 'barney', 'age': 34 },
+ 5928:       *   { 'user': 'fred',   'age': 42 },
+ 5929:       *   { 'user': 'barney', 'age': 36 }
+ 5930:       * ];
+ 5931:       *
+ 5932:       * // sort by `user` in ascending order and by `age` in descending order
+ 5933:       * resolve( _.sortByOrder(users, ['user', 'age'], ['asc', 'desc']) );
+ 5934:       * // => [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 42]]
+ 5935:       */
+ 5936:          function sortByOrder(collection, iteratees, orders, guard) {
+ 5937:              if (collection == null) {
+ 5938:                  return [];
+ 5939:              }
+ 5940:              if (!isArray(iteratees)) {
+ 5941:                  iteratees = iteratees == null ? [] : [iteratees];
+ 5942:              }
+ 5943:              orders = guard ? undefined : orders;
+ 5944:              if (!isArray(orders)) {
+ 5945:                  orders = orders == null ? [] : [orders];
+ 5946:              }
+ 5947:              return baseSortByOrder(collection, iteratees, orders);
+ 5948:          }
+ 5949:          /*------------------------------------------------------------------------*/
+*****
+
+***** LODASH\RD\41.js
+ 5902:          /**
+ 5903:       * The opposite of `_.before`; this method creates a function that invokes
+ 5904:       * `func` once it's called `n` or more times.
+ 5905:       *
+***** LODASH\RD\ORIGINAL.JS
+ 5950:          /**
+ 5951:       * Gets the timestamp of the number of milliseconds that have elapsed since
+ 5952:       * the Unix epoch (1 January 1970 00:00:00 UTC).
+ 5953:       *
+*****
+
+***** LODASH\RD\41.js
+ 5907:       * @memberOf _
+ 5908:       * @category Function
+ 5909:       * @param {number} n The number of calls before `func` is invoked.
+ 5910:       * @param {Function} func The function to restrict.
+ 5911:       * @returns {Function} Returns the new restricted function.
+ 5912:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 5955:       * @memberOf _
+ 5956:       * @type Function
+ 5957:       * @category Date
+ 5958:       * @returns {number} Returns the timestamp.
+ 5959:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 5913:       *
+ 5914:       * var saves = ['profile', 'settings'];
+***** LODASH\RD\ORIGINAL.JS
+ 5960:       *
+ 5961:       * _.defer(function(stamp) {
+ 5962:       *   console.log(_.now() - stamp);
+ 5963:       * }, _.now());
+ 5964:       * // => logs the number of milliseconds it took for the deferred function to be invoked
+ 5965:       */
+ 5966:          var now = Date.now;
+ 5967:          /*------------------------------------------------------------------------*/
+ 5968:          /**
+ 5969:       * The opposite of `_.before`; this method creates a function that invokes
+ 5970:       * `func` once it's called `n` or more times.
+ 5971:       *
+ 5972:       * @static
+ 5973:       * @memberOf _
+ 5974:       * @category Function
+ 5975:       * @param {number} n The number of calls before `func` is invoked.
+ 5976:       * @param {Function} func The function to restrict.
+ 5977:       * @returns {Function} Returns the new restricted function.
+ 5978:       * @example
+ 5979:       *
+ 5980:       * var saves = ['profile', 'settings'];
+*****
+
+***** LODASH\RD\41.js
+ 6450:          var flowRight = createFlow(true);
+ 6451:          function memoize(func, resolver) {
+ 6452:              if (typeof func != 'function' || resolver && typeof resolver != 'function') {
+ 6453:                  throw new TypeError(FUNC_ERROR_TEXT);
+ 6454:              }
+ 6455:              var memoized = function () {
+ 6456:                  var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache = memoized.cache;
+ 6457:                  if (cache.has(key)) {
+ 6458:                      return cache.get(key);
+ 6459:                  }
+ 6460:                  var result = func.apply(this, args);
+ 6461:                  memoized.cache = cache.set(key, result);
+ 6462:                  return result;
+ 6463:              };
+ 6464:              memoized.cache = new memoize.Cache();
+ 6465:              return memoized;
+ 6466:          }
+ 6467:          /**
+ 6468:       * Creates a function that runs each argument through a corresponding
+ 6469:       * transform function.
+ 6470:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6516:          var flowRight = createFlow(true);
+ 6517:          /**
+ 6518:       * Creates a function that memoizes the result of `func`. If `resolver` is
+ 6519:       * provided it determines the cache key for storing the result based on the
+ 6520:       * arguments provided to the memoized function. By default, the first argument
+ 6521:       * provided to the memoized function is coerced to a string and used as the
+ 6522:       * cache key. The `func` is invoked with the `this` binding of the memoized
+ 6523:       * function.
+ 6524:       *
+ 6525:       * **Note:** The cache is exposed as the `cache` property on the memoized
+ 6526:       * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ 6527:       * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of
+ 6528:  -the-map-prototype-object)
+ 6529:       * method interface of `get`, `has`, and `set`.
+ 6530:       *
+*****
+
+***** LODASH\RD\41.js
+ 6473:       * @category Function
+ 6474:       * @param {Function} func The function to wrap.
+ 6475:       * @param {...(Function|Function[])} [transforms] The functions to transform
+ 6476:       * arguments, specified individually or in arrays.
+ 6477:       * @returns {Function} Returns the new function.
+ 6478:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6533:       * @category Function
+ 6534:       * @param {Function} func The function to have its output memoized.
+ 6535:       * @param {Function} [resolver] The function to resolve the cache key.
+ 6536:       * @returns {Function} Returns the new memoizing function.
+ 6537:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 6479:       *
+ 6480:       * function doubled(n) {
+ 6481:       *   return n * 2;
+ 6482:       * }
+ 6483:       *
+ 6484:       * function square(n) {
+ 6485:       *   return n * n;
+ 6486:       * }
+ 6487:       *
+ 6488:       * var modded = _.modArgs(function(x, y) {
+ 6489:       *   return [x, y];
+ 6490:       * }, square, doubled);
+ 6491:       *
+ 6492:       * modded(1, 2);
+ 6493:       * // => [1, 4]
+ 6494:       *
+ 6495:       * modded(5, 10);
+ 6496:       * // => [25, 20]
+ 6497:       */
+ 6498:          var modArgs = restParam(function (func, transforms) {
+ 6499:              transforms = baseFlatten(transforms);
+ 6500:              if (typeof func != 'function' || !arrayEvery(transforms, baseIsFunction)) {
+ 6501:                  throw new TypeError(FUNC_ERROR_TEXT);
+***** LODASH\RD\ORIGINAL.JS
+ 6538:       *
+ 6539:       * var upperCase = _.memoize(function(string) {
+ 6540:       *   return string.toUpperCase();
+ 6541:       * });
+ 6542:       *
+ 6543:       * upperCase('fred');
+ 6544:       * // => 'FRED'
+ 6545:       *
+ 6546:       * // modifying the result cache
+ 6547:       * upperCase.cache.set('fred', 'BARNEY');
+ 6548:       * upperCase('fred');
+ 6549:       * // => 'BARNEY'
+ 6550:       *
+ 6551:       * // replacing `_.memoize.Cache`
+ 6552:       * var object = { 'user': 'fred' };
+ 6553:       * var other = { 'user': 'barney' };
+ 6554:       * var identity = _.memoize(_.identity);
+ 6555:       *
+ 6556:       * identity(object);
+ 6557:       * // => { 'user': 'fred' }
+ 6558:       * identity(other);
+ 6559:       * // => { 'user': 'fred' }
+ 6560:       *
+ 6561:       * _.memoize.Cache = WeakMap;
+ 6562:       * var identity = _.memoize(_.identity);
+ 6563:       *
+ 6564:       * identity(object);
+ 6565:       * // => { 'user': 'fred' }
+ 6566:       * identity(other);
+ 6567:       * // => { 'user': 'barney' }
+ 6568:       */
+ 6569:          function memoize(func, resolver) {
+ 6570:              if (typeof func != 'function' || resolver && typeof resolver != 'function') {
+ 6571:                  throw new TypeError(FUNC_ERROR_TEXT);
+*****
+
+***** LODASH\RD\41.js
+ 6502:              }
+ 6503:              var length = transforms.length;
+ 6504:              return restParam(function (args) {
+ 6505:                  var index = nativeMin(args.length, length);
+ 6506:                  while (index--) {
+ 6507:                      args[index] = transforms[index](args[index]);
+ 6508:                  }
+ 6509:                  return func.apply(this, args);
+ 6510:              });
+ 6511:          });
+ 6512:          /**
+ 6513:       * Creates a function that negates the result of the predicate `func`. The
+ 6514:       * `func` predicate is invoked with the `this` binding and arguments of the
+ 6515:       * created function.
+ 6516:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6572:              }
+ 6573:              var memoized = function () {
+ 6574:                  var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache = memoized.cache;
+ 6575:                  if (cache.has(key)) {
+ 6576:                      return cache.get(key);
+ 6577:                  }
+ 6578:                  var result = func.apply(this, args);
+ 6579:                  memoized.cache = cache.set(key, result);
+ 6580:                  return result;
+ 6581:              };
+ 6582:              memoized.cache = new memoize.Cache();
+ 6583:              return memoized;
+ 6584:          }
+ 6585:          /**
+ 6586:       * Creates a function that runs each argument through a corresponding
+ 6587:       * transform function.
+ 6588:       *
+*****
+
+***** LODASH\RD\41.js
+ 6519:       * @category Function
+ 6520:       * @param {Function} predicate The predicate to negate.
+ 6521:       * @returns {Function} Returns the new function.
+***** LODASH\RD\ORIGINAL.JS
+ 6591:       * @category Function
+ 6592:       * @param {Function} func The function to wrap.
+ 6593:       * @param {...(Function|Function[])} [transforms] The functions to transform
+ 6594:       * arguments, specified individually or in arrays.
+ 6595:       * @returns {Function} Returns the new function.
+*****
+
+***** LODASH\RD\41.js
+ 6523:       *
+ 6524:       * function isEven(n) {
+ 6525:       *   return n % 2 == 0;
+ 6526:       * }
+***** LODASH\RD\ORIGINAL.JS
+ 6597:       *
+ 6598:       * function doubled(n) {
+ 6599:       *   return n * 2;
+ 6600:       * }
+*****
+
+***** LODASH\RD\41.js
+ 6527:       *
+ 6528:       * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+ 6529:       * // => [1, 3, 5]
+ 6530:       */
+ 6531:          function negate(predicate) {
+ 6532:              if (typeof predicate != 'function') {
+ 6533:                  throw new TypeError(FUNC_ERROR_TEXT);
+***** LODASH\RD\ORIGINAL.JS
+ 6601:       *
+ 6602:       * function square(n) {
+ 6603:       *   return n * n;
+ 6604:       * }
+ 6605:       *
+ 6606:       * var modded = _.modArgs(function(x, y) {
+ 6607:       *   return [x, y];
+ 6608:       * }, square, doubled);
+ 6609:       *
+ 6610:       * modded(1, 2);
+ 6611:       * // => [1, 4]
+ 6612:       *
+ 6613:       * modded(5, 10);
+ 6614:       * // => [25, 20]
+ 6615:       */
+ 6616:          var modArgs = restParam(function (func, transforms) {
+ 6617:              transforms = baseFlatten(transforms);
+ 6618:              if (typeof func != 'function' || !arrayEvery(transforms, baseIsFunction)) {
+ 6619:                  throw new TypeError(FUNC_ERROR_TEXT);
+*****
+
+***** LODASH\RD\41.js
+ 6534:              }
+ 6535:              return function () {
+ 6536:                  return !predicate.apply(this, arguments);
+ 6537:              };
+ 6538:          }
+ 6539:          /**
+ 6540:       * Creates a function that is restricted to invoking `func` once. Repeat calls
+ 6541:       * to the function return the value of the first call. The `func` is invoked
+ 6542:       * with the `this` binding and arguments of the created function.
+ 6543:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6620:              }
+ 6621:              var length = transforms.length;
+ 6622:              return restParam(function (args) {
+ 6623:                  var index = nativeMin(args.length, length);
+ 6624:                  while (index--) {
+ 6625:                      args[index] = transforms[index](args[index]);
+ 6626:                  }
+ 6627:                  return func.apply(this, args);
+ 6628:              });
+ 6629:          });
+ 6630:          /**
+ 6631:       * Creates a function that negates the result of the predicate `func`. The
+ 6632:       * `func` predicate is invoked with the `this` binding and arguments of the
+ 6633:       * created function.
+ 6634:       *
+*****
+
+***** LODASH\RD\41.js
+ 6546:       * @category Function
+ 6547:       * @param {Function} func The function to restrict.
+ 6548:       * @returns {Function} Returns the new restricted function.
+ 6549:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6637:       * @category Function
+ 6638:       * @param {Function} predicate The predicate to negate.
+ 6639:       * @returns {Function} Returns the new function.
+ 6640:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 6550:       *
+ 6551:       * var initialize = _.once(createApplication);
+ 6552:       * initialize();
+ 6553:       * initialize();
+ 6554:       * // `initialize` invokes `createApplication` once
+ 6555:       */
+ 6556:          function once(func) {
+ 6557:              return before(2, func);
+ 6558:          }
+***** LODASH\RD\ORIGINAL.JS
+ 6641:       *
+ 6642:       * function isEven(n) {
+ 6643:       *   return n % 2 == 0;
+ 6644:       * }
+ 6645:       *
+ 6646:       * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+ 6647:       * // => [1, 3, 5]
+ 6648:       */
+ 6649:          function negate(predicate) {
+ 6650:              if (typeof predicate != 'function') {
+ 6651:                  throw new TypeError(FUNC_ERROR_TEXT);
+ 6652:              }
+ 6653:              return function () {
+ 6654:                  return !predicate.apply(this, arguments);
+ 6655:              };
+ 6656:          }
+*****
+
+***** LODASH\RD\41.js
+ 6559:          /**
+ 6560:       * Creates a function that invokes `func` with `partial` arguments prepended
+ 6561:       * to those provided to the new function. This method is like `_.bind` except
+ 6562:       * it does **not** alter the `this` binding.
+ 6563:       *
+ 6564:       * The `_.partial.placeholder` value, which defaults to `_` in monolithic
+ 6565:       * builds, may be used as a placeholder for partially applied arguments.
+ 6566:       *
+ 6567:       * **Note:** This method doesn't set the "length" property of partially
+ 6568:       * applied functions.
+ 6569:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6657:          /**
+ 6658:       * Creates a function that is restricted to invoking `func` once. Repeat calls
+ 6659:       * to the function return the value of the first call. The `func` is invoked
+ 6660:       * with the `this` binding and arguments of the created function.
+ 6661:       *
+*****
+
+***** LODASH\RD\41.js
+ 6572:       * @category Function
+ 6573:       * @param {Function} func The function to partially apply arguments to.
+ 6574:       * @param {...*} [partials] The arguments to be partially applied.
+ 6575:       * @returns {Function} Returns the new partially applied function.
+ 6576:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6664:       * @category Function
+ 6665:       * @param {Function} func The function to restrict.
+ 6666:       * @returns {Function} Returns the new restricted function.
+ 6667:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 6577:       *
+ 6578:       * var greet = function(greeting, name) {
+ 6579:       *   return greeting + ' ' + name;
+ 6580:       * };
+ 6581:       *
+ 6582:       * var sayHelloTo = _.partial(greet, 'hello');
+ 6583:       * sayHelloTo('fred');
+ 6584:       * // => 'hello fred'
+ 6585:       *
+ 6586:       * // using placeholders
+ 6587:       * var greetFred = _.partial(greet, _, 'fred');
+ 6588:       * greetFred('hi');
+ 6589:       * // => 'hi fred'
+ 6590:       */
+ 6591:          var partial = restParam(function (func, partials) {
+ 6592:              var holders = replaceHolders(partials, partial.placeholder);
+ 6593:              return createWrapper(func, PARTIAL_FLAG, undefined, partials, holders);
+ 6594:          });
+ 6595:          /**
+ 6596:       * This method is like `_.partial` except that partially applied arguments
+ 6597:       * are appended to those provided to the new function.
+ 6598:       *
+ 6599:       * The `_.partialRight.placeholder` value, which defaults to `_` in monolithic
+ 6600:       * builds, may be used as a placeholder for partially applied arguments.
+***** LODASH\RD\ORIGINAL.JS
+ 6668:       *
+ 6669:       * var initialize = _.once(createApplication);
+ 6670:       * initialize();
+ 6671:       * initialize();
+ 6672:       * // `initialize` invokes `createApplication` once
+ 6673:       */
+ 6674:          function once(func) {
+ 6675:              return before(2, func);
+ 6676:          }
+ 6677:          /**
+ 6678:       * Creates a function that invokes `func` with `partial` arguments prepended
+ 6679:       * to those provided to the new function. This method is like `_.bind` except
+ 6680:       * it does **not** alter the `this` binding.
+ 6681:       *
+ 6682:       * The `_.partial.placeholder` value, which defaults to `_` in monolithic
+ 6683:       * builds, may be used as a placeholder for partially applied arguments.
+*****
+
+***** LODASH\RD\41.js
+ 6616:       *
+ 6617:       * var greetFred = _.partialRight(greet, 'fred');
+ 6618:       * greetFred('hi');
+ 6619:       * // => 'hi fred'
+ 6620:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6699:       *
+ 6700:       * var sayHelloTo = _.partial(greet, 'hello');
+ 6701:       * sayHelloTo('fred');
+ 6702:       * // => 'hello fred'
+ 6703:       *
+*****
+
+***** LODASH\RD\41.js
+ 6621:       * // using placeholders
+ 6622:       * var sayHelloTo = _.partialRight(greet, 'hello', _);
+ 6623:       * sayHelloTo('fred');
+ 6624:       * // => 'hello fred'
+ 6625:       */
+ 6626:          var partialRight = restParam(function (func, partials) {
+ 6627:              var holders = replaceHolders(partials, partialRight.placeholder);
+ 6628:              return createWrapper(func, PARTIAL_RIGHT_FLAG, undefined, partials, holders);
+ 6629:          });
+***** LODASH\RD\ORIGINAL.JS
+ 6704:       * // using placeholders
+ 6705:       * var greetFred = _.partial(greet, _, 'fred');
+ 6706:       * greetFred('hi');
+ 6707:       * // => 'hi fred'
+ 6708:       */
+ 6709:          var partial = restParam(function (func, partials) {
+ 6710:              var holders = replaceHolders(partials, partial.placeholder);
+ 6711:              return createWrapper(func, PARTIAL_FLAG, undefined, partials, holders);
+ 6712:          });
+*****
+
+***** LODASH\RD\41.js
+ 6630:          /**
+ 6631:       * Creates a function that invokes `func` with arguments arranged according
+ 6632:       * to the specified indexes where the argument value at the first index is
+ 6633:       * provided as the first argument, the argument value at the second index is
+ 6634:       * provided as the second argument, and so on.
+ 6635:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6713:          /**
+ 6714:       * This method is like `_.partial` except that partially applied arguments
+ 6715:       * are appended to those provided to the new function.
+ 6716:       *
+ 6717:       * The `_.partialRight.placeholder` value, which defaults to `_` in monolithic
+ 6718:       * builds, may be used as a placeholder for partially applied arguments.
+ 6719:       *
+ 6720:       * **Note:** This method doesn't set the "length" property of partially
+ 6721:       * applied functions.
+ 6722:       *
+*****
+
+***** LODASH\RD\41.js
+ 6638:       * @category Function
+ 6639:       * @param {Function} func The function to rearrange arguments for.
+ 6640:       * @param {...(number|number[])} indexes The arranged argument indexes,
+ 6641:       *  specified individually or in arrays.
+ 6642:       * @returns {Function} Returns the new function.
+ 6643:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6725:       * @category Function
+ 6726:       * @param {Function} func The function to partially apply arguments to.
+ 6727:       * @param {...*} [partials] The arguments to be partially applied.
+ 6728:       * @returns {Function} Returns the new partially applied function.
+ 6729:       * @example
+*****
+
+***** LODASH\RD\41.js
+ 6644:       *
+ 6645:       * var rearged = _.rearg(function(a, b, c) {
+ 6646:       *   return [a, b, c];
+ 6647:       * }, 2, 0, 1);
+ 6648:       *
+ 6649:       * rearged('b', 'c', 'a')
+ 6650:       * // => ['a', 'b', 'c']
+ 6651:       *
+ 6652:       * var map = _.rearg(_.map, [1, 0]);
+ 6653:       * map(function(n) {
+ 6654:       *   return n * 3;
+ 6655:       * }, [1, 2, 3]);
+ 6656:       * // => [3, 6, 9]
+ 6657:       */
+ 6658:          var rearg = restParam(function (func, indexes) {
+ 6659:              return createWrapper(func, REARG_FLAG, undefined, undefined, undefined, baseFlatten(indexes));
+ 6660:          });
+***** LODASH\RD\ORIGINAL.JS
+ 6730:       *
+ 6731:       * var greet = function(greeting, name) {
+ 6732:       *   return greeting + ' ' + name;
+ 6733:       * };
+ 6734:       *
+ 6735:       * var greetFred = _.partialRight(greet, 'fred');
+ 6736:       * greetFred('hi');
+ 6737:       * // => 'hi fred'
+ 6738:       *
+ 6739:       * // using placeholders
+ 6740:       * var sayHelloTo = _.partialRight(greet, 'hello', _);
+ 6741:       * sayHelloTo('fred');
+ 6742:       * // => 'hello fred'
+ 6743:       */
+ 6744:          var partialRight = restParam(function (func, partials) {
+ 6745:              var holders = replaceHolders(partials, partialRight.placeholder);
+ 6746:              return createWrapper(func, PARTIAL_RIGHT_FLAG, undefined, partials, holders);
+ 6747:          });
+*****
+
+***** LODASH\RD\41.js
+ 6661:          /**
+ 6662:       * Creates a function that invokes `func` with the `this` binding of the
+ 6663:       * created function and arguments from `start` and beyond provided as an array.
+ 6664:       *
+ 6665:       * **Note:** This method is based on the [rest parameter](https://developer.mozilla.org/Web/JavaScript/Reference/Functions/
+ 6666:  rest_parameters).
+ 6667:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6748:          /**
+ 6749:       * Creates a function that invokes `func` with arguments arranged according
+ 6750:       * to the specified indexes where the argument value at the first index is
+ 6751:       * provided as the first argument, the argument value at the second index is
+ 6752:       * provided as the second argument, and so on.
+ 6753:       *
+*****
+
+***** LODASH\RD\41.js
+ 6670:       * @category Function
+ 6671:       * @param {Function} func The function to apply a rest parameter to.
+ 6672:       * @param {number} [start=func.length-1] The start position of the rest parameter.
+ 6673:       * @returns {Function} Returns the new function.
+***** LODASH\RD\ORIGINAL.JS
+ 6756:       * @category Function
+ 6757:       * @param {Function} func The function to rearrange arguments for.
+ 6758:       * @param {...(number|number[])} indexes The arranged argument indexes,
+ 6759:       *  specified individually or in arrays.
+ 6760:       * @returns {Function} Returns the new function.
+*****
+
+***** LODASH\RD\41.js
+ 6675:       *
+ 6676:       * var say = _.restParam(function(what, names) {
+***** LODASH\RD\ORIGINAL.JS
+ 6762:       *
+ 6763:       * var rearged = _.rearg(function(a, b, c) {
+ 6764:       *   return [a, b, c];
+ 6765:       * }, 2, 0, 1);
+ 6766:       *
+ 6767:       * rearged('b', 'c', 'a')
+ 6768:       * // => ['a', 'b', 'c']
+ 6769:       *
+ 6770:       * var map = _.rearg(_.map, [1, 0]);
+ 6771:       * map(function(n) {
+ 6772:       *   return n * 3;
+ 6773:       * }, [1, 2, 3]);
+ 6774:       * // => [3, 6, 9]
+ 6775:       */
+ 6776:          var rearg = restParam(function (func, indexes) {
+ 6777:              return createWrapper(func, REARG_FLAG, undefined, undefined, undefined, baseFlatten(indexes));
+ 6778:          });
+ 6779:          /**
+ 6780:       * Creates a function that invokes `func` with the `this` binding of the
+ 6781:       * created function and arguments from `start` and beyond provided as an array.
+ 6782:       *
+ 6783:       * **Note:** This method is based on the [rest parameter](https://developer.mozilla.org/Web/JavaScript/Reference/Functions/
+ 6784:  rest_parameters).
+ 6785:       *
+ 6786:       * @static
+ 6787:       * @memberOf _
+ 6788:       * @category Function
+ 6789:       * @param {Function} func The function to apply a rest parameter to.
+ 6790:       * @param {number} [start=func.length-1] The start position of the rest parameter.
+ 6791:       * @returns {Function} Returns the new function.
+ 6792:       * @example
+ 6793:       *
+ 6794:       * var say = _.restParam(function(what, names) {
+*****
+
+***** LODASH\RD\41.js
+ 6698:                      return func.call(this, args[0], rest);
+ 6699:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 6816:                      return func.call(this, args[0], rest);
+ 6817:                  case 2:
+ 6818:                      return func.call(this, args[0], args[1], rest);
+ 6819:                  }
+*****
+
+***** LODASH\RD\41.js
+ 9997:              // See https://youtu.be/XAqIpGU8ZZk#t=17m25s for more details.
+ 9998:              var index = -1, length = nativeMax(nativeCeil((end - start) / (step || 1))), result = Array(length);
+ 9999:              while (++index < length) {
+***** LODASH\RD\ORIGINAL.JS
+10117:              // See https://youtu.be/XAqIpGU8ZZk#t=17m25s for more details.
+10118:              var index = -1, length = nativeMax(nativeCeil((end - start) / (step || 1)), 0), result = Array(length);
+10119:              while (++index < length) {
+*****
+
+***** LODASH\RD\41.js
+10730:              var lodashFunc = lodash[methodName];
+10731:          });
+***** LODASH\RD\ORIGINAL.JS
+10850:              var lodashFunc = lodash[methodName];
+10851:              if (lodashFunc) {
+10852:                  var key = lodashFunc.name + '', names = realNames[key] || (realNames[key] = []);
+10853:                  names.push({
+10854:                      'name': methodName,
+10855:                      'func': lodashFunc
+10856:                  });
+10857:              }
+10858:          });
+*****
+

@@ -1,0 +1,40 @@
+Comparing files JADE\RD\53.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\53.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+*****
+
+***** JADE\RD\53.js
+  249:          }
+  250:      }
+***** JADE\RD\ORIGINAL.JS
+  252:          }
+  253:          return fn(null, res);
+  254:      }
+*****
+
+***** JADE\RD\53.js
+  293:  exports.compileFileClient = function (path, options) {
+  294:      var key;
+  295:      options = options || {};
+***** JADE\RD\ORIGINAL.JS
+  297:  exports.compileFileClient = function (path, options) {
+  298:      var key = path + ':client';
+  299:      options = options || {};
+*****
+
+***** JADE\RD\53.js
+  312:      }
+  313:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

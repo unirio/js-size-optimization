@@ -1,0 +1,48 @@
+Comparing files JADE\RD\59.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\59.js
+   70:      ast = link(ast);
+   71:      var js = generateCode(ast, {
+***** JADE\RD\ORIGINAL.JS
+   70:      ast = link(ast);
+   71:      // Compile
+   72:      var js = generateCode(ast, {
+*****
+
+***** JADE\RD\59.js
+   80:      });
+   81:      return {
+***** JADE\RD\ORIGINAL.JS
+   81:      });
+   82:      // Debug compiler
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+   86:      return {
+*****
+
+***** JADE\RD\59.js
+  266:  exports.renderFile = function (path, options, fn) {
+  267:      if ('function' == typeof options) {
+***** JADE\RD\ORIGINAL.JS
+  271:  exports.renderFile = function (path, options, fn) {
+  272:      // support callback API
+  273:      if ('function' == typeof options) {
+*****
+
+***** JADE\RD\59.js
+  306:   */
+  307:  exports.__express = function (path, options) {
+  308:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  309:      }
+  310:      exports.renderFile(path, options);
+  311:  };
+***** JADE\RD\ORIGINAL.JS
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

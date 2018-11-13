@@ -1,0 +1,11 @@
+Comparing files UNDERSCORE\RD\5.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\5.js
+ 1399:          // Provide the compiled source as a convenience for precompilation.
+ 1400:          var argument;
+ 1401:          template.source = 'function(' + argument + '){\n' + source + '}';
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1399:          // Provide the compiled source as a convenience for precompilation.
+ 1400:          var argument = settings.variable || 'obj';
+ 1401:          template.source = 'function(' + argument + '){\n' + source + '}';
+*****
+

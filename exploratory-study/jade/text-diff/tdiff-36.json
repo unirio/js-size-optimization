@@ -1,0 +1,46 @@
+Comparing files JADE\RD\36.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\36.js
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens);
+   49:              return parse(tokens, filename);
+***** JADE\RD\ORIGINAL.JS
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+*****
+
+***** JADE\RD\36.js
+  141:          doctype: options.doctype,
+  142:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\36.js
+  242:      if ('function' == typeof options) {
+  243:      }
+***** JADE\RD\ORIGINAL.JS
+  243:      if ('function' == typeof options) {
+  244:          fn = options, options = undefined;
+  245:      }
+*****
+
+***** JADE\RD\36.js
+  259:  };
+  260:  exports.renderFile = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  261:  };
+  262:  /**
+  263:   * Render a Pug file at the given `path`.
+  264:   *
+  265:   * @param {String} path
+  266:   * @param {Object|Function} options or callback
+  267:   * @param {Function|undefined} fn
+  268:   * @returns {String}
+  269:   * @api public
+  270:   */
+  271:  exports.renderFile = function (path, options, fn) {
+*****
+

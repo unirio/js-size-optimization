@@ -1,0 +1,95 @@
+Comparing files TLEAF\RD\53.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\53.js
+    6:  var config = require('./config');
+    7:  var UserError = require();
+    8:  ////////
+***** TLEAF\RD\ORIGINAL.JS
+    6:  var config = require('./config');
+    7:  var UserError = require('./error/UserError');
+    8:  ////////
+*****
+
+***** TLEAF\RD\53.js
+   87:  }
+   88:  // TODO: multiple variable definitions
+***** TLEAF\RD\ORIGINAL.JS
+   87:  }
+   88:  function findType(callExpression) {
+   89:      return _.get(callExpression, 'callee.property.name');
+   90:  }
+   91:  // TODO: multiple variable definitions
+*****
+
+***** TLEAF\RD\53.js
+  122:      var deps = [];
+  123:      // deps can be provided explicitly as an array
+***** TLEAF\RD\ORIGINAL.JS
+  125:      var deps = [];
+  126:      // component differs in a way that an object is used to describe it
+  127:      // when other unit types use functions for instantiation
+  128:      if (type === 'component') {
+  129:          return findComponentDeps(depsArg, scope);
+  130:      }
+  131:      // deps can be provided explicitly as an array
+*****
+
+***** TLEAF\RD\53.js
+  141:          // provider has a lot more complex structure because of $get construct
+  142:          return findProviderDeps(depsArg);
+***** TLEAF\RD\ORIGINAL.JS
+  149:          // provider has a lot more complex structure because of $get construct
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps(depsArg);
+*****
+
+***** TLEAF\RD\53.js
+  145:  }
+  146:  function (object, scope) {
+  147:      // covers { controller: someVar }
+***** TLEAF\RD\ORIGINAL.JS
+  154:  }
+  155:  function findComponentDeps(object, scope) {
+  156:      // covers { controller: someVar }
+*****
+
+***** TLEAF\RD\53.js
+  171:          var leftProp = _.get(expression, 'left.property', {});
+  172:          var right = _.get(expression, {});
+  173:          // covers "this.$get = ..."
+***** TLEAF\RD\ORIGINAL.JS
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+*****
+
+***** TLEAF\RD\53.js
+  233:  function extractVariableDeps(varName, scope) {
+  234:      var varNode = findVariable(varName);
+  235:      if (!varNode) {
+***** TLEAF\RD\ORIGINAL.JS
+  242:  function extractVariableDeps(varName, scope) {
+  243:      var varNode = findVariable(varName, scope);
+  244:      if (!varNode) {
+*****
+
+***** TLEAF\RD\53.js
+  238:      var params = [];
+  239:      var varType = _.get(varNode);
+  240:      if (varType === 'FunctionDeclaration') {
+***** TLEAF\RD\ORIGINAL.JS
+  247:      var params = [];
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+  250:      if (varType === 'FunctionDeclaration') {
+*****
+
+***** TLEAF\RD\53.js
+  246:      }
+  247:      var deps = extractDeps();
+  248:      return deps;
+***** TLEAF\RD\ORIGINAL.JS
+  256:      }
+  257:      var deps = extractDeps(params);
+  258:      return deps;
+*****
+

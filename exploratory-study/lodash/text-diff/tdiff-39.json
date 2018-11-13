@@ -1,0 +1,143 @@
+Comparing files LODASH\RD\39.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\39.js
+   45:      var reEscape = /<%-([\s\S]+?)%>/g, reEvaluate = /<%([\s\S]+?)%>/g, reInterpolate = /<%=([\s\S]+?)%>/g;
+   46:      var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/, rePropName = /[^.[\]]+|\[(?
+***** LODASH\RD\ORIGINAL.JS
+   45:      var reEscape = /<%-([\s\S]+?)%>/g, reEvaluate = /<%([\s\S]+?)%>/g, reInterpolate = /<%=([\s\S]+?)%>/g;
+   46:      /** Used to match property names within property paths. */
+   47:      var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/, rePropName = /[^.[\]]+|\[(?
+*****
+
+***** LODASH\RD\39.js
+  216:      };
+  217:      /** Used to escape characters for inclusion in compiled string literals. */
+***** LODASH\RD\ORIGINAL.JS
+  217:      };
+  218:      /** Used to escape characters for inclusion in compiled regexes. */
+  219:      var regexpEscapes = {
+  220:          '0': 'x30',
+  221:          '1': 'x31',
+  222:          '2': 'x32',
+  223:          '3': 'x33',
+  224:          '4': 'x34',
+  225:          '5': 'x35',
+  226:          '6': 'x36',
+  227:          '7': 'x37',
+  228:          '8': 'x38',
+  229:          '9': 'x39',
+  230:          'A': 'x41',
+  231:          'B': 'x42',
+  232:          'C': 'x43',
+  233:          'D': 'x44',
+  234:          'E': 'x45',
+  235:          'F': 'x46',
+  236:          'a': 'x61',
+  237:          'b': 'x62',
+  238:          'c': 'x63',
+  239:          'd': 'x64',
+  240:          'e': 'x65',
+  241:          'f': 'x66',
+  242:          'n': 'x6e',
+  243:          'r': 'x72',
+  244:          't': 'x74',
+  245:          'u': 'x75',
+  246:          'v': 'x76',
+  247:          'x': 'x78'
+  248:      };
+  249:      /** Used to escape characters for inclusion in compiled string literals. */
+*****
+
+***** LODASH\RD\39.js
+  441:      }
+  442:      function indexOfNaN(array, fromIndex, fromRight) {
+***** LODASH\RD\ORIGINAL.JS
+  473:      }
+  474:      /**
+  475:     * Gets the index at which the first occurrence of `NaN` is found in `array`.
+  476:     *
+  477:     * @private
+  478:     * @param {Array} array The array to search.
+  479:     * @param {number} fromIndex The index to search from.
+  480:     * @param {boolean} [fromRight] Specify iterating from right to left.
+  481:     * @returns {number} Returns the index of the matched `NaN`, else `-1`.
+  482:     */
+  483:      function indexOfNaN(array, fromIndex, fromRight) {
+*****
+
+***** LODASH\RD\39.js
+  614:          var Array = context.Array, Date = context.Date, Error = context.Error, Function = context.Function, Math = context.Math
+  615:  , Object = context.Object, RegExp = context.RegExp, String = context.String, TypeError = context.TypeError;
+  616:          /** Used for native method references. */
+***** LODASH\RD\ORIGINAL.JS
+  655:          var Array = context.Array, Date = context.Date, Error = context.Error, Function = context.Function, Math = context.Math
+  656:  , Number = context.Number, Object = context.Object, RegExp = context.RegExp, String = context.String, TypeError = context.TypeE
+  657:  rror;
+  658:          /** Used for native method references. */
+*****
+
+***** LODASH\RD\39.js
+ 1452:                  isCommon = false;
+ 1453:              }
+***** LODASH\RD\ORIGINAL.JS
+ 1494:                  isCommon = false;
+ 1495:                  values = cache;
+ 1496:              }
+*****
+
+***** LODASH\RD\39.js
+ 2716:                  case 6:
+ 2717:                      return;
+ 2718:                  case 7:
+***** LODASH\RD\ORIGINAL.JS
+ 2759:                  case 6:
+ 2760:                      return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+ 2761:                  case 7:
+*****
+
+***** LODASH\RD\39.js
+ 2720:                  }
+ 2721:                  var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding);
+ 2722:                  // Mimic the constructor's `return` behavior.
+***** LODASH\RD\ORIGINAL.JS
+ 2763:                  }
+ 2764:                  var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding, args);
+ 2765:                  // Mimic the constructor's `return` behavior.
+*****
+
+***** LODASH\RD\39.js
+ 4150:                          if (seen) {
+ 4151:                          }
+***** LODASH\RD\ORIGINAL.JS
+ 4193:                          if (seen) {
+ 4194:                              seen.push(value);
+ 4195:                          }
+*****
+
+***** LODASH\RD\39.js
+ 6331:                      //javascriptHelper.Escrever('result ' + result);
+ 6332:                      if (!timeoutId && !maxTimeoutId) {
+***** LODASH\RD\ORIGINAL.JS
+ 6375:                      //javascriptHelper.Escrever('result ' + result);
+ 6376:                      //javascriptHelper.Escrever('!timeoutId && !maxTimeoutId ' + (!timeoutId && !maxTimeoutId));
+ 6377:                      if (!timeoutId && !maxTimeoutId) {
+*****
+
+***** LODASH\RD\39.js
+ 6774:                  }
+ 6775:                  var otherArgs = Array();
+ 6776:                  index = -1;
+***** LODASH\RD\ORIGINAL.JS
+ 6819:                  }
+ 6820:                  var otherArgs = Array(start + 1);
+ 6821:                  index = -1;
+*****
+
+***** LODASH\RD\39.js
+10376:          SetCache.prototype.push = cachePush;
+10377:          // Assign cache to `_.memoize`.
+***** LODASH\RD\ORIGINAL.JS
+10421:          // Add functions to the `Set` cache.
+10422:          SetCache.prototype.push = cachePush;
+10423:          // Assign cache to `_.memoize`.
+*****
+

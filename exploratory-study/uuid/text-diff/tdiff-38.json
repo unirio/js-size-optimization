@@ -1,0 +1,24 @@
+Comparing files UUID\RD\38.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\38.js
+    1:  function UUIDjs() {
+    2:  }
+***** UUID\RD\ORIGINAL.JS
+    1:  /*
+    2:   * UUID-js: A js library to generate and parse UUIDs, TimeUUIDs and generate
+    3:   * TimeUUID based on dates for range selections.
+    4:   * @see http://www.ietf.org/rfc/rfc4122.txt
+    5:   **/
+    6:  function UUIDjs() {
+    7:  }
+*****
+
+***** UUID\RD\38.js
+  188:      }
+  189:      return;
+  190:  };
+***** UUID\RD\ORIGINAL.JS
+  193:      }
+  194:      return UUIDjs.fromURN(str);
+  195:  };
+*****
+

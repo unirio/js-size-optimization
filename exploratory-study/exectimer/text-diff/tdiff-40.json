@@ -1,0 +1,46 @@
+Comparing files EXECTIMER\RD\40.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\40.js
+  148:      if (isGeneratorFunction(callback)) {
+  149:          co(callback).then(done);
+  150:      } else if (!!callback.toString().match()) {
+  151:          // If done is passed when the callback is declared than we assume is async
+***** EXECTIMER\RD\ORIGINAL.JS
+  148:      if (isGeneratorFunction(callback)) {
+  149:          co(callback).then(done, done);
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+  151:          // If done is passed when the callback is declared than we assume is async
+*****
+
+***** EXECTIMER\RD\40.js
+  169:  Tick.prototype.stop = function () {
+  170:      this.hrend = process.hrtime();
+  171:      timer(this.name).ticks.push(this);
+***** EXECTIMER\RD\ORIGINAL.JS
+  169:  Tick.prototype.stop = function () {
+  170:      this.hrend = process.hrtime(this.hrstart);
+  171:      timer(this.name).ticks.push(this);
+*****
+
+***** EXECTIMER\RD\40.js
+  177:  Tick.prototype.getDiff = function () {
+  178:      return;
+  179:  };
+***** EXECTIMER\RD\ORIGINAL.JS
+  177:  Tick.prototype.getDiff = function () {
+  178:      return this.hrend[0] * 1000000000 + this.hrend[1];
+  179:  };
+*****
+
+***** EXECTIMER\RD\40.js
+  184:  };
+  185:  function functionName(fun) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  184:  };
+  185:  /**
+  186:   * Helper function used to retrieve function name.
+  187:   * @param fun
+  188:   * @returns {string}
+  189:   */
+  190:  function functionName(fun) {
+*****
+

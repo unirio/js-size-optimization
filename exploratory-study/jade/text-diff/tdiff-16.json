@@ -1,0 +1,19 @@
+Comparing files JADE\RD\16.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\16.js
+  141:          doctype: options.doctype,
+  142:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\16.js
+  177:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+  178:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+  178:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+  179:          globals: options.globals,
+  180:          self: options.self,
+*****
+

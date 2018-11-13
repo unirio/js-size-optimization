@@ -1,0 +1,14 @@
+Comparing files JADE\RD\15.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\15.js
+  184:      });
+  185:      return { body: parsed.body };
+  186:  };
+***** JADE\RD\ORIGINAL.JS
+  184:      });
+  185:      return {
+  186:          body: parsed.body,
+  187:          dependencies: parsed.dependencies
+  188:      };
+  189:  };
+*****
+

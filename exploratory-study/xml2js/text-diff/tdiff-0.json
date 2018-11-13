@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\0.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\0.js
+   62:              xmlns: false,
+   63:              childkey: '@@',
+***** XML2JS\RD\ORIGINAL.JS
+   62:              xmlns: false,
+   63:              explicitChildren: false,
+   64:              childkey: '@@',
+*****
+

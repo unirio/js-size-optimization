@@ -1,0 +1,59 @@
+Comparing files TLEAF\RD\34.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\34.js
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property');
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+*****
+
+***** TLEAF\RD\34.js
+   51:          var name = findName(call.node, call.scope);
+   52:          if (_.isUndefined()) {
+   53:              return;
+***** TLEAF\RD\ORIGINAL.JS
+   51:          var name = findName(call.node, call.scope);
+   52:          if (_.isUndefined(name)) {
+   53:              return;
+*****
+
+***** TLEAF\RD\34.js
+  159:      }
+  160:      if (object.type !== 'ObjectExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  159:      }
+  160:      // if not object - not sure what to do with it
+  161:      if (object.type !== 'ObjectExpression') {
+*****
+
+***** TLEAF\RD\34.js
+  207:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  208:                  }
+***** TLEAF\RD\ORIGINAL.JS
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+*****
+
+***** TLEAF\RD\34.js
+  236:      }
+  237:      var node;
+  238:      return node;
+***** TLEAF\RD\ORIGINAL.JS
+  238:      }
+  239:      var node = _.get(variable, 'defs[0].node');
+  240:      return node;
+*****
+
+***** TLEAF\RD\34.js
+  259:      var prop = _.find(object.properties, function (property) {
+  260:          return;
+  261:      });
+***** TLEAF\RD\ORIGINAL.JS
+  261:      var prop = _.find(object.properties, function (property) {
+  262:          return _.get(property, 'key.name') === propName;
+  263:      });
+*****
+

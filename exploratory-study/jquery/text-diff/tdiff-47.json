@@ -1,0 +1,99 @@
+Comparing files JQUERY\RD\47.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\47.js
+  248:          // Support: IE <=9 - 11, Edge 12 - 13
+  249:          camelCase: function (string) {
+***** JQUERY\RD\ORIGINAL.JS
+  248:          // Support: IE <=9 - 11, Edge 12 - 13
+  249:          // Microsoft forgot to hump their vendor prefix (#9572)
+  250:          camelCase: function (string) {
+*****
+
+***** JQUERY\RD\47.js
+  719:  k non-disabled form elements for fieldset[disabled] ancestors
+  720:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  721:  ion> under fieldset[disabled] is disabled
+  722:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\47.js
+  938:                      // Support: IE9-11+
+  939:                      docElem.appendChild(el).disabled = true;
+***** JQUERY\RD\ORIGINAL.JS
+  940:                      // Support: IE9-11+
+  941:                      // IE's :disabled selector does not pick up the children of disabled fieldsets
+  942:                      docElem.appendChild(el).disabled = true;
+*****
+
+***** JQUERY\RD\47.js
+ 1691:                  if (elem = unmatched[i]) {
+ 1692:                      if (!filter || filter(elem, xml)) {
+ 1693:                          newUnmatched.push(elem);
+***** JQUERY\RD\ORIGINAL.JS
+ 1694:                  if (elem = unmatched[i]) {
+ 1695:                      if (!filter || filter(elem, context, xml)) {
+ 1696:                          newUnmatched.push(elem);
+*****
+
+***** JQUERY\RD\47.js
+ 2764:                          resolveContexts[i] = this;
+ 2765:                          if (!--remaining) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2767:                          resolveContexts[i] = this;
+ 2768:                          resolveValues[i] = arguments.length > 1 ? slice.call(arguments) : value;
+ 2769:                          if (!--remaining) {
+*****
+
+***** JQUERY\RD\47.js
+ 2779:              while (i--) {
+ 2780:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 2783:              while (i--) {
+ 2784:                  adoptValue(resolveValues[i], updateFunc(i), master.reject);
+ 2785:              }
+*****
+
+***** JQUERY\RD\47.js
+ 4186:              if (first || ignored) {
+ 4187:                  scripts = jQuery.map(getAll(fragment), disableScript);
+ 4188:                  hasScripts = scripts.length;
+***** JQUERY\RD\ORIGINAL.JS
+ 4191:              if (first || ignored) {
+ 4192:                  scripts = jQuery.map(getAll(fragment, 'script'), disableScript);
+ 4193:                  hasScripts = scripts.length;
+*****
+
+***** JQUERY\RD\47.js
+ 4403:          replaceWith: function () {
+ 4404:              var ignored;
+ 4405:              // Make the changes, replacing each non-ignored context element with the new content
+***** JQUERY\RD\ORIGINAL.JS
+ 4408:          replaceWith: function () {
+ 4409:              var ignored = [];
+ 4410:              // Make the changes, replacing each non-ignored context element with the new content
+*****
+
+***** JQUERY\RD\47.js
+ 4924:      jQuery.fx.step = {};
+ 4925:      function raf() {
+***** JQUERY\RD\ORIGINAL.JS
+ 4929:      jQuery.fx.step = {};
+ 4930:      var fxNow, timerId, rfxtypes = /^(?:toggle|show|hide)$/, rrun = /queueHooks$/;
+ 4931:      function raf() {
+*****
+
+***** JQUERY\RD\47.js
+ 6189:      });
+ 6190:      var r20 = /%20/g, rhash, rts = /([?&])_=[^&]*/, rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
+ 6191:          // #7653, #8125, #8152: local protocol detection
+***** JQUERY\RD\ORIGINAL.JS
+ 6195:      });
+ 6196:      var r20 = /%20/g, rhash = /#.*$/, rts = /([?&])_=[^&]*/, rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
+ 6197:          // #7653, #8125, #8152: local protocol detection
+*****
+

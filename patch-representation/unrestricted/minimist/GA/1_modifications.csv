@@ -1,0 +1,9 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;2911 
+1;4433;Identifier;2883;m 
+13;9591;Identifier;2883;m 
+15;9702;Literal;2883;m 
+21;13553;Literal;2883;m 
+31;10179;Literal;2880;m 
+42;11056;Identifier;2880;m 
+91;295;Literal;2865;m 

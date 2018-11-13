@@ -1,0 +1,54 @@
+Comparing files JQUERY\RD\8.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\8.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\8.js
+ 2123:              return !!winnow(this, false).length;
+ 2124:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 2124:              return !!winnow(this, // If this is a positional/relative selector, check membership in the returned set
+ 2125:              // so $("p:first").is("p:last") won't return true for a doc with two "p".
+ 2126:              typeof selector === 'string' && rneedsContext.test(selector) ? jQuery(selector) : selector || [], false).length;
+ 2127:          }
+*****
+
+***** JQUERY\RD\8.js
+ 2301:              return siblings(elem.firstChild);
+ 2302:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 2304:              return siblings(elem.firstChild);
+ 2305:          },
+ 2306:          contents: function (elem) {
+ 2307:              return elem.contentDocument || jQuery.merge([], elem.childNodes);
+ 2308:          }
+*****
+
+***** JQUERY\RD\8.js
+ 5225:                  }
+ 5226:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 5231:                  }
+ 5232:                  return result;
+ 5233:              }
+*****
+
+***** JQUERY\RD\8.js
+ 5861:                      var value, option, options = elem.options, index = elem.selectedIndex, one = elem.type === 'select-one', va
+ 5862:  lues = one ? null : [], max, i = index < 0 ? max : one ? index : 0;
+ 5863:                      // Loop through all the selected options
+***** JQUERY\RD\ORIGINAL.JS
+ 5868:                      var value, option, options = elem.options, index = elem.selectedIndex, one = elem.type === 'select-one', va
+ 5869:  lues = one ? null : [], max = one ? index + 1 : options.length, i = index < 0 ? max : one ? index : 0;
+ 5870:                      // Loop through all the selected options
+*****
+

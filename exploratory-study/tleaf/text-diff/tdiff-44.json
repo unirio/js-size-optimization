@@ -1,0 +1,131 @@
+Comparing files TLEAF\RD\44.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\44.js
+   10:  ////////
+   11:  function parse() {
+   12:      var ast;
+***** TLEAF\RD\ORIGINAL.JS
+   10:  ////////
+   11:  function parse(source) {
+   12:      var ast;
+*****
+
+***** TLEAF\RD\44.js
+   15:      } catch (err) {
+   16:          throw new UserError('Source file is not valid.');
+   17:      }
+***** TLEAF\RD\ORIGINAL.JS
+   15:      } catch (err) {
+   16:          throw new UserError('Source file is not valid.', err);
+   17:      }
+*****
+
+***** TLEAF\RD\44.js
+   50:          // for now use only completely parsed units
+   51:          var name = findName(call.node);
+   52:          if (_.isUndefined(name)) {
+***** TLEAF\RD\ORIGINAL.JS
+   50:          // for now use only completely parsed units
+   51:          var name = findName(call.node, call.scope);
+   52:          if (_.isUndefined(name)) {
+*****
+
+***** TLEAF\RD\44.js
+   62:          }
+   63:          // Angular should not allow having circular dependency, but if
+***** TLEAF\RD\ORIGINAL.JS
+   62:          }
+   63:          var deps = findDeps(call.node, call.scope, type);
+   64:          // Angular should not allow having circular dependency, but if
+*****
+
+***** TLEAF\RD\44.js
+  175:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  176:      return deps;
+  177:  }
+  178:  function extractDeps(params) {
+  179:      if (!_.isArray(params)) {
+  180:          return [];
+  181:      }
+  182:      var deps = [];
+  183:      _.forEach(params, function (param) {
+  184:          if (param.type === 'Identifier') {
+  185:              var dep = { name: param.name };
+  186:              deps.push(dep);
+  187:          }
+***** TLEAF\RD\ORIGINAL.JS
+  176:      var depsFnBodyExpressions = _.get(depsFnBody, 'body');
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+  183:          if (type === 'ExpressionStatement' && leftProp.name === '$get') {
+  184:              // covers "this.$get = function (...) { ... };"
+  185:              if (right.type === 'FunctionExpression') {
+  186:                  deps = extractDeps(right.params);
+  187:                  return true;    // exit loop
+  188:              }
+  189:              // covert "this.$get = someVar;"
+  190:              if (right.type === 'Identifier') {
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+  194:          }
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+  196:          // covers "return ...;"
+  197:          if (type === 'ReturnStatement') {
+  198:              // covers "return { $get: function () {} };"
+  199:              // covers "return { $get: someVar };"
+  200:              if (argument.type === 'ObjectExpression') {
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+  204:              // covers "return someVar;"
+  205:              if (argument.type === 'Identifier') {
+  206:                  var varNode = findVariable(argument.name, depsFnScope);
+  207:                  if (varNode && _.get(varNode, 'init.type') === 'ObjectExpression') {
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+  211:              }
+  212:          }
+*****
+
+***** TLEAF\RD\44.js
+  190:  }
+  191:  function findVariable(varName, scope) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+  228:  }
+  229:  function findVariable(varName, scope) {
+*****
+
+***** TLEAF\RD\44.js
+  228:      }
+  229:      var value;
+  230:      var deps = [];
+  231:      // covers "{ key: someVar }"
+***** TLEAF\RD\ORIGINAL.JS
+  266:      }
+  267:      var value = _.get(prop, 'value', {});
+  268:      var deps = [];
+  269:      // covers "{ key: function () {} }"
+  270:      if (value.type === 'FunctionExpression') {
+  271:          deps = extractDeps(value.params);
+  272:      }
+  273:      // covers "{ key: someVar }"
+*****
+

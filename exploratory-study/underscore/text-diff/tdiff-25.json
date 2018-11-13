@@ -1,0 +1,10 @@
+Comparing files UNDERSCORE\RD\25.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\25.js
+ 1195:          _.isArguments = function (obj) {
+ 1196:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1195:          _.isArguments = function (obj) {
+ 1196:              return _.has(obj, 'callee');
+ 1197:          };
+*****
+

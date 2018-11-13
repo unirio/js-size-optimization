@@ -1,0 +1,11 @@
+Comparing files MINIMIST\RD\21.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\21.js
+  105:              } else if (/^(true|false)$/.test(next)) {
+  106:                  setArg(key, next === 'true');
+  107:                  i++;
+***** MINIMIST\RD\ORIGINAL.JS
+  105:              } else if (/^(true|false)$/.test(next)) {
+  106:                  setArg(key, next === 'true', arg);
+  107:                  i++;
+*****
+

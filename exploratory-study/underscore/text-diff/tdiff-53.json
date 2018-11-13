@@ -1,0 +1,46 @@
+Comparing files UNDERSCORE\RD\53.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\53.js
+   17:      // All **ECMAScript 5** native function implementations that we hope to use
+   18:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+***** UNDERSCORE\RD\ORIGINAL.JS
+   17:      // All **ECMAScript 5** native function implementations that we hope to use
+   18:      // are declared here.
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+*****
+
+***** UNDERSCORE\RD\53.js
+   55:              return function (value, other) {
+   56:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+   56:              return function (value, other) {
+   57:                  return func.call(context, value, other);
+   58:              };
+*****
+
+***** UNDERSCORE\RD\53.js
+  402:      };
+  403:      _.size = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  404:      };
+  405:      // Return the number of elements in an object.
+  406:      _.size = function (obj) {
+*****
+
+***** UNDERSCORE\RD\53.js
+  909:      };
+  910:      _.values = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  912:      };
+  913:      // Retrieve the values of an object's properties.
+  914:      _.values = function (obj) {
+*****
+
+***** UNDERSCORE\RD\53.js
+ 1238:      };
+ 1239:      _.constant = function (value) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1242:      };
+ 1243:      // Predicate-generating functions. Often useful outside of Underscore.
+ 1244:      _.constant = function (value) {
+*****
+

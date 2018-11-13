@@ -1,0 +1,49 @@
+Comparing files PLIVO-NODE\RD\49.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\49.js
+  136:  };
+  137:  plivo.get_live_call = function (params) {
+  138:      var action = 'Call/' + params['call_uuid'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  136:  };
+  137:  plivo.get_live_call = function (params, callback) {
+  138:      var action = 'Call/' + params['call_uuid'] + '/';
+*****
+
+***** PLIVO-NODE\RD\49.js
+  177:      var method = 'POST';
+  178:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  177:      var method = 'POST';
+  178:      request(action, method, params, callback);
+  179:  };
+*****
+
+***** PLIVO-NODE\RD\49.js
+  434:      var method = 'GET';
+  435:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  435:      var method = 'GET';
+  436:      request(action, method, params, callback);
+  437:  };
+*****
+
+***** PLIVO-NODE\RD\49.js
+  509:      var method = 'GET';
+  510:      request(action, method, params);
+  511:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  511:      var method = 'GET';
+  512:      request(action, method, params, callback);
+  513:  };
+*****
+
+***** PLIVO-NODE\RD\49.js
+  565:  plivo.get_outgoing_carrier_routings = function (params, callback) {
+  566:      var action;
+  567:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  567:  plivo.get_outgoing_carrier_routings = function (params, callback) {
+  568:      var action = 'OutgoingCarrierRouting/';
+  569:      var method = 'GET';
+*****
+

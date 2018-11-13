@@ -1,0 +1,20 @@
+Comparing files UNDERSCORE\RD\49.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\49.js
+  346:                  index: index,
+  347:                  criteria: iteratee(value, index)
+  348:              };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  346:                  index: index,
+  347:                  criteria: iteratee(value, index, list)
+  348:              };
+*****
+
+***** UNDERSCORE\RD\49.js
+  387:      // either a string attribute to count by, or a function that returns the
+  388:      _.countBy = group(function (result, value, key) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  387:      // either a string attribute to count by, or a function that returns the
+  388:      // criterion.
+  389:      _.countBy = group(function (result, value, key) {
+*****
+

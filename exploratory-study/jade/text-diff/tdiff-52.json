@@ -1,0 +1,206 @@
+Comparing files JADE\RD\52.js and JADE\RD\ORIGINAL.JS
+Resync Failed.  Files are too different.
+***** JADE\RD\52.js
+    1:  //     Underscore.js 1.8.3
+    2:  //     http://underscorejs.org
+    3:  //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+    4:  //     Underscore may be freely distributed under the MIT license.
+    5:  (function () {
+    6:      // Baseline setup
+    7:      // --------------
+    8:      // Establish the root object, `window` in the browser, or `exports` on the server.
+    9:      var root = this;
+   10:      // Save the previous value of the `_` variable.
+   11:      var previousUnderscore = root._;
+   12:      // Save bytes in the minified (but not gzipped) version:
+   13:      var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+   14:      // Create quick reference variables for speed access to core prototypes.
+   15:      var push = ArrayProto.push, slice = ArrayProto.slice, toString = ObjProto.toString, hasOwnProperty = ObjProto.hasOwnPropert
+   16:  y;
+   17:      // All **ECMAScript 5** native function implementations that we hope to use
+   18:      // are declared here.
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Naked function reference for surrogate-prototype-swapping.
+   21:      var Ctor = function () {
+   22:      };
+   23:      // Create a safe reference to the Underscore object for use below.
+   24:      var _ = function (obj) {
+   25:          if (obj instanceof _)
+   26:              return obj;
+   27:          if (!(this instanceof _))
+   28:              return new _(obj);
+   29:          this._wrapped = obj;
+   30:      };
+   31:      // Export the Underscore object for **Node.js**, with
+   32:      // backwards-compatibility for the old `require()` API. If we're in
+   33:      // the browser, add `_` as a global object.
+   34:      if (typeof exports !== 'undefined') {
+   35:          if (typeof module !== 'undefined' && module.exports) {
+   36:              exports = module.exports = _;
+   37:          }
+   38:          exports._ = _;
+   39:      } else {
+   40:          root._ = _;
+   41:      }
+   42:      // Current version.
+   43:      _.VERSION = '1.8.3';
+   44:      // Internal function that returns an efficient (for current engines) version
+   45:      // of the passed-in callback, to be repeatedly applied in other Underscore
+   46:      // functions.
+   47:      var optimizeCb = function (func, context, argCount) {
+   48:          if (context === void 0)
+   49:              return func;
+   50:          switch (argCount == null ? 3 : argCount) {
+   51:          case 1:
+   52:              return function (value) {
+   53:                  return func.call(context, value);
+   54:              };
+   55:          case 2:
+   56:              return function (value, other) {
+   57:                  return func.call(context, value, other);
+   58:              };
+   59:          case 3:
+   60:              return function (value, index, collection) {
+   61:                  return func.call(context, value, index, collection);
+   62:              };
+   63:          case 4:
+   64:              return function (accumulator, value, index, collection) {
+   65:                  return func.call(context, accumulator, value, index, collection);
+   66:              };
+   67:          }
+   68:          return function () {
+   69:              return func.apply(context, arguments);
+   70:          };
+   71:      };
+   72:      // A mostly-internal function to generate callbacks that can be applied
+   73:      // to each element in a collection, returning the desired result — either
+   74:      // identity, an arbitrary callback, a property matcher, or a property accessor.
+   75:      var cb = function (value, context, argCount) {
+   76:          if (value == null)
+   77:              return _.identity;
+   78:          if (_.isFunction(value))
+   79:              return optimizeCb(value, context, argCount);
+   80:          if (_.isObject(value))
+   81:              return _.matcher(value);
+   82:          return _.property(value);
+   83:      };
+   84:      _.iteratee = function (value, context) {
+   85:          return cb(value, context, Infinity);
+   86:      };
+   87:      // An internal function for creating assigner functions.
+   88:      var createAssigner = function (keysFunc, undefinedOnly) {
+   89:          return function (obj) {
+   90:              var length = arguments.length;
+   91:              if (length < 2 || obj == null)
+   92:                  return obj;
+   93:              for (var index = 1; index < length; index++) {
+   94:                  var source = arguments[index], keys = keysFunc(source), l = keys.length;
+   95:                  for (var i = 0; i < l; i++) {
+   96:                      var key = keys[i];
+   97:                      if (!undefinedOnly || obj[key] === void 0)
+   98:                          obj[key] = source[key];
+   99:                  }
+  100:              }
+***** JADE\RD\ORIGINAL.JS
+    1:  'use strict';
+    2:  /*!
+    3:   * Pug
+    4:   * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
+    5:   * MIT Licensed
+    6:   */
+    7:  /**
+    8:   * Module dependencies.
+    9:   */
+   10:  var fs = require('fs');
+   11:  var path = require('path');
+   12:  var lex = require('pug-lexer');
+   13:  var stripComments = require('pug-strip-comments');
+   14:  var parse = require('pug-parser');
+   15:  var load = require('pug-loader');
+   16:  var filters = require('pug-filters');
+   17:  var link = require('pug-linker');
+   18:  var generateCode = require('pug-code-gen');
+   19:  var runtime = require('pug-runtime');
+   20:  var runtimeWrap = require('pug-runtime/wrap');
+   21:  /**
+   22:   * Pug runtime helpers.
+   23:   */
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+   29:  /**
+   30:   * Object for custom filters
+   31:   */
+   32:  exports.filters = {};
+   33:  /**
+   34:   * Compile the given `str` of pug and return a function body.
+   35:   *
+   36:   * @param {String} str
+   37:   * @param {Object} options
+   38:   * @return {Object}
+   39:   * @api private
+   40:   */
+   41:  function compileBody(str, options) {
+   42:      var debug_sources = {};
+   43:      debug_sources[options.filename] = str;
+   44:      var dependencies = [];
+   45:      var ast = load.string(str, options.filename, {
+   46:          lex: lex,
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+   50:          },
+   51:          resolve: function (filename, source) {
+   52:              filename = filename.trim();
+   53:              if (filename[0] !== '/' && !source)
+   54:                  throw new Error('the "filename" option is required to use includes and extends with "relative" paths');
+   55:              if (filename[0] === '/' && !options.basedir)
+   56:                  throw new Error('the "basedir" option is required to use includes and extends with "absolute" paths');
+   57:              filename = path.join(filename[0] === '/' ? options.basedir : path.dirname(source), filename);
+   58:              if (path.basename(filename).indexOf('.') === -1)
+   59:                  filename += '.pug';
+   60:              return filename;
+   61:          },
+   62:          read: function (filename) {
+   63:              dependencies.push(filename);
+   64:              var str = fs.readFileSync(filename, 'utf8');
+   65:              debug_sources[filename] = str;
+   66:              return str;
+   67:          }
+   68:      });
+   69:      ast = filters.handleFilters(ast, exports.filters);
+   70:      ast = link(ast);
+   71:      // Compile
+   72:      var js = generateCode(ast, {
+   73:          pretty: options.pretty,
+   74:          compileDebug: options.compileDebug,
+   75:          doctype: options.doctype,
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          globals: options.globals,
+   78:          self: options.self,
+   79:          includeSources: options.includeSources ? debug_sources : false,
+   80:          templateName: options.templateName
+   81:      });
+   82:      // Debug compiler
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+   86:      return {
+   87:          body: js,
+   88:          dependencies: dependencies
+   89:      };
+   90:  }
+   91:  /**
+   92:   * Get the template from a string or a file, either compiled on-the-fly or
+   93:   * read from cache (if enabled), and cache the template if needed.
+   94:   *
+   95:   * If `str` is not set, the file specified in `options.filename` will be read.
+   96:   *
+   97:   * If `options.cache` is true, this function reads the file from
+   98:   * `options.filename` so it must be set prior to calling this function.
+   99:   *
+  100:   * @param {Object} options
+*****
+

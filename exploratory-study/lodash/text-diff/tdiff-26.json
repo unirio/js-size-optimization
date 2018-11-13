@@ -1,0 +1,314 @@
+Comparing files LODASH\RD\26.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\26.js
+  230:          'A': 'x41',
+  231:          'C': 'x43',
+***** LODASH\RD\ORIGINAL.JS
+  230:          'A': 'x41',
+  231:          'B': 'x42',
+  232:          'C': 'x43',
+*****
+
+***** LODASH\RD\26.js
+  695:          var MAX_SAFE_INTEGER = 9007199254740991;
+  696:          var metaMap = WeakMap && new WeakMap();
+***** LODASH\RD\ORIGINAL.JS
+  696:          var MAX_SAFE_INTEGER = 9007199254740991;
+  697:          /** Used to store function metadata. */
+  698:          var metaMap = WeakMap && new WeakMap();
+*****
+
+***** LODASH\RD\26.js
+ 1039:          /*------------------------------------------------------------------------*/
+ 1040:          function SetCache(values) {
+***** LODASH\RD\ORIGINAL.JS
+ 1041:          /*------------------------------------------------------------------------*/
+ 1042:          /**
+ 1043:       *
+ 1044:       * Creates a cache object to store unique values.
+ 1045:       *
+ 1046:       * @private
+ 1047:       * @param {Array} [values] The values to cache.
+ 1048:       */
+ 1049:          function SetCache(values) {
+*****
+
+***** LODASH\RD\26.js
+ 1059:          function cacheIndexOf(cache, value) {
+ 1060:              var data = cache.data;
+ 1061:              return result ? 0 : -1;
+***** LODASH\RD\ORIGINAL.JS
+ 1068:          function cacheIndexOf(cache, value) {
+ 1069:              var data = cache.data, result = typeof value == 'string' || isObject(value) ? data.set.has(value) : data.hash[value
+ 1070:  ];
+ 1071:              return result ? 0 : -1;
+*****
+
+***** LODASH\RD\26.js
+ 1484:                  isCommon = false;
+ 1485:              }
+***** LODASH\RD\ORIGINAL.JS
+ 1494:                  isCommon = false;
+ 1495:                  values = cache;
+ 1496:              }
+*****
+
+***** LODASH\RD\26.js
+ 2599:                      baseEach(collection, function (value, key, collection) {
+ 2600:                          setter(result, value, iteratee(value, key, collection));
+ 2601:                      });
+***** LODASH\RD\ORIGINAL.JS
+ 2610:                      baseEach(collection, function (value, key, collection) {
+ 2611:                          setter(result, value, iteratee(value, key, collection), collection);
+ 2612:                      });
+*****
+
+***** LODASH\RD\26.js
+ 2840:                      if (length < arity) {
+ 2841:                          var newArgPos = argPos ? copyArray() : undefined, newArity = nativeMax(arity - length, 0), newsHolders 
+ 2842:  = isCurry ? argsHolders : undefined, newHoldersRight = isCurry ? undefined : argsHolders, newPartials = isCurry ? args : undefi
+ 2843:  ned, newPartialsRight = isCurry ? undefined : args;
+ 2844:                          bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+***** LODASH\RD\ORIGINAL.JS
+ 2851:                      if (length < arity) {
+ 2852:                          var newArgPos = argPos ? copyArray(argPos) : undefined, newArity = nativeMax(arity - length, 0), newsHo
+ 2853:  lders = isCurry ? argsHolders : undefined, newHoldersRight = isCurry ? undefined : argsHolders, newPartials = isCurry ? args : 
+ 2854:  undefined, newPartialsRight = isCurry ? undefined : args;
+ 2855:                          bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+*****
+
+***** LODASH\RD\26.js
+ 3179:                  var data = array[length], otherFunc = data.func;
+ 3180:              }
+***** LODASH\RD\ORIGINAL.JS
+ 3190:                  var data = array[length], otherFunc = data.func;
+ 3191:                  if (otherFunc == null || otherFunc == func) {
+ 3192:                      return data.name;
+ 3193:                  }
+ 3194:              }
+*****
+
+***** LODASH\RD\26.js
+ 3464:              if (typeof value == 'number') {
+ 3465:              }
+***** LODASH\RD\ORIGINAL.JS
+ 3478:              if (typeof value == 'number') {
+ 3479:                  return true;
+ 3480:              }
+*****
+
+***** LODASH\RD\26.js
+ 6405:                  } else if (!timeoutId && wait !== maxWait) {
+ 6406:                      timeoutId = setTimeout(delayed);
+ 6407:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 6420:                  } else if (!timeoutId && wait !== maxWait) {
+ 6421:                      timeoutId = setTimeout(delayed, wait);
+ 6422:                  }
+*****
+
+***** LODASH\RD\26.js
+ 9422:              var settings = lodash.templateSettings;
+ 9423:              if (otherOptions && isIterateeCall(string, options)) {
+ 9424:                  options = otherOptions = undefined;
+***** LODASH\RD\ORIGINAL.JS
+ 9437:              var settings = lodash.templateSettings;
+ 9438:              if (otherOptions && isIterateeCall(string, options, otherOptions)) {
+ 9439:                  options = otherOptions = undefined;
+*****
+
+***** LODASH\RD\26.js
+10296:          }
+10297:          function minBy(array, iteratee) {
+10298:              return array && array.length ? arrayExtremum(array, getIteratee(iteratee), lt, POSITIVE_INFINITY) : POSITIVE_INFINI
+10299:  TY;
+10300:          }
+10301:          /**
+10302:       * Calculates `n` rounded to `precision`.
+10303:       *
+***** LODASH\RD\ORIGINAL.JS
+10311:          }
+10312:          /**
+10313:       * This method is like `_.min` except that it accepts `iteratee` which is
+10314:       * invoked for each element in `array` to generate the criterion by which
+10315:       * the value is ranked. The iteratee is invoked with one argument: (value).
+10316:       *
+*****
+
+***** LODASH\RD\26.js
+10306:       * @category Math
+10307:       * @param {number} n The number to round.
+10308:       * @param {number} [precision=0] The precision to round to.
+10309:       * @returns {number} Returns the rounded number.
+10310:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10319:       * @category Math
+10320:       * @param {Array} array The array to iterate over.
+10321:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10322:       * @returns {*} Returns the minimum value.
+10323:       * @example
+*****
+
+***** LODASH\RD\26.js
+10311:       *
+10312:       * _.round(4.006);
+10313:       * // => 4
+10314:       *
+10315:       * _.round(4.006, 2);
+10316:       * // => 4.01
+10317:       *
+10318:       * _.round(4060, -2);
+10319:       * // => 4100
+10320:       */
+10321:          var round = createRound('round');
+10322:          /**
+10323:       * Gets the sum of the values in `array`.
+10324:       *
+***** LODASH\RD\ORIGINAL.JS
+10324:       *
+10325:       * var users = [
+10326:       *   { 'user': 'barney', 'age': 36 },
+10327:       *   { 'user': 'fred',   'age': 40 }
+10328:       * ];
+10329:       *
+10330:       * _.minBy(users, function(o) { return o.age; });
+10331:       * // => { 'user': 'barney', 'age': 36 }
+10332:       *
+10333:       * // using the `_.property` callback shorthand
+10334:       * _.minBy(users, 'age');
+10335:       * // => { 'user': 'barney', 'age': 36 }
+10336:       */
+10337:          function minBy(array, iteratee) {
+10338:              return array && array.length ? arrayExtremum(array, getIteratee(iteratee), lt, POSITIVE_INFINITY) : POSITIVE_INFINI
+10339:  TY;
+10340:          }
+10341:          /**
+10342:       * Calculates `n` rounded to `precision`.
+10343:       *
+*****
+
+***** LODASH\RD\26.js
+10327:       * @category Math
+10328:       * @param {Array} array The array to iterate over.
+10329:       * @returns {number} Returns the sum.
+10330:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10346:       * @category Math
+10347:       * @param {number} n The number to round.
+10348:       * @param {number} [precision=0] The precision to round to.
+10349:       * @returns {number} Returns the rounded number.
+10350:       * @example
+*****
+
+***** LODASH\RD\26.js
+10331:       *
+10332:       * _.sum([4, 6]);
+10333:       * // => 10
+10334:       *
+10335:       * _.sum({ 'a': 4, 'b': 6 });
+10336:       * // => 10
+10337:       */
+10338:          function sum(array) {
+10339:              return array ? arraySum(array, identity) : 0;
+10340:          }
+10341:          /**
+10342:       * This method is like `_.sum` except that it accepts `iteratee` which is
+10343:       * invoked for each element in `array` to generate the value to be summed.
+10344:       * The iteratee is invoked with one argument: (value).
+10345:       *
+***** LODASH\RD\ORIGINAL.JS
+10351:       *
+10352:       * _.round(4.006);
+10353:       * // => 4
+10354:       *
+10355:       * _.round(4.006, 2);
+10356:       * // => 4.01
+10357:       *
+10358:       * _.round(4060, -2);
+10359:       * // => 4100
+10360:       */
+10361:          var round = createRound('round');
+10362:          /**
+10363:       * Gets the sum of the values in `array`.
+10364:       *
+*****
+
+***** LODASH\RD\26.js
+10349:       * @param {Array} array The array to iterate over.
+10350:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10351:       * @returns {number} Returns the sum.
+***** LODASH\RD\ORIGINAL.JS
+10368:       * @param {Array} array The array to iterate over.
+10369:       * @returns {number} Returns the sum.
+*****
+
+***** LODASH\RD\26.js
+10353:       *
+10354:       * var objects = [
+10355:       *   { 'n': 4 },
+10356:       *   { 'n': 6 }
+10357:       * ];
+10358:       *
+10359:       * _.sum(objects, function(o) { return o.n; });
+10360:       * // => 10
+***** LODASH\RD\ORIGINAL.JS
+10371:       *
+10372:       * _.sum([4, 6]);
+10373:       * // => 10
+*****
+
+***** LODASH\RD\26.js
+10361:       *
+10362:       * // using the `_.property` callback shorthand
+10363:       * _.sum(objects, 'n');
+10364:       * // => 10
+***** LODASH\RD\ORIGINAL.JS
+10374:       *
+10375:       * _.sum({ 'a': 4, 'b': 6 });
+10376:       * // => 10
+*****
+
+***** LODASH\RD\26.js
+10365:       */
+10366:          function sumBy(array, iteratee) {
+***** LODASH\RD\ORIGINAL.JS
+10377:       */
+10378:          function sum(array) {
+10379:              return array ? arraySum(array, identity) : 0;
+10380:          }
+10381:          /**
+10382:       * This method is like `_.sum` except that it accepts `iteratee` which is
+10383:       * invoked for each element in `array` to generate the value to be summed.
+10384:       * The iteratee is invoked with one argument: (value).
+10385:       *
+10386:       * @static
+10387:       * @memberOf _
+10388:       * @category Math
+10389:       * @param {Array} array The array to iterate over.
+10390:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10391:       * @returns {number} Returns the sum.
+10392:       * @example
+10393:       *
+10394:       * var objects = [
+10395:       *   { 'n': 4 },
+10396:       *   { 'n': 6 }
+10397:       * ];
+10398:       *
+10399:       * _.sum(objects, function(o) { return o.n; });
+10400:       * // => 10
+10401:       *
+10402:       * // using the `_.property` callback shorthand
+10403:       * _.sum(objects, 'n');
+10404:       * // => 10
+10405:       */
+10406:          function sumBy(array, iteratee) {
+*****
+
+***** LODASH\RD\26.js
+10496:          lodash.eachRight = forEachRight;
+10497:          mixin(lodash, lodash);
+***** LODASH\RD\ORIGINAL.JS
+10536:          lodash.eachRight = forEachRight;
+10537:          // Add functions to `lodash.prototype`.
+10538:          mixin(lodash, lodash);
+*****
+

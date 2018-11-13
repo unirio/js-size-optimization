@@ -1,0 +1,10 @@
+Comparing files UNDERSCORE\RD\35.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\35.js
+ 1356:      // and correctly escapes quotes within interpolated code.
+ 1357:      _.template = function (text, settings, oldSettings) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1356:      // and correctly escapes quotes within interpolated code.
+ 1357:      // NB: `oldSettings` only exists for backwards compatibility.
+ 1358:      _.template = function (text, settings, oldSettings) {
+*****
+

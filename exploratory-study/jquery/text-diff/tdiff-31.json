@@ -1,0 +1,85 @@
+Comparing files JQUERY\RD\31.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\31.js
+  121:          eq: function (i) {
+  122:              var len = this.length;
+  123:              return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
+***** JQUERY\RD\ORIGINAL.JS
+  121:          eq: function (i) {
+  122:              var len = this.length, j = +i + (i < 0 ? len : 0);
+  123:              return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
+*****
+
+***** JQUERY\RD\31.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\31.js
+ 1426:                      if (!ridentifier.test(lang || '')) {
+ 1427:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 1427:                      if (!ridentifier.test(lang || '')) {
+ 1428:                          Sizzle.error('unsupported lang: ' + lang);
+ 1429:                      }
+*****
+
+***** JQUERY\RD\31.js
+ 2012:                  if (!isXML && elem.nodeName.toLowerCase() === 'input') {
+ 2013:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 2014:                  if (!isXML && elem.nodeName.toLowerCase() === 'input') {
+ 2015:                      return elem.defaultValue;
+ 2016:                  }
+*****
+
+***** JQUERY\RD\31.js
+ 2888:              }
+ 2889:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 2891:              }
+ 2892:              if (fn) {
+ 2893:                  for (; i < len; i++) {
+ 2894:                      fn(elems[i], key, raw ? value : value.call(elems[i], i, fn(elems[i], key)));
+ 2895:                  }
+ 2896:              }
+ 2897:          }
+*****
+
+***** JQUERY\RD\31.js
+ 4621:          // Start with offset property, which is equivalent to the border-box value
+ 4622:          var val, styles = getStyles(elem), isBorderBox = jQuery.css(elem, 'boxSizing', false, styles) === 'border-box';
+ 4623:          // Support: IE <=11 only
+***** JQUERY\RD\ORIGINAL.JS
+ 4629:          // Start with offset property, which is equivalent to the border-box value
+ 4630:          var val, valueIsBorderBox = true, styles = getStyles(elem), isBorderBox = jQuery.css(elem, 'boxSizing', false, styles) 
+ 4631:  === 'border-box';
+ 4632:          // Support: IE <=11 only
+*****
+
+***** JQUERY\RD\31.js
+ 6409:              contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+ 6410:              accepts: {
+***** JQUERY\RD\ORIGINAL.JS
+ 6418:              contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+ 6419:              /*
+ 6420:                  timeout: 0,
+ 6421:                  data: null,
+ 6422:                  dataType: null,
+ 6423:                  username: null,
+ 6424:                  password: null,
+ 6425:                  cache: null,
+ 6426:                  throws: false,
+ 6427:                  traditional: false,
+ 6428:                  headers: {},
+ 6429:                  */
+ 6430:              accepts: {
+*****
+

@@ -1,0 +1,60 @@
+Comparing files JADE\RD\0.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\0.js
+   32:  exports.filters = {};
+   33:  function compileBody(str, options) {
+***** JADE\RD\ORIGINAL.JS
+   32:  exports.filters = {};
+   33:  /**
+   34:   * Compile the given `str` of pug and return a function body.
+   35:   *
+   36:   * @param {String} str
+   37:   * @param {Object} options
+   38:   * @return {Object}
+   39:   * @api private
+   40:   */
+   41:  function compileBody(str, options) {
+*****
+
+***** JADE\RD\0.js
+  133:          doctype: options.doctype,
+  134:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\0.js
+  136:          includeSources: options.compileDebug === true,
+  137:          debug: options.debug
+  138:      });
+***** JADE\RD\ORIGINAL.JS
+  145:          includeSources: options.compileDebug === true,
+  146:          debug: options.debug,
+  147:          templateName: 'template'
+  148:      });
+*****
+
+***** JADE\RD\0.js
+  240:          } catch (ex) {
+  241:              return;
+  242:          }
+***** JADE\RD\ORIGINAL.JS
+  250:          } catch (ex) {
+  251:              return fn(ex);
+  252:          }
+*****
+
+***** JADE\RD\0.js
+***** JADE\RD\ORIGINAL.JS
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

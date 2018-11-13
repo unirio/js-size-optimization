@@ -1,0 +1,81 @@
+Comparing files JQUERY\RD\32.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\32.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\32.js
+ 3323:      function getDefaultDisplay() {
+ 3324:          var temp, doc = elem.ownerDocument, nodeName = elem.nodeName, display = defaultDisplayMap[nodeName];
+***** JQUERY\RD\ORIGINAL.JS
+ 3324:      function getDefaultDisplay(elem) {
+ 3325:          var temp, doc = elem.ownerDocument, nodeName = elem.nodeName, display = defaultDisplayMap[nodeName];
+*****
+
+***** JQUERY\RD\32.js
+ 4436:              }
+ 4437:          };
+***** JQUERY\RD\ORIGINAL.JS
+ 4437:              }
+ 4438:              return this.pushStack(ret);
+ 4439:          };
+*****
+
+***** JQUERY\RD\32.js
+ 5112:      }
+ 5113:      function Animation(elem, properties, options) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5114:      }
+ 5115:      function propFilter(props, specialEasing) {
+ 5116:          var index, name, easing, value, hooks;
+ 5117:          // camelCase, specialEasing and expand cssHook pass
+ 5118:          for (index in props) {
+ 5119:              name = jQuery.camelCase(index);
+ 5120:              easing = specialEasing[name];
+ 5121:              value = props[index];
+ 5122:              if (jQuery.isArray(value)) {
+ 5123:                  easing = value[1];
+ 5124:                  value = props[index] = value[0];
+ 5125:              }
+ 5126:              if (index !== name) {
+ 5127:                  props[name] = value;
+ 5128:                  delete props[index];
+ 5129:              }
+ 5130:              hooks = jQuery.cssHooks[name];
+ 5131:              if (hooks && 'expand' in hooks) {
+ 5132:                  value = hooks.expand(value);
+ 5133:                  delete props[name];
+ 5134:                  // Not quite $.extend, this won't overwrite existing keys.
+ 5135:                  // Reusing 'index' because we have the correct "name"
+ 5136:                  for (index in value) {
+ 5137:                      if (!(index in props)) {
+ 5138:                          props[index] = value[index];
+ 5139:                          specialEasing[index] = easing;
+ 5140:                      }
+ 5141:                  }
+ 5142:              } else {
+ 5143:                  specialEasing[name] = easing;
+ 5144:              }
+ 5145:          }
+ 5146:      }
+ 5147:      function Animation(elem, properties, options) {
+*****
+
+***** JQUERY\RD\32.js
+ 5582:              if (value !== undefined) {
+ 5583:                  if (hooks && 'set' in hooks && (ret = hooks.set(elem, value)) !== undefined) {
+ 5584:                      return ret;
+***** JQUERY\RD\ORIGINAL.JS
+ 5616:              if (value !== undefined) {
+ 5617:                  if (hooks && 'set' in hooks && (ret = hooks.set(elem, value, name)) !== undefined) {
+ 5618:                      return ret;
+*****
+

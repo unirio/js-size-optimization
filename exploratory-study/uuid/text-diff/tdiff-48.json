@@ -1,0 +1,30 @@
+Comparing files UUID\RD\48.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\48.js
+   22:  // Using Math.round() will give you a non-uniform distribution!
+   23:  function getRandomInt(min, max) {
+***** UUID\RD\ORIGINAL.JS
+   22:  // Using Math.round() will give you a non-uniform distribution!
+   23:  // @see https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/random
+   24:  function getRandomInt(min, max) {
+*****
+
+***** UUID\RD\48.js
+   87:  };
+   88:  UUIDjs.prototype.equals = function () {
+   89:      if (!(uuid instanceof UUID)) {
+***** UUID\RD\ORIGINAL.JS
+   88:  };
+   89:  UUIDjs.prototype.equals = function (uuid) {
+   90:      if (!(uuid instanceof UUID)) {
+*****
+
+***** UUID\RD\48.js
+  161:  ;
+  162:      if (r = p.exec()) {
+  163:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+***** UUID\RD\ORIGINAL.JS
+  162:  ;
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+*****
+

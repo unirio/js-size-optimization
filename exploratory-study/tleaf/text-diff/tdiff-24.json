@@ -1,0 +1,11 @@
+Comparing files TLEAF\RD\24.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\24.js
+   22:      estraverse.traverse(ast, {
+   23:          enter: function () {
+   24:              // find all call expressions, because all angular unit types are
+***** TLEAF\RD\ORIGINAL.JS
+   22:      estraverse.traverse(ast, {
+   23:          enter: function (node) {
+   24:              // find all call expressions, because all angular unit types are
+*****
+

@@ -1,0 +1,11 @@
+Comparing files JADE\RD\34.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\34.js
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m');
+   85:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+

@@ -1,0 +1,39 @@
+Comparing files XML2JS\RD\37.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\37.js
+   89:              childkey: '$$',
+   90:              async: false,
+***** XML2JS\RD\ORIGINAL.JS
+   89:              childkey: '$$',
+   90:              charsAsChildren: false,
+   91:              async: false,
+*****
+
+***** XML2JS\RD\37.js
+  172:                                      element = element.raw(wrapCDATA(child));
+  173:                                  }
+***** XML2JS\RD\ORIGINAL.JS
+  173:                                      element = element.raw(wrapCDATA(child));
+  174:                                  } else {
+  175:                                      element = element.txt(child);
+  176:                                  }
+*****
+
+***** XML2JS\RD\37.js
+  260:                      this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+  261:                      return setImmediate(this.processAsync);
+***** XML2JS\RD\ORIGINAL.JS
+  263:                      this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+  264:                      this.saxParser = this.saxParser.write(chunk);
+  265:                      return setImmediate(this.processAsync);
+*****
+
+***** XML2JS\RD\37.js
+  473:          Parser.prototype.parseString = function (str, cb) {
+  474:              var err;
+  475:              if (cb != null && typeof cb === 'function') {
+***** XML2JS\RD\ORIGINAL.JS
+  477:          Parser.prototype.parseString = function (str, cb) {
+  478:              var err, error1;
+  479:              if (cb != null && typeof cb === 'function') {
+*****
+

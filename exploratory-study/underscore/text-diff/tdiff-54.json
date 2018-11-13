@@ -1,0 +1,54 @@
+Comparing files UNDERSCORE\RD\54.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\54.js
+  264:      // Convenience version of a common use case of `find`: getting the first object
+  265:      _.findWhere = function (obj, attrs) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  264:      // Convenience version of a common use case of `find`: getting the first object
+  265:      // containing specific `key:value` pairs.
+  266:      _.findWhere = function (obj, attrs) {
+*****
+
+***** UNDERSCORE\RD\54.js
+  676:              throw new TypeError('Bind must be called on a function');
+  677:          var args = slice.call(arguments);
+  678:          var bound = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  677:              throw new TypeError('Bind must be called on a function');
+  678:          var args = slice.call(arguments, 2);
+  679:          var bound = function () {
+*****
+
+***** UNDERSCORE\RD\54.js
+  860:      var hasEnumBug = !{ toString: null }.propertyIsEnumerable('toString');
+  861:      function collectNonEnumProps(obj, keys) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  861:      var hasEnumBug = !{ toString: null }.propertyIsEnumerable('toString');
+  862:      var nonEnumerableProps = [
+  863:          'valueOf',
+  864:          'isPrototypeOf',
+  865:          'toString',
+  866:          'propertyIsEnumerable',
+  867:          'hasOwnProperty',
+  868:          'toLocaleString'
+  869:      ];
+  870:      function collectNonEnumProps(obj, keys) {
+*****
+
+***** UNDERSCORE\RD\54.js
+ 1104:              // Linear search. Performance is inversely proportional to the number of
+ 1105:              if (aStack[length] === a)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1113:              // Linear search. Performance is inversely proportional to the number of
+ 1114:              // unique nested structures.
+ 1115:              if (aStack[length] === a)
+*****
+
+***** UNDERSCORE\RD\54.js
+ 1137:          aStack.pop();
+ 1138:          return true;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1147:          aStack.pop();
+ 1148:          bStack.pop();
+ 1149:          return true;
+*****
+

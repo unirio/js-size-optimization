@@ -1,0 +1,20 @@
+Comparing files UUID\RD\29.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\29.js
+   90:      if (!(uuid instanceof UUID)) {
+   91:          return;
+   92:      }
+***** UUID\RD\ORIGINAL.JS
+   90:      if (!(uuid instanceof UUID)) {
+   91:          return false;
+   92:      }
+*****
+
+***** UUID\RD\29.js
+  103:          mid: hm & 65535,
+  104:          timestamp: ts
+***** UUID\RD\ORIGINAL.JS
+  103:          mid: hm & 65535,
+  104:          hi: hm >>> 16,
+  105:          timestamp: ts
+*****
+

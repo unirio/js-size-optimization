@@ -1,0 +1,91 @@
+Comparing files PLIVO-NODE\RD\9.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\9.js
+  185:  };
+  186:  plivo.speak = function (params) {
+  187:      var action = 'Call/' + params['call_uuid'] + '/Speak/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  185:  };
+  186:  plivo.speak = function (params, callback) {
+  187:      var action = 'Call/' + params['call_uuid'] + '/Speak/';
+*****
+
+***** PLIVO-NODE\RD\9.js
+  197:  };
+  198:  // Request
+  199:  plivo.hangup_request = function (params, callback) {
+  200:      var action = 'Request/' + params['request_uuid'] + '/';
+  201:      delete params.request_uuid;
+  202:      var method = 'DELETE';
+  203:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  197:  };
+  198:  plivo.send_digits = function (params, callback) {
+  199:      var action = 'Call/' + params['call_uuid'] + '/DTMF/';
+  200:      delete params.call_uuid;
+  201:      var method = 'POST';
+  202:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\9.js
+  204:  };
+  205:  // Conferences
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  203:  };
+  204:  // Request
+  205:  plivo.hangup_request = function (params, callback) {
+  206:      var action = 'Request/' + params['request_uuid'] + '/';
+  207:      delete params.request_uuid;
+  208:      var method = 'DELETE';
+  209:      request(action, method, params, callback);
+  210:  };
+  211:  // Conferences
+*****
+
+***** PLIVO-NODE\RD\9.js
+  242:  plivo.stop_play_conference_member = function (params, callback) {
+  243:      var action;
+  244:      delete params.conference_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  248:  plivo.stop_play_conference_member = function (params, callback) {
+  249:      var action = 'Conference/' + params['conference_id'] + '/Member/' + params['member_id'] + '/Play/';
+  250:      delete params.conference_id;
+*****
+
+***** PLIVO-NODE\RD\9.js
+  302:      var method = 'POST';
+  303:      request(action, callback);
+  304:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  308:      var method = 'POST';
+  309:      request(action, method, params, callback);
+  310:  };
+*****
+
+***** PLIVO-NODE\RD\9.js
+  318:      var action = '';
+  319:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  324:      var action = '';
+  325:      var method = 'POST';
+  326:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\9.js
+  481:      var method = 'POST';
+  482:      request(action, method, params, callback);
+  483:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  488:      var method = 'POST';
+  489:      request(action, method, params, callback, true);
+  490:  };
+*****
+
+***** PLIVO-NODE\RD\9.js
+  713:          'maxMembers',
+  714:          'recordWhenAlone',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  720:          'maxMembers',
+  721:          'record',
+  722:          'recordWhenAlone',
+*****
+

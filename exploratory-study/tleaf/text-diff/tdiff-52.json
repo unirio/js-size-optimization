@@ -1,0 +1,58 @@
+Comparing files TLEAF\RD\52.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\52.js
+  140:      if (depsArg.type === 'Identifier') {
+  141:          return extractVariableDeps(depsArg.name);
+  142:      }
+***** TLEAF\RD\ORIGINAL.JS
+  140:      if (depsArg.type === 'Identifier') {
+  141:          return extractVariableDeps(depsArg.name, scope);
+  142:      }
+*****
+
+***** TLEAF\RD\52.js
+  154:  }
+  155:  function findComponentDeps(object) {
+  156:      // covers { controller: someVar }
+***** TLEAF\RD\ORIGINAL.JS
+  154:  }
+  155:  function findComponentDeps(object, scope) {
+  156:      // covers { controller: someVar }
+*****
+
+***** TLEAF\RD\52.js
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                  }
+***** TLEAF\RD\ORIGINAL.JS
+  208:                      deps = extractObjectPropertyDeps(varNode.init, '$get', depsFnScope);
+  209:                      return true;
+  210:                  }
+*****
+
+***** TLEAF\RD\52.js
+  222:              var dep = { name: param.name };
+  223:          }
+***** TLEAF\RD\ORIGINAL.JS
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+*****
+
+***** TLEAF\RD\52.js
+  246:      var varType = _.get(varNode, 'type');
+  247:      if (varType === 'FunctionDeclaration') {
+***** TLEAF\RD\ORIGINAL.JS
+  248:      var varType = _.get(varNode, 'type');
+  249:      // covers "function someVar() {}"
+  250:      if (varType === 'FunctionDeclaration') {
+*****
+
+***** TLEAF\RD\52.js
+  251:      if (varType === 'VariableDeclarator') {
+  252:          params = _.get(varNode, 'init.params');
+  253:      }
+***** TLEAF\RD\ORIGINAL.JS
+  254:      if (varType === 'VariableDeclarator') {
+  255:          params = _.get(varNode, 'init.params', []);
+  256:      }
+*****
+

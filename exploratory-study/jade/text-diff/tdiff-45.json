@@ -1,0 +1,58 @@
+Comparing files JADE\RD\45.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\45.js
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens);
+   49:              return parse(tokens, filename);
+***** JADE\RD\ORIGINAL.JS
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+*****
+
+***** JADE\RD\45.js
+  149:      var res = options.inlineRuntimeFunctions ? new Function('')() : runtimeWrap(parsed.body);
+  150:      res.dependencies = parsed.dependencies;
+***** JADE\RD\ORIGINAL.JS
+  149:      var res = options.inlineRuntimeFunctions ? new Function('', parsed.body + ';return template;')() : runtimeWrap(parsed.body)
+  150:  ;
+  151:      res.dependencies = parsed.dependencies;
+*****
+
+***** JADE\RD\45.js
+  260:  };
+  261:  exports.renderFile = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  261:  };
+  262:  /**
+  263:   * Render a Pug file at the given `path`.
+  264:   *
+  265:   * @param {String} path
+  266:   * @param {Object|Function} options or callback
+  267:   * @param {Function|undefined} fn
+  268:   * @returns {String}
+  269:   * @api public
+  270:   */
+  271:  exports.renderFile = function (path, options, fn) {
+*****
+
+***** JADE\RD\45.js
+  299:  };
+  300:  exports.__express = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  309:  };
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+*****
+
+***** JADE\RD\45.js
+  303:      }
+  304:      exports.renderFile(path, options);
+  305:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

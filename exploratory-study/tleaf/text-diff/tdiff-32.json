@@ -1,0 +1,10 @@
+Comparing files TLEAF\RD\32.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\32.js
+  122:      }
+  123:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+***** TLEAF\RD\ORIGINAL.JS
+  122:      }
+  123:      // first argument is a name of the unit, second - usually has deps
+  124:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+*****
+

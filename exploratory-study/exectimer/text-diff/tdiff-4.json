@@ -1,0 +1,20 @@
+Comparing files EXECTIMER\RD\4.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\4.js
+   96:                  } else if (num >= 1000 && num < 1000000) {
+   97:                      return;
+   98:                  } else if (num >= 1000000 && num < 1000000000) {
+***** EXECTIMER\RD\ORIGINAL.JS
+   96:                  } else if (num >= 1000 && num < 1000000) {
+   97:                      return num / 1000 + 'us';
+   98:                  } else if (num >= 1000000 && num < 1000000000) {
+*****
+
+***** EXECTIMER\RD\4.js
+  177:  Tick.prototype.getDiff = function () {
+  178:  };
+***** EXECTIMER\RD\ORIGINAL.JS
+  177:  Tick.prototype.getDiff = function () {
+  178:      return this.hrend[0] * 1000000000 + this.hrend[1];
+  179:  };
+*****
+

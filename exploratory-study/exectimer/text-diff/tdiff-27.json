@@ -1,0 +1,11 @@
+Comparing files EXECTIMER\RD\27.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\27.js
+  148:      if (isGeneratorFunction(callback)) {
+  149:          co(callback).then(done);
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+***** EXECTIMER\RD\ORIGINAL.JS
+  148:      if (isGeneratorFunction(callback)) {
+  149:          co(callback).then(done, done);
+  150:      } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
+*****
+

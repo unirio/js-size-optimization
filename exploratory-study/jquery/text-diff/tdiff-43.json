@@ -1,0 +1,134 @@
+Comparing files JQUERY\RD\43.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\43.js
+  624:                  }
+  625:                  return;
+  626:              }
+***** JQUERY\RD\ORIGINAL.JS
+  624:                  }
+  625:                  return cache[key + ' '] = value;
+  626:              }
+*****
+
+***** JQUERY\RD\43.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\43.js
+ 1242:                      return function (elem) {
+ 1243:                          var result;
+ 1244:                          if (result == null) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1243:                      return function (elem) {
+ 1244:                          var result = Sizzle.attr(elem, name);
+ 1245:                          if (result == null) {
+*****
+
+***** JQUERY\RD\43.js
+ 2259:              return this.pushStack(jQuery.uniqueSort(jQuery.merge(this.get(), jQuery(selector, context))));
+ 2260:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 2260:              return this.pushStack(jQuery.uniqueSort(jQuery.merge(this.get(), jQuery(selector, context))));
+ 2261:          },
+ 2262:          addBack: function (selector) {
+ 2263:              return this.add(selector == null ? this.prevObject : this.prevObject.filter(selector));
+ 2264:          }
+*****
+
+***** JQUERY\RD\43.js
+ 4431:                  // .get() because push.apply(_, arraylike) throws on ancient WebKit
+ 4432:                  push.apply(ret);
+ 4433:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 4435:                  // .get() because push.apply(_, arraylike) throws on ancient WebKit
+ 4436:                  push.apply(ret, elems.get());
+ 4437:              }
+*****
+
+***** JQUERY\RD\43.js
+ 5642:      });
+ 5643:      jQuery.each([
+***** JQUERY\RD\ORIGINAL.JS
+ 5646:      });
+ 5647:      // Support: IE <=11 only
+ 5648:      // Accessing the selectedIndex property
+ 5649:      // forces the browser to respect setting selected
+ 5650:      // on the option
+ 5651:      // The getter ensures a default option is selected
+ 5652:      // when in an optgroup
+ 5653:      if (!support.optSelected) {
+ 5654:          jQuery.propHooks.selected = {
+ 5655:              get: function (elem) {
+ 5656:                  var parent = elem.parentNode;
+ 5657:                  if (parent && parent.parentNode) {
+ 5658:                      parent.parentNode.selectedIndex;
+ 5659:                  }
+ 5660:                  return null;
+ 5661:              },
+ 5662:              set: function (elem) {
+ 5663:                  var parent = elem.parentNode;
+ 5664:                  if (parent) {
+ 5665:                      parent.selectedIndex;
+ 5666:                      if (parent.parentNode) {
+ 5667:                          parent.parentNode.selectedIndex;
+ 5668:                      }
+ 5669:                  }
+ 5670:              }
+ 5671:          };
+ 5672:      }
+ 5673:      jQuery.each([
+*****
+
+***** JQUERY\RD\43.js
+ 6476:                  // Callbacks context
+ 6477:                  callbackContext,
+ 6478:                  // Context for global events is callbackContext if it is a DOM node or jQuery collection
+***** JQUERY\RD\ORIGINAL.JS
+ 6506:                  // Callbacks context
+ 6507:                  callbackContext = s.context || s,
+ 6508:                  // Context for global events is callbackContext if it is a DOM node or jQuery collection
+*****
+
+***** JQUERY\RD\43.js
+ 7079:      // Detect, normalize options and install callbacks for jsonp requests
+ 7080:      jQuery.ajaxPrefilter('json jsonp', function (s, jqXHR) {
+ 7081:          var callbackName, overwritten, responseContainer, jsonProp = s.jsonp !== false && (rjsonp.test(s.url) ? 'url' : typeof 
+ 7082:  s.data === 'string' && (s.contentType || '').indexOf() === 0 && rjsonp.test(s.data) && 'data');
+ 7083:          // Handle iff the expected data type is "jsonp" or we have a parameter to set
+***** JQUERY\RD\ORIGINAL.JS
+ 7109:      // Detect, normalize options and install callbacks for jsonp requests
+ 7110:      jQuery.ajaxPrefilter('json jsonp', function (s, originalSettings, jqXHR) {
+ 7111:          var callbackName, overwritten, responseContainer, jsonProp = s.jsonp !== false && (rjsonp.test(s.url) ? 'url' : typeof 
+ 7112:  s.data === 'string' && (s.contentType || '').indexOf('application/x-www-form-urlencoded') === 0 && rjsonp.test(s.data) && 'data
+ 7113:  ');
+ 7114:          // Handle iff the expected data type is "jsonp" or we have a parameter to set
+*****
+
+***** JQUERY\RD\43.js
+ 7449:                      return value === undefined ? // Get width or height on the element, requesting but not forcing parseFloat
+ 7450:                      jQuery.css(elem, type) : // Set width or height on the element
+ 7451:                      jQuery.style(elem, type, value, extra);
+***** JQUERY\RD\ORIGINAL.JS
+ 7480:                      return value === undefined ? // Get width or height on the element, requesting but not forcing parseFloat
+ 7481:                      jQuery.css(elem, type, extra) : // Set width or height on the element
+ 7482:                      jQuery.style(elem, type, value, extra);
+*****
+
+***** JQUERY\RD\43.js
+ 7457:          bind: function (types, data, fn) {
+ 7458:              return this.on(types, null, fn);
+ 7459:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 7488:          bind: function (types, data, fn) {
+ 7489:              return this.on(types, null, data, fn);
+ 7490:          },
+*****
+

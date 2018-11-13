@@ -1,0 +1,26 @@
+Comparing files JQUERY\RD\33.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\33.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\33.js
+ 6696:                  if (fireGlobals) {
+ 6697:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 6697:                  if (fireGlobals) {
+ 6698:                      globalEventContext.trigger('ajaxSend', [
+ 6699:                          jqXHR,
+ 6700:                          s
+ 6701:                      ]);
+ 6702:                  }
+*****
+

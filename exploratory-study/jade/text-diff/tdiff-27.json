@@ -1,0 +1,30 @@
+Comparing files JADE\RD\27.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\27.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+*****
+
+***** JADE\RD\27.js
+   73:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   74:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          globals: options.globals,
+   78:          self: options.self,
+*****
+
+***** JADE\RD\27.js
+  251:      options = options || {};
+  252:      if (options.cache && !options.filename) {
+***** JADE\RD\ORIGINAL.JS
+  255:      options = options || {};
+  256:      // cache requires .filename
+  257:      if (options.cache && !options.filename) {
+*****
+

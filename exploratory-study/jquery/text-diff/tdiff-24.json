@@ -1,0 +1,42 @@
+Comparing files JQUERY\RD\24.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\24.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\24.js
+ 1576:                      if (match) {
+ 1577:                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 1577:                      if (match) {
+ 1578:                          // Don't consume trailing commas as valid
+ 1579:                          soFar = soFar.slice(match[0].length) || soFar;
+ 1580:                      }
+*****
+
+***** JQUERY\RD\24.js
+ 6444:              // Data converters
+ 6445:              converters: {
+***** JQUERY\RD\ORIGINAL.JS
+ 6447:              // Data converters
+ 6448:              // Keys separate source (or catchall "*") and destination types with a single space
+ 6449:              converters: {
+*****
+
+***** JQUERY\RD\24.js
+ 7334:              // Running getBoundingClientRect on a
+ 7335:              if (!elem.getClientRects().length) {
+***** JQUERY\RD\ORIGINAL.JS
+ 7338:              // Running getBoundingClientRect on a
+ 7339:              // disconnected node in IE throws an error
+ 7340:              if (!elem.getClientRects().length) {
+*****
+

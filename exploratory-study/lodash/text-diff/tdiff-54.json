@@ -1,0 +1,79 @@
+Comparing files LODASH\RD\54.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\54.js
+  534:      }
+  535:      function replaceHolders(array, placeholder) {
+***** LODASH\RD\ORIGINAL.JS
+  534:      }
+  535:      /**
+  536:     * Replaces all `placeholder` elements in `array` with an internal placeholder
+  537:     * and returns an array of their indexes.
+  538:     *
+  539:     * @private
+  540:     * @param {Array} array The array to modify.
+  541:     * @param {*} placeholder The placeholder to replace.
+  542:     * @returns {Array} Returns the new array of placeholder indexes.
+  543:     */
+  544:      function replaceHolders(array, placeholder) {
+*****
+
+***** LODASH\RD\54.js
+  650:          var arrayProto = Array.prototype, objectProto = Object.prototype, stringProto = String.prototype;
+  651:          var fnToString = Function.prototype.toString;
+***** LODASH\RD\ORIGINAL.JS
+  659:          var arrayProto = Array.prototype, objectProto = Object.prototype, stringProto = String.prototype;
+  660:          /** Used to resolve the decompiled source of functions. */
+  661:          var fnToString = Function.prototype.toString;
+*****
+
+***** LODASH\RD\54.js
+ 1911:          if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
+ 1912:          }
+***** LODASH\RD\ORIGINAL.JS
+ 1921:          if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
+ 1922:              baseKeysIn = function (object) {
+ 1923:                  var data, iterator = enumerate(object), result = [];
+ 1924:                  while (!(data = iterator.next()).done) {
+ 1925:                      result.push(data.value);
+ 1926:                  }
+ 1927:                  return result;
+ 1928:              };
+ 1929:          }
+*****
+
+***** LODASH\RD\54.js
+ 2102:          }
+ 2103:          function basePullAt(array, indexes) {
+***** LODASH\RD\ORIGINAL.JS
+ 2119:          }
+ 2120:          /**
+ 2121:       * The base implementation of `_.pullAt` without support for individual
+ 2122:       * index arguments or capturing the removed elements.
+ 2123:       *
+ 2124:       * @private
+ 2125:       * @param {Array} array The array to modify.
+ 2126:       * @param {number[]} indexes The indexes of elements to remove.
+ 2127:       * @returns {Array} Returns `array`.
+ 2128:       */
+ 2129:          function basePullAt(array, indexes) {
+*****
+
+***** LODASH\RD\54.js
+ 2496:              var holdersIndex = -1, holdersLength = holders.length, argsIndex = -1, argsLength = nativeMax(args.length - holders
+ 2497:  Length), rightIndex = -1, rightLength = partials.length, result = Array(argsLength + rightLength);
+ 2498:              while (++argsIndex < argsLength) {
+***** LODASH\RD\ORIGINAL.JS
+ 2522:              var holdersIndex = -1, holdersLength = holders.length, argsIndex = -1, argsLength = nativeMax(args.length - holders
+ 2523:  Length, 0), rightIndex = -1, rightLength = partials.length, result = Array(argsLength + rightLength);
+ 2524:              while (++argsIndex < argsLength) {
+*****
+
+***** LODASH\RD\54.js
+ 4162:                              var cache = caches[othIndex];
+ 4163:                              if ((cache ? cacheIndexOf(cache) : indexOf(arrays[othIndex], value, 0)) < 0) {
+ 4164:                                  continue outer;
+***** LODASH\RD\ORIGINAL.JS
+ 4188:                              var cache = caches[othIndex];
+ 4189:                              if ((cache ? cacheIndexOf(cache, value) : indexOf(arrays[othIndex], value, 0)) < 0) {
+ 4190:                                  continue outer;
+*****
+

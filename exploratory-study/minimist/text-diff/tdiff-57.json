@@ -1,0 +1,22 @@
+Comparing files MINIMIST\RD\57.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\57.js
+    5:          bools: {},
+    6:          strings: {}
+    7:      };
+***** MINIMIST\RD\ORIGINAL.JS
+    5:          bools: {},
+    6:          strings: {},
+    7:          unknownFn: null
+    8:      };
+*****
+
+***** MINIMIST\RD\57.js
+   45:      }
+   46:      function setArg(key, val) {
+   47:          if (arg && flags.unknownFn && !argDefined(key, arg)) {
+***** MINIMIST\RD\ORIGINAL.JS
+   46:      }
+   47:      function setArg(key, val, arg) {
+   48:          if (arg && flags.unknownFn && !argDefined(key, arg)) {
+*****
+

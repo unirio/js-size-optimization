@@ -1,0 +1,10 @@
+Comparing files JADE\RD\8.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\8.js
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+  144:          self: options.self,
+*****
+

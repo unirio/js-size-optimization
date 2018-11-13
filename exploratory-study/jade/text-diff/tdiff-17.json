@@ -1,0 +1,20 @@
+Comparing files JADE\RD\17.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\17.js
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens);
+   49:              return parse(tokens, filename);
+***** JADE\RD\ORIGINAL.JS
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+*****
+
+***** JADE\RD\17.js
+   64:              var str = fs.readFileSync(filename, 'utf8');
+   65:              return str;
+***** JADE\RD\ORIGINAL.JS
+   64:              var str = fs.readFileSync(filename, 'utf8');
+   65:              debug_sources[filename] = str;
+   66:              return str;
+*****
+

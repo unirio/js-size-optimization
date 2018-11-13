@@ -1,0 +1,108 @@
+Comparing files JQUERY\RD\36.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\36.js
+  539:                              if (nodeType === 9) {
+  540:                                  if (elem = context.getElementById()) {
+  541:                                      // Support: IE, Opera, Webkit
+***** JQUERY\RD\ORIGINAL.JS
+  539:                              if (nodeType === 9) {
+  540:                                  if (elem = context.getElementById(m)) {
+  541:                                      // Support: IE, Opera, Webkit
+*****
+
+***** JQUERY\RD\36.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\36.js
+  801:          ---------------------------------------------------------------------- */
+  802:              support.getElementsByTagName = assert(function (el) {
+***** JQUERY\RD\ORIGINAL.JS
+  802:          ---------------------------------------------------------------------- */
+  803:              // Check if getElementsByTagName("*") returns only elements
+  804:              support.getElementsByTagName = assert(function (el) {
+*****
+
+***** JQUERY\RD\36.js
+ 2956:          },
+ 2957:          remove: function (owner, key) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2958:          },
+ 2959:          access: function (owner, key, value) {
+ 2960:              // In cases where either:
+ 2961:              //
+ 2962:              //   1. No key was specified
+ 2963:              //   2. A string key was specified, but no value provided
+ 2964:              //
+ 2965:              // Take the "read" path and allow the get method to determine
+ 2966:              // which value to return, respectively either:
+ 2967:              //
+ 2968:              //   1. The entire cache object
+ 2969:              //   2. The data stored at the key
+ 2970:              //
+ 2971:              if (key === undefined || key && typeof key === 'string' && value === undefined) {
+ 2972:                  return this.get(owner, key);
+ 2973:              }
+ 2974:              // When the key is not a string, or both a key and value
+ 2975:              // are specified, set or extend (existing objects) with either:
+ 2976:              //
+ 2977:              //   1. An object of properties
+ 2978:              //   2. A key and value
+ 2979:              //
+ 2980:              this.set(owner, key, value);
+ 2981:              // Since the "set" path can have two possible entry points
+ 2982:              // return the expected data based on which path was taken[*]
+ 2983:              return value !== undefined ? value : key;
+ 2984:          },
+ 2985:          remove: function (owner, key) {
+*****
+
+***** JQUERY\RD\36.js
+ 3019:  mber if it doesn't change the string
+ 3020:                      +data + '' === data ? +data : rbrace.test(data) ? JSON.parse() : data;
+ 3021:                  } catch (e) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3047:  mber if it doesn't change the string
+ 3048:                      +data + '' === data ? +data : rbrace.test(data) ? JSON.parse(data) : data;
+ 3049:                  } catch (e) {
+*****
+
+***** JQUERY\RD\36.js
+ 3434:                      // Support: Android <=4.0 only, PhantomJS 1 only
+ 3435:                      jQuery.merge(nodes, elem.nodeType ? [elem] : elem);    // Convert non-html into a text node
+***** JQUERY\RD\ORIGINAL.JS
+ 3462:                      // Support: Android <=4.0 only, PhantomJS 1 only
+ 3463:                      // push.apply(_, arraylike) throws on ancient WebKit
+ 3464:                      jQuery.merge(nodes, elem.nodeType ? [elem] : elem);    // Convert non-html into a text node
+*****
+
+***** JQUERY\RD\36.js
+ 4836:              if (this.options.step) {
+ 4837:                  this.options.step.call(this.elem, this);
+ 4838:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 4865:              if (this.options.step) {
+ 4866:                  this.options.step.call(this.elem, this.now, this);
+ 4867:              }
+*****
+
+***** JQUERY\RD\36.js
+ 5607:                      var tabindex = jQuery.find.attr(elem, 'tabindex');
+ 5608:                      return tabindex ? parseInt(tabindex) : rfocusable.test(elem.nodeName) || rclickable.test(elem.nodeName) && 
+ 5609:  elem.href ? 0 : -1;
+ 5610:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 5636:                      var tabindex = jQuery.find.attr(elem, 'tabindex');
+ 5637:                      return tabindex ? parseInt(tabindex, 10) : rfocusable.test(elem.nodeName) || rclickable.test(elem.nodeName)
+ 5638:   && elem.href ? 0 : -1;
+ 5639:                  }
+*****
+

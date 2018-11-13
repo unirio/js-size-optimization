@@ -1,0 +1,86 @@
+Comparing files JQUERY\RD\15.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\15.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\15.js
+  905:                      // Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
+  906:                      if (!el.querySelectorAll().length) {
+  907:                          rbuggyQSA.push('~=');
+***** JQUERY\RD\ORIGINAL.JS
+  906:                      // Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
+  907:                      if (!el.querySelectorAll('[id~=' + expando + '-]').length) {
+  908:                          rbuggyQSA.push('~=');
+*****
+
+***** JQUERY\RD\15.js
+ 1690:          function condense(unmatched, map, filter, context, xml) {
+ 1691:              var elem, newUnmatched = [], i = 0, len = unmatched.length;
+ 1692:              for (; i < len; i++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1691:          function condense(unmatched, map, filter, context, xml) {
+ 1692:              var elem, newUnmatched = [], i = 0, len = unmatched.length, mapped = map != null;
+ 1693:              for (; i < len; i++) {
+*****
+
+***** JQUERY\RD\15.js
+ 2509:                      return this;
+ 2510:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 2510:                      return this;
+ 2511:                  },
+ 2512:                  // To know if the callbacks have already been called at least once
+ 2513:                  fired: function () {
+ 2514:                      return !!fired;
+ 2515:                  }
+*****
+
+***** JQUERY\RD\15.js
+ 5925:          trigger: function (event, data, elem, onlyHandlers) {
+ 5926:              var i, cur, tmp, bubbleType, ontype, handle, special, eventPath = [elem || document], namespaces = hasOwn.call(even
+ 5927:  t, 'namespace') ? event.namespace.split('.') : [];
+ 5928:              cur = tmp = elem = elem || document;
+***** JQUERY\RD\ORIGINAL.JS
+ 5930:          trigger: function (event, data, elem, onlyHandlers) {
+ 5931:              var i, cur, tmp, bubbleType, ontype, handle, special, eventPath = [elem || document], type = hasOwn.call(event, 'ty
+ 5932:  pe') ? event.type : event, namespaces = hasOwn.call(event, 'namespace') ? event.namespace.split('.') : [];
+ 5933:              cur = tmp = elem = elem || document;
+*****
+
+***** JQUERY\RD\15.js
+ 6159:          }
+ 6160:          return s.join('&');
+***** JQUERY\RD\ORIGINAL.JS
+ 6164:          }
+ 6165:          // Return the resulting serialization
+ 6166:          return s.join('&');
+*****
+
+***** JQUERY\RD\15.js
+ 6644:                      cacheURL = cacheURL.replace(rts, '');
+ 6645:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 6650:                      cacheURL = cacheURL.replace(rts, '');
+ 6651:                      uncached = (rquery.test(cacheURL) ? '&' : '?') + '_=' + nonce++ + uncached;
+ 6652:                  }
+*****
+
+***** JQUERY\RD\15.js
+ 7020:                      try {
+ 7021:                      } catch (e) {
+***** JQUERY\RD\ORIGINAL.JS
+ 7027:                      try {
+ 7028:                          // Do send the request (this may raise an exception)
+ 7029:                          xhr.send(options.hasContent && options.data || null);
+ 7030:                      } catch (e) {
+*****
+

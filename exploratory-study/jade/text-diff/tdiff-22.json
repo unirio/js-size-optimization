@@ -1,0 +1,23 @@
+Comparing files JADE\RD\22.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\22.js
+   81:      });
+   82:      return {
+***** JADE\RD\ORIGINAL.JS
+   81:      });
+   82:      // Debug compiler
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+   86:      return {
+*****
+
+***** JADE\RD\22.js
+  312:      }
+  313:      exports.renderFile(path, fn);
+  314:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

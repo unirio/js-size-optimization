@@ -1,0 +1,29 @@
+Comparing files PLIVO-NODE\RD\40.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\40.js
+  170:      delete params.call_uuid;
+  171:      var method;
+  172:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  170:      delete params.call_uuid;
+  171:      var method = 'DELETE';
+  172:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\40.js
+  201:      var method = 'POST';
+  202:      request(action, method, callback);
+  203:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  201:      var method = 'POST';
+  202:      request(action, method, params, callback);
+  203:  };
+*****
+
+***** PLIVO-NODE\RD\40.js
+  503:      var action;
+  504:      delete params.record_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  503:      var action = 'Message/' + params['record_id'] + '/';
+  504:      delete params.record_id;
+*****
+

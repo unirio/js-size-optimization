@@ -1,0 +1,44 @@
+Comparing files JQUERY\RD\25.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\25.js
+  533:                      // If the selector is sufficiently simple, try using a "get*By*" DOM method
+  534:                      if (nodeType !== 11 && (match = rquickExpr.exec(selector))) {
+***** JQUERY\RD\ORIGINAL.JS
+  533:                      // If the selector is sufficiently simple, try using a "get*By*" DOM method
+  534:                      // (excepting DocumentFragment context, where the methods don't exist)
+  535:                      if (nodeType !== 11 && (match = rquickExpr.exec(selector))) {
+*****
+
+***** JQUERY\RD\25.js
+  719:  k non-disabled form elements for fieldset[disabled] ancestors
+  720:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  721:  ion> under fieldset[disabled] is disabled
+  722:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\25.js
+  844:                  if (typeof context.getElementsByTagName !== 'undefined') {
+  845:                      return context.getElementsByTagName(tag);
+  846:                  } else if (support.qsa) {
+***** JQUERY\RD\ORIGINAL.JS
+  846:                  if (typeof context.getElementsByTagName !== 'undefined') {
+  847:                      return context.getElementsByTagName(tag);    // DocumentFragment nodes don't have gEBTN
+  848:                  } else if (support.qsa) {
+*****
+
+***** JQUERY\RD\25.js
+ 2693:                              // progress_handlers.add( ... )
+ 2694:                              tuples[0][3].add(resolve(0, newDefer, jQuery.isFunction(onProgress) ? onProgress : Identity));
+ 2695:                              // fulfilled_handlers.add( ... )
+***** JQUERY\RD\ORIGINAL.JS
+ 2695:                              // progress_handlers.add( ... )
+ 2696:                              tuples[0][3].add(resolve(0, newDefer, jQuery.isFunction(onProgress) ? onProgress : Identity, newDef
+ 2697:  er.notifyWith));
+ 2698:                              // fulfilled_handlers.add( ... )
+*****
+

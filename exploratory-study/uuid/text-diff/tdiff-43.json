@@ -1,0 +1,20 @@
+Comparing files UUID\RD\43.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\43.js
+   22:  // Using Math.round() will give you a non-uniform distribution!
+   23:  function getRandomInt(min, max) {
+***** UUID\RD\ORIGINAL.JS
+   22:  // Using Math.round() will give you a non-uniform distribution!
+   23:  // @see https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/random
+   24:  function getRandomInt(min, max) {
+*****
+
+***** UUID\RD\43.js
+   97:  UUIDjs.getTimeFieldValues = function (time) {
+   98:      var ts = time - Date.UTC(1582, 15);
+   99:      var hm = ts / 4294967296 * 10000 & 268435455;
+***** UUID\RD\ORIGINAL.JS
+   98:  UUIDjs.getTimeFieldValues = function (time) {
+   99:      var ts = time - Date.UTC(1582, 9, 15);
+  100:      var hm = ts / 4294967296 * 10000 & 268435455;
+*****
+

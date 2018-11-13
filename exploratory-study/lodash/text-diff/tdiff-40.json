@@ -1,0 +1,38 @@
+Comparing files LODASH\RD\40.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\40.js
+ 1068:          function cacheIndexOf(cache, value) {
+ 1069:              var data, result = typeof value == 'string' || isObject(value) ? data.set.has(value) : data.hash[value];
+ 1070:              return result ? 0 : -1;
+***** LODASH\RD\ORIGINAL.JS
+ 1068:          function cacheIndexOf(cache, value) {
+ 1069:              var data = cache.data, result = typeof value == 'string' || isObject(value) ? data.set.has(value) : data.hash[value
+ 1070:  ];
+ 1071:              return result ? 0 : -1;
+*****
+
+***** LODASH\RD\40.js
+ 2686:          }
+ 2687:          function createBindWrapper(func, thisArg) {
+***** LODASH\RD\ORIGINAL.JS
+ 2687:          }
+ 2688:          /**
+ 2689:       * Creates a function that wraps `func` and invokes it with the `this`
+ 2690:       * binding of `thisArg`.
+ 2691:       *
+ 2692:       * @private
+ 2693:       * @param {Function} func The function to bind.
+ 2694:       * @param {*} [thisArg] The `this` binding of `func`.
+ 2695:       * @returns {Function} Returns the new bound function.
+ 2696:       */
+ 2697:          function createBindWrapper(func, thisArg) {
+*****
+
+***** LODASH\RD\40.js
+ 6379:                  } else {
+ 6380:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 6389:                  } else {
+ 6390:                      timeoutId = setTimeout(delayed, remaining);
+ 6391:                  }
+*****
+

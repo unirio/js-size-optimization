@@ -1,0 +1,55 @@
+Comparing files JQUERY\RD\17.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\17.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\17.js
+ 1319:                                  // xml :nth-child(...)
+ 1320:                                  if (diff === false) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1320:                                  // xml :nth-child(...)
+ 1321:                                  // or :nth-last-child(...) or :nth(-last)?-of-type(...)
+ 1322:                                  if (diff === false) {
+*****
+
+***** JQUERY\RD\17.js
+ 6227:              var dataType, i = 0, dataTypes = dataTypeExpression.toLowerCase().match(rnotwhite) || [];
+ 6228:          };
+***** JQUERY\RD\ORIGINAL.JS
+ 6229:              var dataType, i = 0, dataTypes = dataTypeExpression.toLowerCase().match(rnotwhite) || [];
+ 6230:              if (jQuery.isFunction(func)) {
+ 6231:                  // For each dataType in the dataTypeExpression
+ 6232:                  while (dataType = dataTypes[i++]) {
+ 6233:                      // Prepend if requested
+ 6234:                      if (dataType[0] === '+') {
+ 6235:                          dataType = dataType.slice(1) || '*';
+ 6236:                          (structure[dataType] = structure[dataType] || []).unshift(func);    // Otherwise append
+ 6237:                      } else {
+ 6238:                          (structure[dataType] = structure[dataType] || []).push(func);
+ 6239:                      }
+ 6240:                  }
+ 6241:              }
+ 6242:          };
+*****
+
+***** JQUERY\RD\17.js
+ 6521:                      },
+ 6522:                      // Caches the header
+***** JQUERY\RD\ORIGINAL.JS
+ 6535:                      },
+ 6536:                      // Raw string
+ 6537:                      getAllResponseHeaders: function () {
+ 6538:                          return completed ? responseHeadersString : null;
+ 6539:                      },
+ 6540:                      // Caches the header
+*****
+

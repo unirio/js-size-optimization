@@ -1,0 +1,66 @@
+Comparing files JQUERY\RD\16.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\16.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\16.js
+ 1020:                  }
+ 1021:                  var cur, i = 0, aup = a.parentNode, bup = b.parentNode, bp = [b];
+ 1022:                  // Parentless nodes are either documents or disconnected
+***** JQUERY\RD\ORIGINAL.JS
+ 1021:                  }
+ 1022:                  var cur, i = 0, aup = a.parentNode, bup = b.parentNode, ap = [a], bp = [b];
+ 1023:                  // Parentless nodes are either documents or disconnected
+*****
+
+***** JQUERY\RD\16.js
+ 1478:                          if (elem.nodeType < 6) {
+ 1479:                              return;
+ 1480:                          }
+***** JQUERY\RD\ORIGINAL.JS
+ 1479:                          if (elem.nodeType < 6) {
+ 1480:                              return false;
+ 1481:                          }
+*****
+
+***** JQUERY\RD\16.js
+ 1722:                  if (matcher) {
+ 1723:                      matcher(matcherIn, context, xml);
+ 1724:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 1723:                  if (matcher) {
+ 1724:                      matcher(matcherIn, matcherOut, context, xml);
+ 1725:                  }
+*****
+
+***** JQUERY\RD\16.js
+ 5129:              hooks = jQuery.cssHooks[name];
+ 5130:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 5130:              hooks = jQuery.cssHooks[name];
+ 5131:              if (hooks && 'expand' in hooks) {
+ 5132:                  value = hooks.expand(value);
+ 5133:                  delete props[name];
+ 5134:                  // Not quite $.extend, this won't overwrite existing keys.
+ 5135:                  // Reusing 'index' because we have the correct "name"
+ 5136:                  for (index in value) {
+ 5137:                      if (!(index in props)) {
+ 5138:                          props[index] = value[index];
+ 5139:                          specialEasing[index] = easing;
+ 5140:                      }
+ 5141:                  }
+ 5142:              } else {
+ 5143:                  specialEasing[name] = easing;
+ 5144:              }
+ 5145:          }
+*****
+

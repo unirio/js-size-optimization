@@ -1,0 +1,19 @@
+Comparing files UNDERSCORE\RD\32.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\32.js
+  339:      };
+  340:      _.sortBy = function (obj, iteratee, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  339:      };
+  340:      // Sort the object's values by a criterion produced by an iteratee.
+  341:      _.sortBy = function (obj, iteratee, context) {
+*****
+
+***** UNDERSCORE\RD\32.js
+  740:      _.throttle = function (func, wait, options) {
+  741:          var context, args, result;
+***** UNDERSCORE\RD\ORIGINAL.JS
+  741:      // `{leading: false}`. To disable execution on the trailing edge, ditto.
+  742:      _.throttle = function (func, wait, options) {
+  743:          var context, args, result;
+*****
+

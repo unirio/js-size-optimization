@@ -1,0 +1,12 @@
+Comparing files XML2JS\RD\15.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\15.js
+  105:                  'pretty': true,
+  106:                  'indent': '  '
+  107:              },
+***** XML2JS\RD\ORIGINAL.JS
+  105:                  'pretty': true,
+  106:                  'indent': '  ',
+  107:                  'newline': '\n'
+  108:              },
+*****
+

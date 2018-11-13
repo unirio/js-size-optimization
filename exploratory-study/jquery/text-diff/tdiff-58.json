@@ -1,0 +1,60 @@
+Comparing files JQUERY\RD\58.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\58.js
+  457:              // CSS escapes
+  458:              runescape = new RegExp('\\\\([\\da-f]{1,6}' + whitespace + '?|(' + whitespace + ')|.)', 'ig'), funescape = function
+***** JQUERY\RD\ORIGINAL.JS
+  457:              // CSS escapes
+  458:              // http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+  459:              runescape = new RegExp('\\\\([\\da-f]{1,6}' + whitespace + '?|(' + whitespace + ')|.)', 'ig'), funescape = function
+*****
+
+***** JQUERY\RD\58.js
+  719:  k non-disabled form elements for fieldset[disabled] ancestors
+  720:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  721:  ion> under fieldset[disabled] is disabled
+  722:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\58.js
+  811:              // so use a roundabout getElementsByName test
+  812:              support.getById = assert(function () {
+  813:                  docElem.appendChild(el).id = expando;
+***** JQUERY\RD\ORIGINAL.JS
+  813:              // so use a roundabout getElementsByName test
+  814:              support.getById = assert(function (el) {
+  815:                  docElem.appendChild(el).id = expando;
+*****
+
+***** JQUERY\RD\58.js
+ 1062:                      if (ret || support.disconnectedMatch || // As well, disconnected nodes are said to be in a document
+ 1063:                          elem.document && elem.document.nodeType !== 11) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1064:                      if (ret || support.disconnectedMatch || // As well, disconnected nodes are said to be in a document
+ 1065:                          // fragment in IE 9
+ 1066:                          elem.document && elem.document.nodeType !== 11) {
+*****
+
+***** JQUERY\RD\58.js
+ 3085:                              // Support: IE 11 only
+ 3086:                              if (attrs[i]) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3088:                              // Support: IE 11 only
+ 3089:                              // The attrs elements can be null (#14894)
+ 3090:                              if (attrs[i]) {
+*****
+
+***** JQUERY\RD\58.js
+ 7392:          // 2) For the hidden or detached element
+ 7393:          //
+***** JQUERY\RD\ORIGINAL.JS
+ 7396:          // 2) For the hidden or detached element
+ 7397:          // 3) For body or html element, i.e. in case of the html node - it will return itself
+ 7398:          //
+*****
+

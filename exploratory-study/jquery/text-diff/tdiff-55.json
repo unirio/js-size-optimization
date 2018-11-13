@@ -1,0 +1,87 @@
+Comparing files JQUERY\RD\55.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\55.js
+  661:          function addHandle(attrs, handler) {
+  662:              var arr = attrs.split('|');
+  663:              while (i--) {
+***** JQUERY\RD\ORIGINAL.JS
+  661:          function addHandle(attrs, handler) {
+  662:              var arr = attrs.split('|'), i = arr.length;
+  663:              while (i--) {
+*****
+
+***** JQUERY\RD\55.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\55.js
+ 1119:              sortInput = null;
+ 1120:              return;
+ 1121:          };
+***** JQUERY\RD\ORIGINAL.JS
+ 1120:              sortInput = null;
+ 1121:              return results;
+ 1122:          };
+*****
+
+***** JQUERY\RD\55.js
+ 2011:              })) {
+ 2012:              addHandle('value');
+ 2013:          }
+***** JQUERY\RD\ORIGINAL.JS
+ 2012:              })) {
+ 2013:              addHandle('value', function (elem, name, isXML) {
+ 2014:                  if (!isXML && elem.nodeName.toLowerCase() === 'input') {
+ 2015:                      return elem.defaultValue;
+ 2016:                  }
+ 2017:              });
+ 2018:          }
+*****
+
+***** JQUERY\RD\55.js
+ 4605:                  if (extra === 'content') {
+ 4606:                      val -= jQuery.css(elem, 'padding' + cssExpand[i], true);
+ 4607:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 4610:                  if (extra === 'content') {
+ 4611:                      val -= jQuery.css(elem, 'padding' + cssExpand[i], true, styles);
+ 4612:                  }
+*****
+
+***** JQUERY\RD\55.js
+ 6061:      // focus(in | out) events fire after focus & blur events,
+ 6062:      // Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
+***** JQUERY\RD\ORIGINAL.JS
+ 6066:      // focus(in | out) events fire after focus & blur events,
+ 6067:      // which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+ 6068:      // Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
+*****
+
+***** JQUERY\RD\55.js
+ 6553:                              if (completed) {
+ 6554:                              } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 6559:                              if (completed) {
+ 6560:                                  // Execute the appropriate callbacks
+ 6561:                                  jqXHR.always(map[jqXHR.status]);
+ 6562:                              } else {
+*****
+
+***** JQUERY\RD\55.js
+ 7348:              }
+ 7349:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 7356:              }
+ 7357:              // Return zeros for disconnected and hidden elements (gh-2310)
+ 7358:              return rect;
+ 7359:          },
+*****
+

@@ -1,0 +1,10 @@
+Comparing files XML2JS\RD\16.js and XML2JS\RD\ORIGINAL.JS
+***** XML2JS\RD\16.js
+   58:              ignoreAttrs: false,
+   59:              explicitRoot: false,
+***** XML2JS\RD\ORIGINAL.JS
+   58:              ignoreAttrs: false,
+   59:              mergeAttrs: false,
+   60:              explicitRoot: false,
+*****
+

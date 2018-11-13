@@ -1,0 +1,11 @@
+Comparing files MINIMIST\RD\7.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\7.js
+  134:                  } else {
+  135:                      setArg(letters[j], flags.strings[letters[j]] ? '' : true);
+  136:                  }
+***** MINIMIST\RD\ORIGINAL.JS
+  134:                  } else {
+  135:                      setArg(letters[j], flags.strings[letters[j]] ? '' : true, arg);
+  136:                  }
+*****
+

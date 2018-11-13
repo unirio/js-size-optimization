@@ -1,0 +1,46 @@
+Comparing files TLEAF\RD\51.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\51.js
+   70:              name: name,
+   71:              module: module,
+***** TLEAF\RD\ORIGINAL.JS
+   70:              name: name,
+   71:              type: type,
+   72:              module: module,
+*****
+
+***** TLEAF\RD\51.js
+  121:      }
+  122:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+***** TLEAF\RD\ORIGINAL.JS
+  122:      }
+  123:      // first argument is a name of the unit, second - usually has deps
+  124:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+*****
+
+***** TLEAF\RD\51.js
+  189:                  deps = extractVariableDeps(right.name, depsFnScope);
+  190:              }
+***** TLEAF\RD\ORIGINAL.JS
+  191:                  deps = extractVariableDeps(right.name, depsFnScope);
+  192:                  return true;    // exit loop
+  193:              }
+*****
+
+***** TLEAF\RD\51.js
+  198:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  199:              }
+***** TLEAF\RD\ORIGINAL.JS
+  201:                  deps = extractObjectPropertyDeps(argument, '$get', depsFnScope);
+  202:                  return true;
+  203:              }
+*****
+
+***** TLEAF\RD\51.js
+  262:      }
+  263:      var deps = [];
+***** TLEAF\RD\ORIGINAL.JS
+  266:      }
+  267:      var value = _.get(prop, 'value', {});
+  268:      var deps = [];
+*****
+

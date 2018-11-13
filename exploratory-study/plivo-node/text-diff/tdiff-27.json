@@ -1,0 +1,59 @@
+Comparing files PLIVO-NODE\RD\27.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\27.js
+   82:  plivo.request = request;
+   83:  plivo.create_signature = function (url, params) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   82:  plivo.request = request;
+   83:  // For verifying the plivo server signature
+   84:  plivo.create_signature = function (url, params) {
+*****
+
+***** PLIVO-NODE\RD\27.js
+  213:      var method = 'GET';
+  214:      request(action, method, params, callback);
+  215:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  214:      var method = 'GET';
+  215:      request(action, method, params, callback, true);
+  216:  };
+*****
+
+***** PLIVO-NODE\RD\27.js
+  495:  };
+  496:  plivo.get_messages = function (params) {
+  497:      var action = 'Message/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  496:  };
+  497:  plivo.get_messages = function (params, callback) {
+  498:      var action = 'Message/';
+*****
+
+***** PLIVO-NODE\RD\27.js
+  545:      var method = 'GET';
+  546:      request(action, method, params);
+  547:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  546:      var method = 'GET';
+  547:      request(action, method, params, callback);
+  548:  };
+*****
+
+***** PLIVO-NODE\RD\27.js
+  655:          } else {
+  656:              throw new PlivoError();
+  657:          }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  656:          } else {
+  657:              throw new PlivoError(new_element.element + ' cannot be nested in ' + this.element + '.');
+  658:          }
+*****
+
+***** PLIVO-NODE\RD\27.js
+  682:      addPlay: function (body, attributes) {
+  683:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  683:      addPlay: function (body, attributes) {
+  684:          return this.add(new Play(Response), body, attributes);
+  685:      },
+*****
+

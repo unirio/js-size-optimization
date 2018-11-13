@@ -1,0 +1,46 @@
+Comparing files TLEAF\RD\41.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\41.js
+   21:      var calls = [];
+   22:      estraverse.traverse(ast);
+   23:      var units = [];
+***** TLEAF\RD\ORIGINAL.JS
+   21:      var calls = [];
+   22:      estraverse.traverse(ast, {
+   23:          enter: function (node) {
+   24:              // find all call expressions, because all angular unit types are
+   25:              // defined as function calls: .controller(), .service(), etc
+   26:              if (node.type === 'CallExpression') {
+   27:                  var calleeProp = _.get(node, 'callee.property', {});
+   28:                  if (_.contains(config.units.process, calleeProp.name)) {
+   29:                      // save matching node with an appropriate scope
+   30:                      calls.push({
+   31:                          node: node,
+   32:                          scope: currentScope
+   33:                      });
+   34:                  }
+   35:              }
+   36:              // update current scope while traversing
+   37:              // taken from original repository: https://github.com/estools/escope
+   38:              if (/Function/.test(node.type)) {
+   39:                  currentScope = scopeManager.acquire(node);
+   40:              }
+   41:          },
+   42:          leave: function (node) {
+   43:              if (/Function/.test(node.type)) {
+   44:                  currentScope = currentScope.upper;
+   45:              }
+   46:          }
+   47:      });
+   48:      var units = [];
+*****
+
+***** TLEAF\RD\41.js
+  144:      if (depsFnBody.type !== 'BlockStatement') {
+  145:          return;
+  146:      }
+***** TLEAF\RD\ORIGINAL.JS
+  169:      if (depsFnBody.type !== 'BlockStatement') {
+  170:          return [];
+  171:      }
+*****
+

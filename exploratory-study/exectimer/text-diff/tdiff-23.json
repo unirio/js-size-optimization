@@ -1,0 +1,14 @@
+Comparing files EXECTIMER\RD\23.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\23.js
+   87:              },
+   88:              parse: function (num) {
+***** EXECTIMER\RD\ORIGINAL.JS
+   87:              },
+   88:              /**
+   89:               * Parse the numbers nicely.
+   90:               * @param num
+   91:               * @returns {string}
+   92:               */
+   93:              parse: function (num) {
+*****
+

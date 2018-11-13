@@ -1,0 +1,11 @@
+Comparing files UUID\RD\51.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\51.js
+  211:  UUIDjs.newTS = function () {
+  212:      return;
+  213:  };
+***** UUID\RD\ORIGINAL.JS
+  211:  UUIDjs.newTS = function () {
+  212:      return this.create(1);
+  213:  };
+*****
+

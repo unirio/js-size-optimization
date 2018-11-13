@@ -1,0 +1,228 @@
+Comparing files JQUERY\RD\5.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\5.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\5.js
+ 3527:          input.setAttribute('type', 'radio');
+ 3528:          input.setAttribute('name', 't');
+***** JQUERY\RD\ORIGINAL.JS
+ 3528:          input.setAttribute('type', 'radio');
+ 3529:          input.setAttribute('checked', 'checked');
+ 3530:          input.setAttribute('name', 't');
+*****
+
+Resync Failed.  Files are too different.
+***** JQUERY\RD\5.js
+ 4310:      });
+ 4311:      jQuery.fn.extend();
+ 4312:      jQuery.each({
+ 4313:          appendTo: 'append',
+ 4314:          prependTo: 'prepend',
+ 4315:          insertBefore: 'before',
+ 4316:          insertAfter: 'after',
+ 4317:          replaceAll: 'replaceWith'
+ 4318:      }, function (name, original) {
+ 4319:          jQuery.fn[name] = function (selector) {
+ 4320:              var elems, ret = [], insert = jQuery(selector), last = insert.length - 1, i = 0;
+ 4321:              for (; i <= last; i++) {
+ 4322:                  elems = i === last ? this : this.clone(true);
+ 4323:                  jQuery(insert[i])[original](elems);
+ 4324:                  // Support: Android <=4.0 only, PhantomJS 1 only
+ 4325:                  // .get() because push.apply(_, arraylike) throws on ancient WebKit
+ 4326:                  push.apply(ret, elems.get());
+ 4327:              }
+ 4328:              return this.pushStack(ret);
+ 4329:          };
+ 4330:      });
+ 4331:      var rmargin = /^margin/;
+ 4332:      var rnumnonpx = new RegExp('^(' + pnum + ')(?!px)[a-z%]+$', 'i');
+ 4333:      var getStyles = function (elem) {
+ 4334:          // Support: IE <=11 only, Firefox <=30 (#15098, #14150)
+ 4335:          // IE throws on elements created in popups
+ 4336:          // FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
+ 4337:          var view = elem.ownerDocument.defaultView;
+ 4338:          if (!view || !view.opener) {
+ 4339:              view = window;
+ 4340:          }
+ 4341:          return view.getComputedStyle(elem);
+ 4342:      };
+ 4343:      (function () {
+ 4344:          // Executing both pixelPosition & boxSizingReliable tests require only one layout
+ 4345:          // so they're executed at the same time to save the second computation.
+ 4346:          function computeStyleTests() {
+ 4347:              // This is a singleton, we need to execute it only once
+ 4348:              if (!div) {
+ 4349:                  return;
+ 4350:              }
+ 4351:              div.style.cssText = 'box-sizing:border-box;' + 'position:relative;display:block;' + 'margin:auto;border:1px;padding
+ 4352:  :1px;' + 'top:1%;width:50%';
+ 4353:              div.innerHTML = '';
+ 4354:              documentElement.appendChild(container);
+ 4355:              var divStyle = window.getComputedStyle(div);
+ 4356:              pixelPositionVal = divStyle.top !== '1%';
+ 4357:              // Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
+ 4358:              reliableMarginLeftVal = divStyle.marginLeft === '2px';
+ 4359:              boxSizingReliableVal = divStyle.width === '4px';
+ 4360:              // Support: Android 4.0 - 4.3 only
+ 4361:              // Some styles come back with percentage values, even though they shouldn't
+ 4362:              div.style.marginRight = '50%';
+ 4363:              pixelMarginRightVal = divStyle.marginRight === '4px';
+ 4364:              documentElement.removeChild(container);
+ 4365:              // Nullify the div so it wouldn't be stored in the memory and
+ 4366:              // it will also be a sign that checks already performed
+ 4367:              div = null;
+ 4368:          }
+ 4369:          var pixelPositionVal, boxSizingReliableVal, pixelMarginRightVal, reliableMarginLeftVal, container = document.createElem
+ 4370:  ent('div'), div = document.createElement('div');
+ 4371:          // Finish early in limited (non-browser) environments
+ 4372:          if (!div.style) {
+ 4373:              return;
+ 4374:          }
+ 4375:          // Support: IE <=9 - 11 only
+ 4376:          // Style of cloned element affects source element cloned (#8908)
+ 4377:          div.style.backgroundClip = 'content-box';
+ 4378:          div.cloneNode(true).style.backgroundClip = '';
+ 4379:          support.clearCloneStyle = div.style.backgroundClip === 'content-box';
+ 4380:          container.style.cssText = 'border:0;width:8px;height:0;top:0;left:-9999px;' + 'padding:0;margin-top:1px;position:absolu
+ 4381:  te';
+ 4382:          container.appendChild(div);
+ 4383:          jQuery.extend(support, {
+ 4384:              pixelPosition: function () {
+ 4385:                  computeStyleTests();
+ 4386:                  return pixelPositionVal;
+ 4387:              },
+ 4388:              boxSizingReliable: function () {
+ 4389:                  computeStyleTests();
+ 4390:                  return boxSizingReliableVal;
+ 4391:              },
+ 4392:              pixelMarginRight: function () {
+ 4393:                  computeStyleTests();
+ 4394:                  return pixelMarginRightVal;
+ 4395:              },
+ 4396:              reliableMarginLeft: function () {
+ 4397:                  computeStyleTests();
+ 4398:                  return reliableMarginLeftVal;
+ 4399:              }
+ 4400:          });
+ 4401:      }());
+ 4402:      function curCSS(elem, name, computed) {
+ 4403:          var width, minWidth, maxWidth, ret, style = elem.style;
+ 4404:          computed = computed || getStyles(elem);
+ 4405:          // Support: IE <=9 only
+ 4406:          // getPropertyValue is only needed for .css('filter') (#12537)
+ 4407:          if (computed) {
+ 4408:              ret = computed.getPropertyValue(name) || computed[name];
+ 4409:              if (ret === '' && !jQuery.contains(elem.ownerDocument, elem)) {
+***** JQUERY\RD\ORIGINAL.JS
+ 4312:      });
+ 4313:      jQuery.fn.extend({
+ 4314:          detach: function (selector) {
+ 4315:              return remove(this, selector, true);
+ 4316:          },
+ 4317:          remove: function (selector) {
+ 4318:              return remove(this, selector);
+ 4319:          },
+ 4320:          text: function (value) {
+ 4321:              return access(this, function (value) {
+ 4322:                  return value === undefined ? jQuery.text(this) : this.empty().each(function () {
+ 4323:                      if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
+ 4324:                          this.textContent = value;
+ 4325:                      }
+ 4326:                  });
+ 4327:              }, null, value, arguments.length);
+ 4328:          },
+ 4329:          append: function () {
+ 4330:              return domManip(this, arguments, function (elem) {
+ 4331:                  if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
+ 4332:                      var target = manipulationTarget(this, elem);
+ 4333:                      target.appendChild(elem);
+ 4334:                  }
+ 4335:              });
+ 4336:          },
+ 4337:          prepend: function () {
+ 4338:              return domManip(this, arguments, function (elem) {
+ 4339:                  if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
+ 4340:                      var target = manipulationTarget(this, elem);
+ 4341:                      target.insertBefore(elem, target.firstChild);
+ 4342:                  }
+ 4343:              });
+ 4344:          },
+ 4345:          before: function () {
+ 4346:              return domManip(this, arguments, function (elem) {
+ 4347:                  if (this.parentNode) {
+ 4348:                      this.parentNode.insertBefore(elem, this);
+ 4349:                  }
+ 4350:              });
+ 4351:          },
+ 4352:          after: function () {
+ 4353:              return domManip(this, arguments, function (elem) {
+ 4354:                  if (this.parentNode) {
+ 4355:                      this.parentNode.insertBefore(elem, this.nextSibling);
+ 4356:                  }
+ 4357:              });
+ 4358:          },
+ 4359:          empty: function () {
+ 4360:              var elem, i = 0;
+ 4361:              for (; (elem = this[i]) != null; i++) {
+ 4362:                  if (elem.nodeType === 1) {
+ 4363:                      // Prevent memory leaks
+ 4364:                      jQuery.cleanData(getAll(elem, false));
+ 4365:                      // Remove any remaining nodes
+ 4366:                      elem.textContent = '';
+ 4367:                  }
+ 4368:              }
+ 4369:              return this;
+ 4370:          },
+ 4371:          clone: function (dataAndEvents, deepDataAndEvents) {
+ 4372:              dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
+ 4373:              deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+ 4374:              return this.map(function () {
+ 4375:                  return jQuery.clone(this, dataAndEvents, deepDataAndEvents);
+ 4376:              });
+ 4377:          },
+ 4378:          html: function (value) {
+ 4379:              return access(this, function (value) {
+ 4380:                  var elem = this[0] || {}, i = 0, l = this.length;
+ 4381:                  if (value === undefined && elem.nodeType === 1) {
+ 4382:                      return elem.innerHTML;
+ 4383:                  }
+ 4384:                  // See if we can take a shortcut and just use innerHTML
+ 4385:                  if (typeof value === 'string' && !rnoInnerhtml.test(value) && !wrapMap[(rtagName.exec(value) || [
+ 4386:                          '',
+ 4387:                          ''
+ 4388:                      ])[1].toLowerCase()]) {
+ 4389:                      value = jQuery.htmlPrefilter(value);
+ 4390:                      try {
+ 4391:                          for (; i < l; i++) {
+ 4392:                              elem = this[i] || {};
+ 4393:                              // Remove element nodes and prevent memory leaks
+ 4394:                              if (elem.nodeType === 1) {
+ 4395:                                  jQuery.cleanData(getAll(elem, false));
+ 4396:                                  elem.innerHTML = value;
+ 4397:                              }
+ 4398:                          }
+ 4399:                          elem = 0;    // If using innerHTML throws an exception, use the fallback method
+ 4400:                      } catch (e) {
+ 4401:                      }
+ 4402:                  }
+ 4403:                  if (elem) {
+ 4404:                      this.empty().append(value);
+ 4405:                  }
+ 4406:              }, null, value, arguments.length);
+ 4407:          },
+ 4408:          replaceWith: function () {
+ 4409:              var ignored = [];
+ 4410:              // Make the changes, replacing each non-ignored context element with the new content
+ 4411:              return domManip(this, arguments, function (elem) {
+*****
+

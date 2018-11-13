@@ -1,0 +1,63 @@
+Comparing files LODASH\RD\12.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\12.js
+ 1586:                  if (predicate(value, index, collection)) {
+ 1587:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 1586:                  if (predicate(value, index, collection)) {
+ 1587:                      result.push(value);
+ 1588:                  }
+*****
+
+***** LODASH\RD\12.js
+ 1920:          if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
+ 1921:          }
+***** LODASH\RD\ORIGINAL.JS
+ 1921:          if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
+ 1922:              baseKeysIn = function (object) {
+ 1923:                  var data, iterator = enumerate(object), result = [];
+ 1924:                  while (!(data = iterator.next()).done) {
+ 1925:                      result.push(data.value);
+ 1926:                  }
+ 1927:                  return result;
+ 1928:              };
+ 1929:          }
+*****
+
+***** LODASH\RD\12.js
+ 1945:              var matchData = getMatchData(source);
+ 1946:              return function (object) {
+***** LODASH\RD\ORIGINAL.JS
+ 1953:              var matchData = getMatchData(source);
+ 1954:              if (matchData.length == 1 && matchData[0][2]) {
+ 1955:                  var key = matchData[0][0], value = matchData[0][1];
+ 1956:                  return function (object) {
+ 1957:                      if (object == null) {
+ 1958:                          return false;
+ 1959:                      }
+ 1960:                      return object[key] === value && (value !== undefined || key in Object(object));
+ 1961:                  };
+ 1962:              }
+ 1963:              return function (object) {
+*****
+
+***** LODASH\RD\12.js
+ 3640:              return function (key, value) {
+ 3641:                  var stamp, remaining = HOT_SPAN - (stamp - lastCalled);
+ 3642:                  lastCalled = stamp;
+***** LODASH\RD\ORIGINAL.JS
+ 3657:              return function (key, value) {
+ 3658:                  var stamp = now(), remaining = HOT_SPAN - (stamp - lastCalled);
+ 3659:                  lastCalled = stamp;
+*****
+
+***** LODASH\RD\12.js
+ 9564:              string = baseToString(string);
+ 9565:              if (guard || chars == null) {
+***** LODASH\RD\ORIGINAL.JS
+ 9581:              string = baseToString(string);
+ 9582:              if (!string) {
+ 9583:                  return string;
+ 9584:              }
+ 9585:              if (guard || chars == null) {
+*****
+

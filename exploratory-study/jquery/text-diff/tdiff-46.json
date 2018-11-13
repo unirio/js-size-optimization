@@ -1,0 +1,122 @@
+Comparing files JQUERY\RD\46.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\46.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\46.js
+  832:                  // Support: IE6/7
+  833:                  delete Expr.find['ID'];
+***** JQUERY\RD\ORIGINAL.JS
+  833:                  // Support: IE6/7
+  834:                  // getElementById is not reliable as a find shortcut
+  835:                  delete Expr.find['ID'];
+*****
+
+***** JQUERY\RD\46.js
+ 1623:  ', doneName = done++;
+ 1624:              return combinator.first ? function (elem, context, xml) {
+ 1625:                  while (elem = elem[dir]) {
+***** JQUERY\RD\ORIGINAL.JS
+ 1625:  ', doneName = done++;
+ 1626:              return combinator.first ? // Check against closest ancestor/preceding element
+ 1627:              function (elem, context, xml) {
+ 1628:                  while (elem = elem[dir]) {
+*****
+
+***** JQUERY\RD\46.js
+ 2226:              var cur, i = 0, l = this.length, matched = [], targets = typeof selectors !== 'string' && jQuery(selectors);
+ 2227:              if (!rneedsContext.test(selectors)) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2229:              var cur, i = 0, l = this.length, matched = [], targets = typeof selectors !== 'string' && jQuery(selectors);
+ 2230:              // Positional selectors never match, since there's no _selection_ context
+ 2231:              if (!rneedsContext.test(selectors)) {
+*****
+
+***** JQUERY\RD\46.js
+ 2761:                  updateFunc = function (i) {
+ 2762:                      return;
+ 2763:                  };
+***** JQUERY\RD\ORIGINAL.JS
+ 2765:                  updateFunc = function (i) {
+ 2766:                      return function (value) {
+ 2767:                          resolveContexts[i] = this;
+ 2768:                          resolveValues[i] = arguments.length > 1 ? slice.call(arguments) : value;
+ 2769:                          if (!--remaining) {
+ 2770:                              master.resolveWith(resolveContexts, resolveValues);
+ 2771:                          }
+ 2772:                      };
+ 2773:                  };
+*****
+
+***** JQUERY\RD\46.js
+ 2930:          },
+ 2931:          get: function (owner, key) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2940:          },
+ 2941:          set: function (owner, data, value) {
+ 2942:              var prop, cache = this.cache(owner);
+ 2943:              // Handle: [ owner, key, value ] args
+ 2944:              // Always use camelCase key (gh-2257)
+ 2945:              if (typeof data === 'string') {
+ 2946:                  cache[jQuery.camelCase(data)] = value;    // Handle: [ owner, { properties } ] args
+ 2947:              } else {
+ 2948:                  // Copy the properties one-by-one to the cache object
+ 2949:                  for (prop in data) {
+ 2950:                      cache[jQuery.camelCase(prop)] = data[prop];
+ 2951:                  }
+ 2952:              }
+ 2953:              return cache;
+ 2954:          },
+ 2955:          get: function (owner, key) {
+*****
+
+***** JQUERY\RD\46.js
+ 3796:                              if (matches[sel] === undefined) {
+ 3797:                              }
+***** JQUERY\RD\ORIGINAL.JS
+ 3820:                              if (matches[sel] === undefined) {
+ 3821:                                  matches[sel] = handleObj.needsContext ? jQuery(sel, this).index(cur) > -1 : jQuery.find(sel, th
+ 3822:  is, null, [cur]).length;
+ 3823:                              }
+*****
+
+***** JQUERY\RD\46.js
+ 4754:              set: function (elem, value, extra) {
+ 4755:                  var matches, styles = extra && getStyles(elem);
+ 4756:                  // Convert to pixels if value adjustment is needed
+***** JQUERY\RD\ORIGINAL.JS
+ 4780:              set: function (elem, value, extra) {
+ 4781:                  var matches, styles = extra && getStyles(elem), subtract = extra && augmentWidthOrHeight(elem, name, extra, jQu
+ 4782:  ery.css(elem, 'boxSizing', false, styles) === 'border-box', styles);
+ 4783:                  // Convert to pixels if value adjustment is needed
+*****
+
+***** JQUERY\RD\46.js
+ 5578:          prop: function (elem, name, value) {
+ 5579:              var ret, hooks;
+ 5580:              // Don't get/set properties on text, comment and attribute nodes
+***** JQUERY\RD\ORIGINAL.JS
+ 5605:          prop: function (elem, name, value) {
+ 5606:              var ret, hooks, nType = elem.nodeType;
+ 5607:              // Don't get/set properties on text, comment and attribute nodes
+*****
+
+***** JQUERY\RD\46.js
+ 6547:                      // Cancel the request
+ 6548:                      abort: function () {
+ 6549:                          var finalText = statusText || strAbort;
+***** JQUERY\RD\ORIGINAL.JS
+ 6574:                      // Cancel the request
+ 6575:                      abort: function (statusText) {
+ 6576:                          var finalText = statusText || strAbort;
+*****
+

@@ -1,0 +1,103 @@
+Comparing files TLEAF\RD\36.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\36.js
+   54:          }
+   55:          var type = findType(call.node);
+   56:          if (_.isUndefined(type)) {
+***** TLEAF\RD\ORIGINAL.JS
+   54:          }
+   55:          var type = findType(call.node, call.scope);
+   56:          if (_.isUndefined(type)) {
+*****
+
+***** TLEAF\RD\36.js
+   71:              type: type,
+   72:              module: module
+   73:          };
+***** TLEAF\RD\ORIGINAL.JS
+   71:              type: type,
+   72:              module: module,
+   73:              deps: deps
+   74:          };
+*****
+
+***** TLEAF\RD\36.js
+  166:      // function must have it's body
+  167:      var depsFnBody = _.get(depsFn, 'body');
+  168:      if (depsFnBody.type !== 'BlockStatement') {
+***** TLEAF\RD\ORIGINAL.JS
+  167:      // function must have it's body
+  168:      var depsFnBody = _.get(depsFn, 'body', {});
+  169:      if (depsFnBody.type !== 'BlockStatement') {
+*****
+
+***** TLEAF\RD\36.js
+  214:  }
+  215:  function findVariable(varName, scope) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+  218:          return [];
+  219:      }
+  220:      var deps = [];
+  221:      _.forEach(params, function (param) {
+  222:          if (param.type === 'Identifier') {
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+  226:      });
+  227:      return deps;
+  228:  }
+  229:  function findVariable(varName, scope) {
+*****
+
+***** TLEAF\RD\36.js
+  229:      var varNode = findVariable(varName, scope);
+  230:      var params = [];
+***** TLEAF\RD\ORIGINAL.JS
+  243:      var varNode = findVariable(varName, scope);
+  244:      if (!varNode) {
+  245:          return [];
+  246:      }
+  247:      var params = [];
+*****
+
+***** TLEAF\RD\36.js
+  242:  }
+  243:  function findScope(ast) {
+  244:      var scopeManager = escope.analyze(ast);
+  245:      var scope = scopeManager.acquire(ast);
+  246:      return scope;
+  247:  }
+***** TLEAF\RD\ORIGINAL.JS
+  259:  }
+  260:  function extractObjectPropertyDeps(object, propName, scope) {
+  261:      var prop = _.find(object.properties, function (property) {
+  262:          return _.get(property, 'key.name') === propName;
+  263:      });
+  264:      if (!prop) {
+  265:          return [];
+  266:      }
+  267:      var value = _.get(prop, 'value', {});
+  268:      var deps = [];
+  269:      // covers "{ key: function () {} }"
+  270:      if (value.type === 'FunctionExpression') {
+  271:          deps = extractDeps(value.params);
+  272:      }
+  273:      // covers "{ key: someVar }"
+  274:      if (value.type === 'Identifier') {
+  275:          deps = extractVariableDeps(value.name, scope);
+  276:      }
+  277:      return deps;
+  278:  }
+*****
+
+***** TLEAF\RD\36.js
+***** TLEAF\RD\ORIGINAL.JS
+  279:  function findScope(ast) {
+  280:      var scopeManager = escope.analyze(ast);
+  281:      var scope = scopeManager.acquire(ast);
+  282:      return scope;
+  283:  }
+*****
+

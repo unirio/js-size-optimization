@@ -1,0 +1,41 @@
+Comparing files UNDERSCORE\RD\52.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\52.js
+  103:      };
+  104:      var baseCreate = function (prototype) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  103:      };
+  104:      // An internal function for creating a new object that inherits from another.
+  105:      var baseCreate = function (prototype) {
+*****
+
+***** UNDERSCORE\RD\52.js
+  874:          var prop = 'constructor';
+  875:          if (_.has(obj, prop) && !_.contains(keys))
+  876:              keys.push(prop);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+*****
+
+***** UNDERSCORE\RD\52.js
+  878:              prop = nonEnumerableProps[nonEnumIdx];
+  879:          }
+***** UNDERSCORE\RD\ORIGINAL.JS
+  879:              prop = nonEnumerableProps[nonEnumIdx];
+  880:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+  881:                  keys.push(prop);
+  882:              }
+  883:          }
+*****
+
+***** UNDERSCORE\RD\52.js
+ 1376:              }
+ 1377:          });
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1380:              }
+ 1381:              // Adobe VMs need the match returned to produce the correct offest.
+ 1382:              return match;
+ 1383:          });
+*****
+

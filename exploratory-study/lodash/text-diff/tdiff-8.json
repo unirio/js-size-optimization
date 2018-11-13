@@ -1,0 +1,18 @@
+Comparing files LODASH\RD\8.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\8.js
+ 3387:          }
+ 3388:          function initKeys(object) {
+***** LODASH\RD\ORIGINAL.JS
+ 3387:          }
+ 3388:          /**
+ 3389:       * Initializes an array of property names based on `object`. If `object` is
+ 3390:       * an array, `arguments` object, or `string` its index keys are returned,
+ 3391:       * otherwise an empty array is returned.
+ 3392:       *
+ 3393:       * @private
+ 3394:       * @param {Object} object The object to query.
+ 3395:       * @returns {Array} Returns the initialized array of property names.
+ 3396:       */
+ 3397:          function initKeys(object) {
+*****
+

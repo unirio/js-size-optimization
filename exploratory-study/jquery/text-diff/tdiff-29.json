@@ -1,0 +1,65 @@
+Comparing files JQUERY\RD\29.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\29.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\29.js
+ 1509:                  }),
+ 1510:                  'eq': createPositionalPseudo(function (matchIndexes, length) {
+ 1511:                      return [argument < 0 ? argument + length : argument];
+***** JQUERY\RD\ORIGINAL.JS
+ 1510:                  }),
+ 1511:                  'eq': createPositionalPseudo(function (matchIndexes, length, argument) {
+ 1512:                      return [argument < 0 ? argument + length : argument];
+*****
+
+***** JQUERY\RD\29.js
+ 1773:                  // The foundational matcher ensures that elements are reachable from top-level context(s)
+ 1774:                  matchContext, matchAnyContext = addCombinator(function (elem) {
+ 1775:                      return indexOf(checkContext, elem) > -1;
+***** JQUERY\RD\ORIGINAL.JS
+ 1774:                  // The foundational matcher ensures that elements are reachable from top-level context(s)
+ 1775:                  matchContext = addCombinator(function (elem) {
+ 1776:                      return elem === checkContext;
+ 1777:                  }, implicitRelative, true), matchAnyContext = addCombinator(function (elem) {
+ 1778:                      return indexOf(checkContext, elem) > -1;
+*****
+
+***** JQUERY\RD\29.js
+ 2955:          },
+ 2956:          access: function (owner, value) {
+ 2957:              // In cases where either:
+***** JQUERY\RD\ORIGINAL.JS
+ 2958:          },
+ 2959:          access: function (owner, key, value) {
+ 2960:              // In cases where either:
+*****
+
+***** JQUERY\RD\29.js
+ 3745:                      }
+ 3746:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 3748:                      }
+ 3749:                      delete events[type];
+ 3750:                  }
+*****
+
+***** JQUERY\RD\29.js
+ 6047:          jQuery.fn[name] = function (data, fn) {
+ 6048:              return arguments.length > 0 ? this.on(name, null, data) : this.trigger(name);
+ 6049:          };
+***** JQUERY\RD\ORIGINAL.JS
+ 6051:          jQuery.fn[name] = function (data, fn) {
+ 6052:              return arguments.length > 0 ? this.on(name, null, data, fn) : this.trigger(name);
+ 6053:          };
+*****
+

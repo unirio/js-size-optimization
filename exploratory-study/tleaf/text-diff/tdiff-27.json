@@ -1,0 +1,11 @@
+Comparing files TLEAF\RD\27.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\27.js
+  128:      if (type === 'component') {
+  129:          return findComponentDeps(depsArg);
+  130:      }
+***** TLEAF\RD\ORIGINAL.JS
+  128:      if (type === 'component') {
+  129:          return findComponentDeps(depsArg, scope);
+  130:      }
+*****
+

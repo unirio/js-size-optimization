@@ -1,0 +1,36 @@
+Comparing files JQUERY\RD\21.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\21.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\21.js
+ 2634:                                              if (special) {
+ 2635:                                                  then.call(returned, resolve(maxDepth, deferred, special), resolve(maxDepth, def
+ 2636:  erred, Thrower, special));    // Normal processors (resolve) also hook into progress
+ 2637:                                              } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 2635:                                              if (special) {
+ 2636:                                                  then.call(returned, resolve(maxDepth, deferred, Identity, special), resolve(max
+ 2637:  Depth, deferred, Thrower, special));    // Normal processors (resolve) also hook into progress
+ 2638:                                              } else {
+*****
+
+***** JQUERY\RD\21.js
+ 3366:          // Set the display of the elements in a second loop to avoid constant reflow
+ 3367:          for (index = 0; index < length;) {
+ 3368:              if (values[index] != null) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3367:          // Set the display of the elements in a second loop to avoid constant reflow
+ 3368:          for (index = 0; index < length; index++) {
+ 3369:              if (values[index] != null) {
+*****
+

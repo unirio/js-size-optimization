@@ -1,0 +1,33 @@
+Comparing files LODASH\RD\19.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\19.js
+ 3666:                  }
+ 3667:                  return baseSetData(key);
+ 3668:              };
+***** LODASH\RD\ORIGINAL.JS
+ 3666:                  }
+ 3667:                  return baseSetData(key, value);
+ 3668:              };
+*****
+
+***** LODASH\RD\19.js
+ 4188:                              var cache = caches[othIndex];
+ 4189:                              if ((cache ? cacheIndexOf(cache) : indexOf(arrays[othIndex], value, 0)) < 0) {
+ 4190:                                  continue outer;
+***** LODASH\RD\ORIGINAL.JS
+ 4188:                              var cache = caches[othIndex];
+ 4189:                              if ((cache ? cacheIndexOf(cache, value) : indexOf(arrays[othIndex], value, 0)) < 0) {
+ 4190:                                  continue outer;
+*****
+
+***** LODASH\RD\19.js
+ 5387:          function forEach(collection, iteratee) {
+ 5388:              return typeof iteratee == 'function' && isArray() ? arrayEach(collection, iteratee) : baseEach(collection, toFuncti
+ 5389:  on(iteratee));
+ 5390:          }
+***** LODASH\RD\ORIGINAL.JS
+ 5387:          function forEach(collection, iteratee) {
+ 5388:              return typeof iteratee == 'function' && isArray(collection) ? arrayEach(collection, iteratee) : baseEach(collection
+ 5389:  , toFunction(iteratee));
+ 5390:          }
+*****
+

@@ -1,0 +1,31 @@
+Comparing files MINIMIST\RD\26.js and MINIMIST\RD\ORIGINAL.JS
+***** MINIMIST\RD\26.js
+    5:          bools: {},
+    6:          strings: {}
+    7:      };
+***** MINIMIST\RD\ORIGINAL.JS
+    5:          bools: {},
+    6:          strings: {},
+    7:          unknownFn: null
+    8:      };
+*****
+
+***** MINIMIST\RD\26.js
+   85:              // 'dotall' regex modifier. See:
+   86:              var m = arg.match(/^--([^=]+)=([\s\S]*)$/);
+***** MINIMIST\RD\ORIGINAL.JS
+   86:              // 'dotall' regex modifier. See:
+   87:              // http://stackoverflow.com/a/1068308/13216
+   88:              var m = arg.match(/^--([^=]+)=([\s\S]*)$/);
+*****
+
+***** MINIMIST\RD\26.js
+   94:              var key = arg.match(/^--no-(.+)/)[1];
+   95:              setArg(key, false);
+   96:          } else if (/^--.+/.test(arg)) {
+***** MINIMIST\RD\ORIGINAL.JS
+   96:              var key = arg.match(/^--no-(.+)/)[1];
+   97:              setArg(key, false, arg);
+   98:          } else if (/^--.+/.test(arg)) {
+*****
+

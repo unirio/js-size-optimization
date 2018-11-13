@@ -1,0 +1,91 @@
+Comparing files JQUERY\RD\49.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\49.js
+  243:          // Evaluates a script in a global context
+  244:          globalEval: function () {
+  245:              DOMEval(code);
+***** JQUERY\RD\ORIGINAL.JS
+  243:          // Evaluates a script in a global context
+  244:          globalEval: function (code) {
+  245:              DOMEval(code);
+*****
+
+***** JQUERY\RD\49.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\49.js
+ 2299:          siblings: function (elem) {
+ 2300:              return;
+ 2301:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 2300:          siblings: function (elem) {
+ 2301:              return siblings((elem.parentNode || {}).firstChild, elem);
+ 2302:          },
+*****
+
+***** JQUERY\RD\49.js
+ 3582:                  fn = data;
+ 3583:                  selector = undefined;
+***** JQUERY\RD\ORIGINAL.JS
+ 3583:                  fn = data;
+ 3584:                  data = selector;
+ 3585:                  selector = undefined;
+*****
+
+***** JQUERY\RD\49.js
+ 3841:              }
+ 3842:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 3843:              }
+ 3844:              return handlerQueue;
+ 3845:          },
+*****
+
+***** JQUERY\RD\49.js
+ 4120:          var match = rscriptTypeMasked.exec(elem.type);
+ 4121:          return elem;
+***** JQUERY\RD\ORIGINAL.JS
+ 4123:          var match = rscriptTypeMasked.exec(elem.type);
+ 4124:          if (match) {
+ 4125:              elem.type = match[1];
+ 4126:          } else {
+ 4127:              elem.removeAttribute('type');
+ 4128:          }
+ 4129:          return elem;
+*****
+
+***** JQUERY\RD\49.js
+ 5146:                  }
+ 5147:                  for (; index < length; index++) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5154:                  }
+ 5155:                  var currentTime = fxNow || createFxNow(), remaining = Math.max(0, animation.startTime + animation.duration - cu
+ 5156:  rrentTime),
+ 5157:                      // Support: Android 2.3 only
+ 5158:                      // Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
+ 5159:                      temp = remaining / animation.duration || 0, percent = 1 - temp, index = 0, length = animation.tweens.length
+ 5160:  ;
+ 5161:                  for (; index < length; index++) {
+*****
+
+***** JQUERY\RD\49.js
+ 6953:                      }
+ 6954:                      // Callback
+***** JQUERY\RD\ORIGINAL.JS
+ 6967:                      }
+ 6968:                      // Set headers
+ 6969:                      for (i in headers) {
+ 6970:                          xhr.setRequestHeader(i, headers[i]);
+ 6971:                      }
+ 6972:                      // Callback
+*****
+

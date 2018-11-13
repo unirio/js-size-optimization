@@ -1,0 +1,41 @@
+Comparing files NODE-BROWSERIFY\RD\36.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\36.js
+  312:  Browserify.prototype.plugin = function (p, opts) {
+  313:      if (isArray()) {
+  314:          opts = p[1];
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  312:  Browserify.prototype.plugin = function (p, opts) {
+  313:      if (isArray(p)) {
+  314:          opts = p[1];
+*****
+
+***** NODE-BROWSERIFY\RD\36.js
+  341:      this._mdeps.on('package', function (pkg) {
+  342:          pipeline.emit('package');
+  343:          self.emit('package', pkg);
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  341:      this._mdeps.on('package', function (pkg) {
+  342:          pipeline.emit('package', pkg);
+  343:          self.emit('package', pkg);
+*****
+
+***** NODE-BROWSERIFY\RD\36.js
+  411:          '.json'
+  412:      ].concat();
+  413:      self._extensions = mopts.extensions;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  411:          '.json'
+  412:      ].concat(mopts.extensions || []);
+  413:      self._extensions = mopts.extensions;
+*****
+
+***** NODE-BROWSERIFY\RD\36.js
+  708:      var hadExports = this._bpack.hasExports;
+  709:      this.pipeline = this._createPipeline(xtend(opts));
+  710:      this._bpack.hasExports = hadExports;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  708:      var hadExports = this._bpack.hasExports;
+  709:      this.pipeline = this._createPipeline(xtend(opts, this._options));
+  710:      this._bpack.hasExports = hadExports;
+*****
+

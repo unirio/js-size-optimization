@@ -1,0 +1,106 @@
+Comparing files JQUERY\RD\44.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\44.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\44.js
+ 2136:              var match, elem;
+ 2137:              // Method init() accepts an alternate rootjQuery
+***** JQUERY\RD\ORIGINAL.JS
+ 2137:              var match, elem;
+ 2138:              // HANDLE: $(""), $(null), $(undefined), $(false)
+ 2139:              if (!selector) {
+ 2140:                  return this;
+ 2141:              }
+ 2142:              // Method init() accepts an alternate rootjQuery
+*****
+
+***** JQUERY\RD\44.js
+ 2167:                                  } else {
+ 2168:                                      this.attr(match);
+ 2169:                                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 2172:                                  } else {
+ 2173:                                      this.attr(match, context[match]);
+ 2174:                                  }
+*****
+
+***** JQUERY\RD\44.js
+ 3131:                  });
+ 3132:              }, value, arguments.length > 1, null, true);
+ 3133:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 3136:                  });
+ 3137:              }, null, value, arguments.length > 1, null, true);
+ 3138:          },
+*****
+
+***** JQUERY\RD\44.js
+ 4747:              }
+ 4748:              // Make numeric if forced or a qualifier was provided and val looks numeric
+***** JQUERY\RD\ORIGINAL.JS
+ 4752:              }
+ 4753:              // Convert "normal" to computed value
+ 4754:              if (val === 'normal' && name in cssNormalTransform) {
+ 4755:                  val = cssNormalTransform[name];
+ 4756:              }
+ 4757:              // Make numeric if forced or a qualifier was provided and val looks numeric
+*****
+
+***** JQUERY\RD\44.js
+ 6295:          } else {
+ 6296:              for (type in responses) {
+***** JQUERY\RD\ORIGINAL.JS
+ 6304:          } else {
+ 6305:              // Try convertible dataTypes
+ 6306:              for (type in responses) {
+*****
+
+***** JQUERY\RD\44.js
+ 6610:              if (completed) {
+ 6611:                  return;
+ 6612:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 6620:              if (completed) {
+ 6621:                  return jqXHR;
+ 6622:              }
+*****
+
+***** JQUERY\RD\44.js
+ 7045:          converters: {
+ 7046:              'text script': function () {
+ 7047:                  jQuery.globalEval(text);
+***** JQUERY\RD\ORIGINAL.JS
+ 7055:          converters: {
+ 7056:              'text script': function (text) {
+ 7057:                  jQuery.globalEval(text);
+*****
+
+***** JQUERY\RD\44.js
+ 7298:              if (jQuery.isFunction(options)) {
+ 7299:              }
+***** JQUERY\RD\ORIGINAL.JS
+ 7308:              if (jQuery.isFunction(options)) {
+ 7309:                  // Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
+ 7310:                  options = options.call(elem, i, jQuery.extend({}, curOffset));
+ 7311:              }
+*****
+
+***** JQUERY\RD\44.js
+ 7386:          //
+ 7387:          // and might be considered as more preferable results.
+***** JQUERY\RD\ORIGINAL.JS
+ 7398:          //
+ 7399:          // but those exceptions were never presented as a real life use-cases
+ 7400:          // and might be considered as more preferable results.
+*****
+

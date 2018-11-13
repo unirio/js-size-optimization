@@ -1,0 +1,48 @@
+Comparing files UNDERSCORE\RD\51.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\51.js
+  659:      // Determines whether to execute a function as a constructor
+  660:      var executeBound = function (sourceFunc, boundFunc, context, callingContext, args) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  659:      // Determines whether to execute a function as a constructor
+  660:      // or a normal function with the provided arguments
+  661:      var executeBound = function (sourceFunc, boundFunc, context, callingContext, args) {
+*****
+
+***** UNDERSCORE\RD\51.js
+  678:          var bound = function () {
+  679:              return executeBound(func, bound, context, this, args.concat());
+  680:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, this, args.concat(slice.call(arguments)));
+  681:          };
+*****
+
+***** UNDERSCORE\RD\51.js
+  872:          var proto = _.isFunction(constructor) && constructor.prototype || ObjProto;
+  873:          var prop = 'constructor';
+***** UNDERSCORE\RD\ORIGINAL.JS
+  873:          var proto = _.isFunction(constructor) && constructor.prototype || ObjProto;
+  874:          // Constructor is a special case.
+  875:          var prop = 'constructor';
+*****
+
+***** UNDERSCORE\RD\51.js
+  887:              return [];
+  888:          var keys = [];
+***** UNDERSCORE\RD\ORIGINAL.JS
+  889:              return [];
+  890:          if (nativeKeys)
+  891:              return nativeKeys(obj);
+  892:          var keys = [];
+*****
+
+***** UNDERSCORE\RD\51.js
+ 1015:      // If additional properties are provided then they will be added to the
+ 1016:      _.create = function (prototype, props) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1019:      // If additional properties are provided then they will be added to the
+ 1020:      // created object.
+ 1021:      _.create = function (prototype, props) {
+*****
+

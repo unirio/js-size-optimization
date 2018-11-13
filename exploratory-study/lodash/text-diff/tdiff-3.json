@@ -1,0 +1,10 @@
+Comparing files LODASH\RD\3.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\3.js
+ 3284:                      end = nativeMin(end, start + size);
+ 3285:                  case 'takeRight':
+***** LODASH\RD\ORIGINAL.JS
+ 3284:                      end = nativeMin(end, start + size);
+ 3285:                      break;
+ 3286:                  case 'takeRight':
+*****
+

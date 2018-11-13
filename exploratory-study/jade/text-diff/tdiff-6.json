@@ -1,0 +1,44 @@
+Comparing files JADE\RD\6.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\6.js
+   32:  exports.filters = {};
+   33:  function compileBody(str, options) {
+***** JADE\RD\ORIGINAL.JS
+   32:  exports.filters = {};
+   33:  /**
+   34:   * Compile the given `str` of pug and return a function body.
+   35:   *
+   36:   * @param {String} str
+   37:   * @param {Object} options
+   38:   * @return {Object}
+   39:   * @api private
+   40:   */
+   41:  function compileBody(str, options) {
+*****
+
+***** JADE\RD\6.js
+   68:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   69:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          globals: options.globals,
+   78:          self: options.self,
+*****
+
+***** JADE\RD\6.js
+  234:      if ('function' == typeof options) {
+  235:      }
+***** JADE\RD\ORIGINAL.JS
+  243:      if ('function' == typeof options) {
+  244:          fn = options, options = undefined;
+  245:      }
+*****
+
+***** JADE\RD\6.js
+  304:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  305:      }
+***** JADE\RD\ORIGINAL.JS
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+*****
+

@@ -1,0 +1,50 @@
+Comparing files UNDERSCORE\RD\13.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\13.js
+   18:      // are declared here.
+   19:      var nativeIsArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Naked function reference for surrogate-prototype-swapping.
+***** UNDERSCORE\RD\ORIGINAL.JS
+   18:      // are declared here.
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Naked function reference for surrogate-prototype-swapping.
+*****
+
+***** UNDERSCORE\RD\13.js
+  437:      // the arguments object. Passing **n** will return all the values in
+  438:      _.initial = function (array, n, guard) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  437:      // the arguments object. Passing **n** will return all the values in
+  438:      // the array, excluding the last N.
+  439:      _.initial = function (array, n, guard) {
+*****
+
+***** UNDERSCORE\RD\13.js
+  865:          'propertyIsEnumerable',
+  866:          'hasOwnProperty'
+  867:      ];
+***** UNDERSCORE\RD\ORIGINAL.JS
+  866:          'propertyIsEnumerable',
+  867:          'hasOwnProperty',
+  868:          'toLocaleString'
+  869:      ];
+*****
+
+***** UNDERSCORE\RD\13.js
+  887:              return [];
+  888:          var keys = [];
+***** UNDERSCORE\RD\ORIGINAL.JS
+  889:              return [];
+  890:          if (nativeKeys)
+  891:              return nativeKeys(obj);
+  892:          var keys = [];
+*****
+
+***** UNDERSCORE\RD\13.js
+ 1109:              // Linear search. Performance is inversely proportional to the number of
+ 1110:              if (aStack[length] === a)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1113:              // Linear search. Performance is inversely proportional to the number of
+ 1114:              // unique nested structures.
+ 1115:              if (aStack[length] === a)
+*****
+

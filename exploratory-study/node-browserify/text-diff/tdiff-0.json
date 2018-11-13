@@ -1,0 +1,29 @@
+Comparing files NODE-BROWSERIFY\RD\0.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\0.js
+  225:          });
+  226:          return;
+  227:      }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  225:          });
+  226:          return this;
+  227:      }
+*****
+
+***** NODE-BROWSERIFY\RD\0.js
+  364:          'unshebang',
+  365:          'syntax',
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  364:          'unshebang',
+  365:          [this._unshebang()],
+  366:          'syntax',
+*****
+
+***** NODE-BROWSERIFY\RD\0.js
+  405:      // Let mdeps populate these values since it will be resolving file paths
+  406:      mopts.expose = this._expose;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  406:      // Let mdeps populate these values since it will be resolving file paths
+  407:      // anyway.
+  408:      mopts.expose = this._expose;
+*****
+

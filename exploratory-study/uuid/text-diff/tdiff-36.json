@@ -1,0 +1,22 @@
+Comparing files UUID\RD\36.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\36.js
+  181:      ];
+  182:      for (var i = 0; i < parts.length;) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+***** UUID\RD\ORIGINAL.JS
+  181:      ];
+  182:      for (var i = 0; i < parts.length; i++) {
+  183:          for (var j = 0; j < parts[i]; j++) {
+*****
+
+***** UUID\RD\36.js
+  189:          }
+  190:      }
+***** UUID\RD\ORIGINAL.JS
+  189:          }
+  190:          if (parts[i] !== 6) {
+  191:              str += '-';
+  192:          }
+  193:      }
+*****
+

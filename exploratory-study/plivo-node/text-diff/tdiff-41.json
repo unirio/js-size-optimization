@@ -1,0 +1,69 @@
+Comparing files PLIVO-NODE\RD\41.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\41.js
+  164:      delete params.call_uuid;
+  165:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  164:      delete params.call_uuid;
+  165:      var method = 'POST';
+  166:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\41.js
+  339:      var action = 'Subaccount/';
+  340:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  340:      var action = 'Subaccount/';
+  341:      var method = 'POST';
+  342:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\41.js
+  351:      var method = 'DELETE';
+  352:      request(action, params, callback);
+  353:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  353:      var method = 'DELETE';
+  354:      request(action, method, params, callback);
+  355:  };
+*****
+
+***** PLIVO-NODE\RD\41.js
+  392:      var method = 'GET';
+  393:      request(action, method, callback);
+  394:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  394:      var method = 'GET';
+  395:      request(action, method, params, callback);
+  396:  };
+*****
+
+***** PLIVO-NODE\RD\41.js
+  401:  // Endpoints
+  402:  plivo.get_endpoints = function (params) {
+  403:      var action = 'Endpoint/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  403:  // Endpoints
+  404:  plivo.get_endpoints = function (params, callback) {
+  405:      var action = 'Endpoint/';
+*****
+
+***** PLIVO-NODE\RD\41.js
+  404:      var method = 'GET';
+  405:      request(action, method, params);
+  406:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  406:      var method = 'GET';
+  407:      request(action, method, params, callback);
+  408:  };
+*****
+
+***** PLIVO-NODE\RD\41.js
+  480:      var method = 'GET';
+  481:      request(action, params, callback);
+  482:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  482:      var method = 'GET';
+  483:      request(action, method, params, callback);
+  484:  };
+*****
+

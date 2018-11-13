@@ -1,0 +1,64 @@
+Comparing files JQUERY\RD\48.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\48.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\48.js
+ 2189:                  } else {
+ 2190:                  }    // HANDLE: $(DOMElement)
+***** JQUERY\RD\ORIGINAL.JS
+ 2190:                  } else {
+ 2191:                      return this.constructor(context).find(selector);
+ 2192:                  }    // HANDLE: $(DOMElement)
+*****
+
+***** JQUERY\RD\48.js
+ 4725:                  if (!hooks || !('set' in hooks) || (value = hooks.set(elem, value, extra)) !== undefined) {
+ 4726:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 4727:                  if (!hooks || !('set' in hooks) || (value = hooks.set(elem, value, extra)) !== undefined) {
+ 4728:                      style[name] = value;
+ 4729:                  }
+*****
+
+***** JQUERY\RD\48.js
+ 5689:          addClass: function (value) {
+ 5690:              var classes, elem, cur, curValue, clazz, finalValue, i = 0;
+ 5691:              if (jQuery.isFunction(value)) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5692:          addClass: function (value) {
+ 5693:              var classes, elem, cur, curValue, clazz, j, finalValue, i = 0;
+ 5694:              if (jQuery.isFunction(value)) {
+*****
+
+***** JQUERY\RD\48.js
+ 5815:                      ret = elem.value;
+ 5816:                      return typeof ret === 'string' ? ret.replace(rreturn, '') : // Handle cases where value is null/undef or nu
+ 5817:  mber
+ 5818:                      ret == null ? '' : ret;
+***** JQUERY\RD\ORIGINAL.JS
+ 5818:                      ret = elem.value;
+ 5819:                      return typeof ret === 'string' ? // Handle most common string cases
+ 5820:                      ret.replace(rreturn, '') : // Handle cases where value is null/undef or number
+ 5821:                      ret == null ? '' : ret;
+*****
+
+***** JQUERY\RD\48.js
+ 6488:                  responseHeadersString, responseHeaders,
+ 6489:                  // Url cleanup var
+***** JQUERY\RD\ORIGINAL.JS
+ 6491:                  responseHeadersString, responseHeaders,
+ 6492:                  // timeout handle
+ 6493:                  timeoutTimer,
+ 6494:                  // Url cleanup var
+*****
+

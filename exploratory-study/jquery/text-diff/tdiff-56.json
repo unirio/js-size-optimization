@@ -1,0 +1,134 @@
+Comparing files JQUERY\RD\56.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\56.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\56.js
+ 2065:      var risSimple = /^.[^:#\[\.,]*$/;
+ 2066:      jQuery.filter = function (expr, elems, not) {
+***** JQUERY\RD\ORIGINAL.JS
+ 2066:      var risSimple = /^.[^:#\[\.,]*$/;
+ 2067:      // Implement the identical functionality for filter and not
+ 2068:      function winnow(elements, qualifier, not) {
+ 2069:          if (jQuery.isFunction(qualifier)) {
+ 2070:              return jQuery.grep(elements, function (elem, i) {
+ 2071:                  return !!qualifier.call(elem, i, elem) !== not;
+ 2072:              });
+ 2073:          }
+ 2074:          if (qualifier.nodeType) {
+ 2075:              return jQuery.grep(elements, function (elem) {
+ 2076:                  return elem === qualifier !== not;
+ 2077:              });
+ 2078:          }
+ 2079:          if (typeof qualifier === 'string') {
+ 2080:              if (risSimple.test(qualifier)) {
+ 2081:                  return jQuery.filter(qualifier, elements, not);
+ 2082:              }
+ 2083:              qualifier = jQuery.filter(qualifier, elements);
+ 2084:          }
+ 2085:          return jQuery.grep(elements, function (elem) {
+ 2086:              return indexOf.call(qualifier, elem) > -1 !== not && elem.nodeType === 1;
+ 2087:          });
+ 2088:      }
+ 2089:      jQuery.filter = function (expr, elems, not) {
+*****
+
+***** JQUERY\RD\56.js
+ 2167:                  } else {
+ 2168:                      return this.constructor(context).find();
+ 2169:                  }    // HANDLE: $(DOMElement)
+***** JQUERY\RD\ORIGINAL.JS
+ 2190:                  } else {
+ 2191:                      return this.constructor(context).find(selector);
+ 2192:                  }    // HANDLE: $(DOMElement)
+*****
+
+***** JQUERY\RD\56.js
+ 3085:              }
+ 3086:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 3108:              }
+ 3109:              return access(this, function (value) {
+ 3110:                  var data;
+ 3111:                  // The calling jQuery object (element matches) is not empty
+ 3112:                  // (and therefore has an element appears at this[ 0 ]) and the
+ 3113:                  // `value` parameter was not undefined. An empty jQuery object
+ 3114:                  // will result in `undefined` for elem = this[ 0 ] which will
+ 3115:                  // throw an exception if an attempt to read a data cache is made.
+ 3116:                  if (elem && value === undefined) {
+ 3117:                      // Attempt to get data from the cache
+ 3118:                      // The key will always be camelCased in Data
+ 3119:                      data = dataUser.get(elem, key);
+ 3120:                      if (data !== undefined) {
+ 3121:                          return data;
+ 3122:                      }
+ 3123:                      // Attempt to "discover" the data in
+ 3124:                      // HTML5 custom data-* attrs
+ 3125:                      data = dataAttr(elem, key);
+ 3126:                      if (data !== undefined) {
+ 3127:                          return data;
+ 3128:                      }
+ 3129:                      // We tried really hard, but the data doesn't exist.
+ 3130:                      return;
+ 3131:                  }
+ 3132:                  // Set the data...
+ 3133:                  this.each(function () {
+ 3134:                      // We always store the camelCased key
+ 3135:                      dataUser.set(this, key, value);
+ 3136:                  });
+ 3137:              }, null, value, arguments.length > 1, null, true);
+ 3138:          },
+*****
+
+***** JQUERY\RD\56.js
+ 5411:      };
+ 5412:      // Based off of the plugin by Clint Helfers, with permission.
+***** JQUERY\RD\ORIGINAL.JS
+ 5463:      };
+ 5464:      jQuery.fx.speeds = {
+ 5465:          slow: 600,
+ 5466:          fast: 200,
+ 5467:          // Default speed
+ 5468:          _default: 400
+ 5469:      };
+ 5470:      // Based off of the plugin by Clint Helfers, with permission.
+*****
+
+***** JQUERY\RD\56.js
+ 7361:          jQuery.fn[method] = function (val) {
+ 7362:              return;
+ 7363:          };
+***** JQUERY\RD\ORIGINAL.JS
+ 7419:          jQuery.fn[method] = function (val) {
+ 7420:              return access(this, function (elem, method, val) {
+ 7421:                  var win = getWindow(elem);
+ 7422:                  if (val === undefined) {
+ 7423:                      return win ? win[prop] : elem[method];
+ 7424:                  }
+ 7425:                  if (win) {
+ 7426:                      win.scrollTo(!top ? val : win.pageXOffset, top ? val : win.pageYOffset);
+ 7427:                  } else {
+ 7428:                      elem[method] = val;
+ 7429:                  }
+ 7430:              }, method, val, arguments.length);
+ 7431:          };
+*****
+
+***** JQUERY\RD\56.js
+ 7367:      // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+ 7368:      // getComputedStyle returns percent when specified for top/left/bottom/right;
+***** JQUERY\RD\ORIGINAL.JS
+ 7435:      // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+ 7436:      // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
+ 7437:      // getComputedStyle returns percent when specified for top/left/bottom/right;
+*****
+

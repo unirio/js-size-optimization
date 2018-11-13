@@ -1,0 +1,55 @@
+Comparing files JADE\RD\11.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\11.js
+   28:  exports.cache = {};
+   29:  exports.filters = {};
+***** JADE\RD\ORIGINAL.JS
+   28:  exports.cache = {};
+   29:  /**
+   30:   * Object for custom filters
+   31:   */
+   32:  exports.filters = {};
+*****
+
+***** JADE\RD\11.js
+   44:          parse: function (tokens, filename) {
+   45:              tokens = stripComments(tokens);
+   46:              return parse(tokens, filename);
+***** JADE\RD\ORIGINAL.JS
+   47:          parse: function (tokens, filename) {
+   48:              tokens = stripComments(tokens, { filename: filename });
+   49:              return parse(tokens, filename);
+*****
+
+***** JADE\RD\11.js
+  173:          pretty: options.pretty,
+  174:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+***** JADE\RD\ORIGINAL.JS
+  176:          pretty: options.pretty,
+  177:          doctype: options.doctype,
+  178:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+*****
+
+***** JADE\RD\11.js
+  180:      });
+  181:      return { body: parsed.body };
+  182:  };
+***** JADE\RD\ORIGINAL.JS
+  184:      });
+  185:      return {
+  186:          body: parsed.body,
+  187:          dependencies: parsed.dependencies
+  188:      };
+  189:  };
+*****
+
+***** JADE\RD\11.js
+  302:  };
+  303:  exports.__express = function (path, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  309:  };
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+*****
+

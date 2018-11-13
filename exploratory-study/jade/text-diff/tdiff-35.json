@@ -1,0 +1,151 @@
+Comparing files JADE\RD\35.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\35.js
+  189:  };
+  190:  exports.compileClient = function (str, options) {
+  191:      return exports.compileClientWithDependenciesTracked(str, options).body;
+  192:  };
+  193:  /**
+  194:   * Compile a `Function` representation of the given pug file.
+  195:   *
+***** JADE\RD\ORIGINAL.JS
+  189:  };
+  190:  /**
+  191:   * Compile a JavaScript source representation of the given pug `str`.
+  192:   *
+*****
+
+***** JADE\RD\35.js
+  197:   *
+  198:   *   - `compileDebug` when `false` debugging code is stripped from the compiled
+  199:         template, when it is explicitly `true`, the source code is included in
+  200:         the compiled template for better accuracy.
+  201:   *
+  202:   * @param {String} path
+  203:   * @param {Options} options
+  204:   * @return {Function}
+  205:   * @api public
+***** JADE\RD\ORIGINAL.JS
+  194:   *
+  195:   *   - `compileDebug` When it is `true`, the source code is included in
+  196:   *     the compiled template for better error messages.
+  197:   *   - `filename` used to improve errors when `compileDebug` is not `true` and to resolve imports/extends
+  198:   *   - `name` the name of the resulting function (defaults to "template")
+  199:   *
+  200:   * @param {String} str
+  201:   * @param {Options} options
+  202:   * @return {String}
+  203:   * @api public
+*****
+
+***** JADE\RD\35.js
+  206:   */
+  207:  exports.compileFile = function (path, options) {
+  208:      options = options || {};
+  209:      options.filename = path;
+  210:      return handleTemplateCache(options);
+  211:  };
+***** JADE\RD\ORIGINAL.JS
+  204:   */
+  205:  exports.compileClient = function (str, options) {
+  206:      return exports.compileClientWithDependenciesTracked(str, options).body;
+  207:  };
+*****
+
+***** JADE\RD\35.js
+  212:  /**
+  213:   * Render the given `str` of pug.
+  214:   *
+***** JADE\RD\ORIGINAL.JS
+  208:  /**
+  209:   * Compile a `Function` representation of the given pug file.
+  210:   *
+*****
+
+***** JADE\RD\35.js
+  216:   *
+  217:   *   - `cache` enable template caching
+  218:   *   - `filename` filename required for `include` / `extends` and caching
+  219:   *
+  220:   * @param {String} str
+  221:   * @param {Object|Function} options or fn
+  222:   * @param {Function|undefined} fn
+  223:   * @returns {String}
+  224:   * @api public
+***** JADE\RD\ORIGINAL.JS
+  212:   *
+  213:   *   - `compileDebug` when `false` debugging code is stripped from the compiled
+  214:         template, when it is explicitly `true`, the source code is included in
+  215:         the compiled template for better accuracy.
+  216:   *
+  217:   * @param {String} path
+  218:   * @param {Options} options
+  219:   * @return {Function}
+  220:   * @api public
+*****
+
+***** JADE\RD\35.js
+  225:   */
+  226:  exports.render = function (str, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  221:   */
+  222:  exports.compileFile = function (path, options) {
+  223:      options = options || {};
+  224:      options.filename = path;
+  225:      return handleTemplateCache(options);
+  226:  };
+  227:  /**
+  228:   * Render the given `str` of pug.
+  229:   *
+  230:   * Options:
+  231:   *
+  232:   *   - `cache` enable template caching
+  233:   *   - `filename` filename required for `include` / `extends` and caching
+  234:   *
+  235:   * @param {String} str
+  236:   * @param {Object|Function} options or fn
+  237:   * @param {Function|undefined} fn
+  238:   * @returns {String}
+  239:   * @api public
+  240:   */
+  241:  exports.render = function (str, options, fn) {
+*****
+
+***** JADE\RD\35.js
+  235:          } catch (ex) {
+  236:              return;
+  237:          }
+***** JADE\RD\ORIGINAL.JS
+  250:          } catch (ex) {
+  251:              return fn(ex);
+  252:          }
+*****
+
+***** JADE\RD\35.js
+  271:      options.filename = path;
+  272:      return handleTemplateCache(options)();
+  273:  };
+***** JADE\RD\ORIGINAL.JS
+  286:      options.filename = path;
+  287:      return handleTemplateCache(options)(options);
+  288:  };
+*****
+
+***** JADE\RD\35.js
+  297:   */
+  298:  exports.__express = function (path, options) {
+  299:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+***** JADE\RD\ORIGINAL.JS
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+*****
+
+***** JADE\RD\35.js
+  301:      }
+  302:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

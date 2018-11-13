@@ -1,0 +1,153 @@
+Comparing files LODASH\RD\38.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\38.js
+ 6454:          });
+ 6455:          var delay = restParam(function (func, wait, args) {
+ 6456:              return baseDelay(func, wait, args);
+ 6457:          });
+ 6458:          /**
+ 6459:       * Creates a function that returns the result of invoking the provided
+ 6460:       * functions with the `this` binding of the created function, where each
+ 6461:       * successive invocation is supplied the return value of the previous.
+ 6462:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6454:          });
+ 6455:          /**
+ 6456:       * Invokes `func` after `wait` milliseconds. Any additional arguments are
+ 6457:       * provided to `func` when it's invoked.
+ 6458:       *
+*****
+
+***** LODASH\RD\38.js
+ 6465:       * @category Function
+ 6466:       * @param {...Function} [funcs] Functions to invoke.
+ 6467:       * @returns {Function} Returns the new function.
+ 6468:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6461:       * @category Function
+ 6462:       * @param {Function} func The function to delay.
+ 6463:       * @param {number} wait The number of milliseconds to delay invocation.
+ 6464:       * @param {...*} [args] The arguments to invoke the function with.
+ 6465:       * @returns {number} Returns the timer id.
+ 6466:       * @example
+*****
+
+***** LODASH\RD\38.js
+ 6469:       *
+ 6470:       * function square(n) {
+ 6471:       *   return n * n;
+ 6472:       * }
+ 6473:       *
+ 6474:       * var addSquare = _.flow(_.add, square);
+ 6475:       * addSquare(1, 2);
+ 6476:       * // => 9
+ 6477:       */
+ 6478:          var flow = createFlow();
+ 6479:          /**
+ 6480:       * This method is like `_.flow` except that it creates a function that
+ 6481:       * invokes the provided functions from right to left.
+ 6482:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6467:       *
+ 6468:       * _.delay(function(text) {
+ 6469:       *   console.log(text);
+ 6470:       * }, 1000, 'later');
+ 6471:       * // => logs 'later' after one second
+ 6472:       */
+ 6473:          var delay = restParam(function (func, wait, args) {
+ 6474:              return baseDelay(func, wait, args);
+ 6475:          });
+ 6476:          /**
+ 6477:       * Creates a function that returns the result of invoking the provided
+ 6478:       * functions with the `this` binding of the created function, where each
+ 6479:       * successive invocation is supplied the return value of the previous.
+ 6480:       *
+*****
+
+***** LODASH\RD\38.js
+ 6493:       *
+ 6494:       * var addSquare = _.flowRight(square, _.add);
+ 6495:       * addSquare(1, 2);
+***** LODASH\RD\ORIGINAL.JS
+ 6491:       *
+ 6492:       * var addSquare = _.flow(_.add, square);
+ 6493:       * addSquare(1, 2);
+*****
+
+***** LODASH\RD\38.js
+ 6497:       */
+ 6498:          var flowRight = createFlow(true);
+ 6499:          /**
+ 6500:       * Creates a function that memoizes the result of `func`. If `resolver` is
+ 6501:       * provided it determines the cache key for storing the result based on the
+ 6502:       * arguments provided to the memoized function. By default, the first argument
+ 6503:       * provided to the memoized function is coerced to a string and used as the
+ 6504:       * cache key. The `func` is invoked with the `this` binding of the memoized
+ 6505:       * function.
+ 6506:       *
+ 6507:       * **Note:** The cache is exposed as the `cache` property on the memoized
+ 6508:       * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ 6509:       * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of
+ 6510:  -the-map-prototype-object)
+ 6511:       * method interface of `get`, `has`, and `set`.
+ 6512:       *
+***** LODASH\RD\ORIGINAL.JS
+ 6495:       */
+ 6496:          var flow = createFlow();
+ 6497:          /**
+ 6498:       * This method is like `_.flow` except that it creates a function that
+ 6499:       * invokes the provided functions from right to left.
+ 6500:       *
+*****
+
+***** LODASH\RD\38.js
+ 6515:       * @category Function
+ 6516:       * @param {Function} func The function to have its output memoized.
+ 6517:       * @param {Function} [resolver] The function to resolve the cache key.
+ 6518:       * @returns {Function} Returns the new memoizing function.
+ 6519:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 6503:       * @category Function
+ 6504:       * @param {...Function} [funcs] Functions to invoke.
+ 6505:       * @returns {Function} Returns the new function.
+ 6506:       * @example
+*****
+
+***** LODASH\RD\38.js
+ 6520:       *
+ 6521:       * var upperCase = _.memoize(function(string) {
+***** LODASH\RD\ORIGINAL.JS
+ 6507:       *
+ 6508:       * function square(n) {
+ 6509:       *   return n * n;
+ 6510:       * }
+ 6511:       *
+ 6512:       * var addSquare = _.flowRight(square, _.add);
+ 6513:       * addSquare(1, 2);
+ 6514:       * // => 9
+ 6515:       */
+ 6516:          var flowRight = createFlow(true);
+ 6517:          /**
+ 6518:       * Creates a function that memoizes the result of `func`. If `resolver` is
+ 6519:       * provided it determines the cache key for storing the result based on the
+ 6520:       * arguments provided to the memoized function. By default, the first argument
+ 6521:       * provided to the memoized function is coerced to a string and used as the
+ 6522:       * cache key. The `func` is invoked with the `this` binding of the memoized
+ 6523:       * function.
+ 6524:       *
+ 6525:       * **Note:** The cache is exposed as the `cache` property on the memoized
+ 6526:       * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ 6527:       * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of
+ 6528:  -the-map-prototype-object)
+ 6529:       * method interface of `get`, `has`, and `set`.
+ 6530:       *
+ 6531:       * @static
+ 6532:       * @memberOf _
+ 6533:       * @category Function
+ 6534:       * @param {Function} func The function to have its output memoized.
+ 6535:       * @param {Function} [resolver] The function to resolve the cache key.
+ 6536:       * @returns {Function} Returns the new memoizing function.
+ 6537:       * @example
+ 6538:       *
+ 6539:       * var upperCase = _.memoize(function(string) {
+*****
+

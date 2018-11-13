@@ -1,0 +1,982 @@
+Comparing files LODASH\RD\35.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\35.js
+ 1209:          }
+ 1210:          function arrayMap(array, iteratee) {
+***** LODASH\RD\ORIGINAL.JS
+ 1209:          }
+ 1210:          /**
+ 1211:       * A specialized version of `_.map` for arrays without support for callback
+ 1212:       * shorthands.
+ 1213:       *
+ 1214:       * @private
+ 1215:       * @param {Array} array The array to iterate over.
+ 1216:       * @param {Function} iteratee The function invoked per iteration.
+ 1217:       * @returns {Array} Returns the new mapped array.
+ 1218:       */
+ 1219:          function arrayMap(array, iteratee) {
+*****
+
+***** LODASH\RD\35.js
+ 3089:              case numberTag:
+ 3090:                  return object != +object ? other != +other : object == +other;
+***** LODASH\RD\ORIGINAL.JS
+ 3098:              case numberTag:
+ 3099:                  // Treat `NaN` vs. `NaN` as equal.
+ 3100:                  return object != +object ? other != +other : object == +other;
+*****
+
+***** LODASH\RD\35.js
+ 3540:       */
+ 3541:          function mergeData(data) {
+ 3542:              var bitmask = data[1], srcBitmask = source[1], newBitmask = bitmask | srcBitmask, isCommon = newBitmask < ARY_FLAG;
+***** LODASH\RD\ORIGINAL.JS
+ 3550:       */
+ 3551:          function mergeData(data, source) {
+ 3552:              var bitmask = data[1], srcBitmask = source[1], newBitmask = bitmask | srcBitmask, isCommon = newBitmask < ARY_FLAG;
+*****
+
+***** LODASH\RD\35.js
+ 3650:                  if (remaining > 0) {
+ 3651:                  } else {
+***** LODASH\RD\ORIGINAL.JS
+ 3660:                  if (remaining > 0) {
+ 3661:                      if (++count >= HOT_COUNT) {
+ 3662:                          return key;
+ 3663:                      }
+ 3664:                  } else {
+*****
+
+***** LODASH\RD\35.js
+ 7590:          }
+ 7591:          function isPlainObject(value) {
+ 7592:              if (!isObjectLike(value) || objToString.call(value) != objectTag || isHostObject(value)) {
+ 7593:                  return false;
+ 7594:              }
+ 7595:              var proto = typeof value.constructor == 'function' ? getPrototypeOf(value) : objectProto;
+ 7596:              if (proto === null) {
+ 7597:                  return true;
+ 7598:              }
+ 7599:              var Ctor = proto.constructor;
+ 7600:              return typeof Ctor == 'function' && Ctor instanceof Ctor && fnToString.call(Ctor) == objCtorString;
+ 7601:          }
+ 7602:          /**
+ 7603:       * Checks if `value` is classified as a `RegExp` object.
+ 7604:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7603:          }
+ 7604:          /**
+ 7605:       * Checks if `value` is a plain object, that is, an object created by the
+ 7606:       * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ 7607:       *
+*****
+
+***** LODASH\RD\35.js
+ 7608:       * @param {*} value The value to check.
+ 7609:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7610:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7611:       * @param {*} value The value to check.
+ 7612:       * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ 7613:       * @example
+*****
+
+***** LODASH\RD\35.js
+ 7611:       *
+ 7612:       * _.isRegExp(/abc/);
+ 7613:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7614:       *
+ 7615:       * function Foo() {
+ 7616:       *   this.a = 1;
+ 7617:       * }
+ 7618:       *
+ 7619:       * _.isPlainObject(new Foo);
+ 7620:       * // => false
+ 7621:       *
+ 7622:       * _.isPlainObject([1, 2, 3]);
+ 7623:       * // => false
+ 7624:       *
+ 7625:       * _.isPlainObject({ 'x': 0, 'y': 0 });
+ 7626:       * // => true
+*****
+
+***** LODASH\RD\35.js
+ 7614:       *
+ 7615:       * _.isRegExp('/abc/');
+ 7616:       * // => false
+ 7617:       */
+ 7618:          function isRegExp(value) {
+ 7619:              return isObject(value) && objToString.call(value) == regexpTag;
+ 7620:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7627:       *
+ 7628:       * _.isPlainObject(Object.create(null));
+ 7629:       * // => true
+ 7630:       */
+ 7631:          function isPlainObject(value) {
+ 7632:              if (!isObjectLike(value) || objToString.call(value) != objectTag || isHostObject(value)) {
+ 7633:                  return false;
+ 7634:              }
+ 7635:              var proto = typeof value.constructor == 'function' ? getPrototypeOf(value) : objectProto;
+ 7636:              if (proto === null) {
+ 7637:                  return true;
+ 7638:              }
+ 7639:              var Ctor = proto.constructor;
+ 7640:              return typeof Ctor == 'function' && Ctor instanceof Ctor && fnToString.call(Ctor) == objCtorString;
+ 7641:          }
+*****
+
+***** LODASH\RD\35.js
+ 7621:          /**
+ 7622:       * Checks if `value` is classified as a `String` primitive or object.
+ 7623:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7642:          /**
+ 7643:       * Checks if `value` is classified as a `RegExp` object.
+ 7644:       *
+*****
+
+***** LODASH\RD\35.js
+ 7630:       *
+ 7631:       * _.isString('abc');
+ 7632:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7651:       *
+ 7652:       * _.isRegExp(/abc/);
+ 7653:       * // => true
+*****
+
+***** LODASH\RD\35.js
+ 7633:       *
+ 7634:       * _.isString(1);
+ 7635:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7654:       *
+ 7655:       * _.isRegExp('/abc/');
+ 7656:       * // => false
+*****
+
+***** LODASH\RD\35.js
+ 7636:       */
+ 7637:          function isString(value) {
+ 7638:              return typeof value == 'string' || isObjectLike(value) && objToString.call(value) == stringTag;
+ 7639:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7657:       */
+ 7658:          function isRegExp(value) {
+ 7659:              return isObject(value) && objToString.call(value) == regexpTag;
+ 7660:          }
+*****
+
+***** LODASH\RD\35.js
+ 7640:          /**
+ 7641:       * Checks if `value` is classified as a typed array.
+ 7642:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7661:          /**
+ 7662:       * Checks if `value` is classified as a `String` primitive or object.
+ 7663:       *
+*****
+
+***** LODASH\RD\35.js
+ 7649:       *
+ 7650:       * _.isTypedArray(new Uint8Array);
+ 7651:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7670:       *
+ 7671:       * _.isString('abc');
+ 7672:       * // => true
+*****
+
+***** LODASH\RD\35.js
+ 7652:       *
+ 7653:       * _.isTypedArray([]);
+ 7654:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7673:       *
+ 7674:       * _.isString(1);
+ 7675:       * // => false
+*****
+
+***** LODASH\RD\35.js
+ 7655:       */
+ 7656:          function isTypedArray(value) {
+ 7657:              return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
+ 7658:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7676:       */
+ 7677:          function isString(value) {
+ 7678:              return typeof value == 'string' || isObjectLike(value) && objToString.call(value) == stringTag;
+ 7679:          }
+*****
+
+***** LODASH\RD\35.js
+ 7659:          /**
+ 7660:       * Checks if `value` is `undefined`.
+ 7661:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7680:          /**
+ 7681:       * Checks if `value` is classified as a typed array.
+ 7682:       *
+*****
+
+***** LODASH\RD\35.js
+ 7665:       * @param {*} value The value to check.
+ 7666:       * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+ 7667:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7686:       * @param {*} value The value to check.
+ 7687:       * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ 7688:       * @example
+*****
+
+***** LODASH\RD\35.js
+ 7668:       *
+ 7669:       * _.isUndefined(void 0);
+ 7670:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7689:       *
+ 7690:       * _.isTypedArray(new Uint8Array);
+ 7691:       * // => true
+*****
+
+***** LODASH\RD\35.js
+ 7671:       *
+ 7672:       * _.isUndefined(null);
+ 7673:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7692:       *
+ 7693:       * _.isTypedArray([]);
+ 7694:       * // => false
+*****
+
+***** LODASH\RD\35.js
+ 7674:       */
+ 7675:          function isUndefined(value) {
+ 7676:              return value === undefined;
+ 7677:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7695:       */
+ 7696:          function isTypedArray(value) {
+ 7697:              return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
+ 7698:          }
+*****
+
+***** LODASH\RD\35.js
+ 7678:          /**
+ 7679:       * Checks if `value` is less than `other`.
+ 7680:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7699:          /**
+ 7700:       * Checks if `value` is `undefined`.
+ 7701:       *
+*****
+
+***** LODASH\RD\35.js
+ 7683:       * @category Lang
+ 7684:       * @param {*} value The value to compare.
+ 7685:       * @param {*} other The other value to compare.
+ 7686:       * @returns {boolean} Returns `true` if `value` is less than `other`, else `false`.
+ 7687:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7704:       * @category Lang
+ 7705:       * @param {*} value The value to check.
+ 7706:       * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+ 7707:       * @example
+*****
+
+***** LODASH\RD\35.js
+ 7688:       *
+ 7689:       * _.lt(1, 3);
+ 7690:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7708:       *
+ 7709:       * _.isUndefined(void 0);
+ 7710:       * // => true
+*****
+
+***** LODASH\RD\35.js
+ 7691:       *
+ 7692:       * _.lt(3, 3);
+ 7693:       * // => false
+ 7694:       *
+ 7695:       * _.lt(3, 1);
+ 7696:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7711:       *
+ 7712:       * _.isUndefined(null);
+ 7713:       * // => false
+*****
+
+***** LODASH\RD\35.js
+ 7697:       */
+ 7698:          function lt(value, other) {
+ 7699:              return value < other;
+ 7700:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7714:       */
+ 7715:          function isUndefined(value) {
+ 7716:              return value === undefined;
+ 7717:          }
+*****
+
+***** LODASH\RD\35.js
+ 7701:          /**
+ 7702:       * Checks if `value` is less than or equal to `other`.
+ 7703:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7718:          /**
+ 7719:       * Checks if `value` is less than `other`.
+ 7720:       *
+*****
+
+***** LODASH\RD\35.js
+ 7708:       * @param {*} other The other value to compare.
+ 7709:       * @returns {boolean} Returns `true` if `value` is less than or equal to `other`, else `false`.
+ 7710:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7725:       * @param {*} other The other value to compare.
+ 7726:       * @returns {boolean} Returns `true` if `value` is less than `other`, else `false`.
+ 7727:       * @example
+*****
+
+***** LODASH\RD\35.js
+ 7711:       *
+ 7712:       * _.lte(1, 3);
+ 7713:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 7728:       *
+ 7729:       * _.lt(1, 3);
+ 7730:       * // => true
+*****
+
+***** LODASH\RD\35.js
+ 7714:       *
+ 7715:       * _.lte(3, 3);
+ 7716:       * // => true
+ 7717:       *
+ 7718:       * _.lte(3, 1);
+ 7719:       * // => false
+***** LODASH\RD\ORIGINAL.JS
+ 7731:       *
+ 7732:       * _.lt(3, 3);
+ 7733:       * // => false
+ 7734:       *
+ 7735:       * _.lt(3, 1);
+ 7736:       * // => false
+*****
+
+***** LODASH\RD\35.js
+ 7720:       */
+ 7721:          function lte(value, other) {
+ 7722:              return value <= other;
+ 7723:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7737:       */
+ 7738:          function lt(value, other) {
+ 7739:              return value < other;
+ 7740:          }
+*****
+
+***** LODASH\RD\35.js
+ 7724:          /**
+ 7725:       * Converts `value` to an array.
+ 7726:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7741:          /**
+ 7742:       * Checks if `value` is less than or equal to `other`.
+ 7743:       *
+*****
+
+***** LODASH\RD\35.js
+ 7729:       * @category Lang
+ 7730:       * @param {*} value The value to convert.
+ 7731:       * @returns {Array} Returns the converted array.
+ 7732:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7746:       * @category Lang
+ 7747:       * @param {*} value The value to compare.
+ 7748:       * @param {*} other The other value to compare.
+ 7749:       * @returns {boolean} Returns `true` if `value` is less than or equal to `other`, else `false`.
+ 7750:       * @example
+*****
+
+***** LODASH\RD\35.js
+ 7733:       *
+ 7734:       * (function() {
+ 7735:       *   return _.toArray(arguments).slice(1);
+ 7736:       * }(1, 2, 3));
+ 7737:       * // => [2, 3]
+ 7738:       */
+ 7739:          function toArray(value) {
+ 7740:              if (!isArrayLike(value)) {
+ 7741:                  return values(value);
+ 7742:              }
+ 7743:              return value.length ? copyArray(value) : [];
+ 7744:          }
+***** LODASH\RD\ORIGINAL.JS
+ 7751:       *
+ 7752:       * _.lte(1, 3);
+ 7753:       * // => true
+ 7754:       *
+ 7755:       * _.lte(3, 3);
+ 7756:       * // => true
+ 7757:       *
+ 7758:       * _.lte(3, 1);
+ 7759:       * // => false
+ 7760:       */
+ 7761:          function lte(value, other) {
+ 7762:              return value <= other;
+ 7763:          }
+*****
+
+***** LODASH\RD\35.js
+ 7745:          /**
+ 7746:       * Converts `value` to a plain object flattening inherited enumerable
+ 7747:       * properties of `value` to own properties of the plain object.
+ 7748:       *
+***** LODASH\RD\ORIGINAL.JS
+ 7764:          /**
+ 7765:       * Converts `value` to an array.
+ 7766:       *
+*****
+
+***** LODASH\RD\35.js
+ 7752:       * @param {*} value The value to convert.
+ 7753:       * @returns {Object} Returns the converted plain object.
+ 7754:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 7770:       * @param {*} value The value to convert.
+ 7771:       * @returns {Array} Returns the converted array.
+ 7772:       * @example
+*****
+
+***** LODASH\RD\35.js
+ 7755:       *
+ 7756:       * function Foo() {
+***** LODASH\RD\ORIGINAL.JS
+ 7773:       *
+ 7774:       * (function() {
+ 7775:       *   return _.toArray(arguments).slice(1);
+ 7776:       * }(1, 2, 3));
+ 7777:       * // => [2, 3]
+ 7778:       */
+ 7779:          function toArray(value) {
+ 7780:              if (!isArrayLike(value)) {
+ 7781:                  return values(value);
+ 7782:              }
+ 7783:              return value.length ? copyArray(value) : [];
+ 7784:          }
+ 7785:          /**
+ 7786:       * Converts `value` to a plain object flattening inherited enumerable
+ 7787:       * properties of `value` to own properties of the plain object.
+ 7788:       *
+ 7789:       * @static
+ 7790:       * @memberOf _
+ 7791:       * @category Lang
+ 7792:       * @param {*} value The value to convert.
+ 7793:       * @returns {Object} Returns the converted plain object.
+ 7794:       * @example
+ 7795:       *
+ 7796:       * function Foo() {
+*****
+
+***** LODASH\RD\35.js
+ 9180:              // Chrome fails to trim leading <BOM> whitespace characters.
+ 9181:              if (guard || radix == null) {
+***** LODASH\RD\ORIGINAL.JS
+ 9220:              // Chrome fails to trim leading <BOM> whitespace characters.
+ 9221:              // See https://code.google.com/p/v8/issues/detail?id=3109 for more details.
+ 9222:              if (guard || radix == null) {
+*****
+
+***** LODASH\RD\35.js
+ 9396:              var settings = lodash.templateSettings;
+ 9397:              if (otherOptions && isIterateeCall(string, options)) {
+ 9398:                  options = otherOptions = undefined;
+***** LODASH\RD\ORIGINAL.JS
+ 9437:              var settings = lodash.templateSettings;
+ 9438:              if (otherOptions && isIterateeCall(string, options, otherOptions)) {
+ 9439:                  options = otherOptions = undefined;
+*****
+
+***** LODASH\RD\35.js
+10142:          /*------------------------------------------------------------------------*/
+10143:          function add(augend, addend) {
+10144:              return (+augend || 0) + (+addend || 0);
+10145:          }
+10146:          /**
+10147:       * Calculates `n` rounded up to `precision`.
+10148:       *
+***** LODASH\RD\ORIGINAL.JS
+10183:          /*------------------------------------------------------------------------*/
+10184:          /**
+10185:       * Adds two numbers.
+10186:       *
+*****
+
+***** LODASH\RD\35.js
+10151:       * @category Math
+10152:       * @param {number} n The number to round up.
+10153:       * @param {number} [precision=0] The precision to round up to.
+10154:       * @returns {number} Returns the rounded up number.
+10155:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10189:       * @category Math
+10190:       * @param {number} augend The first number to add.
+10191:       * @param {number} addend The second number to add.
+10192:       * @returns {number} Returns the sum.
+10193:       * @example
+*****
+
+***** LODASH\RD\35.js
+10156:       *
+10157:       * _.ceil(4.006);
+10158:       * // => 5
+10159:       *
+10160:       * _.ceil(6.004, 2);
+10161:       * // => 6.01
+10162:       *
+10163:       * _.ceil(6040, -2);
+10164:       * // => 6100
+10165:       */
+10166:          var ceil = createRound('ceil');
+10167:          /**
+10168:       * Calculates `n` rounded down to `precision`.
+10169:       *
+***** LODASH\RD\ORIGINAL.JS
+10194:       *
+10195:       * _.add(6, 4);
+10196:       * // => 10
+10197:       */
+10198:          function add(augend, addend) {
+10199:              return (+augend || 0) + (+addend || 0);
+10200:          }
+10201:          /**
+10202:       * Calculates `n` rounded up to `precision`.
+10203:       *
+*****
+
+***** LODASH\RD\35.js
+10172:       * @category Math
+10173:       * @param {number} n The number to round down.
+10174:       * @param {number} [precision=0] The precision to round down to.
+10175:       * @returns {number} Returns the rounded down number.
+10176:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10206:       * @category Math
+10207:       * @param {number} n The number to round up.
+10208:       * @param {number} [precision=0] The precision to round up to.
+10209:       * @returns {number} Returns the rounded up number.
+10210:       * @example
+*****
+
+***** LODASH\RD\35.js
+10177:       *
+10178:       * _.floor(4.006);
+10179:       * // => 4
+10180:       *
+10181:       * _.floor(0.046, 2);
+10182:       * // => 0.04
+10183:       *
+10184:       * _.floor(4060, -2);
+10185:       * // => 4000
+10186:       */
+10187:          var floor = createRound('floor');
+10188:          /**
+10189:       * Gets the maximum value of `collection`. If `collection` is empty or falsey
+10190:       * `-Infinity` is returned.
+10191:       *
+***** LODASH\RD\ORIGINAL.JS
+10211:       *
+10212:       * _.ceil(4.006);
+10213:       * // => 5
+10214:       *
+10215:       * _.ceil(6.004, 2);
+10216:       * // => 6.01
+10217:       *
+10218:       * _.ceil(6040, -2);
+10219:       * // => 6100
+10220:       */
+10221:          var ceil = createRound('ceil');
+10222:          /**
+10223:       * Calculates `n` rounded down to `precision`.
+10224:       *
+*****
+
+***** LODASH\RD\35.js
+10194:       * @category Math
+10195:       * @param {Array} array The array to iterate over.
+10196:       * @returns {*} Returns the maximum value.
+10197:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10227:       * @category Math
+10228:       * @param {number} n The number to round down.
+10229:       * @param {number} [precision=0] The precision to round down to.
+10230:       * @returns {number} Returns the rounded down number.
+10231:       * @example
+*****
+
+***** LODASH\RD\35.js
+10198:       *
+10199:       * _.max([4, 2, 8, 6]);
+10200:       * // => 8
+10201:       *
+10202:       * _.max([]);
+10203:       * // => -Infinity
+10204:       */
+10205:          function max(array) {
+10206:              return array && array.length ? arrayExtremum(array, identity, gt, NEGATIVE_INFINITY) : NEGATIVE_INFINITY;
+10207:          }
+10208:          /**
+10209:       * This method is like `_.max` except that it accepts `iteratee` which is
+10210:       * invoked for each element in `array` to generate the criterion by which
+10211:       * the value is ranked. The iteratee is invoked with one argument: (value).
+10212:       *
+***** LODASH\RD\ORIGINAL.JS
+10232:       *
+10233:       * _.floor(4.006);
+10234:       * // => 4
+10235:       *
+10236:       * _.floor(0.046, 2);
+10237:       * // => 0.04
+10238:       *
+10239:       * _.floor(4060, -2);
+10240:       * // => 4000
+10241:       */
+10242:          var floor = createRound('floor');
+10243:          /**
+10244:       * Gets the maximum value of `collection`. If `collection` is empty or falsey
+10245:       * `-Infinity` is returned.
+10246:       *
+*****
+
+***** LODASH\RD\35.js
+10216:       * @param {Array} array The array to iterate over.
+10217:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10218:       * @returns {*} Returns the maximum value.
+***** LODASH\RD\ORIGINAL.JS
+10250:       * @param {Array} array The array to iterate over.
+10251:       * @returns {*} Returns the maximum value.
+*****
+
+***** LODASH\RD\35.js
+10220:       *
+10221:       * var users = [
+10222:       *   { 'user': 'barney', 'age': 36 },
+10223:       *   { 'user': 'fred',   'age': 40 }
+10224:       * ];
+10225:       *
+10226:       * _.maxBy(users, function(o) { return o.age; });
+10227:       * // => { 'user': 'fred', 'age': 40 }
+10228:       *
+10229:       * // using the `_.property` callback shorthand
+10230:       * _.maxBy(users, 'age');
+10231:       * // => { 'user': 'fred', 'age': 40 }
+10232:       */
+10233:          function maxBy(array, iteratee) {
+10234:              return array && array.length ? arrayExtremum(array, getIteratee(iteratee), gt, NEGATIVE_INFINITY) : NEGATIVE_INFINI
+10235:  TY;
+10236:          }
+***** LODASH\RD\ORIGINAL.JS
+10253:       *
+10254:       * _.max([4, 2, 8, 6]);
+10255:       * // => 8
+10256:       *
+10257:       * _.max([]);
+10258:       * // => -Infinity
+10259:       */
+10260:          function max(array) {
+10261:              return array && array.length ? arrayExtremum(array, identity, gt, NEGATIVE_INFINITY) : NEGATIVE_INFINITY;
+10262:          }
+*****
+
+***** LODASH\RD\35.js
+10237:          /**
+10238:       * Gets the minimum value of `array`. If `array` is empty or falsey
+10239:       * `Infinity` is returned.
+10240:       *
+***** LODASH\RD\ORIGINAL.JS
+10263:          /**
+10264:       * This method is like `_.max` except that it accepts `iteratee` which is
+10265:       * invoked for each element in `array` to generate the criterion by which
+10266:       * the value is ranked. The iteratee is invoked with one argument: (value).
+10267:       *
+*****
+
+***** LODASH\RD\35.js
+10244:       * @param {Array} array The array to iterate over.
+10245:       * @returns {*} Returns the minimum value.
+10246:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10271:       * @param {Array} array The array to iterate over.
+10272:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10273:       * @returns {*} Returns the maximum value.
+10274:       * @example
+*****
+
+***** LODASH\RD\35.js
+10247:       *
+10248:       * _.min([4, 2, 8, 6]);
+10249:       * // => 2
+10250:       *
+10251:       * _.min([]);
+10252:       * // => Infinity
+10253:       */
+10254:          function min(array) {
+10255:              return array && array.length ? arrayExtremum(array, identity, lt, POSITIVE_INFINITY) : POSITIVE_INFINITY;
+10256:          }
+***** LODASH\RD\ORIGINAL.JS
+10275:       *
+10276:       * var users = [
+10277:       *   { 'user': 'barney', 'age': 36 },
+10278:       *   { 'user': 'fred',   'age': 40 }
+10279:       * ];
+10280:       *
+10281:       * _.maxBy(users, function(o) { return o.age; });
+10282:       * // => { 'user': 'fred', 'age': 40 }
+10283:       *
+10284:       * // using the `_.property` callback shorthand
+10285:       * _.maxBy(users, 'age');
+10286:       * // => { 'user': 'fred', 'age': 40 }
+10287:       */
+10288:          function maxBy(array, iteratee) {
+10289:              return array && array.length ? arrayExtremum(array, getIteratee(iteratee), gt, NEGATIVE_INFINITY) : NEGATIVE_INFINI
+10290:  TY;
+10291:          }
+*****
+
+***** LODASH\RD\35.js
+10257:          /**
+10258:       * This method is like `_.min` except that it accepts `iteratee` which is
+10259:       * invoked for each element in `array` to generate the criterion by which
+10260:       * the value is ranked. The iteratee is invoked with one argument: (value).
+10261:       *
+***** LODASH\RD\ORIGINAL.JS
+10292:          /**
+10293:       * Gets the minimum value of `array`. If `array` is empty or falsey
+10294:       * `Infinity` is returned.
+10295:       *
+*****
+
+***** LODASH\RD\35.js
+10265:       * @param {Array} array The array to iterate over.
+10266:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10267:       * @returns {*} Returns the minimum value.
+***** LODASH\RD\ORIGINAL.JS
+10299:       * @param {Array} array The array to iterate over.
+10300:       * @returns {*} Returns the minimum value.
+*****
+
+***** LODASH\RD\35.js
+10269:       *
+10270:       * var users = [
+10271:       *   { 'user': 'barney', 'age': 36 },
+10272:       *   { 'user': 'fred',   'age': 40 }
+10273:       * ];
+10274:       *
+10275:       * _.minBy(users, function(o) { return o.age; });
+10276:       * // => { 'user': 'barney', 'age': 36 }
+10277:       *
+10278:       * // using the `_.property` callback shorthand
+10279:       * _.minBy(users, 'age');
+10280:       * // => { 'user': 'barney', 'age': 36 }
+10281:       */
+10282:          function minBy(array, iteratee) {
+10283:              return array && array.length ? arrayExtremum(array, getIteratee(iteratee), lt, POSITIVE_INFINITY) : POSITIVE_INFINI
+10284:  TY;
+10285:          }
+***** LODASH\RD\ORIGINAL.JS
+10302:       *
+10303:       * _.min([4, 2, 8, 6]);
+10304:       * // => 2
+10305:       *
+10306:       * _.min([]);
+10307:       * // => Infinity
+10308:       */
+10309:          function min(array) {
+10310:              return array && array.length ? arrayExtremum(array, identity, lt, POSITIVE_INFINITY) : POSITIVE_INFINITY;
+10311:          }
+*****
+
+***** LODASH\RD\35.js
+10286:          /**
+10287:       * Calculates `n` rounded to `precision`.
+10288:       *
+***** LODASH\RD\ORIGINAL.JS
+10312:          /**
+10313:       * This method is like `_.min` except that it accepts `iteratee` which is
+10314:       * invoked for each element in `array` to generate the criterion by which
+10315:       * the value is ranked. The iteratee is invoked with one argument: (value).
+10316:       *
+*****
+
+***** LODASH\RD\35.js
+10291:       * @category Math
+10292:       * @param {number} n The number to round.
+10293:       * @param {number} [precision=0] The precision to round to.
+10294:       * @returns {number} Returns the rounded number.
+10295:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10319:       * @category Math
+10320:       * @param {Array} array The array to iterate over.
+10321:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10322:       * @returns {*} Returns the minimum value.
+10323:       * @example
+*****
+
+***** LODASH\RD\35.js
+10296:       *
+10297:       * _.round(4.006);
+10298:       * // => 4
+10299:       *
+10300:       * _.round(4.006, 2);
+10301:       * // => 4.01
+10302:       *
+10303:       * _.round(4060, -2);
+10304:       * // => 4100
+10305:       */
+10306:          var round = createRound('round');
+10307:          /**
+10308:       * Gets the sum of the values in `array`.
+10309:       *
+***** LODASH\RD\ORIGINAL.JS
+10324:       *
+10325:       * var users = [
+10326:       *   { 'user': 'barney', 'age': 36 },
+10327:       *   { 'user': 'fred',   'age': 40 }
+10328:       * ];
+10329:       *
+10330:       * _.minBy(users, function(o) { return o.age; });
+10331:       * // => { 'user': 'barney', 'age': 36 }
+10332:       *
+10333:       * // using the `_.property` callback shorthand
+10334:       * _.minBy(users, 'age');
+10335:       * // => { 'user': 'barney', 'age': 36 }
+10336:       */
+10337:          function minBy(array, iteratee) {
+10338:              return array && array.length ? arrayExtremum(array, getIteratee(iteratee), lt, POSITIVE_INFINITY) : POSITIVE_INFINI
+10339:  TY;
+10340:          }
+10341:          /**
+10342:       * Calculates `n` rounded to `precision`.
+10343:       *
+*****
+
+***** LODASH\RD\35.js
+10312:       * @category Math
+10313:       * @param {Array} array The array to iterate over.
+10314:       * @returns {number} Returns the sum.
+10315:       * @example
+***** LODASH\RD\ORIGINAL.JS
+10346:       * @category Math
+10347:       * @param {number} n The number to round.
+10348:       * @param {number} [precision=0] The precision to round to.
+10349:       * @returns {number} Returns the rounded number.
+10350:       * @example
+*****
+
+***** LODASH\RD\35.js
+10316:       *
+10317:       * _.sum([4, 6]);
+10318:       * // => 10
+10319:       *
+10320:       * _.sum({ 'a': 4, 'b': 6 });
+10321:       * // => 10
+10322:       */
+10323:          function sum(array) {
+10324:              return array ? arraySum(array, identity) : 0;
+10325:          }
+10326:          /**
+10327:       * This method is like `_.sum` except that it accepts `iteratee` which is
+10328:       * invoked for each element in `array` to generate the value to be summed.
+10329:       * The iteratee is invoked with one argument: (value).
+10330:       *
+***** LODASH\RD\ORIGINAL.JS
+10351:       *
+10352:       * _.round(4.006);
+10353:       * // => 4
+10354:       *
+10355:       * _.round(4.006, 2);
+10356:       * // => 4.01
+10357:       *
+10358:       * _.round(4060, -2);
+10359:       * // => 4100
+10360:       */
+10361:          var round = createRound('round');
+10362:          /**
+10363:       * Gets the sum of the values in `array`.
+10364:       *
+*****
+
+***** LODASH\RD\35.js
+10334:       * @param {Array} array The array to iterate over.
+10335:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10336:       * @returns {number} Returns the sum.
+***** LODASH\RD\ORIGINAL.JS
+10368:       * @param {Array} array The array to iterate over.
+10369:       * @returns {number} Returns the sum.
+*****
+
+***** LODASH\RD\35.js
+10338:       *
+10339:       * var objects = [
+10340:       *   { 'n': 4 },
+10341:       *   { 'n': 6 }
+10342:       * ];
+10343:       *
+10344:       * _.sum(objects, function(o) { return o.n; });
+10345:       * // => 10
+***** LODASH\RD\ORIGINAL.JS
+10371:       *
+10372:       * _.sum([4, 6]);
+10373:       * // => 10
+*****
+
+***** LODASH\RD\35.js
+10346:       *
+10347:       * // using the `_.property` callback shorthand
+10348:       * _.sum(objects, 'n');
+10349:       * // => 10
+***** LODASH\RD\ORIGINAL.JS
+10374:       *
+10375:       * _.sum({ 'a': 4, 'b': 6 });
+10376:       * // => 10
+*****
+
+***** LODASH\RD\35.js
+10350:       */
+10351:          function sumBy(array, iteratee) {
+***** LODASH\RD\ORIGINAL.JS
+10377:       */
+10378:          function sum(array) {
+10379:              return array ? arraySum(array, identity) : 0;
+10380:          }
+10381:          /**
+10382:       * This method is like `_.sum` except that it accepts `iteratee` which is
+10383:       * invoked for each element in `array` to generate the value to be summed.
+10384:       * The iteratee is invoked with one argument: (value).
+10385:       *
+10386:       * @static
+10387:       * @memberOf _
+10388:       * @category Math
+10389:       * @param {Array} array The array to iterate over.
+10390:       * @param {Function|Object|string} [iteratee=_.identity] The function invoked per iteration.
+10391:       * @returns {number} Returns the sum.
+10392:       * @example
+10393:       *
+10394:       * var objects = [
+10395:       *   { 'n': 4 },
+10396:       *   { 'n': 6 }
+10397:       * ];
+10398:       *
+10399:       * _.sum(objects, function(o) { return o.n; });
+10400:       * // => 10
+10401:       *
+10402:       * // using the `_.property` callback shorthand
+10403:       * _.sum(objects, 'n');
+10404:       * // => 10
+10405:       */
+10406:          function sumBy(array, iteratee) {
+*****
+

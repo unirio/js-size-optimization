@@ -1,0 +1,33 @@
+Comparing files TLEAF\RD\2.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\2.js
+   35:              }
+   36:          },
+***** TLEAF\RD\ORIGINAL.JS
+   35:              }
+   36:              // update current scope while traversing
+   37:              // taken from original repository: https://github.com/estools/escope
+   38:              if (/Function/.test(node.type)) {
+   39:                  currentScope = scopeManager.acquire(node);
+   40:              }
+   41:          },
+*****
+
+***** TLEAF\RD\2.js
+   86:  // TODO: multiple variable definitions
+   87:  function findModule(callExpression) {
+   88:      var module = {};
+***** TLEAF\RD\ORIGINAL.JS
+   91:  // TODO: multiple variable definitions
+   92:  function findModule(callExpression, scope) {
+   93:      var module = {};
+*****
+
+***** TLEAF\RD\2.js
+  158:      }
+  159:  }
+***** TLEAF\RD\ORIGINAL.JS
+  163:      }
+  164:      return extractObjectPropertyDeps(object, 'controller', scope);
+  165:  }
+*****
+

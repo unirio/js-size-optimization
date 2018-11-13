@@ -1,0 +1,21 @@
+Comparing files UUID\RD\27.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\27.js
+  103:          mid: hm & 65535,
+  104:          timestamp: ts
+***** UUID\RD\ORIGINAL.JS
+  103:          mid: hm & 65535,
+  104:          hi: hm >>> 16,
+  105:          timestamp: ts
+*****
+
+***** UUID\RD\27.js
+  188:          }
+  189:      }
+***** UUID\RD\ORIGINAL.JS
+  189:          }
+  190:          if (parts[i] !== 6) {
+  191:              str += '-';
+  192:          }
+  193:      }
+*****
+

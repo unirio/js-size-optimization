@@ -1,0 +1,66 @@
+Comparing files JADE\RD\38.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\38.js
+   32:  exports.filters = {};
+   33:  function compileBody(str, options) {
+***** JADE\RD\ORIGINAL.JS
+   32:  exports.filters = {};
+   33:  /**
+   34:   * Compile the given `str` of pug and return a function body.
+   35:   *
+   36:   * @param {String} str
+   37:   * @param {Object} options
+   38:   * @return {Object}
+   39:   * @api private
+   40:   */
+   41:  function compileBody(str, options) {
+*****
+
+***** JADE\RD\38.js
+   62:      ast = link(ast);
+   63:      var js = generateCode(ast, {
+***** JADE\RD\ORIGINAL.JS
+   70:      ast = link(ast);
+   71:      // Compile
+   72:      var js = generateCode(ast, {
+*****
+
+***** JADE\RD\38.js
+   74:      if (options.debug) {
+   75:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m');
+   76:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+
+***** JADE\RD\38.js
+  101:          if (str === undefined)
+  102:              str = fs.readFileSync(options.filename);
+  103:          var templ = exports.compile(str, options);
+***** JADE\RD\ORIGINAL.JS
+  110:          if (str === undefined)
+  111:              str = fs.readFileSync(options.filename, 'utf8');
+  112:          var templ = exports.compile(str, options);
+*****
+
+***** JADE\RD\38.js
+  303:   */
+  304:  exports.__express = function (path, fn) {
+  305:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+***** JADE\RD\ORIGINAL.JS
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+*****
+
+***** JADE\RD\38.js
+  307:      }
+  308:      exports.renderFile(path, options);
+  309:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

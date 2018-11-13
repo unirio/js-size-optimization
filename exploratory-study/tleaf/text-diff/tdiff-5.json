@@ -1,0 +1,20 @@
+Comparing files TLEAF\RD\5.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\5.js
+  223:              var dep = { name: param.name };
+  224:          }
+***** TLEAF\RD\ORIGINAL.JS
+  223:              var dep = { name: param.name };
+  224:              deps.push(dep);
+  225:          }
+*****
+
+***** TLEAF\RD\5.js
+  249:      if (varType === 'FunctionDeclaration') {
+  250:          params = _.get(varNode, []);
+  251:      }
+***** TLEAF\RD\ORIGINAL.JS
+  250:      if (varType === 'FunctionDeclaration') {
+  251:          params = _.get(varNode, 'params', []);
+  252:      }
+*****
+

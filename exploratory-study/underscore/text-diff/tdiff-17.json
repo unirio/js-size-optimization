@@ -1,0 +1,20 @@
+Comparing files UNDERSCORE\RD\17.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\17.js
+  282:              _.each(obj, function (value, index, list) {
+  283:                  computed = iteratee(value, index);
+  284:                  if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  282:              _.each(obj, function (value, index, list) {
+  283:                  computed = iteratee(value, index, list);
+  284:                  if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
+*****
+
+***** UNDERSCORE\RD\17.js
+ 1233:      // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+ 1234:      _.noConflict = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1233:      // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+ 1234:      // previous owner. Returns a reference to the Underscore object.
+ 1235:      _.noConflict = function () {
+*****
+

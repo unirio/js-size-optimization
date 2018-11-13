@@ -1,0 +1,49 @@
+Comparing files PLIVO-NODE\RD\44.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\44.js
+    1:  var util = require('util');
+    2:  var crypto = require('crypto');
+***** PLIVO-NODE\RD\ORIGINAL.JS
+    1:  //Get required modules
+    2:  var util = require('util');
+    3:  var crypto = require('crypto');
+*****
+
+***** PLIVO-NODE\RD\44.js
+  218:      delete params.conference_id;
+  219:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  219:      delete params.conference_id;
+  220:      var method = 'GET';
+  221:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\44.js
+  236:      var method = 'DELETE';
+  237:      request(action, method, params);
+  238:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  238:      var method = 'DELETE';
+  239:      request(action, method, params, callback);
+  240:  };
+*****
+
+***** PLIVO-NODE\RD\44.js
+  489:  // Message
+  490:  plivo.send_message = function (params) {
+  491:      var action = 'Message/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  491:  // Message
+  492:  plivo.send_message = function (params, callback) {
+  493:      var action = 'Message/';
+*****
+
+***** PLIVO-NODE\RD\44.js
+  659:      },
+  660:      addConference: function (body) {
+  661:          return this.add(new Conference(Response), body, attributes);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  661:      },
+  662:      addConference: function (body, attributes) {
+  663:          return this.add(new Conference(Response), body, attributes);
+*****
+

@@ -1,0 +1,41 @@
+Comparing files TLEAF\RD\49.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\49.js
+    4:  var escope = require('escope');
+    5:  var _ = require();
+    6:  var config = require('./config');
+***** TLEAF\RD\ORIGINAL.JS
+    4:  var escope = require('escope');
+    5:  var _ = require('lodash');
+    6:  var config = require('./config');
+*****
+
+***** TLEAF\RD\49.js
+   38:              if (/Function/.test(node.type)) {
+   39:                  currentScope = scopeManager.acquire();
+   40:              }
+***** TLEAF\RD\ORIGINAL.JS
+   38:              if (/Function/.test(node.type)) {
+   39:                  currentScope = scopeManager.acquire(node);
+   40:              }
+*****
+
+***** TLEAF\RD\49.js
+   65:          // there is any in a source code, do not continue execution
+   66:          if (_.findWhere(deps)) {
+   67:              throw new UserError('Circular dependency for ' + type + ' "' + name + '".');
+***** TLEAF\RD\ORIGINAL.JS
+   65:          // there is any in a source code, do not continue execution
+   66:          if (_.findWhere(deps, { name: name })) {
+   67:              throw new UserError('Circular dependency for ' + type + ' "' + name + '".');
+*****
+
+***** TLEAF\RD\49.js
+  274:      if (value.type === 'Identifier') {
+  275:          deps = extractVariableDeps(value.name);
+  276:      }
+***** TLEAF\RD\ORIGINAL.JS
+  274:      if (value.type === 'Identifier') {
+  275:          deps = extractVariableDeps(value.name, scope);
+  276:      }
+*****
+

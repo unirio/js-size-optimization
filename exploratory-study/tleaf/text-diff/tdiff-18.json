@@ -1,0 +1,20 @@
+Comparing files TLEAF\RD\18.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\18.js
+  110:      }
+  111:  }
+***** TLEAF\RD\ORIGINAL.JS
+  110:      }
+  111:      return module;
+  112:  }
+*****
+
+***** TLEAF\RD\18.js
+  193:          }
+  194:          var argument = _.get(bodyExpression, 'argument');
+  195:          // covers "return ...;"
+***** TLEAF\RD\ORIGINAL.JS
+  194:          }
+  195:          var argument = _.get(bodyExpression, 'argument', {});
+  196:          // covers "return ...;"
+*****
+

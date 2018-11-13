@@ -1,0 +1,66 @@
+Comparing files JADE\RD\48.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\48.js
+   24:  exports.runtime = runtime;
+   25:  exports.cache = {};
+***** JADE\RD\ORIGINAL.JS
+   24:  exports.runtime = runtime;
+   25:  /**
+   26:   * Template function cache.
+   27:   */
+   28:  exports.cache = {};
+*****
+
+***** JADE\RD\48.js
+  114:  }
+  115:  exports.compile = function (str, options) {
+***** JADE\RD\ORIGINAL.JS
+  117:  }
+  118:  /**
+  119:   * Compile a `Function` representation of the given pug `str`.
+  120:   *
+  121:   * Options:
+  122:   *
+  123:   *   - `compileDebug` when `false` debugging code is stripped from the compiled
+  124:         template, when it is explicitly `true`, the source code is included in
+  125:         the compiled template for better accuracy.
+  126:   *   - `filename` used to improve errors when `compileDebug` is not `false` and to resolve imports/extends
+  127:   *
+  128:   * @param {String} str
+  129:   * @param {Options} options
+  130:   * @return {Function}
+  131:   * @api public
+  132:   */
+  133:  exports.compile = function (str, options) {
+*****
+
+***** JADE\RD\48.js
+  232:          } catch (ex) {
+  233:              return;
+  234:          }
+  235:      }
+***** JADE\RD\ORIGINAL.JS
+  250:          } catch (ex) {
+  251:              return fn(ex);
+  252:          }
+  253:          return fn(null, res);
+  254:      }
+*****
+
+***** JADE\RD\48.js
+  238:      if (options.cache && !options.filename) {
+  239:      }
+***** JADE\RD\ORIGINAL.JS
+  257:      if (options.cache && !options.filename) {
+  258:          throw new Error('the "filename" option is required for caching');
+  259:      }
+*****
+
+***** JADE\RD\48.js
+  296:      }
+  297:  };
+***** JADE\RD\ORIGINAL.JS
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

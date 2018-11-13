@@ -1,0 +1,10 @@
+Comparing files TLEAF\RD\10.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\10.js
+  274:      if (value.type === 'Identifier') {
+  275:      }
+***** TLEAF\RD\ORIGINAL.JS
+  274:      if (value.type === 'Identifier') {
+  275:          deps = extractVariableDeps(value.name, scope);
+  276:      }
+*****
+

@@ -1,0 +1,320 @@
+Comparing files LODASH\RD\37.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\37.js
+   21:      var HOT_COUNT = 150, HOT_SPAN = 16;
+   22:      var LARGE_ARRAY_SIZE = 200;
+***** LODASH\RD\ORIGINAL.JS
+   21:      var HOT_COUNT = 150, HOT_SPAN = 16;
+   22:      /** Used as the size to enable large array optimizations. */
+   23:      var LARGE_ARRAY_SIZE = 200;
+*****
+
+***** LODASH\RD\37.js
+ 1819:                      return equalFunc(objIsWrapped ? object.value() : object, othIsWrapped ? other.value() : other, customizer, 
+ 1820:  isLoose, stackA);
+ 1821:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 1820:                      return equalFunc(objIsWrapped ? object.value() : object, othIsWrapped ? other.value() : other, customizer, 
+ 1821:  isLoose, stackA, stackB);
+ 1822:                  }
+*****
+
+***** LODASH\RD\37.js
+ 3029:          }
+ 3030:          function equalArrays(array, other, equalFunc, customizer, isLoose, stackA, stackB) {
+***** LODASH\RD\ORIGINAL.JS
+ 3030:          }
+ 3031:          /**
+ 3032:       * A specialized version of `baseIsEqualDeep` for arrays with support for
+ 3033:       * partial deep comparisons.
+ 3034:       *
+ 3035:       * @private
+ 3036:       * @param {Array} array The array to compare.
+ 3037:       * @param {Array} other The other array to compare.
+ 3038:       * @param {Function} equalFunc The function to determine equivalents of values.
+ 3039:       * @param {Function} [customizer] The function to customize comparisons.
+ 3040:       * @param {boolean} [isLoose] Specify performing partial comparisons.
+ 3041:       * @param {Array} [stackA] Tracks traversed `value` objects.
+ 3042:       * @param {Array} [stackB] Tracks traversed `other` objects.
+ 3043:       * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ 3044:       */
+ 3045:          function equalArrays(array, other, equalFunc, customizer, isLoose, stackA, stackB) {
+*****
+
+***** LODASH\RD\37.js
+ 3354:              case float64Tag:
+ 3355:              default:
+ 3356:              case int16Tag:
+***** LODASH\RD\ORIGINAL.JS
+ 3369:              case float64Tag:
+ 3370:              case int8Tag:
+ 3371:              case int16Tag:
+*****
+
+***** LODASH\RD\37.js
+ 9649:          }
+ 9650:          function unescape(string) {
+ 9651:              string = baseToString(string);
+ 9652:              return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
+ 9653:          }
+ 9654:          /**
+ 9655:       * Splits `string` into an array of its words.
+ 9656:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9664:          }
+ 9665:          /**
+ 9666:       * The inverse of `_.escape`; this method converts the HTML entities
+ 9667:       * `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`, and `&#96;` in `string` to their
+ 9668:       * corresponding characters.
+ 9669:       *
+ 9670:       * **Note:** No other HTML entities are unescaped. To unescape additional HTML
+ 9671:       * entities use a third-party library like [_he_](https://mths.be/he).
+ 9672:       *
+*****
+
+***** LODASH\RD\37.js
+ 9659:       * @category String
+ 9660:       * @param {string} [string=''] The string to inspect.
+ 9661:       * @param {RegExp|string} [pattern] The pattern to match words.
+ 9662:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9663:       * @returns {Array} Returns the words of `string`.
+ 9664:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9675:       * @category String
+ 9676:       * @param {string} [string=''] The string to unescape.
+ 9677:       * @returns {string} Returns the unescaped string.
+ 9678:       * @example
+*****
+
+***** LODASH\RD\37.js
+ 9665:       *
+ 9666:       * _.words('fred, barney, & pebbles');
+ 9667:       * // => ['fred', 'barney', 'pebbles']
+ 9668:       *
+ 9669:       * _.words('fred, barney, & pebbles', /[^, ]+/g);
+ 9670:       * // => ['fred', 'barney', '&', 'pebbles']
+ 9671:       */
+ 9672:          function words(string, pattern, guard) {
+ 9673:              string = baseToString(string);
+ 9674:              pattern = guard ? undefined : guard;
+ 9675:              return string.match(pattern || reWords) || [];
+ 9676:          }
+ 9677:          /*------------------------------------------------------------------------*/
+ 9678:          /**
+ 9679:       * Attempts to invoke `func`, returning either the result or the caught error
+ 9680:       * object. Any additional arguments are provided to `func` when it's invoked.
+ 9681:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9679:       *
+ 9680:       * _.unescape('fred, barney, &amp; pebbles');
+ 9681:       * // => 'fred, barney, & pebbles'
+ 9682:       */
+ 9683:          function unescape(string) {
+ 9684:              string = baseToString(string);
+ 9685:              return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
+ 9686:          }
+ 9687:          /**
+ 9688:       * Splits `string` into an array of its words.
+ 9689:       *
+*****
+
+***** LODASH\RD\37.js
+ 9683:       * @memberOf _
+ 9684:       * @category Utility
+ 9685:       * @param {Function} func The function to attempt.
+ 9686:       * @returns {*} Returns the `func` result or error object.
+ 9687:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9691:       * @memberOf _
+ 9692:       * @category String
+ 9693:       * @param {string} [string=''] The string to inspect.
+ 9694:       * @param {RegExp|string} [pattern] The pattern to match words.
+ 9695:       * @param- {Object} [guard] Enables use as an iteratee for functions like `_.map`.
+ 9696:       * @returns {Array} Returns the words of `string`.
+ 9697:       * @example
+*****
+
+***** LODASH\RD\37.js
+ 9688:       *
+ 9689:       * // avoid throwing errors for invalid selectors
+ 9690:       * var elements = _.attempt(function(selector) {
+ 9691:       *   return document.querySelectorAll(selector);
+ 9692:       * }, '>_>');
+ 9693:       *
+ 9694:       * if (_.isError(elements)) {
+ 9695:       *   elements = [];
+ 9696:       * }
+ 9697:       */
+ 9698:          var attempt = restParam(function (func, args) {
+ 9699:              try {
+ 9700:                  return func.apply(undefined, args);
+ 9701:              } catch (e) {
+ 9702:                  return isError(e) ? e : new Error(e);
+ 9703:              }
+ 9704:          });
+ 9705:          /**
+ 9706:       * Creates a function that returns `value`.
+ 9707:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9698:       *
+ 9699:       * _.words('fred, barney, & pebbles');
+ 9700:       * // => ['fred', 'barney', 'pebbles']
+ 9701:       *
+ 9702:       * _.words('fred, barney, & pebbles', /[^, ]+/g);
+ 9703:       * // => ['fred', 'barney', '&', 'pebbles']
+ 9704:       */
+ 9705:          function words(string, pattern, guard) {
+ 9706:              string = baseToString(string);
+ 9707:              pattern = guard ? undefined : guard;
+ 9708:              return string.match(pattern || reWords) || [];
+ 9709:          }
+ 9710:          /*------------------------------------------------------------------------*/
+ 9711:          /**
+ 9712:       * Attempts to invoke `func`, returning either the result or the caught error
+ 9713:       * object. Any additional arguments are provided to `func` when it's invoked.
+ 9714:       *
+*****
+
+***** LODASH\RD\37.js
+ 9710:       * @category Utility
+ 9711:       * @param {*} value The value to return from the new function.
+ 9712:       * @returns {Function} Returns the new function.
+ 9713:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9717:       * @category Utility
+ 9718:       * @param {Function} func The function to attempt.
+ 9719:       * @returns {*} Returns the `func` result or error object.
+ 9720:       * @example
+*****
+
+***** LODASH\RD\37.js
+ 9714:       *
+ 9715:       * var object = { 'user': 'fred' };
+ 9716:       * var getter = _.constant(object);
+ 9717:       *
+ 9718:       * getter() === object;
+ 9719:       * // => true
+ 9720:       */
+ 9721:          function constant(value) {
+ 9722:              return function () {
+ 9723:                  return value;
+ 9724:              };
+ 9725:          }
+ 9726:          /**
+ 9727:       * This method returns the first argument provided to it.
+ 9728:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9721:       *
+ 9722:       * // avoid throwing errors for invalid selectors
+ 9723:       * var elements = _.attempt(function(selector) {
+ 9724:       *   return document.querySelectorAll(selector);
+ 9725:       * }, '>_>');
+ 9726:       *
+ 9727:       * if (_.isError(elements)) {
+ 9728:       *   elements = [];
+ 9729:       * }
+ 9730:       */
+ 9731:          var attempt = restParam(function (func, args) {
+ 9732:              try {
+ 9733:                  return func.apply(undefined, args);
+ 9734:              } catch (e) {
+ 9735:                  return isError(e) ? e : new Error(e);
+ 9736:              }
+ 9737:          });
+ 9738:          /**
+ 9739:       * Creates a function that returns `value`.
+ 9740:       *
+*****
+
+***** LODASH\RD\37.js
+ 9731:       * @category Utility
+ 9732:       * @param {*} value Any value.
+ 9733:       * @returns {*} Returns `value`.
+ 9734:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9743:       * @category Utility
+ 9744:       * @param {*} value The value to return from the new function.
+ 9745:       * @returns {Function} Returns the new function.
+ 9746:       * @example
+*****
+
+***** LODASH\RD\37.js
+ 9736:       * var object = { 'user': 'fred' };
+ 9737:       *
+ 9738:       * _.identity(object) === object;
+ 9739:       * // => true
+***** LODASH\RD\ORIGINAL.JS
+ 9748:       * var object = { 'user': 'fred' };
+ 9749:       * var getter = _.constant(object);
+ 9750:       *
+ 9751:       * getter() === object;
+ 9752:       * // => true
+*****
+
+***** LODASH\RD\37.js
+ 9740:       */
+ 9741:          function identity(value) {
+ 9742:              return value;
+ 9743:          }
+***** LODASH\RD\ORIGINAL.JS
+ 9753:       */
+ 9754:          function constant(value) {
+ 9755:              return function () {
+ 9756:                  return value;
+ 9757:              };
+ 9758:          }
+*****
+
+***** LODASH\RD\37.js
+ 9744:          /**
+ 9745:       * Creates a function that invokes `func` with the arguments of the created
+ 9746:       * function. If `func` is a property name the created callback returns the
+ 9747:       * property value for a given element. If `func` is an object the created
+ 9748:       * callback returns `true` for elements that contain the equivalent object properties, otherwise it returns `false`.
+ 9749:       *
+***** LODASH\RD\ORIGINAL.JS
+ 9759:          /**
+ 9760:       * This method returns the first argument provided to it.
+ 9761:       *
+*****
+
+***** LODASH\RD\37.js
+ 9752:       * @category Utility
+ 9753:       * @param {*} [func=_.identity] The value to convert to a callback.
+ 9754:       * @returns {Function} Returns the callback.
+ 9755:       * @example
+***** LODASH\RD\ORIGINAL.JS
+ 9764:       * @category Utility
+ 9765:       * @param {*} value Any value.
+ 9766:       * @returns {*} Returns `value`.
+ 9767:       * @example
+*****
+
+***** LODASH\RD\37.js
+ 9756:       *
+ 9757:       * var users = [
+***** LODASH\RD\ORIGINAL.JS
+ 9768:       *
+ 9769:       * var object = { 'user': 'fred' };
+ 9770:       *
+ 9771:       * _.identity(object) === object;
+ 9772:       * // => true
+ 9773:       */
+ 9774:          function identity(value) {
+ 9775:              return value;
+ 9776:          }
+ 9777:          /**
+ 9778:       * Creates a function that invokes `func` with the arguments of the created
+ 9779:       * function. If `func` is a property name the created callback returns the
+ 9780:       * property value for a given element. If `func` is an object the created
+ 9781:       * callback returns `true` for elements that contain the equivalent object properties, otherwise it returns `false`.
+ 9782:       *
+ 9783:       * @static
+ 9784:       * @memberOf _
+ 9785:       * @category Utility
+ 9786:       * @param {*} [func=_.identity] The value to convert to a callback.
+ 9787:       * @returns {Function} Returns the callback.
+ 9788:       * @example
+ 9789:       *
+ 9790:       * var users = [
+*****
+

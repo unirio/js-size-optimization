@@ -1,0 +1,20 @@
+Comparing files JADE\RD\14.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\14.js
+  252:          }
+  253:      }
+***** JADE\RD\ORIGINAL.JS
+  252:          }
+  253:          return fn(null, res);
+  254:      }
+*****
+
+***** JADE\RD\14.js
+  285:      options.filename = path;
+  286:      return handleTemplateCache(options)();
+  287:  };
+***** JADE\RD\ORIGINAL.JS
+  286:      options.filename = path;
+  287:      return handleTemplateCache(options)(options);
+  288:  };
+*****
+

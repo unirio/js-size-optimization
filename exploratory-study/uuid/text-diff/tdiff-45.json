@@ -1,0 +1,25 @@
+Comparing files UUID\RD\45.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\45.js
+  124:          tick = UUIDjs.randomUI04();
+  125:      }
+***** UUID\RD\ORIGINAL.JS
+  124:          tick = UUIDjs.randomUI04();
+  125:      } else if (Math.random() < timestampRatio && tick < 9984) {
+  126:          tick += 1 + UUIDjs.randomUI04();
+  127:      } else {
+  128:          sequence++;
+  129:      }
+*****
+
+***** UUID\RD\45.js
+  158:  ;
+  159:      return null;
+***** UUID\RD\ORIGINAL.JS
+  162:  ;
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+  167:      return null;
+*****
+

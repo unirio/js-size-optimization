@@ -1,0 +1,21 @@
+Comparing files TLEAF\RD\39.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\39.js
+  163:      }
+  164:      return extractObjectPropertyDeps(object, scope);
+  165:  }
+***** TLEAF\RD\ORIGINAL.JS
+  163:      }
+  164:      return extractObjectPropertyDeps(object, 'controller', scope);
+  165:  }
+*****
+
+***** TLEAF\RD\39.js
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right');
+  182:          // covers "this.$get = ..."
+***** TLEAF\RD\ORIGINAL.JS
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+  182:          // covers "this.$get = ..."
+*****
+

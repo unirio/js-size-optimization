@@ -1,0 +1,300 @@
+Comparing files JQUERY\RD\18.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\18.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\18.js
+ 1769:          }
+ 1770:          function matcherFromGroupMatchers(elementMatchers, setMatchers) {
+ 1771:              var bySet = setMatchers.length > 0, byElement = elementMatchers.length > 0, superMatcher = function (seed, context,
+ 1772:   xml, results, outermost) {
+ 1773:                      var elem, j, matcher, matchedCount = 0, i = '0', unmatched = seed && [], setMatched = [], contextBackup = o
+ 1774:  utermostContext,
+ 1775:                          // We must always have either seed elements or outermost context
+ 1776:                          elems = seed || byElement && Expr.find['TAG']('*', outermost),
+ 1777:                          // Use integer dirruns iff this is the outermost matcher
+ 1778:                          dirrunsUnique = dirruns += contextBackup == null ? 1 : Math.random() || 0.1, len = elems.length;
+ 1779:                      if (outermost) {
+ 1780:                          outermostContext = context === document || context || outermost;
+ 1781:                      }
+ 1782:                      // Add elements passing elementMatchers directly to results
+ 1783:                      // Support: IE<9, Safari
+ 1784:                      // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+ 1785:                      for (; i !== len && (elem = elems[i]) != null; i++) {
+ 1786:                          if (byElement && elem) {
+ 1787:                              j = 0;
+ 1788:                              if (!context && elem.ownerDocument !== document) {
+ 1789:                                  setDocument(elem);
+ 1790:                                  xml = !documentIsHTML;
+ 1791:                              }
+ 1792:                              while (matcher = elementMatchers[j++]) {
+ 1793:                                  if (matcher(elem, context || document, xml)) {
+ 1794:                                      results.push(elem);
+ 1795:                                      break;
+ 1796:                                  }
+ 1797:                              }
+ 1798:                              if (outermost) {
+ 1799:                                  dirruns = dirrunsUnique;
+ 1800:                              }
+***** JQUERY\RD\ORIGINAL.JS
+ 1770:          }
+ 1771:          function matcherFromTokens(tokens) {
+ 1772:              var checkContext, matcher, j, len = tokens.length, leadingRelative = Expr.relative[tokens[0].type], implicitRelativ
+ 1773:  e = leadingRelative || Expr.relative[' '], i = leadingRelative ? 1 : 0,
+ 1774:                  // The foundational matcher ensures that elements are reachable from top-level context(s)
+ 1775:                  matchContext = addCombinator(function (elem) {
+ 1776:                      return elem === checkContext;
+ 1777:                  }, implicitRelative, true), matchAnyContext = addCombinator(function (elem) {
+ 1778:                      return indexOf(checkContext, elem) > -1;
+ 1779:                  }, implicitRelative, true), matchers = [function (elem, context, xml) {
+ 1780:                          var ret = !leadingRelative && (xml || context !== outermostContext) || ((checkContext = context).nodeTy
+ 1781:  pe ? matchContext(elem, context, xml) : matchAnyContext(elem, context, xml));
+ 1782:                          // Avoid hanging onto element (issue #299)
+ 1783:                          checkContext = null;
+ 1784:                          return ret;
+ 1785:                      }];
+ 1786:              for (; i < len; i++) {
+ 1787:                  if (matcher = Expr.relative[tokens[i].type]) {
+ 1788:                      matchers = [addCombinator(elementMatcher(matchers), matcher)];
+ 1789:                  } else {
+ 1790:                      matcher = Expr.filter[tokens[i].type].apply(null, tokens[i].matches);
+ 1791:                      // Return special upon seeing a positional matcher
+ 1792:                      if (matcher[expando]) {
+ 1793:                          // Find the next relative operator (if any) for proper handling
+ 1794:                          j = ++i;
+ 1795:                          for (; j < len; j++) {
+ 1796:                              if (Expr.relative[tokens[j].type]) {
+ 1797:                                  break;
+ 1798:                              }
+*****
+
+***** JQUERY\RD\18.js
+ 1801:                          }
+ 1802:                          // Track unmatched elements for set filters
+ 1803:                          if (bySet) {
+ 1804:                              // They will have gone through all possible matchers
+ 1805:                              if (elem = !matcher && elem) {
+ 1806:                                  matchedCount--;
+ 1807:                              }
+ 1808:                              // Lengthen the array for every element, matched or not
+ 1809:                              if (seed) {
+ 1810:                                  unmatched.push(elem);
+ 1811:                              }
+ 1812:                          }
+ 1813:                      }
+ 1814:                      // `i` is now the count of elements visited above, and adding it to `matchedCount`
+ 1815:                      // makes the latter nonnegative.
+ 1816:                      matchedCount += i;
+ 1817:                      // Apply set filters to unmatched elements
+ 1818:                      // NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
+ 1819:                      // equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+ 1820:                      // no element matchers and no seed.
+ 1821:                      // Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+ 1822:                      // case, which will result in a "00" `matchedCount` that differs from `i` but is also
+ 1823:                      // numerically zero.
+ 1824:                      if (bySet && i !== matchedCount) {
+ 1825:                          j = 0;
+ 1826:                          while (matcher = setMatchers[j++]) {
+ 1827:                              matcher(unmatched, setMatched, context, xml);
+ 1828:                          }
+ 1829:                          if (seed) {
+ 1830:                              // Reintegrate element matches to eliminate the need for sorting
+ 1831:                              if (matchedCount > 0) {
+ 1832:                                  while (i--) {
+ 1833:                                      if (!(unmatched[i] || setMatched[i])) {
+ 1834:                                          setMatched[i] = pop.call(results);
+ 1835:                                      }
+ 1836:                                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 1799:                          }
+ 1800:                          return setMatcher(i > 1 && elementMatcher(matchers), i > 1 && toSelector(// If the preceding token was 
+ 1801:  a descendant combinator, insert an implicit any-element `*`
+ 1802:                          tokens.slice(0, i - 1).concat({ value: tokens[i - 2].type === ' ' ? '*' : '' })).replace(rtrim, '$1'), 
+ 1803:  matcher, i < j && matcherFromTokens(tokens.slice(i, j)), j < len && matcherFromTokens(tokens = tokens.slice(j)), j < len && toS
+ 1804:  elector(tokens));
+ 1805:                      }
+ 1806:                      matchers.push(matcher);
+ 1807:                  }
+ 1808:              }
+ 1809:              return elementMatcher(matchers);
+ 1810:          }
+ 1811:          function matcherFromGroupMatchers(elementMatchers, setMatchers) {
+ 1812:              var bySet = setMatchers.length > 0, byElement = elementMatchers.length > 0, superMatcher = function (seed, context,
+ 1813:   xml, results, outermost) {
+ 1814:                      var elem, j, matcher, matchedCount = 0, i = '0', unmatched = seed && [], setMatched = [], contextBackup = o
+ 1815:  utermostContext,
+ 1816:                          // We must always have either seed elements or outermost context
+ 1817:                          elems = seed || byElement && Expr.find['TAG']('*', outermost),
+ 1818:                          // Use integer dirruns iff this is the outermost matcher
+ 1819:                          dirrunsUnique = dirruns += contextBackup == null ? 1 : Math.random() || 0.1, len = elems.length;
+ 1820:                      if (outermost) {
+ 1821:                          outermostContext = context === document || context || outermost;
+ 1822:                      }
+ 1823:                      // Add elements passing elementMatchers directly to results
+ 1824:                      // Support: IE<9, Safari
+ 1825:                      // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+ 1826:                      for (; i !== len && (elem = elems[i]) != null; i++) {
+ 1827:                          if (byElement && elem) {
+ 1828:                              j = 0;
+ 1829:                              if (!context && elem.ownerDocument !== document) {
+ 1830:                                  setDocument(elem);
+ 1831:                                  xml = !documentIsHTML;
+ 1832:                              }
+ 1833:                              while (matcher = elementMatchers[j++]) {
+ 1834:                                  if (matcher(elem, context || document, xml)) {
+ 1835:                                      results.push(elem);
+ 1836:                                      break;
+ 1837:                                  }
+*****
+
+***** JQUERY\RD\18.js
+ 1837:                              }
+ 1838:                              // Discard index placeholder values to get only actual matches
+ 1839:                              setMatched = condense(setMatched);
+ 1840:                          }
+ 1841:                          // Add matches to results
+ 1842:                          push.apply(results, setMatched);
+ 1843:                          // Seedless set matches succeeding multiple successful matchers stipulate sorting
+ 1844:                          if (outermost && !seed && setMatched.length > 0 && matchedCount + setMatchers.length > 1) {
+ 1845:                              Sizzle.uniqueSort(results);
+ 1846:                          }
+***** JQUERY\RD\ORIGINAL.JS
+ 1838:                              }
+ 1839:                              if (outermost) {
+ 1840:                                  dirruns = dirrunsUnique;
+ 1841:                              }
+ 1842:                          }
+ 1843:                          // Track unmatched elements for set filters
+ 1844:                          if (bySet) {
+ 1845:                              // They will have gone through all possible matchers
+ 1846:                              if (elem = !matcher && elem) {
+ 1847:                                  matchedCount--;
+ 1848:                              }
+ 1849:                              // Lengthen the array for every element, matched or not
+ 1850:                              if (seed) {
+ 1851:                                  unmatched.push(elem);
+ 1852:                              }
+ 1853:                          }
+*****
+
+***** JQUERY\RD\18.js
+ 1847:                      }
+ 1848:                      // Override manipulation of globals by nested matchers
+***** JQUERY\RD\ORIGINAL.JS
+ 1854:                      }
+ 1855:                      // `i` is now the count of elements visited above, and adding it to `matchedCount`
+ 1856:                      // makes the latter nonnegative.
+ 1857:                      matchedCount += i;
+ 1858:                      // Apply set filters to unmatched elements
+ 1859:                      // NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
+ 1860:                      // equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+ 1861:                      // no element matchers and no seed.
+ 1862:                      // Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+ 1863:                      // case, which will result in a "00" `matchedCount` that differs from `i` but is also
+ 1864:                      // numerically zero.
+ 1865:                      if (bySet && i !== matchedCount) {
+ 1866:                          j = 0;
+ 1867:                          while (matcher = setMatchers[j++]) {
+ 1868:                              matcher(unmatched, setMatched, context, xml);
+ 1869:                          }
+ 1870:                          if (seed) {
+ 1871:                              // Reintegrate element matches to eliminate the need for sorting
+ 1872:                              if (matchedCount > 0) {
+ 1873:                                  while (i--) {
+ 1874:                                      if (!(unmatched[i] || setMatched[i])) {
+ 1875:                                          setMatched[i] = pop.call(results);
+ 1876:                                      }
+ 1877:                                  }
+ 1878:                              }
+ 1879:                              // Discard index placeholder values to get only actual matches
+ 1880:                              setMatched = condense(setMatched);
+ 1881:                          }
+ 1882:                          // Add matches to results
+ 1883:                          push.apply(results, setMatched);
+ 1884:                          // Seedless set matches succeeding multiple successful matchers stipulate sorting
+ 1885:                          if (outermost && !seed && setMatched.length > 0 && matchedCount + setMatchers.length > 1) {
+ 1886:                              Sizzle.uniqueSort(results);
+ 1887:                          }
+ 1888:                      }
+ 1889:                      // Override manipulation of globals by nested matchers
+*****
+
+***** JQUERY\RD\18.js
+ 3172:                  // Ensure a hooks for this queue
+ 3173:                  jQuery._queueHooks(this);
+ 3174:                  if (type === 'fx' && queue[0] !== 'inprogress') {
+***** JQUERY\RD\ORIGINAL.JS
+ 3213:                  // Ensure a hooks for this queue
+ 3214:                  jQuery._queueHooks(this, type);
+ 3215:                  if (type === 'fx' && queue[0] !== 'inprogress') {
+*****
+
+***** JQUERY\RD\18.js
+ 4663:              hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
+ 4664:          },
+***** JQUERY\RD\ORIGINAL.JS
+ 4704:              hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
+ 4705:              // Check if we're setting a value
+ 4706:              if (value !== undefined) {
+ 4707:                  type = typeof value;
+ 4708:                  // Convert "+=" or "-=" to relative numbers (#7345)
+ 4709:                  if (type === 'string' && (ret = rcssNum.exec(value)) && ret[1]) {
+ 4710:                      value = adjustCSS(elem, name, ret);
+ 4711:                      // Fixes bug #9237
+ 4712:                      type = 'number';
+ 4713:                  }
+ 4714:                  // Make sure that null and NaN values aren't set (#7116)
+ 4715:                  if (value == null || value !== value) {
+ 4716:                      return;
+ 4717:                  }
+ 4718:                  // If a number was passed in, add the unit (except for certain CSS properties)
+ 4719:                  if (type === 'number') {
+ 4720:                      value += ret && ret[3] || (jQuery.cssNumber[origName] ? '' : 'px');
+ 4721:                  }
+ 4722:                  // background-* props affect original clone's values
+ 4723:                  if (!support.clearCloneStyle && value === '' && name.indexOf('background') === 0) {
+ 4724:                      style[name] = 'inherit';
+ 4725:                  }
+ 4726:                  // If a hook was provided, use that value, otherwise just set the specified value
+ 4727:                  if (!hooks || !('set' in hooks) || (value = hooks.set(elem, value, extra)) !== undefined) {
+ 4728:                      style[name] = value;
+ 4729:                  }
+ 4730:              } else {
+ 4731:                  // If a hook was provided get the non-computed value from there
+ 4732:                  if (hooks && 'get' in hooks && (ret = hooks.get(elem, false, extra)) !== undefined) {
+ 4733:                      return ret;
+ 4734:                  }
+ 4735:                  // Otherwise just get the value from the style object
+ 4736:                  return style[name];
+ 4737:              }
+ 4738:          },
+*****
+
+***** JQUERY\RD\18.js
+ 5952:          // Used only for `focus(in | out)` events
+ 5953:          simulate: function (type, elem) {
+ 5954:              var e = jQuery.extend(new jQuery.Event(), event, {
+***** JQUERY\RD\ORIGINAL.JS
+ 6026:          // Used only for `focus(in | out)` events
+ 6027:          simulate: function (type, elem, event) {
+ 6028:              var e = jQuery.extend(new jQuery.Event(), event, {
+*****
+
+***** JQUERY\RD\18.js
+ 6085:              // If traditional, encode the "old" way (the way 1.3.2 or older
+ 6086:              for (prefix in a) {
+***** JQUERY\RD\ORIGINAL.JS
+ 6159:              // If traditional, encode the "old" way (the way 1.3.2 or older
+ 6160:              // did it), otherwise encode params recursively.
+ 6161:              for (prefix in a) {
+*****
+

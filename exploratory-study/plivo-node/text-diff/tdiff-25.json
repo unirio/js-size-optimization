@@ -1,0 +1,171 @@
+Comparing files PLIVO-NODE\RD\25.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\25.js
+  373:  plivo.modify_application = function (params, callback) {
+  374:      var action;
+  375:      delete params.app_id;
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  373:  plivo.modify_application = function (params, callback) {
+  374:      var action = 'Application/' + params['app_id'] + '/';
+  375:      delete params.app_id;
+*****
+
+***** PLIVO-NODE\RD\25.js
+  408:  };
+  409:  plivo.create_endpoint = function (params, callback) {
+  410:      var action = 'Endpoint/';
+  411:      var method = 'POST';
+  412:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  408:  };
+  409:  plivo.get_endpoint = function (params, callback) {
+  410:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+  411:      delete params.endpoint_id;
+  412:      var method = 'GET';
+  413:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\25.js
+  413:  };
+  414:  plivo.modify_endpoint = function (params, callback) {
+  415:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+  416:      delete params.endpoint_id;
+  417:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  414:  };
+  415:  plivo.create_endpoint = function (params, callback) {
+  416:      var action = 'Endpoint/';
+  417:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  419:  };
+  420:  plivo.delete_endpoint = function (params, callback) {
+  421:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  419:  };
+  420:  plivo.modify_endpoint = function (params, callback) {
+  421:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  422:      delete params.endpoint_id;
+  423:      var method = 'DELETE';
+  424:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  422:      delete params.endpoint_id;
+  423:      var method = 'POST';
+  424:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\25.js
+  425:  };
+  426:  // Numbers
+  427:  plivo.get_numbers = function (params, callback) {
+  428:      var action = 'Number/';
+  429:      var method = 'GET';
+  430:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  425:  };
+  426:  plivo.delete_endpoint = function (params, callback) {
+  427:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+  428:      delete params.endpoint_id;
+  429:      var method = 'DELETE';
+  430:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\25.js
+  431:  };
+  432:  plivo.get_number_details = function (params, callback) {
+  433:      var action = 'Number/' + params['number'] + '/';
+  434:      delete params.number;
+  435:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  431:  };
+  432:  // Numbers
+  433:  plivo.get_numbers = function (params, callback) {
+  434:      var action = 'Number/';
+  435:      var method = 'GET';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  437:  };
+  438:  plivo.unrent_number = function (params, callback) {
+  439:      var action = 'Number/' + params['number'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  437:  };
+  438:  plivo.get_number_details = function (params, callback) {
+  439:      var action = 'Number/' + params['number'] + '/';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  440:      delete params.number;
+  441:      var method = 'DELETE';
+  442:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  440:      delete params.number;
+  441:      var method = 'GET';
+  442:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\25.js
+  443:  };
+  444:  plivo.get_number_group = function (params, callback) {
+  445:      var action = 'AvailableNumberGroup/';
+  446:      var method = 'GET';
+  447:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  443:  };
+  444:  plivo.unrent_number = function (params, callback) {
+  445:      var action = 'Number/' + params['number'] + '/';
+  446:      delete params.number;
+  447:      var method = 'DELETE';
+  448:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\25.js
+  448:  };
+  449:  plivo.get_number_group_details = function (params, callback) {
+  450:      var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
+  451:      delete params.group_id;
+  452:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  449:  };
+  450:  plivo.get_number_group = function (params, callback) {
+  451:      var action = 'AvailableNumberGroup/';
+  452:      var method = 'GET';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  454:  };
+  455:  plivo.rent_from_number_group = function (params, callback) {
+  456:      var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  454:  };
+  455:  plivo.get_number_group_details = function (params, callback) {
+  456:      var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  457:      delete params.group_id;
+  458:      var method = 'POST';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  457:      delete params.group_id;
+  458:      var method = 'GET';
+  459:      request(action, method, params, callback);
+  460:  };
+  461:  plivo.rent_from_number_group = function (params, callback) {
+  462:      var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
+  463:      delete params.group_id;
+  464:      var method = 'POST';
+*****
+
+***** PLIVO-NODE\RD\25.js
+  540:      var method = 'GET';
+  541:      request(action, method, params);
+  542:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  546:      var method = 'GET';
+  547:      request(action, method, params, callback);
+  548:  };
+*****
+

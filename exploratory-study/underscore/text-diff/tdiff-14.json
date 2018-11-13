@@ -1,0 +1,37 @@
+Comparing files UNDERSCORE\RD\14.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\14.js
+  456:      };
+  457:      _.compact = function (array) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  456:      };
+  457:      // Trim out all falsy values from an array.
+  458:      _.compact = function (array) {
+*****
+
+***** UNDERSCORE\RD\14.js
+  862:          'valueOf',
+  863:          'toString',
+***** UNDERSCORE\RD\ORIGINAL.JS
+  863:          'valueOf',
+  864:          'isPrototypeOf',
+  865:          'toString',
+*****
+
+***** UNDERSCORE\RD\14.js
+ 1078:              // `NaN`s are equivalent, but non-reflexive.
+ 1079:              if (+a !== +a)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1080:              // `NaN`s are equivalent, but non-reflexive.
+ 1081:              // Object(NaN) is equivalent to NaN
+ 1082:              if (+a !== +a)
+*****
+
+***** UNDERSCORE\RD\14.js
+ 1381:          source += "';\n";
+ 1382:          if (!settings.variable)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1384:          source += "';\n";
+ 1385:          // If a variable is not specified, place data values in local scope.
+ 1386:          if (!settings.variable)
+*****
+

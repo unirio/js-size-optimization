@@ -1,0 +1,62 @@
+Comparing files PLIVO-NODE\RD\51.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\51.js
+  346:      delete params.subauth_id;
+  347:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  346:      delete params.subauth_id;
+  347:      var method = 'POST';
+  348:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\51.js
+  424:  };
+  425:  plivo.delete_endpoint = function (params) {
+  426:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  425:  };
+  426:  plivo.delete_endpoint = function (params, callback) {
+  427:      var action = 'Endpoint/' + params['endpoint_id'] + '/';
+*****
+
+***** PLIVO-NODE\RD\51.js
+  440:      var method = 'GET';
+  441:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  441:      var method = 'GET';
+  442:      request(action, method, params, callback);
+  443:  };
+*****
+
+***** PLIVO-NODE\RD\51.js
+  462:      var method = 'POST';
+  463:      request(action, method, params, callback);
+  464:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  464:      var method = 'POST';
+  465:      request(action, method, params, callback, true);
+  466:  };
+*****
+
+***** PLIVO-NODE\RD\51.js
+  503:      var method = 'GET';
+  504:      request(action, method, params);
+  505:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  505:      var method = 'GET';
+  506:      request(action, method, params, callback);
+  507:  };
+*****
+
+***** PLIVO-NODE\RD\51.js
+  900:      this.nestables = [];
+  901:      this.valid_attributes = ['digits'];
+  902:  }
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  902:      this.nestables = [];
+  903:      this.valid_attributes = [
+  904:          'digits',
+  905:          'async'
+  906:      ];
+  907:  }
+*****
+

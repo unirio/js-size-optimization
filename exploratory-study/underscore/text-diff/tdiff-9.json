@@ -1,0 +1,19 @@
+Comparing files UNDERSCORE\RD\9.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\9.js
+ 1058:              return a !== 0 || 1 / a === 1 / b;
+ 1059:          if (a == null || b == null)
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1058:              return a !== 0 || 1 / a === 1 / b;
+ 1059:          // A strict comparison is necessary because `null == undefined`.
+ 1060:          if (a == null || b == null)
+*****
+
+***** UNDERSCORE\RD\9.js
+ 1460:      });
+ 1461:      _.prototype.value = function () {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1461:      });
+ 1462:      // Extracts the result from a wrapped and chained object.
+ 1463:      _.prototype.value = function () {
+*****
+

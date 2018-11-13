@@ -1,0 +1,21 @@
+Comparing files UNDERSCORE\RD\37.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\37.js
+  675:              return nativeBind.apply(func, slice.call(arguments, 1));
+  676:          if (!_.isFunction())
+  677:              throw new TypeError('Bind must be called on a function');
+***** UNDERSCORE\RD\ORIGINAL.JS
+  675:              return nativeBind.apply(func, slice.call(arguments, 1));
+  676:          if (!_.isFunction(func))
+  677:              throw new TypeError('Bind must be called on a function');
+*****
+
+***** UNDERSCORE\RD\37.js
+ 1170:      _.isArray = nativeIsArray || function (obj) {
+ 1171:          return;
+ 1172:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1170:      _.isArray = nativeIsArray || function (obj) {
+ 1171:          return toString.call(obj) === '[object Array]';
+ 1172:      };
+*****
+

@@ -1,0 +1,43 @@
+Comparing files JADE\RD\47.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\47.js
+   83:      if (options.debug) {
+   84:      }
+***** JADE\RD\ORIGINAL.JS
+   83:      if (options.debug) {
+   84:          console.error('\nCompiled Function:\n\n\x1B[90m%s\x1B[0m', js.replace(/^/gm, '  '));
+   85:      }
+*****
+
+***** JADE\RD\47.js
+  116:  }
+  117:  exports.compile = function (str, options) {
+***** JADE\RD\ORIGINAL.JS
+  117:  }
+  118:  /**
+  119:   * Compile a `Function` representation of the given pug `str`.
+  120:   *
+  121:   * Options:
+  122:   *
+  123:   *   - `compileDebug` when `false` debugging code is stripped from the compiled
+  124:         template, when it is explicitly `true`, the source code is included in
+  125:         the compiled template for better accuracy.
+  126:   *   - `filename` used to improve errors when `compileDebug` is not `false` and to resolve imports/extends
+  127:   *
+  128:   * @param {String} str
+  129:   * @param {Options} options
+  130:   * @return {Function}
+  131:   * @api public
+  132:   */
+  133:  exports.compile = function (str, options) {
+*****
+
+***** JADE\RD\47.js
+  236:          }
+  237:          return;
+  238:      }
+***** JADE\RD\ORIGINAL.JS
+  252:          }
+  253:          return fn(null, res);
+  254:      }
+*****
+

@@ -1,0 +1,64 @@
+Comparing files LODASH\RD\53.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\53.js
+   48:  :(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]/g;
+   49:      var reRegExpChars = /[\\^$.*+?()[\]{}|]/g, reHasRegExpChars = RegExp(reRegExpChars.source);
+***** LODASH\RD\ORIGINAL.JS
+   48:  :(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]/g;
+   49:      /**
+   50:     * Used to match `RegExp` [syntax characters](http://ecma-international.org/ecma-262/6.0/#sec-patterns).
+   51:     */
+   52:      var reRegExpChars = /[\\^$.*+?()[\]{}|]/g, reHasRegExpChars = RegExp(reRegExpChars.source);
+*****
+
+***** LODASH\RD\53.js
+  379:      function checkGlobal(value) {
+  380:          return;
+  381:      }
+***** LODASH\RD\ORIGINAL.JS
+  382:      function checkGlobal(value) {
+  383:          return value && value.Object === Object ? value : null;
+  384:      }
+*****
+
+***** LODASH\RD\53.js
+  502:              try {
+  503:              } catch (e) {
+***** LODASH\RD\ORIGINAL.JS
+  505:              try {
+  506:                  result = !!(value + '');
+  507:              } catch (e) {
+*****
+
+***** LODASH\RD\53.js
+ 6389:              function maxDelayed() {
+ 6390:                  complete(trailing);
+ 6391:              }
+***** LODASH\RD\ORIGINAL.JS
+ 6393:              function maxDelayed() {
+ 6394:                  complete(trailing, timeoutId);
+ 6395:              }
+*****
+
+***** LODASH\RD\53.js
+ 8355:              var isProto = isPrototype(object);
+ 8356:              var result = initKeys(object), length = result.length, skipIndexes = !!length;
+***** LODASH\RD\ORIGINAL.JS
+ 8359:              var isProto = isPrototype(object);
+ 8360:              if (!(isProto || isArrayLike(object))) {
+ 8361:                  return nativeKeys(object);
+ 8362:              }
+ 8363:              var result = initKeys(object), length = result.length, skipIndexes = !!length;
+*****
+
+***** LODASH\RD\53.js
+10880:          // referenced as the "underscore" module.
+10881:          define();
+10882:      }    // Check for `exports` after `define` in case a build optimizer adds an `exports` object.
+***** LODASH\RD\ORIGINAL.JS
+10887:          // referenced as the "underscore" module.
+10888:          define(function () {
+10889:              return _;
+10890:          });
+10891:      }    // Check for `exports` after `define` in case a build optimizer adds an `exports` object.
+*****
+

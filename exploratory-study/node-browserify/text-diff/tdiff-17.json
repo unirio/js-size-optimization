@@ -1,0 +1,21 @@
+Comparing files NODE-BROWSERIFY\RD\17.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\17.js
+  435:              return false;
+  436:          if (self._exclude.indexOf(id) >= 0)
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  435:              return false;
+  436:          if (self._external.indexOf(id) >= 0)
+  437:              return false;
+  438:          if (self._exclude.indexOf(id) >= 0)
+*****
+
+***** NODE-BROWSERIFY\RD\17.js
+  609:          if (typeof self._syntaxCache[h] === 'undefined') {
+  610:              var err = syntaxError(row.source);
+  611:              if (err)
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  611:          if (typeof self._syntaxCache[h] === 'undefined') {
+  612:              var err = syntaxError(row.source, row.file || row.id);
+  613:              if (err)
+*****
+

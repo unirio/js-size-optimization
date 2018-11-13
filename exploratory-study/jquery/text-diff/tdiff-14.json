@@ -1,0 +1,65 @@
+Comparing files JQUERY\RD\14.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\14.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\14.js
+ 1834:                                      results.push(elem);
+ 1835:                                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 1835:                                      results.push(elem);
+ 1836:                                      break;
+ 1837:                                  }
+*****
+
+***** JQUERY\RD\14.js
+ 3228:          promise: function (type, obj) {
+ 3229:              var tmp, defer = jQuery.Deferred(), elements = this, i = this.length, resolve = function () {
+ 3230:                      if (!--count) {
+***** JQUERY\RD\ORIGINAL.JS
+ 3230:          promise: function (type, obj) {
+ 3231:              var tmp, count = 1, defer = jQuery.Deferred(), elements = this, i = this.length, resolve = function () {
+ 3232:                      if (!--count) {
+*****
+
+***** JQUERY\RD\14.js
+ 5907:      // Radios and checkboxes getter/setter
+ 5908:      jQuery.each(['radio'], function () {
+ 5909:          jQuery.valHooks[this] = {
+***** JQUERY\RD\ORIGINAL.JS
+ 5909:      // Radios and checkboxes getter/setter
+ 5910:      jQuery.each([
+ 5911:          'radio',
+ 5912:          'checkbox'
+ 5913:      ], function () {
+ 5914:          jQuery.valHooks[this] = {
+*****
+
+***** JQUERY\RD\14.js
+ 7013:                                      if (callback) {
+ 7014:                                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 7018:                                      if (callback) {
+ 7019:                                          errorCallback();
+ 7020:                                      }
+*****
+
+***** JQUERY\RD\14.js
+ 7423:                  }
+ 7424:              }, val, arguments.length);
+ 7425:          };
+***** JQUERY\RD\ORIGINAL.JS
+ 7429:                  }
+ 7430:              }, method, val, arguments.length);
+ 7431:          };
+*****
+

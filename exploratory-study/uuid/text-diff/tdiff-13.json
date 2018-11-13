@@ -1,0 +1,42 @@
+Comparing files UUID\RD\13.js and UUID\RD\ORIGINAL.JS
+***** UUID\RD\13.js
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1]), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(r[5]
+  165:  , 16), parseInt(r[6], 16));
+  166:      }
+***** UUID\RD\ORIGINAL.JS
+  163:      if (r = p.exec(strId)) {
+  164:          return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(
+  165:  r[5], 16), parseInt(r[6], 16));
+  166:      }
+*****
+
+***** UUID\RD\13.js
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString();
+  185:              if (octet.length == 1) {
+***** UUID\RD\ORIGINAL.JS
+  183:          for (var j = 0; j < parts[i]; j++) {
+  184:              var octet = ints[pos++].toString(16);
+  185:              if (octet.length == 1) {
+*****
+
+***** UUID\RD\13.js
+  193:      }
+  194:      return;
+  195:  };
+***** UUID\RD\ORIGINAL.JS
+  193:      }
+  194:      return UUIDjs.fromURN(str);
+  195:  };
+*****
+
+***** UUID\RD\13.js
+  203:      }
+  204:  };
+***** UUID\RD\ORIGINAL.JS
+  203:      }
+  204:      return UUIDjs.fromBytes(ints);
+  205:  };
+*****
+

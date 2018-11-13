@@ -1,0 +1,73 @@
+Comparing files UNDERSCORE\RD\42.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\42.js
+  122:      // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+  123:      var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+***** UNDERSCORE\RD\ORIGINAL.JS
+  122:      // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+  123:      // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
+  124:      var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+*****
+
+***** UNDERSCORE\RD\42.js
+  314:      // Shuffle a collection, using the modern version of the
+  315:      _.shuffle = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  315:      // Shuffle a collection, using the modern version of the
+  316:      // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
+  317:      _.shuffle = function (obj) {
+*****
+
+***** UNDERSCORE\RD\42.js
+  358:      };
+  359:      var group = function (behavior) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  360:      };
+  361:      // An internal function used for aggregate "group by" operations.
+  362:      var group = function (behavior) {
+*****
+
+***** UNDERSCORE\RD\42.js
+  552:      // Complement of _.zip. Unzip accepts an array of arrays and groups
+  553:      _.unzip = function (array) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  555:      // Complement of _.zip. Unzip accepts an array of arrays and groups
+  556:      // each array's elements on shared indices
+  557:      _.unzip = function (array) {
+*****
+
+***** UNDERSCORE\RD\42.js
+  562:      // pairs, or two parallel arrays of the same length -- one of keys, and one of
+  563:      _.object = function (list, values) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  566:      // pairs, or two parallel arrays of the same length -- one of keys, and one of
+  567:      // the corresponding values.
+  568:      _.object = function (list, values) {
+*****
+
+***** UNDERSCORE\RD\42.js
+ 1100:          // Assume equality for cyclic structures. The algorithm for detecting cyclic
+ 1101:          // Initializing stack of traversed objects.
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1105:          // Assume equality for cyclic structures. The algorithm for detecting cyclic
+ 1106:          // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+ 1107:          // Initializing stack of traversed objects.
+*****
+
+***** UNDERSCORE\RD\42.js
+ 1189:          _.isArguments = function (obj) {
+ 1190:          };
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1195:          _.isArguments = function (obj) {
+ 1196:              return _.has(obj, 'callee');
+ 1197:          };
+*****
+
+***** UNDERSCORE\RD\42.js
+ 1252:      // Returns a predicate for checking whether an object has a given set of
+ 1253:      _.matcher = _.matches = function (attrs) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1259:      // Returns a predicate for checking whether an object has a given set of
+ 1260:      // `key:value` pairs.
+ 1261:      _.matcher = _.matches = function (attrs) {
+*****
+

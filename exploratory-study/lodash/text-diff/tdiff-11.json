@@ -1,0 +1,100 @@
+Comparing files LODASH\RD\11.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\11.js
+  654:          /** Native constructor references. */
+  655:          var Array = context.Array, Error = context.Error, Function = context.Function, Math = context.Math, Number = context.Nu
+  656:  mber, Object = context.Object, RegExp = context.RegExp, String = context.String, TypeError = context.TypeError;
+  657:          /** Used for native method references. */
+***** LODASH\RD\ORIGINAL.JS
+  654:          /** Native constructor references. */
+  655:          var Array = context.Array, Date = context.Date, Error = context.Error, Function = context.Function, Math = context.Math
+  656:  , Number = context.Number, Object = context.Object, RegExp = context.RegExp, String = context.String, TypeError = context.TypeE
+  657:  rror;
+  658:          /** Used for native method references. */
+*****
+
+***** LODASH\RD\11.js
+ 2409:          }
+ 2410:          function binaryIndex(array, value, retHighest) {
+***** LODASH\RD\ORIGINAL.JS
+ 2410:          }
+ 2411:          /**
+ 2412:       * Performs a binary search of `array` to determine the index at which `value`
+ 2413:       * should be inserted into `array` in order to maintain its sort order.
+ 2414:       *
+ 2415:       * @private
+ 2416:       * @param {Array} array The sorted array to inspect.
+ 2417:       * @param {*} value The value to evaluate.
+ 2418:       * @param {boolean} [retHighest] Specify returning the highest qualified index.
+ 2419:       * @returns {number} Returns the index at which `value` should be inserted
+ 2420:       *  into `array`.
+ 2421:       */
+ 2422:          function binaryIndex(array, value, retHighest) {
+*****
+
+***** LODASH\RD\11.js
+ 2990:              arity = arity == null ? arity : toInteger(arity);
+ 2991:              var data = isBindKey ? undefined : getData(), newData = [
+ 2992:                      func,
+***** LODASH\RD\ORIGINAL.JS
+ 3002:              arity = arity == null ? arity : toInteger(arity);
+ 3003:              var data = isBindKey ? undefined : getData(func), newData = [
+ 3004:                      func,
+*****
+
+***** LODASH\RD\11.js
+ 3481:              if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+ 3482:                  return;
+ 3483:              }
+***** LODASH\RD\ORIGINAL.JS
+ 3493:              if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+ 3494:                  return false;
+ 3495:              }
+*****
+
+***** LODASH\RD\11.js
+ 5523:          var invoke = restParam(function (collection, path, args) {
+ 5524:              var index = -1, isFunc = typeof path == 'function', isProp = isKey(), result = isArrayLike(collection) ? Array(coll
+ 5525:  ection.length) : [];
+ 5526:              baseEach(collection, function (value) {
+***** LODASH\RD\ORIGINAL.JS
+ 5535:          var invoke = restParam(function (collection, path, args) {
+ 5536:              var index = -1, isFunc = typeof path == 'function', isProp = isKey(path), result = isArrayLike(collection) ? Array(
+ 5537:  collection.length) : [];
+ 5538:              baseEach(collection, function (value) {
+*****
+
+***** LODASH\RD\11.js
+10144:                      result[index] = iteratee(index);
+10145:                  }
+***** LODASH\RD\ORIGINAL.JS
+10156:                      result[index] = iteratee(index);
+10157:                  } else {
+10158:                      iteratee(index);
+10159:                  }
+*****
+
+***** LODASH\RD\11.js
+10651:          /*------------------------------------------------------------------------*/
+10652:          lodash.VERSION = VERSION;
+***** LODASH\RD\ORIGINAL.JS
+10665:          /*------------------------------------------------------------------------*/
+10666:          /**
+10667:       * The semantic version number.
+10668:       *
+10669:       * @static
+10670:       * @memberOf _
+10671:       * @type string
+10672:       */
+10673:          lodash.VERSION = VERSION;
+*****
+
+***** LODASH\RD\11.js
+10828:          baseForOwn(LazyWrapper.prototype, function (func, methodName) {
+10829:              var lodashFunc;
+10830:              if (lodashFunc) {
+***** LODASH\RD\ORIGINAL.JS
+10849:          baseForOwn(LazyWrapper.prototype, function (func, methodName) {
+10850:              var lodashFunc = lodash[methodName];
+10851:              if (lodashFunc) {
+*****
+

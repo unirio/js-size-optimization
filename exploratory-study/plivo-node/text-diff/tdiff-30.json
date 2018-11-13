@@ -1,0 +1,21 @@
+Comparing files PLIVO-NODE\RD\30.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\30.js
+  159:      var method = 'DELETE';
+  160:      request(action, params, callback);
+  161:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  159:      var method = 'DELETE';
+  160:      request(action, method, params, callback);
+  161:  };
+*****
+
+***** PLIVO-NODE\RD\30.js
+  341:      var method = 'POST';
+  342:      request(action, params, callback);
+  343:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  341:      var method = 'POST';
+  342:      request(action, method, params, callback);
+  343:  };
+*****
+

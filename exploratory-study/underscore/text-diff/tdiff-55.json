@@ -1,0 +1,37 @@
+Comparing files UNDERSCORE\RD\55.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\55.js
+  970:      _.extendOwn = _.assign = createAssigner(_.keys);
+  971:      _.findKey = function (obj, predicate, context) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+  970:      _.extendOwn = _.assign = createAssigner(_.keys);
+  971:      // Returns the first key on an object that passes a predicate test
+  972:      _.findKey = function (obj, predicate, context) {
+*****
+
+***** UNDERSCORE\RD\55.js
+ 1096:              // Objects with different constructors are not equivalent, but `Object`s or `Array`s
+ 1097:              var aCtor = a.constructor, bCtor = b.constructor;
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1097:              // Objects with different constructors are not equivalent, but `Object`s or `Array`s
+ 1098:              // from different frames are.
+ 1099:              var aCtor = a.constructor, bCtor = b.constructor;
+*****
+
+***** UNDERSCORE\RD\55.js
+ 1215:      };
+ 1216:      _.isNull = function (obj) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1217:      };
+ 1218:      // Is a given value equal to null?
+ 1219:      _.isNull = function (obj) {
+*****
+
+***** UNDERSCORE\RD\55.js
+ 1407:      // OOP
+ 1408:      // If Underscore is called as a function, it returns a wrapped object that
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1410:      // OOP
+ 1411:      // ---------------
+ 1412:      // If Underscore is called as a function, it returns a wrapped object that
+*****
+

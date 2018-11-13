@@ -1,0 +1,29 @@
+Comparing files PLIVO-NODE\RD\36.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\36.js
+  157:      var action = 'Call/' + params['call_uuid'] + '/';
+  158:      var method = 'DELETE';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  157:      var action = 'Call/' + params['call_uuid'] + '/';
+  158:      delete params.call_uuid;
+  159:      var method = 'DELETE';
+*****
+
+***** PLIVO-NODE\RD\36.js
+  565:  // Outgoing Carrier Routings
+  566:  plivo.get_outgoing_carrier_routings = function (params) {
+  567:      var action = 'OutgoingCarrierRouting/';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  566:  // Outgoing Carrier Routings
+  567:  plivo.get_outgoing_carrier_routings = function (params, callback) {
+  568:      var action = 'OutgoingCarrierRouting/';
+*****
+
+***** PLIVO-NODE\RD\36.js
+  773:          'callbackUrl',
+  774:          'digitsMatch',
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  774:          'callbackUrl',
+  775:          'callbackMethod',
+  776:          'digitsMatch',
+*****
+

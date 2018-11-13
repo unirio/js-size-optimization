@@ -1,0 +1,38 @@
+Comparing files UNDERSCORE\RD\57.js and UNDERSCORE\RD\ORIGINAL.JS
+***** UNDERSCORE\RD\57.js
+   86:      };
+   87:      var createAssigner = function (keysFunc, undefinedOnly) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+   86:      };
+   87:      // An internal function for creating assigner functions.
+   88:      var createAssigner = function (keysFunc, undefinedOnly) {
+*****
+
+***** UNDERSCORE\RD\57.js
+  680:          };
+  681:      };
+***** UNDERSCORE\RD\ORIGINAL.JS
+  681:          };
+  682:          return bound;
+  683:      };
+*****
+
+***** UNDERSCORE\RD\57.js
+  873:          var prop = 'constructor';
+  874:          if (_.has(obj, prop) && !_.contains(keys))
+  875:              keys.push(prop);
+***** UNDERSCORE\RD\ORIGINAL.JS
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+*****
+
+***** UNDERSCORE\RD\57.js
+ 1224:      // Shortcut function for checking if an object has a given property directly
+ 1225:      _.has = function (obj, key) {
+***** UNDERSCORE\RD\ORIGINAL.JS
+ 1226:      // Shortcut function for checking if an object has a given property directly
+ 1227:      // on itself (in other words, not on a prototype).
+ 1228:      _.has = function (obj, key) {
+*****
+

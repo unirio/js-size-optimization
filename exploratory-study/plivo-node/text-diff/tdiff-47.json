@@ -1,0 +1,19 @@
+Comparing files PLIVO-NODE\RD\47.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\47.js
+   18:      Error.captureStackTrace(this, arguments.callee);
+   19:      this.name = 'PlivoError';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+   18:      Error.captureStackTrace(this, arguments.callee);
+   19:      this.message = (msg || '') + '\n';
+   20:      this.name = 'PlivoError';
+*****
+
+***** PLIVO-NODE\RD\47.js
+  579:      var method = 'POST';
+  580:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  580:      var method = 'POST';
+  581:      request(action, method, params, callback);
+  582:  };
+*****
+

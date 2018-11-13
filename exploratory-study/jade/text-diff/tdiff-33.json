@@ -1,0 +1,56 @@
+Comparing files JADE\RD\33.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\33.js
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          self: options.self,
+***** JADE\RD\ORIGINAL.JS
+   76:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+   77:          globals: options.globals,
+   78:          self: options.self,
+*****
+
+***** JADE\RD\33.js
+  147:      });
+  148:      var res = options.inlineRuntimeFunctions ? new Function('')() : runtimeWrap(parsed.body);
+  149:      res.dependencies = parsed.dependencies;
+***** JADE\RD\ORIGINAL.JS
+  148:      });
+  149:      var res = options.inlineRuntimeFunctions ? new Function('', parsed.body + ';return template;')() : runtimeWrap(parsed.body)
+  150:  ;
+  151:      res.dependencies = parsed.dependencies;
+*****
+
+***** JADE\RD\33.js
+  224:  };
+  225:  exports.render = function (str, options, fn) {
+***** JADE\RD\ORIGINAL.JS
+  226:  };
+  227:  /**
+  228:   * Render the given `str` of pug.
+  229:   *
+  230:   * Options:
+  231:   *
+  232:   *   - `cache` enable template caching
+  233:   *   - `filename` filename required for `include` / `extends` and caching
+  234:   *
+  235:   * @param {String} str
+  236:   * @param {Object|Function} options or fn
+  237:   * @param {Function|undefined} fn
+  238:   * @returns {String}
+  239:   * @api public
+  240:   */
+  241:  exports.render = function (str, options, fn) {
+*****
+
+***** JADE\RD\33.js
+***** JADE\RD\ORIGINAL.JS
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

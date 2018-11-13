@@ -1,0 +1,38 @@
+Comparing files TLEAF\RD\0.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\0.js
+  114:  function findDeps(callExpression, scope, type) {
+  115:      var cantHaveDeps;
+  116:      if (_.contains(cantHaveDeps, type)) {
+  117:      }
+***** TLEAF\RD\ORIGINAL.JS
+  114:  function findDeps(callExpression, scope, type) {
+  115:      var cantHaveDeps = [
+  116:          'filter',
+  117:          'value',
+  118:          'constant'
+  119:      ];
+  120:      if (_.contains(cantHaveDeps, type)) {
+  121:          return [];
+  122:      }
+*****
+
+***** TLEAF\RD\0.js
+  180:              if (right.type === 'FunctionExpression') {
+  181:                  deps = extractDeps();
+  182:                  return true;    // exit loop
+***** TLEAF\RD\ORIGINAL.JS
+  185:              if (right.type === 'FunctionExpression') {
+  186:                  deps = extractDeps(right.params);
+  187:                  return true;    // exit loop
+*****
+
+***** TLEAF\RD\0.js
+  252:      var deps = extractDeps(params);
+  253:      return;
+  254:  }
+***** TLEAF\RD\ORIGINAL.JS
+  257:      var deps = extractDeps(params);
+  258:      return deps;
+  259:  }
+*****
+

@@ -1,0 +1,39 @@
+Comparing files TLEAF\RD\30.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\30.js
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps();
+  152:      }
+***** TLEAF\RD\ORIGINAL.JS
+  150:          // it may vary a lot, covering common cases
+  151:          return findProviderDeps(depsArg);
+  152:      }
+*****
+
+***** TLEAF\RD\30.js
+  246:      }
+  247:      var varType = _.get(varNode, 'type');
+***** TLEAF\RD\ORIGINAL.JS
+  246:      }
+  247:      var params = [];
+  248:      var varType = _.get(varNode, 'type');
+*****
+
+***** TLEAF\RD\30.js
+  273:      if (value.type === 'Identifier') {
+  274:      }
+***** TLEAF\RD\ORIGINAL.JS
+  274:      if (value.type === 'Identifier') {
+  275:          deps = extractVariableDeps(value.name, scope);
+  276:      }
+*****
+
+***** TLEAF\RD\30.js
+  278:      var scopeManager = escope.analyze(ast);
+  279:      var scope;
+  280:      return scope;
+***** TLEAF\RD\ORIGINAL.JS
+  280:      var scopeManager = escope.analyze(ast);
+  281:      var scope = scopeManager.acquire(ast);
+  282:      return scope;
+*****
+

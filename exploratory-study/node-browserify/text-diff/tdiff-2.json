@@ -1,0 +1,20 @@
+Comparing files NODE-BROWSERIFY\RD\2.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\2.js
+  565:      }
+  566:      var stream = through.obj(write);
+  567:      return stream;
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  565:      }
+  566:      var stream = through.obj(write, end);
+  567:      return stream;
+*****
+
+***** NODE-BROWSERIFY\RD\2.js
+  644:          if (self._external.indexOf('/' + path.relative(basedir, row.id)) >= 0) {
+  645:          }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  644:          if (self._external.indexOf('/' + path.relative(basedir, row.id)) >= 0) {
+  645:              return next();
+  646:          }
+*****
+

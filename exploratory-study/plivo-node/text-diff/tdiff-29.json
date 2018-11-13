@@ -1,0 +1,115 @@
+Comparing files PLIVO-NODE\RD\29.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\29.js
+  146:      delete params.call_uuid;
+  147:      var method;
+  148:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  146:      delete params.call_uuid;
+  147:      var method = 'POST';
+  148:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\29.js
+  225:      var method = 'DELETE';
+  226:      request(action, params, callback);
+  227:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  225:      var method = 'DELETE';
+  226:      request(action, method, params, callback);
+  227:  };
+*****
+
+***** PLIVO-NODE\RD\29.js
+  349:  };
+  350:  // Applications
+  351:  plivo.get_applications = function (params, callback) {
+  352:      var action = 'Application/';
+  353:      var method = 'GET';
+  354:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  349:  };
+  350:  plivo.delete_subaccount = function (params, callback) {
+  351:      var action = 'Subaccount/' + params['subauth_id'] + '/';
+  352:      delete params.subauth_id;
+  353:      var method = 'DELETE';
+  354:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\29.js
+  355:  };
+  356:  plivo.get_application = function (params, callback) {
+  357:      var action = 'Application/' + params['app_id'] + '/';
+  358:      delete params.app_id;
+  359:      var method = 'GET';
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  355:  };
+  356:  // Applications
+  357:  plivo.get_applications = function (params, callback) {
+  358:      var action = 'Application/';
+  359:      var method = 'GET';
+*****
+
+***** PLIVO-NODE\RD\29.js
+  361:  };
+  362:  plivo.create_application = function (params, callback) {
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  361:  };
+  362:  plivo.get_application = function (params, callback) {
+  363:      var action = 'Application/' + params['app_id'] + '/';
+  364:      delete params.app_id;
+  365:      var method = 'GET';
+  366:      request(action, method, params, callback);
+  367:  };
+  368:  plivo.create_application = function (params, callback) {
+*****
+
+***** PLIVO-NODE\RD\29.js
+  364:      var method = 'POST';
+  365:      request(action, method, params);
+  366:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  370:      var method = 'POST';
+  371:      request(action, method, params, callback);
+  372:  };
+*****
+
+***** PLIVO-NODE\RD\29.js
+  582:  };
+  583:  // Pricing
+  584:  plivo.get_pricing = function (params, callback) {
+  585:      var action = 'Pricing/';
+  586:      var method = 'GET';
+  587:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  588:  };
+  589:  plivo.delete_outgoing_carrier_routing = function (params, callback) {
+  590:      var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
+  591:      delete params.routing_id;
+  592:      var method = 'DELETE';
+  593:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\29.js
+  588:  };
+  589:  /**
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  594:  };
+  595:  // Pricing
+  596:  plivo.get_pricing = function (params, callback) {
+  597:      var action = 'Pricing/';
+  598:      var method = 'GET';
+  599:      request(action, method, params, callback);
+  600:  };
+  601:  /**
+*****
+
+***** PLIVO-NODE\RD\29.js
+  671:      addPlay: function (body, attributes) {
+  672:          return this.add(new Play(Response), body);
+  673:      },
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  683:      addPlay: function (body, attributes) {
+  684:          return this.add(new Play(Response), body, attributes);
+  685:      },
+*****
+

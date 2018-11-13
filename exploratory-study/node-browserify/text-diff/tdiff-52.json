@@ -1,0 +1,59 @@
+Comparing files NODE-BROWSERIFY\RD\52.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\52.js
+  387:                  return next();
+  388:              if (isAbsolutePath(row.id)) {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  387:                  return next();
+  388:              if (self._external.indexOf(row.file) >= 0)
+  389:                  return next();
+  390:              if (isAbsolutePath(row.id)) {
+*****
+
+***** NODE-BROWSERIFY\RD\52.js
+  452:                  if (nm) {
+  453:                      nm = nm.split()[0];
+  454:                      if (self._ignore.indexOf(nm) >= 0) {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  454:                  if (nm) {
+  455:                      nm = nm.split('/')[0];
+  456:                      if (self._ignore.indexOf(nm) >= 0) {
+*****
+
+***** NODE-BROWSERIFY\RD\52.js
+  538:              vars.process = undefined;
+  539:          }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  540:              vars.process = undefined;
+  541:              vars.buffer = undefined;
+  542:          }
+*****
+
+***** NODE-BROWSERIFY\RD\52.js
+  559:              if (ended)
+  560:                  stream.push();
+  561:          });
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  562:              if (ended)
+  563:                  stream.push(null);
+  564:          });
+*****
+
+***** NODE-BROWSERIFY\RD\52.js
+  588:          if (/^\ufeff/.test(row.source)) {
+  589:          }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  591:          if (/^\ufeff/.test(row.source)) {
+  592:              row.source = row.source.replace(/^\ufeff/, '');
+  593:          }
+*****
+
+***** NODE-BROWSERIFY\RD\52.js
+  694:              row.sourceRoot = 'file://localhost';
+  695:              row.sourceFile = path.relative(basedir, row.file).replace(/\\/g);
+  696:          }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  698:              row.sourceRoot = 'file://localhost';
+  699:              row.sourceFile = path.relative(basedir, row.file).replace(/\\/g, '/');
+  700:          }
+*****
+

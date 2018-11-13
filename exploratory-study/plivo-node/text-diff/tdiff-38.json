@@ -1,0 +1,20 @@
+Comparing files PLIVO-NODE\RD\38.js and PLIVO-NODE\RD\ORIGINAL.JS
+***** PLIVO-NODE\RD\38.js
+  294:      delete params.member_id;
+  295:      var method;
+  296:      request(action, method, params, callback);
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  294:      delete params.member_id;
+  295:      var method = 'DELETE';
+  296:      request(action, method, params, callback);
+*****
+
+***** PLIVO-NODE\RD\38.js
+  575:      var method = 'GET';
+  576:  };
+***** PLIVO-NODE\RD\ORIGINAL.JS
+  575:      var method = 'GET';
+  576:      request(action, method, params, callback);
+  577:  };
+*****
+

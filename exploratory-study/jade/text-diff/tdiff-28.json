@@ -1,0 +1,45 @@
+Comparing files JADE\RD\28.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\28.js
+    6:   */
+    7:  var fs = require('fs');
+***** JADE\RD\ORIGINAL.JS
+    6:   */
+    7:  /**
+    8:   * Module dependencies.
+    9:   */
+   10:  var fs = require('fs');
+*****
+
+***** JADE\RD\28.js
+   67:      ast = link(ast);
+   68:      var js = generateCode(ast, {
+***** JADE\RD\ORIGINAL.JS
+   70:      ast = link(ast);
+   71:      // Compile
+   72:      var js = generateCode(ast, {
+*****
+
+***** JADE\RD\28.js
+  141:          includeSources: options.compileDebug === true,
+  142:          debug: options.debug
+  143:      });
+***** JADE\RD\ORIGINAL.JS
+  145:          includeSources: options.compileDebug === true,
+  146:          debug: options.debug,
+  147:          templateName: 'template'
+  148:      });
+*****
+
+***** JADE\RD\28.js
+***** JADE\RD\ORIGINAL.JS
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

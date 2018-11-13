@@ -1,0 +1,22 @@
+Comparing files NODE-BROWSERIFY\RD\59.js and NODE-BROWSERIFY\RD\ORIGINAL.JS
+***** NODE-BROWSERIFY\RD\59.js
+  344:      });
+  345:      var dopts = {
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  344:      });
+  345:      this._mdeps.on('transform', function (tr, file) {
+  346:          pipeline.emit('transform', tr, file);
+  347:          self.emit('transform', tr, file);
+  348:      });
+  349:      var dopts = {
+*****
+
+***** NODE-BROWSERIFY\RD\59.js
+  657:              if (self._external.indexOf(rfile) >= 0) {
+  658:              }
+***** NODE-BROWSERIFY\RD\ORIGINAL.JS
+  661:              if (self._external.indexOf(rfile) >= 0) {
+  662:                  row.deps[key] = rfile;
+  663:              }
+*****
+

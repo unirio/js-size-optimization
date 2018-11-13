@@ -1,0 +1,10 @@
+Comparing files EXECTIMER\RD\56.js and EXECTIMER\RD\ORIGINAL.JS
+***** EXECTIMER\RD\56.js
+   23:                      this.ticks.sort(function (a, b) {
+   24:                      });
+***** EXECTIMER\RD\ORIGINAL.JS
+   23:                      this.ticks.sort(function (a, b) {
+   24:                          return a && b && a.getDiff() - b.getDiff() || 0;
+   25:                      });
+*****
+

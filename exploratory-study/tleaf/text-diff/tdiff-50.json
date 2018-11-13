@@ -1,0 +1,61 @@
+Comparing files TLEAF\RD\50.js and TLEAF\RD\ORIGINAL.JS
+***** TLEAF\RD\50.js
+  122:      }
+  123:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+***** TLEAF\RD\ORIGINAL.JS
+  122:      }
+  123:      // first argument is a name of the unit, second - usually has deps
+  124:      var depsArg = _.get(callExpression, 'arguments[1]', {});
+*****
+
+***** TLEAF\RD\50.js
+  134:          if (lastDepsArg.type === 'FunctionExpression') {
+  135:          }
+***** TLEAF\RD\ORIGINAL.JS
+  135:          if (lastDepsArg.type === 'FunctionExpression') {
+  136:              return extractDeps(lastDepsArg.params);
+  137:          }
+*****
+
+***** TLEAF\RD\50.js
+  175:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  176:          var type;
+  177:          var expression = _.get(bodyExpression, 'expression', {});
+  178:          var leftProp = _.get(expression, 'left.property');
+  179:          var right = _.get(expression, 'right', {});
+***** TLEAF\RD\ORIGINAL.JS
+  177:      _.some(depsFnBodyExpressions, function (bodyExpression) {
+  178:          var type = _.get(bodyExpression, 'type');
+  179:          var expression = _.get(bodyExpression, 'expression', {});
+  180:          var leftProp = _.get(expression, 'left.property', {});
+  181:          var right = _.get(expression, 'right', {});
+*****
+
+***** TLEAF\RD\50.js
+  213:  }
+  214:  function extractDeps() {
+  215:      if (!_.isArray(params)) {
+***** TLEAF\RD\ORIGINAL.JS
+  215:  }
+  216:  function extractDeps(params) {
+  217:      if (!_.isArray(params)) {
+*****
+
+***** TLEAF\RD\50.js
+  259:      var prop = _.find(object.properties, function (property) {
+  260:      });
+***** TLEAF\RD\ORIGINAL.JS
+  261:      var prop = _.find(object.properties, function (property) {
+  262:          return _.get(property, 'key.name') === propName;
+  263:      });
+*****
+
+***** TLEAF\RD\50.js
+  265:      var deps = [];
+  266:      if (value.type === 'FunctionExpression') {
+***** TLEAF\RD\ORIGINAL.JS
+  268:      var deps = [];
+  269:      // covers "{ key: function () {} }"
+  270:      if (value.type === 'FunctionExpression') {
+*****
+

@@ -1,0 +1,63 @@
+Comparing files JADE\RD\23.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\23.js
+    6:   */
+    7:  var fs = require('fs');
+***** JADE\RD\ORIGINAL.JS
+    6:   */
+    7:  /**
+    8:   * Module dependencies.
+    9:   */
+   10:  var fs = require('fs');
+*****
+
+***** JADE\RD\23.js
+   17:  var runtimeWrap = require('pug-runtime/wrap');
+   18:  exports.runtime = runtime;
+***** JADE\RD\ORIGINAL.JS
+   20:  var runtimeWrap = require('pug-runtime/wrap');
+   21:  /**
+   22:   * Pug runtime helpers.
+   23:   */
+   24:  exports.runtime = runtime;
+*****
+
+***** JADE\RD\23.js
+  135:          doctype: options.doctype,
+  136:          globals: options.globals,
+***** JADE\RD\ORIGINAL.JS
+  141:          doctype: options.doctype,
+  142:          inlineRuntimeFunctions: options.inlineRuntimeFunctions,
+  143:          globals: options.globals,
+*****
+
+***** JADE\RD\23.js
+  169:          pretty: options.pretty,
+  170:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+***** JADE\RD\ORIGINAL.JS
+  176:          pretty: options.pretty,
+  177:          doctype: options.doctype,
+  178:          inlineRuntimeFunctions: options.inlineRuntimeFunctions !== false,
+*****
+
+***** JADE\RD\23.js
+  235:      if ('function' == typeof options) {
+  236:      }
+***** JADE\RD\ORIGINAL.JS
+  243:      if ('function' == typeof options) {
+  244:          fn = options, options = undefined;
+  245:      }
+*****
+
+***** JADE\RD\23.js
+***** JADE\RD\ORIGINAL.JS
+  310:  /**
+  311:   * Express support.
+  312:   */
+  313:  exports.__express = function (path, options, fn) {
+  314:      if (options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+  315:          options.compileDebug = false;
+  316:      }
+  317:      exports.renderFile(path, options, fn);
+  318:  };
+*****
+

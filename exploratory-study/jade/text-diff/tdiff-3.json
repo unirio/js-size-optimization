@@ -1,0 +1,23 @@
+Comparing files JADE\RD\3.js and JADE\RD\ORIGINAL.JS
+***** JADE\RD\3.js
+   20:  var runtimeWrap = require('pug-runtime/wrap');
+   21:  exports.runtime = runtime;
+***** JADE\RD\ORIGINAL.JS
+   20:  var runtimeWrap = require('pug-runtime/wrap');
+   21:  /**
+   22:   * Pug runtime helpers.
+   23:   */
+   24:  exports.runtime = runtime;
+*****
+
+***** JADE\RD\3.js
+  142:          includeSources: options.compileDebug === true,
+  143:          debug: options.debug
+  144:      });
+***** JADE\RD\ORIGINAL.JS
+  145:          includeSources: options.compileDebug === true,
+  146:          debug: options.debug,
+  147:          templateName: 'template'
+  148:      });
+*****
+

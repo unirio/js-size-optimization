@@ -1,0 +1,95 @@
+Comparing files JQUERY\RD\2.js and JQUERY\RD\ORIGINAL.JS
+***** JQUERY\RD\2.js
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && (elem.isDisabled === disabled || // Otherwise, assume any non-<opt
+  722:  ion> under fieldset[disabled] is disabled
+  723:                  /* jshint -W018 */
+***** JQUERY\RD\ORIGINAL.JS
+  720:  k non-disabled form elements for fieldset[disabled] ancestors
+  721:                  'form' in elem && elem.disabled === false && // Support: IE6-11+
+  722:                  // Ancestry is covered for us
+  723:                  (elem.isDisabled === disabled || // Otherwise, assume any non-<option> under fieldset[disabled] is disabled
+  724:                  /* jshint -W018 */
+*****
+
+***** JQUERY\RD\2.js
+ 1782:                          checkContext = null;
+ 1783:                      }];
+***** JQUERY\RD\ORIGINAL.JS
+ 1783:                          checkContext = null;
+ 1784:                          return ret;
+ 1785:                      }];
+*****
+
+***** JQUERY\RD\2.js
+ 2598:                                      } else {
+ 2599:                                          newDefer[tuple[0] + 'With'](this, fn ? [] : arguments);
+ 2600:                                      }
+***** JQUERY\RD\ORIGINAL.JS
+ 2600:                                      } else {
+ 2601:                                          newDefer[tuple[0] + 'With'](this, fn ? [returned] : arguments);
+ 2602:                                      }
+*****
+
+***** JQUERY\RD\2.js
+ 5191:                  stop: function (gotoEnd) {
+ 5192:                      var index = 0;
+ 5193:                      if (stopped) {
+***** JQUERY\RD\ORIGINAL.JS
+ 5193:                  stop: function (gotoEnd) {
+ 5194:                      var index = 0,
+ 5195:                          // If we are going to the end, we want to run all the tweens
+ 5196:                          // otherwise we skip this part
+ 5197:                          length = gotoEnd ? animation.tweens.length : 0;
+ 5198:                      if (stopped) {
+*****
+
+***** JQUERY\RD\2.js
+ 5423:          fxNow = jQuery.now();
+ 5424:          for (;; i++) {
+ 5425:              timer = timers[i];
+***** JQUERY\RD\ORIGINAL.JS
+ 5428:          fxNow = jQuery.now();
+ 5429:          for (; i < timers.length; i++) {
+ 5430:              timer = timers[i];
+*****
+
+***** JQUERY\RD\2.js
+ 5742:                          if (curValue !== finalValue) {
+ 5743:                              elem.setAttribute('class');
+ 5744:                          }
+***** JQUERY\RD\ORIGINAL.JS
+ 5747:                          if (curValue !== finalValue) {
+ 5748:                              elem.setAttribute('class', finalValue);
+ 5749:                          }
+*****
+
+***** JQUERY\RD\2.js
+ 6612:              // Apply prefilters
+ 6613:              inspectPrefiltersOrTransports(prefilters, s, jqXHR);
+ 6614:              // If request was aborted inside a prefilter, stop there
+***** JQUERY\RD\ORIGINAL.JS
+ 6617:              // Apply prefilters
+ 6618:              inspectPrefiltersOrTransports(prefilters, s, options, jqXHR);
+ 6619:              // If request was aborted inside a prefilter, stop there
+*****
+
+***** JQUERY\RD\2.js
+ 6705:                          jqXHR.abort('timeout');
+ 6706:                      });
+ 6707:                  }
+***** JQUERY\RD\ORIGINAL.JS
+ 6710:                          jqXHR.abort('timeout');
+ 6711:                      }, s.timeout);
+ 6712:                  }
+*****
+
+***** JQUERY\RD\2.js
+ 6896:                  if (contents.length) {
+ 6897:                  } else {
+***** JQUERY\RD\ORIGINAL.JS
+ 6901:                  if (contents.length) {
+ 6902:                      contents.wrapAll(html);
+ 6903:                  } else {
+*****
+

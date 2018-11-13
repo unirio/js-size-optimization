@@ -1,0 +1,81 @@
+Comparing files LODASH\RD\6.js and LODASH\RD\ORIGINAL.JS
+***** LODASH\RD\6.js
+  243:          'r': 'x72',
+  244:          'u': 'x75',
+***** LODASH\RD\ORIGINAL.JS
+  243:          'r': 'x72',
+  244:          't': 'x74',
+  245:          'u': 'x75',
+*****
+
+***** LODASH\RD\6.js
+ 1373:          }
+ 1374:          function baseClone(value, isDeep, customizer, key, object, stackA, stackB) {
+***** LODASH\RD\ORIGINAL.JS
+ 1374:          }
+ 1375:          /**
+ 1376:       * The base implementation of `_.clone` and `_.cloneDeep` which tracks
+ 1377:       * traversed objects.
+ 1378:       *
+ 1379:       * @private
+ 1380:       * @param {*} value The value to clone.
+ 1381:       * @param {boolean} [isDeep] Specify a deep clone.
+ 1382:       * @param {Function} [customizer] The function to customize cloning.
+ 1383:       * @param {string} [key] The key of `value`.
+ 1384:       * @param {Object} [object] The object `value` belongs to.
+ 1385:       * @param {Array} [stackA=[]] Tracks traversed source objects.
+ 1386:       * @param {Array} [stackB=[]] Associates clones with source counterparts.
+ 1387:       * @returns {*} Returns the cloned value.
+ 1388:       */
+ 1389:          function baseClone(value, isDeep, customizer, key, object, stackA, stackB) {
+*****
+
+***** LODASH\RD\6.js
+ 2203:       */
+ 2204:          var baseSetData = !metaMap ? identity : function (func) {
+ 2205:              metaMap.set(func, data);
+***** LODASH\RD\ORIGINAL.JS
+ 2218:       */
+ 2219:          var baseSetData = !metaMap ? identity : function (func, data) {
+ 2220:              metaMap.set(func, data);
+*****
+
+***** LODASH\RD\6.js
+ 2871:                  if (this && this !== root && this instanceof wrapper) {
+ 2872:                      fn = Ctor || createCtorWrapper();
+ 2873:                  }
+***** LODASH\RD\ORIGINAL.JS
+ 2886:                  if (this && this !== root && this instanceof wrapper) {
+ 2887:                      fn = Ctor || createCtorWrapper(func);
+ 2888:                  }
+*****
+
+***** LODASH\RD\6.js
+ 3565:              value = source[7];
+ 3566:              // Use source `ary` if it's smaller.
+***** LODASH\RD\ORIGINAL.JS
+ 3580:              value = source[7];
+ 3581:              if (value) {
+ 3582:                  data[7] = copyArray(value);
+ 3583:              }
+ 3584:              // Use source `ary` if it's smaller.
+*****
+
+***** LODASH\RD\6.js
+ 6167:                  var holders = replaceHolders(partials, bindKey.placeholder);
+ 6168:              }
+***** LODASH\RD\ORIGINAL.JS
+ 6185:                  var holders = replaceHolders(partials, bindKey.placeholder);
+ 6186:                  bitmask |= PARTIAL_FLAG;
+ 6187:              }
+*****
+
+***** LODASH\RD\6.js
+ 8341:              if (!(isProto || isArrayLike(object))) {
+ 8342:              }
+***** LODASH\RD\ORIGINAL.JS
+ 8360:              if (!(isProto || isArrayLike(object))) {
+ 8361:                  return nativeKeys(object);
+ 8362:              }
+*****
+
