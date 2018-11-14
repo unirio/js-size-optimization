@@ -1,0 +1,17 @@
+counter;index;instructionType;totalChars 
+0;0;original;1673 
+1;4376;Literal;1665 
+23;4749;Literal;1634 
+24;1160;Literal;1622 
+27;1940;Identifier;1619 
+27;384;Literal;1611 
+37;356;Literal;1600 
+41;4360;Literal;1526 
+79;109;Identifier;1499 
+94;1029;Literal;1486 
+139;4444;ReturnStatement;1483 
+140;2944;Identifier;1307 
+209;1098;Line;1297 
+233;2488;Identifier;1271 
+526;1405;Literal;1271 
+535;1658;Identifier;1268 

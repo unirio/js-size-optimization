@@ -1,0 +1,58 @@
+> size
+   lib         meanSize medianSize meanTotalSize
+ 1 browserify    0.679     0.396         0.656  
+ 2 d3-node       5.12      3.26          0.598  
+ 3 decimal.js    0.154     0.125         0.279  
+ 4 esprima       0.0269    0.0151        0.0592 
+ 5 exectimer     1.30      0.513         0.282  
+ 6 express       0.0898    0.0880        0.0704 
+ 7 jquery        0.0660    0.0131        0.0627 
+ 8 lodash        0.0223    0.00926       0.0341 
+ 9 mathjs        0.0282    0.00641       0.0357 
+10 minimist      0.709     0.518         0.225  
+11 moment        0.0237    0.0100        0.0483 
+12 node-semver   0.113     0.0755        0.00755
+13 plivo-node    1.01      0.657         0.925  
+14 pug           1.25      0.5           0.625  
+15 tleaf        18.0      18.8           1.50   
+16 UglifyJS2     0.0755    0.0244        0.224  
+17 underscore    0.216     0.135         0.198  
+18 uuid          2.83      0.957         0.614  
+19 xml2js        0.275     0.190         0.124
+
+> correlationMeanSizeLoc
+[1] -0.9421053
+
+> correlationMedianSizeLoc
+[1] -0.954386
+
+> correlationMeanTotalSizeLoc
+[1] -0.7403509
+
+> distance
+   lib         meanDistance medianDistance
+ 1 browserify         1.03          0.793 
+ 2 d3-node            9.24          7.61  
+ 3 decimal.js         1.51          0.658 
+ 4 esprima            0.712         0.333 
+ 5 exectimer          6.67          4.62  
+ 6 express            1.78          1.50  
+ 7 jquery             0.165         0.112 
+ 8 lodash             1.08          0.472 
+ 9 mathjs             0.152         0.0320
+10 minimist           5.12          2.07  
+11 moment             0.295         0.180 
+12 node-semver        2.17          0.227 
+13 plivo-node         0.632         0.493 
+14 pug                2.41          1.25  
+15 tleaf              2.82          2.63  
+16 UglifyJS2          0.517         0.268 
+17 underscore         1.69          0.810 
+18 uuid               5.14          4.07  
+19 xml2js             3.66          1.71  
+
+> correlationMeanDistanceLoc
+[1] -0.8614035
+
+> correlationMedianDistanceLoc
+[1] -0.8982456

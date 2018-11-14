@@ -1,20 +1,20 @@
 # Clean up and load libraries
 rm(list=ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation/scripts";
+baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation";
 
 # Load FAHC results
-fahcFilename <- paste(baseDir, "/../FAHC/results.csv", sep="");
+fahcFilename <- paste(baseDir, "/DFAHC/results.csv", sep="");
 fahc <- read_delim(fahcFilename, delim=";");
 fahc <- fahc %>% mutate(imp = 100 * diffchars / originalchars);
 
 # Load SFAHC results
-sfahcFilename <- paste(baseDir, "/../SFAHC/results.csv", sep="");
+sfahcFilename <- paste(baseDir, "/SFAHC/results.csv", sep="");
 sfahc <- read_delim(sfahcFilename, delim=";");
 sfahc <- sfahc %>% mutate(imp = 100 * diffchars / originalchars);
 
 # Load SHC results
-shcFilename <- paste(baseDir, "/../SHC/results.csv", sep="");
+shcFilename <- paste(baseDir, "/SHC/results.csv", sep="");
 shc <- read_delim(shcFilename, delim=";");
 shc <- shc %>% mutate(imp = 100 * diffchars / originalchars);
 
@@ -22,7 +22,7 @@ shc <- shc %>% mutate(imp = 100 * diffchars / originalchars);
 instances <- sort(unique(fahc$Lib));
 
 # Boxplots for solution quality
-boxplotFilename <- paste(baseDir, '/calc-boxplots/boxplots.pdf', sep="");
+boxplotFilename <- paste(baseDir, '/results/boxplots.pdf', sep="");
 pdf(boxplotFilename, width=7, height=3);
 
 par(mfrow=c(3, 7));

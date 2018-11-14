@@ -1,0 +1,45 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+  166:  for (var i = 0; i < R; i++) {
+  167:      debug(i);
+  168:      if (!re[i])
+***** HC\ORIGINAL.JS
+  166:  for (var i = 0; i < R; i++) {
+  167:      debug(i, src[i]);
+  168:      if (!re[i])
+*****
+
+***** HC\0.js
+  246:          this.version += '-' + this.prerelease.join('.');
+  247:      return;
+  248:  };
+***** HC\ORIGINAL.JS
+  246:          this.version += '-' + this.prerelease.join('.');
+  247:      return this.version;
+  248:  };
+*****
+
+***** HC\0.js
+  249:  SemVer.prototype.toString = function () {
+  250:      return;
+  251:  };
+***** HC\ORIGINAL.JS
+  249:  SemVer.prototype.toString = function () {
+  250:      return this.version;
+  251:  };
+*****
+
+***** HC\0.js
+  252:  SemVer.prototype.compare = function (other) {
+  253:      debug('SemVer.compare', other);
+  254:      if (!(other instanceof SemVer))
+  255:          other = new SemVer(other);
+  256:      return this.compareMain(other) || this.comparePre(other);
+***** HC\ORIGINAL.JS
+  252:  SemVer.prototype.compare = function (other) {
+  253:      debug('SemVer.compare', this.version, this.loose, other);
+  254:      if (!(other instanceof SemVer))
+  255:          other = new SemVer(other, this.loose);
+  256:      return this.compareMain(other) || this.comparePre(other);
+*****
+

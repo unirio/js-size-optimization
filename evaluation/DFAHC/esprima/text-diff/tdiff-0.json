@@ -1,0 +1,1304 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    4:          module.exports = factory();
+    5:  }(this, function () {
+***** HC\ORIGINAL.JS
+    4:          module.exports = factory();
+    5:      else if (typeof define === 'function' && define.amd)
+    6:          define([], factory);    /* istanbul ignore next */
+    7:      else if (typeof exports === 'object')
+    8:          exports['esprima'] = factory();
+    9:      else
+   10:          root['esprima'] = factory();
+   11:  }(this, function () {
+*****
+
+***** HC\0.js
+   38:              /******/
+   39:              // Return the exports of the module
+***** HC\ORIGINAL.JS
+   44:              /******/
+   45:              // Flag the module as loaded
+   46:              /******/
+   47:              module.loaded = true;
+   48:              /******/
+   49:              // Return the exports of the module
+*****
+
+***** HC\0.js
+   43:          /******/
+   44:          // Load entry module and return exports
+***** HC\ORIGINAL.JS
+   53:          /******/
+   54:          // expose the modules object (__webpack_modules__)
+   55:          /******/
+   56:          __webpack_require__.m = modules;
+   57:          /******/
+   58:          // expose the module cache
+   59:          /******/
+   60:          __webpack_require__.c = installedModules;
+   61:          /******/
+   62:          // __webpack_public_path__
+   63:          /******/
+   64:          __webpack_require__.p = '';
+   65:          /******/
+   66:          // Load entry module and return exports
+*****
+
+***** HC\0.js
+   50:          function (module, exports, __webpack_require__) {
+   51:              var comment_handler_1 = __webpack_require__(1);
+***** HC\ORIGINAL.JS
+   72:          function (module, exports, __webpack_require__) {
+   73:              /*
+   74:            Copyright (c) jQuery Foundation, Inc. and Contributors, All Rights Reserved.
+   75:  
+   76:            Redistribution and use in source and binary forms, with or without
+   77:            modification, are permitted provided that the following conditions are met:
+   78:  
+   79:              * Redistributions of source code must retain the above copyright
+   80:                notice, this list of conditions and the following disclaimer.
+   81:              * Redistributions in binary form must reproduce the above copyright
+   82:                notice, this list of conditions and the following disclaimer in the
+   83:                documentation and/or other materials provided with the distribution.
+   84:  
+   85:            THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   86:            AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   87:            IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   88:            ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+   89:            DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+   90:            (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+   91:            LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+   92:            ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   93:            (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+   94:            THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   95:          */
+   96:              'use strict';
+   97:              var comment_handler_1 = __webpack_require__(1);
+*****
+
+***** HC\0.js
+  126:          function (module, exports, __webpack_require__) {
+  127:              var syntax_1 = __webpack_require__(2);
+***** HC\ORIGINAL.JS
+  172:          function (module, exports, __webpack_require__) {
+  173:              'use strict';
+  174:              var syntax_1 = __webpack_require__(2);
+*****
+
+***** HC\0.js
+  129:                  function CommentHandler() {
+  130:                      this.comments = [];
+***** HC\ORIGINAL.JS
+  176:                  function CommentHandler() {
+  177:                      this.attach = false;
+  178:                      this.comments = [];
+*****
+
+***** HC\0.js
+  143:                                  innerComments.unshift(entry.comment);
+  144:                              }
+***** HC\ORIGINAL.JS
+  191:                                  innerComments.unshift(entry.comment);
+  192:                                  this.leading.splice(i, 1);
+  193:                                  this.trailing.splice(i, 1);
+  194:                              }
+*****
+
+***** HC\0.js
+  252:                          }
+  253:                          this.leading.push(entry);
+***** HC\ORIGINAL.JS
+  302:                          }
+  303:                          node.type = type;
+  304:                          this.leading.push(entry);
+*****
+
+***** HC\0.js
+  272:          function (module, exports) {
+  273:              exports.Syntax = {
+***** HC\ORIGINAL.JS
+  323:          function (module, exports) {
+  324:              'use strict';
+  325:              exports.Syntax = {
+*****
+
+***** HC\0.js
+  343:          function (module, exports, __webpack_require__) {
+  344:              var assert_1;
+  345:              var messages_1 = __webpack_require__(5);
+***** HC\ORIGINAL.JS
+  395:          function (module, exports, __webpack_require__) {
+  396:              'use strict';
+  397:              var assert_1 = __webpack_require__(4);
+  398:              var messages_1 = __webpack_require__(5);
+*****
+
+***** HC\0.js
+  401:                      this.sourceType = options && options.sourceType === 'module' ? 'module' : 'script';
+  402:                      this.context = {
+***** HC\ORIGINAL.JS
+  454:                      this.sourceType = options && options.sourceType === 'module' ? 'module' : 'script';
+  455:                      this.lookahead = null;
+  456:                      this.hasLineTerminator = false;
+  457:                      this.context = {
+*****
+
+***** HC\0.js
+  434:                      for (var _i = 1; _i < arguments.length; _i++) {
+  435:                      }
+***** HC\ORIGINAL.JS
+  489:                      for (var _i = 1; _i < arguments.length; _i++) {
+  490:                          values[_i - 1] = arguments[_i];
+  491:                      }
+*****
+
+***** HC\0.js
+  437:                      var msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
+  438:                          return args[idx];
+***** HC\ORIGINAL.JS
+  493:                      var msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
+  494:                          assert_1.assert(idx < args.length, 'Message reference must be in range');
+  495:                          return args[idx];
+*****
+
+***** HC\0.js
+  447:                      for (var _i = 1; _i < arguments.length; _i++) {
+  448:                      }
+***** HC\ORIGINAL.JS
+  504:                      for (var _i = 1; _i < arguments.length; _i++) {
+  505:                          values[_i - 1] = arguments[_i];
+  506:                      }
+*****
+
+***** HC\0.js
+  450:                      var msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
+  451:                          return args[idx];
+***** HC\ORIGINAL.JS
+  508:                      var msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
+  509:                          assert_1.assert(idx < args.length, 'Message reference must be in range');
+  510:                          return args[idx];
+*****
+
+***** HC\0.js
+  591:                  Parser.prototype.nextRegexToken = function () {
+  592:                      var token = this.scanner.scanRegExp();
+***** HC\ORIGINAL.JS
+  650:                  Parser.prototype.nextRegexToken = function () {
+  651:                      this.collectComments();
+  652:                      var token = this.scanner.scanRegExp();
+*****
+
+***** HC\0.js
+  598:                      }
+  599:                      this.nextToken();
+***** HC\ORIGINAL.JS
+  658:                      }
+  659:                      // Prime the next lookahead.
+  660:                      this.lookahead = token;
+  661:                      this.nextToken();
+*****
+
+***** HC\0.js
+  747:                      var previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
+  748:                      this.context.isAssignmentTarget = true;
+***** HC\ORIGINAL.JS
+  809:                      var previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
+  810:                      this.context.isBindingElement = true;
+  811:                      this.context.isAssignmentTarget = true;
+*****
+
+***** HC\0.js
+  762:                      var previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
+  763:                      this.context.isAssignmentTarget = true;
+  764:                      var result = parseFunction.call(this);
+  765:                      this.context.isAssignmentTarget = this.context.isAssignmentTarget && previousIsAssignmentTarget;
+  766:                      return result;
+***** HC\ORIGINAL.JS
+  825:                      var previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
+  826:                      this.context.isBindingElement = true;
+  827:                      this.context.isAssignmentTarget = true;
+  828:                      this.context.firstCoverInitializedNameError = null;
+  829:                      var result = parseFunction.call(this);
+  830:                      this.context.isBindingElement = this.context.isBindingElement && previousIsBindingElement;
+  831:                      this.context.isAssignmentTarget = this.context.isAssignmentTarget && previousIsAssignmentTarget;
+  832:                      this.context.firstCoverInitializedNameError = previousFirstCoverInitializedNameError || this.context.firstC
+  833:  overInitializedNameError;
+  834:                      return result;
+*****
+
+***** HC\0.js
+  775:                          this.lastMarker.index = this.startMarker.index;
+  776:                      }
+***** HC\ORIGINAL.JS
+  843:                          this.lastMarker.index = this.startMarker.index;
+  844:                          this.lastMarker.lineNumber = this.startMarker.lineNumber;
+  845:                          this.lastMarker.lineStart = this.startMarker.lineStart;
+  846:                      }
+*****
+
+***** HC\0.js
+  801:                      case token_1.Token.BooleanLiteral:
+  802:                          token = this.nextToken();
+***** HC\ORIGINAL.JS
+  871:                      case token_1.Token.BooleanLiteral:
+  872:                          this.context.isAssignmentTarget = false;
+  873:                          this.context.isBindingElement = false;
+  874:                          token = this.nextToken();
+*****
+
+***** HC\0.js
+  807:                      case token_1.Token.NullLiteral:
+  808:                          token = this.nextToken();
+***** HC\ORIGINAL.JS
+  879:                      case token_1.Token.NullLiteral:
+  880:                          this.context.isAssignmentTarget = false;
+  881:                          this.context.isBindingElement = false;
+  882:                          token = this.nextToken();
+*****
+
+***** HC\0.js
+  819:                          case '(':
+  820:                              expr = this.inheritCoverGrammar(this.parseGroupExpression);
+***** HC\ORIGINAL.JS
+  893:                          case '(':
+  894:                              this.context.isBindingElement = false;
+  895:                              expr = this.inheritCoverGrammar(this.parseGroupExpression);
+*****
+
+***** HC\0.js
+  829:                          case '/=':
+  830:                              this.scanner.index = this.startMarker.index;
+***** HC\ORIGINAL.JS
+  904:                          case '/=':
+  905:                              this.context.isAssignmentTarget = false;
+  906:                              this.context.isBindingElement = false;
+  907:                              this.scanner.index = this.startMarker.index;
+*****
+
+***** HC\0.js
+  845:                              this.context.isAssignmentTarget = false;
+  846:                              if (this.matchKeyword('function')) {
+***** HC\ORIGINAL.JS
+  922:                              this.context.isAssignmentTarget = false;
+  923:                              this.context.isBindingElement = false;
+  924:                              if (this.matchKeyword('function')) {
+*****
+
+***** HC\0.js
+  880:                              if (!this.match(']')) {
+  881:                                  this.context.isBindingElement = false;
+  882:                              }
+***** HC\ORIGINAL.JS
+  958:                              if (!this.match(']')) {
+  959:                                  this.context.isAssignmentTarget = false;
+  960:                                  this.context.isBindingElement = false;
+  961:                                  this.expect(',');
+  962:                              }
+*****
+
+***** HC\0.js
+  905:                      }
+  906:                      return body;
+***** HC\ORIGINAL.JS
+  985:                      }
+  986:                      this.context.strict = previousStrict;
+  987:                      return body;
+*****
+
+***** HC\0.js
+  911:                      var previousAllowYield = this.context.allowYield;
+  912:                      var params = this.parseFormalParameters();
+***** HC\ORIGINAL.JS
+  992:                      var previousAllowYield = this.context.allowYield;
+  993:                      this.context.allowYield = false;
+  994:                      var params = this.parseFormalParameters();
+*****
+
+***** HC\0.js
+  913:                      var method = this.parsePropertyMethod(params);
+  914:                      return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
+***** HC\ORIGINAL.JS
+  995:                      var method = this.parsePropertyMethod(params);
+  996:                      this.context.allowYield = previousAllowYield;
+  997:                      return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
+*****
+
+***** HC\0.js
+  981:                          kind = 'get';
+  982:                          key = this.parseObjectPropertyKey();
+  983:                          value = this.parseGetterMethod();
+***** HC\ORIGINAL.JS
+ 1064:                          kind = 'get';
+ 1065:                          computed = this.match('[');
+ 1066:                          key = this.parseObjectPropertyKey();
+ 1067:                          this.context.allowYield = false;
+ 1068:                          value = this.parseGetterMethod();
+*****
+
+***** HC\0.js
+  985:                          kind = 'set';
+  986:                          key = this.parseObjectPropertyKey();
+***** HC\ORIGINAL.JS
+ 1070:                          kind = 'set';
+ 1071:                          computed = this.match('[');
+ 1072:                          key = this.parseObjectPropertyKey();
+*****
+
+***** HC\0.js
+  989:                          kind = 'init';
+  990:                          key = this.parseObjectPropertyKey();
+***** HC\ORIGINAL.JS
+ 1075:                          kind = 'init';
+ 1076:                          computed = this.match('[');
+ 1077:                          key = this.parseObjectPropertyKey();
+*****
+
+***** HC\0.js
+  994:                          if (!key) {
+  995:                          }
+***** HC\ORIGINAL.JS
+ 1081:                          if (!key) {
+ 1082:                              this.throwUnexpectedToken(this.lookahead);
+ 1083:                          }
+*****
+
+***** HC\0.js
+ 1040:                  Parser.prototype.parseTemplateHead = function () {
+ 1041:                      var node = this.createNode();
+***** HC\ORIGINAL.JS
+ 1128:                  Parser.prototype.parseTemplateHead = function () {
+ 1129:                      assert_1.assert(this.lookahead.head, 'Template literal must start with a template head');
+ 1130:                      var node = this.createNode();
+*****
+
+***** HC\0.js
+ 1083:                          expr.type = syntax_1.Syntax.RestElement;
+ 1084:                          break;
+***** HC\ORIGINAL.JS
+ 1172:                          expr.type = syntax_1.Syntax.RestElement;
+ 1173:                          this.reinterpretExpressionAsPattern(expr.argument);
+ 1174:                          break;
+*****
+
+***** HC\0.js
+ 1100:                          expr.type = syntax_1.Syntax.AssignmentPattern;
+ 1101:                          break;
+***** HC\ORIGINAL.JS
+ 1190:                          expr.type = syntax_1.Syntax.AssignmentPattern;
+ 1191:                          this.reinterpretExpressionAsPattern(expr.left);
+ 1192:                          break;
+*****
+
+***** HC\0.js
+ 1153:                                          }
+ 1154:                                          for (var i = 0; i < expressions.length; i++) {
+***** HC\ORIGINAL.JS
+ 1244:                                          }
+ 1245:                                          this.context.isBindingElement = false;
+ 1246:                                          for (var i = 0; i < expressions.length; i++) {
+*****
+
+***** HC\0.js
+ 1177:                                          arrow = true;
+ 1178:                                      }
+***** HC\ORIGINAL.JS
+ 1269:                                          arrow = true;
+ 1270:                                          expr = {
+ 1271:                                              type: ArrowParameterPlaceHolder,
+ 1272:                                              params: [expr]
+ 1273:                                          };
+ 1274:                                      }
+*****
+
+***** HC\0.js
+ 1236:                      var id = this.parseNonComputedProperty();
+ 1237:                      var expr;
+***** HC\ORIGINAL.JS
+ 1332:                      var id = this.parseNonComputedProperty();
+ 1333:                      assert_1.assert(id.name === 'new', 'New expression must start with `new`');
+ 1334:                      var expr;
+*****
+
+***** HC\0.js
+ 1250:                          expr = new Node.NewExpression(callee, args);
+ 1251:                      }
+***** HC\ORIGINAL.JS
+ 1347:                          expr = new Node.NewExpression(callee, args);
+ 1348:                          this.context.isAssignmentTarget = false;
+ 1349:                          this.context.isBindingElement = false;
+ 1350:                      }
+*****
+
+***** HC\0.js
+ 1271:                          if (this.match('.')) {
+ 1272:                              this.context.isAssignmentTarget = true;
+***** HC\ORIGINAL.JS
+ 1370:                          if (this.match('.')) {
+ 1371:                              this.context.isBindingElement = false;
+ 1372:                              this.context.isAssignmentTarget = true;
+*****
+
+***** HC\0.js
+ 1276:                          } else if (this.match('(')) {
+ 1277:                              this.context.isAssignmentTarget = false;
+***** HC\ORIGINAL.JS
+ 1376:                          } else if (this.match('(')) {
+ 1377:                              this.context.isBindingElement = false;
+ 1378:                              this.context.isAssignmentTarget = false;
+*****
+
+***** HC\0.js
+ 1306:                  Parser.prototype.parseLeftHandSideExpression = function () {
+ 1307:                      var node = this.startNode(this.lookahead);
+***** HC\ORIGINAL.JS
+ 1407:                  Parser.prototype.parseLeftHandSideExpression = function () {
+ 1408:                      assert_1.assert(this.context.allowIn, 'callee of new expression always allow in keyword.');
+ 1409:                      var node = this.startNode(this.lookahead);
+*****
+
+***** HC\0.js
+ 1311:                          if (this.match('[')) {
+ 1312:                              this.expect('[');
+***** HC\ORIGINAL.JS
+ 1413:                          if (this.match('[')) {
+ 1414:                              this.context.isBindingElement = false;
+ 1415:                              this.context.isAssignmentTarget = true;
+ 1416:                              this.expect('[');
+*****
+
+***** HC\0.js
+ 1316:                          } else if (this.match('.')) {
+ 1317:                              this.expect('.');
+***** HC\ORIGINAL.JS
+ 1420:                          } else if (this.match('.')) {
+ 1421:                              this.context.isBindingElement = false;
+ 1422:                              this.context.isAssignmentTarget = true;
+ 1423:                              this.expect('.');
+*****
+
+***** HC\0.js
+ 1345:                          expr = this.finalize(node, new Node.UpdateExpression(token.value, expr, prefix));
+ 1346:                      } else {
+***** HC\ORIGINAL.JS
+ 1451:                          expr = this.finalize(node, new Node.UpdateExpression(token.value, expr, prefix));
+ 1452:                          this.context.isAssignmentTarget = false;
+ 1453:                          this.context.isBindingElement = false;
+ 1454:                      } else {
+*****
+
+***** HC\0.js
+ 1356:                                  }
+ 1357:                                  var operator = this.nextToken().value;
+***** HC\ORIGINAL.JS
+ 1464:                                  }
+ 1465:                                  this.context.isAssignmentTarget = false;
+ 1466:                                  this.context.isBindingElement = false;
+ 1467:                                  var operator = this.nextToken().value;
+*****
+
+***** HC\0.js
+ 1374:                          this.context.isAssignmentTarget = false;
+ 1375:                      } else if (this.matchKeyword('delete') || this.matchKeyword('void') || this.matchKeyword('typeof')) {
+***** HC\ORIGINAL.JS
+ 1484:                          this.context.isAssignmentTarget = false;
+ 1485:                          this.context.isBindingElement = false;
+ 1486:                      } else if (this.matchKeyword('delete') || this.matchKeyword('void') || this.matchKeyword('typeof')) {
+*****
+
+***** HC\0.js
+ 1383:                          }
+ 1384:                      } else {
+***** HC\ORIGINAL.JS
+ 1494:                          }
+ 1495:                          this.context.isAssignmentTarget = false;
+ 1496:                          this.context.isBindingElement = false;
+ 1497:                      } else {
+*****
+
+***** HC\0.js
+ 1393:                          this.nextToken();
+ 1394:                          var left = expr;
+***** HC\ORIGINAL.JS
+ 1506:                          this.nextToken();
+ 1507:                          this.context.isAssignmentTarget = false;
+ 1508:                          this.context.isBindingElement = false;
+ 1509:                          var left = expr;
+*****
+
+***** HC\0.js
+ 1427:                          this.context.isAssignmentTarget = false;
+ 1428:                          var markers = [
+***** HC\ORIGINAL.JS
+ 1542:                          this.context.isAssignmentTarget = false;
+ 1543:                          this.context.isBindingElement = false;
+ 1544:                          var markers = [
+*****
+
+***** HC\0.js
+ 1454:                              token = this.nextToken();
+ 1455:                              stack.push(token);
+***** HC\ORIGINAL.JS
+ 1570:                              token = this.nextToken();
+ 1571:                              token.prec = prec;
+ 1572:                              stack.push(token);
+*****
+
+***** HC\0.js
+ 1477:                          var previousAllowIn = this.context.allowIn;
+ 1478:                          var consequent = this.isolateCoverGrammar(this.parseAssignmentExpression);
+ 1479:                          this.expect(':');
+***** HC\ORIGINAL.JS
+ 1594:                          var previousAllowIn = this.context.allowIn;
+ 1595:                          this.context.allowIn = true;
+ 1596:                          var consequent = this.isolateCoverGrammar(this.parseAssignmentExpression);
+ 1597:                          this.context.allowIn = previousAllowIn;
+ 1598:                          this.expect(':');
+*****
+
+***** HC\0.js
+ 1482:  nate));
+ 1483:                      }
+***** HC\ORIGINAL.JS
+ 1601:  nate));
+ 1602:                          this.context.isAssignmentTarget = false;
+ 1603:                          this.context.isBindingElement = false;
+ 1604:                      }
+*****
+
+***** HC\0.js
+ 1495:                      case syntax_1.Syntax.AssignmentPattern:
+ 1496:                          break;
+***** HC\ORIGINAL.JS
+ 1616:                      case syntax_1.Syntax.AssignmentPattern:
+ 1617:                          this.checkPatternParam(options, param.left);
+ 1618:                          break;
+*****
+
+***** HC\0.js
+ 1506:                      default:
+ 1507:                          for (var i = 0; i < param.properties.length; i++) {
+ 1508:                          }
+***** HC\ORIGINAL.JS
+ 1628:                      default:
+ 1629:                          assert_1.assert(param.type === syntax_1.Syntax.ObjectPattern, 'Invalid type');
+ 1630:                          for (var i = 0; i < param.properties.length; i++) {
+ 1631:                              this.checkPatternParam(options, param.properties[i].value);
+ 1632:                          }
+*****
+
+***** HC\0.js
+ 1538:                          this.checkPatternParam(options, param);
+ 1539:                      }
+***** HC\ORIGINAL.JS
+ 1662:                          this.checkPatternParam(options, param);
+ 1663:                          params[i] = param;
+ 1664:                      }
+*****
+
+***** HC\0.js
+ 1567:                          if (expr.type === ArrowParameterPlaceHolder || this.match('=>')) {
+ 1568:                              var list = this.reinterpretAsCoverFormalsList(expr);
+***** HC\ORIGINAL.JS
+ 1692:                          if (expr.type === ArrowParameterPlaceHolder || this.match('=>')) {
+ 1693:                              // ECMA-262 14.2 Arrow Function Definitions
+ 1694:                              this.context.isAssignmentTarget = false;
+ 1695:                              this.context.isBindingElement = false;
+ 1696:                              var list = this.reinterpretAsCoverFormalsList(expr);
+*****
+
+***** HC\0.js
+ 1588:                                  expr = this.finalize(node, new Node.ArrowFunctionExpression(list.params, body, expression));
+ 1589:                              }
+***** HC\ORIGINAL.JS
+ 1716:                                  expr = this.finalize(node, new Node.ArrowFunctionExpression(list.params, body, expression));
+ 1717:                                  this.context.strict = previousStrict;
+ 1718:                                  this.context.allowYield = previousAllowYield;
+ 1719:                              }
+*****
+
+***** HC\0.js
+ 1604:                                  if (!this.match('=')) {
+ 1605:                                  } else {
+***** HC\ORIGINAL.JS
+ 1734:                                  if (!this.match('=')) {
+ 1735:                                      this.context.isAssignmentTarget = false;
+ 1736:                                      this.context.isBindingElement = false;
+ 1737:                                  } else {
+*****
+
+***** HC\0.js
+ 1725:                      this.scanner.index = previousIndex;
+ 1726:                      return next.type === token_1.Token.Identifier || next.type === token_1.Token.Punctuator && next.value === '
+***** HC\ORIGINAL.JS
+ 1857:                      this.scanner.index = previousIndex;
+ 1858:                      this.scanner.lineNumber = previousLineNumber;
+ 1859:                      this.scanner.lineStart = previousLineStart;
+ 1860:                      return next.type === token_1.Token.Identifier || next.type === token_1.Token.Punctuator && next.value === '
+*****
+
+***** HC\0.js
+ 1732:                      var kind = this.nextToken().value;
+ 1733:                      var declarations = this.parseBindingList(kind, options);
+***** HC\ORIGINAL.JS
+ 1866:                      var kind = this.nextToken().value;
+ 1867:                      assert_1.assert(kind === 'let' || kind === 'const', 'Lexical declaration must be either let or const');
+ 1868:                      var declarations = this.parseBindingList(kind, options);
+*****
+
+***** HC\0.js
+ 1779:                          if (this.match('=')) {
+ 1780:                              shorthand = true;
+***** HC\ORIGINAL.JS
+ 1914:                          if (this.match('=')) {
+ 1915:                              params.push(keyToken);
+ 1916:                              shorthand = true;
+*****
+
+***** HC\0.js
+ 1943:                      var body = this.parseStatement();
+ 1944:                      this.expectKeyword('while');
+***** HC\ORIGINAL.JS
+ 2079:                      var body = this.parseStatement();
+ 2080:                      this.context.inIteration = previousInIteration;
+ 2081:                      this.expectKeyword('while');
+*****
+
+***** HC\0.js
+ 1967:                          body = this.parseStatement();
+ 1968:                      }
+***** HC\ORIGINAL.JS
+ 2104:                          body = this.parseStatement();
+ 2105:                          this.context.inIteration = previousInIteration;
+ 2106:                      }
+*****
+
+***** HC\0.js
+ 1996:                                  right = this.parseExpression();
+ 1997:                              } else if (declarations.length === 1 && declarations[0].init === null && this.matchContextualKeywor
+***** HC\ORIGINAL.JS
+ 2134:                                  right = this.parseExpression();
+ 2135:                                  init = null;
+ 2136:                              } else if (declarations.length === 1 && declarations[0].init === null && this.matchContextualKeywor
+*****
+
+***** HC\0.js
+ 2002:                                  right = this.parseAssignmentExpression();
+ 2003:                                  forIn = false;
+***** HC\ORIGINAL.JS
+ 2141:                                  right = this.parseAssignmentExpression();
+ 2142:                                  init = null;
+ 2143:                                  forIn = false;
+*****
+
+***** HC\0.js
+ 2015:                                  right = this.parseExpression();
+ 2016:                              } else {
+***** HC\ORIGINAL.JS
+ 2155:                                  right = this.parseExpression();
+ 2156:                                  init = null;
+ 2157:                              } else {
+*****
+
+***** HC\0.js
+ 2019:                                  var declarations = this.parseBindingList(kind, { inFor: true });
+ 2020:                                  if (declarations.length === 1 && declarations[0].init === null && this.matchKeyword('in')) {
+***** HC\ORIGINAL.JS
+ 2160:                                  var declarations = this.parseBindingList(kind, { inFor: true });
+ 2161:                                  this.context.allowIn = previousAllowIn;
+ 2162:                                  if (declarations.length === 1 && declarations[0].init === null && this.matchKeyword('in')) {
+*****
+
+***** HC\0.js
+ 2024:                                      right = this.parseExpression();
+ 2025:                                  } else if (declarations.length === 1 && declarations[0].init === null && this.matchContextualKe
+***** HC\ORIGINAL.JS
+ 2166:                                      right = this.parseExpression();
+ 2167:                                      init = null;
+ 2168:                                  } else if (declarations.length === 1 && declarations[0].init === null && this.matchContextualKe
+*****
+
+***** HC\0.js
+ 2030:                                      right = this.parseAssignmentExpression();
+ 2031:                                      forIn = false;
+***** HC\ORIGINAL.JS
+ 2173:                                      right = this.parseAssignmentExpression();
+ 2174:                                      init = null;
+ 2175:                                      forIn = false;
+*****
+
+***** HC\0.js
+ 2050:                                  right = this.parseExpression();
+ 2051:                              } else if (this.matchContextualKeyword('of')) {
+***** HC\ORIGINAL.JS
+ 2194:                                  right = this.parseExpression();
+ 2195:                                  init = null;
+ 2196:                              } else if (this.matchContextualKeyword('of')) {
+*****
+
+***** HC\0.js
+ 2058:                                  right = this.parseAssignmentExpression();
+ 2059:                                  forIn = false;
+***** HC\ORIGINAL.JS
+ 2203:                                  right = this.parseAssignmentExpression();
+ 2204:                                  init = null;
+ 2205:                                  forIn = false;
+*****
+
+***** HC\0.js
+ 2090:                          body = this.isolateCoverGrammar(this.parseStatement);
+ 2091:                      }
+***** HC\ORIGINAL.JS
+ 2236:                          body = this.isolateCoverGrammar(this.parseStatement);
+ 2237:                          this.context.inIteration = previousInIteration;
+ 2238:                      }
+*****
+
+***** HC\0.js
+ 2203:                      this.expect('}');
+ 2204:                      return this.finalize(node, new Node.SwitchStatement(discriminant, cases));
+***** HC\ORIGINAL.JS
+ 2350:                      this.expect('}');
+ 2351:                      this.context.inSwitch = previousInSwitch;
+ 2352:                      return this.finalize(node, new Node.SwitchStatement(discriminant, cases));
+*****
+
+***** HC\0.js
+ 2244:                      if (this.match(')')) {
+ 2245:                      }
+***** HC\ORIGINAL.JS
+ 2392:                      if (this.match(')')) {
+ 2393:                          this.throwUnexpectedToken(this.lookahead);
+ 2394:                      }
+*****
+
+***** HC\0.js
+ 2289:                      this.context.isAssignmentTarget = true;
+ 2290:                      var statement = null;
+***** HC\ORIGINAL.JS
+ 2438:                      this.context.isAssignmentTarget = true;
+ 2439:                      this.context.isBindingElement = true;
+ 2440:                      var statement = null;
+*****
+
+***** HC\0.js
+ 2379:                      this.context.inIteration = false;
+ 2380:                      this.context.inFunctionBody = true;
+***** HC\ORIGINAL.JS
+ 2529:                      this.context.inIteration = false;
+ 2530:                      this.context.inSwitch = false;
+ 2531:                      this.context.inFunctionBody = true;
+*****
+
+***** HC\0.js
+ 2387:                      this.expect('}');
+ 2388:                      this.context.inFunctionBody = previousInFunctionBody;
+***** HC\ORIGINAL.JS
+ 2538:                      this.expect('}');
+ 2539:                      this.context.labelSet = previousLabelSet;
+ 2540:                      this.context.inIteration = previousInIteration;
+ 2541:                      this.context.inSwitch = previousInSwitch;
+ 2542:                      this.context.inFunctionBody = previousInFunctionBody;
+*****
+
+***** HC\0.js
+ 2422:                      } else {
+ 2423:                      }
+***** HC\ORIGINAL.JS
+ 2576:                      } else {
+ 2577:                          options.paramSet[key] = true;
+ 2578:                      }
+*****
+
+***** HC\0.js
+ 2428:                      if (this.match('{')) {
+ 2429:                      }
+ 2430:                      var param = this.parseVariableIdentifier();
+***** HC\ORIGINAL.JS
+ 2583:                      if (this.match('{')) {
+ 2584:                          this.throwError(messages_1.Messages.ObjectPatternAsRestParameter);
+ 2585:                      }
+ 2586:                      params.push(this.lookahead);
+ 2587:                      var param = this.parseVariableIdentifier();
+*****
+
+***** HC\0.js
+ 2444:                          param = this.parseRestElement(params);
+ 2445:                          options.params.push(param);
+***** HC\ORIGINAL.JS
+ 2601:                          param = this.parseRestElement(params);
+ 2602:                          this.validateParam(options, param.argument, param.argument.name);
+ 2603:                          options.params.push(param);
+*****
+
+***** HC\0.js
+ 2523:                      this.context.strict = previousStrict;
+ 2524:                      return this.finalize(node, new Node.FunctionDeclaration(id, params, body, isGenerator));
+***** HC\ORIGINAL.JS
+ 2681:                      this.context.strict = previousStrict;
+ 2682:                      this.context.allowYield = previousAllowYield;
+ 2683:                      return this.finalize(node, new Node.FunctionDeclaration(id, params, body, isGenerator));
+*****
+
+***** HC\0.js
+ 2570:                      }
+ 2571:                      return this.finalize(node, new Node.FunctionExpression(id, params, body, isGenerator));
+***** HC\ORIGINAL.JS
+ 2729:                      }
+ 2730:                      this.context.strict = previousStrict;
+ 2731:                      this.context.allowYield = previousAllowYield;
+ 2732:                      return this.finalize(node, new Node.FunctionExpression(id, params, body, isGenerator));
+*****
+
+***** HC\0.js
+ 2639:                      var previousAllowYield = this.context.allowYield;
+ 2640:                      var method = this.parsePropertyMethod(params);
+ 2641:                      return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
+***** HC\ORIGINAL.JS
+ 2800:                      var previousAllowYield = this.context.allowYield;
+ 2801:                      this.context.allowYield = false;
+ 2802:                      var method = this.parsePropertyMethod(params);
+ 2803:                      this.context.allowYield = previousAllowYield;
+ 2804:                      return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
+*****
+
+***** HC\0.js
+ 2651:                      var previousAllowYield = this.context.allowYield;
+ 2652:                      this.expect('(');
+***** HC\ORIGINAL.JS
+ 2814:                      var previousAllowYield = this.context.allowYield;
+ 2815:                      this.context.allowYield = false;
+ 2816:                      this.expect('(');
+*****
+
+***** HC\0.js
+ 2659:                      var method = this.parsePropertyMethod(options);
+ 2660:                      return this.finalize(node, new Node.FunctionExpression(null, options.params, method, isGenerator));
+***** HC\ORIGINAL.JS
+ 2823:                      var method = this.parsePropertyMethod(options);
+ 2824:                      this.context.allowYield = previousAllowYield;
+ 2825:                      return this.finalize(node, new Node.FunctionExpression(null, options.params, method, isGenerator));
+*****
+
+***** HC\0.js
+ 2665:                      var previousAllowYield = this.context.allowYield;
+ 2666:                      var params = this.parseFormalParameters();
+***** HC\ORIGINAL.JS
+ 2830:                      var previousAllowYield = this.context.allowYield;
+ 2831:                      this.context.allowYield = true;
+ 2832:                      var params = this.parseFormalParameters();
+*****
+
+***** HC\0.js
+ 2668:                      var method = this.parsePropertyMethod(params);
+ 2669:                      return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
+***** HC\ORIGINAL.JS
+ 2834:                      var method = this.parsePropertyMethod(params);
+ 2835:                      this.context.allowYield = previousAllowYield;
+ 2836:                      return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
+*****
+
+***** HC\0.js
+ 2678:                          var previousAllowYield = this.context.allowYield;
+ 2679:                          delegate = this.match('*');
+***** HC\ORIGINAL.JS
+ 2845:                          var previousAllowYield = this.context.allowYield;
+ 2846:                          this.context.allowYield = false;
+ 2847:                          delegate = this.match('*');
+*****
+
+***** HC\0.js
+ 2688:                          }
+ 2689:                      }
+***** HC\ORIGINAL.JS
+ 2856:                          }
+ 2857:                          this.context.allowYield = previousAllowYield;
+ 2858:                      }
+*****
+
+***** HC\0.js
+ 2722:                              kind = 'get';
+ 2723:                              key = this.parseObjectPropertyKey();
+ 2724:                              value = this.parseGetterMethod();
+***** HC\ORIGINAL.JS
+ 2891:                              kind = 'get';
+ 2892:                              computed = this.match('[');
+ 2893:                              key = this.parseObjectPropertyKey();
+ 2894:                              this.context.allowYield = false;
+ 2895:                              value = this.parseGetterMethod();
+*****
+
+***** HC\0.js
+ 2726:                              kind = 'set';
+ 2727:                              key = this.parseObjectPropertyKey();
+***** HC\ORIGINAL.JS
+ 2897:                              kind = 'set';
+ 2898:                              computed = this.match('[');
+ 2899:                              key = this.parseObjectPropertyKey();
+*****
+
+***** HC\0.js
+ 2734:                          value = this.parseGeneratorMethod();
+ 2735:                      }
+***** HC\ORIGINAL.JS
+ 2906:                          value = this.parseGeneratorMethod();
+ 2907:                          method = true;
+ 2908:                      }
+*****
+
+***** HC\0.js
+ 2795:                      var classBody = this.parseClassBody();
+ 2796:                      return this.finalize(node, new Node.ClassDeclaration(id, superClass, classBody));
+***** HC\ORIGINAL.JS
+ 2968:                      var classBody = this.parseClassBody();
+ 2969:                      this.context.strict = previousStrict;
+ 2970:                      return this.finalize(node, new Node.ClassDeclaration(id, superClass, classBody));
+*****
+
+***** HC\0.js
+ 2800:                      var previousStrict = this.context.strict;
+ 2801:                      this.expectKeyword('class');
+***** HC\ORIGINAL.JS
+ 2974:                      var previousStrict = this.context.strict;
+ 2975:                      this.context.strict = true;
+ 2976:                      this.expectKeyword('class');
+*****
+
+***** HC\0.js
+ 2808:                      var classBody = this.parseClassBody();
+ 2809:                      return this.finalize(node, new Node.ClassExpression(id, superClass, classBody));
+***** HC\ORIGINAL.JS
+ 2983:                      var classBody = this.parseClassBody();
+ 2984:                      this.context.strict = previousStrict;
+ 2985:                      return this.finalize(node, new Node.ClassExpression(id, superClass, classBody));
+*****
+
+***** HC\0.js
+ 3032:          function (module, exports) {
+ 3033:              function assert(condition, message) {
+***** HC\ORIGINAL.JS
+ 3208:          function (module, exports) {
+ 3209:              // Ensure the condition is true, otherwise throw an error.
+ 3210:              // This is only to have a better contract semantic, i.e. another safety net
+ 3211:              // to catch a logic error. The condition shall be fulfilled in normal case.
+ 3212:              // Do NOT use this to enforce a certain condition on any user input.
+ 3213:              'use strict';
+ 3214:              function assert(condition, message) {
+*****
+
+***** HC\0.js
+ 3043:          function (module, exports) {
+ 3044:              // Error messages should be identical to V8.
+***** HC\ORIGINAL.JS
+ 3224:          function (module, exports) {
+ 3225:              'use strict';
+ 3226:              // Error messages should be identical to V8.
+*****
+
+***** HC\0.js
+ 3097:          function (module, exports) {
+ 3098:              var ErrorHandler = function () {
+***** HC\ORIGINAL.JS
+ 3279:          function (module, exports) {
+ 3280:              'use strict';
+ 3281:              var ErrorHandler = function () {
+*****
+
+***** HC\0.js
+ 3100:                      this.errors = [];
+ 3101:                  }
+***** HC\ORIGINAL.JS
+ 3283:                      this.errors = [];
+ 3284:                      this.tolerant = false;
+ 3285:                  }
+*****
+
+***** HC\0.js
+ 3121:                          if (Object.create && Object.defineProperty) {
+ 3122:                              Object.defineProperty(error, 'column', { value: column });
+***** HC\ORIGINAL.JS
+ 3305:                          if (Object.create && Object.defineProperty) {
+ 3306:                              error = Object.create(base);
+ 3307:                              Object.defineProperty(error, 'column', { value: column });
+*****
+
+***** HC\0.js
+ 3157:          function (module, exports) {
+ 3158:              (function (Token) {
+ 3159:                  Token[Token['EOF'] = 2] = 'EOF';
+***** HC\ORIGINAL.JS
+ 3342:          function (module, exports) {
+ 3343:              'use strict';
+ 3344:              (function (Token) {
+ 3345:                  Token[Token['BooleanLiteral'] = 1] = 'BooleanLiteral';
+ 3346:                  Token[Token['EOF'] = 2] = 'EOF';
+*****
+
+***** HC\0.js
+ 3172:              exports.TokenName[Token.BooleanLiteral] = 'Boolean';
+ 3173:              exports.TokenName[Token.Identifier] = 'Identifier';
+***** HC\ORIGINAL.JS
+ 3359:              exports.TokenName[Token.BooleanLiteral] = 'Boolean';
+ 3360:              exports.TokenName[Token.EOF] = '<end>';
+ 3361:              exports.TokenName[Token.Identifier] = 'Identifier';
+*****
+
+***** HC\0.js
+ 3184:          function (module, exports, __webpack_require__) {
+ 3185:              var assert_1 = __webpack_require__(4);
+***** HC\ORIGINAL.JS
+ 3372:          function (module, exports, __webpack_require__) {
+ 3373:              'use strict';
+ 3374:              var assert_1 = __webpack_require__(4);
+*****
+
+***** HC\0.js
+ 3198:                      this.errorHandler = handler;
+ 3199:                      this.length = code.length;
+***** HC\ORIGINAL.JS
+ 3387:                      this.errorHandler = handler;
+ 3388:                      this.trackComment = false;
+ 3389:                      this.length = code.length;
+*****
+
+***** HC\0.js
+ 3392:                                  }
+ 3393:                              } else if (ch === 42) {
+***** HC\ORIGINAL.JS
+ 3582:                                  }
+ 3583:                                  start = true;
+ 3584:                              } else if (ch === 42) {
+*****
+
+***** HC\0.js
+ 3619:                      if (!this.eof() && character_1.Character.isOctalDigit(this.source.charCodeAt(this.index))) {
+ 3620:                          code = code * 8 + octalValue(this.source[this.index++]);
+***** HC\ORIGINAL.JS
+ 3810:                      if (!this.eof() && character_1.Character.isOctalDigit(this.source.charCodeAt(this.index))) {
+ 3811:                          octal = true;
+ 3812:                          code = code * 8 + octalValue(this.source[this.index++]);
+*****
+
+***** HC\0.js
+ 3648:                      } else if (id === 'true' || id === 'false') {
+ 3649:                      } else {
+***** HC\ORIGINAL.JS
+ 3840:                      } else if (id === 'true' || id === 'false') {
+ 3841:                          type = token_1.Token.BooleanLiteral;
+ 3842:                      } else {
+*****
+
+***** HC\0.js
+ 3800:                          octal = true;
+ 3801:                      } else {
+***** HC\ORIGINAL.JS
+ 3993:                          octal = true;
+ 3994:                          number = '0' + this.source[this.index++];
+ 3995:                      } else {
+*****
+
+***** HC\0.js
+ 3846:                      var ch = this.source[start];
+ 3847:                      var number = '';
+***** HC\ORIGINAL.JS
+ 4040:                      var ch = this.source[start];
+ 4041:                      assert_1.assert(character_1.Character.isDecimalDigit(ch.charCodeAt(0)) || ch === '.', 'Numeric literal must
+ 4042:   start with a decimal digit or a decimal point');
+ 4043:                      var number = '';
+*****
+
+***** HC\0.js
+ 3915:                      var quote = this.source[start];
+ 3916:                      ++this.index;
+***** HC\ORIGINAL.JS
+ 4111:                      var quote = this.source[start];
+ 4112:                      assert_1.assert(quote === "'" || quote === '"', 'String literal must starts with a quote');
+ 4113:                      ++this.index;
+*****
+
+***** HC\0.js
+ 4100:                      if (!head) {
+ 4101:                      }
+***** HC\ORIGINAL.JS
+ 4297:                      if (!head) {
+ 4298:                          this.curlyStack.pop();
+ 4299:                      }
+*****
+
+***** HC\0.js
+ 4216:                                      for (str += '\\u'; restore < this.index; ++restore) {
+ 4217:                                      }
+***** HC\ORIGINAL.JS
+ 4414:                                      for (str += '\\u'; restore < this.index; ++restore) {
+ 4415:                                          str += this.source[restore];
+ 4416:                                      }
+*****
+
+***** HC\0.js
+ 4218:                                  } else {
+ 4219:                                  }
+***** HC\ORIGINAL.JS
+ 4417:                                  } else {
+ 4418:                                      this.index = restore;
+ 4419:                                      flags += 'u';
+ 4420:                                      str += '\\u';
+ 4421:                                  }
+*****
+
+***** HC\0.js
+ 4221:                              } else {
+ 4222:                                  this.tolerateUnexpectedToken();
+***** HC\ORIGINAL.JS
+ 4423:                              } else {
+ 4424:                                  str += '\\';
+ 4425:                                  this.tolerateUnexpectedToken();
+*****
+
+***** HC\0.js
+ 4225:                              flags += ch;
+ 4226:                          }
+***** HC\ORIGINAL.JS
+ 4428:                              flags += ch;
+ 4429:                              str += ch;
+ 4430:                          }
+*****
+
+***** HC\0.js
+ 4307:          function (module, exports) {
+ 4308:              // See also tools/generate-unicode-regex.js.
+***** HC\ORIGINAL.JS
+ 4511:          function (module, exports) {
+ 4512:              'use strict';
+ 4513:              // See also tools/generate-unicode-regex.js.
+*****
+
+***** HC\0.js
+ 4483:          function (module, exports, __webpack_require__) {
+ 4484:              var syntax_1 = __webpack_require__(2);
+***** HC\ORIGINAL.JS
+ 4688:          function (module, exports, __webpack_require__) {
+ 4689:              'use strict';
+ 4690:              var syntax_1 = __webpack_require__(2);
+*****
+
+***** HC\0.js
+ 5099:          function (module, exports, __webpack_require__) {
+ 5100:              /* istanbul ignore next */
+***** HC\ORIGINAL.JS
+ 5305:          function (module, exports, __webpack_require__) {
+ 5306:              'use strict';
+ 5307:              /* istanbul ignore next */
+*****
+
+***** HC\0.js
+ 5105:                  function __() {
+ 5106:                  }
+***** HC\ORIGINAL.JS
+ 5312:                  function __() {
+ 5313:                      this.constructor = d;
+ 5314:                  }
+*****
+
+***** HC\0.js
+ 5152:                      this.scanner.index = this.startMarker.index;
+ 5153:                  };
+***** HC\ORIGINAL.JS
+ 5360:                      this.scanner.index = this.startMarker.index;
+ 5361:                      this.scanner.lineNumber = this.startMarker.lineNumber;
+ 5362:                      this.scanner.lineStart = this.startMarker.lineStart;
+ 5363:                  };
+*****
+
+***** HC\0.js
+ 5253:                          var start = this.scanner.index;
+ 5254:                          while (!this.scanner.eof()) {
+***** HC\ORIGINAL.JS
+ 5463:                          var start = this.scanner.index;
+ 5464:                          ++this.scanner.index;
+ 5465:                          while (!this.scanner.eof()) {
+*****
+
+***** HC\0.js
+ 5292:                      this.startMarker.index = this.scanner.index;
+ 5293:                      var start = this.scanner.index;
+***** HC\ORIGINAL.JS
+ 5503:                      this.startMarker.index = this.scanner.index;
+ 5504:                      this.startMarker.lineNumber = this.scanner.lineNumber;
+ 5505:                      this.startMarker.lineStart = this.scanner.lineStart;
+ 5506:                      var start = this.scanner.index;
+*****
+
+***** HC\0.js
+ 5333:                      this.scanner.lineNumber = previousLineNumber;
+ 5334:                      return next;
+***** HC\ORIGINAL.JS
+ 5546:                      this.scanner.lineNumber = previousLineNumber;
+ 5547:                      this.scanner.lineStart = previousLineStart;
+ 5548:                      return next;
+*****
+
+***** HC\0.js
+ 5477:                      this.lastMarker.index = this.scanner.index;
+ 5478:                      return this.finalize(node, new JSXNode.JSXEmptyExpression());
+***** HC\ORIGINAL.JS
+ 5691:                      this.lastMarker.index = this.scanner.index;
+ 5692:                      this.lastMarker.lineNumber = this.scanner.lineNumber;
+ 5693:                      this.lastMarker.lineStart = this.scanner.lineStart;
+ 5694:                      return this.finalize(node, new JSXNode.JSXEmptyExpression());
+*****
+
+***** HC\0.js
+ 5590:          function (module, exports) {
+ 5591:              exports.XHTMLEntities = {
+***** HC\ORIGINAL.JS
+ 5806:          function (module, exports) {
+ 5807:              // Generated by generate-xhtml-entities.js. DO NOT MODIFY!
+ 5808:              'use strict';
+ 5809:              exports.XHTMLEntities = {
+*****
+
+***** HC\0.js
+ 5848:          function (module, exports) {
+ 5849:              exports.JSXSyntax = {
+***** HC\ORIGINAL.JS
+ 6066:          function (module, exports) {
+ 6067:              'use strict';
+ 6068:              exports.JSXSyntax = {
+*****
+
+***** HC\0.js
+ 5865:          function (module, exports, __webpack_require__) {
+ 5866:              var jsx_syntax_1 = __webpack_require__(13);
+***** HC\ORIGINAL.JS
+ 6084:          function (module, exports, __webpack_require__) {
+ 6085:              'use strict';
+ 6086:              var jsx_syntax_1 = __webpack_require__(13);
+*****
+
+***** HC\0.js
+ 5966:              var scanner_1 = __webpack_require__(8);
+ 5967:              var error_handler_1 = __webpack_require__(6);
+***** HC\ORIGINAL.JS
+ 6186:              'use strict';
+ 6187:              var scanner_1 = __webpack_require__(8);
+ 6188:              var error_handler_1 = __webpack_require__(6);
+*****
+
+***** HC\0.js
+ 5971:                      this.values = [];
+ 5972:                  }
+***** HC\ORIGINAL.JS
+ 6192:                      this.values = [];
+ 6193:                      this.curly = this.paren = -1;
+ 6194:                  }
+*****
+
+***** HC\0.js
+ 6056:                              var check_1 = this.values[this.curly - 4];
+ 6057:                          } else if (this.values[this.curly - 4] === 'function') {
+***** HC\ORIGINAL.JS
+ 6278:                              var check_1 = this.values[this.curly - 4];
+ 6279:                              regex = check_1 ? !this.beforeFunctionExpression(check_1) : false;
+ 6280:                          } else if (this.values[this.curly - 4] === 'function') {
+*****
+

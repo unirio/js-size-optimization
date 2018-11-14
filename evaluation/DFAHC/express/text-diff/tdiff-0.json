@@ -1,0 +1,472 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+   54:   */
+   55:  res.status = function (code) {
+   56:      this.statusCode = code;
+***** HC\ORIGINAL.JS
+   54:   */
+   55:  res.status = function status(code) {
+   56:      this.statusCode = code;
+*****
+
+***** HC\0.js
+   92:   */
+   93:  res.send = function (body) {
+   94:      var chunk = body;
+***** HC\ORIGINAL.JS
+   92:   */
+   93:  res.send = function send(body) {
+   94:      var chunk = body;
+*****
+
+***** HC\0.js
+  103:          if (typeof arguments[0] !== 'number' && typeof arguments[1] === 'number') {
+  104:              deprecate();
+  105:              this.statusCode = arguments[1];
+***** HC\ORIGINAL.JS
+  103:          if (typeof arguments[0] !== 'number' && typeof arguments[1] === 'number') {
+  104:              deprecate('res.send(body, status): Use res.status(status).send(body) instead');
+  105:              this.statusCode = arguments[1];
+*****
+
+***** HC\0.js
+  106:          } else {
+  107:              deprecate();
+  108:              this.statusCode = arguments[0];
+***** HC\ORIGINAL.JS
+  106:          } else {
+  107:              deprecate('res.send(status, body): Use res.status(status).send(body) instead');
+  108:              this.statusCode = arguments[0];
+*****
+
+***** HC\0.js
+  123:      // string defaulting to html
+  124:      default:
+  125:          if (!this.get('Content-Type')) {
+***** HC\ORIGINAL.JS
+  123:      // string defaulting to html
+  124:      case 'string':
+  125:          if (!this.get('Content-Type')) {
+*****
+
+***** HC\0.js
+  157:      if (chunk !== undefined) {
+  158:          if (Buffer.isBuffer()) {
+  159:              // get length of Buffer
+***** HC\ORIGINAL.JS
+  157:      if (chunk !== undefined) {
+  158:          if (Buffer.isBuffer(chunk)) {
+  159:              // get length of Buffer
+*****
+
+***** HC\0.js
+  162:              // just calculate length when no ETag + small chunk
+  163:              len = Buffer.byteLength();
+  164:          } else {
+***** HC\ORIGINAL.JS
+  162:              // just calculate length when no ETag + small chunk
+  163:              len = Buffer.byteLength(chunk, encoding);
+  164:          } else {
+*****
+
+***** HC\0.js
+  165:              // convert chunk to Buffer and calculate
+  166:              chunk = Buffer.from(chunk);
+  167:              encoding = undefined;
+***** HC\ORIGINAL.JS
+  165:              // convert chunk to Buffer and calculate
+  166:              chunk = Buffer.from(chunk, encoding);
+  167:              encoding = undefined;
+*****
+
+***** HC\0.js
+  169:          }
+  170:      }
+***** HC\ORIGINAL.JS
+  169:          }
+  170:          this.set('Content-Length', len);
+  171:      }
+*****
+
+***** HC\0.js
+  173:      if (generateETag && len !== undefined) {
+  174:          if (etag = etagFn(chunk)) {
+  175:              this.set('ETag', etag);
+***** HC\ORIGINAL.JS
+  174:      if (generateETag && len !== undefined) {
+  175:          if (etag = etagFn(chunk, encoding)) {
+  176:              this.set('ETag', etag);
+*****
+
+***** HC\0.js
+  192:          // respond
+  193:          this.end(chunk);
+  194:      }
+***** HC\ORIGINAL.JS
+  193:          // respond
+  194:          this.end(chunk, encoding);
+  195:      }
+*****
+
+***** HC\0.js
+  207:   */
+  208:  res.json = function (obj) {
+  209:      var val = obj;
+***** HC\ORIGINAL.JS
+  208:   */
+  209:  res.json = function json(obj) {
+  210:      var val = obj;
+*****
+
+***** HC\0.js
+  213:          if (typeof arguments[1] === 'number') {
+  214:              deprecate();
+  215:              this.statusCode = arguments[1];
+***** HC\ORIGINAL.JS
+  214:          if (typeof arguments[1] === 'number') {
+  215:              deprecate('res.json(obj, status): Use res.status(status).json(obj) instead');
+  216:              this.statusCode = arguments[1];
+*****
+
+***** HC\0.js
+  216:          } else {
+  217:              deprecate();
+  218:              this.statusCode = arguments[0];
+***** HC\ORIGINAL.JS
+  217:          } else {
+  218:              deprecate('res.json(status, obj): Use res.status(status).json(obj) instead');
+  219:              this.statusCode = arguments[0];
+*****
+
+***** HC\0.js
+  223:      var app = this.app;
+  224:      var escape;
+  225:      var replacer = app.get('json replacer');
+***** HC\ORIGINAL.JS
+  224:      var app = this.app;
+  225:      var escape = app.get('json escape');
+  226:      var replacer = app.get('json replacer');
+*****
+
+***** HC\0.js
+  244:   */
+  245:  res.jsonp = function (obj) {
+  246:      var val = obj;
+***** HC\ORIGINAL.JS
+  245:   */
+  246:  res.jsonp = function jsonp(obj) {
+  247:      var val = obj;
+*****
+
+***** HC\0.js
+  250:          if (typeof arguments[1] === 'number') {
+  251:              deprecate();
+  252:              this.statusCode = arguments[1];
+***** HC\ORIGINAL.JS
+  251:          if (typeof arguments[1] === 'number') {
+  252:              deprecate('res.jsonp(obj, status): Use res.status(status).json(obj) instead');
+  253:              this.statusCode = arguments[1];
+*****
+
+***** HC\0.js
+  253:          } else {
+  254:              deprecate();
+  255:              this.statusCode = arguments[0];
+***** HC\ORIGINAL.JS
+  254:          } else {
+  255:              deprecate('res.jsonp(status, obj): Use res.status(status).jsonp(obj) instead');
+  256:              this.statusCode = arguments[0];
+*****
+
+***** HC\0.js
+  260:      var app = this.app;
+  261:      var escape;
+  262:      var replacer = app.get('json replacer');
+***** HC\ORIGINAL.JS
+  261:      var app = this.app;
+  262:      var escape = app.get('json escape');
+  263:      var replacer = app.get('json replacer');
+*****
+
+***** HC\0.js
+  267:      if (!this.get('Content-Type')) {
+  268:          this.set();
+  269:          this.set('Content-Type', 'application/json');
+***** HC\ORIGINAL.JS
+  268:      if (!this.get('Content-Type')) {
+  269:          this.set('X-Content-Type-Options', 'nosniff');
+  270:          this.set('Content-Type', 'application/json');
+*****
+
+***** HC\0.js
+  302:   */
+  303:  res.sendStatus = function (statusCode) {
+  304:      var body = statuses[statusCode] || String(statusCode);
+***** HC\ORIGINAL.JS
+  303:   */
+  304:  res.sendStatus = function sendStatus(statusCode) {
+  305:      var body = statuses[statusCode] || String(statusCode);
+*****
+
+***** HC\0.js
+  348:   */
+  349:  res.sendFile = function (path, options, callback) {
+  350:      var done = callback;
+***** HC\ORIGINAL.JS
+  349:   */
+  350:  res.sendFile = function sendFile(path, options, callback) {
+  351:      var done = callback;
+*****
+
+***** HC\0.js
+  421:  res.sendfile = function (path, options, callback) {
+  422:      var done;
+  423:      var req = this.req;
+***** HC\ORIGINAL.JS
+  422:  res.sendfile = function (path, options, callback) {
+  423:      var done = callback;
+  424:      var req = this.req;
+*****
+
+***** HC\0.js
+  445:  };
+  446:  res.sendfile = deprecate.function(res.sendfile);
+  447:  /**
+***** HC\ORIGINAL.JS
+  446:  };
+  447:  res.sendfile = deprecate.function(res.sendfile, 'res.sendfile: Use res.sendFile instead');
+  448:  /**
+*****
+
+***** HC\0.js
+  463:   */
+  464:  res.download = function (path, filename, options, callback) {
+  465:      var done = callback;
+***** HC\ORIGINAL.JS
+  464:   */
+  465:  res.download = function download(path, filename, options, callback) {
+  466:      var done = callback;
+*****
+
+***** HC\0.js
+  512:   */
+  513:  res.contentType = res.type = function (type) {
+  514:      var ct = type.indexOf('/') === -1 ? mime.lookup(type) : type;
+***** HC\ORIGINAL.JS
+  513:   */
+  514:  res.contentType = res.type = function contentType(type) {
+  515:      var ct = type.indexOf('/') === -1 ? mime.lookup(type) : type;
+*****
+
+***** HC\0.js
+  587:      } else {
+  588:          var err = new Error();
+  589:          err.status = err.statusCode = 406;
+***** HC\ORIGINAL.JS
+  588:      } else {
+  589:          var err = new Error('Not Acceptable');
+  590:          err.status = err.statusCode = 406;
+*****
+
+***** HC\0.js
+  603:   */
+  604:  res.attachment = function (filename) {
+  605:      if (filename) {
+***** HC\ORIGINAL.JS
+  604:   */
+  605:  res.attachment = function attachment(filename) {
+  606:      if (filename) {
+*****
+
+***** HC\0.js
+  624:   */
+  625:  res.append = function (field, val) {
+  626:      var prev = this.get(field);
+***** HC\ORIGINAL.JS
+  625:   */
+  626:  res.append = function append(field, val) {
+  627:      var prev = this.get(field);
+*****
+
+***** HC\0.js
+  629:          // concat the new and prev vals
+  630:          value = Array.isArray(prev) ? prev.concat(val) : Array.isArray() ? [].concat() : [
+  631:              prev,
+***** HC\ORIGINAL.JS
+  630:          // concat the new and prev vals
+  631:          value = Array.isArray(prev) ? prev.concat(val) : Array.isArray(val) ? [prev].concat(val) : [
+  632:              prev,
+*****
+
+***** HC\0.js
+  653:   */
+  654:  res.set = res.header = function (field, val) {
+  655:      if (arguments.length === 2) {
+***** HC\ORIGINAL.JS
+  654:   */
+  655:  res.set = res.header = function header(field, val) {
+  656:      if (arguments.length === 2) {
+*****
+
+***** HC\0.js
+  662:              if (!charsetRegExp.test(value)) {
+  663:                  var charset = mime.charsets.lookup(value.split()[0]);
+  664:                  if (charset)
+***** HC\ORIGINAL.JS
+  663:              if (!charsetRegExp.test(value)) {
+  664:                  var charset = mime.charsets.lookup(value.split(';')[0]);
+  665:                  if (charset)
+*****
+
+***** HC\0.js
+  693:   */
+  694:  res.clearCookie = function (name, options) {
+  695:      var opts = merge({
+***** HC\ORIGINAL.JS
+  694:   */
+  695:  res.clearCookie = function clearCookie(name, options) {
+  696:      var opts = merge({
+*****
+
+***** HC\0.js
+  760:   */
+  761:  res.location = function (url) {
+  762:      var loc = url;
+***** HC\ORIGINAL.JS
+  761:   */
+  762:  res.location = function location(url) {
+  763:      var loc = url;
+*****
+
+***** HC\0.js
+  786:   */
+  787:  res.redirect = function (url) {
+  788:      var address = url;
+***** HC\ORIGINAL.JS
+  787:   */
+  788:  res.redirect = function redirect(url) {
+  789:      var address = url;
+*****
+
+***** HC\0.js
+  796:          } else {
+  797:              deprecate();
+  798:              status = arguments[1];
+***** HC\ORIGINAL.JS
+  797:          } else {
+  798:              deprecate('res.redirect(url, status): Use res.redirect(status, url) instead');
+  799:              status = arguments[1];
+*****
+
+***** HC\0.js
+  817:      this.statusCode = status;
+  818:      this.set(Buffer.byteLength());
+  819:      if (this.req.method === 'HEAD') {
+***** HC\ORIGINAL.JS
+  818:      this.statusCode = status;
+  819:      this.set('Content-Length', Buffer.byteLength(body));
+  820:      if (this.req.method === 'HEAD') {
+*****
+
+***** HC\0.js
+  834:      // checks for back-compat
+  835:      if (!field || Array.isArray() && !field.length) {
+  836:          deprecate();
+  837:          return this;
+***** HC\ORIGINAL.JS
+  835:      // checks for back-compat
+  836:      if (!field || Array.isArray(field) && !field.length) {
+  837:          deprecate('res.vary(): Provide a field name');
+  838:          return this;
+*****
+
+***** HC\0.js
+  853:   */
+  854:  res.render = function (view, options, callback) {
+  855:      var app = this.req.app;
+***** HC\ORIGINAL.JS
+  854:   */
+  855:  res.render = function render(view, options, callback) {
+  856:      var app = this.req.app;
+*****
+
+***** HC\0.js
+  877:  function sendfile(res, file, options, callback) {
+  878:      var done;
+  879:      var streaming;
+***** HC\ORIGINAL.JS
+  878:  function sendfile(res, file, options, callback) {
+  879:      var done = false;
+  880:      var streaming;
+*****
+
+***** HC\0.js
+  884:          done = true;
+  885:          var err = new Error();
+  886:          err.code = 'ECONNABORTED';
+***** HC\ORIGINAL.JS
+  885:          done = true;
+  886:          var err = new Error('Request aborted');
+  887:          err.code = 'ECONNABORTED';
+*****
+
+***** HC\0.js
+  893:          done = true;
+  894:          var err = new Error();
+  895:          err.code = 'EISDIR';
+***** HC\ORIGINAL.JS
+  894:          done = true;
+  895:          var err = new Error('EISDIR, read');
+  896:          err.code = 'EISDIR';
+*****
+
+***** HC\0.js
+  920:          if (err)
+  921:              return onerror();
+  922:          if (done)
+***** HC\ORIGINAL.JS
+  921:          if (err)
+  922:              return onerror(err);
+  923:          if (done)
+*****
+
+***** HC\0.js
+  946:          // set headers on successful transfer
+  947:          file.on('headers', function () {
+  948:              var obj = options.headers;
+***** HC\ORIGINAL.JS
+  947:          // set headers on successful transfer
+  948:          file.on('headers', function headers(res) {
+  949:              var obj = options.headers;
+*****
+
+***** HC\0.js
+  969:   */
+  970:  function stringify(value, replacer, spaces) {
+  971:      // v8 checks arguments.length for optimizing simple call
+***** HC\ORIGINAL.JS
+  970:   */
+  971:  function stringify(value, replacer, spaces, escape) {
+  972:      // v8 checks arguments.length for optimizing simple call
+*****
+
+***** HC\0.js
+  975:          json = json.replace(/[<>&]/g, function (c) {
+  976:              switch (c.charCodeAt()) {
+  977:              case 60:
+***** HC\ORIGINAL.JS
+  976:          json = json.replace(/[<>&]/g, function (c) {
+  977:              switch (c.charCodeAt(0)) {
+  978:              case 60:
+*****
+
+***** HC\0.js
+  983:              default:
+  984:                  return;
+  985:              }
+***** HC\ORIGINAL.JS
+  984:              default:
+  985:                  return c;
+  986:              }
+*****
+

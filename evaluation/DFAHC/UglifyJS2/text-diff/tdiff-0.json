@@ -1,0 +1,2138 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+   42:   ***********************************************************************/
+   43:  function Compressor(options, false_by_default) {
+   44:      TreeTransformer.call(this, this.before, this.after);
+***** HC\ORIGINAL.JS
+   42:   ***********************************************************************/
+   43:  'use strict';
+   44:  function Compressor(options, false_by_default) {
+   45:      if (!(this instanceof Compressor))
+   46:          return new Compressor(options, false_by_default);
+   47:      TreeTransformer.call(this, this.before, this.after);
+*****
+
+***** HC\0.js
+   85:          warnings: false
+   86:      });
+   87:      var global_defs = this.options['global_defs'];
+***** HC\ORIGINAL.JS
+   88:          warnings: false
+   89:      }, true);
+   90:      var global_defs = this.options['global_defs'];
+*****
+
+***** HC\0.js
+  111:      } else if (typeof top_retain == 'function') {
+  112:      } else if (top_retain) {
+***** HC\ORIGINAL.JS
+  114:      } else if (typeof top_retain == 'function') {
+  115:          this.top_retain = top_retain;
+  116:      } else if (top_retain) {
+*****
+
+***** HC\0.js
+  113:          if (typeof top_retain == 'string') {
+  114:          }
+***** HC\ORIGINAL.JS
+  117:          if (typeof top_retain == 'string') {
+  118:              top_retain = top_retain.split(/,/);
+  119:          }
+*****
+
+***** HC\0.js
+  123:      } else {
+  124:          this.toplevel.funcs = this.toplevel.vars = toplevel;
+***** HC\ORIGINAL.JS
+  128:      } else {
+  129:          this.toplevel = toplevel ? return_true : return_false;
+  130:          this.toplevel.funcs = this.toplevel.vars = toplevel;
+*****
+
+***** HC\0.js
+  138:              if (!this.toplevel[def.orig[i] instanceof AST_SymbolDefun ? 'funcs' : 'vars'])
+  139:                  return;
+  140:          return true;
+***** HC\ORIGINAL.JS
+  144:              if (!this.toplevel[def.orig[i] instanceof AST_SymbolDefun ? 'funcs' : 'vars'])
+  145:                  return false;
+  146:          return true;
+*****
+
+***** HC\0.js
+  152:          if (this.option('expression')) {
+  153:              node.process_expression();
+  154:          }
+***** HC\ORIGINAL.JS
+  158:          if (this.option('expression')) {
+  159:              node.process_expression(false);
+  160:          }
+*****
+
+***** HC\0.js
+  171:      },
+  172:      before: function (node, descend, in_list) {
+***** HC\ORIGINAL.JS
+  177:      },
+  178:      clear_warnings: function () {
+  179:          this.warnings_produced = {};
+  180:      },
+  181:      before: function (node, descend, in_list) {
+*****
+
+***** HC\0.js
+  174:              return node;
+  175:          var was_scope;
+  176:          if (node instanceof AST_Scope) {
+***** HC\ORIGINAL.JS
+  183:              return node;
+  184:          var was_scope = false;
+  185:          if (node instanceof AST_Scope) {
+*****
+
+***** HC\0.js
+  229:                  if (compressor) {
+  230:                      var value = node.value && node.value.drop_side_effect_free(compressor);
+  231:                      return value ? make_node(AST_SimpleStatement, node) : make_node(AST_EmptyStatement, node);
+  232:                  }
+***** HC\ORIGINAL.JS
+  238:                  if (compressor) {
+  239:                      var value = node.value && node.value.drop_side_effect_free(compressor, true);
+  240:                      return value ? make_node(AST_SimpleStatement, node, { body: value }) : make_node(AST_EmptyStatement, node);
+  241:                  }
+*****
+
+***** HC\0.js
+  251:                  if (node.alternative) {
+  252:                  }
+***** HC\ORIGINAL.JS
+  260:                  if (node.alternative) {
+  261:                      node.alternative = node.alternative.transform(tt);
+  262:                  }
+*****
+
+***** HC\0.js
+  254:              if (node instanceof AST_With) {
+  255:              }
+***** HC\ORIGINAL.JS
+  264:              if (node instanceof AST_With) {
+  265:                  node.body = node.body.transform(tt);
+  266:              }
+*****
+
+***** HC\0.js
+  302:                              };
+  303:                              mark(d);
+  304:                              descend();
+***** HC\ORIGINAL.JS
+  313:                              };
+  314:                              mark(d, false);
+  315:                              descend();
+*****
+
+***** HC\0.js
+  316:                      if (safe_to_assign(d, node.right)) {
+  317:                          d.fixed = function () {
+***** HC\ORIGINAL.JS
+  327:                      if (safe_to_assign(d, node.right)) {
+  328:                          d.references.push(node.left);
+  329:                          d.fixed = function () {
+*****
+
+***** HC\0.js
+  319:                          };
+  320:                          node.right.walk(tw);
+  321:                          return true;
+***** HC\ORIGINAL.JS
+  331:                          };
+  332:                          mark(d, false);
+  333:                          node.right.walk(tw);
+  334:                          mark(d, true);
+  335:                          return true;
+*****
+
+***** HC\0.js
+  326:                      if (d.global && !compressor.toplevel(d) || safe_to_read(d)) {
+  327:                      } else {
+***** HC\ORIGINAL.JS
+  340:                      if (d.global && !compressor.toplevel(d) || safe_to_read(d)) {
+  341:                          d.fixed = false;
+  342:                      } else {
+*****
+
+***** HC\0.js
+  351:                              } else {
+  352:                              }
+***** HC\ORIGINAL.JS
+  366:                              } else {
+  367:                                  d.fixed = false;
+  368:                              }
+*****
+
+***** HC\0.js
+  355:                      descend();
+  356:                      return true;
+***** HC\ORIGINAL.JS
+  371:                      descend();
+  372:                      pop();
+  373:                      return true;
+*****
+
+***** HC\0.js
+  360:                      safe_ids = Object.create(null);
+  361:                      return;
+  362:                  }
+***** HC\ORIGINAL.JS
+  377:                      safe_ids = Object.create(null);
+  378:                      descend();
+  379:                      safe_ids = save_ids;
+  380:                      return true;
+  381:                  }
+*****
+
+***** HC\0.js
+  366:                      node.right.walk(tw);
+  367:                      return true;
+***** HC\ORIGINAL.JS
+  385:                      node.right.walk(tw);
+  386:                      pop();
+  387:                      return true;
+*****
+
+***** HC\0.js
+  372:                      node.consequent.walk(tw);
+  373:                      node.alternative.walk(tw);
+  374:                      return true;
+***** HC\ORIGINAL.JS
+  392:                      node.consequent.walk(tw);
+  393:                      pop();
+  394:                      push();
+  395:                      node.alternative.walk(tw);
+  396:                      pop();
+  397:                      return true;
+*****
+
+***** HC\0.js
+  383:                          node.alternative.walk(tw);
+  384:                      }
+***** HC\ORIGINAL.JS
+  406:                          node.alternative.walk(tw);
+  407:                          pop();
+  408:                      }
+*****
+
+***** HC\0.js
+  390:                      node.body.walk(tw);
+  391:                      return true;
+***** HC\ORIGINAL.JS
+  414:                      node.body.walk(tw);
+  415:                      pop();
+  416:                      return true;
+*****
+
+***** HC\0.js
+  393:                  if (node instanceof AST_LabeledStatement) {
+  394:                      return true;
+***** HC\ORIGINAL.JS
+  418:                  if (node instanceof AST_LabeledStatement) {
+  419:                      push();
+  420:                      node.body.walk(tw);
+  421:                      pop();
+  422:                      return true;
+*****
+
+***** HC\0.js
+  401:                          node.condition.walk(tw);
+  402:                      }
+  403:                      node.body.walk(tw);
+***** HC\ORIGINAL.JS
+  429:                          node.condition.walk(tw);
+  430:                          pop();
+  431:                      }
+  432:                      push();
+  433:                      node.body.walk(tw);
+*****
+
+***** HC\0.js
+  407:                          node.step.walk(tw);
+  408:                      }
+***** HC\ORIGINAL.JS
+  437:                          node.step.walk(tw);
+  438:                          pop();
+  439:                      }
+*****
+
+***** HC\0.js
+  412:                      node.init.walk(suppressor);
+  413:                      push();
+***** HC\ORIGINAL.JS
+  443:                      node.init.walk(suppressor);
+  444:                      node.object.walk(tw);
+  445:                      push();
+*****
+
+***** HC\0.js
+  415:                      pop();
+  416:                      return;
+  417:                  }
+***** HC\ORIGINAL.JS
+  447:                      pop();
+  448:                      return true;
+  449:                  }
+*****
+
+***** HC\0.js
+  434:                      pop();
+  435:                      return;
+  436:                  }
+***** HC\ORIGINAL.JS
+  466:                      pop();
+  467:                      return true;
+  468:                  }
+*****
+
+***** HC\0.js
+  447:                      if (orig instanceof AST_SymbolFunarg || orig.name == 'arguments')
+  448:                          return;
+  449:                      def.fixed = make_node(AST_Undefined, orig);
+***** HC\ORIGINAL.JS
+  479:                      if (orig instanceof AST_SymbolFunarg || orig.name == 'arguments')
+  480:                          return false;
+  481:                      def.fixed = make_node(AST_Undefined, orig);
+*****
+
+***** HC\0.js
+  455:              if (!HOP(safe_ids, def.id))
+  456:                  return;
+  457:              if (!safe_to_read(def))
+  458:                  return;
+  459:              if (def.fixed === false)
+  460:                  return;
+  461:              if (def.fixed != null && (!value || def.references.length > 0))
+  462:                  return;
+  463:              return !def.orig.some(function (sym) {
+***** HC\ORIGINAL.JS
+  487:              if (!HOP(safe_ids, def.id))
+  488:                  return false;
+  489:              if (!safe_to_read(def))
+  490:                  return false;
+  491:              if (def.fixed === false)
+  492:                  return false;
+  493:              if (def.fixed != null && (!value || def.references.length > 0))
+  494:                  return false;
+  495:              return !def.orig.some(function (sym) {
+*****
+
+***** HC\0.js
+  557:              if (val === null) {
+  558:                  return;
+  559:              }
+***** HC\ORIGINAL.JS
+  589:              if (val === null) {
+  590:                  return make_node(AST_Null, orig, { value: null });
+  591:              }
+*****
+
+***** HC\0.js
+  562:              }
+  563:              throw new Error();
+  564:          }
+***** HC\ORIGINAL.JS
+  594:              }
+  595:              throw new Error(string_template("Can't handle constant of type: {type}", { type: typeof val }));
+  596:          }
+*****
+
+***** HC\0.js
+  595:              return [thing];
+  596:          throw new Error();
+  597:      }
+***** HC\ORIGINAL.JS
+  627:              return [thing];
+  628:          throw new Error("Can't convert thing to statement array");
+  629:      }
+*****
+
+***** HC\0.js
+  605:              return thing.body.length == 0;
+  606:          return;
+  607:      }
+***** HC\ORIGINAL.JS
+  637:              return thing.body.length == 0;
+  638:          return false;
+  639:      }
+*****
+
+***** HC\0.js
+  621:          }
+  622:          return;
+  623:      }
+***** HC\ORIGINAL.JS
+  653:          }
+  654:          return false;
+  655:      }
+*****
+
+***** HC\0.js
+  626:          do {
+  627:              statements = eliminate_spurious_blocks(statements);
+***** HC\ORIGINAL.JS
+  658:          do {
+  659:              CHANGED = false;
+  660:              statements = eliminate_spurious_blocks(statements);
+*****
+
+***** HC\0.js
+  692:                              CHANGED = replaced = abort = true;
+  693:                              if (candidate instanceof AST_UnaryPostfix) {
+  694:                                  return;
+  695:                              }
+***** HC\ORIGINAL.JS
+  725:                              CHANGED = replaced = abort = true;
+  726:                              compressor.info('Collapsing {name} [{file}:{line},{col}]', {
+  727:                                  name: node.print_to_string(),
+  728:                                  file: node.start.file,
+  729:                                  line: node.start.line,
+  730:                                  col: node.start.col
+  731:                              });
+  732:                              if (candidate instanceof AST_UnaryPostfix) {
+  733:                                  return make_node(AST_UnaryPrefix, candidate, candidate);
+  734:                              }
+*****
+
+***** HC\0.js
+  772:                          var save_scope = scope;
+  773:                          return;
+  774:                      }
+***** HC\ORIGINAL.JS
+  811:                          var save_scope = scope;
+  812:                          descend();
+  813:                          scope = save_scope;
+  814:                          return true;
+  815:                      }
+*****
+
+***** HC\0.js
+  790:              function remove_candidate(expr) {
+  791:                  var found;
+  792:                  return statements[stat_index].transform(new TreeTransformer(function (node, descend, in_list) {
+***** HC\ORIGINAL.JS
+  831:              function remove_candidate(expr) {
+  832:                  var found = false;
+  833:                  return statements[stat_index].transform(new TreeTransformer(function (node, descend, in_list) {
+*****
+
+***** HC\0.js
+  805:                          case 0:
+  806:                              return;
+  807:                          case 1:
+***** HC\ORIGINAL.JS
+  846:                          case 0:
+  847:                              return null;
+  848:                          case 1:
+*****
+
+***** HC\0.js
+  817:                  if (expr instanceof AST_Unary)
+  818:                      return;
+  819:                  return expr[expr instanceof AST_Assign ? 'right' : 'value'].has_side_effects(compressor);
+***** HC\ORIGINAL.JS
+  858:                  if (expr instanceof AST_Unary)
+  859:                      return false;
+  860:                  return expr[expr instanceof AST_Assign ? 'right' : 'value'].has_side_effects(compressor);
+*****
+
+***** HC\0.js
+  824:                  if (def.scope !== scope)
+  825:                      return;
+  826:                  return def.references.every(function (ref) {
+***** HC\ORIGINAL.JS
+  865:                  if (def.scope !== scope)
+  866:                      return false;
+  867:                  return def.references.every(function (ref) {
+*****
+
+***** HC\0.js
+  834:                  if (stat instanceof AST_BlockStatement) {
+  835:                      a.push.apply(a, eliminate_spurious_blocks(stat.body));
+***** HC\ORIGINAL.JS
+  875:                  if (stat instanceof AST_BlockStatement) {
+  876:                      CHANGED = true;
+  877:                      a.push.apply(a, eliminate_spurious_blocks(stat.body));
+*****
+
+***** HC\0.js
+  836:                  } else if (stat instanceof AST_EmptyStatement) {
+  837:                  } else if (stat instanceof AST_Directive) {
+***** HC\ORIGINAL.JS
+  878:                  } else if (stat instanceof AST_EmptyStatement) {
+  879:                      CHANGED = true;
+  880:                  } else if (stat instanceof AST_Directive) {
+*****
+
+***** HC\0.js
+  839:                          a.push(stat);
+  840:                      } else {
+  841:                      }
+***** HC\ORIGINAL.JS
+  882:                          a.push(stat);
+  883:                          seen_dirs.push(stat.value);
+  884:                      } else {
+  885:                          CHANGED = true;
+  886:                      }
+*****
+
+***** HC\0.js
+  859:                      case in_lambda && stat instanceof AST_Return && !stat.value && ret.length == 0:
+  860:                          // note, ret.length is probably always zero
+***** HC\ORIGINAL.JS
+  904:                      case in_lambda && stat instanceof AST_Return && !stat.value && ret.length == 0:
+  905:                          CHANGED = true;
+  906:                          // note, ret.length is probably always zero
+*****
+
+***** HC\0.js
+  883:                              if (ab.label) {
+  884:                              }
+  885:                              var funs = extract_functions_from_statement_array(ret);
+***** HC\ORIGINAL.JS
+  929:                              if (ab.label) {
+  930:                                  remove(ab.label.thedef.references, ab);
+  931:                              }
+  932:                              CHANGED = true;
+  933:                              var funs = extract_functions_from_statement_array(ret);
+*****
+
+***** HC\0.js
+  886:                              stat = stat.clone();
+  887:                              var body;
+  888:                              stat.alternative = make_node(AST_BlockStatement, stat.alternative);
+  889:                              ret = [stat.transform(compressor)].concat(funs);
+***** HC\ORIGINAL.JS
+  934:                              stat = stat.clone();
+  935:                              stat.body = make_node(AST_BlockStatement, stat.body, { body: as_statement_array(stat.body).concat(r
+  936:  et) });
+  937:                              var body = as_statement_array_with_return(stat.alternative, ab);
+  938:                              stat.alternative = make_node(AST_BlockStatement, stat.alternative, { body: body });
+  939:                              ret = [stat.transform(compressor)].concat(funs);
+*****
+
+***** HC\0.js
+  898:  tat.alternative) {
+  899:                                  var cond;
+  900:                                  continue loop;
+***** HC\ORIGINAL.JS
+  948:  tat.alternative) {
+  949:                                  CHANGED = true;
+  950:                                  var cond = make_node(AST_SimpleStatement, stat.condition, { body: stat.condition });
+  951:                                  ret.unshift(cond);
+  952:                                  continue loop;
+*****
+
+***** HC\0.js
+  904:                              if (ret[0] instanceof AST_Return && value && ret[0].value && !stat.alternative) {
+  905:                                  stat = stat.clone();
+***** HC\ORIGINAL.JS
+  956:                              if (ret[0] instanceof AST_Return && value && ret[0].value && !stat.alternative) {
+  957:                                  CHANGED = true;
+  958:                                  stat = stat.clone();
+*****
+
+***** HC\0.js
+  913:  rnative && in_lambda) {
+  914:                                  stat = stat.clone();
+  915:                                  stat.alternative = ret[0] || make_node(AST_Return, stat);
+  916:                                  ret[0] = stat.transform(compressor);
+***** HC\ORIGINAL.JS
+  966:  rnative && in_lambda) {
+  967:                                  CHANGED = true;
+  968:                                  stat = stat.clone();
+  969:                                  stat.alternative = ret[0] || make_node(AST_Return, stat, { value: null });
+  970:                                  ret[0] = stat.transform(compressor);
+*****
+
+***** HC\0.js
+  927:  {
+  928:                                  ret.push(make_node(AST_Return, ret[0]).transform(compressor));
+  929:                                  ret.unshift(stat);
+***** HC\ORIGINAL.JS
+  981:  {
+  982:                                  CHANGED = true;
+  983:                                  ret.push(make_node(AST_Return, ret[0], { value: null }).transform(compressor));
+  984:                                  ret.unshift(stat);
+*****
+
+***** HC\0.js
+  949:                  }
+  950:                  return;
+  951:              }
+***** HC\ORIGINAL.JS
+ 1004:                  }
+ 1005:                  return false;
+ 1006:              }
+*****
+
+***** HC\0.js
+  956:                  if (!ab)
+  957:                      return;
+  958:                  var lct = ab instanceof AST_LoopControl ? compressor.loopcontrol_target(ab) : null;
+***** HC\ORIGINAL.JS
+ 1011:                  if (!ab)
+ 1012:                      return false;
+ 1013:                  var lct = ab instanceof AST_LoopControl ? compressor.loopcontrol_target(ab) : null;
+*****
+
+***** HC\0.js
+  971:          function eliminate_dead_code(statements, compressor) {
+  972:              var has_quit;
+  973:              var orig = statements.length;
+***** HC\ORIGINAL.JS
+ 1026:          function eliminate_dead_code(statements, compressor) {
+ 1027:              var has_quit = false;
+ 1028:              var orig = statements.length;
+*****
+
+***** HC\0.js
+  996:              }, []);
+  997:              return statements;
+***** HC\ORIGINAL.JS
+ 1051:              }, []);
+ 1052:              CHANGED = statements.length != orig;
+ 1053:              return statements;
+*****
+
+***** HC\0.js
+ 1042:              ;
+ 1043:              var ret = [], prev;
+ 1044:              statements.forEach(function (stat) {
+***** HC\ORIGINAL.JS
+ 1098:              ;
+ 1099:              var ret = [], prev = null;
+ 1100:              statements.forEach(function (stat) {
+*****
+
+***** HC\0.js
+ 1080:          function join_consecutive_vars(statements, compressor) {
+ 1081:              var prev;
+ 1082:              return statements.reduce(function (a, stat) {
+***** HC\ORIGINAL.JS
+ 1136:          function join_consecutive_vars(statements, compressor) {
+ 1137:              var prev = null;
+ 1138:              return statements.reduce(function (a, stat) {
+*****
+
+***** HC\0.js
+ 1084:                      prev.definitions = prev.definitions.concat(stat.definitions);
+ 1085:                  } else if (stat instanceof AST_For && prev instanceof AST_Var && (!stat.init || stat.init.TYPE == prev.TYPE)) {
+ 1086:                      a.pop();
+***** HC\ORIGINAL.JS
+ 1140:                      prev.definitions = prev.definitions.concat(stat.definitions);
+ 1141:                      CHANGED = true;
+ 1142:                  } else if (stat instanceof AST_For && prev instanceof AST_Var && (!stat.init || stat.init.TYPE == prev.TYPE)) {
+ 1143:                      CHANGED = true;
+ 1144:                      a.pop();
+*****
+
+***** HC\0.js
+ 1123:                  target.push(node);
+ 1124:                  return;
+ 1125:              }
+***** HC\ORIGINAL.JS
+ 1181:                  target.push(node);
+ 1182:                  return true;
+ 1183:              }
+*****
+
+***** HC\0.js
+ 1127:                  target.push(node);
+ 1128:                  return;
+ 1129:              }
+***** HC\ORIGINAL.JS
+ 1185:                  target.push(node);
+ 1186:                  return true;
+ 1187:              }
+*****
+
+***** HC\0.js
+ 1152:          def(AST_Undefined, return_true);
+ 1153:          def(AST_Object, function (pure_getters) {
+***** HC\ORIGINAL.JS
+ 1210:          def(AST_Undefined, return_true);
+ 1211:          def(AST_Constant, return_false);
+ 1212:          def(AST_Array, return_false);
+ 1213:          def(AST_Object, function (pure_getters) {
+*****
+
+***** HC\0.js
+ 1154:              if (!is_strict(pure_getters))
+ 1155:                  return;
+ 1156:              for (var i = this.properties.length; --i >= 0;)
+***** HC\ORIGINAL.JS
+ 1214:              if (!is_strict(pure_getters))
+ 1215:                  return false;
+ 1216:              for (var i = this.properties.length; --i >= 0;)
+*****
+
+***** HC\0.js
+ 1158:                      return true;
+ 1159:              return;
+ 1160:          });
+ 1161:          def(AST_UnaryPrefix, function () {
+***** HC\ORIGINAL.JS
+ 1218:                      return true;
+ 1219:              return false;
+ 1220:          });
+ 1221:          def(AST_Function, return_false);
+ 1222:          def(AST_UnaryPostfix, return_false);
+ 1223:          def(AST_UnaryPrefix, function () {
+*****
+
+***** HC\0.js
+ 1163:          });
+ 1164:          def(AST_SymbolRef, function (pure_getters) {
+***** HC\ORIGINAL.JS
+ 1225:          });
+ 1226:          def(AST_Binary, function (pure_getters) {
+ 1227:              switch (this.operator) {
+ 1228:              case '&&':
+ 1229:                  return this.left._throw_on_access(pure_getters);
+ 1230:              case '||':
+ 1231:                  return this.left._throw_on_access(pure_getters) && this.right._throw_on_access(pure_getters);
+ 1232:              default:
+ 1233:                  return false;
+ 1234:              }
+ 1235:          });
+ 1236:          def(AST_Assign, function (pure_getters) {
+ 1237:              return this.operator == '=' && this.right._throw_on_access(pure_getters);
+ 1238:          });
+ 1239:          def(AST_Conditional, function (pure_getters) {
+ 1240:              return this.consequent._throw_on_access(pure_getters) || this.alternative._throw_on_access(pure_getters);
+ 1241:          });
+ 1242:          def(AST_Sequence, function (pure_getters) {
+ 1243:              return this.expressions[this.expressions.length - 1]._throw_on_access(pure_getters);
+ 1244:          });
+ 1245:          def(AST_SymbolRef, function (pure_getters) {
+*****
+
+***** HC\0.js
+ 1165:              if (this.is_undefined)
+ 1166:                  return;
+ 1167:              if (!is_strict(pure_getters))
+ 1168:                  return;
+ 1169:              var fixed = this.fixed_value();
+***** HC\ORIGINAL.JS
+ 1246:              if (this.is_undefined)
+ 1247:                  return true;
+ 1248:              if (!is_strict(pure_getters))
+ 1249:                  return false;
+ 1250:              var fixed = this.fixed_value();
+*****
+
+***** HC\0.js
+ 1177:      (function (def) {
+ 1178:          var unary_bool = ['!'];
+ 1179:          var binary_bool = [
+***** HC\ORIGINAL.JS
+ 1258:      (function (def) {
+ 1259:          var unary_bool = [
+ 1260:              '!',
+ 1261:              'delete'
+ 1262:          ];
+ 1263:          var binary_bool = [
+*****
+
+***** HC\0.js
+ 1180:              'in',
+ 1181:              '==',
+***** HC\ORIGINAL.JS
+ 1264:              'in',
+ 1265:              'instanceof',
+ 1266:              '==',
+*****
+
+***** HC\0.js
+ 1197:          });
+ 1198:      }(function (node, func) {
+***** HC\ORIGINAL.JS
+ 1282:          });
+ 1283:          def(AST_Conditional, function () {
+ 1284:              return this.consequent.is_boolean() && this.alternative.is_boolean();
+ 1285:          });
+ 1286:          def(AST_Assign, function () {
+ 1287:              return this.operator == '=' && this.right.is_boolean();
+ 1288:          });
+ 1289:          def(AST_Sequence, function () {
+ 1290:              return this.expressions[this.expressions.length - 1].is_boolean();
+ 1291:          });
+ 1292:          def(AST_True, return_true);
+ 1293:          def(AST_False, return_true);
+ 1294:      }(function (node, func) {
+*****
+
+***** HC\0.js
+ 1216:          });
+ 1217:      }(function (node, func) {
+***** HC\ORIGINAL.JS
+ 1312:          });
+ 1313:          def(AST_Sequence, function (compressor) {
+ 1314:              return this.expressions[this.expressions.length - 1].is_number(compressor);
+ 1315:          });
+ 1316:          def(AST_Conditional, function (compressor) {
+ 1317:              return this.consequent.is_number(compressor) && this.alternative.is_number(compressor);
+ 1318:          });
+ 1319:      }(function (node, func) {
+*****
+
+***** HC\0.js
+ 1232:          });
+ 1233:      }(function (node, func) {
+***** HC\ORIGINAL.JS
+ 1334:          });
+ 1335:          def(AST_Sequence, function (compressor) {
+ 1336:              return this.expressions[this.expressions.length - 1].is_string(compressor);
+ 1337:          });
+ 1338:          def(AST_Conditional, function (compressor) {
+ 1339:              return this.consequent.is_string(compressor) && this.alternative.is_string(compressor);
+ 1340:          });
+ 1341:      }(function (node, func) {
+*****
+
+***** HC\0.js
+ 1346:          });
+ 1347:          function ev(node, compressor) {
+ 1348:              if (!compressor)
+ 1349:                  throw new Error();
+ 1350:              return node._eval(compressor);
+ 1351:          }
+ 1352:          ;
+ 1353:          def(AST_Node, function () {
+ 1354:              throw def;    // not constant
+ 1355:          });
+ 1356:          def(AST_Constant, function () {
+ 1357:              return this.getValue();
+ 1358:          });
+ 1359:          def(AST_Array, function (compressor) {
+ 1360:              if (compressor.option('unsafe')) {
+ 1361:                  return this.elements.map(function (element) {
+ 1362:                      return ev(element, compressor);
+ 1363:                  });
+ 1364:              }
+ 1365:              throw def;
+***** HC\ORIGINAL.JS
+ 1454:          });
+ 1455:          // Obtain the constant value of an expression already known to be constant.
+ 1456:          // Result only valid iff this.is_constant() is true.
+ 1457:          AST_Node.DEFMETHOD('constant_value', function (compressor) {
+ 1458:              // Accomodate when option evaluate=false.
+ 1459:              if (this instanceof AST_Constant && !(this instanceof AST_RegExp)) {
+ 1460:                  return this.value;
+ 1461:              }
+ 1462:              // Accomodate the common constant expressions !0 and -1 when option evaluate=false.
+ 1463:              if (this instanceof AST_UnaryPrefix && this.expression instanceof AST_Constant)
+ 1464:                  switch (this.operator) {
+ 1465:                  case '!':
+ 1466:                      return !this.expression.value;
+ 1467:                  case '~':
+ 1468:                      return ~this.expression.value;
+ 1469:                  case '-':
+ 1470:                      return -this.expression.value;
+ 1471:                  case '+':
+ 1472:                      return +this.expression.value;
+ 1473:                  default:
+ 1474:                      throw new Error(string_template('Cannot evaluate unary expression {value}', { value: this.print_to_string()
+ 1475:   }));
+ 1476:                  }
+ 1477:              var result = this.evaluate(compressor);
+ 1478:              if (result !== this) {
+ 1479:                  return result;
+ 1480:              }
+ 1481:              throw new Error(string_template('Cannot evaluate constant [{file}:{line},{col}]', this.start));
+ 1482:          });
+ 1483:          def(AST_Statement, function () {
+ 1484:              throw new Error(string_template('Cannot evaluate a statement [{file}:{line},{col}]', this.start));
+ 1485:          });
+ 1486:          def(AST_Lambda, function () {
+ 1487:              throw def;
+*****
+
+***** HC\0.js
+ 1366:          });
+ 1367:          def(AST_Object, function (compressor) {
+ 1368:              if (compressor.option('unsafe')) {
+ 1369:                  var val = {};
+ 1370:                  for (var i = 0, len = this.properties.length; i < len; i++) {
+ 1371:                      var prop = this.properties[i];
+ 1372:                      var key = prop.key;
+ 1373:                      if (key instanceof AST_Symbol) {
+ 1374:                      } else if (key instanceof AST_Node) {
+ 1375:                      }
+ 1376:                      if (typeof Object.prototype[key] === 'function') {
+ 1377:                          throw def;
+ 1378:                      }
+ 1379:                      val[key] = ev(prop.value, compressor);
+ 1380:                  }
+ 1381:                  return val;
+ 1382:              }
+***** HC\ORIGINAL.JS
+ 1488:          });
+ 1489:          function ev(node, compressor) {
+ 1490:              if (!compressor)
+ 1491:                  throw new Error('Compressor must be passed');
+ 1492:              return node._eval(compressor);
+ 1493:          }
+ 1494:          ;
+ 1495:          def(AST_Node, function () {
+ 1496:              throw def;    // not constant
+ 1497:          });
+ 1498:          def(AST_Constant, function () {
+ 1499:              return this.getValue();
+ 1500:          });
+ 1501:          def(AST_Array, function (compressor) {
+ 1502:              if (compressor.option('unsafe')) {
+ 1503:                  return this.elements.map(function (element) {
+ 1504:                      return ev(element, compressor);
+ 1505:                  });
+ 1506:              }
+*****
+
+***** HC\0.js
+ 1384:          });
+ 1385:          def(AST_UnaryPrefix, function (compressor) {
+***** HC\ORIGINAL.JS
+ 1508:          });
+ 1509:          def(AST_Object, function (compressor) {
+ 1510:              if (compressor.option('unsafe')) {
+ 1511:                  var val = {};
+ 1512:                  for (var i = 0, len = this.properties.length; i < len; i++) {
+ 1513:                      var prop = this.properties[i];
+ 1514:                      var key = prop.key;
+ 1515:                      if (key instanceof AST_Symbol) {
+ 1516:                          key = key.name;
+ 1517:                      } else if (key instanceof AST_Node) {
+ 1518:                          key = ev(key, compressor);
+ 1519:                      }
+ 1520:                      if (typeof Object.prototype[key] === 'function') {
+ 1521:                          throw def;
+ 1522:                      }
+ 1523:                      val[key] = ev(prop.value, compressor);
+ 1524:                  }
+ 1525:                  return val;
+ 1526:              }
+ 1527:              throw def;
+ 1528:          });
+ 1529:          def(AST_UnaryPrefix, function (compressor) {
+*****
+
+***** HC\0.js
+ 1487:          });
+ 1488:          def(AST_SymbolRef, function (compressor) {
+***** HC\ORIGINAL.JS
+ 1631:          });
+ 1632:          def(AST_Conditional, function (compressor) {
+ 1633:              return ev(this.condition, compressor) ? ev(this.consequent, compressor) : ev(this.alternative, compressor);
+ 1634:          });
+ 1635:          def(AST_SymbolRef, function (compressor) {
+*****
+
+***** HC\0.js
+ 1490:                  throw def;
+ 1491:              try {
+***** HC\ORIGINAL.JS
+ 1637:                  throw def;
+ 1638:              this._evaluating = true;
+ 1639:              try {
+*****
+
+***** HC\0.js
+ 1495:                  var value = ev(fixed, compressor);
+ 1496:                  if (!HOP(fixed))
+ 1497:                      fixed._eval = function () {
+***** HC\ORIGINAL.JS
+ 1643:                  var value = ev(fixed, compressor);
+ 1644:                  if (!HOP(fixed, '_eval'))
+ 1645:                      fixed._eval = function () {
+*****
+
+***** HC\0.js
+ 1503:              } finally {
+ 1504:              }
+***** HC\ORIGINAL.JS
+ 1651:              } finally {
+ 1652:                  this._evaluating = false;
+ 1653:              }
+*****
+
+***** HC\0.js
+ 1518:          });
+ 1519:          var object_fns = [];
+ 1520:          var native_fns = {
+ 1521:              Array: makePredicate(['slice'].concat(object_fns)),
+ 1522:              String: makePredicate(['charCodeAt'].concat(object_fns))
+ 1523:          };
+***** HC\ORIGINAL.JS
+ 1667:          });
+ 1668:          var object_fns = [
+ 1669:              'constructor',
+ 1670:              'toString',
+ 1671:              'valueOf'
+ 1672:          ];
+ 1673:          var native_fns = {
+ 1674:              Array: makePredicate([
+ 1675:                  'indexOf',
+ 1676:                  'join',
+ 1677:                  'lastIndexOf',
+ 1678:                  'slice'
+ 1679:              ].concat(object_fns)),
+ 1680:              Boolean: makePredicate(object_fns),
+ 1681:              Number: makePredicate([
+ 1682:                  'toExponential',
+ 1683:                  'toFixed',
+ 1684:                  'toPrecision'
+ 1685:              ].concat(object_fns)),
+ 1686:              RegExp: makePredicate(['test'].concat(object_fns)),
+ 1687:              String: makePredicate([
+ 1688:                  'charAt',
+ 1689:                  'charCodeAt',
+ 1690:                  'concat',
+ 1691:                  'indexOf',
+ 1692:                  'italics',
+ 1693:                  'lastIndexOf',
+ 1694:                  'match',
+ 1695:                  'replace',
+ 1696:                  'search',
+ 1697:                  'slice',
+ 1698:                  'split',
+ 1699:                  'substr',
+ 1700:                  'substring',
+ 1701:                  'trim'
+ 1702:              ].concat(object_fns))
+ 1703:          };
+*****
+
+***** HC\0.js
+ 1528:                  if (key instanceof AST_Node) {
+ 1529:                  }
+***** HC\ORIGINAL.JS
+ 1708:                  if (key instanceof AST_Node) {
+ 1709:                      key = ev(key, compressor);
+ 1710:                  }
+*****
+
+***** HC\0.js
+ 1538:          });
+ 1539:      }(function (node, func) {
+***** HC\ORIGINAL.JS
+ 1719:          });
+ 1720:          def(AST_New, function (compressor) {
+ 1721:              throw def;
+ 1722:          });
+ 1723:      }(function (node, func) {
+*****
+
+***** HC\0.js
+ 1552:              if (first_in_statement) {
+ 1553:                  var stat = make_node(AST_SimpleStatement, alt);
+ 1554:                  return best_of_expression(negated, stat) === stat ? alt : negated;
+***** HC\ORIGINAL.JS
+ 1736:              if (first_in_statement) {
+ 1737:                  var stat = make_node(AST_SimpleStatement, alt, { body: alt });
+ 1738:                  return best_of_expression(negated, stat) === stat ? alt : negated;
+*****
+
+***** HC\0.js
+ 1560:          });
+ 1561:          def(AST_UnaryPrefix, function () {
+ 1562:              if (this.operator == '!')
+ 1563:                  return this.expression;
+ 1564:              return basic_negation(this);
+***** HC\ORIGINAL.JS
+ 1744:          });
+ 1745:          def(AST_Statement, function () {
+ 1746:              throw new Error('Cannot negate a statement');
+ 1747:          });
+ 1748:          def(AST_Function, function () {
+ 1749:              return basic_negation(this);
+*****
+
+***** HC\0.js
+ 1565:          });
+ 1566:          def(AST_Sequence, function (compressor) {
+***** HC\ORIGINAL.JS
+ 1750:          });
+ 1751:          def(AST_UnaryPrefix, function () {
+ 1752:              if (this.operator == '!')
+ 1753:                  return this.expression;
+ 1754:              return basic_negation(this);
+ 1755:          });
+ 1756:          def(AST_Sequence, function (compressor) {
+*****
+
+***** HC\0.js
+ 1570:          });
+ 1571:          def(AST_Binary, function (compressor, first_in_statement) {
+***** HC\ORIGINAL.JS
+ 1760:          });
+ 1761:          def(AST_Conditional, function (compressor, first_in_statement) {
+ 1762:              var self = this.clone();
+ 1763:              self.consequent = self.consequent.negate(compressor);
+ 1764:              self.alternative = self.alternative.negate(compressor);
+ 1765:              return best(this, self, first_in_statement);
+ 1766:          });
+ 1767:          def(AST_Binary, function (compressor, first_in_statement) {
+*****
+
+***** HC\0.js
+ 1572:              var self = this.clone(), op = this.operator;
+ 1573:              if (compressor.option()) {
+ 1574:                  switch (op) {
+ 1575:                  default:
+ 1576:                      return self;
+***** HC\ORIGINAL.JS
+ 1768:              var self = this.clone(), op = this.operator;
+ 1769:              if (compressor.option('unsafe_comps')) {
+ 1770:                  switch (op) {
+ 1771:                  case '<=':
+ 1772:                      self.operator = '>';
+ 1773:                      return self;
+*****
+
+***** HC\0.js
+ 1577:                  case '<':
+ 1578:                      return self;
+***** HC\ORIGINAL.JS
+ 1774:                  case '<':
+ 1775:                      self.operator = '>=';
+ 1776:                      return self;
+*****
+
+***** HC\0.js
+ 1579:                  case '>=':
+ 1580:                      return self;
+***** HC\ORIGINAL.JS
+ 1777:                  case '>=':
+ 1778:                      self.operator = '<';
+ 1779:                      return self;
+*****
+
+***** HC\0.js
+ 1581:                  case '>':
+ 1582:                      return self;
+***** HC\ORIGINAL.JS
+ 1780:                  case '>':
+ 1781:                      self.operator = '<=';
+ 1782:                      return self;
+*****
+
+***** HC\0.js
+ 1589:              case '!=':
+ 1590:                  return self;
+***** HC\ORIGINAL.JS
+ 1789:              case '!=':
+ 1790:                  self.operator = '==';
+ 1791:                  return self;
+*****
+
+***** HC\0.js
+ 1594:              case '!==':
+ 1595:                  return self;
+***** HC\ORIGINAL.JS
+ 1795:              case '!==':
+ 1796:                  self.operator = '===';
+ 1797:                  return self;
+*****
+
+***** HC\0.js
+ 1615:          if (!compressor.option('side_effects'))
+ 1616:              return;
+ 1617:          if (this.pure !== undefined)
+***** HC\ORIGINAL.JS
+ 1817:          if (!compressor.option('side_effects'))
+ 1818:              return false;
+ 1819:          if (this.pure !== undefined)
+*****
+
+***** HC\0.js
+ 1618:              return this.pure;
+ 1619:          var pure;
+ 1620:          var comments, last_comment;
+***** HC\ORIGINAL.JS
+ 1820:              return this.pure;
+ 1821:          var pure = false;
+ 1822:          var comments, last_comment;
+*****
+
+***** HC\0.js
+ 1628:      (function (def) {
+ 1629:          def(AST_Constant, return_false);
+***** HC\ORIGINAL.JS
+ 1830:      (function (def) {
+ 1831:          def(AST_Node, return_true);
+ 1832:          def(AST_EmptyStatement, return_false);
+ 1833:          def(AST_Constant, return_false);
+*****
+
+***** HC\0.js
+ 1635:                  if (this.args[i].has_side_effects(compressor))
+ 1636:                      return;
+ 1637:              }
+ 1638:              return;
+ 1639:          });
+***** HC\ORIGINAL.JS
+ 1839:                  if (this.args[i].has_side_effects(compressor))
+ 1840:                      return true;
+ 1841:              }
+ 1842:              return false;
+ 1843:          });
+*****
+
+***** HC\0.js
+ 1642:                  if (list[i].has_side_effects(compressor))
+ 1643:                      return;
+ 1644:              return;
+ 1645:          }
+ 1646:          def(AST_Function, return_false);
+***** HC\ORIGINAL.JS
+ 1846:                  if (list[i].has_side_effects(compressor))
+ 1847:                      return true;
+ 1848:              return false;
+ 1849:          }
+ 1850:          def(AST_Block, function (compressor) {
+ 1851:              return any(this.body, compressor);
+ 1852:          });
+ 1853:          def(AST_Switch, function (compressor) {
+ 1854:              return this.expression.has_side_effects(compressor) || any(this.body, compressor);
+ 1855:          });
+ 1856:          def(AST_Case, function (compressor) {
+ 1857:              return this.expression.has_side_effects(compressor) || any(this.body, compressor);
+ 1858:          });
+ 1859:          def(AST_Try, function (compressor) {
+ 1860:              return any(this.body, compressor) || this.bcatch && this.bcatch.has_side_effects(compressor) || this.bfinally && th
+ 1861:  is.bfinally.has_side_effects(compressor);
+ 1862:          });
+ 1863:          def(AST_If, function (compressor) {
+ 1864:              return this.condition.has_side_effects(compressor) || this.body && this.body.has_side_effects(compressor) || this.a
+ 1865:  lternative && this.alternative.has_side_effects(compressor);
+ 1866:          });
+ 1867:          def(AST_LabeledStatement, function (compressor) {
+ 1868:              return this.body.has_side_effects(compressor);
+ 1869:          });
+ 1870:          def(AST_SimpleStatement, function (compressor) {
+ 1871:              return this.body.has_side_effects(compressor);
+ 1872:          });
+ 1873:          def(AST_Defun, return_true);
+ 1874:          def(AST_Function, return_false);
+*****
+
+***** HC\0.js
+ 1660:          });
+ 1661:          def(AST_Object, function (compressor) {
+ 1662:              return;
+ 1663:          });
+***** HC\ORIGINAL.JS
+ 1888:          });
+ 1889:          def(AST_SymbolDeclaration, return_false);
+ 1890:          def(AST_Object, function (compressor) {
+ 1891:              return any(this.properties, compressor);
+ 1892:          });
+*****
+
+***** HC\0.js
+ 1664:          def(AST_ObjectProperty, function (compressor) {
+ 1665:              return;
+ 1666:          });
+***** HC\ORIGINAL.JS
+ 1893:          def(AST_ObjectProperty, function (compressor) {
+ 1894:              return this.value.has_side_effects(compressor);
+ 1895:          });
+*****
+
+***** HC\0.js
+ 1667:          def(AST_Array, function (compressor) {
+ 1668:              return;
+ 1669:          });
+***** HC\ORIGINAL.JS
+ 1896:          def(AST_Array, function (compressor) {
+ 1897:              return any(this.elements, compressor);
+ 1898:          });
+*****
+
+***** HC\0.js
+ 1677:          def(AST_Sequence, function (compressor) {
+ 1678:              return;
+ 1679:          });
+***** HC\ORIGINAL.JS
+ 1906:          def(AST_Sequence, function (compressor) {
+ 1907:              return this.expressions.some(function (expression, index) {
+ 1908:                  return expression.has_side_effects(compressor);
+ 1909:              });
+ 1910:          });
+*****
+
+***** HC\0.js
+ 1687:                  if (!list[i].is_constant_expression())
+ 1688:                      return;
+ 1689:              return;
+ 1690:          }
+***** HC\ORIGINAL.JS
+ 1918:                  if (!list[i].is_constant_expression())
+ 1919:                      return false;
+ 1920:              return true;
+ 1921:          }
+*****
+
+***** HC\0.js
+ 1692:          def(AST_Constant, return_true);
+ 1693:      }(function (node, func) {
+***** HC\ORIGINAL.JS
+ 1923:          def(AST_Constant, return_true);
+ 1924:          def(AST_Unary, function () {
+ 1925:              return this.expression.is_constant_expression();
+ 1926:          });
+ 1927:          def(AST_Binary, function () {
+ 1928:              return this.left.is_constant_expression() && this.right.is_constant_expression();
+ 1929:          });
+ 1930:          def(AST_Array, function () {
+ 1931:              return all(this.elements);
+ 1932:          });
+ 1933:          def(AST_Object, function () {
+ 1934:              return all(this.properties);
+ 1935:          });
+ 1936:          def(AST_ObjectProperty, function () {
+ 1937:              return this.value.is_constant_expression();
+ 1938:          });
+ 1939:      }(function (node, func) {
+*****
+
+***** HC\0.js
+ 1710:          def(AST_SwitchBranch, block_aborts);
+ 1711:      }(function (node, func) {
+***** HC\ORIGINAL.JS
+ 1956:          def(AST_SwitchBranch, block_aborts);
+ 1957:          def(AST_If, function () {
+ 1958:              return this.alternative && aborts(this.body) && aborts(this.alternative) && this;
+ 1959:          });
+ 1960:      }(function (node, func) {
+*****
+
+***** HC\0.js
+ 1748:              return;
+ 1749:          if (compressor.has_directive())
+ 1750:              return;
+***** HC\ORIGINAL.JS
+ 1997:              return;
+ 1998:          if (compressor.has_directive('use asm'))
+ 1999:              return;
+*****
+
+***** HC\0.js
+ 1780:                          if (!(node_def.id in in_use_ids)) {
+ 1781:                              in_use.push(node_def);
+***** HC\ORIGINAL.JS
+ 2029:                          if (!(node_def.id in in_use_ids)) {
+ 2030:                              in_use_ids[node_def.id] = true;
+ 2031:                              in_use.push(node_def);
+*****
+
+***** HC\0.js
+ 1794:                              if (!(node_def.id in in_use_ids)) {
+ 1795:                                  in_use.push(node_def);
+***** HC\ORIGINAL.JS
+ 2044:                              if (!(node_def.id in in_use_ids)) {
+ 2045:                                  in_use_ids[node_def.id] = true;
+ 2046:                                  in_use.push(node_def);
+*****
+
+***** HC\0.js
+ 1817:                      }
+ 1818:                      return;
+ 1819:                  }
+***** HC\ORIGINAL.JS
+ 2068:                      }
+ 2069:                      return true;
+ 2070:                  }
+*****
+
+***** HC\0.js
+ 1824:                      scope = save_scope;
+ 1825:                      return;
+ 1826:                  }
+***** HC\ORIGINAL.JS
+ 2075:                      scope = save_scope;
+ 2076:                      return true;
+ 2077:                  }
+*****
+
+***** HC\0.js
+ 1869:                              a.pop();
+ 1870:                          }
+***** HC\ORIGINAL.JS
+ 2120:                              a.pop();
+ 2121:                              compressor[sym.unreferenced() ? 'warn' : 'info']('Dropping unused function argument {name} [{file}:
+ 2122:  {line},{col}]', template(sym));
+ 2123:                          }
+*****
+
+***** HC\0.js
+ 1899:                              if (var_defs.length > 1 && !def.value) {
+ 1900:                                  remove(var_defs, def);
+***** HC\ORIGINAL.JS
+ 2152:                              if (var_defs.length > 1 && !def.value) {
+ 2153:                                  compressor.warn('Dropping duplicated definition of variable {name} [{file}:{line},{col}]', temp
+ 2154:  late(def.name));
+ 2155:                                  remove(var_defs, def);
+*****
+
+***** HC\0.js
+ 1928:                          if (value) {
+ 1929:                              merge_sequence(side_effects, value);
+***** HC\ORIGINAL.JS
+ 2183:                          if (value) {
+ 2184:                              compressor.warn('Side effects in initialization of unused variable {name} [{file}:{line},{col}]', t
+ 2185:  emplate(def.name));
+ 2186:                              merge_sequence(side_effects, value);
+*****
+
+***** HC\0.js
+ 1933:                          }
+ 1934:                      }
+***** HC\ORIGINAL.JS
+ 2190:                          }
+ 2191:                          remove(sym.orig, def.name);
+ 2192:                      }
+*****
+
+***** HC\0.js
+ 1939:                          var def = tail.pop();
+ 1940:                          remove(var_defs, def);
+ 1941:                          side_effects.unshift(make_node(AST_Assign, def, {
+***** HC\ORIGINAL.JS
+ 2197:                          var def = tail.pop();
+ 2198:                          compressor.warn('Converting duplicated definition of variable {name} to assignment [{file}:{line},{col}
+ 2199:  ]', template(def.name));
+ 2200:                          remove(var_defs, def);
+ 2201:                          remove(def.name.definition().orig, def.name);
+ 2202:                          side_effects.unshift(make_node(AST_Assign, def, {
+*****
+
+***** HC\0.js
+ 2027:                  if (node instanceof AST_Scope && node !== self)
+ 2028:                      return;
+ 2029:                  if (node instanceof AST_Var) {
+***** HC\ORIGINAL.JS
+ 2288:                  if (node instanceof AST_Scope && node !== self)
+ 2289:                      return true;
+ 2290:                  if (node instanceof AST_Var) {
+*****
+
+***** HC\0.js
+ 2030:                      ++var_decl;
+ 2031:                      return;
+ 2032:                  }
+***** HC\ORIGINAL.JS
+ 2291:                      ++var_decl;
+ 2292:                      return true;
+ 2293:                  }
+*****
+
+***** HC\0.js
+ 2078:                          }, self.argnames)) {
+ 2079:                      } else {
+ 2080:                          def.value = null;
+***** HC\ORIGINAL.JS
+ 2339:                          }, self.argnames)) {
+ 2340:                          vars.del(name);
+ 2341:                      } else {
+ 2342:                          def = def.clone();
+ 2343:                          def.value = null;
+*****
+
+***** HC\0.js
+ 2081:                          defs.push(def);
+ 2082:                      }
+***** HC\ORIGINAL.JS
+ 2344:                          defs.push(def);
+ 2345:                          vars.set(name, def);
+ 2346:                      }
+*****
+
+***** HC\0.js
+ 2116:                          if (self.body[i] instanceof AST_BlockStatement) {
+ 2117:                              var tmp;
+ 2118:                              continue;
+***** HC\ORIGINAL.JS
+ 2380:                          if (self.body[i] instanceof AST_BlockStatement) {
+ 2381:                              var tmp = [
+ 2382:                                  i,
+ 2383:                                  1
+ 2384:                              ].concat(self.body[i].body);
+ 2385:                              self.body.splice.apply(self.body, tmp);
+ 2386:                              continue;
+*****
+
+***** HC\0.js
+ 2140:              if (!len)
+ 2141:                  return;
+ 2142:              var ret = [], changed;
+ 2143:              for (var i = 0; i < len; i++) {
+***** HC\ORIGINAL.JS
+ 2408:              if (!len)
+ 2409:                  return null;
+ 2410:              var ret = [], changed = false;
+ 2411:              for (var i = 0; i < len; i++) {
+*****
+
+***** HC\0.js
+ 2147:                      merge_sequence(ret, node);
+ 2148:                  }
+***** HC\ORIGINAL.JS
+ 2415:                      merge_sequence(ret, node);
+ 2416:                      first_in_statement = false;
+ 2417:                  }
+*****
+
+***** HC\0.js
+ 2151:          }
+ 2152:          def(AST_Constant, return_null);
+***** HC\ORIGINAL.JS
+ 2420:          }
+ 2421:          def(AST_Node, return_this);
+ 2422:          def(AST_Constant, return_null);
+*****
+
+***** HC\0.js
+ 2221:              if (this.operator == 'typeof' && this.expression instanceof AST_SymbolRef)
+ 2222:                  return;
+ 2223:              var expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
+***** HC\ORIGINAL.JS
+ 2491:              if (this.operator == 'typeof' && this.expression instanceof AST_SymbolRef)
+ 2492:                  return null;
+ 2493:              var expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
+*****
+
+***** HC\0.js
+ 2255:                  return this;
+ 2256:              var expression;
+ 2257:              if (!expression)
+ 2258:                  return;
+ 2259:              var property;
+ 2260:              if (!property)
+***** HC\ORIGINAL.JS
+ 2525:                  return this;
+ 2526:              var expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
+ 2527:              if (!expression)
+ 2528:                  return this.property.drop_side_effect_free(compressor, first_in_statement);
+ 2529:              var property = this.property.drop_side_effect_free(compressor);
+ 2530:              if (!property)
+*****
+
+***** HC\0.js
+ 2261:                  return expression;
+ 2262:              return;
+ 2263:          });
+***** HC\ORIGINAL.JS
+ 2531:                  return expression;
+ 2532:              return make_sequence(this, [
+ 2533:                  expression,
+ 2534:                  property
+ 2535:              ]);
+ 2536:          });
+*****
+
+***** HC\0.js
+ 2298:              }
+ 2299:              if (compressor.option() && self instanceof AST_While) {
+ 2300:                  var a = [];
+***** HC\ORIGINAL.JS
+ 2571:              }
+ 2572:              if (compressor.option('dead_code') && self instanceof AST_While) {
+ 2573:                  var a = [];
+*****
+
+***** HC\0.js
+ 2304:              if (self instanceof AST_Do) {
+ 2305:                  var has_loop_control;
+ 2306:                  var tw = new TreeWalker(function (node) {
+***** HC\ORIGINAL.JS
+ 2577:              if (self instanceof AST_Do) {
+ 2578:                  var has_loop_control = false;
+ 2579:                  var tw = new TreeWalker(function (node) {
+*****
+
+***** HC\0.js
+ 2307:                      if (node instanceof AST_Scope || has_loop_control)
+ 2308:                          return;
+ 2309:                      if (node instanceof AST_LoopControl && tw.loopcontrol_target(node) === self)
+***** HC\ORIGINAL.JS
+ 2580:                      if (node instanceof AST_Scope || has_loop_control)
+ 2581:                          return true;
+ 2582:                      if (node instanceof AST_LoopControl && tw.loopcontrol_target(node) === self)
+*****
+
+***** HC\0.js
+ 2332:              }
+ 2333:          }
+***** HC\ORIGINAL.JS
+ 2605:              }
+ 2606:              if_break_in_loop(self, compressor);
+ 2607:          }
+*****
+
+***** HC\0.js
+ 2372:                  } else if (self.init) {
+ 2373:                  }
+***** HC\ORIGINAL.JS
+ 2646:                  } else if (self.init) {
+ 2647:                      a.push(make_node(AST_SimpleStatement, self.init, { body: self.init }));
+ 2648:                  }
+*****
+
+***** HC\0.js
+ 2377:              if (cond !== self.condition) {
+ 2378:              }
+***** HC\ORIGINAL.JS
+ 2652:              if (cond !== self.condition) {
+ 2653:                  cond = make_node_from_constant(cond, self.condition).transform(compressor);
+ 2654:                  self.condition = best_of_expression(cond, self.condition);
+ 2655:              }
+*****
+
+***** HC\0.js
+ 2394:              if (cond) {
+ 2395:                  if (compressor.option('dead_code')) {
+***** HC\ORIGINAL.JS
+ 2671:              if (cond) {
+ 2672:                  compressor.warn('Condition always true [{file}:{line},{col}]', self.condition.start);
+ 2673:                  if (compressor.option('dead_code')) {
+*****
+
+***** HC\0.js
+ 2403:              } else {
+ 2404:                  if (compressor.option('dead_code')) {
+***** HC\ORIGINAL.JS
+ 2681:              } else {
+ 2682:                  compressor.warn('Condition always false [{file}:{line},{col}]', self.condition.start);
+ 2683:                  if (compressor.option('dead_code')) {
+*****
+
+***** HC\0.js
+ 2411:              }
+ 2412:          }
+***** HC\ORIGINAL.JS
+ 2690:              }
+ 2691:              cond = make_node_from_constant(cond, self.condition).transform(compressor);
+ 2692:              self.condition = best_of_expression(cond, self.condition);
+ 2693:          }
+*****
+
+***** HC\0.js
+ 2523:          if (value !== self.expression) {
+ 2524:              var expression;
+ 2525:          }
+***** HC\ORIGINAL.JS
+ 2804:          if (value !== self.expression) {
+ 2805:              var expression = make_node_from_constant(value, self.expression).transform(compressor);
+ 2806:              self.expression = best_of_expression(expression, self.expression);
+ 2807:          }
+*****
+
+***** HC\0.js
+ 2537:                  } else {
+ 2538:                  }
+***** HC\ORIGINAL.JS
+ 2819:                  } else {
+ 2820:                      eliminate_branch(branch, body[body.length - 1]);
+ 2821:                  }
+*****
+
+***** HC\0.js
+ 2607:      OPT(AST_Try, function (self, compressor) {
+ 2608:          if (self.bcatch && self.bfinally && all(self.bfinally.body, is_empty))
+***** HC\ORIGINAL.JS
+ 2890:      OPT(AST_Try, function (self, compressor) {
+ 2891:          self.body = tighten_body(self.body, compressor);
+ 2892:          if (self.bcatch && self.bfinally && all(self.bfinally.body, is_empty))
+*****
+
+***** HC\0.js
+ 2625:      AST_Definitions.DEFMETHOD('to_assignments', function (compressor) {
+ 2626:          var reduce_vars;
+ 2627:          var assignments = this.definitions.reduce(function (a, def) {
+***** HC\ORIGINAL.JS
+ 2909:      AST_Definitions.DEFMETHOD('to_assignments', function (compressor) {
+ 2910:          var reduce_vars = compressor.option('reduce_vars');
+ 2911:          var assignments = this.definitions.reduce(function (a, def) {
+*****
+
+***** HC\0.js
+ 2643:      });
+ 2644:      OPT(AST_Call, function (self, compressor) {
+***** HC\ORIGINAL.JS
+ 2927:      });
+ 2928:      OPT(AST_Definitions, function (self, compressor) {
+ 2929:          if (self.definitions.length == 0)
+ 2930:              return make_node(AST_EmptyStatement, self);
+ 2931:          return self;
+ 2932:      });
+ 2933:      OPT(AST_Call, function (self, compressor) {
+*****
+
+***** HC\0.js
+ 2659:                      } else if (!trim) {
+ 2660:                          continue;
+***** HC\ORIGINAL.JS
+ 2948:                      } else if (!trim) {
+ 2949:                          self.args[pos++] = make_node(AST_Number, self.args[i], { value: 0 });
+ 2950:                          continue;
+*****
+
+***** HC\0.js
+ 2673:                      if (self.args.length != 1) {
+ 2674:                          return;
+ 2675:                      }
+***** HC\ORIGINAL.JS
+ 2963:                      if (self.args.length != 1) {
+ 2964:                          return make_node(AST_Array, self, { elements: self.args }).optimize(compressor);
+ 2965:                      }
+*****
+
+***** HC\0.js
+ 2678:                      if (self.args.length == 0) {
+ 2679:                          return;
+ 2680:                      }
+***** HC\ORIGINAL.JS
+ 2968:                      if (self.args.length == 0) {
+ 2969:                          return make_node(AST_Object, self, { properties: [] });
+ 2970:                      }
+*****
+
+***** HC\0.js
+ 2792:              if (self.args.length == 0)
+ 2793:                  return;
+ 2794:              if (all(self.args, function (x) {
+***** HC\ORIGINAL.JS
+ 3082:              if (self.args.length == 0)
+ 3083:                  return make_node(AST_Function, self, {
+ 3084:                      argnames: [],
+ 3085:                      body: []
+ 3086:                  });
+ 3087:              if (all(self.args, function (x) {
+*****
+
+***** HC\0.js
+ 2804:                      var ast = parse(code);
+ 2805:                      var mangle;
+ 2806:                      ast.figure_out_scope(mangle);
+***** HC\ORIGINAL.JS
+ 3097:                      var ast = parse(code);
+ 3098:                      var mangle = { ie8: compressor.option('ie8') };
+ 3099:                      ast.figure_out_scope(mangle);
+*****
+
+***** HC\0.js
+ 2808:                      ast = ast.transform(comp);
+ 2809:                      ast.mangle_names();
+***** HC\ORIGINAL.JS
+ 3101:                      ast = ast.transform(comp);
+ 3102:                      ast.figure_out_scope(mangle);
+ 3103:                      ast.mangle_names();
+*****
+
+***** HC\0.js
+ 2829:                      if (ex instanceof JS_Parse_Error) {
+ 2830:                      } else {
+***** HC\ORIGINAL.JS
+ 3123:                      if (ex instanceof JS_Parse_Error) {
+ 3124:                          compressor.warn('Error parsing code passed to new Function [{file}:{line},{col}]', self.args[self.args.
+ 3125:  length - 1].start);
+ 3126:                          compressor.warn(ex.toString());
+ 3127:                      } else {
+*****
+
+***** HC\0.js
+ 2876:                      if (body.length == 0)
+ 2877:                          return;
+ 2878:                      if (body.length == 1 && body[0] instanceof AST_Return) {
+***** HC\ORIGINAL.JS
+ 3173:                      if (body.length == 0)
+ 3174:                          return make_node(AST_Undefined, self);
+ 3175:                      if (body.length == 1 && body[0] instanceof AST_Return) {
+*****
+
+***** HC\0.js
+ 2879:                          if (!body[0].value)
+ 2880:                              return;
+ 2881:                          body = best_of(compressor, body[0].value, self);
+***** HC\ORIGINAL.JS
+ 3176:                          if (!body[0].value)
+ 3177:                              return make_node(AST_Undefined, self);
+ 3178:                          body = best_of(compressor, body[0].value, self);
+*****
+
+***** HC\0.js
+ 2924:                  case 'Array':
+ 2925:                      return;
+ 2926:                  }
+***** HC\ORIGINAL.JS
+ 3221:                  case 'Array':
+ 3222:                      return make_node(AST_Call, self, self).transform(compressor);
+ 3223:                  }
+*****
+
+***** HC\0.js
+ 2955:                      merge_sequence(expressions, expr);
+ 2956:                  }
+***** HC\ORIGINAL.JS
+ 3252:                      merge_sequence(expressions, expr);
+ 3253:                      first = false;
+ 3254:                  }
+*****
+
+***** HC\0.js
+ 3039:      });
+ 3040:      OPT(AST_UnaryPrefix, function (self, compressor) {
+***** HC\ORIGINAL.JS
+ 3337:      });
+ 3338:      OPT(AST_UnaryPostfix, function (self, compressor) {
+ 3339:          return self.lift_sequences(compressor);
+ 3340:      });
+ 3341:      OPT(AST_UnaryPrefix, function (self, compressor) {
+*****
+
+***** HC\0.js
+ 3060:              if (e) {
+ 3061:                  return self;
+***** HC\ORIGINAL.JS
+ 3361:              if (e) {
+ 3362:                  self.expression = e;
+ 3363:                  return self;
+*****
+
+***** HC\0.js
+ 3073:                  if (e instanceof AST_Binary) {
+ 3074:                      self = best_of(compressor, self, e.negate(compressor));
+ 3075:                  }
+***** HC\ORIGINAL.JS
+ 3375:                  if (e instanceof AST_Binary) {
+ 3376:                      self = best_of(compressor, self, e.negate(compressor, first_in_statement(compressor)));
+ 3377:                  }
+*****
+
+***** HC\0.js
+ 3077:              case 'typeof':
+ 3078:                  return (e instanceof AST_SymbolRef ? make_node(AST_True, self) : make_sequence(self, [
+***** HC\ORIGINAL.JS
+ 3379:              case 'typeof':
+ 3380:                  // typeof always returns a non-empty string, thus it's
+ 3381:                  // always true in booleans
+ 3382:                  compressor.warn('Boolean expression always true [{file}:{line},{col}]', self.start);
+ 3383:                  return (e instanceof AST_SymbolRef ? make_node(AST_True, self) : make_sequence(self, [
+*****
+
+***** HC\0.js
+ 3125:                  if (i == last) {
+ 3126:                      var e = this.clone();
+***** HC\ORIGINAL.JS
+ 3430:                  if (i == last) {
+ 3431:                      x = x.slice();
+ 3432:                      var e = this.clone();
+*****
+
+***** HC\0.js
+ 3213:                      operator: '!',
+ 3214:                      expression: self.negate(compressor)
+ 3215:                  });
+***** HC\ORIGINAL.JS
+ 3519:                      operator: '!',
+ 3520:                      expression: self.negate(compressor, first_in_statement(compressor))
+ 3521:                  });
+*****
+
+***** HC\0.js
+ 3249:                  } else if (ll !== self.left) {
+ 3250:                      return maintain_this_binding(compressor.parent(), self, self.right).optimize(compressor);
+***** HC\ORIGINAL.JS
+ 3555:                  } else if (ll !== self.left) {
+ 3556:                      compressor.warn('Condition left of && always true [{file}:{line},{col}]', self.start);
+ 3557:                      return maintain_this_binding(compressor.parent(), self, self.right).optimize(compressor);
+*****
+
+***** HC\0.js
+ 3260:                      } else if (rr !== self.right) {
+ 3261:                          return;
+ 3262:                      }
+***** HC\ORIGINAL.JS
+ 3567:                      } else if (rr !== self.right) {
+ 3568:                          compressor.warn('Dropping side-effect-free && in boolean context [{file}:{line},{col}]', self.start);
+ 3569:                          return self.left.optimize(compressor);
+ 3570:                      }
+*****
+
+***** HC\0.js
+ 3267:                  if (!ll) {
+ 3268:                      return maintain_this_binding(compressor.parent(), self, self.right).optimize(compressor);
+***** HC\ORIGINAL.JS
+ 3575:                  if (!ll) {
+ 3576:                      compressor.warn('Condition left of || always false [{file}:{line},{col}]', self.start);
+ 3577:                      return maintain_this_binding(compressor.parent(), self, self.right).optimize(compressor);
+*****
+
+***** HC\0.js
+ 3275:                      if (!rr) {
+ 3276:                          return;
+ 3277:                      } else if (rr !== self.right) {
+***** HC\ORIGINAL.JS
+ 3584:                      if (!rr) {
+ 3585:                          compressor.warn('Dropping side-effect-free || in boolean context [{file}:{line},{col}]', self.start);
+ 3586:                          return self.left.optimize(compressor);
+ 3587:                      } else if (rr !== self.right) {
+*****
+
+***** HC\0.js
+ 3292:  .right.left instanceof AST_Constant && self.right.is_string(compressor)) {
+ 3293:                  }
+ 3294:                  // (x + "foo") + "bar" => x + "foobar"
+ 3295:                  if (self.right instanceof AST_Constant && self.left instanceof AST_Binary && self.left.operator == '+' && self.
+ 3296:  left.right instanceof AST_Constant && self.left.is_string(compressor)) {
+ 3297:                      self = make_node(AST_Binary, self, {
+***** HC\ORIGINAL.JS
+ 3602:  .right.left instanceof AST_Constant && self.right.is_string(compressor)) {
+ 3603:                      self = make_node(AST_Binary, self, {
+*****
+
+***** HC\0.js
+ 3298:                          operator: '+',
+ 3299:                          left: self.left.left,
+ 3300:                          right: make_node(AST_String, self.right, { value: '' + self.left.right.getValue() + self.right.getValue
+ 3301:  () })
+ 3302:                      });
+***** HC\ORIGINAL.JS
+ 3604:                          operator: '+',
+ 3605:                          left: make_node(AST_String, self.left, {
+ 3606:                              value: '' + self.left.getValue() + self.right.left.getValue(),
+ 3607:                              start: self.left.start,
+ 3608:                              end: self.right.left.end
+ 3609:                          }),
+ 3610:                          right: self.right.right
+ 3611:                      });
+*****
+
+***** HC\0.js
+ 3303:                  }
+ 3304:                  // (x + "foo") + ("bar" + y) => (x + "foobar") + y
+***** HC\ORIGINAL.JS
+ 3612:                  }
+ 3613:                  // (x + "foo") + "bar" => x + "foobar"
+ 3614:                  if (self.right instanceof AST_Constant && self.left instanceof AST_Binary && self.left.operator == '+' && self.
+ 3615:  left.right instanceof AST_Constant && self.left.is_string(compressor)) {
+ 3616:                      self = make_node(AST_Binary, self, {
+ 3617:                          operator: '+',
+ 3618:                          left: self.left.left,
+ 3619:                          right: make_node(AST_String, self.right, {
+ 3620:                              value: '' + self.left.right.getValue() + self.right.getValue(),
+ 3621:                              start: self.left.right.start,
+ 3622:                              end: self.right.end
+ 3623:                          })
+ 3624:                      });
+ 3625:                  }
+ 3626:                  // (x + "foo") + ("bar" + y) => (x + "foobar") + y
+*****
+
+***** HC\0.js
+ 3307:   AST_Constant && self.right.is_string(compressor)) {
+ 3308:                  }
+***** HC\ORIGINAL.JS
+ 3629:   AST_Constant && self.right.is_string(compressor)) {
+ 3630:                      self = make_node(AST_Binary, self, {
+ 3631:                          operator: '+',
+ 3632:                          left: make_node(AST_Binary, self.left, {
+ 3633:                              operator: '+',
+ 3634:                              left: self.left.left,
+ 3635:                              right: make_node(AST_String, self.left.right, {
+ 3636:                                  value: '' + self.left.right.getValue() + self.right.left.getValue(),
+ 3637:                                  start: self.left.right.start,
+ 3638:                                  end: self.right.left.end
+ 3639:                              })
+ 3640:                          }),
+ 3641:                          right: self.right.right
+ 3642:                      });
+ 3643:                  }
+*****
+
+***** HC\0.js
+ 3341:                      if (self.right instanceof AST_Constant && !(self.left instanceof AST_Constant)) {
+ 3342:                      } else {
+***** HC\ORIGINAL.JS
+ 3676:                      if (self.right instanceof AST_Constant && !(self.left instanceof AST_Constant)) {
+ 3677:                          self = best_of(compressor, reversed, self);
+ 3678:                      } else {
+*****
+
+***** HC\0.js
+ 3348:                      if (self.right instanceof AST_Binary && self.right.operator == self.operator) {
+ 3349:                      }
+***** HC\ORIGINAL.JS
+ 3684:                      if (self.right instanceof AST_Binary && self.right.operator == self.operator) {
+ 3685:                          self = make_node(AST_Binary, self, {
+ 3686:                              operator: self.operator,
+ 3687:                              left: make_node(AST_Binary, self.left, {
+ 3688:                                  operator: self.operator,
+ 3689:                                  left: self.left,
+ 3690:                                  right: self.right.left,
+ 3691:                                  start: self.left.start,
+ 3692:                                  end: self.right.left.end
+ 3693:                              }),
+ 3694:                              right: self.right.right
+ 3695:                          });
+ 3696:                      }
+*****
+
+***** HC\0.js
+ 3359:                                      left: self.left.left,
+ 3360:                                      right: self.right
+ 3361:                                  }),
+***** HC\ORIGINAL.JS
+ 3706:                                      left: self.left.left,
+ 3707:                                      right: self.right,
+ 3708:                                      start: self.left.left.start,
+ 3709:                                      end: self.right.end
+ 3710:                                  }),
+*****
+
+***** HC\0.js
+ 3369:                                      left: self.left.right,
+ 3370:                                      right: self.right
+ 3371:                                  }),
+***** HC\ORIGINAL.JS
+ 3718:                                      left: self.left.right,
+ 3719:                                      right: self.right,
+ 3720:                                      start: self.left.right.start,
+ 3721:                                      end: self.right.end
+ 3722:                                  }),
+*****
+
+***** HC\0.js
+ 3379:  nt) {
+ 3380:                      }
+***** HC\ORIGINAL.JS
+ 3730:  nt) {
+ 3731:                          self = make_node(AST_Binary, self, {
+ 3732:                              operator: self.operator,
+ 3733:                              left: make_node(AST_Binary, self.left, {
+ 3734:                                  operator: self.operator,
+ 3735:                                  left: make_node(AST_Binary, self.left.left, {
+ 3736:                                      operator: self.operator,
+ 3737:                                      left: self.left.right,
+ 3738:                                      right: self.right.left,
+ 3739:                                      start: self.left.right.start,
+ 3740:                                      end: self.right.left.end
+ 3741:                                  }),
+ 3742:                                  right: self.left.left
+ 3743:                              }),
+ 3744:                              right: self.right.right
+ 3745:                          });
+ 3746:                      }
+*****
+
+***** HC\0.js
+ 3441:                              fn = function () {
+ 3442:                                  var result;
+ 3443:                                  return result === init ? result.clone(true) : result;
+***** HC\ORIGINAL.JS
+ 3807:                              fn = function () {
+ 3808:                                  var result = init.optimize(compressor);
+ 3809:                                  return result === init ? result.clone(true) : result;
+*****
+
+***** HC\0.js
+ 3445:                          } else {
+ 3446:                              fn = function () {
+***** HC\ORIGINAL.JS
+ 3811:                          } else {
+ 3812:                              value_length = Math.min(value_length, fixed.print_to_string().length);
+ 3813:                              fn = function () {
+*****
+
+***** HC\0.js
+ 3457:                      } else {
+ 3458:                      }
+***** HC\ORIGINAL.JS
+ 3824:                      } else {
+ 3825:                          d.should_replace = false;
+ 3826:                      }
+*****
+
+***** HC\0.js
+ 3467:              var found;
+ 3468:              return found;
+***** HC\ORIGINAL.JS
+ 3835:              var found;
+ 3836:              value.walk(new TreeWalker(function (node) {
+ 3837:                  if (node instanceof AST_SymbolRef)
+ 3838:                      found = true;
+ 3839:                  if (found)
+ 3840:                      return true;
+ 3841:              }));
+ 3842:              return found;
+*****
+
+***** HC\0.js
+ 3477:              if (undef) {
+ 3478:                  var ref = make_node(AST_SymbolRef, self, { name: 'undefined' });
+ 3479:                  ref.is_undefined = true;
+***** HC\ORIGINAL.JS
+ 3851:              if (undef) {
+ 3852:                  var ref = make_node(AST_SymbolRef, self, {
+ 3853:                      name: 'undefined',
+ 3854:                      scope: undef.scope,
+ 3855:                      thedef: undef
+ 3856:                  });
+ 3857:                  ref.is_undefined = true;
+*****
+
+***** HC\0.js
+ 3570:          }
+ 3571:          var negated = cond.negate(compressor);
+ 3572:          if (best_of(compressor, cond, negated) === negated) {
+***** HC\ORIGINAL.JS
+ 3948:          }
+ 3949:          var negated = cond.negate(compressor, first_in_statement(compressor));
+ 3950:          if (best_of(compressor, cond, negated) === negated) {
+*****
+
+***** HC\0.js
+ 3702:              if (p instanceof AST_Binary && (p.operator == '==' || p.operator == '!=')) {
+ 3703:                  return make_node(AST_Number, self, { value: +self.value });
+***** HC\ORIGINAL.JS
+ 4080:              if (p instanceof AST_Binary && (p.operator == '==' || p.operator == '!=')) {
+ 4081:                  compressor.warn('Non-strict equality against boolean: {operator} {value} [{file}:{line},{col}]', {
+ 4082:                      operator: p.operator,
+ 4083:                      value: self.value,
+ 4084:                      file: p.start.file,
+ 4085:                      line: p.start.line,
+ 4086:                      col: p.start.col
+ 4087:                  });
+ 4088:                  return make_node(AST_Number, self, { value: +self.value });
+*****
+
+***** HC\0.js
+ 3740:          if (RESERVED_WORDS(prop) && compressor.option('ie8')) {
+ 3741:              return;
+ 3742:          }
+***** HC\ORIGINAL.JS
+ 4125:          if (RESERVED_WORDS(prop) && compressor.option('ie8')) {
+ 4126:              return make_node(AST_Sub, self, {
+ 4127:                  expression: self.expression,
+ 4128:                  property: make_node(AST_String, self, { value: prop })
+ 4129:              }).optimize(compressor);
+ 4130:          }
+*****
+
+***** HC\0.js
+ 3777:      OPT(AST_Object, literals_in_boolean_context);
+ 3778:      OPT(AST_Return, function (self, compressor) {
+***** HC\ORIGINAL.JS
+ 4165:      OPT(AST_Object, literals_in_boolean_context);
+ 4166:      OPT(AST_RegExp, literals_in_boolean_context);
+ 4167:      OPT(AST_Return, function (self, compressor) {
+*****
+

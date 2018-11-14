@@ -1,0 +1,1151 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    3:  var clone = require('../../utils/object').clone;
+    4:  var constants;
+    5:  function factory(type, config, load, typed, math) {
+***** HC\ORIGINAL.JS
+    3:  var clone = require('../../utils/object').clone;
+    4:  var constants = require('../../utils/bignumber/constants');
+    5:  function factory(type, config, load, typed, math) {
+*****
+
+***** HC\0.js
+   39:      function Unit(value, name) {
+   40:          if (name != undefined) {
+***** HC\ORIGINAL.JS
+   39:      function Unit(value, name) {
+   40:          if (!(this instanceof Unit)) {
+   41:              throw new Error('Constructor must be called with the new operator');
+   42:          }
+   43:          if (!(value == undefined || isNumeric(value) || type.isComplex(value))) {
+   44:              throw new TypeError('First parameter in Unit constructor must be number, BigNumber, Fraction, Complex, or undefined
+   45:  ');
+   46:          }
+   47:          if (name != undefined && (typeof name !== 'string' || name === '')) {
+   48:              throw new TypeError('Second parameter in Unit constructor must be a string');
+   49:          }
+   50:          if (name != undefined) {
+*****
+
+***** HC\0.js
+   44:          } else {
+   45:              this.units = [{}];
+   46:              this.dimensions = [];
+***** HC\ORIGINAL.JS
+   54:          } else {
+   55:              this.units = [{
+   56:                      unit: UNIT_NONE,
+   57:                      prefix: PREFIXES.NONE,
+   58:                      // link to a list with supported prefixes
+   59:                      power: 0
+   60:                  }];
+   61:              this.dimensions = [];
+*****
+
+***** HC\0.js
+   72:      function isDigitDot(c) {
+   73:      }
+***** HC\ORIGINAL.JS
+   87:      function isDigitDot(c) {
+   88:          return c >= '0' && c <= '9' || c == '.';
+   89:      }
+*****
+
+***** HC\0.js
+   94:          }
+   95:          // get number, can have a single dot
+***** HC\ORIGINAL.JS
+  110:          }
+  111:          if (!isDigitDot(c)) {
+  112:              // a + or - must be followed by a digit
+  113:              revert(oldIndex);
+  114:              return null;
+  115:          }
+  116:          // get number, can have a single dot
+*****
+
+***** HC\0.js
+  101:                  revert(oldIndex);
+  102:              }
+***** HC\ORIGINAL.JS
+  122:                  revert(oldIndex);
+  123:                  return null;
+  124:              }
+*****
+
+***** HC\0.js
+  132:                  revert(tentativeIndex);
+  133:              }
+***** HC\ORIGINAL.JS
+  154:                  revert(tentativeIndex);
+  155:                  return number;
+  156:              }
+*****
+
+***** HC\0.js
+  156:          } else {
+  157:          }
+***** HC\ORIGINAL.JS
+  179:          } else {
+  180:              return null;
+  181:          }
+*****
+
+***** HC\0.js
+  163:          } else {
+  164:          }
+***** HC\ORIGINAL.JS
+  187:          } else {
+  188:              return null;
+  189:          }
+*****
+
+***** HC\0.js
+  202:          var valueStr = parseNumber();
+  203:          var value;
+  204:          if (valueStr) {
+***** HC\ORIGINAL.JS
+  227:          var valueStr = parseNumber();
+  228:          var value = null;
+  229:          if (valueStr) {
+*****
+
+***** HC\0.js
+  217:          var powerMultiplierCurrent = 1;
+  218:          var expectingUnit;
+  219:          // Stack to keep track of powerMultipliers applied to each parentheses group
+***** HC\ORIGINAL.JS
+  242:          var powerMultiplierCurrent = 1;
+  243:          var expectingUnit = false;
+  244:          // Stack to keep track of powerMultipliers applied to each parentheses group
+*****
+
+***** HC\0.js
+  256:                  var p = parseNumber();
+  257:                  power *= p;
+***** HC\ORIGINAL.JS
+  281:                  var p = parseNumber();
+  282:                  if (p == null) {
+  283:                      // No valid number found for the power!
+  284:                      throw new SyntaxError('In "' + str + '", "^" must be followed by a floating-point number');
+  285:                  }
+  286:                  power *= p;
+*****
+
+***** HC\0.js
+  271:              while (c === ')') {
+  272:                  powerMultiplierStackProduct /= powerMultiplierStack.pop();
+***** HC\ORIGINAL.JS
+  300:              while (c === ')') {
+  301:                  if (powerMultiplierStack.length === 0) {
+  302:                      throw new SyntaxError('Unmatched ")" in "' + text + '" at index ' + index.toString());
+  303:                  }
+  304:                  powerMultiplierStackProduct /= powerMultiplierStack.pop();
+*****
+
+***** HC\0.js
+  302:          skipWhitespace();
+  303:          // Is there a trailing slash?
+***** HC\ORIGINAL.JS
+  334:          skipWhitespace();
+  335:          if (c) {
+  336:              throw new SyntaxError('Could not parse: "' + str + '"');
+  337:          }
+  338:          // Is there a trailing slash?
+*****
+
+***** HC\0.js
+  306:          }
+  307:          // Are there any units at all?
+***** HC\ORIGINAL.JS
+  341:          }
+  342:          // Is the parentheses stack empty?
+  343:          if (powerMultiplierStack.length !== 0) {
+  344:              throw new SyntaxError('Unmatched "(" in "' + text + '"');
+  345:          }
+  346:          // Are there any units at all?
+*****
+
+***** HC\0.js
+  323:          unit.value = clone(this.value);
+  324:          unit.dimensions = this.dimensions.slice();
+  325:          unit.units = [];
+***** HC\ORIGINAL.JS
+  362:          unit.value = clone(this.value);
+  363:          unit.dimensions = this.dimensions.slice(0);
+  364:          unit.units = [];
+*****
+
+***** HC\0.js
+  341:      Unit.prototype._isDerived = function () {
+  342:          return this.units.length > 1 || Math.abs(this.units[0].power - 1) > 1e-15;
+***** HC\ORIGINAL.JS
+  380:      Unit.prototype._isDerived = function () {
+  381:          if (this.units.length === 0) {
+  382:              return false;
+  383:          }
+  384:          return this.units.length > 1 || Math.abs(this.units[0].power - 1) > 1e-15;
+*****
+
+***** HC\0.js
+  354:          if (value == null || this.units.length === 0) {
+  355:          } else if (this._isDerived()) {
+***** HC\ORIGINAL.JS
+  396:          if (value == null || this.units.length === 0) {
+  397:              return value;
+  398:          } else if (this._isDerived()) {
+*****
+
+***** HC\0.js
+  455:          }
+  456:      }
+***** HC\ORIGINAL.JS
+  498:          }
+  499:          return null;
+  500:      }
+*****
+
+***** HC\0.js
+  478:          if (!base)
+  479:              return;
+  480:          // All dimensions must be the same
+***** HC\ORIGINAL.JS
+  522:          if (!base)
+  523:              return false;
+  524:          // All dimensions must be the same
+*****
+
+***** HC\0.js
+  656:              if (other.value !== null) {
+  657:                  throw new Error();
+  658:              }
+***** HC\ORIGINAL.JS
+  700:              if (other.value !== null) {
+  701:                  throw new Error('Cannot convert to a unit with a value');
+  702:              }
+*****
+
+***** HC\0.js
+  660:              other.fixPrefix = true;
+  661:              return other;
+***** HC\ORIGINAL.JS
+  704:              other.fixPrefix = true;
+  705:              other.isUnitListSimplified = true;
+  706:              return other;
+*****
+
+***** HC\0.js
+  663:              if (!this.equalBase(valuelessUnit)) {
+  664:                  throw new Error();
+  665:              }
+***** HC\ORIGINAL.JS
+  708:              if (!this.equalBase(valuelessUnit)) {
+  709:                  throw new Error('Units do not match');
+  710:              }
+*****
+
+***** HC\0.js
+  671:              other.fixPrefix = true;
+  672:              return other;
+***** HC\ORIGINAL.JS
+  716:              other.fixPrefix = true;
+  717:              other.isUnitListSimplified = true;
+  718:              return other;
+*****
+
+***** HC\0.js
+  774:              }
+  775:              if (matchingUnit) {
+***** HC\ORIGINAL.JS
+  820:              }
+  821:              var value;
+  822:              var str;
+  823:              if (matchingUnit) {
+*****
+
+***** HC\0.js
+  784:                  // Build an representation from the base units of the current unit system
+  785:                  var missingBaseDim;
+  786:                  for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+***** HC\ORIGINAL.JS
+  832:                  // Build an representation from the base units of the current unit system
+  833:                  var missingBaseDim = false;
+  834:                  for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+*****
+
+***** HC\0.js
+  795:                          } else {
+  796:                          }
+***** HC\ORIGINAL.JS
+  843:                          } else {
+  844:                              missingBaseDim = true;
+  845:                          }
+*****
+
+***** HC\0.js
+  805:          }
+  806:      };
+***** HC\ORIGINAL.JS
+  854:          }
+  855:          this.isUnitListSimplified = true;
+  856:      };
+*****
+
+***** HC\0.js
+  809:          var proposedUnitList = [];
+  810:          for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+***** HC\ORIGINAL.JS
+  859:          var proposedUnitList = [];
+  860:          // Multiple units or units with powers are formatted like this:
+  861:          // 5 (kg m^2) / (s^3 mol)
+  862:          // Build an representation from the base units of the SI unit system
+  863:          var missingBaseDim = false;
+  864:          for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+*****
+
+***** HC\0.js
+  825:          ret.units = proposedUnitList;
+  826:          return ret;
+***** HC\ORIGINAL.JS
+  879:          ret.units = proposedUnitList;
+  880:          ret.isUnitListSimplified = true;
+  881:          return ret;
+*****
+
+***** HC\0.js
+  833:      Unit.prototype.formatUnits = function () {
+  834:          var strNum = '';
+***** HC\ORIGINAL.JS
+  888:      Unit.prototype.formatUnits = function () {
+  889:          // Lazy evaluation of the unit list
+  890:          this.simplifyUnitListLazy();
+  891:          var strNum = '';
+*****
+
+***** HC\0.js
+  895:          var isImaginary = false;
+  896:          if (typeof this.value !== 'undefined' && this.value !== null && type.isComplex(this.value)) {
+***** HC\ORIGINAL.JS
+  952:          var isImaginary = false;
+  953:          var isReal = true;
+  954:          if (typeof this.value !== 'undefined' && this.value !== null && type.isComplex(this.value)) {
+*****
+
+***** HC\0.js
+  898:              isImaginary = Math.abs(this.value.re) < 1e-14;
+  899:          }
+***** HC\ORIGINAL.JS
+  956:              isImaginary = Math.abs(this.value.re) < 1e-14;
+  957:              isReal = Math.abs(this.value.im) < 1e-14;
+  958:          }
+*****
+
+***** HC\0.js
+  937:      Unit.prototype._bestPrefix = function () {
+  938:          // find the best prefix value (resulting in the value of which
+***** HC\ORIGINAL.JS
+  996:      Unit.prototype._bestPrefix = function () {
+  997:          if (this.units.length !== 1) {
+  998:              throw new Error('Can only compute the best prefix for single units with integer powers, like kg, s^2, N^-1, and so 
+  999:  forth!');
+ 1000:          }
+ 1001:          if (Math.abs(this.units[0].power - Math.round(this.units[0].power)) >= 1e-14) {
+ 1002:              throw new Error('Can only compute the best prefix for single units with integer powers, like kg, s^2, N^-1, and so 
+ 1003:  forth!');
+ 1004:          }
+ 1005:          // find the best prefix value (resulting in the value of which
+*****
+
+***** HC\0.js
+ 1028:                  name: '',
+ 1029:                  value: 1
+ 1030:              }
+***** HC\ORIGINAL.JS
+ 1095:                  name: '',
+ 1096:                  value: 1,
+ 1097:                  scientific: true
+ 1098:              }
+*****
+
+***** HC\0.js
+ 1037:              },
+ 1038:              'h': { name: 'h' },
+ 1039:              'k': {
+***** HC\ORIGINAL.JS
+ 1105:              },
+ 1106:              'da': {
+ 1107:                  name: 'da',
+ 1108:                  value: 10,
+ 1109:                  scientific: false
+ 1110:              },
+ 1111:              'h': {
+ 1112:                  name: 'h',
+ 1113:                  value: 100,
+ 1114:                  scientific: false
+ 1115:              },
+ 1116:              'k': {
+*****
+
+***** HC\0.js
+ 1503:                  name: 'Mi',
+ 1504:                  value: Math.pow(),
+ 1505:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1580:                  name: 'Mi',
+ 1581:                  value: Math.pow(1024, 2),
+ 1582:                  scientific: true
+*****
+
+***** HC\0.js
+ 1508:                  name: 'Gi',
+ 1509:                  value: Math.pow(1024),
+ 1510:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1585:                  name: 'Gi',
+ 1586:                  value: Math.pow(1024, 3),
+ 1587:                  scientific: true
+*****
+
+***** HC\0.js
+ 1513:                  name: 'Ti',
+ 1514:                  value: Math.pow(),
+ 1515:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1590:                  name: 'Ti',
+ 1591:                  value: Math.pow(1024, 4),
+ 1592:                  scientific: true
+*****
+
+***** HC\0.js
+ 1518:                  name: 'Pi',
+ 1519:                  value: Math.pow(),
+ 1520:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1595:                  name: 'Pi',
+ 1596:                  value: Math.pow(1024, 5),
+ 1597:                  scientific: true
+*****
+
+***** HC\0.js
+ 1523:                  name: 'Ei',
+ 1524:                  value: Math.pow(),
+ 1525:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1600:                  name: 'Ei',
+ 1601:                  value: Math.pow(1024, 6),
+ 1602:                  scientific: true
+*****
+
+***** HC\0.js
+ 1528:                  name: 'Zi',
+ 1529:                  value: Math.pow(),
+ 1530:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1605:                  name: 'Zi',
+ 1606:                  value: Math.pow(1024, 7),
+ 1607:                  scientific: true
+*****
+
+***** HC\0.js
+ 1533:                  name: 'Yi',
+ 1534:                  value: Math.pow(),
+ 1535:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1610:                  name: 'Yi',
+ 1611:                  value: Math.pow(1024, 8),
+ 1612:                  scientific: true
+*****
+
+***** HC\0.js
+ 1590:                  name: 'mebi',
+ 1591:                  value: Math.pow(),
+ 1592:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1667:                  name: 'mebi',
+ 1668:                  value: Math.pow(1024, 2),
+ 1669:                  scientific: true
+*****
+
+***** HC\0.js
+ 1595:                  name: 'gibi',
+ 1596:                  value: Math.pow(),
+ 1597:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1672:                  name: 'gibi',
+ 1673:                  value: Math.pow(1024, 3),
+ 1674:                  scientific: true
+*****
+
+***** HC\0.js
+ 1600:                  name: 'tebi',
+ 1601:                  value: Math.pow(),
+ 1602:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1677:                  name: 'tebi',
+ 1678:                  value: Math.pow(1024, 4),
+ 1679:                  scientific: true
+*****
+
+***** HC\0.js
+ 1605:                  name: 'pebi',
+ 1606:                  value: Math.pow(),
+ 1607:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1682:                  name: 'pebi',
+ 1683:                  value: Math.pow(1024, 5),
+ 1684:                  scientific: true
+*****
+
+***** HC\0.js
+ 1610:                  name: 'exi',
+ 1611:                  value: Math.pow(),
+ 1612:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1687:                  name: 'exi',
+ 1688:                  value: Math.pow(1024, 6),
+ 1689:                  scientific: true
+*****
+
+***** HC\0.js
+ 1615:                  name: 'zebi',
+ 1616:                  value: Math.pow(),
+ 1617:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1692:                  name: 'zebi',
+ 1693:                  value: Math.pow(1024, 7),
+ 1694:                  scientific: true
+*****
+
+***** HC\0.js
+ 1620:                  name: 'yobi',
+ 1621:                  value: Math.pow(),
+ 1622:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1697:                  name: 'yobi',
+ 1698:                  value: Math.pow(1024, 8),
+ 1699:                  scientific: true
+*****
+
+***** HC\0.js
+ 1645:      for (var key in PREFIXES.LONG) {
+ 1646:      }
+***** HC\ORIGINAL.JS
+ 1722:      for (var key in PREFIXES.LONG) {
+ 1723:          if (PREFIXES.LONG.hasOwnProperty(key)) {
+ 1724:              PREFIXES.SHORTLONG[key] = PREFIXES.LONG[key];
+ 1725:          }
+ 1726:      }
+*****
+
+***** HC\0.js
+ 1670:          'CURRENT',
+ 1671:          'LUMINOUS_INTENSITY',
+***** HC\ORIGINAL.JS
+ 1750:          'CURRENT',
+ 1751:          'TEMPERATURE',
+ 1752:          'LUMINOUS_INTENSITY',
+*****
+
+***** HC\0.js
+ 1676:      var BASE_UNITS = {
+ 1677:          NONE: { dimensions: [] },
+ 1678:          MASS: { dimensions: [1] },
+ 1679:          LENGTH: {
+ 1680:              dimensions: [
+***** HC\ORIGINAL.JS
+ 1757:      var BASE_UNITS = {
+ 1758:          NONE: {
+ 1759:              dimensions: [
+*****
+
+***** HC\0.js
+ 1681:                  0,
+ 1682:                  1
+ 1683:              ]
+ 1684:          },
+ 1685:          TIME: {
+ 1686:              dimensions: [
+ 1687:                  0,
+***** HC\ORIGINAL.JS
+ 1760:                  0,
+ 1761:                  0,
+*****
+
+***** HC\0.js
+ 1688:                  0,
+ 1689:                  1,
+ 1690:                  0
+***** HC\ORIGINAL.JS
+ 1762:                  0,
+ 1763:                  0,
+ 1764:                  0,
+ 1765:                  0,
+ 1766:                  0,
+ 1767:                  0,
+ 1768:                  0
+*****
+
+***** HC\0.js
+ 1692:          },
+ 1693:          CURRENT: {
+ 1694:              dimensions: [
+ 1695:                  0,
+***** HC\ORIGINAL.JS
+ 1770:          },
+ 1771:          MASS: {
+ 1772:              dimensions: [
+ 1773:                  1,
+ 1774:                  0,
+*****
+
+***** HC\0.js
+ 1697:                  0,
+ 1698:                  1
+ 1699:              ]
+***** HC\ORIGINAL.JS
+ 1776:                  0,
+ 1777:                  0,
+ 1778:                  0,
+ 1779:                  0,
+ 1780:                  0,
+ 1781:                  0
+ 1782:              ]
+*****
+
+***** HC\0.js
+ 1700:          },
+ 1701:          TEMPERATURE: { dimensions: [] },
+ 1702:          LUMINOUS_INTENSITY: { dimensions: [] },
+ 1703:          AMOUNT_OF_SUBSTANCE: { dimensions: [] },
+ 1704:          FORCE: {
+ 1705:              dimensions: [
+ 1706:                  1,
+ 1707:                  1,
+ 1708:                  -2
+ 1709:              ]
+***** HC\ORIGINAL.JS
+ 1783:          },
+ 1784:          LENGTH: {
+ 1785:              dimensions: [
+ 1786:                  0,
+ 1787:                  1,
+ 1788:                  0,
+ 1789:                  0,
+ 1790:                  0,
+ 1791:                  0,
+ 1792:                  0,
+ 1793:                  0,
+ 1794:                  0
+ 1795:              ]
+*****
+
+***** HC\0.js
+ 1710:          },
+ 1711:          SURFACE: { dimensions: [] },
+ 1712:          VOLUME: { dimensions: [3] },
+ 1713:          ENERGY: {
+ 1714:              dimensions: [
+ 1715:                  1,
+ 1716:                  2,
+ 1717:                  -2
+ 1718:              ]
+***** HC\ORIGINAL.JS
+ 1796:          },
+ 1797:          TIME: {
+ 1798:              dimensions: [
+ 1799:                  0,
+ 1800:                  0,
+ 1801:                  1,
+ 1802:                  0,
+ 1803:                  0,
+ 1804:                  0,
+ 1805:                  0,
+ 1806:                  0,
+ 1807:                  0
+ 1808:              ]
+*****
+
+***** HC\0.js
+ 1719:          },
+ 1720:          POWER: {
+ 1721:              dimensions: [
+ 1722:                  1,
+ 1723:                  2,
+ 1724:                  -3
+ 1725:              ]
+***** HC\ORIGINAL.JS
+ 1809:          },
+ 1810:          CURRENT: {
+ 1811:              dimensions: [
+ 1812:                  0,
+ 1813:                  0,
+ 1814:                  0,
+ 1815:                  1,
+ 1816:                  0,
+ 1817:                  0,
+ 1818:                  0,
+ 1819:                  0,
+ 1820:                  0
+ 1821:              ]
+*****
+
+***** HC\0.js
+ 1726:          },
+ 1727:          PRESSURE: {
+ 1728:              dimensions: [
+ 1729:                  1,
+ 1730:                  -1,
+ 1731:                  -2
+ 1732:              ]
+ 1733:          },
+ 1734:          ELECTRIC_CHARGE: {
+ 1735:              dimensions: [
+***** HC\ORIGINAL.JS
+ 1822:          },
+ 1823:          TEMPERATURE: {
+ 1824:              dimensions: [
+*****
+
+***** HC\0.js
+ 1737:                  0,
+ 1738:                  1,
+ 1739:                  1
+ 1740:              ]
+***** HC\ORIGINAL.JS
+ 1826:                  0,
+ 1827:                  0,
+ 1828:                  0,
+ 1829:                  1,
+ 1830:                  0,
+ 1831:                  0,
+ 1832:                  0,
+ 1833:                  0
+ 1834:              ]
+*****
+
+***** HC\0.js
+ 1741:          },
+ 1742:          ELECTRIC_CAPACITANCE: {
+ 1743:              dimensions: [
+ 1744:                  -1,
+ 1745:                  -2,
+ 1746:                  4,
+ 1747:                  2
+ 1748:              ]
+***** HC\ORIGINAL.JS
+ 1835:          },
+ 1836:          LUMINOUS_INTENSITY: {
+ 1837:              dimensions: [
+ 1838:                  0,
+ 1839:                  0,
+ 1840:                  0,
+ 1841:                  0,
+ 1842:                  0,
+ 1843:                  1,
+ 1844:                  0,
+ 1845:                  0,
+ 1846:                  0
+ 1847:              ]
+*****
+
+***** HC\0.js
+ 1749:          },
+ 1750:          ELECTRIC_POTENTIAL: {
+ 1751:              dimensions: [
+ 1752:                  1,
+ 1753:                  2,
+ 1754:                  -3,
+ 1755:                  -1
+ 1756:              ]
+***** HC\ORIGINAL.JS
+ 1848:          },
+ 1849:          AMOUNT_OF_SUBSTANCE: {
+ 1850:              dimensions: [
+ 1851:                  0,
+ 1852:                  0,
+ 1853:                  0,
+ 1854:                  0,
+ 1855:                  0,
+ 1856:                  0,
+ 1857:                  1,
+ 1858:                  0,
+ 1859:                  0
+ 1860:              ]
+*****
+
+***** HC\0.js
+ 1757:          },
+ 1758:          ELECTRIC_RESISTANCE: {
+ 1759:              dimensions: [
+***** HC\ORIGINAL.JS
+ 1861:          },
+ 1862:          FORCE: {
+ 1863:              dimensions: [
+*****
+
+***** HC\0.js
+ 1760:                  1,
+ 1761:                  2,
+ 1762:                  -3,
+ 1763:                  -2
+ 1764:              ]
+***** HC\ORIGINAL.JS
+ 1864:                  1,
+ 1865:                  1,
+ 1866:                  -2,
+ 1867:                  0,
+ 1868:                  0,
+ 1869:                  0,
+ 1870:                  0,
+ 1871:                  0,
+ 1872:                  0
+ 1873:              ]
+*****
+
+***** HC\0.js
+ 1765:          },
+ 1766:          ELECTRIC_INDUCTANCE: {
+ 1767:              dimensions: [
+ 1768:                  1,
+ 1769:                  2,
+ 1770:                  -2,
+ 1771:                  -2
+ 1772:              ]
+***** HC\ORIGINAL.JS
+ 1874:          },
+ 1875:          SURFACE: {
+ 1876:              dimensions: [
+ 1877:                  0,
+ 1878:                  2,
+ 1879:                  0,
+ 1880:                  0,
+ 1881:                  0,
+ 1882:                  0,
+ 1883:                  0,
+ 1884:                  0,
+ 1885:                  0
+ 1886:              ]
+*****
+
+***** HC\0.js
+ 1773:          },
+ 1774:          ELECTRIC_CONDUCTANCE: {
+ 1775:              dimensions: [
+ 1776:                  -1,
+ 1777:                  -2,
+ 1778:                  3,
+ 1779:                  2
+ 1780:              ]
+***** HC\ORIGINAL.JS
+ 1887:          },
+ 1888:          VOLUME: {
+ 1889:              dimensions: [
+ 1890:                  0,
+ 1891:                  3,
+ 1892:                  0,
+ 1893:                  0,
+ 1894:                  0,
+ 1895:                  0,
+ 1896:                  0,
+ 1897:                  0,
+ 1898:                  0
+ 1899:              ]
+*****
+
+***** HC\0.js
+ 1781:          },
+ 1782:          MAGNETIC_FLUX: {
+ 1783:              dimensions: [
+***** HC\ORIGINAL.JS
+ 1900:          },
+ 1901:          ENERGY: {
+ 1902:              dimensions: [
+*****
+
+***** HC\0.js
+ 1786:                  -2,
+ 1787:                  -1
+ 1788:              ]
+***** HC\ORIGINAL.JS
+ 1905:                  -2,
+ 1906:                  0,
+ 1907:                  0,
+ 1908:                  0,
+ 1909:                  0,
+ 1910:                  0,
+ 1911:                  0
+ 1912:              ]
+*****
+
+***** HC\0.js
+ 1789:          },
+ 1790:          MAGNETIC_FLUX_DENSITY: {
+ 1791:              dimensions: [
+***** HC\ORIGINAL.JS
+ 1913:          },
+ 1914:          POWER: {
+ 1915:              dimensions: [
+*****
+
+***** HC\0.js
+ 1792:                  1,
+ 1793:                  0,
+ 1794:                  -2,
+ 1795:                  -1
+ 1796:              ]
+ 1797:          },
+ 1798:          FREQUENCY: {
+ 1799:              dimensions: [
+ 1800:                  0,
+***** HC\ORIGINAL.JS
+ 1916:                  1,
+ 1917:                  2,
+ 1918:                  -3,
+ 1919:                  0,
+*****
+
+***** HC\0.js
+ 1801:                  0,
+ 1802:                  -1
+ 1803:              ]
+***** HC\ORIGINAL.JS
+ 1920:                  0,
+ 1921:                  0,
+ 1922:                  0,
+ 1923:                  0,
+ 1924:                  0
+ 1925:              ]
+*****
+
+***** HC\0.js
+ 1804:          },
+ 1805:          ANGLE: {
+ 1806:              dimensions: [
+ 1807:                  0,
+***** HC\ORIGINAL.JS
+ 1926:          },
+ 1927:          PRESSURE: {
+ 1928:              dimensions: [
+ 1929:                  1,
+ 1930:                  -1,
+ 1931:                  -2,
+ 1932:                  0,
+*****
+
+***** HC\0.js
+ 1809:                  0,
+ 1810:                  1
+ 1811:              ]
+***** HC\ORIGINAL.JS
+ 1934:                  0,
+ 1935:                  0,
+ 1936:                  0,
+ 1937:                  0
+ 1938:              ]
+*****
+
+Erro ao tentar sincronizar novamente. Os arquivos s∆o muito diferentes
+***** HC\0.js
+ 1812:          },
+ 1813:          BIT: { dimensions: [] }
+ 1814:      };
+ 1815:      for (var key in BASE_UNITS) {
+ 1816:          BASE_UNITS[key].key = key;
+ 1817:      }
+ 1818:      var BASE_UNIT_NONE;
+ 1819:      var UNIT_NONE;
+ 1820:      var UNITS = {
+ 1821:          // length
+ 1822:          meter: {
+ 1823:              name: 'meter',
+ 1824:              base: BASE_UNITS.LENGTH,
+ 1825:              prefixes: PREFIXES.LONG,
+ 1826:              value: 1,
+ 1827:              offset: 0
+ 1828:          },
+ 1829:          inch: {
+ 1830:              name: 'inch',
+ 1831:              base: BASE_UNITS.LENGTH,
+ 1832:              prefixes: PREFIXES.NONE,
+ 1833:              value: 0.0254,
+ 1834:              offset: 0
+ 1835:          },
+ 1836:          foot: {
+ 1837:              name: 'foot',
+ 1838:              base: BASE_UNITS.LENGTH,
+ 1839:              prefixes: PREFIXES.NONE,
+ 1840:              value: 0.3048,
+ 1841:              offset: 0
+ 1842:          },
+ 1843:          yard: {
+ 1844:              name: 'yard',
+ 1845:              base: BASE_UNITS.LENGTH,
+ 1846:              prefixes: PREFIXES.NONE,
+ 1847:              value: 0.9144,
+ 1848:              offset: 0
+ 1849:          },
+ 1850:          mile: {
+ 1851:              name: 'mile',
+ 1852:              base: BASE_UNITS.LENGTH,
+ 1853:              prefixes: PREFIXES.NONE,
+ 1854:              value: 1609.344,
+ 1855:              offset: 0
+ 1856:          },
+ 1857:          link: {
+ 1858:              name: 'link',
+ 1859:              base: BASE_UNITS.LENGTH,
+ 1860:              prefixes: PREFIXES.NONE,
+ 1861:              value: 0.201168,
+ 1862:              offset: 0
+ 1863:          },
+ 1864:          rod: {
+ 1865:              name: 'rod',
+ 1866:              base: BASE_UNITS.LENGTH,
+ 1867:              prefixes: PREFIXES.NONE,
+ 1868:              value: 5.02921,
+ 1869:              offset: 0
+ 1870:          },
+ 1871:          chain: {
+ 1872:              name: 'chain',
+ 1873:              base: BASE_UNITS.LENGTH,
+ 1874:              prefixes: PREFIXES.NONE,
+ 1875:              value: 20.1168,
+ 1876:              offset: 0
+ 1877:          },
+ 1878:          angstrom: {
+ 1879:              name: 'angstrom',
+ 1880:              base: BASE_UNITS.LENGTH,
+ 1881:              prefixes: PREFIXES.NONE,
+ 1882:              value: 1e-10,
+ 1883:              offset: 0
+ 1884:          },
+ 1885:          m: {
+ 1886:              name: 'm',
+ 1887:              base: BASE_UNITS.LENGTH,
+ 1888:              prefixes: PREFIXES.SHORT,
+ 1889:              value: 1,
+ 1890:              offset: 0
+ 1891:          },
+ 1892:          'in': {
+ 1893:              name: 'in',
+ 1894:              base: BASE_UNITS.LENGTH,
+ 1895:              prefixes: PREFIXES.NONE,
+ 1896:              value: 0.0254,
+ 1897:              offset: 0
+ 1898:          },
+ 1899:          ft: {
+ 1900:              name: 'ft',
+ 1901:              base: BASE_UNITS.LENGTH,
+ 1902:              prefixes: PREFIXES.NONE,
+ 1903:              value: 0.3048,
+ 1904:              offset: 0
+ 1905:          },
+ 1906:          yd: {
+ 1907:              name: 'yd',
+ 1908:              base: BASE_UNITS.LENGTH,
+ 1909:              prefixes: PREFIXES.NONE,
+ 1910:              value: 0.9144,
+ 1911:              offset: 0
+***** HC\ORIGINAL.JS
+ 1939:          },
+ 1940:          ELECTRIC_CHARGE: {
+ 1941:              dimensions: [
+ 1942:                  0,
+ 1943:                  0,
+ 1944:                  1,
+ 1945:                  1,
+ 1946:                  0,
+ 1947:                  0,
+ 1948:                  0,
+ 1949:                  0,
+ 1950:                  0
+ 1951:              ]
+ 1952:          },
+ 1953:          ELECTRIC_CAPACITANCE: {
+ 1954:              dimensions: [
+ 1955:                  -1,
+ 1956:                  -2,
+ 1957:                  4,
+ 1958:                  2,
+ 1959:                  0,
+ 1960:                  0,
+ 1961:                  0,
+ 1962:                  0,
+ 1963:                  0
+ 1964:              ]
+ 1965:          },
+ 1966:          ELECTRIC_POTENTIAL: {
+ 1967:              dimensions: [
+ 1968:                  1,
+ 1969:                  2,
+ 1970:                  -3,
+ 1971:                  -1,
+ 1972:                  0,
+ 1973:                  0,
+ 1974:                  0,
+ 1975:                  0,
+ 1976:                  0
+ 1977:              ]
+ 1978:          },
+ 1979:          ELECTRIC_RESISTANCE: {
+ 1980:              dimensions: [
+ 1981:                  1,
+ 1982:                  2,
+ 1983:                  -3,
+ 1984:                  -2,
+ 1985:                  0,
+ 1986:                  0,
+ 1987:                  0,
+ 1988:                  0,
+ 1989:                  0
+ 1990:              ]
+ 1991:          },
+ 1992:          ELECTRIC_INDUCTANCE: {
+ 1993:              dimensions: [
+ 1994:                  1,
+ 1995:                  2,
+ 1996:                  -2,
+ 1997:                  -2,
+ 1998:                  0,
+ 1999:                  0,
+ 2000:                  0,
+ 2001:                  0,
+ 2002:                  0
+ 2003:              ]
+ 2004:          },
+ 2005:          ELECTRIC_CONDUCTANCE: {
+ 2006:              dimensions: [
+ 2007:                  -1,
+ 2008:                  -2,
+ 2009:                  3,
+ 2010:                  2,
+ 2011:                  0,
+ 2012:                  0,
+ 2013:                  0,
+ 2014:                  0,
+ 2015:                  0
+ 2016:              ]
+ 2017:          },
+ 2018:          MAGNETIC_FLUX: {
+ 2019:              dimensions: [
+ 2020:                  1,
+ 2021:                  2,
+ 2022:                  -2,
+ 2023:                  -1,
+ 2024:                  0,
+ 2025:                  0,
+ 2026:                  0,
+ 2027:                  0,
+ 2028:                  0
+ 2029:              ]
+ 2030:          },
+ 2031:          MAGNETIC_FLUX_DENSITY: {
+ 2032:              dimensions: [
+ 2033:                  1,
+ 2034:                  0,
+ 2035:                  -2,
+ 2036:                  -1,
+ 2037:                  0,
+ 2038:                  0,
+*****
+

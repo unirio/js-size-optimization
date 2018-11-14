@@ -1,0 +1,15 @@
+counter;index;instructionType;totalChars 
+0;0;original;1673 
+7;4535;Literal;1552 
+37;1733;Literal;1552 
+69;384;Literal;1541 
+176;2788;Identifier;1515 
+178;1972;Identifier;1512 
+183;4337;Literal;1458 
+195;370;Literal;1447 
+205;1132;Literal;1435 
+256;1201;Line;1425 
+262;109;Identifier;1398 
+306;3902;Identifier;1324 
+312;1098;Line;1311 
+674;2738;Identifier;1268 
