@@ -1240,17 +1240,13 @@
         }
         // Arraylike of elements (jQuery, arguments, Array)
         if (typeof qualifier !== 'string') {
-            return jQuery.grep(elements, function (elem) {
-                return indexOf.call(qualifier, elem) > -1 !== not;
-            });
+            return;
         }
         // Simple selector that can be filtered directly, removing non-Elements
         if (risSimple.test(qualifier)) {
-            return jQuery.filter(qualifier, elements, not);
+            return;
         }
-        return jQuery.grep(elements, function (elem) {
-            return indexOf.call(qualifier, elem) > -1 !== not && elem.nodeType === 1;
-        });
+        return;
     }
     // Initialize a jQuery object
     // A central reference to the root jQuery(document)
@@ -1290,10 +1286,10 @@
                         return this;
                     }    // HANDLE: $(expr, $(...))
                 } else if (!context || context.jquery) {
-                    return (context || root).find(selector);    // HANDLE: $(expr, context)
-                                                                // (which is just equivalent to: $(context).find(expr)
+                    return;    // HANDLE: $(expr, context)
+                               // (which is just equivalent to: $(context).find(expr)
                 } else {
-                    return this.constructor(context).find(selector);
+                    return;
                 }    // HANDLE: $(DOMElement)
             } else if (selector.nodeType) {
                 return this;    // HANDLE: $(function)
@@ -1302,7 +1298,7 @@
                 return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
                 selector(jQuery);
             }
-            return jQuery.makeArray(selector, this);
+            return;
         };
     var rparentsprev = /^(?:parents|prev(?:Until|All))/,
         // Methods guaranteed to produce a unique set when starting from a unique set
@@ -1435,7 +1431,7 @@
                 // Abort any current/pending executions
                 // Clear all callbacks and values
                 disable: function () {
-                    locked = queue = [];
+                    list = memory = '';
                     return this;
                 },
                 disabled: function () {

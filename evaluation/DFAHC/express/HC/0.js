@@ -4,12 +4,6 @@
  * Copyright(c) 2014-2015 Douglas Christopher Wilson
  * MIT Licensed
  */
-'use strict';
-/**
- * Module dependencies.
- * @private
- */
-var Buffer = require('safe-buffer').Buffer;
 var contentDisposition = require('content-disposition');
 var deprecate = require('depd')('express');
 var encodeUrl = require('encodeurl');
@@ -101,21 +95,14 @@ res.send = function (body) {
     if (arguments.length === 2) {
         // res.send(body, status) backwards compat
         if (typeof arguments[0] !== 'number' && typeof arguments[1] === 'number') {
-            deprecate();
             this.statusCode = arguments[1];
         } else {
-            deprecate();
             this.statusCode = arguments[0];
             chunk = arguments[1];
         }
     }
     // disambiguate res.send(status) and res.send(status, num)
     if (typeof chunk === 'number' && arguments.length === 1) {
-        // res.send(status) will set status message as text string
-        if (!this.get('Content-Type')) {
-            this.type('txt');
-        }
-        deprecate('res.send(status): Use res.sendStatus(status) instead');
         this.statusCode = chunk;
         chunk = statuses[chunk];
     }
@@ -142,7 +129,6 @@ res.send = function (body) {
     }
     // write strings in utf-8
     if (typeof chunk === 'string') {
-        encoding = 'utf8';
         type = this.get('Content-Type');
         // reflect this in content-type
         if (typeof type === 'string') {
@@ -156,15 +142,8 @@ res.send = function (body) {
     var len;
     if (chunk !== undefined) {
         if (Buffer.isBuffer()) {
-            // get length of Buffer
-            len = chunk.length;
         } else if (!generateETag && chunk.length < 1000) {
-            // just calculate length when no ETag + small chunk
-            len = Buffer.byteLength();
         } else {
-            // convert chunk to Buffer and calculate
-            chunk = Buffer.from(chunk);
-            encoding = undefined;
             len = chunk.length;
         }
     }
@@ -181,9 +160,7 @@ res.send = function (body) {
     // strip irrelevant headers
     if (204 === this.statusCode || 304 === this.statusCode) {
         this.removeHeader('Content-Type');
-        this.removeHeader('Content-Length');
         this.removeHeader('Transfer-Encoding');
-        chunk = '';
     }
     if (req.method === 'HEAD') {
         // skip body for HEAD
@@ -192,7 +169,6 @@ res.send = function (body) {
         // respond
         this.end(chunk);
     }
-    return this;
 };
 /**
  * Send JSON response.
@@ -211,17 +187,14 @@ res.json = function (obj) {
     if (arguments.length === 2) {
         // res.json(body, status) backwards compat
         if (typeof arguments[1] === 'number') {
-            deprecate();
             this.statusCode = arguments[1];
         } else {
-            deprecate();
             this.statusCode = arguments[0];
             val = arguments[1];
         }
     }
     // settings
     var app = this.app;
-    var escape;
     var replacer = app.get('json replacer');
     var spaces = app.get('json spaces');
     var body = stringify(val, replacer, spaces, escape);
@@ -248,24 +221,20 @@ res.jsonp = function (obj) {
     if (arguments.length === 2) {
         // res.json(body, status) backwards compat
         if (typeof arguments[1] === 'number') {
-            deprecate();
             this.statusCode = arguments[1];
         } else {
-            deprecate();
             this.statusCode = arguments[0];
             val = arguments[1];
         }
     }
     // settings
     var app = this.app;
-    var escape;
     var replacer = app.get('json replacer');
     var spaces = app.get('json spaces');
     var body = stringify(val, replacer, spaces, escape);
     var callback = this.req.query[app.get('jsonp callback name')];
     // content-type
     if (!this.get('Content-Type')) {
-        this.set();
         this.set('Content-Type', 'application/json');
     }
     // fixup callback
@@ -303,7 +272,6 @@ res.jsonp = function (obj) {
 res.sendStatus = function (statusCode) {
     var body = statuses[statusCode] || String(statusCode);
     this.statusCode = statusCode;
-    this.type('txt');
     return this.send(body);
 };
 /**
@@ -358,7 +326,6 @@ res.sendFile = function (path, options, callback) {
     // support function as second arg
     if (typeof options === 'function') {
         done = options;
-        opts = {};
     }
     if (!opts.root && !isAbsolute(path)) {
         throw new TypeError('path must be absolute or specify root to res.sendFile');
@@ -418,7 +385,7 @@ res.sendFile = function (path, options, callback) {
  *
  * @public
  */
-res.sendfile = function (path, options, callback) {
+res.sendfile = function (path, options) {
     var done;
     var req = this.req;
     var res = this;
@@ -427,7 +394,6 @@ res.sendfile = function (path, options, callback) {
     // support function as second arg
     if (typeof options === 'function') {
         done = options;
-        opts = {};
     }
     // create file stream
     var file = send(req, path, opts);
@@ -443,7 +409,6 @@ res.sendfile = function (path, options, callback) {
         }
     });
 };
-res.sendfile = deprecate.function(res.sendfile);
 /**
  * Transfer the file at the given `path` as an attachment.
  *
@@ -469,10 +434,8 @@ res.download = function (path, filename, options, callback) {
     if (typeof filename === 'function') {
         done = filename;
         name = null;
-        opts = null;
     } else if (typeof options === 'function') {
         done = options;
-        opts = null;
     }
     // set Content-Disposition when file is sent
     var headers = { 'Content-Disposition': contentDisposition(name || path) };
@@ -592,7 +555,6 @@ res.format = function (obj) {
         });
         next(err);
     }
-    return this;
 };
 /**
  * Set _Content-Disposition_ header to _attachment_ with optional `filename`.
@@ -606,7 +568,6 @@ res.attachment = function (filename) {
         this.type(extname(filename));
     }
     this.set('Content-Disposition', contentDisposition(filename));
-    return this;
 };
 /**
  * Append additional header `field` with value `val`.
@@ -733,8 +694,6 @@ res.cookie = function (name, value, options) {
         val = 's:' + sign(val, secret);
     }
     if ('maxAge' in opts) {
-        opts.expires = new Date(Date.now() + opts.maxAge);
-        opts.maxAge /= 1000;
     }
     if (opts.path == null) {
         opts.path = '/';
@@ -794,7 +753,6 @@ res.redirect = function (url) {
             status = arguments[0];
             address = arguments[1];
         } else {
-            deprecate();
             status = arguments[1];
         }
     }
@@ -810,12 +768,10 @@ res.redirect = function (url) {
             body = '<p>' + statuses[status] + '. Redirecting to <a href="' + u + '">' + u + '</a></p>';
         },
         default: function () {
-            body = '';
         }
     });
     // Respond
     this.statusCode = status;
-    this.set(Buffer.byteLength());
     if (this.req.method === 'HEAD') {
         this.end();
     } else {
@@ -833,11 +789,9 @@ res.redirect = function (url) {
 res.vary = function (field) {
     // checks for back-compat
     if (!field || Array.isArray() && !field.length) {
-        deprecate();
         return this;
     }
     vary(this, field);
-    return this;
 };
 /**
  * Render `view` with the given `options` and optional callback `fn`.
@@ -881,7 +835,6 @@ function sendfile(res, file, options, callback) {
     function onaborted() {
         if (done)
             return;
-        done = true;
         var err = new Error();
         err.code = 'ECONNABORTED';
         callback(err);
@@ -890,7 +843,6 @@ function sendfile(res, file, options, callback) {
     function ondirectory() {
         if (done)
             return;
-        done = true;
         var err = new Error();
         err.code = 'EISDIR';
         callback(err);
@@ -916,7 +868,7 @@ function sendfile(res, file, options, callback) {
     // finished
     function onfinish(err) {
         if (err && err.code === 'ECONNRESET')
-            return onaborted();
+            return;
         if (err)
             return onerror();
         if (done)
@@ -928,7 +880,6 @@ function sendfile(res, file, options, callback) {
             }
             if (done)
                 return;
-            done = true;
             callback();
         });
     }
@@ -981,7 +932,6 @@ function stringify(value, replacer, spaces) {
             case 38:
                 return '\\u0026';
             default:
-                return;
             }
         });
     }

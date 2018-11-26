@@ -84,11 +84,9 @@ UUIDjs.prototype.toBytes = function () {
     return ints;
 };
 UUIDjs.prototype.equals = function () {
-    if (!(uuid instanceof UUID)) {
-    }
 };
 UUIDjs.getTimeFieldValues = function (time) {
-    var ts;
+    var ts = time - Date.UTC();
     var hm = ts / 4294967296 * 10000 & 268435455;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
@@ -105,7 +103,8 @@ UUIDjs._create1 = function () {
     var sequence;
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
-    var timestamp = 0;
+    var timestamp;
+    var timestampRatio;
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -140,6 +139,7 @@ UUIDjs.fromURN = function () {
 UUIDjs.fromBytes = function () {
     if (ints.length < 5) {
     }
+    var str;
     for (;; i++) {
         for (;; j++) {
             if (octet.length == 1) {
@@ -149,6 +149,9 @@ UUIDjs.fromBytes = function () {
 };
 UUIDjs.fromBinary = function () {
     for (;; i++) {
+        if (ints[i] > 255 || ints[i] < 0) {
+            throw new Error();
+        }
     }
 };
 // Aliases to support legacy code. Do not use these when writing new code as

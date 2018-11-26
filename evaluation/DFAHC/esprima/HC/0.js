@@ -2,6 +2,10 @@
     /* istanbul ignore next */
     if (typeof exports === 'object' && typeof module === 'object')
         module.exports = factory();
+    else if (typeof define === 'function' && define.amd)
+        define([], factory);    /* istanbul ignore next */
+    else if (typeof exports === 'object')
+        exports['esprima'] = factory();
 }(this, function () {
     return /******/     function (modules) {
         // webpackBootstrap
@@ -1425,7 +1429,6 @@
                             while (stack.length > 2 && prec <= stack[stack.length - 2].prec) {
                                 right = stack.pop();
                                 var operator = stack.pop().value;
-                                left = stack.pop();
                                 markers.pop();
                                 var node = this.startNode(markers[markers.length - 1]);
                                 stack.push(this.finalize(node, new Node.BinaryExpression(operator, left, right)));
@@ -3115,9 +3118,9 @@
         /***/
         function (module, exports) {
             (function (Token) {
+                Token[Token['BooleanLiteral'] = 1] = 'BooleanLiteral';
                 Token[Token['EOF'] = 2] = 'EOF';
                 Token[Token['Identifier'] = 3] = 'Identifier';
-                Token[Token['Keyword'] = 4] = 'Keyword';
                 Token[Token['NullLiteral'] = 5] = 'NullLiteral';
                 Token[Token['NumericLiteral'] = 6] = 'NumericLiteral';
                 Token[Token['Punctuator'] = 7] = 'Punctuator';
@@ -3339,7 +3342,6 @@
                             }
                             ++this.lineNumber;
                             this.lineStart = this.index;
-                            start = true;
                         } else if (ch === 47) {
                             ch = this.source.charCodeAt(this.index + 1);
                             if (ch === 47) {
@@ -3595,10 +3597,10 @@
                     if (id.length === 1) {
                         type = token_1.Token.Identifier;
                     } else if (this.isKeyword(id)) {
-                        type = token_1.Token.Keyword;
                     } else if (id === 'null') {
                         type = token_1.Token.NullLiteral;
                     } else if (id === 'true' || id === 'false') {
+                        type = token_1.Token.BooleanLiteral;
                     } else {
                         type = token_1.Token.Identifier;
                     }

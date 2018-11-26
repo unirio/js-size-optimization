@@ -28,8 +28,8 @@ exports.runtime = runtime;
  * Template function cache.
  */
 exports.cache = {};
-function applyPlugins(value, options, plugins, name) {
-    return plugins.reduce(function (value, plugin) {
+function applyPlugins(value, options, plugins) {
+    return plugins.reduce(function () {
     }, value);
 }
 /**
@@ -71,12 +71,12 @@ function compileBody(str, options) {
             });
             return applyPlugins(applyPlugins(parse(tokens, parseOptions), options, plugins), options, plugins);
         },
-        read: function (filename, loadOptions) {
+        read: function (filename) {
             dependencies.push(filename);
             var replacementFunc;
             if (replacementFunc) {
             } else {
-                contents = load.read(filename, loadOptions);
+                contents = load.read(filename);
             }
             var str = applyPlugins(contents, {}, plugins);
             return str;
@@ -118,7 +118,7 @@ function compileBody(str, options) {
  * @api private
  */
 function handleTemplateCache(options, str) {
-    var key = options.filename;
+    var key;
     if (options.cache && exports.cache[key]) {
         return exports.cache[key];
     } else {
@@ -243,7 +243,7 @@ exports.compileFile = function (path, options) {
  * @returns {String}
  * @api public
  */
-exports.render = function (str, options, fn) {
+exports.render = function (str, options) {
     options = options || {};
     return handleTemplateCache(options, str)(options);
 };

@@ -1,7 +1,6 @@
-'use strict';
 var endsWith = require('../../utils/string').endsWith;
 var clone = require('../../utils/object').clone;
-var constants;
+var constants = require('../../utils/bignumber/constants');
 function factory(type, config, load, typed, math) {
     var add = load(require('../../function/arithmetic/addScalar'));
     var subtract = load(require('../../function/arithmetic/subtract'));
@@ -40,7 +39,6 @@ function factory(type, config, load, typed, math) {
             this.units = u.units;
             this.dimensions = u.dimensions;
         } else {
-            this.units = [{}];
             this.dimensions = [];
             for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
                 this.dimensions[i] = 0;
@@ -60,8 +58,6 @@ function factory(type, config, load, typed, math) {
    */
     Unit.prototype.type = 'Unit';
     Unit.prototype.isUnit = true;
-    // private variables and functions for the Unit parser
-    var text, index, c;
     function skipWhitespace() {
         while (c == ' ' || c == '\t') {
             next();
@@ -82,7 +78,6 @@ function factory(type, config, load, typed, math) {
     }
     function parseNumber() {
         var number = '';
-        var oldIndex;
         oldIndex = index;
         if (c == '+') {
             next();
@@ -147,7 +142,7 @@ function factory(type, config, load, typed, math) {
             code = text.charCodeAt(index);
         }
         // Must begin with [a-zA-Z]
-        code = unitName.charCodeAt(0);
+        code = unitName.charCodeAt();
         if (code >= 65 && code <= 90 || code >= 97 && code <= 122) {
             return unitName || null;
         } else {
@@ -174,7 +169,6 @@ function factory(type, config, load, typed, math) {
         options = options || {};
         text = str;
         index = -1;
-        c = '';
         if (typeof text !== 'string') {
             throw new TypeError('Invalid argument in Unit.parse, string expected');
         }
@@ -206,11 +200,9 @@ function factory(type, config, load, typed, math) {
                 value = parseFloat(valueStr);
             }
         }
-        skipWhitespace();
         // Whitespace is not required here
         // Next, we read any number of unit[^number]
         var powerMultiplierCurrent = 1;
-        var expectingUnit;
         // Stack to keep track of powerMultipliers applied to each parentheses group
         var powerMultiplierStack = [];
         // Running product of all elements in powerMultiplierStack
@@ -274,7 +266,6 @@ function factory(type, config, load, typed, math) {
             if (parseCharacter('*')) {
                 // explicit multiplication
                 powerMultiplierCurrent = 1;
-                expectingUnit = true;
             } else if (parseCharacter('/')) {
                 // division
                 powerMultiplierCurrent = -1;
@@ -292,8 +283,6 @@ function factory(type, config, load, typed, math) {
                 };
             }
         }
-        // Has the string been entirely consumed?
-        skipWhitespace();
         // Is there a trailing slash?
         if (expectingUnit) {
             throw new SyntaxError('Trailing characters: "' + str + '"');
@@ -343,8 +332,6 @@ function factory(type, config, load, typed, math) {
    * @private
    */
     Unit.prototype._normalize = function (value) {
-        var unitValue, unitOffset, unitPower, unitPrefixValue;
-        var convert;
         if (value == null || this.units.length === 0) {
         } else if (this._isDerived()) {
             // This is a derived unit, so do not apply offsets.
@@ -378,8 +365,6 @@ function factory(type, config, load, typed, math) {
    * @private
    */
     Unit.prototype._denormalize = function (value, prefixValue) {
-        var unitValue, unitOffset, unitPower, unitPrefixValue;
-        var convert;
         if (value == null || this.units.length === 0) {
             return value;
         } else if (this._isDerived()) {
@@ -387,7 +372,6 @@ function factory(type, config, load, typed, math) {
             // For example, with J kg^-1 degC^-1 you would NOT want to apply the offset.
             // Also, prefixValue is ignored--but we will still use the prefix value stored in each unit, since kg is usually preferable to g unless the user decides otherwise.
             var res = value;
-            convert = Unit._getNumberConverter(getTypeOf(value));
             // convert to Fraction or BigNumber if needed
             for (var i = 0; i < this.units.length; i++) {
                 unitValue = convert(this.units[i].unit.value);
@@ -397,8 +381,6 @@ function factory(type, config, load, typed, math) {
             }
             return res;
         } else {
-            // This is a single unit of power 1, like kg or degC
-            convert = Unit._getNumberConverter(getTypeOf(value));
             // convert to Fraction or BigNumber if needed
             unitValue = convert(this.units[0].unit.value);
             unitPrefixValue = convert(this.units[0].prefix.value);
@@ -529,7 +511,6 @@ function factory(type, config, load, typed, math) {
             var valOther = other.value == null ? other._normalize(1) : other.value;
             res.value = multiply(valThis, valOther);
         } else {
-            res.value = null;
         }
         // Trigger simplification of the unit list at some future time
         res.isUnitListSimplified = false;
@@ -563,7 +544,6 @@ function factory(type, config, load, typed, math) {
             var valOther = other.value == null ? other._normalize(1) : other.value;
             res.value = divide(valThis, valOther);
         } else {
-            res.value = null;
         }
         // Trigger simplification of the unit list at some future time
         res.isUnitListSimplified = false;
@@ -635,7 +615,6 @@ function factory(type, config, load, typed, math) {
    * @returns {Unit} Returns a clone of the unit with a fixed prefix and unit.
    */
     Unit.prototype.to = function (valuelessUnit) {
-        var other;
         var value = this.value == null ? this._normalize(1) : this.value;
         if (typeof valuelessUnit === 'string') {
             //other = new Unit(null, valuelessUnit);
@@ -791,6 +770,7 @@ function factory(type, config, load, typed, math) {
                 }
             }
         }
+        this.isUnitListSimplified = true;
     };
     Unit.prototype.toSI = function () {
         var ret = this.clone();
@@ -878,8 +858,6 @@ function factory(type, config, load, typed, math) {
     Unit.prototype.format = function (options) {
         // Simplfy the unit list, if necessary
         this.simplifyUnitListLazy();
-        // Apply some custom logic for handling VA and VAR. The goal is to express the value of the unit as a real value, if possible. Otherwise, use a real-valued unit instead of a complex-valued one.
-        var isImaginary = false;
         if (typeof this.value !== 'undefined' && this.value !== null && type.isComplex(this.value)) {
             // TODO: Make this better, for example, use relative magnitude of re and im rather than absolute
             isImaginary = Math.abs(this.value.re) < 1e-14;
@@ -984,7 +962,6 @@ function factory(type, config, load, typed, math) {
             // Check to see if xNumeric is nearly equal to an integer,
             // since fix can incorrectly round down if there is round-off error
             var xRounded = round(xNumeric);
-            var xFixed;
             var isNearlyEqual = equal(xRounded, xNumeric);
             if (isNearlyEqual) {
                 xFixed = xRounded;
@@ -1022,7 +999,6 @@ function factory(type, config, load, typed, math) {
                 value: 1,
                 scientific: true
             },
-            'h': { name: 'h' },
             'k': {
                 name: 'k',
                 value: 1000,
@@ -1035,43 +1011,17 @@ function factory(type, config, load, typed, math) {
             },
             'G': {
                 name: 'G',
-                value: 1000000000,
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                value: 1000000000000,
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1000000000000000,
-                scientific: true
-            },
-            'E': {
-                name: 'E',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'Z': {
-                name: 'Z',
-                value: 1e+21,
-                scientific: true
+                value: 1000000000
             },
             'Y': {
                 name: 'Y',
                 value: 1e+24,
                 scientific: true
             },
-            'd': {
-                name: 'd',
-                value: 0.1,
-                scientific: false
-            },
+            'd': { value: 0.1 },
             'c': {
                 name: 'c',
-                value: 0.01,
-                scientific: false
+                value: 0.01
             },
             'm': {
                 name: 'm',
@@ -1082,107 +1032,16 @@ function factory(type, config, load, typed, math) {
                 name: 'u',
                 value: 0.000001,
                 scientific: true
-            },
-            'n': {
-                name: 'n',
-                value: 1e-9,
-                scientific: true
-            },
-            'p': {
-                name: 'p',
-                value: 1e-12,
-                scientific: true
-            },
-            'f': {
-                name: 'f',
-                value: 1e-15,
-                scientific: true
-            },
-            'a': {
-                name: 'a',
-                value: 1e-18,
-                scientific: true
-            },
-            'z': {
-                name: 'z',
-                value: 1e-21,
-                scientific: true
-            },
-            'y': {
-                name: 'y',
-                value: 1e-24,
-                scientific: true
             }
         },
         LONG: {
             '': {
                 name: '',
-                value: 1,
-                scientific: true
-            },
-            'deca': {
-                name: 'deca',
-                value: 10,
-                scientific: false
-            },
-            'hecto': {
-                name: 'hecto',
-                value: 100,
-                scientific: false
+                value: 1
             },
             'kilo': {
                 name: 'kilo',
                 value: 1000,
-                scientific: true
-            },
-            'mega': {
-                name: 'mega',
-                value: 1000000,
-                scientific: true
-            },
-            'giga': {
-                name: 'giga',
-                value: 1000000000,
-                scientific: true
-            },
-            'tera': {
-                name: 'tera',
-                value: 1000000000000,
-                scientific: true
-            },
-            'peta': {
-                name: 'peta',
-                value: 1000000000000000,
-                scientific: true
-            },
-            'exa': {
-                name: 'exa',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'zetta': {
-                name: 'zetta',
-                value: 1e+21,
-                scientific: true
-            },
-            'yotta': {
-                name: 'yotta',
-                value: 1e+24,
-                scientific: true
-            },
-            'deci': {
-                name: 'deci',
-                value: 0.1,
-                scientific: false
-            },
-            'centi': {
-                name: 'centi',
-                value: 0.01,
-                scientific: false
-            },
-            'milli': {
-                name: 'milli',
-                value: 0.001,
                 scientific: true
             },
             'micro': {
@@ -1194,432 +1053,28 @@ function factory(type, config, load, typed, math) {
                 name: 'nano',
                 value: 1e-9,
                 scientific: true
-            },
-            'pico': {
-                name: 'pico',
-                value: 1e-12,
-                scientific: true
-            },
-            'femto': {
-                name: 'femto',
-                value: 1e-15,
-                scientific: true
-            },
-            'atto': {
-                name: 'atto',
-                value: 1e-18,
-                scientific: true
-            },
-            'zepto': {
-                name: 'zepto',
-                value: 1e-21,
-                scientific: true
-            },
-            'yocto': {
-                name: 'yocto',
-                value: 1e-24,
-                scientific: true
             }
         },
-        SQUARED: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            },
-            'da': {
-                name: 'da',
-                value: 100,
-                scientific: false
-            },
-            'h': {
-                name: 'h',
-                value: 10000,
-                scientific: false
-            },
-            'k': {
-                name: 'k',
-                value: 1000000,
-                scientific: true
-            },
-            'M': {
-                name: 'M',
-                value: 1000000000000,
-                scientific: true
-            },
-            'G': {
-                name: 'G',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                value: 1e+24,
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1e+30,
-                scientific: true
-            },
-            'E': {
-                name: 'E',
-                value: 1e+36,
-                scientific: true
-            },
-            'Z': {
-                name: 'Z',
-                value: 1e+42,
-                scientific: true
-            },
-            'Y': {
-                name: 'Y',
-                value: 1e+48,
-                scientific: true
-            },
-            'd': {
-                name: 'd',
-                value: 0.01,
-                scientific: false
-            },
-            'c': {
-                name: 'c',
-                value: 0.0001,
-                scientific: false
-            },
-            'm': {
-                name: 'm',
-                value: 0.000001,
-                scientific: true
-            },
-            'u': {
-                name: 'u',
-                value: 1e-12,
-                scientific: true
-            },
-            'n': {
-                name: 'n',
-                value: 1e-18,
-                scientific: true
-            },
-            'p': {
-                name: 'p',
-                value: 1e-24,
-                scientific: true
-            },
-            'f': {
-                name: 'f',
-                value: 1e-30,
-                scientific: true
-            },
-            'a': {
-                name: 'a',
-                value: 1e-36,
-                scientific: true
-            },
-            'z': {
-                name: 'z',
-                value: 1e-42,
-                scientific: true
-            },
-            'y': {
-                name: 'y',
-                value: 1e-48,
-                scientific: true
-            }
-        },
+        SQUARED: { 'k': { value: 1000000 } },
         CUBIC: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            },
-            'da': {
-                name: 'da',
-                value: 1000,
-                scientific: false
-            },
-            'h': {
-                name: 'h',
-                value: 1000000,
-                scientific: false
-            },
-            'k': {
-                name: 'k',
-                value: 1000000000,
-                scientific: true
-            },
-            'M': {
-                name: 'M',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'G': {
-                name: 'G',
-                value: 1e+27,
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                value: 1e+36,
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1e+45,
-                scientific: true
-            },
-            'E': {
-                name: 'E',
-                value: 1e+54,
-                scientific: true
-            },
-            'Z': {
-                name: 'Z',
-                value: 1e+63,
-                scientific: true
-            },
-            'Y': {
-                name: 'Y',
-                value: 1e+72,
-                scientific: true
-            },
-            'd': {
-                name: 'd',
-                value: 0.001,
-                scientific: false
-            },
-            'c': {
-                name: 'c',
-                value: 0.000001,
-                scientific: false
-            },
-            'm': {
-                name: 'm',
-                value: 1e-9,
-                scientific: true
-            },
-            'u': {
-                name: 'u',
-                value: 1e-18,
-                scientific: true
-            },
-            'n': {
-                name: 'n',
-                value: 1e-27,
-                scientific: true
-            },
-            'p': {
-                name: 'p',
-                value: 1e-36,
-                scientific: true
-            },
-            'f': {
-                name: 'f',
-                value: 1e-45,
-                scientific: true
-            },
-            'a': {
-                name: 'a',
-                value: 1e-54,
-                scientific: true
-            },
-            'z': {
-                name: 'z',
-                value: 1e-63,
-                scientific: true
-            },
-            'y': {
-                name: 'y',
-                value: 1e-72,
-                scientific: true
-            }
+            '': { value: 1 },
+            'k': { value: 1000000000 }
         },
         BINARY_SHORT: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            },
+            '': { name: '' },
             'k': {
                 name: 'k',
-                value: 1000,
-                scientific: true
+                value: 1000
             },
-            'M': {
-                name: 'M',
-                value: 1000000,
-                scientific: true
-            },
-            'G': {
-                name: 'G',
-                value: 1000000000,
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                value: 1000000000000,
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1000000000000000,
-                scientific: true
-            },
-            'E': {
-                name: 'E',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'Z': {
-                name: 'Z',
-                value: 1e+21,
-                scientific: true
-            },
-            'Y': {
-                name: 'Y',
-                value: 1e+24,
-                scientific: true
-            },
+            'P': {},
             'Ki': {
                 name: 'Ki',
-                value: 1024,
-                scientific: true
-            },
-            'Mi': {
-                name: 'Mi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'Gi': {
-                name: 'Gi',
-                value: Math.pow(1024),
-                scientific: true
-            },
-            'Ti': {
-                name: 'Ti',
-                value: Math.pow(),
-                scientific: true
-            },
-            'Pi': {
-                name: 'Pi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'Ei': {
-                name: 'Ei',
-                value: Math.pow(),
-                scientific: true
-            },
-            'Zi': {
-                name: 'Zi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'Yi': {
-                name: 'Yi',
-                value: Math.pow(),
-                scientific: true
+                value: 1024
             }
         },
         BINARY_LONG: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            },
-            'kilo': {
-                name: 'kilo',
-                value: 1000,
-                scientific: true
-            },
-            'mega': {
-                name: 'mega',
-                value: 1000000,
-                scientific: true
-            },
-            'giga': {
-                name: 'giga',
-                value: 1000000000,
-                scientific: true
-            },
-            'tera': {
-                name: 'tera',
-                value: 1000000000000,
-                scientific: true
-            },
-            'peta': {
-                name: 'peta',
-                value: 1000000000000000,
-                scientific: true
-            },
-            'exa': {
-                name: 'exa',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'zetta': {
-                name: 'zetta',
-                value: 1e+21,
-                scientific: true
-            },
-            'yotta': {
-                name: 'yotta',
-                value: 1e+24,
-                scientific: true
-            },
-            'kibi': {
-                name: 'kibi',
-                value: 1024,
-                scientific: true
-            },
-            'mebi': {
-                name: 'mebi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'gibi': {
-                name: 'gibi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'tebi': {
-                name: 'tebi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'pebi': {
-                name: 'pebi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'exi': {
-                name: 'exi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'zebi': {
-                name: 'zebi',
-                value: Math.pow(),
-                scientific: true
-            },
-            'yobi': {
-                name: 'yobi',
-                value: Math.pow(),
-                scientific: true
-            }
-        },
-        BTU: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            },
-            'MM': {
-                name: 'MM',
-                value: 1000000,
-                scientific: true
-            }
+            '': { value: 1 },
+            'exa': { value: 1000000000000000000 }
         }
     };
     // Add a prefix list for both short and long prefixes (for ohm in particular, since Mohm and megaohm are both acceptable):
@@ -1651,9 +1106,9 @@ function factory(type, config, load, typed, math) {
         'LENGTH',
         'TIME',
         'CURRENT',
+        'TEMPERATURE',
         'LUMINOUS_INTENSITY',
         'AMOUNT_OF_SUBSTANCE',
-        'ANGLE',
         'BIT'
     ];
     var BASE_UNITS = {
@@ -1669,8 +1124,7 @@ function factory(type, config, load, typed, math) {
             dimensions: [
                 0,
                 0,
-                1,
-                0
+                1
             ]
         },
         CURRENT: {
@@ -1692,7 +1146,12 @@ function factory(type, config, load, typed, math) {
             ]
         },
         SURFACE: { dimensions: [] },
-        VOLUME: { dimensions: [3] },
+        VOLUME: {
+            dimensions: [
+                3,
+                0
+            ]
+        },
         ENERGY: {
             dimensions: [
                 1,
@@ -1803,7 +1262,6 @@ function factory(type, config, load, typed, math) {
     var UNITS = {
         // length
         meter: {
-            name: 'meter',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.LONG,
             value: 1,
@@ -1817,53 +1275,20 @@ function factory(type, config, load, typed, math) {
             offset: 0
         },
         foot: {
-            name: 'foot',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.NONE,
             value: 0.3048,
             offset: 0
         },
-        yard: {
-            name: 'yard',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.9144,
-            offset: 0
-        },
         mile: {
-            name: 'mile',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.NONE,
             value: 1609.344,
             offset: 0
         },
-        link: {
-            name: 'link',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.201168,
-            offset: 0
-        },
-        rod: {
-            name: 'rod',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 5.02921,
-            offset: 0
-        },
         chain: {
-            name: 'chain',
             base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 20.1168,
-            offset: 0
-        },
-        angstrom: {
-            name: 'angstrom',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 1e-10,
-            offset: 0
+            prefixes: PREFIXES.NONE
         },
         m: {
             name: 'm',
@@ -1886,46 +1311,11 @@ function factory(type, config, load, typed, math) {
             value: 0.3048,
             offset: 0
         },
-        yd: {
-            name: 'yd',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.9144,
-            offset: 0
-        },
         mi: {
             name: 'mi',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.NONE,
             value: 1609.344,
-            offset: 0
-        },
-        li: {
-            name: 'li',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.201168,
-            offset: 0
-        },
-        rd: {
-            name: 'rd',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 5.02921,
-            offset: 0
-        },
-        ch: {
-            name: 'ch',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 20.1168,
-            offset: 0
-        },
-        mil: {
-            name: 'mil',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.0000254,
             offset: 0
         },
         // 1/1000 inch
@@ -1935,77 +1325,6 @@ function factory(type, config, load, typed, math) {
             base: BASE_UNITS.SURFACE,
             prefixes: PREFIXES.SQUARED,
             value: 1,
-            offset: 0
-        },
-        sqin: {
-            name: 'sqin',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 0.00064516,
-            offset: 0
-        },
-        // 645.16 mm2
-        sqft: {
-            name: 'sqft',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 0.09290304,
-            offset: 0
-        },
-        // 0.09290304 m2
-        sqyd: {
-            name: 'sqyd',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 0.83612736,
-            offset: 0
-        },
-        // 0.83612736 m2
-        sqmi: {
-            name: 'sqmi',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 2589988.110336,
-            offset: 0
-        },
-        // 2.589988110336 km2
-        sqrd: {
-            name: 'sqrd',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 25.29295,
-            offset: 0
-        },
-        // 25.29295 m2
-        sqch: {
-            name: 'sqch',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 404.6873,
-            offset: 0
-        },
-        // 404.6873 m2
-        sqmil: {
-            name: 'sqmil',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 6.4516e-10,
-            offset: 0
-        },
-        // 6.4516 * 10^-10 m2
-        acre: {
-            name: 'acre',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 4046.86,
-            offset: 0
-        },
-        // 4046.86 m2
-        hectare: {
-            name: 'hectare',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 10000,
             offset: 0
         },
         // 10000 m2
@@ -2026,7 +1345,6 @@ function factory(type, config, load, typed, math) {
         },
         // litre
         l: {
-            name: 'l',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.SHORT,
             value: 0.001,
@@ -2034,108 +1352,15 @@ function factory(type, config, load, typed, math) {
         },
         // litre
         litre: {
-            name: 'litre',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.LONG,
             value: 0.001,
             offset: 0
         },
-        cuin: {
-            name: 'cuin',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.000016387064,
-            offset: 0
-        },
-        // 1.6387064e-5 m3
-        cuft: {
-            name: 'cuft',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.028316846592,
-            offset: 0
-        },
-        // 28.316 846 592 L
-        cuyd: {
-            name: 'cuyd',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.764554857984,
-            offset: 0
-        },
-        // 764.554 857 984 L
-        teaspoon: {
-            name: 'teaspoon',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.000005,
-            offset: 0
-        },
-        // 5 mL
-        tablespoon: {
-            name: 'tablespoon',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.000015,
-            offset: 0
-        },
-        // 15 mL
-        //{name: 'cup', base: BASE_UNITS.VOLUME, prefixes: PREFIXES.NONE, value: 0.000240, offset: 0}, // 240 mL  // not possible, we have already another cup
-        drop: {
-            name: 'drop',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 5e-8,
-            offset: 0
-        },
-        // 0.05 mL = 5e-8 m3
-        gtt: {
-            name: 'gtt',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 5e-8,
-            offset: 0
-        },
-        // 0.05 mL = 5e-8 m3
-        // Liquid volume
-        minim: {
-            name: 'minim',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 6.161152e-8,
-            offset: 0
-        },
-        // 0.06161152 mL
-        fluiddram: {
-            name: 'fluiddram',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.0000036966911,
-            offset: 0
-        },
-        // 3.696691 mL
-        fluidounce: {
-            name: 'fluidounce',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.00002957353,
-            offset: 0
-        },
         // 29.57353 mL
         gill: {
-            name: 'gill',
             base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.0001182941,
-            offset: 0
-        },
-        // 118.2941 mL
-        cc: {
-            name: 'cc',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.000001,
-            offset: 0
+            value: 0.0001182941
         },
         // 1e-6 L
         cup: {
@@ -3103,6 +2328,7 @@ function factory(type, config, load, typed, math) {
    */
     function calculateAngleValues(config) {
         if (config.number === 'BigNumber') {
+            var pi = constants.pi(type.BigNumber);
         } else {
             UNITS.deg.value = Math.PI / 180;
             // 2 * pi / 360;
@@ -3331,8 +2557,6 @@ function factory(type, config, load, typed, math) {
                 }
             }
         }
-        // TODO: traverse multiple times until all units have been added
-        var lastUnit;
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
                 lastUnit = Unit.createUnitSingle(key, obj[key]);
@@ -3373,7 +2597,6 @@ function factory(type, config, load, typed, math) {
         var aliases = [];
         var offset;
         var definition;
-        var prefixes;
         if (obj && obj.type === 'Unit') {
             defUnit = obj.clone();
         } else if (typeof obj === 'string') {
@@ -3411,9 +2634,6 @@ function factory(type, config, load, typed, math) {
             prefixes = PREFIXES[prefixes.toUpperCase()] || PREFIXES.NONE;
         else
             prefixes = PREFIXES.NONE;
-        // If defUnit is null, it is because the user did not
-        // specify a defintion. So create a new base dimension.
-        var newUnit;
         if (!defUnit) {
             // Add a new base dimension
             var baseName = name + '_STUFF';

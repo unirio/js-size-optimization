@@ -1228,6 +1228,7 @@
             s = Math.sqrt(n);
             e = mathfloor((e + 1) / 2) - (e < 0 || e % 2);
             if (s == 1 / 0) {
+                n = '1e' + e;
             } else {
                 n = s.toExponential();
                 n = n.slice(0, n.indexOf('e') + 1) + e;
@@ -1261,6 +1262,7 @@
                 }
             }
         }
+        external = true;
         return finalise(r, e, Ctor.rounding, m);
     };
     /*
@@ -1378,10 +1380,8 @@
    */
     P.toDecimalPlaces = P.toDP = function (dp, rm) {
         var x = this, Ctor = x.constructor;
-        x = new Ctor(x);
         if (dp === void 0)
             return x;
-        checkInt32(dp, 0, MAX_DIGITS);
         if (rm === void 0)
             rm = Ctor.rounding;
         else
@@ -1406,7 +1406,6 @@
                 rm = Ctor.rounding;
             else
                 checkInt32(rm, 0, 8);
-            x = finalise(new Ctor(x), dp + 1, rm);
             str = finiteToString(x, true, dp + 1);
         }
         return x.isNeg() && !x.isZero() ? '-' + str : str;
@@ -1435,8 +1434,6 @@
             checkInt32(dp, 0, MAX_DIGITS);
             if (rm === void 0)
                 rm = Ctor.rounding;
-            else
-                checkInt32(rm, 0, 8);
             y = finalise(new Ctor(x), dp + x.e + 1, rm);
         }
         // To determine whether to add the minus sign look at the value before it was rounded,
@@ -1473,9 +1470,9 @@
                 throw Error(invalidArgument + n);
             maxD = n.gt(d) ? e > 0 ? d : n1 : n;
         }
-        external = false;
         n = new Ctor(digitsToString(xd));
         pr = Ctor.precision;
+        Ctor.precision = e = xd.length * LOG_BASE * 2;
         for (;;) {
             q = divide(n, d, 0, 1, 1);
             d2 = d0.plus(q.times(d1));
@@ -1483,15 +1480,13 @@
                 break;
             d0 = d1;
             d1 = d2;
-            n1 = n0.plus(q.times(d2));
+            d2 = n1;
             n0 = d2;
             d2 = d;
             d = n.minus(q.times(d2));
             n = d2;
         }
-        d2 = divide(maxD.minus(d0), d1, 0, 1, 1);
         n0 = n0.plus(d2.times(n1));
-        d0 = d0.plus(d2.times(d1));
         n0.s = n1.s = x.s;
         // Determine which fraction is closer to x, n0/d0 or n1/d1?
         r = divide(n1, d1, e, 1).minus(x).abs().cmp(divide(n0, d0, e, 1).minus(x).abs()) < 1 ? [
@@ -1501,7 +1496,6 @@
             n0,
             d0
         ];
-        external = true;
         return r;
     };
     /*
@@ -1546,7 +1540,6 @@
             if (!x.d)
                 return x;
             y = new Ctor(1);
-            rm = Ctor.rounding;
         } else {
             y = new Ctor(y);
             if (rm !== void 0)
@@ -1563,7 +1556,6 @@
         }
         // If y is not zero, calculate the nearest multiple of y to x.
         if (y.d[0]) {
-            external = false;
             if (rm < 4)
                 rm = [
                     4,
@@ -1571,11 +1563,7 @@
                     7,
                     8
                 ][rm];
-            x = divide(x, y, 0, rm, 1).times(y);
-            finalise(x);    // If y is zero, return zero with the sign of x.
         } else {
-            y.s = x.s;
-            x = y;
         }
         return x;
     };
@@ -1648,11 +1636,9 @@
         // Either ±Infinity, NaN or ±0?
         if (!x.d || !y.d || !x.d[0] || !y.d[0])
             return new Ctor(mathpow(+x, yn));
-        x = new Ctor(x);
         if (x.eq(1))
             return x;
         pr = Ctor.precision;
-        rm = Ctor.rounding;
         if (y.eq(1))
             return finalise(x, pr, rm);
         // y exponent
@@ -1662,7 +1648,6 @@
             r = intPow(Ctor, x, k, pr);
             return y.s < 0 ? new Ctor(1).div(r) : finalise(r, pr, rm);
         }
-        s = x.s;
         // if x is negative
         if (s < 0) {
             // if y is not an integer
@@ -1673,21 +1658,13 @@
                 s = 1;
             // if x.eq(-1)
             if (x.e == 0 && x.d[0] == 1 && x.d.length == 1) {
-                x.s = s;
                 return x;
             }
         }
-        // Estimate result exponent.
-        // x^y = 10^e,  where e = y * log10(x)
-        // log10(x) = log10(x_significand) + x_exponent
-        // log10(x_significand) = ln(x_significand) / ln(10)
-        k = mathpow(+x, yn);
-        e = k == 0 || !isFinite(k) ? mathfloor(yn * (Math.log('0.' + digitsToString(x.d)) / Math.LN10 + x.e + 1)) : new Ctor(k + '').e;
         // Exponent estimate may be incorrect e.g. x: 0.999999999999999999, y: 2.29, e: 0, r.e: -1.
         // Overflow/underflow?
         if (e > Ctor.maxE + 1 || e < Ctor.minE - 1)
             return new Ctor(e > 0 ? s / 0 : 0);
-        external = false;
         Ctor.rounding = x.s = 1;
         // Estimate the extra guard digits needed to ensure five correct rounding digits from
         // naturalLogarithm(x). Example of failure without these extra digits (precision: 10):
@@ -1698,20 +1675,14 @@
         r = naturalExponential(y.times(naturalLogarithm(x, pr + k)), pr);
         // r may be Infinity, e.g. (0.9999999999999999).pow(-1e+40)
         if (r.d) {
-            // Truncate to the required precision plus five rounding digits.
-            r = finalise(r, pr + 5, 1);
             // If the rounding digits are [49]9999 or [50]0000 increase the precision by 10 and recalculate
             // the result.
             if (checkRoundingDigits(r.d, pr, rm)) {
-                e = pr + 10;
                 // Check for 14 nines from the 2nd rounding digit (the first rounding digit may be 4 or 9).
                 if (+digitsToString(r.d).slice(pr + 1, pr + 15) + 1 == 100000000000000) {
                 }
             }
         }
-        r.s = s;
-        external = true;
-        Ctor.rounding = rm;
         return finalise(r, pr, rm);
     };
     /*
@@ -1734,7 +1705,6 @@
                 rm = Ctor.rounding;
             else
                 checkInt32(rm, 0, 8);
-            x = finalise(new Ctor(x), sd, rm);
             str = finiteToString(x, sd <= x.e || x.e <= Ctor.toExpNeg, sd);
         }
         return x.isNeg() && !x.isZero() ? '-' + str : str;
@@ -1759,8 +1729,6 @@
         } else {
             if (rm === void 0)
                 rm = Ctor.rounding;
-            else
-                checkInt32(rm, 0, 8);
         }
         return finalise(new Ctor(x), sd, rm);
     };
@@ -1852,12 +1820,14 @@
             str += w;
             for (i = 1; i < indexOfLastWord; i++) {
                 ws = d[i] + '';
+                k = LOG_BASE - ws.length;
                 if (k)
                     str += getZeroString(k);
                 str += ws;
             }
             w = d[i];
             ws = w + '';
+            k = LOG_BASE - ws.length;
             if (k)
                 str += getZeroString(k);
         } else if (w === 0) {
@@ -1885,26 +1855,16 @@
             --i;
         // Is the rounding digit in the first word of d?
         if (--i < 0) {
-            i += LOG_BASE;
-            di = 0;
         } else {
             di = Math.ceil((i + 1) / LOG_BASE);
-            i %= LOG_BASE;
         }
-        // i is the index (0 - 6) of the rounding digit.
-        // E.g. if within the word 3487563 the first rounding digit is 5,
-        // then i = 4, k = 1000, rd = 3487563 % 1000 = 563
-        k = mathpow(10, LOG_BASE - i);
-        rd = d[di] % k | 0;
         if (repeating == null) {
             if (i < 3) {
                 if (i == 0)
                     rd = rd / 100 | 0;
                 else if (i == 1)
                     rd = rd / 10 | 0;
-                r = rm < 4 && rd == 99999 || rm > 3 && rd == 49999 || rd == 50000 || rd == 0;
             } else {
-                r = (rm < 4 && rd + 1 == k || rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 100 | 0) == mathpow(10, i - 2) - 1 || (rd == k / 2 || rd == 0) && (d[di + 1] / k / 100 | 0) == 0;
             }
         } else {
             if (i < 4) {
@@ -1914,8 +1874,8 @@
                     rd = rd / 100 | 0;
                 else if (i == 2)
                     rd = rd / 10 | 0;
+                r = (repeating || rm < 4) && rd == 9999 || !repeating && rm > 3 && rd == 4999;
             } else {
-                r = ((repeating || rm < 4) && rd + 1 == k || !repeating && rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 1000 | 0) == mathpow(10, i - 3) - 1;
             }
         }
         return r;
@@ -1951,19 +1911,13 @@
         // i.e. cos(x) = 8*(cos^4(x/4) - cos^2(x/4)) + 1
         // Estimate the optimum number of times to use the argument reduction.
         if (len < 32) {
-            k = Math.ceil(len / 3);
-            y = Math.pow(4, -k).toString();
         } else {
-            k = 16;
         }
         Ctor.precision += k;
-        x = taylorSeries(Ctor, 1, x.times(y), new Ctor(1));
         // Reverse argument reduction
         for (var i = k; i--;) {
             var cos2x = x.times(x);
-            x = cos2x.times(cos2x).minus(cos2x).times(8).plus(1);
         }
-        Ctor.precision -= k;
         return x;
     }
     /*
@@ -2018,7 +1972,6 @@
             }
             if (base) {
                 logBase = 1;
-                e = x.e - y.e;
             } else {
                 base = BASE;
                 logBase = LOG_BASE;
@@ -2035,15 +1988,12 @@
                 e--;
             if (pr == null) {
                 sd = pr = Ctor.precision;
-                rm = Ctor.rounding;
             } else if (dp) {
                 sd = pr + (x.e - y.e) + 1;
             } else {
                 sd = pr;
             }
             if (sd < 0) {
-                qd.push(1);
-                more = true;
             } else {
                 // Convert precision in number of base 10 digits to base 1e7 digits.
                 sd = sd / logBase + 2 | 0;
@@ -2051,22 +2001,18 @@
                 // divisor < 1e7
                 if (yL == 1) {
                     k = 0;
-                    yd = yd[0];
-                    sd++;
                     // k is the carry.
                     for (; (i < xL || k) && sd--; i++) {
                         t = k * base + (xd[i] || 0);
                         qd[i] = t / yd | 0;
                         k = t % yd | 0;
                     }
-                    more = k || i < xL;    // divisor >= 1e7
                 } else {
                     // Normalise xd and yd so highest order digit of yd is >= base/2
                     k = base / (yd[0] + 1) | 0;
                     if (k > 1) {
                         yd = multiplyInteger(yd, k, base);
                         xd = multiplyInteger(xd, k, base);
-                        yL = yd.length;
                         xL = xd.length;
                     }
                     xi = yL;
@@ -2077,6 +2023,7 @@
                         rem[remL++] = 0;
                     yz = yd.slice();
                     yz.unshift(0);
+                    yd0 = yd[0];
                     if (yd[1] >= base / 2)
                         ++yd0;
                     do {
@@ -2089,6 +2036,8 @@
                             rem0 = rem[0];
                             if (yL != remL)
                                 rem0 = rem0 * base + (rem[1] || 0);
+                            // k will be how many times the divisor goes into the current remainder.
+                            k = rem0 / yd0 | 0;
                             //  Algorithm:
                             //  1. product = divisor * trial digit (k)
                             //  2. if product > remainder: product -= divisor, k--
@@ -2099,9 +2048,17 @@
                             if (k > 1) {
                                 if (k >= base)
                                     k = base - 1;
+                                // product = divisor * trial digit.
+                                prod = multiplyInteger(yd, k, base);
+                                prodL = prod.length;
                                 remL = rem.length;
+                                // Compare product and remainder.
+                                cmp = compare(prod, rem, prodL, remL);
                                 // product > remainder.
                                 if (cmp == 1) {
+                                    k--;
+                                    // Subtract divisor from product.
+                                    subtract(prod, yL < prodL ? yz : yd, prodL, base);
                                 }
                             } else {
                                 // cmp is -1.
@@ -2113,14 +2070,21 @@
                             }
                             if (prodL < remL)
                                 prod.unshift(0);
+                            // Subtract product from remainder.
+                            subtract(rem, prod, remL, base);
                             // If product was < previous remainder.
                             if (cmp == -1) {
+                                remL = rem.length;
+                                // Compare divisor and new remainder.
+                                cmp = compare(yd, rem, yL, remL);
                                 // If divisor < new remainder, subtract divisor from remainder.
                                 if (cmp < 1) {
+                                    k++;
                                     // Subtract divisor from remainder.
                                     subtract(rem, yL < remL ? yz : yd, remL, base);
                                 }
                             }
+                            remL = rem.length;
                         } else if (cmp === 0) {
                             k++;
                             rem = [0];
@@ -2144,6 +2108,8 @@
             }
             // logBase is 1 when divide is being used for base conversion.
             if (logBase == 1) {
+                q.e = e;
+                inexact = more;
             } else {
                 // To calculate q.e, first get the number of digits of qd[0].
                 for (i = 1, k = qd[0]; k >= 10; k /= 10)
@@ -2180,6 +2146,8 @@
                 i = sd - digits;
                 // Is the rounding digit in the first word of xd?
                 if (i < 0) {
+                    i += LOG_BASE;
+                    j = sd;
                     w = xd[xdi = 0];
                     // Get the rounding digit at index j of w.
                     rd = w / mathpow(10, digits - j - 1) % 10 | 0;
@@ -2191,6 +2159,9 @@
                             // Needed by `naturalExponential`, `naturalLogarithm` and `squareRoot`.
                             for (; k++ <= xdi;)
                                 xd.push(0);
+                            w = rd = 0;
+                            digits = 1;
+                            i %= LOG_BASE;
                             j = i - LOG_BASE + 1;
                         } else {
                             break out;
@@ -2202,6 +2173,9 @@
                             digits++;
                         // Get the index of rd within w.
                         i %= LOG_BASE;
+                        // Get the index of rd within w, adjusted for leading zeros.
+                        // The number of leading zeros of w is given by LOG_BASE - digits.
+                        j = i - LOG_BASE + digits;
                         // Get the rounding digit at index j of w.
                         rd = j < 0 ? 0 : w / mathpow(10, digits - j - 1) % 10 | 0;
                     }
@@ -2216,6 +2190,8 @@
                 if (sd < 1 || !xd[0]) {
                     xd.length = 0;
                     if (roundUp) {
+                        // Convert sd to decimal places.
+                        sd -= x.e + 1;
                         // 1, 0.1, 0.01, 0.001, 0.0001 etc.
                         xd[0] = mathpow(10, (LOG_BASE - sd % LOG_BASE) % LOG_BASE);
                         x.e = -sd || 0;
@@ -2228,9 +2204,11 @@
                 // Remove excess digits.
                 if (i == 0) {
                     xd.length = xdi;
+                    k = 1;
                     xdi--;
                 } else {
                     xd.length = xdi + 1;
+                    k = mathpow(10, LOG_BASE - i);
                     // E.g. 56700 becomes 56000 if 7 is the rounding digit.
                     // j > 0 means i > number of leading zeros of w.
                     xd[xdi] = j > 0 ? (w / mathpow(10, digits - j) % mathpow(10, j) | 0) * k : 0;
@@ -2247,13 +2225,17 @@
                                 k++;
                             // if i != k the length has increased.
                             if (i != k) {
+                                x.e++;
                                 if (xd[0] == BASE)
                                     xd[0] = 1;
                             }
                             break;
                         } else {
+                            xd[xdi] += k;
                             if (xd[xdi] != BASE)
                                 break;
+                            xd[xdi--] = 0;
+                            k = 1;
                         }
                     }
                 }
@@ -2281,7 +2263,9 @@
         var k, e = x.e, str = digitsToString(x.d), len = str.length;
         if (isExp) {
             if (sd && (k = sd - len) > 0) {
+                str = str.charAt(0) + '.' + str.slice(1) + getZeroString(k);
             } else if (len > 1) {
+                str = str.charAt(0) + '.' + str.slice(1);
             }
             str = str + (x.e < 0 ? 'e' : 'e+') + x.e;
         } else if (e < 0) {
@@ -2358,17 +2342,23 @@
             // Max n of 9007199254740991 takes 53 loop iterations.
             // Maximum digits array length; leaves [28, 34] guard digits.
             k = Math.ceil(pr / LOG_BASE + 4);
+        external = false;
         for (;;) {
             if (n % 2) {
+                r = r.times(x);
                 if (truncate(r.d, k))
                     isTruncated = true;
             }
             n = mathfloor(n / 2);
             if (n === 0) {
+                // To ensure correct rounding when r.d is truncated, increment the last word if it is zero.
+                n = r.d.length - 1;
                 if (isTruncated && r.d[n] === 0)
                     ++r.d[n];
                 break;
             }
+            x = x.times(x);
+            truncate(x.d, k);
         }
         external = true;
         return r;
@@ -2384,8 +2374,10 @@
         for (; ++i < args.length;) {
             y = new Ctor(args[i]);
             if (!y.s) {
+                x = y;
                 break;
             } else if (x[ltgt](y)) {
+                x = y;
             }
         }
         return x;
@@ -2449,7 +2441,9 @@
         for (;;) {
             pow = finalise(pow.times(x), wpr, 1);
             denominator = denominator.times(++i);
+            t = sum.plus(divide(pow, denominator, wpr, 1));
             if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+                j = k;
                 while (j--)
                     sum = finalise(sum.times(sum), wpr, 1);
                 // Check to see if the first 4 rounding digits are [49]999.
@@ -2460,6 +2454,9 @@
                 if (sd == null) {
                     if (rep < 3 && checkRoundingDigits(sum.d, wpr - guard, rm, rep)) {
                         Ctor.precision = wpr += 10;
+                        denominator = pow = t = new Ctor(1);
+                        i = 0;
+                        rep++;
                     } else {
                         return finalise(sum, Ctor.precision = pr, rm, external = true);
                     }
@@ -2493,6 +2490,7 @@
             return new Ctor(xd && !xd[0] ? -1 / 0 : x.s != 1 ? NaN : xd ? 0 : x);
         }
         if (sd == null) {
+            external = false;
             wpr = pr;
         } else {
             wpr = sd;
