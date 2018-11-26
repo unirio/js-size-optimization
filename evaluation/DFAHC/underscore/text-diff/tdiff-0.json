@@ -1,0 +1,883 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    9:      var root = this;
+   10:      // Save bytes in the minified (but not gzipped) version:
+   11:      var ArrayProto = Array.prototype, FuncProto = Function.prototype;
+   12:      // Create quick reference variables for speed access to core prototypes.
+   13:      var push = ArrayProto.push, slice = ArrayProto.slice;
+   14:      // All **ECMAScript 5** native function implementations that we hope to use
+***** HC\ORIGINAL.JS
+    9:      var root = this;
+   10:      // Save the previous value of the `_` variable.
+   11:      var previousUnderscore = root._;
+   12:      // Save bytes in the minified (but not gzipped) version:
+   13:      var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+   14:      // Create quick reference variables for speed access to core prototypes.
+   15:      var push = ArrayProto.push, slice = ArrayProto.slice, toString = ObjProto.toString, hasOwnProperty = ObjProto.hasOwnPropert
+   16:  y;
+   17:      // All **ECMAScript 5** native function implementations that we hope to use
+*****
+
+***** HC\0.js
+   16:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   17:      // Create a safe reference to the Underscore object for use below.
+***** HC\ORIGINAL.JS
+   19:      var nativeIsArray = Array.isArray, nativeKeys = Object.keys, nativeBind = FuncProto.bind, nativeCreate = Object.create;
+   20:      // Naked function reference for surrogate-prototype-swapping.
+   21:      var Ctor = function () {
+   22:      };
+   23:      // Create a safe reference to the Underscore object for use below.
+*****
+
+***** HC\0.js
+   28:      if (typeof exports !== 'undefined') {
+   29:      } else {
+***** HC\ORIGINAL.JS
+   34:      if (typeof exports !== 'undefined') {
+   35:          if (typeof module !== 'undefined' && module.exports) {
+   36:              exports = module.exports = _;
+   37:          }
+   38:          exports._ = _;
+   39:      } else {
+*****
+
+***** HC\0.js
+   31:      }
+   32:      // Internal function that returns an efficient (for current engines) version
+***** HC\ORIGINAL.JS
+   41:      }
+   42:      // Current version.
+   43:      _.VERSION = '1.8.3';
+   44:      // Internal function that returns an efficient (for current engines) version
+*****
+
+***** HC\0.js
+   35:      var optimizeCb = function (func, context, argCount) {
+   36:          switch (argCount == null ? 3 : argCount) {
+***** HC\ORIGINAL.JS
+   47:      var optimizeCb = function (func, context, argCount) {
+   48:          if (context === void 0)
+   49:              return func;
+   50:          switch (argCount == null ? 3 : argCount) {
+*****
+
+***** HC\0.js
+   37:          case 1:
+   38:          case 2:
+   39:          case 3:
+   40:          case 4:
+   41:          }
+***** HC\ORIGINAL.JS
+   51:          case 1:
+   52:              return function (value) {
+   53:                  return func.call(context, value);
+   54:              };
+   55:          case 2:
+   56:              return function (value, other) {
+   57:                  return func.call(context, value, other);
+   58:              };
+   59:          case 3:
+   60:              return function (value, index, collection) {
+   61:                  return func.call(context, value, index, collection);
+   62:              };
+   63:          case 4:
+   64:              return function (accumulator, value, index, collection) {
+   65:                  return func.call(context, accumulator, value, index, collection);
+   66:              };
+   67:          }
+*****
+
+***** HC\0.js
+   83:              return nativeCreate(prototype);
+   84:      };
+***** HC\ORIGINAL.JS
+  109:              return nativeCreate(prototype);
+  110:          Ctor.prototype = prototype;
+  111:          var result = new Ctor();
+  112:          Ctor.prototype = null;
+  113:          return result;
+  114:      };
+*****
+
+***** HC\0.js
+  141:          return function (obj, iteratee, memo, context) {
+  142:              iteratee = optimizeCb(iteratee, context);
+  143:              var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, index = dir > 0 ? 0 : length - 1;
+***** HC\ORIGINAL.JS
+  171:          return function (obj, iteratee, memo, context) {
+  172:              iteratee = optimizeCb(iteratee, context, 4);
+  173:              var keys = !isArrayLike(obj) && _.keys(obj), length = (keys || obj).length, index = dir > 0 ? 0 : length - 1;
+*****
+
+***** HC\0.js
+  158:      _.find = _.detect = function (obj, predicate, context) {
+  159:          if (isArrayLike(obj)) {
+***** HC\ORIGINAL.JS
+  188:      _.find = _.detect = function (obj, predicate, context) {
+  189:          var key;
+  190:          if (isArrayLike(obj)) {
+*****
+
+***** HC\0.js
+  239:      _.max = function (obj, iteratee, context) {
+  240:          var result = -Infinity, lastComputed = -Infinity;
+  241:          if (iteratee == null && obj != null) {
+  242:              for (var i = 0, length = obj.length; i < length; i++) {
+***** HC\ORIGINAL.JS
+  270:      _.max = function (obj, iteratee, context) {
+  271:          var result = -Infinity, lastComputed = -Infinity, value, computed;
+  272:          if (iteratee == null && obj != null) {
+  273:              obj = isArrayLike(obj) ? obj : _.values(obj);
+  274:              for (var i = 0, length = obj.length; i < length; i++) {
+*****
+
+***** HC\0.js
+  261:      _.min = function (obj, iteratee, context) {
+  262:          var result = Infinity, lastComputed = Infinity;
+  263:          if (iteratee == null && obj != null) {
+  264:              for (var i = 0, length = obj.length; i < length; i++) {
+***** HC\ORIGINAL.JS
+  293:      _.min = function (obj, iteratee, context) {
+  294:          var result = Infinity, lastComputed = Infinity, value, computed;
+  295:          if (iteratee == null && obj != null) {
+  296:              obj = isArrayLike(obj) ? obj : _.values(obj);
+  297:              for (var i = 0, length = obj.length; i < length; i++) {
+*****
+
+***** HC\0.js
+  287:          var shuffled = Array(length);
+  288:          for (var index = 0; index < length; index++) {
+  289:              rand = _.random(index);
+  290:              shuffled[rand] = set[index];
+***** HC\ORIGINAL.JS
+  320:          var shuffled = Array(length);
+  321:          for (var index = 0, rand; index < length; index++) {
+  322:              rand = _.random(0, index);
+  323:              if (rand !== index)
+  324:                  shuffled[index] = shuffled[rand];
+  325:              shuffled[rand] = set[index];
+*****
+
+***** HC\0.js
+  310:                  value: value,
+  311:                  criteria: iteratee(value, index, list)
+***** HC\ORIGINAL.JS
+  345:                  value: value,
+  346:                  index: index,
+  347:                  criteria: iteratee(value, index, list)
+*****
+
+***** HC\0.js
+  316:              if (a !== b) {
+  317:                  if (a < b || b === void 0)
+***** HC\ORIGINAL.JS
+  352:              if (a !== b) {
+  353:                  if (a > b || a === void 0)
+  354:                      return 1;
+  355:                  if (a < b || b === void 0)
+*****
+
+***** HC\0.js
+  319:              }
+  320:          }), 'value');
+***** HC\ORIGINAL.JS
+  357:              }
+  358:              return left.index - right.index;
+  359:          }), 'value');
+*****
+
+***** HC\0.js
+  357:      _.toArray = function (obj) {
+  358:          if (isArrayLike(obj))
+***** HC\ORIGINAL.JS
+  396:      _.toArray = function (obj) {
+  397:          if (!obj)
+  398:              return [];
+  399:          if (_.isArray(obj))
+  400:              return slice.call(obj);
+  401:          if (isArrayLike(obj))
+*****
+
+***** HC\0.js
+  363:      _.size = function (obj) {
+  364:          return isArrayLike(obj) ? obj.length : _.keys(obj).length;
+***** HC\ORIGINAL.JS
+  406:      _.size = function (obj) {
+  407:          if (obj == null)
+  408:              return 0;
+  409:          return isArrayLike(obj) ? obj.length : _.keys(obj).length;
+*****
+
+***** HC\0.js
+  385:          if (array == null)
+  386:              return;
+  387:          if (n == null || guard)
+***** HC\ORIGINAL.JS
+  430:          if (array == null)
+  431:              return void 0;
+  432:          if (n == null || guard)
+*****
+
+***** HC\0.js
+  400:          if (array == null)
+  401:              return;
+  402:          if (n == null || guard)
+***** HC\ORIGINAL.JS
+  445:          if (array == null)
+  446:              return void 0;
+  447:          if (n == null || guard)
+*****
+
+***** HC\0.js
+  425:                  var j = 0, len = value.length;
+  426:                  while (j < len) {
+***** HC\ORIGINAL.JS
+  470:                  var j = 0, len = value.length;
+  471:                  output.length += len;
+  472:                  while (j < len) {
+*****
+
+***** HC\0.js
+  436:      _.flatten = function (array, shallow) {
+  437:          return flatten(array, shallow);
+  438:      };
+***** HC\ORIGINAL.JS
+  482:      _.flatten = function (array, shallow) {
+  483:          return flatten(array, shallow, false);
+  484:      };
+*****
+
+***** HC\0.js
+  440:      _.without = function (array) {
+  441:          return _.difference(array, slice.call(arguments));
+  442:      };
+***** HC\ORIGINAL.JS
+  486:      _.without = function (array) {
+  487:          return _.difference(array, slice.call(arguments, 1));
+  488:      };
+*****
+
+***** HC\0.js
+  486:                  continue;
+  487:              for (var j = 1;; j++) {
+  488:                  if (!_.contains(arguments[j], item))
+***** HC\ORIGINAL.JS
+  532:                  continue;
+  533:              for (var j = 1; j < argsLength; j++) {
+  534:                  if (!_.contains(arguments[j], item))
+*****
+
+***** HC\0.js
+  551:      _.sortedIndex = function (array, obj, iteratee, context) {
+  552:          iteratee = cb(iteratee, context);
+  553:          var value = iteratee(obj);
+***** HC\ORIGINAL.JS
+  597:      _.sortedIndex = function (array, obj, iteratee, context) {
+  598:          iteratee = cb(iteratee, context, 1);
+  599:          var value = iteratee(obj);
+*****
+
+***** HC\0.js
+  619:          var result = sourceFunc.apply(self, args);
+  620:          return self;
+***** HC\ORIGINAL.JS
+  665:          var result = sourceFunc.apply(self, args);
+  666:          if (_.isObject(result))
+  667:              return result;
+  668:          return self;
+*****
+
+***** HC\0.js
+  628:          if (!_.isFunction(func))
+  629:              throw new TypeError();
+  630:      };
+***** HC\ORIGINAL.JS
+  676:          if (!_.isFunction(func))
+  677:              throw new TypeError('Bind must be called on a function');
+  678:          var args = slice.call(arguments, 2);
+  679:          var bound = function () {
+  680:              return executeBound(func, bound, context, this, args.concat(slice.call(arguments)));
+  681:          };
+  682:          return bound;
+  683:      };
+*****
+
+***** HC\0.js
+  651:      _.bindAll = function (obj) {
+  652:          var length = arguments.length;
+  653:          if (length <= 1)
+  654:              throw new Error();
+  655:          for (i = 1; i < length; i++) {
+***** HC\ORIGINAL.JS
+  704:      _.bindAll = function (obj) {
+  705:          var i, length = arguments.length, key;
+  706:          if (length <= 1)
+  707:              throw new Error('bindAll must be passed function names');
+  708:          for (i = 1; i < length; i++) {
+*****
+
+***** HC\0.js
+  658:          }
+  659:      };
+***** HC\ORIGINAL.JS
+  711:          }
+  712:          return obj;
+  713:      };
+*****
+
+***** HC\0.js
+  674:      _.delay = function (func, wait) {
+  675:          var args = slice.call(arguments);
+  676:          return setTimeout(function () {
+***** HC\ORIGINAL.JS
+  728:      _.delay = function (func, wait) {
+  729:          var args = slice.call(arguments, 2);
+  730:          return setTimeout(function () {
+*****
+
+***** HC\0.js
+  681:      // cleared.
+  682:      _.defer = _.partial(_.delay, _);
+  683:      // Returns a function, that, when invoked, will only be triggered at most once
+***** HC\ORIGINAL.JS
+  735:      // cleared.
+  736:      _.defer = _.partial(_.delay, _, 1);
+  737:      // Returns a function, that, when invoked, will only be triggered at most once
+*****
+
+***** HC\0.js
+  688:      _.throttle = function (func, wait, options) {
+  689:          var result;
+  690:          var timeout;
+  691:          var previous = 0;
+***** HC\ORIGINAL.JS
+  742:      _.throttle = function (func, wait, options) {
+  743:          var context, args, result;
+  744:          var timeout = null;
+  745:          var previous = 0;
+*****
+
+***** HC\0.js
+  697:              result = func.apply(context, args);
+  698:          };
+***** HC\ORIGINAL.JS
+  751:              result = func.apply(context, args);
+  752:              if (!timeout)
+  753:                  context = args = null;
+  754:          };
+*****
+
+***** HC\0.js
+  706:              if (remaining <= 0 || remaining > wait) {
+  707:                  previous = now;
+***** HC\ORIGINAL.JS
+  762:              if (remaining <= 0 || remaining > wait) {
+  763:                  if (timeout) {
+  764:                      clearTimeout(timeout);
+  765:                      timeout = null;
+  766:                  }
+  767:                  previous = now;
+*****
+
+***** HC\0.js
+  708:                  result = func.apply(context, args);
+  709:              } else if (!timeout && options.trailing !== false) {
+***** HC\ORIGINAL.JS
+  768:                  result = func.apply(context, args);
+  769:                  if (!timeout)
+  770:                      context = args = null;
+  771:              } else if (!timeout && options.trailing !== false) {
+*****
+
+***** HC\0.js
+  719:      _.debounce = function (func, wait, immediate) {
+  720:          var timeout, result;
+  721:          var later = function () {
+  722:              var last;
+  723:              if (last < wait && last >= 0) {
+  724:              } else {
+***** HC\ORIGINAL.JS
+  781:      _.debounce = function (func, wait, immediate) {
+  782:          var timeout, args, context, timestamp, result;
+  783:          var later = function () {
+  784:              var last = _.now() - timestamp;
+  785:              if (last < wait && last >= 0) {
+  786:                  timeout = setTimeout(later, wait - last);
+  787:              } else {
+*****
+
+***** HC\0.js
+  727:                      result = func.apply(context, args);
+  728:                  }
+***** HC\ORIGINAL.JS
+  790:                      result = func.apply(context, args);
+  791:                      if (!timeout)
+  792:                          context = args = null;
+  793:                  }
+*****
+
+***** HC\0.js
+  733:              args = arguments;
+  734:              var callNow = immediate && !timeout;
+***** HC\ORIGINAL.JS
+  798:              args = arguments;
+  799:              timestamp = _.now();
+  800:              var callNow = immediate && !timeout;
+*****
+
+***** HC\0.js
+  738:                  result = func.apply(context, args);
+  739:              }
+***** HC\ORIGINAL.JS
+  804:                  result = func.apply(context, args);
+  805:                  context = args = null;
+  806:              }
+*****
+
+***** HC\0.js
+  777:      _.before = function (times, func) {
+  778:          return function () {
+***** HC\ORIGINAL.JS
+  844:      _.before = function (times, func) {
+  845:          var memo;
+  846:          return function () {
+*****
+
+***** HC\0.js
+  781:              }
+  782:              return memo;
+***** HC\ORIGINAL.JS
+  849:              }
+  850:              if (times <= 1)
+  851:                  func = null;
+  852:              return memo;
+*****
+
+***** HC\0.js
+  787:      _.once = _.partial(_.before, 2);
+  788:      // Retrieve the names of an object's own properties.
+***** HC\ORIGINAL.JS
+  857:      _.once = _.partial(_.before, 2);
+  858:      // Object Functions
+  859:      // ----------------
+  860:      // Keys in IE < 9 that won't be iterated by `for key in ...` and thus missed.
+  861:      var hasEnumBug = !{ toString: null }.propertyIsEnumerable('toString');
+  862:      var nonEnumerableProps = [
+  863:          'valueOf',
+  864:          'isPrototypeOf',
+  865:          'toString',
+  866:          'propertyIsEnumerable',
+  867:          'hasOwnProperty',
+  868:          'toLocaleString'
+  869:      ];
+  870:      function collectNonEnumProps(obj, keys) {
+  871:          var nonEnumIdx = nonEnumerableProps.length;
+  872:          var constructor = obj.constructor;
+  873:          var proto = _.isFunction(constructor) && constructor.prototype || ObjProto;
+  874:          // Constructor is a special case.
+  875:          var prop = 'constructor';
+  876:          if (_.has(obj, prop) && !_.contains(keys, prop))
+  877:              keys.push(prop);
+  878:          while (nonEnumIdx--) {
+  879:              prop = nonEnumerableProps[nonEnumIdx];
+  880:              if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+  881:                  keys.push(prop);
+  882:              }
+  883:          }
+  884:      }
+  885:      // Retrieve the names of an object's own properties.
+*****
+
+***** HC\0.js
+  794:              return nativeKeys(obj);
+  795:          for (var key in obj)
+***** HC\ORIGINAL.JS
+  891:              return nativeKeys(obj);
+  892:          var keys = [];
+  893:          for (var key in obj)
+*****
+
+***** HC\0.js
+  797:                  keys.push(key);
+  798:      };
+***** HC\ORIGINAL.JS
+  895:                  keys.push(key);
+  896:          // Ahem, IE < 9.
+  897:          if (hasEnumBug)
+  898:              collectNonEnumProps(obj, keys);
+  899:          return keys;
+  900:      };
+*****
+
+***** HC\0.js
+  805:              keys.push(key);
+  806:          return keys;
+***** HC\ORIGINAL.JS
+  907:              keys.push(key);
+  908:          // Ahem, IE < 9.
+  909:          if (hasEnumBug)
+  910:              collectNonEnumProps(obj, keys);
+  911:          return keys;
+*****
+
+***** HC\0.js
+  821:          iteratee = cb(iteratee, context);
+  822:          var keys = _.keys(obj), length = keys.length, results = {};
+  823:          for (var index = 0; index < length; index++) {
+***** HC\ORIGINAL.JS
+  926:          iteratee = cb(iteratee, context);
+  927:          var keys = _.keys(obj), length = keys.length, results = {}, currentKey;
+  928:          for (var index = 0; index < length; index++) {
+*****
+
+***** HC\0.js
+  868:          predicate = cb(predicate, context);
+  869:          var keys = _.keys(obj);
+  870:          for (var i = 0, length = keys.length; i < length; i++) {
+***** HC\ORIGINAL.JS
+  973:          predicate = cb(predicate, context);
+  974:          var keys = _.keys(obj), key;
+  975:          for (var i = 0, length = keys.length; i < length; i++) {
+*****
+
+***** HC\0.js
+  877:      _.pick = function (object, oiteratee, context) {
+  878:          var result = {}, obj = object;
+  879:          if (obj == null)
+***** HC\ORIGINAL.JS
+  982:      _.pick = function (object, oiteratee, context) {
+  983:          var result = {}, obj = object, iteratee, keys;
+  984:          if (obj == null)
+*****
+
+***** HC\0.js
+  884:          } else {
+  885:              keys = flatten(arguments, false);
+  886:              iteratee = function (value, key, obj) {
+***** HC\ORIGINAL.JS
+  989:          } else {
+  990:              keys = flatten(arguments, false, false, 1);
+  991:              iteratee = function (value, key, obj) {
+*****
+
+***** HC\0.js
+  903:          } else {
+  904:              var keys = _.map(flatten(arguments), String);
+  905:              iteratee = function (value, key) {
+***** HC\ORIGINAL.JS
+ 1008:          } else {
+ 1009:              var keys = _.map(flatten(arguments, false, false, 1), String);
+ 1010:              iteratee = function (value, key) {
+*****
+
+***** HC\0.js
+  949:      var eq = function (a, b, aStack, bStack) {
+  950:          // A strict comparison is necessary because `null == undefined`.
+***** HC\ORIGINAL.JS
+ 1054:      var eq = function (a, b, aStack, bStack) {
+ 1055:          // Identical objects are equal. `0 === -0`, but they aren't identical.
+ 1056:          // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
+ 1057:          if (a === b)
+ 1058:              return a !== 0 || 1 / a === 1 / b;
+ 1059:          // A strict comparison is necessary because `null == undefined`.
+*****
+
+***** HC\0.js
+  960:          if (className !== toString.call(b))
+  961:              return;
+  962:          switch (className) {
+***** HC\ORIGINAL.JS
+ 1069:          if (className !== toString.call(b))
+ 1070:              return false;
+ 1071:          switch (className) {
+*****
+
+***** HC\0.js
+  986:              if (typeof a != 'object' || typeof b != 'object')
+  987:                  return;
+  988:              // Objects with different constructors are not equivalent, but `Object`s or `Array`s
+***** HC\ORIGINAL.JS
+ 1095:              if (typeof a != 'object' || typeof b != 'object')
+ 1096:                  return false;
+ 1097:              // Objects with different constructors are not equivalent, but `Object`s or `Array`s
+*****
+
+***** HC\0.js
+ 1016:              if (length !== b.length)
+ 1017:                  return;
+ 1018:              // Deep compare the contents, ignoring non-numeric properties.
+***** HC\ORIGINAL.JS
+ 1125:              if (length !== b.length)
+ 1126:                  return false;
+ 1127:              // Deep compare the contents, ignoring non-numeric properties.
+*****
+
+***** HC\0.js
+ 1020:                  if (!eq(a[length], b[length], aStack, bStack))
+ 1021:                      return;
+ 1022:              }
+***** HC\ORIGINAL.JS
+ 1129:                  if (!eq(a[length], b[length], aStack, bStack))
+ 1130:                      return false;
+ 1131:              }
+*****
+
+***** HC\0.js
+ 1024:              // Deep compare objects.
+ 1025:              var keys = _.keys(a);
+ 1026:              length = keys.length;
+***** HC\ORIGINAL.JS
+ 1133:              // Deep compare objects.
+ 1134:              var keys = _.keys(a), key;
+ 1135:              length = keys.length;
+*****
+
+***** HC\0.js
+ 1028:              if (_.keys(b).length !== length)
+ 1029:                  return;
+ 1030:              while (length--) {
+***** HC\ORIGINAL.JS
+ 1137:              if (_.keys(b).length !== length)
+ 1138:                  return false;
+ 1139:              while (length--) {
+*****
+
+***** HC\0.js
+ 1033:                  if (!(_.has(b, key) && eq(a[key], b[key], aStack, bStack)))
+ 1034:                      return;
+ 1035:              }
+***** HC\ORIGINAL.JS
+ 1142:                  if (!(_.has(b, key) && eq(a[key], b[key], aStack, bStack)))
+ 1143:                      return false;
+ 1144:              }
+*****
+
+***** HC\0.js
+ 1036:          }
+ 1037:          return true;
+***** HC\ORIGINAL.JS
+ 1145:          }
+ 1146:          // Remove the first object from the stack of traversed objects.
+ 1147:          aStack.pop();
+ 1148:          bStack.pop();
+ 1149:          return true;
+*****
+
+***** HC\0.js
+ 1045:      _.isEmpty = function (obj) {
+ 1046:          if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj)))
+***** HC\ORIGINAL.JS
+ 1157:      _.isEmpty = function (obj) {
+ 1158:          if (obj == null)
+ 1159:              return true;
+ 1160:          if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj)))
+*****
+
+***** HC\0.js
+ 1056:      _.isArray = nativeIsArray || function (obj) {
+ 1057:      };
+***** HC\ORIGINAL.JS
+ 1170:      _.isArray = nativeIsArray || function (obj) {
+ 1171:          return toString.call(obj) === '[object Array]';
+ 1172:      };
+*****
+
+***** HC\0.js
+ 1076:      });
+ 1077:      // Is a given object a finite number?
+***** HC\ORIGINAL.JS
+ 1191:      });
+ 1192:      // Define a fallback version of the method in browsers (ahem, IE < 9), where
+ 1193:      // there isn't any inspectable "Arguments" type.
+ 1194:      if (!_.isArguments(arguments)) {
+ 1195:          _.isArguments = function (obj) {
+ 1196:              return _.has(obj, 'callee');
+ 1197:          };
+ 1198:      }
+ 1199:      // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
+ 1200:      // IE 11 (#1621), and in Safari 8 (#1929).
+ 1201:      if (typeof /./ != 'function' && typeof Int8Array != 'object') {
+ 1202:          _.isFunction = function (obj) {
+ 1203:              return typeof obj == 'function' || false;
+ 1204:          };
+ 1205:      }
+ 1206:      // Is a given object a finite number?
+*****
+
+***** HC\0.js
+ 1101:      };
+ 1102:      // Keep the identity function around for default iteratees.
+***** HC\ORIGINAL.JS
+ 1230:      };
+ 1231:      // Utility Functions
+ 1232:      // -----------------
+ 1233:      // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+ 1234:      // previous owner. Returns a reference to the Underscore object.
+ 1235:      _.noConflict = function () {
+ 1236:          root._ = previousUnderscore;
+ 1237:          return this;
+ 1238:      };
+ 1239:      // Keep the identity function around for default iteratees.
+*****
+
+***** HC\0.js
+ 1131:      _.times = function (n, iteratee, context) {
+ 1132:          var accum = Array();
+ 1133:          iteratee = optimizeCb(iteratee, context);
+ 1134:          for (var i = 0; i < n; i++)
+***** HC\ORIGINAL.JS
+ 1268:      _.times = function (n, iteratee, context) {
+ 1269:          var accum = Array(Math.max(0, n));
+ 1270:          iteratee = optimizeCb(iteratee, context, 1);
+ 1271:          for (var i = 0; i < n; i++)
+*****
+
+***** HC\0.js
+ 1141:              max = min;
+ 1142:          }
+***** HC\ORIGINAL.JS
+ 1278:              max = min;
+ 1279:              min = 0;
+ 1280:          }
+*****
+
+***** HC\0.js
+ 1146:      _.now = Date.now || function () {
+ 1147:      };
+***** HC\ORIGINAL.JS
+ 1284:      _.now = Date.now || function () {
+ 1285:          return new Date().getTime();
+ 1286:      };
+*****
+
+***** HC\0.js
+ 1149:      var escapeMap = {
+ 1150:          '<': '&lt;',
+***** HC\ORIGINAL.JS
+ 1288:      var escapeMap = {
+ 1289:          '&': '&amp;',
+ 1290:          '<': '&lt;',
+*****
+
+***** HC\0.js
+ 1204:          '\\': '\\',
+ 1205:          '\n': 'n',
+***** HC\ORIGINAL.JS
+ 1344:          '\\': '\\',
+ 1345:          '\r': 'r',
+ 1346:          '\n': 'n',
+*****
+
+***** HC\0.js
+ 1217:      _.template = function (text, settings, oldSettings) {
+ 1218:          settings = _.defaults({}, settings, _.templateSettings);
+***** HC\ORIGINAL.JS
+ 1358:      _.template = function (text, settings, oldSettings) {
+ 1359:          if (!settings && oldSettings)
+ 1360:              settings = oldSettings;
+ 1361:          settings = _.defaults({}, settings, _.templateSettings);
+*****
+
+***** HC\0.js
+ 1225:          // Compile the template source, escaping string literals appropriately.
+ 1226:          var index;
+ 1227:          var source = "__p+='";
+***** HC\ORIGINAL.JS
+ 1368:          // Compile the template source, escaping string literals appropriately.
+ 1369:          var index = 0;
+ 1370:          var source = "__p+='";
+*****
+
+***** HC\0.js
+ 1237:              }
+ 1238:          });
+***** HC\ORIGINAL.JS
+ 1380:              }
+ 1381:              // Adobe VMs need the match returned to produce the correct offest.
+ 1382:              return match;
+ 1383:          });
+*****
+
+***** HC\0.js
+ 1245:          try {
+ 1246:              var render = new Function(settings.variable || 'obj', source);
+ 1247:          } catch (e) {
+***** HC\ORIGINAL.JS
+ 1390:          try {
+ 1391:              var render = new Function(settings.variable || 'obj', '_', source);
+ 1392:          } catch (e) {
+*****
+
+***** HC\0.js
+ 1253:          };
+ 1254:          return template;
+***** HC\ORIGINAL.JS
+ 1398:          };
+ 1399:          // Provide the compiled source as a convenience for precompilation.
+ 1400:          var argument = settings.variable || 'obj';
+ 1401:          template.source = 'function(' + argument + '){\n' + source + '}';
+ 1402:          return template;
+*****
+
+***** HC\0.js
+ 1286:          'pop',
+ 1287:          'reverse',
+***** HC\ORIGINAL.JS
+ 1434:          'pop',
+ 1435:          'push',
+ 1436:          'reverse',
+*****
+
+***** HC\0.js
+ 1288:          'shift',
+ 1289:          'splice',
+***** HC\ORIGINAL.JS
+ 1437:          'shift',
+ 1438:          'sort',
+ 1439:          'splice',
+*****
+
+***** HC\0.js
+ 1295:              method.apply(obj, arguments);
+ 1296:              return result(this, obj);
+***** HC\ORIGINAL.JS
+ 1445:              method.apply(obj, arguments);
+ 1446:              if ((name === 'shift' || name === 'splice') && obj.length === 0)
+ 1447:                  delete obj[0];
+ 1448:              return result(this, obj);
+*****
+
+***** HC\0.js
+ 1299:      // Add all accessor Array functions to the wrapper.
+ 1300:      _.each(['concat'], function (name) {
+ 1301:          var method = ArrayProto[name];
+***** HC\ORIGINAL.JS
+ 1451:      // Add all accessor Array functions to the wrapper.
+ 1452:      _.each([
+ 1453:          'concat',
+ 1454:          'join',
+ 1455:          'slice'
+ 1456:      ], function (name) {
+ 1457:          var method = ArrayProto[name];
+*****
+
+***** HC\0.js
+ 1315:      };
+ 1316:  }.call(this));
+***** HC\ORIGINAL.JS
+ 1471:      };
+ 1472:      // AMD registration happens at the end for compatibility with AMD loaders
+ 1473:      // that may not enforce next-turn semantics on modules. Even though general
+ 1474:      // practice for AMD registration is to be anonymous, underscore registers
+ 1475:      // as a named module because, like jQuery, it is a base library that is
+ 1476:      // popular enough to be bundled in a third party lib, but not be part of
+ 1477:      // an AMD load request. Those cases could generate an error when an
+ 1478:      // anonymous define() is called outside of a loader request.
+ 1479:      if (typeof define === 'function' && define.amd) {
+ 1480:          define('underscore', [], function () {
+ 1481:              return _;
+ 1482:          });
+ 1483:      }
+ 1484:  }.call(this));
+*****
+

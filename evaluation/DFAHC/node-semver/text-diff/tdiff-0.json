@@ -1,0 +1,762 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    1:  /* nomin */
+    2:  if (typeof process === 'object' && /* nomin */
+***** HC\ORIGINAL.JS
+    1:  exports = module.exports = SemVer;
+    2:  // The debug function is excluded entirely from the minified version.
+    3:  /* nomin */
+    4:  var debug;
+    5:  /* nomin */
+    6:  if (typeof process === 'object' && /* nomin */
+*****
+
+***** HC\0.js
+    7:      debug = function () {
+    8:      };    /* nomin */
+    9:  var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+***** HC\ORIGINAL.JS
+   11:      debug = function () {
+   12:          /* nomin */
+   13:          var args = Array.prototype.slice.call(arguments, 0);
+   14:          /* nomin */
+   15:          args.unshift('SEMVER');
+   16:          /* nomin */
+   17:          console.log.apply(console, args);    /* nomin */
+   18:      };    /* nomin */
+   19:  else
+   20:      /* nomin */
+   21:      debug = function () {
+   22:      };
+   23:  // Note: this is the semver.org version of the spec that it implements
+   24:  // Not necessarily the package version of this code.
+   25:  exports.SEMVER_SPEC_VERSION = '2.0.0';
+   26:  var MAX_LENGTH = 256;
+   27:  var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+*****
+
+***** HC\0.js
+  104:  src[TILDETRIM] = '(\\s*)' + src[LONETILDE] + '\\s+';
+  105:  var tildeTrimReplace = '$1~';
+***** HC\ORIGINAL.JS
+  122:  src[TILDETRIM] = '(\\s*)' + src[LONETILDE] + '\\s+';
+  123:  re[TILDETRIM] = new RegExp(src[TILDETRIM], 'g');
+  124:  var tildeTrimReplace = '$1~';
+*****
+
+***** HC\0.js
+  130:  src[COMPARATORTRIM] = '(\\s*)' + src[GTLT] + '\\s*(' + LOOSEPLAIN + '|' + src[XRANGEPLAIN] + ')';
+  131:  var comparatorTrimReplace = '$1$2$3';
+***** HC\ORIGINAL.JS
+  149:  src[COMPARATORTRIM] = '(\\s*)' + src[GTLT] + '\\s*(' + LOOSEPLAIN + '|' + src[XRANGEPLAIN] + ')';
+  150:  // this one has to use the /g flag
+  151:  re[COMPARATORTRIM] = new RegExp(src[COMPARATORTRIM], 'g');
+  152:  var comparatorTrimReplace = '$1$2$3';
+*****
+
+***** HC\0.js
+  145:  for (var i = 0; i < R; i++) {
+  146:      if (!re[i])
+***** HC\ORIGINAL.JS
+  166:  for (var i = 0; i < R; i++) {
+  167:      debug(i, src[i]);
+  168:      if (!re[i])
+*****
+
+***** HC\0.js
+  150:  function parse(version, loose) {
+  151:      try {
+***** HC\ORIGINAL.JS
+  172:  function parse(version, loose) {
+  173:      if (version instanceof SemVer)
+  174:          return version;
+  175:      if (typeof version !== 'string')
+  176:          return null;
+  177:      if (version.length > MAX_LENGTH)
+  178:          return null;
+  179:      var r = loose ? re[LOOSE] : re[FULL];
+  180:      if (!r.test(version))
+  181:          return null;
+  182:      try {
+*****
+
+***** HC\0.js
+  176:      }
+  177:      var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
+***** HC\ORIGINAL.JS
+  207:      }
+  208:      if (version.length > MAX_LENGTH)
+  209:          throw new TypeError('version is longer than ' + MAX_LENGTH + ' characters');
+  210:      if (!(this instanceof SemVer))
+  211:          return new SemVer(version, loose);
+  212:      debug('SemVer', version, loose);
+  213:      this.loose = loose;
+  214:      var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
+*****
+
+***** HC\0.js
+  179:          throw new TypeError('Invalid Version: ' + version);
+  180:      // these are actually numbers
+***** HC\ORIGINAL.JS
+  216:          throw new TypeError('Invalid Version: ' + version);
+  217:      this.raw = version;
+  218:      // these are actually numbers
+*****
+
+***** HC\0.js
+  184:      if (this.major > MAX_SAFE_INTEGER || this.major < 0)
+  185:          throw new TypeError();
+  186:      if (this.minor > MAX_SAFE_INTEGER || this.minor < 0)
+  187:          throw new TypeError();
+  188:      if (this.patch > MAX_SAFE_INTEGER || this.patch < 0)
+  189:          throw new TypeError();
+  190:      // numberify any prerelease numeric ids
+***** HC\ORIGINAL.JS
+  222:      if (this.major > MAX_SAFE_INTEGER || this.major < 0)
+  223:          throw new TypeError('Invalid major version');
+  224:      if (this.minor > MAX_SAFE_INTEGER || this.minor < 0)
+  225:          throw new TypeError('Invalid minor version');
+  226:      if (this.patch > MAX_SAFE_INTEGER || this.patch < 0)
+  227:          throw new TypeError('Invalid patch version');
+  228:      // numberify any prerelease numeric ids
+*****
+
+***** HC\0.js
+  201:          });
+  202:      this.format();
+***** HC\ORIGINAL.JS
+  239:          });
+  240:      this.build = m[5] ? m[5].split('.') : [];
+  241:      this.format();
+*****
+
+***** HC\0.js
+  207:          this.version += '-' + this.prerelease.join('.');
+  208:  };
+***** HC\ORIGINAL.JS
+  246:          this.version += '-' + this.prerelease.join('.');
+  247:      return this.version;
+  248:  };
+  249:  SemVer.prototype.toString = function () {
+  250:      return this.version;
+  251:  };
+*****
+
+***** HC\0.js
+  209:  SemVer.prototype.compare = function (other) {
+  210:      if (!(other instanceof SemVer))
+***** HC\ORIGINAL.JS
+  252:  SemVer.prototype.compare = function (other) {
+  253:      debug('SemVer.compare', this.version, this.loose, other);
+  254:      if (!(other instanceof SemVer))
+*****
+
+***** HC\0.js
+  214:  SemVer.prototype.compareMain = function (other) {
+  215:      return compareIdentifiers(this.major, other.major) || compareIdentifiers(this.minor, other.minor) || compareIdentifiers(thi
+***** HC\ORIGINAL.JS
+  258:  SemVer.prototype.compareMain = function (other) {
+  259:      if (!(other instanceof SemVer))
+  260:          other = new SemVer(other, this.loose);
+  261:      return compareIdentifiers(this.major, other.major) || compareIdentifiers(this.minor, other.minor) || compareIdentifiers(thi
+*****
+
+***** HC\0.js
+  218:  SemVer.prototype.comparePre = function (other) {
+  219:      // NOT having a prerelease is > having one
+***** HC\ORIGINAL.JS
+  264:  SemVer.prototype.comparePre = function (other) {
+  265:      if (!(other instanceof SemVer))
+  266:          other = new SemVer(other, this.loose);
+  267:      // NOT having a prerelease is > having one
+*****
+
+***** HC\0.js
+  223:          return 1;
+  224:      var i = 0;
+***** HC\ORIGINAL.JS
+  271:          return 1;
+  272:      else if (!this.prerelease.length && !other.prerelease.length)
+  273:          return 0;
+  274:      var i = 0;
+*****
+
+***** HC\0.js
+  227:          var b = other.prerelease[i];
+  228:          if (a === undefined && b === undefined)
+***** HC\ORIGINAL.JS
+  277:          var b = other.prerelease[i];
+  278:          debug('prerelease compare', i, a, b);
+  279:          if (a === undefined && b === undefined)
+*****
+
+***** HC\0.js
+  314:              }
+  315:          }
+***** HC\ORIGINAL.JS
+  365:              }
+  366:              if (i === -1)
+  367:                  // didn't increment anything
+  368:                  this.prerelease.push(0);
+  369:          }
+*****
+
+***** HC\0.js
+  332:      default:
+  333:          throw new Error();
+  334:      }
+***** HC\ORIGINAL.JS
+  386:      default:
+  387:          throw new Error('invalid increment argument: ' + release);
+  388:      }
+*****
+
+***** HC\0.js
+  340:  function inc(version, release, loose, identifier) {
+  341:      try {
+***** HC\ORIGINAL.JS
+  394:  function inc(version, release, loose, identifier) {
+  395:      if (typeof loose === 'string') {
+  396:          identifier = loose;
+  397:          loose = undefined;
+  398:      }
+  399:      try {
+*****
+
+***** HC\0.js
+  372:  }
+  373:  var numeric = /^[0-9]+$/;
+***** HC\ORIGINAL.JS
+  430:  }
+  431:  exports.compareIdentifiers = compareIdentifiers;
+  432:  var numeric = /^[0-9]+$/;
+*****
+
+***** HC\0.js
+  376:      var bnum = numeric.test(b);
+  377:      return anum && !bnum ? -1 : bnum && !anum ? 1 : a < b ? -1 : a > b ? 1 : 0;
+***** HC\ORIGINAL.JS
+  435:      var bnum = numeric.test(b);
+  436:      if (anum && bnum) {
+  437:          a = +a;
+  438:          b = +b;
+  439:      }
+  440:      return anum && !bnum ? -1 : bnum && !anum ? 1 : a < b ? -1 : a > b ? 1 : 0;
+*****
+
+***** HC\0.js
+  378:  }
+  379:  exports.major = major;
+***** HC\ORIGINAL.JS
+  441:  }
+  442:  exports.rcompareIdentifiers = rcompareIdentifiers;
+  443:  function rcompareIdentifiers(a, b) {
+  444:      return compareIdentifiers(b, a);
+  445:  }
+  446:  exports.major = major;
+*****
+
+***** HC\0.js
+  404:  function sort(list, loose) {
+  405:      return list.sort();
+  406:  }
+***** HC\ORIGINAL.JS
+  471:  function sort(list, loose) {
+  472:      return list.sort(function (a, b) {
+  473:          return exports.compare(a, b, loose);
+  474:      });
+  475:  }
+*****
+
+***** HC\0.js
+  438:  function cmp(a, op, b, loose) {
+  439:      switch (op) {
+***** HC\ORIGINAL.JS
+  507:  function cmp(a, op, b, loose) {
+  508:      var ret;
+  509:      switch (op) {
+*****
+
+***** HC\0.js
+  440:      case '===':
+  441:          break;
+***** HC\ORIGINAL.JS
+  510:      case '===':
+  511:          if (typeof a === 'object')
+  512:              a = a.version;
+  513:          if (typeof b === 'object')
+  514:              b = b.version;
+  515:          ret = a === b;
+  516:          break;
+*****
+
+***** HC\0.js
+  442:      case '!==':
+  443:          ret = a !== b;
+***** HC\ORIGINAL.JS
+  517:      case '!==':
+  518:          if (typeof a === 'object')
+  519:              a = a.version;
+  520:          if (typeof b === 'object')
+  521:              b = b.version;
+  522:          ret = a !== b;
+*****
+
+***** HC\0.js
+  479:          return new Comparator(comp, loose);
+  480:      this.loose = loose;
+***** HC\ORIGINAL.JS
+  558:          return new Comparator(comp, loose);
+  559:      debug('comparator', comp, loose);
+  560:      this.loose = loose;
+*****
+
+***** HC\0.js
+  485:          this.value = this.operator + this.semver.version;
+  486:  }
+  487:  var ANY;
+  488:  Comparator.prototype.parse = function (comp) {
+***** HC\ORIGINAL.JS
+  565:          this.value = this.operator + this.semver.version;
+  566:      debug('comp', this);
+  567:  }
+  568:  var ANY = {};
+  569:  Comparator.prototype.parse = function (comp) {
+*****
+
+***** HC\0.js
+  490:      var m = comp.match(r);
+  491:      this.operator = m[1];
+***** HC\ORIGINAL.JS
+  571:      var m = comp.match(r);
+  572:      if (!m)
+  573:          throw new TypeError('Invalid comparator: ' + comp);
+  574:      this.operator = m[1];
+*****
+
+***** HC\0.js
+  503:  Comparator.prototype.test = function (version) {
+  504:      if (this.semver === ANY)
+***** HC\ORIGINAL.JS
+  586:  Comparator.prototype.test = function (version) {
+  587:      debug('Comparator.test', version, this.loose);
+  588:      if (this.semver === ANY)
+*****
+
+***** HC\0.js
+  505:          return true;
+  506:      return cmp(version, this.operator, this.semver, this.loose);
+***** HC\ORIGINAL.JS
+  589:          return true;
+  590:      if (typeof version === 'string')
+  591:          version = new SemVer(version, this.loose);
+  592:      return cmp(version, this.operator, this.semver, this.loose);
+*****
+
+***** HC\0.js
+  511:      }
+  512:      if (this.operator === '') {
+***** HC\ORIGINAL.JS
+  597:      }
+  598:      var rangeTmp;
+  599:      if (this.operator === '') {
+*****
+
+***** HC\0.js
+  555:      });
+  556:      this.format();
+***** HC\ORIGINAL.JS
+  642:      });
+  643:      if (!this.set.length) {
+  644:          throw new TypeError('Invalid SemVer Range: ' + range);
+  645:      }
+  646:      this.format();
+*****
+
+***** HC\0.js
+  561:      }).join('||').trim();
+  562:  };
+***** HC\ORIGINAL.JS
+  651:      }).join('||').trim();
+  652:      return this.range;
+  653:  };
+*****
+
+***** HC\0.js
+  567:      var loose = this.loose;
+  568:      // `1.2.3 - 1.2.4` => `>=1.2.3 <=1.2.4`
+***** HC\ORIGINAL.JS
+  658:      var loose = this.loose;
+  659:      range = range.trim();
+  660:      debug('range', range, loose);
+  661:      // `1.2.3 - 1.2.4` => `>=1.2.3 <=1.2.4`
+*****
+
+***** HC\0.js
+  570:      range = range.replace(hr, hyphenReplace);
+  571:      // `> 1.2.3 < 1.2.5` => `>1.2.3 <1.2.5`
+***** HC\ORIGINAL.JS
+  663:      range = range.replace(hr, hyphenReplace);
+  664:      debug('hyphen replace', range);
+  665:      // `> 1.2.3 < 1.2.5` => `>1.2.3 <1.2.5`
+*****
+
+***** HC\0.js
+  572:      range = range.replace(re[COMPARATORTRIM], comparatorTrimReplace);
+  573:      // `~ 1.2.3` => `~1.2.3`
+***** HC\ORIGINAL.JS
+  666:      range = range.replace(re[COMPARATORTRIM], comparatorTrimReplace);
+  667:      debug('comparator trim', range, re[COMPARATORTRIM]);
+  668:      // `~ 1.2.3` => `~1.2.3`
+*****
+
+***** HC\0.js
+  576:      range = range.replace(re[CARETTRIM], caretTrimReplace);
+  577:      var set = range.split().map(function (comp) {
+  578:          return parseComparator(comp, loose);
+  579:      }).join().split(/\s+/);
+  580:      set = set.map(function (comp) {
+***** HC\ORIGINAL.JS
+  671:      range = range.replace(re[CARETTRIM], caretTrimReplace);
+  672:      // normalize spaces
+  673:      range = range.split(/\s+/).join(' ');
+  674:      // At this point, the range is completely trimmed and
+  675:      // ready to be split into comparators.
+  676:      var compRe = loose ? re[COMPARATORLOOSE] : re[COMPARATOR];
+  677:      var set = range.split(' ').map(function (comp) {
+  678:          return parseComparator(comp, loose);
+  679:      }).join(' ').split(/\s+/);
+  680:      if (this.loose) {
+  681:          // in loose mode, throw out any that are not valid comparators
+  682:          set = set.filter(function (comp) {
+  683:              return !!comp.match(compRe);
+  684:          });
+  685:      }
+  686:      set = set.map(function (comp) {
+*****
+
+***** HC\0.js
+  611:  function parseComparator(comp, loose) {
+  612:      comp = replaceCarets(comp, loose);
+  613:      comp = replaceTildes(comp, loose);
+  614:      comp = replaceXRanges(comp, loose);
+  615:      comp = replaceStars(comp, loose);
+  616:      return comp;
+***** HC\ORIGINAL.JS
+  717:  function parseComparator(comp, loose) {
+  718:      debug('comp', comp);
+  719:      comp = replaceCarets(comp, loose);
+  720:      debug('caret', comp);
+  721:      comp = replaceTildes(comp, loose);
+  722:      debug('tildes', comp);
+  723:      comp = replaceXRanges(comp, loose);
+  724:      debug('xrange', comp);
+  725:      comp = replaceStars(comp, loose);
+  726:      debug('stars', comp);
+  727:      return comp;
+*****
+
+***** HC\0.js
+  634:      return comp.replace(r, function (_, M, m, p, pr) {
+  635:          if (isX(M))
+***** HC\ORIGINAL.JS
+  745:      return comp.replace(r, function (_, M, m, p, pr) {
+  746:          debug('tilde', comp, _, M, m, p, pr);
+  747:          var ret;
+  748:          if (isX(M))
+*****
+
+***** HC\0.js
+  642:          else if (pr) {
+  643:              if (pr.charAt() !== '-')
+  644:                  pr = '-' + pr;
+***** HC\ORIGINAL.JS
+  755:          else if (pr) {
+  756:              debug('replaceTilde pr', pr);
+  757:              if (pr.charAt(0) !== '-')
+  758:                  pr = '-' + pr;
+*****
+
+***** HC\0.js
+  648:              ret = '>=' + M + '.' + m + '.' + p + ' <' + M + '.' + (+m + 1) + '.0';
+  649:          return ret;
+***** HC\ORIGINAL.JS
+  762:              ret = '>=' + M + '.' + m + '.' + p + ' <' + M + '.' + (+m + 1) + '.0';
+  763:          debug('tilde return', ret);
+  764:          return ret;
+*****
+
+***** HC\0.js
+  663:  function replaceCaret(comp, loose) {
+  664:      var r = loose ? re[CARETLOOSE] : re[CARET];
+***** HC\ORIGINAL.JS
+  778:  function replaceCaret(comp, loose) {
+  779:      debug('caret', comp, loose);
+  780:      var r = loose ? re[CARETLOOSE] : re[CARET];
+*****
+
+***** HC\0.js
+  665:      return comp.replace(r, function (_, M, m, p, pr) {
+  666:          if (isX(M))
+***** HC\ORIGINAL.JS
+  781:      return comp.replace(r, function (_, M, m, p, pr) {
+  782:          debug('caret', comp, _, M, m, p, pr);
+  783:          var ret;
+  784:          if (isX(M))
+*****
+
+***** HC\0.js
+  675:          } else if (pr) {
+  676:              if (pr.charAt() !== '-')
+  677:                  pr = '-' + pr;
+***** HC\ORIGINAL.JS
+  793:          } else if (pr) {
+  794:              debug('replaceCaret pr', pr);
+  795:              if (pr.charAt(0) !== '-')
+  796:                  pr = '-' + pr;
+*****
+
+***** HC\0.js
+  685:          } else {
+  686:              if (M === '0') {
+***** HC\ORIGINAL.JS
+  804:          } else {
+  805:              debug('no pr');
+  806:              if (M === '0') {
+*****
+
+***** HC\0.js
+  693:          }
+  694:          return ret;
+***** HC\ORIGINAL.JS
+  813:          }
+  814:          debug('caret return', ret);
+  815:          return ret;
+*****
+
+***** HC\0.js
+  697:  function replaceXRanges(comp, loose) {
+  698:      return comp.split(/\s+/).map(function (comp) {
+***** HC\ORIGINAL.JS
+  818:  function replaceXRanges(comp, loose) {
+  819:      debug('replaceXRanges', comp, loose);
+  820:      return comp.split(/\s+/).map(function (comp) {
+*****
+
+***** HC\0.js
+  702:  function replaceXRange(comp, loose) {
+  703:      var r = loose ? re[XRANGELOOSE] : re[XRANGE];
+***** HC\ORIGINAL.JS
+  824:  function replaceXRange(comp, loose) {
+  825:      comp = comp.trim();
+  826:      var r = loose ? re[XRANGELOOSE] : re[XRANGE];
+*****
+
+***** HC\0.js
+  704:      return comp.replace(r, function (ret, gtlt, M, m, p, pr) {
+  705:          var xM = isX(M);
+***** HC\ORIGINAL.JS
+  827:      return comp.replace(r, function (ret, gtlt, M, m, p, pr) {
+  828:          debug('xRange', comp, ret, gtlt, M, m, p, pr);
+  829:          var xM = isX(M);
+*****
+
+***** HC\0.js
+  725:              if (gtlt === '>') {
+  726:                  if (xm) {
+  727:                  } else if (xp) {
+***** HC\ORIGINAL.JS
+  849:              if (gtlt === '>') {
+  850:                  // >1 => >=2.0.0
+  851:                  // >1.2 => >=1.3.0
+  852:                  // >1.2.3 => >= 1.2.4
+  853:                  gtlt = '>=';
+  854:                  if (xm) {
+  855:                      M = +M + 1;
+  856:                      m = 0;
+  857:                      p = 0;
+  858:                  } else if (xp) {
+*****
+
+***** HC\0.js
+  728:                      m = +m + 1;
+  729:                  }
+***** HC\ORIGINAL.JS
+  859:                      m = +m + 1;
+  860:                      p = 0;
+  861:                  }
+*****
+
+***** HC\0.js
+  730:              } else if (gtlt === '<=') {
+  731:                  if (xm)
+***** HC\ORIGINAL.JS
+  862:              } else if (gtlt === '<=') {
+  863:                  // <=0.7.x is actually <0.8.0, since any 0.7.x should
+  864:                  // pass.  Similarly, <=7.x is actually <8.0.0, etc.
+  865:                  gtlt = '<';
+  866:                  if (xm)
+*****
+
+***** HC\0.js
+  741:          }
+  742:          return ret;
+***** HC\ORIGINAL.JS
+  876:          }
+  877:          debug('xRange return', ret);
+  878:          return ret;
+*****
+
+***** HC\0.js
+  747:  function replaceStars(comp, loose) {
+  748:      // Looseness is ignored here.  star is always as loose as it gets!
+***** HC\ORIGINAL.JS
+  883:  function replaceStars(comp, loose) {
+  884:      debug('replaceStars', comp, loose);
+  885:      // Looseness is ignored here.  star is always as loose as it gets!
+*****
+
+***** HC\0.js
+  779:      if (!version)
+  780:          return;
+  781:      if (typeof version === 'string')
+***** HC\ORIGINAL.JS
+  916:      if (!version)
+  917:          return false;
+  918:      if (typeof version === 'string')
+*****
+
+***** HC\0.js
+  791:          if (!set[i].test(version))
+  792:              return;
+  793:      }
+***** HC\ORIGINAL.JS
+  928:          if (!set[i].test(version))
+  929:              return false;
+  930:      }
+*****
+
+***** HC\0.js
+  800:          for (var i = 0; i < set.length; i++) {
+  801:              if (set[i].semver === ANY)
+***** HC\ORIGINAL.JS
+  937:          for (var i = 0; i < set.length; i++) {
+  938:              debug(set[i].semver);
+  939:              if (set[i].semver === ANY)
+*****
+
+***** HC\0.js
+  809:          // Version has a -pre, but it's not one of the ones we like.
+  810:          return;
+  811:      }
+***** HC\ORIGINAL.JS
+  947:          // Version has a -pre, but it's not one of the ones we like.
+  948:          return false;
+  949:      }
+*****
+
+***** HC\0.js
+  818:      } catch (er) {
+  819:          return;
+  820:      }
+***** HC\ORIGINAL.JS
+  956:      } catch (er) {
+  957:          return false;
+  958:      }
+*****
+
+***** HC\0.js
+  824:  function maxSatisfying(versions, range, loose) {
+  825:      var max;
+  826:      try {
+***** HC\ORIGINAL.JS
+  962:  function maxSatisfying(versions, range, loose) {
+  963:      var max = null;
+  964:      var maxSV = null;
+  965:      try {
+*****
+
+***** HC\0.js
+  844:  function minSatisfying(versions, range, loose) {
+  845:      var min;
+  846:      try {
+***** HC\ORIGINAL.JS
+  983:  function minSatisfying(versions, range, loose) {
+  984:      var min = null;
+  985:      var minSV = null;
+  986:      try {
+*****
+
+***** HC\0.js
+  886:      range = new Range(range, loose);
+  887:      switch (hilo) {
+***** HC\ORIGINAL.JS
+ 1026:      range = new Range(range, loose);
+ 1027:      var gtfn, ltefn, ltfn, comp, ecomp;
+ 1028:      switch (hilo) {
+*****
+
+***** HC\0.js
+  906:      if (satisfies(version, range, loose)) {
+  907:          return;
+  908:      }
+***** HC\ORIGINAL.JS
+ 1047:      if (satisfies(version, range, loose)) {
+ 1048:          return false;
+ 1049:      }
+*****
+
+***** HC\0.js
+  912:          var comparators = range.set[i];
+  913:          var high;
+  914:          var low = null;
+***** HC\ORIGINAL.JS
+ 1053:          var comparators = range.set[i];
+ 1054:          var high = null;
+ 1055:          var low = null;
+*****
+
+***** HC\0.js
+  929:          if (high.operator === comp || high.operator === ecomp) {
+  930:              return;
+  931:          }
+***** HC\ORIGINAL.JS
+ 1070:          if (high.operator === comp || high.operator === ecomp) {
+ 1071:              return false;
+ 1072:          }
+*****
+
+***** HC\0.js
+  934:          if ((!low.operator || low.operator === comp) && ltefn(version, low.semver)) {
+  935:              return;
+  936:          } else if (low.operator === ecomp && ltfn(version, low.semver)) {
+  937:              return;
+  938:          }
+***** HC\ORIGINAL.JS
+ 1075:          if ((!low.operator || low.operator === comp) && ltefn(version, low.semver)) {
+ 1076:              return false;
+ 1077:          } else if (low.operator === ecomp && ltfn(version, low.semver)) {
+ 1078:              return false;
+ 1079:          }
+*****
+
+***** HC\0.js
+  957:      if (typeof version !== 'string')
+  958:          return;
+  959:      var match = version.match(re[COERCE]);
+***** HC\ORIGINAL.JS
+ 1098:      if (typeof version !== 'string')
+ 1099:          return null;
+ 1100:      var match = version.match(re[COERCE]);
+*****
+
+***** HC\0.js
+  960:      if (match == null)
+  961:          return;
+  962:      return parse((match[1] || '0') + '.' + (match[2] || '0') + '.' + (match[3] || '0'));
+***** HC\ORIGINAL.JS
+ 1101:      if (match == null)
+ 1102:          return null;
+ 1103:      return parse((match[1] || '0') + '.' + (match[2] || '0') + '.' + (match[3] || '0'));
+*****
+

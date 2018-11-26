@@ -1,0 +1,857 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    1:  var endsWith = require('../../utils/string').endsWith;
+    2:  var clone = require('../../utils/object').clone;
+***** HC\ORIGINAL.JS
+    1:  'use strict';
+    2:  var endsWith = require('../../utils/string').endsWith;
+    3:  var clone = require('../../utils/object').clone;
+*****
+
+***** HC\0.js
+   38:      function Unit(value, name) {
+   39:          if (name != undefined) {
+***** HC\ORIGINAL.JS
+   39:      function Unit(value, name) {
+   40:          if (!(this instanceof Unit)) {
+   41:              throw new Error('Constructor must be called with the new operator');
+   42:          }
+   43:          if (!(value == undefined || isNumeric(value) || type.isComplex(value))) {
+   44:              throw new TypeError('First parameter in Unit constructor must be number, BigNumber, Fraction, Complex, or undefined
+   45:  ');
+   46:          }
+   47:          if (name != undefined && (typeof name !== 'string' || name === '')) {
+   48:              throw new TypeError('Second parameter in Unit constructor must be a string');
+   49:          }
+   50:          if (name != undefined) {
+*****
+
+***** HC\0.js
+   43:          } else {
+   44:              this.dimensions = [];
+***** HC\ORIGINAL.JS
+   54:          } else {
+   55:              this.units = [{
+   56:                      unit: UNIT_NONE,
+   57:                      prefix: PREFIXES.NONE,
+   58:                      // link to a list with supported prefixes
+   59:                      power: 0
+   60:                  }];
+   61:              this.dimensions = [];
+*****
+
+***** HC\0.js
+   62:      Unit.prototype.isUnit = true;
+   63:      function skipWhitespace() {
+***** HC\ORIGINAL.JS
+   79:      Unit.prototype.isUnit = true;
+   80:      // private variables and functions for the Unit parser
+   81:      var text, index, c;
+   82:      function skipWhitespace() {
+*****
+
+***** HC\0.js
+   68:      function isDigitDot(c) {
+   69:      }
+***** HC\ORIGINAL.JS
+   87:      function isDigitDot(c) {
+   88:          return c >= '0' && c <= '9' || c == '.';
+   89:      }
+*****
+
+***** HC\0.js
+   82:          var number = '';
+   83:          oldIndex = index;
+***** HC\ORIGINAL.JS
+  102:          var number = '';
+  103:          var oldIndex;
+  104:          oldIndex = index;
+*****
+
+***** HC\0.js
+   89:          }
+   90:          // get number, can have a single dot
+***** HC\ORIGINAL.JS
+  110:          }
+  111:          if (!isDigitDot(c)) {
+  112:              // a + or - must be followed by a digit
+  113:              revert(oldIndex);
+  114:              return null;
+  115:          }
+  116:          // get number, can have a single dot
+*****
+
+***** HC\0.js
+   96:                  revert(oldIndex);
+   97:              }
+***** HC\ORIGINAL.JS
+  122:                  revert(oldIndex);
+  123:                  return null;
+  124:              }
+*****
+
+***** HC\0.js
+  127:                  revert(tentativeIndex);
+  128:              }
+***** HC\ORIGINAL.JS
+  154:                  revert(tentativeIndex);
+  155:                  return number;
+  156:              }
+*****
+
+***** HC\0.js
+  147:          // Must begin with [a-zA-Z]
+  148:          code = unitName.charCodeAt();
+  149:          if (code >= 65 && code <= 90 || code >= 97 && code <= 122) {
+***** HC\ORIGINAL.JS
+  175:          // Must begin with [a-zA-Z]
+  176:          code = unitName.charCodeAt(0);
+  177:          if (code >= 65 && code <= 90 || code >= 97 && code <= 122) {
+*****
+
+***** HC\0.js
+  151:          } else {
+  152:          }
+***** HC\ORIGINAL.JS
+  179:          } else {
+  180:              return null;
+  181:          }
+*****
+
+***** HC\0.js
+  158:          } else {
+  159:          }
+***** HC\ORIGINAL.JS
+  187:          } else {
+  188:              return null;
+  189:          }
+*****
+
+***** HC\0.js
+  174:          index = -1;
+  175:          if (typeof text !== 'string') {
+***** HC\ORIGINAL.JS
+  204:          index = -1;
+  205:          c = '';
+  206:          if (typeof text !== 'string') {
+*****
+
+***** HC\0.js
+  196:          var valueStr = parseNumber();
+  197:          var value;
+  198:          if (valueStr) {
+***** HC\ORIGINAL.JS
+  227:          var valueStr = parseNumber();
+  228:          var value = null;
+  229:          if (valueStr) {
+*****
+
+***** HC\0.js
+  207:          }
+  208:          // Whitespace is not required here
+***** HC\ORIGINAL.JS
+  238:          }
+  239:          skipWhitespace();
+  240:          // Whitespace is not required here
+*****
+
+***** HC\0.js
+  210:          var powerMultiplierCurrent = 1;
+  211:          // Stack to keep track of powerMultipliers applied to each parentheses group
+***** HC\ORIGINAL.JS
+  242:          var powerMultiplierCurrent = 1;
+  243:          var expectingUnit = false;
+  244:          // Stack to keep track of powerMultipliers applied to each parentheses group
+*****
+
+***** HC\0.js
+  248:                  var p = parseNumber();
+  249:                  power *= p;
+***** HC\ORIGINAL.JS
+  281:                  var p = parseNumber();
+  282:                  if (p == null) {
+  283:                      // No valid number found for the power!
+  284:                      throw new SyntaxError('In "' + str + '", "^" must be followed by a floating-point number');
+  285:                  }
+  286:                  power *= p;
+*****
+
+***** HC\0.js
+  263:              while (c === ')') {
+  264:                  powerMultiplierStackProduct /= powerMultiplierStack.pop();
+***** HC\ORIGINAL.JS
+  300:              while (c === ')') {
+  301:                  if (powerMultiplierStack.length === 0) {
+  302:                      throw new SyntaxError('Unmatched ")" in "' + text + '" at index ' + index.toString());
+  303:                  }
+  304:                  powerMultiplierStackProduct /= powerMultiplierStack.pop();
+*****
+
+***** HC\0.js
+  274:                  powerMultiplierCurrent = 1;
+  275:              } else if (parseCharacter('/')) {
+***** HC\ORIGINAL.JS
+  314:                  powerMultiplierCurrent = 1;
+  315:                  expectingUnit = true;
+  316:              } else if (parseCharacter('/')) {
+*****
+
+***** HC\0.js
+  291:          }
+  292:          // Is there a trailing slash?
+***** HC\ORIGINAL.JS
+  332:          }
+  333:          // Has the string been entirely consumed?
+  334:          skipWhitespace();
+  335:          if (c) {
+  336:              throw new SyntaxError('Could not parse: "' + str + '"');
+  337:          }
+  338:          // Is there a trailing slash?
+*****
+
+***** HC\0.js
+  295:          }
+  296:          // Are there any units at all?
+***** HC\ORIGINAL.JS
+  341:          }
+  342:          // Is the parentheses stack empty?
+  343:          if (powerMultiplierStack.length !== 0) {
+  344:              throw new SyntaxError('Unmatched "(" in "' + text + '"');
+  345:          }
+  346:          // Are there any units at all?
+*****
+
+***** HC\0.js
+  312:          unit.value = clone(this.value);
+  313:          unit.dimensions = this.dimensions.slice();
+  314:          unit.units = [];
+***** HC\ORIGINAL.JS
+  362:          unit.value = clone(this.value);
+  363:          unit.dimensions = this.dimensions.slice(0);
+  364:          unit.units = [];
+*****
+
+***** HC\0.js
+  330:      Unit.prototype._isDerived = function () {
+  331:          return this.units.length > 1 || Math.abs(this.units[0].power - 1) > 1e-15;
+***** HC\ORIGINAL.JS
+  380:      Unit.prototype._isDerived = function () {
+  381:          if (this.units.length === 0) {
+  382:              return false;
+  383:          }
+  384:          return this.units.length > 1 || Math.abs(this.units[0].power - 1) > 1e-15;
+*****
+
+***** HC\0.js
+  340:      Unit.prototype._normalize = function (value) {
+  341:          if (value == null || this.units.length === 0) {
+  342:          } else if (this._isDerived()) {
+***** HC\ORIGINAL.JS
+  393:      Unit.prototype._normalize = function (value) {
+  394:          var unitValue, unitOffset, unitPower, unitPrefixValue;
+  395:          var convert;
+  396:          if (value == null || this.units.length === 0) {
+  397:              return value;
+  398:          } else if (this._isDerived()) {
+*****
+
+***** HC\0.js
+  373:      Unit.prototype._denormalize = function (value, prefixValue) {
+  374:          if (value == null || this.units.length === 0) {
+***** HC\ORIGINAL.JS
+  429:      Unit.prototype._denormalize = function (value, prefixValue) {
+  430:          var unitValue, unitOffset, unitPower, unitPrefixValue;
+  431:          var convert;
+  432:          if (value == null || this.units.length === 0) {
+*****
+
+***** HC\0.js
+  381:              var res = value;
+  382:              // convert to Fraction or BigNumber if needed
+***** HC\ORIGINAL.JS
+  439:              var res = value;
+  440:              convert = Unit._getNumberConverter(getTypeOf(value));
+  441:              // convert to Fraction or BigNumber if needed
+*****
+
+***** HC\0.js
+  390:          } else {
+  391:              // convert to Fraction or BigNumber if needed
+***** HC\ORIGINAL.JS
+  449:          } else {
+  450:              // This is a single unit of power 1, like kg or degC
+  451:              convert = Unit._getNumberConverter(getTypeOf(value));
+  452:              // convert to Fraction or BigNumber if needed
+*****
+
+***** HC\0.js
+  437:          }
+  438:      }
+***** HC\ORIGINAL.JS
+  498:          }
+  499:          return null;
+  500:      }
+*****
+
+***** HC\0.js
+  460:          if (!base)
+  461:              return;
+  462:          // All dimensions must be the same
+***** HC\ORIGINAL.JS
+  522:          if (!base)
+  523:              return false;
+  524:          // All dimensions must be the same
+*****
+
+***** HC\0.js
+  521:          } else {
+  522:          }
+***** HC\ORIGINAL.JS
+  583:          } else {
+  584:              res.value = null;
+  585:          }
+*****
+
+***** HC\0.js
+  554:          } else {
+  555:          }
+***** HC\ORIGINAL.JS
+  617:          } else {
+  618:              res.value = null;
+  619:          }
+*****
+
+***** HC\0.js
+  627:      Unit.prototype.to = function (valuelessUnit) {
+  628:          var value = this.value == null ? this._normalize(1) : this.value;
+***** HC\ORIGINAL.JS
+  691:      Unit.prototype.to = function (valuelessUnit) {
+  692:          var other;
+  693:          var value = this.value == null ? this._normalize(1) : this.value;
+*****
+
+***** HC\0.js
+  635:              if (other.value !== null) {
+  636:                  throw new Error();
+  637:              }
+***** HC\ORIGINAL.JS
+  700:              if (other.value !== null) {
+  701:                  throw new Error('Cannot convert to a unit with a value');
+  702:              }
+*****
+
+***** HC\0.js
+  639:              other.fixPrefix = true;
+  640:              return other;
+***** HC\ORIGINAL.JS
+  704:              other.fixPrefix = true;
+  705:              other.isUnitListSimplified = true;
+  706:              return other;
+*****
+
+***** HC\0.js
+  642:              if (!this.equalBase(valuelessUnit)) {
+  643:                  throw new Error();
+  644:              }
+***** HC\ORIGINAL.JS
+  708:              if (!this.equalBase(valuelessUnit)) {
+  709:                  throw new Error('Units do not match');
+  710:              }
+*****
+
+***** HC\0.js
+  650:              other.fixPrefix = true;
+  651:              return other;
+***** HC\ORIGINAL.JS
+  716:              other.fixPrefix = true;
+  717:              other.isUnitListSimplified = true;
+  718:              return other;
+*****
+
+***** HC\0.js
+  753:              }
+  754:              if (matchingUnit) {
+***** HC\ORIGINAL.JS
+  820:              }
+  821:              var value;
+  822:              var str;
+  823:              if (matchingUnit) {
+*****
+
+***** HC\0.js
+  763:                  // Build an representation from the base units of the current unit system
+  764:                  var missingBaseDim;
+  765:                  for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+***** HC\ORIGINAL.JS
+  832:                  // Build an representation from the base units of the current unit system
+  833:                  var missingBaseDim = false;
+  834:                  for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+*****
+
+***** HC\0.js
+  774:                          } else {
+  775:                          }
+***** HC\ORIGINAL.JS
+  843:                          } else {
+  844:                              missingBaseDim = true;
+  845:                          }
+*****
+
+***** HC\0.js
+  789:          var proposedUnitList = [];
+  790:          for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+***** HC\ORIGINAL.JS
+  859:          var proposedUnitList = [];
+  860:          // Multiple units or units with powers are formatted like this:
+  861:          // 5 (kg m^2) / (s^3 mol)
+  862:          // Build an representation from the base units of the SI unit system
+  863:          var missingBaseDim = false;
+  864:          for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+*****
+
+***** HC\0.js
+  805:          ret.units = proposedUnitList;
+  806:          return ret;
+***** HC\ORIGINAL.JS
+  879:          ret.units = proposedUnitList;
+  880:          ret.isUnitListSimplified = true;
+  881:          return ret;
+*****
+
+***** HC\0.js
+  813:      Unit.prototype.formatUnits = function () {
+  814:          var strNum = '';
+***** HC\ORIGINAL.JS
+  888:      Unit.prototype.formatUnits = function () {
+  889:          // Lazy evaluation of the unit list
+  890:          this.simplifyUnitListLazy();
+  891:          var strNum = '';
+*****
+
+***** HC\0.js
+  872:          this.simplifyUnitListLazy();
+  873:          if (typeof this.value !== 'undefined' && this.value !== null && type.isComplex(this.value)) {
+***** HC\ORIGINAL.JS
+  949:          this.simplifyUnitListLazy();
+  950:          // Apply some custom logic for handling VA and VAR. The goal is to express the value of the unit as a real value, if po
+  951:  ssible. Otherwise, use a real-valued unit instead of a complex-valued one.
+  952:          var isImaginary = false;
+  953:          var isReal = true;
+  954:          if (typeof this.value !== 'undefined' && this.value !== null && type.isComplex(this.value)) {
+*****
+
+***** HC\0.js
+  875:              isImaginary = Math.abs(this.value.re) < 1e-14;
+  876:          }
+***** HC\ORIGINAL.JS
+  956:              isImaginary = Math.abs(this.value.re) < 1e-14;
+  957:              isReal = Math.abs(this.value.im) < 1e-14;
+  958:          }
+*****
+
+***** HC\0.js
+  914:      Unit.prototype._bestPrefix = function () {
+  915:          // find the best prefix value (resulting in the value of which
+***** HC\ORIGINAL.JS
+  996:      Unit.prototype._bestPrefix = function () {
+  997:          if (this.units.length !== 1) {
+  998:              throw new Error('Can only compute the best prefix for single units with integer powers, like kg, s^2, N^-1, and so 
+  999:  forth!');
+ 1000:          }
+ 1001:          if (Math.abs(this.units[0].power - Math.round(this.units[0].power)) >= 1e-14) {
+ 1002:              throw new Error('Can only compute the best prefix for single units with integer powers, like kg, s^2, N^-1, and so 
+ 1003:  forth!');
+ 1004:          }
+ 1005:          // find the best prefix value (resulting in the value of which
+*****
+
+***** HC\0.js
+  976:              var xRounded = round(xNumeric);
+  977:              var isNearlyEqual = equal(xRounded, xNumeric);
+***** HC\ORIGINAL.JS
+ 1066:              var xRounded = round(xNumeric);
+ 1067:              var xFixed;
+ 1068:              var isNearlyEqual = equal(xRounded, xNumeric);
+*****
+
+***** HC\0.js
+ 1004:                  name: '',
+ 1005:                  value: 1
+ 1006:              }
+***** HC\ORIGINAL.JS
+ 1095:                  name: '',
+ 1096:                  value: 1,
+ 1097:                  scientific: true
+ 1098:              }
+*****
+
+***** HC\0.js
+ 1013:              },
+ 1014:              'k': {
+***** HC\ORIGINAL.JS
+ 1105:              },
+ 1106:              'da': {
+ 1107:                  name: 'da',
+ 1108:                  value: 10,
+ 1109:                  scientific: false
+ 1110:              },
+ 1111:              'h': {
+ 1112:                  name: 'h',
+ 1113:                  value: 100,
+ 1114:                  scientific: false
+ 1115:              },
+ 1116:              'k': {
+*****
+
+***** HC\0.js
+ 1025:                  name: 'G',
+ 1026:                  value: 1000000000
+ 1027:              },
+ 1028:              'Y': {
+ 1029:                  name: 'Y',
+ 1030:                  value: 1e+24,
+ 1031:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1127:                  name: 'G',
+ 1128:                  value: 1000000000,
+ 1129:                  scientific: true
+*****
+
+***** HC\0.js
+ 1032:              },
+ 1033:              'd': { value: 0.1 },
+ 1034:              'c': {
+ 1035:                  name: 'c',
+ 1036:                  value: 0.01
+ 1037:              },
+ 1038:              'm': {
+ 1039:                  name: 'm',
+ 1040:                  value: 0.001,
+ 1041:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1130:              },
+ 1131:              'T': {
+ 1132:                  name: 'T',
+ 1133:                  value: 1000000000000,
+ 1134:                  scientific: true
+*****
+
+***** HC\0.js
+ 1042:              },
+ 1043:              'u': {
+ 1044:                  name: 'u',
+ 1045:                  value: 0.000001,
+ 1046:                  scientific: true
+ 1047:              }
+ 1048:          },
+ 1049:          LONG: {
+ 1050:              '': {
+ 1051:                  name: '',
+ 1052:                  value: 1
+ 1053:              },
+ 1054:              'kilo': {
+ 1055:                  name: 'kilo',
+ 1056:                  value: 1000,
+ 1057:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1135:              },
+ 1136:              'P': {
+ 1137:                  name: 'P',
+ 1138:                  value: 1000000000000000,
+ 1139:                  scientific: true
+*****
+
+***** HC\0.js
+ 1058:              },
+ 1059:              'micro': {
+ 1060:                  name: 'micro',
+ 1061:                  value: 0.000001,
+ 1062:                  scientific: true
+***** HC\ORIGINAL.JS
+ 1140:              },
+ 1141:              'E': {
+ 1142:                  name: 'E',
+ 1143:                  value: 1000000000000000000,
+ 1144:                  scientific: true
+*****
+
+***** HC\0.js
+ 1063:              },
+ 1064:              'nano': {
+ 1065:                  name: 'nano',
+ 1066:                  value: 1e-9,
+***** HC\ORIGINAL.JS
+ 1145:              },
+ 1146:              'Z': {
+ 1147:                  name: 'Z',
+ 1148:                  value: 1e+21,
+ 1149:                  scientific: true
+ 1150:              },
+ 1151:              'Y': {
+ 1152:                  name: 'Y',
+ 1153:                  value: 1e+24,
+ 1154:                  scientific: true
+ 1155:              },
+ 1156:              'd': {
+ 1157:                  name: 'd',
+ 1158:                  value: 0.1,
+ 1159:                  scientific: false
+ 1160:              },
+ 1161:              'c': {
+ 1162:                  name: 'c',
+ 1163:                  value: 0.01,
+ 1164:                  scientific: false
+ 1165:              },
+ 1166:              'm': {
+ 1167:                  name: 'm',
+ 1168:                  value: 0.001,
+ 1169:                  scientific: true
+ 1170:              },
+ 1171:              'u': {
+ 1172:                  name: 'u',
+ 1173:                  value: 0.000001,
+ 1174:                  scientific: true
+ 1175:              },
+ 1176:              'n': {
+ 1177:                  name: 'n',
+ 1178:                  value: 1e-9,
+*****
+
+***** HC\0.js
+ 1067:                  scientific: true
+ 1068:              }
+***** HC\ORIGINAL.JS
+ 1179:                  scientific: true
+ 1180:              },
+ 1181:              'p': {
+ 1182:                  name: 'p',
+ 1183:                  value: 1e-12,
+ 1184:                  scientific: true
+ 1185:              },
+ 1186:              'f': {
+ 1187:                  name: 'f',
+ 1188:                  value: 1e-15,
+ 1189:                  scientific: true
+ 1190:              },
+ 1191:              'a': {
+ 1192:                  name: 'a',
+ 1193:                  value: 1e-18,
+ 1194:                  scientific: true
+ 1195:              },
+ 1196:              'z': {
+ 1197:                  name: 'z',
+ 1198:                  value: 1e-21,
+ 1199:                  scientific: true
+ 1200:              },
+ 1201:              'y': {
+ 1202:                  name: 'y',
+ 1203:                  value: 1e-24,
+ 1204:                  scientific: true
+ 1205:              }
+*****
+
+Erro ao tentar sincronizar novamente. Os arquivos sÆo muito diferentes
+***** HC\0.js
+ 1069:          },
+ 1070:          SQUARED: { 'k': { value: 1000000 } },
+ 1071:          CUBIC: {
+ 1072:              '': { value: 1 },
+ 1073:              'k': { value: 1000000000 }
+ 1074:          },
+ 1075:          BINARY_SHORT: {
+ 1076:              '': { name: '' },
+ 1077:              'k': {
+ 1078:                  name: 'k',
+ 1079:                  value: 1000
+ 1080:              },
+ 1081:              'P': {},
+ 1082:              'Ki': {
+ 1083:                  name: 'Ki',
+ 1084:                  value: 1024
+ 1085:              }
+ 1086:          },
+ 1087:          BINARY_LONG: {
+ 1088:              '': { value: 1 },
+ 1089:              'exa': { value: 1000000000000000000 }
+ 1090:          }
+ 1091:      };
+ 1092:      // Add a prefix list for both short and long prefixes (for ohm in particular, since Mohm and megaohm are both acceptable):
+ 1093:      PREFIXES.SHORTLONG = {};
+ 1094:      for (var key in PREFIXES.SHORT) {
+ 1095:          if (PREFIXES.SHORT.hasOwnProperty(key)) {
+ 1096:              PREFIXES.SHORTLONG[key] = PREFIXES.SHORT[key];
+ 1097:          }
+ 1098:      }
+ 1099:      for (var key in PREFIXES.LONG) {
+ 1100:      }
+ 1101:      /* Internally, each unit is represented by a value and a dimension array. The elements of the dimensions array have the fol
+ 1102:  lowing meaning:
+ 1103:     * Index  Dimension
+ 1104:     * -----  ---------
+ 1105:     *   0    Length
+ 1106:     *   1    Mass
+ 1107:     *   2    Time
+ 1108:     *   3    Current
+ 1109:     *   4    Temperature
+ 1110:     *   5    Luminous intensity
+ 1111:     *   6    Amount of substance
+ 1112:     *   7    Angle
+ 1113:     *   8    Bit (digital)
+ 1114:     * For example, the unit "298.15 K" is a pure temperature and would have a value of 298.15 and a dimension array of [0, 0, 0,
+ 1115:   0, 1, 0, 0, 0, 0]. The unit "1 cal / (gm Â°C)" can be written in terms of the 9 fundamental dimensions as [length^2] / ([time^
+ 1116:  2] * [temperature]), and would a value of (after conversion to SI) 4184.0 and a dimensions array of [2, 0, -2, 0, -1, 0, 0, 0, 
+ 1117:  0].
+ 1118:     *
+ 1119:     */
+ 1120:      var BASE_DIMENSIONS = [
+ 1121:          'MASS',
+ 1122:          'LENGTH',
+ 1123:          'TIME',
+ 1124:          'CURRENT',
+ 1125:          'TEMPERATURE',
+ 1126:          'LUMINOUS_INTENSITY',
+ 1127:          'AMOUNT_OF_SUBSTANCE',
+ 1128:          'BIT'
+ 1129:      ];
+ 1130:      var BASE_UNITS = {
+ 1131:          NONE: { dimensions: [] },
+ 1132:          MASS: { dimensions: [1] },
+ 1133:          LENGTH: {
+ 1134:              dimensions: [
+ 1135:                  0,
+ 1136:                  1
+ 1137:              ]
+ 1138:          },
+ 1139:          TIME: {
+ 1140:              dimensions: [
+ 1141:                  0,
+ 1142:                  0,
+ 1143:                  1
+ 1144:              ]
+ 1145:          },
+ 1146:          CURRENT: {
+ 1147:              dimensions: [
+ 1148:                  0,
+ 1149:                  0,
+ 1150:                  0,
+ 1151:                  1
+ 1152:              ]
+ 1153:          },
+ 1154:          TEMPERATURE: { dimensions: [] },
+ 1155:          LUMINOUS_INTENSITY: { dimensions: [] },
+ 1156:          AMOUNT_OF_SUBSTANCE: { dimensions: [] },
+ 1157:          FORCE: {
+ 1158:              dimensions: [
+ 1159:                  1,
+ 1160:                  1,
+ 1161:                  -2
+ 1162:              ]
+ 1163:          },
+ 1164:          SURFACE: { dimensions: [] },
+ 1165:          VOLUME: {
+ 1166:              dimensions: [
+ 1167:                  3,
+ 1168:                  0
+***** HC\ORIGINAL.JS
+ 1206:          },
+ 1207:          LONG: {
+ 1208:              '': {
+ 1209:                  name: '',
+ 1210:                  value: 1,
+ 1211:                  scientific: true
+ 1212:              },
+ 1213:              'deca': {
+ 1214:                  name: 'deca',
+ 1215:                  value: 10,
+ 1216:                  scientific: false
+ 1217:              },
+ 1218:              'hecto': {
+ 1219:                  name: 'hecto',
+ 1220:                  value: 100,
+ 1221:                  scientific: false
+ 1222:              },
+ 1223:              'kilo': {
+ 1224:                  name: 'kilo',
+ 1225:                  value: 1000,
+ 1226:                  scientific: true
+ 1227:              },
+ 1228:              'mega': {
+ 1229:                  name: 'mega',
+ 1230:                  value: 1000000,
+ 1231:                  scientific: true
+ 1232:              },
+ 1233:              'giga': {
+ 1234:                  name: 'giga',
+ 1235:                  value: 1000000000,
+ 1236:                  scientific: true
+ 1237:              },
+ 1238:              'tera': {
+ 1239:                  name: 'tera',
+ 1240:                  value: 1000000000000,
+ 1241:                  scientific: true
+ 1242:              },
+ 1243:              'peta': {
+ 1244:                  name: 'peta',
+ 1245:                  value: 1000000000000000,
+ 1246:                  scientific: true
+ 1247:              },
+ 1248:              'exa': {
+ 1249:                  name: 'exa',
+ 1250:                  value: 1000000000000000000,
+ 1251:                  scientific: true
+ 1252:              },
+ 1253:              'zetta': {
+ 1254:                  name: 'zetta',
+ 1255:                  value: 1e+21,
+ 1256:                  scientific: true
+ 1257:              },
+ 1258:              'yotta': {
+ 1259:                  name: 'yotta',
+ 1260:                  value: 1e+24,
+ 1261:                  scientific: true
+ 1262:              },
+ 1263:              'deci': {
+ 1264:                  name: 'deci',
+ 1265:                  value: 0.1,
+ 1266:                  scientific: false
+ 1267:              },
+ 1268:              'centi': {
+ 1269:                  name: 'centi',
+ 1270:                  value: 0.01,
+ 1271:                  scientific: false
+ 1272:              },
+ 1273:              'milli': {
+ 1274:                  name: 'milli',
+ 1275:                  value: 0.001,
+ 1276:                  scientific: true
+ 1277:              },
+ 1278:              'micro': {
+ 1279:                  name: 'micro',
+ 1280:                  value: 0.000001,
+ 1281:                  scientific: true
+ 1282:              },
+ 1283:              'nano': {
+ 1284:                  name: 'nano',
+ 1285:                  value: 1e-9,
+ 1286:                  scientific: true
+ 1287:              },
+ 1288:              'pico': {
+ 1289:                  name: 'pico',
+ 1290:                  value: 1e-12,
+ 1291:                  scientific: true
+ 1292:              },
+ 1293:              'femto': {
+ 1294:                  name: 'femto',
+ 1295:                  value: 1e-15,
+ 1296:                  scientific: true
+ 1297:              },
+ 1298:              'atto': {
+ 1299:                  name: 'atto',
+ 1300:                  value: 1e-18,
+ 1301:                  scientific: true
+ 1302:              },
+ 1303:              'zepto': {
+ 1304:                  name: 'zepto',
+ 1305:                  value: 1e-21,
+*****
+

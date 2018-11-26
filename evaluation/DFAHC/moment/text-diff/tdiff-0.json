@@ -1,0 +1,1100 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+   10:  }(this, function () {
+   11:      var hookCallback;
+***** HC\ORIGINAL.JS
+   10:  }(this, function () {
+   11:      'use strict';
+   12:      var hookCallback;
+*****
+
+***** HC\0.js
+   31:              // even if its not own property I'd still call it non-empty
+   32:              return;
+   33:          }
+***** HC\ORIGINAL.JS
+   32:              // even if its not own property I'd still call it non-empty
+   33:              return false;
+   34:          }
+*****
+
+***** HC\0.js
+   57:          }
+   58:          if (hasOwnProp(b)) {
+   59:          }
+   60:          if (hasOwnProp(b)) {
+   61:          }
+***** HC\ORIGINAL.JS
+   58:          }
+   59:          if (hasOwnProp(b, 'toString')) {
+   60:              a.toString = b.toString;
+   61:          }
+   62:          if (hasOwnProp(b, 'valueOf')) {
+   63:              a.valueOf = b.valueOf;
+   64:          }
+*****
+
+***** HC\0.js
+   64:      function createUTC(input, format, locale, strict) {
+   65:          return createLocalOrUTC(input, format, locale, strict).utc();
+   66:      }
+***** HC\ORIGINAL.JS
+   67:      function createUTC(input, format, locale, strict) {
+   68:          return createLocalOrUTC(input, format, locale, strict, true).utc();
+   69:      }
+*****
+
+***** HC\0.js
+   93:      } else {
+   94:      }
+***** HC\ORIGINAL.JS
+   96:      } else {
+   97:          some = function (fun) {
+   98:              var t = Object(this);
+   99:              var len = t.length >>> 0;
+  100:              for (var i = 0; i < len; i++) {
+  101:                  if (i in t && fun.call(this, t[i], i, t)) {
+  102:                      return true;
+  103:                  }
+  104:              }
+  105:              return false;
+  106:          };
+  107:      }
+*****
+
+***** HC\0.js
+  142:          if (!isUndefined(from._l)) {
+  143:          }
+***** HC\ORIGINAL.JS
+  155:          if (!isUndefined(from._l)) {
+  156:              to._l = from._l;
+  157:          }
+*****
+
+***** HC\0.js
+  172:      }
+  173:      var updateInProgress;
+  174:      // Moment prototype object
+***** HC\ORIGINAL.JS
+  186:      }
+  187:      var updateInProgress = false;
+  188:      // Moment prototype object
+*****
+
+***** HC\0.js
+  183:          if (updateInProgress === false) {
+  184:          }
+***** HC\ORIGINAL.JS
+  197:          if (updateInProgress === false) {
+  198:              updateInProgress = true;
+  199:              hooks.updateOffset(this);
+  200:              updateInProgress = false;
+  201:          }
+*****
+
+***** HC\0.js
+  215:          if (hooks.suppressDeprecationWarnings === false && typeof console !== 'undefined' && console.warn) {
+  216:          }
+***** HC\ORIGINAL.JS
+  232:          if (hooks.suppressDeprecationWarnings === false && typeof console !== 'undefined' && console.warn) {
+  233:              console.warn('Deprecation warning: ' + msg);
+  234:          }
+*****
+
+***** HC\0.js
+  218:      function deprecate(msg, fn) {
+  219:          var firstTime;
+  220:          return extend(function () {
+***** HC\ORIGINAL.JS
+  236:      function deprecate(msg, fn) {
+  237:          var firstTime = true;
+  238:          return extend(function () {
+*****
+
+***** HC\0.js
+  226:                  var arg;
+  227:                  for (var i; i < arguments.length; i++) {
+  228:                      if (typeof arguments[i] === 'object') {
+  229:                          for (var key in arguments[0]) {
+***** HC\ORIGINAL.JS
+  244:                  var arg;
+  245:                  for (var i = 0; i < arguments.length; i++) {
+  246:                      arg = '';
+  247:                      if (typeof arguments[i] === 'object') {
+  248:                          arg += '\n[' + i + '] ';
+  249:                          for (var key in arguments[0]) {
+*****
+
+***** HC\0.js
+  231:                          }
+  232:                      } else {
+  233:                      }
+  234:                  }
+  235:              }
+***** HC\ORIGINAL.JS
+  251:                          }
+  252:                          arg = arg.slice(0, -2);    // Remove trailing comma and space
+  253:                      } else {
+  254:                          arg = arguments[i];
+  255:                      }
+  256:                      args.push(arg);
+  257:                  }
+  258:                  warn(msg + '\nArguments: ' + Array.prototype.slice.call(args).join('') + '\n' + new Error().stack);
+  259:                  firstTime = false;
+  260:              }
+*****
+
+***** HC\0.js
+  244:          if (!deprecations[name]) {
+  245:          }
+***** HC\ORIGINAL.JS
+  269:          if (!deprecations[name]) {
+  270:              warn(msg);
+  271:              deprecations[name] = true;
+  272:          }
+*****
+
+***** HC\0.js
+  246:      }
+  247:      function isFunction(input) {
+***** HC\ORIGINAL.JS
+  273:      }
+  274:      hooks.suppressDeprecationWarnings = false;
+  275:      hooks.deprecationHandler = null;
+  276:      function isFunction(input) {
+*****
+
+***** HC\0.js
+  275:                  } else {
+  276:                  }
+***** HC\ORIGINAL.JS
+  304:                  } else {
+  305:                      delete res[prop];
+  306:                  }
+*****
+
+***** HC\0.js
+  295:      } else {
+  296:      }
+***** HC\ORIGINAL.JS
+  325:      } else {
+  326:          keys = function (obj) {
+  327:              var i, res = [];
+  328:              for (i in obj) {
+  329:                  if (hasOwnProp(obj, i)) {
+  330:                      res.push(i);
+  331:                  }
+  332:              }
+  333:              return res;
+  334:          };
+  335:      }
+*****
+
+***** HC\0.js
+  424:          if (typeof units === 'object') {
+  425:              var prioritized = getPrioritizedUnits(units);
+***** HC\ORIGINAL.JS
+  463:          if (typeof units === 'object') {
+  464:              units = normalizeObjectUnits(units);
+  465:              var prioritized = getPrioritizedUnits(units);
+*****
+
+***** HC\0.js
+  474:          }
+  475:          return input.replace();
+  476:      }
+***** HC\ORIGINAL.JS
+  514:          }
+  515:          return input.replace(/\\/g, '');
+  516:      }
+*****
+
+***** HC\0.js
+  507:          }
+  508:          while (i >= 0 && localFormattingTokens.test(format)) {
+***** HC\ORIGINAL.JS
+  547:          }
+  548:          localFormattingTokens.lastIndex = 0;
+  549:          while (i >= 0 && localFormattingTokens.test(format)) {
+*****
+
+***** HC\0.js
+  509:              format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
+  510:              i -= 1;
+***** HC\ORIGINAL.JS
+  550:              format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
+  551:              localFormattingTokens.lastIndex = 0;
+  552:              i -= 1;
+*****
+
+***** HC\0.js
+  563:      function unescapeFormat(s) {
+  564:          return regexEscape(s.replace().replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
+  565:              return p1 || p2 || p3 || p4;
+***** HC\ORIGINAL.JS
+  605:      function unescapeFormat(s) {
+  606:          return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4
+  607:  ) {
+  608:              return p1 || p2 || p3 || p4;
+*****
+
+***** HC\0.js
+  609:      } else {
+  610:      }
+***** HC\ORIGINAL.JS
+  652:      } else {
+  653:          indexOf = function (o) {
+  654:              // I know
+  655:              var i;
+  656:              for (i = 0; i < this.length; ++i) {
+  657:                  if (this[i] === o) {
+  658:                      return i;
+  659:                  }
+  660:              }
+  661:              return -1;
+  662:          };
+  663:      }
+*****
+
+***** HC\0.js
+  679:          if (!this._monthsParse) {
+  680:              this._longMonthsParse = [];
+***** HC\ORIGINAL.JS
+  732:          if (!this._monthsParse) {
+  733:              // this is not used
+  734:              this._monthsParse = [];
+  735:              this._longMonthsParse = [];
+*****
+
+***** HC\0.js
+  686:                  ]);
+  687:                  this._shortMonthsParse[i] = this.monthsShort(mom).toLocaleLowerCase();
+  688:                  this._longMonthsParse[i] = this.months(mom).toLocaleLowerCase();
+  689:              }
+***** HC\ORIGINAL.JS
+  741:                  ]);
+  742:                  this._shortMonthsParse[i] = this.monthsShort(mom, '').toLocaleLowerCase();
+  743:                  this._longMonthsParse[i] = this.months(mom, '').toLocaleLowerCase();
+  744:              }
+*****
+
+***** HC\0.js
+  736:              if (strict && !this._longMonthsParse[i]) {
+  737:                  this._longMonthsParse[i] = new RegExp('^' + this.months(mom, '').replace() + '$', 'i');
+  738:                  this._shortMonthsParse[i] = new RegExp('^' + this.monthsShort(mom).replace() + '$', 'i');
+  739:              }
+***** HC\ORIGINAL.JS
+  791:              if (strict && !this._longMonthsParse[i]) {
+  792:                  this._longMonthsParse[i] = new RegExp('^' + this.months(mom, '').replace('.', '') + '$', 'i');
+  793:                  this._shortMonthsParse[i] = new RegExp('^' + this.monthsShort(mom, '').replace('.', '') + '$', 'i');
+  794:              }
+*****
+
+***** HC\0.js
+  740:              if (!strict && !this._monthsParse[i]) {
+  741:                  regex = '^' + this.months(mom, '') + '|^' + this.monthsShort(mom);
+  742:                  this._monthsParse[i] = new RegExp(regex.replace(), 'i');
+  743:              }
+***** HC\ORIGINAL.JS
+  795:              if (!strict && !this._monthsParse[i]) {
+  796:                  regex = '^' + this.months(mom, '') + '|^' + this.monthsShort(mom, '');
+  797:                  this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
+  798:              }
+*****
+
+***** HC\0.js
+  762:              if (/^\d+$/.test(value)) {
+  763:              } else {
+***** HC\ORIGINAL.JS
+  817:              if (/^\d+$/.test(value)) {
+  818:                  value = toInt(value);
+  819:              } else {
+*****
+
+***** HC\0.js
+  789:          if (this._monthsParseExact) {
+  790:              if (!hasOwnProp(this)) {
+  791:                  computeMonthsParse.call(this);
+***** HC\ORIGINAL.JS
+  845:          if (this._monthsParseExact) {
+  846:              if (!hasOwnProp(this, '_monthsRegex')) {
+  847:                  computeMonthsParse.call(this);
+*****
+
+***** HC\0.js
+  807:          if (this._monthsParseExact) {
+  808:              if (!hasOwnProp(this)) {
+  809:              }
+***** HC\ORIGINAL.JS
+  863:          if (this._monthsParseExact) {
+  864:              if (!hasOwnProp(this, '_monthsRegex')) {
+  865:                  computeMonthsParse.call(this);
+  866:              }
+*****
+
+***** HC\0.js
+  832:              ]);
+  833:              shortPieces.push(this.monthsShort(mom));
+  834:              longPieces.push(this.months(mom));
+  835:              mixedPieces.push(this.months(mom));
+  836:              mixedPieces.push(this.monthsShort(mom));
+  837:          }
+***** HC\ORIGINAL.JS
+  889:              ]);
+  890:              shortPieces.push(this.monthsShort(mom, ''));
+  891:              longPieces.push(this.months(mom, ''));
+  892:              mixedPieces.push(this.months(mom, ''));
+  893:              mixedPieces.push(this.monthsShort(mom, ''));
+  894:          }
+*****
+
+***** HC\0.js
+  843:          for (i = 0; i < 12; i++) {
+  844:          }
+***** HC\ORIGINAL.JS
+  900:          for (i = 0; i < 12; i++) {
+  901:              shortPieces[i] = regexEscape(shortPieces[i]);
+  902:              longPieces[i] = regexEscape(longPieces[i]);
+  903:          }
+*****
+
+***** HC\0.js
+  845:          for (i = 0; i < 24; i++) {
+  846:          }
+***** HC\ORIGINAL.JS
+  904:          for (i = 0; i < 24; i++) {
+  905:              mixedPieces[i] = regexEscape(mixedPieces[i]);
+  906:          }
+*****
+
+***** HC\0.js
+  896:      addParseToken('Y', function (input, array) {
+  897:          array[YEAR] = parseInt(input);
+  898:      });
+***** HC\ORIGINAL.JS
+  956:      addParseToken('Y', function (input, array) {
+  957:          array[YEAR] = parseInt(input, 10);
+  958:      });
+*****
+
+***** HC\0.js
+  950:              resYear = year + 1;
+  951:          } else {
+***** HC\ORIGINAL.JS
+ 1010:              resYear = year + 1;
+ 1011:              resDayOfYear = dayOfYear - daysInYear(year);
+ 1012:          } else {
+*****
+
+***** HC\0.js
+  993:      addUnitAlias('isoWeek', 'W');
+  994:      // PARSING
+***** HC\ORIGINAL.JS
+ 1054:      addUnitAlias('isoWeek', 'W');
+ 1055:      // PRIORITIES
+ 1056:      addUnitPriority('week', 5);
+ 1057:      addUnitPriority('isoWeek', 5);
+ 1058:      // PARSING
+*****
+
+***** HC\0.js
+ 1048:      addUnitAlias('isoWeekday', 'E');
+ 1049:      // PARSING
+***** HC\ORIGINAL.JS
+ 1112:      addUnitAlias('isoWeekday', 'E');
+ 1113:      // PRIORITY
+ 1114:      addUnitPriority('day', 11);
+ 1115:      addUnitPriority('weekday', 11);
+ 1116:      addUnitPriority('isoWeekday', 11);
+ 1117:      // PARSING
+*****
+
+***** HC\0.js
+ 1087:          if (!isNaN(input)) {
+ 1088:              return;
+ 1089:          }
+***** HC\ORIGINAL.JS
+ 1155:          if (!isNaN(input)) {
+ 1156:              return parseInt(input, 10);
+ 1157:          }
+*****
+
+***** HC\0.js
+ 1093:          }
+ 1094:          return;
+ 1095:      }
+***** HC\ORIGINAL.JS
+ 1161:          }
+ 1162:          return null;
+ 1163:      }
+*****
+
+***** HC\0.js
+ 1125:              for (i = 0; i < 7; ++i) {
+ 1126:                  mom = createUTC([]).day(i);
+ 1127:                  this._minWeekdaysParse[i] = this.weekdaysMin(mom).toLocaleLowerCase();
+ 1128:                  this._shortWeekdaysParse[i] = this.weekdaysShort(mom).toLocaleLowerCase();
+ 1129:                  this._weekdaysParse[i] = this.weekdays(mom).toLocaleLowerCase();
+ 1130:              }
+***** HC\ORIGINAL.JS
+ 1193:              for (i = 0; i < 7; ++i) {
+ 1194:                  mom = createUTC([
+ 1195:                      2000,
+ 1196:                      1
+ 1197:                  ]).day(i);
+ 1198:                  this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
+ 1199:                  this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
+ 1200:                  this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
+ 1201:              }
+*****
+
+***** HC\0.js
+ 1148:                  }
+ 1149:                  if (ii !== -1) {
+***** HC\ORIGINAL.JS
+ 1219:                  }
+ 1220:                  ii = indexOf.call(this._shortWeekdaysParse, llc);
+ 1221:                  if (ii !== -1) {
+*****
+
+***** HC\0.js
+ 1151:                  }
+ 1152:                  return ii !== -1 ? ii : null;
+***** HC\ORIGINAL.JS
+ 1223:                  }
+ 1224:                  ii = indexOf.call(this._minWeekdaysParse, llc);
+ 1225:                  return ii !== -1 ? ii : null;
+*****
+
+***** HC\0.js
+ 1157:                  }
+ 1158:                  if (ii !== -1) {
+***** HC\ORIGINAL.JS
+ 1230:                  }
+ 1231:                  ii = indexOf.call(this._weekdaysParse, llc);
+ 1232:                  if (ii !== -1) {
+*****
+
+***** HC\0.js
+ 1160:                  }
+ 1161:                  return ii !== -1 ? ii : null;
+***** HC\ORIGINAL.JS
+ 1234:                  }
+ 1235:                  ii = indexOf.call(this._minWeekdaysParse, llc);
+ 1236:                  return ii !== -1 ? ii : null;
+*****
+
+***** HC\0.js
+ 1166:                  }
+ 1167:                  if (ii !== -1) {
+***** HC\ORIGINAL.JS
+ 1241:                  }
+ 1242:                  ii = indexOf.call(this._weekdaysParse, llc);
+ 1243:                  if (ii !== -1) {
+*****
+
+***** HC\0.js
+ 1169:                  }
+ 1170:                  return ii !== -1 ? ii : null;
+***** HC\ORIGINAL.JS
+ 1245:                  }
+ 1246:                  ii = indexOf.call(this._shortWeekdaysParse, llc);
+ 1247:                  return ii !== -1 ? ii : null;
+*****
+
+***** HC\0.js
+ 1249:              if (!hasOwnProp(this, '_weekdaysRegex')) {
+ 1250:              }
+***** HC\ORIGINAL.JS
+ 1326:              if (!hasOwnProp(this, '_weekdaysRegex')) {
+ 1327:                  computeWeekdaysParse.call(this);
+ 1328:              }
+*****
+
+***** HC\0.js
+ 1266:              if (!hasOwnProp(this, '_weekdaysRegex')) {
+ 1267:              }
+***** HC\ORIGINAL.JS
+ 1344:              if (!hasOwnProp(this, '_weekdaysRegex')) {
+ 1345:                  computeWeekdaysParse.call(this);
+ 1346:              }
+*****
+
+***** HC\0.js
+ 1322:          shortPieces.sort(cmpLenRev);
+ 1323:          mixedPieces.sort(cmpLenRev);
+***** HC\ORIGINAL.JS
+ 1401:          shortPieces.sort(cmpLenRev);
+ 1402:          longPieces.sort(cmpLenRev);
+ 1403:          mixedPieces.sort(cmpLenRev);
+*****
+
+***** HC\0.js
+ 1324:          for (i = 0; i < 7; i++) {
+ 1325:          }
+***** HC\ORIGINAL.JS
+ 1404:          for (i = 0; i < 7; i++) {
+ 1405:              shortPieces[i] = regexEscape(shortPieces[i]);
+ 1406:              longPieces[i] = regexEscape(longPieces[i]);
+ 1407:              mixedPieces[i] = regexEscape(mixedPieces[i]);
+ 1408:          }
+*****
+
+***** HC\0.js
+ 1372:      addUnitAlias('hour', 'h');
+ 1373:      // PARSING
+***** HC\ORIGINAL.JS
+ 1455:      addUnitAlias('hour', 'h');
+ 1456:      // PRIORITY
+ 1457:      addUnitPriority('hour', 13);
+ 1458:      // PARSING
+*****
+
+***** HC\0.js
+ 1394:      ], function (input, array, config) {
+ 1395:          config._meridiem = input;
+***** HC\ORIGINAL.JS
+ 1479:      ], function (input, array, config) {
+ 1480:          config._isPm = config._locale.isPM(input);
+ 1481:          config._meridiem = input;
+*****
+
+***** HC\0.js
+ 1407:          array[MINUTE] = toInt(input.substr(pos));
+ 1408:      });
+***** HC\ORIGINAL.JS
+ 1493:          array[MINUTE] = toInt(input.substr(pos));
+ 1494:          getParsingFlags(config).bigHour = true;
+ 1495:      });
+*****
+
+***** HC\0.js
+ 1414:          array[SECOND] = toInt(input.substr(pos2));
+ 1415:      });
+***** HC\ORIGINAL.JS
+ 1501:          array[SECOND] = toInt(input.substr(pos2));
+ 1502:          getParsingFlags(config).bigHour = true;
+ 1503:      });
+*****
+
+***** HC\0.js
+ 1504:              try {
+ 1505:                  require('./locale/' + name);
+ 1506:              } catch (e) {
+***** HC\ORIGINAL.JS
+ 1592:              try {
+ 1593:                  oldLocale = globalLocale._abbr;
+ 1594:                  require('./locale/' + name);
+ 1595:                  // because defineLocale currently also sets the global locale, we
+ 1596:                  // want to undo that for lazy loaded locales
+ 1597:                  getSetGlobalLocale(oldLocale);
+ 1598:              } catch (e) {
+*****
+
+***** HC\0.js
+ 1533:              if (locales[name] != null) {
+ 1534:                  deprecateSimple('defineLocaleOverride');
+ 1535:                  parentConfig = locales[name]._config;
+***** HC\ORIGINAL.JS
+ 1625:              if (locales[name] != null) {
+ 1626:                  deprecateSimple('defineLocaleOverride', 'use moment.updateLocale(localeName, config) to change ' + 'an existing
+ 1627:   locale. moment.defineLocale(localeName, ' + 'config) should only be used for creating a new locale ' + 'See http://momentjs.co
+ 1628:  m/guides/#/warnings/define-locale/ for more info.');
+ 1629:                  parentConfig = locales[name]._config;
+*****
+
+***** HC\0.js
+ 1585:                  } else if (locales[name] != null) {
+ 1586:                  }
+***** HC\ORIGINAL.JS
+ 1679:                  } else if (locales[name] != null) {
+ 1680:                      delete locales[name];
+ 1681:                  }
+*****
+
+***** HC\0.js
+ 1600:          if (!isArray(key)) {
+ 1601:              if (locale) {
+***** HC\ORIGINAL.JS
+ 1695:          if (!isArray(key)) {
+ 1696:              //short-circuit everything else
+ 1697:              locale = loadLocale(key);
+ 1698:              if (locale) {
+*****
+
+***** HC\0.js
+ 1746:              if (match[3]) {
+ 1747:                  for (i = 0, l = isoTimes.length;; i++) {
+ 1748:                      if (isoTimes[i][1].exec(match[3])) {
+***** HC\ORIGINAL.JS
+ 1843:              if (match[3]) {
+ 1844:                  for (i = 0, l = isoTimes.length; i < l; i++) {
+ 1845:                      if (isoTimes[i][1].exec(match[3])) {
+*****
+
+***** HC\0.js
+ 1754:                  if (timeFormat == null) {
+ 1755:                      return;
+***** HC\ORIGINAL.JS
+ 1851:                  if (timeFormat == null) {
+ 1852:                      config._isValid = false;
+ 1853:                      return;
+*****
+
+***** HC\0.js
+ 1765:                  } else {
+ 1766:                      return;
+***** HC\ORIGINAL.JS
+ 1863:                  } else {
+ 1864:                      config._isValid = false;
+ 1865:                      return;
+*****
+
+***** HC\0.js
+ 1783:          if (config._isValid === false) {
+ 1784:          }
+***** HC\ORIGINAL.JS
+ 1882:          if (config._isValid === false) {
+ 1883:              delete config._isValid;
+ 1884:              hooks.createFromInputFallback(config);
+ 1885:          }
+*****
+
+***** HC\0.js
+ 1785:      }
+ 1786:      // Pick the first defined of two or three arguments.
+***** HC\ORIGINAL.JS
+ 1886:      }
+ 1887:      hooks.createFromInputFallback = deprecate('value provided is not in a recognized ISO format. moment construction falls back
+ 1888:   to js Date(), ' + 'which is not reliable across all browsers and versions. Non ISO date formats are ' + 'discouraged and will 
+ 1889:  be removed in an upcoming major release. Please refer to ' + 'http://momentjs.com/guides/#/warnings/js-date/ for more info.', f
+ 1890:  unction (config) {
+ 1891:          config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
+ 1892:      });
+ 1893:      // Pick the first defined of two or three arguments.
+*****
+
+***** HC\0.js
+ 1797:          // hooks is actually the exported moment object
+ 1798:          var nowValue = new Date();
+ 1799:          if (config._useUTC) {
+***** HC\ORIGINAL.JS
+ 1904:          // hooks is actually the exported moment object
+ 1905:          var nowValue = new Date(hooks.now());
+ 1906:          if (config._useUTC) {
+*****
+
+***** HC\0.js
+ 1849:          if (config._a[HOUR] === 24 && config._a[MINUTE] === 0 && config._a[SECOND] === 0 && config._a[MILLISECOND] === 0) {
+ 1850:          }
+***** HC\ORIGINAL.JS
+ 1956:          if (config._a[HOUR] === 24 && config._a[MINUTE] === 0 && config._a[SECOND] === 0 && config._a[MILLISECOND] === 0) {
+ 1957:              config._nextDay = true;
+ 1958:              config._a[HOUR] = 0;
+ 1959:          }
+*****
+
+***** HC\0.js
+ 1857:          if (config._nextDay) {
+ 1858:          }
+***** HC\ORIGINAL.JS
+ 1966:          if (config._nextDay) {
+ 1967:              config._a[HOUR] = 24;
+ 1968:          }
+*****
+
+***** HC\0.js
+ 1909:      }
+ 1910:      // date from string and format string
+***** HC\ORIGINAL.JS
+ 2019:      }
+ 2020:      // constant that refers to the ISO standard
+ 2021:      hooks.ISO_8601 = function () {
+ 2022:      };
+ 2023:      // date from string and format string
+*****
+
+***** HC\0.js
+ 1998:              if (config._useUTC != null) {
+ 1999:              }
+***** HC\ORIGINAL.JS
+ 2111:              if (config._useUTC != null) {
+ 2112:                  tempConfig._useUTC = config._useUTC;
+ 2113:              }
+*****
+
+***** HC\0.js
+ 2008:              currentScore += getParsingFlags(tempConfig).unusedTokens.length * 10;
+ 2009:              if (scoreToBeat == null || currentScore < scoreToBeat) {
+***** HC\ORIGINAL.JS
+ 2122:              currentScore += getParsingFlags(tempConfig).unusedTokens.length * 10;
+ 2123:              getParsingFlags(tempConfig).score = currentScore;
+ 2124:              if (scoreToBeat == null || currentScore < scoreToBeat) {
+*****
+
+***** HC\0.js
+ 2036:          if (res._nextDay) {
+ 2037:          }
+***** HC\ORIGINAL.JS
+ 2151:          if (res._nextDay) {
+ 2152:              // Adding is smart enough around DST
+ 2153:              res.add(1, 'd');
+ 2154:              res._nextDay = undefined;
+ 2155:          }
+*****
+
+***** HC\0.js
+ 2060:          if (!isValid(config)) {
+ 2061:          }
+***** HC\ORIGINAL.JS
+ 2178:          if (!isValid(config)) {
+ 2179:              config._d = null;
+ 2180:          }
+*****
+
+***** HC\0.js
+ 2068:          } else if (isDate(input)) {
+ 2069:          } else if (typeof input === 'string') {
+***** HC\ORIGINAL.JS
+ 2187:          } else if (isDate(input)) {
+ 2188:              config._d = new Date(input.valueOf());
+ 2189:          } else if (typeof input === 'string') {
+*****
+
+***** HC\0.js
+ 2081:          } else {
+ 2082:          }
+***** HC\ORIGINAL.JS
+ 2201:          } else {
+ 2202:              hooks.createFromInputFallback(config);
+ 2203:          }
+*****
+
+***** HC\0.js
+ 2134:          if (!moments.length) {
+ 2135:              return;
+ 2136:          }
+***** HC\ORIGINAL.JS
+ 2255:          if (!moments.length) {
+ 2256:              return createLocal();
+ 2257:          }
+*****
+
+***** HC\0.js
+ 2209:      ], function (input, array, config) {
+ 2210:          config._tzm = offsetFromString(matchShortOffset, input);
+***** HC\ORIGINAL.JS
+ 2330:      ], function (input, array, config) {
+ 2331:          config._useUTC = true;
+ 2332:          config._tzm = offsetFromString(matchShortOffset, input);
+*****
+
+***** HC\0.js
+ 2238:              res._d.setTime(res._d.valueOf() + diff);
+ 2239:              return res;
+***** HC\ORIGINAL.JS
+ 2360:              res._d.setTime(res._d.valueOf() + diff);
+ 2361:              hooks.updateOffset(res, false);
+ 2362:              return res;
+*****
+
+***** HC\0.js
+ 2279:              if (!this._isUTC && keepLocalTime) {
+ 2280:              }
+***** HC\ORIGINAL.JS
+ 2402:              if (!this._isUTC && keepLocalTime) {
+ 2403:                  localAdjust = getDateOffset(this);
+ 2404:              }
+*****
+
+***** HC\0.js
+ 2283:              if (localAdjust != null) {
+ 2284:              }
+***** HC\ORIGINAL.JS
+ 2407:              if (localAdjust != null) {
+ 2408:                  this.add(localAdjust, 'm');
+ 2409:              }
+*****
+
+***** HC\0.js
+ 2288:                  } else if (!this._changeInProgress) {
+ 2289:                  }
+***** HC\ORIGINAL.JS
+ 2413:                  } else if (!this._changeInProgress) {
+ 2414:                      this._changeInProgress = true;
+ 2415:                      hooks.updateOffset(this, true);
+ 2416:                      this._changeInProgress = null;
+ 2417:                  }
+*****
+
+***** HC\0.js
+ 2314:              if (keepLocalTime) {
+ 2315:              }
+***** HC\ORIGINAL.JS
+ 2442:              if (keepLocalTime) {
+ 2443:                  this.subtract(getDateOffset(this), 'm');
+ 2444:              }
+*****
+
+***** HC\0.js
+ 2326:              } else {
+ 2327:              }
+***** HC\ORIGINAL.JS
+ 2455:              } else {
+ 2456:                  this.utcOffset(0, true);
+ 2457:              }
+*****
+
+***** HC\0.js
+ 2345:          var c = {};
+ 2346:          if (c._a) {
+***** HC\ORIGINAL.JS
+ 2475:          var c = {};
+ 2476:          copyConfig(c, this);
+ 2477:          c = prepareConfig(c);
+ 2478:          if (c._a) {
+*****
+
+***** HC\0.js
+ 2347:              var other = c._isUTC ? createUTC(c._a) : createLocal(c._a);
+ 2348:          } else {
+ 2349:          }
+***** HC\ORIGINAL.JS
+ 2479:              var other = c._isUTC ? createUTC(c._a) : createLocal(c._a);
+ 2480:              this._isDSTShifted = this.isValid() && compareArrays(c._a, other.toArray()) > 0;
+ 2481:          } else {
+ 2482:              this._isDSTShifted = false;
+ 2483:          }
+*****
+
+***** HC\0.js
+ 2407:          } else if (duration == null) {
+ 2408:          } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
+***** HC\ORIGINAL.JS
+ 2541:          } else if (duration == null) {
+ 2542:              // checks for null or undefined
+ 2543:              duration = {};
+ 2544:          } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
+*****
+
+***** HC\0.js
+ 2409:              diffRes = momentsDifference(createLocal(duration.from), createLocal(duration.to));
+ 2410:              duration.ms = diffRes.milliseconds;
+***** HC\ORIGINAL.JS
+ 2545:              diffRes = momentsDifference(createLocal(duration.from), createLocal(duration.to));
+ 2546:              duration = {};
+ 2547:              duration.ms = diffRes.milliseconds;
+*****
+
+***** HC\0.js
+ 2447:          }
+ 2448:          if (base.isBefore(other)) {
+***** HC\ORIGINAL.JS
+ 2584:          }
+ 2585:          other = cloneWithOffset(other, base);
+ 2586:          if (base.isBefore(other)) {
+*****
+
+***** HC\0.js
+ 2517:          }
+ 2518:          if (units === 'millisecond') {
+***** HC\ORIGINAL.JS
+ 2655:          }
+ 2656:          units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+ 2657:          if (units === 'millisecond') {
+*****
+
+***** HC\0.js
+ 2528:          }
+ 2529:          if (units === 'millisecond') {
+***** HC\ORIGINAL.JS
+ 2667:          }
+ 2668:          units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+ 2669:          if (units === 'millisecond') {
+*****
+
+***** HC\0.js
+ 2544:          }
+ 2545:          if (units === 'millisecond') {
+***** HC\ORIGINAL.JS
+ 2684:          }
+ 2685:          units = normalizeUnits(units || 'millisecond');
+ 2686:          if (units === 'millisecond') {
+*****
+
+***** HC\0.js
+ 2615:              } else {
+ 2616:                  return;
+ 2617:              }
+***** HC\ORIGINAL.JS
+ 2756:              } else {
+ 2757:                  return formatMoment(m, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+ 2758:              }
+*****
+
+***** HC\0.js
+ 2674:      function toNow(withoutSuffix) {
+ 2675:          return this.to(withoutSuffix);
+ 2676:      }
+***** HC\ORIGINAL.JS
+ 2815:      function toNow(withoutSuffix) {
+ 2816:          return this.to(createLocal(), withoutSuffix);
+ 2817:      }
+*****
+
+***** HC\0.js
+ 2834:      addUnitAlias('isoWeekYear', 'GG');
+ 2835:      addRegexToken('GG', match1to2, match2);
+***** HC\ORIGINAL.JS
+ 2975:      addUnitAlias('isoWeekYear', 'GG');
+ 2976:      // PRIORITY
+ 2977:      addUnitPriority('weekYear', 1);
+ 2978:      addUnitPriority('isoWeekYear', 1);
+ 2979:      // PARSING
+ 2980:      addRegexToken('G', matchSigned);
+ 2981:      addRegexToken('g', matchSigned);
+ 2982:      addRegexToken('GG', match1to2, match2);
+*****
+
+***** HC\0.js
+ 2838:      addRegexToken('gggg', match1to4, match4);
+ 2839:      addWeekParseToken([
+***** HC\ORIGINAL.JS
+ 2985:      addRegexToken('gggg', match1to4, match4);
+ 2986:      addRegexToken('GGGGG', match1to6, match6);
+ 2987:      addRegexToken('ggggg', match1to6, match6);
+ 2988:      addWeekParseToken([
+*****
+
+***** HC\0.js
+ 2883:          this.year(date.getUTCFullYear());
+ 2884:          this.date(date.getUTCDate());
+***** HC\ORIGINAL.JS
+ 3032:          this.year(date.getUTCFullYear());
+ 3033:          this.month(date.getUTCMonth());
+ 3034:          this.date(date.getUTCDate());
+*****
+
+***** HC\0.js
+ 2890:      addUnitAlias('quarter', 'Q');
+ 2891:      // PARSING
+***** HC\ORIGINAL.JS
+ 3040:      addUnitAlias('quarter', 'Q');
+ 3041:      // PRIORITY
+ 3042:      addUnitPriority('quarter', 7);
+ 3043:      // PARSING
+*****
+
+***** HC\0.js
+ 2930:      addUnitAlias('dayOfYear', 'DDD');
+ 2931:      // PARSING
+***** HC\ORIGINAL.JS
+ 3082:      addUnitAlias('dayOfYear', 'DDD');
+ 3083:      // PRIORITY
+ 3084:      addUnitPriority('dayOfYear', 4);
+ 3085:      // PARSING
+*****
+
+***** HC\0.js
+ 2952:      addUnitAlias('minute', 'm');
+ 2953:      // PARSING
+***** HC\ORIGINAL.JS
+ 3106:      addUnitAlias('minute', 'm');
+ 3107:      // PRIORITY
+ 3108:      addUnitPriority('minute', 14);
+ 3109:      // PARSING
+*****
+
+***** HC\0.js
+ 2968:      addUnitAlias('second', 's');
+ 2969:      // PARSING
+***** HC\ORIGINAL.JS
+ 3124:      addUnitAlias('second', 's');
+ 3125:      // PRIORITY
+ 3126:      addUnitPriority('second', 15);
+ 3127:      // PARSING
+*****
+
+***** HC\0.js
+ 3029:      addUnitAlias('millisecond', 'ms');
+ 3030:      // PARSING
+***** HC\ORIGINAL.JS
+ 3187:      addUnitAlias('millisecond', 'ms');
+ 3188:      // PRIORITY
+ 3189:      addUnitPriority('millisecond', 16);
+ 3190:      // PARSING
+*****
+
+***** HC\0.js
+ 3219:                  index = format;
+ 3220:              }
+ 3221:          } else {
+***** HC\ORIGINAL.JS
+ 3379:                  index = format;
+ 3380:                  format = undefined;
+ 3381:              }
+ 3382:              format = format || '';
+ 3383:          } else {
+*****
+
+***** HC\0.js
+ 3222:              format = localeSorted;
+ 3223:              localeSorted = false;
+***** HC\ORIGINAL.JS
+ 3384:              format = localeSorted;
+ 3385:              index = format;
+ 3386:              localeSorted = false;
+*****
+
+***** HC\0.js
+ 3225:                  index = format;
+ 3226:              }
+ 3227:          }
+***** HC\ORIGINAL.JS
+ 3388:                  index = format;
+ 3389:                  format = undefined;
+ 3390:              }
+ 3391:              format = format || '';
+ 3392:          }
+*****
+
+***** HC\0.js
+ 3268:          this._milliseconds = mathAbs(this._milliseconds);
+ 3269:          this._months = mathAbs(this._months);
+ 3270:          return this;
+***** HC\ORIGINAL.JS
+ 3433:          this._milliseconds = mathAbs(this._milliseconds);
+ 3434:          this._days = mathAbs(this._days);
+ 3435:          this._months = mathAbs(this._months);
+ 3436:          data.milliseconds = mathAbs(data.milliseconds);
+ 3437:          data.seconds = mathAbs(data.seconds);
+ 3438:          data.minutes = mathAbs(data.minutes);
+ 3439:          data.hours = mathAbs(data.hours);
+ 3440:          data.months = mathAbs(data.months);
+ 3441:          data.years = mathAbs(data.years);
+ 3442:          return this;
+*****
+
+***** HC\0.js
+ 3364:              default:
+ 3365:                  throw new Error();
+ 3366:              }
+***** HC\ORIGINAL.JS
+ 3536:              default:
+ 3537:                  throw new Error('Unknown unit ' + units);
+ 3538:              }
+*****
+
+***** HC\0.js
+ 3567:      });
+ 3568:      setHookCallback(createLocal);
+ 3569:      hooks.min = min;
+***** HC\ORIGINAL.JS
+ 3739:      });
+ 3740:      // Side effect imports
+ 3741:      hooks.version = '2.17.1';
+ 3742:      setHookCallback(createLocal);
+ 3743:      hooks.fn = proto;
+ 3744:      hooks.min = min;
+*****
+

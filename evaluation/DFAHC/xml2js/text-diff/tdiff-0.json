@@ -1,0 +1,174 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    2:  (function () {
+    3:      var bom, builder, escapeCDATA, events, isEmpty, processName, processors, requiresCDATA, sax, setImmediate, wrapCDATA, exten
+***** HC\ORIGINAL.JS
+    2:  (function () {
+    3:      'use strict';
+    4:      var bom, builder, escapeCDATA, events, isEmpty, processName, processors, requiresCDATA, sax, setImmediate, wrapCDATA, exten
+*****
+
+***** HC\0.js
+    9:              function ctor() {
+   10:              }
+***** HC\ORIGINAL.JS
+   10:              function ctor() {
+   11:                  this.constructor = child;
+   12:              }
+*****
+
+***** HC\0.js
+   12:              child.prototype = new ctor();
+   13:              return child;
+***** HC\ORIGINAL.JS
+   14:              child.prototype = new ctor();
+   15:              child.__super__ = parent.prototype;
+   16:              return child;
+*****
+
+***** HC\0.js
+   36:      requiresCDATA = function (entry) {
+   37:          return entry.indexOf() >= 0 || entry.indexOf() >= 0 || entry.indexOf('<') >= 0;
+   38:      };
+***** HC\ORIGINAL.JS
+   39:      requiresCDATA = function (entry) {
+   40:          return entry.indexOf('&') >= 0 || entry.indexOf('>') >= 0 || entry.indexOf('<') >= 0;
+   41:      };
+*****
+
+***** HC\0.js
+   44:      };
+   45:      exports.defaults = {
+***** HC\ORIGINAL.JS
+   47:      };
+   48:      exports.processors = processors;
+   49:      exports.defaults = {
+*****
+
+***** HC\0.js
+  111:      exports.ValidationError = function (superClass) {
+  112:          function ValidationError(message) {
+***** HC\ORIGINAL.JS
+  115:      exports.ValidationError = function (superClass) {
+  116:          extend(ValidationError, superClass);
+  117:          function ValidationError(message) {
+*****
+
+***** HC\0.js
+  136:              var attrkey, charkey, render, rootElement, rootName;
+  137:              charkey = this.options.charkey;
+***** HC\ORIGINAL.JS
+  141:              var attrkey, charkey, render, rootElement, rootName;
+  142:              attrkey = this.options.attrkey;
+  143:              charkey = this.options.charkey;
+*****
+
+***** HC\0.js
+  148:                          if (_this.options.cdata && requiresCDATA(obj)) {
+  149:                          } else {
+  150:                          }
+***** HC\ORIGINAL.JS
+  154:                          if (_this.options.cdata && requiresCDATA(obj)) {
+  155:                              element.raw(wrapCDATA(obj));
+  156:                          } else {
+  157:                              element.txt(obj);
+  158:                          }
+*****
+
+***** HC\0.js
+  158:                                      for (attr in child) {
+  159:                                      }
+***** HC\ORIGINAL.JS
+  166:                                      for (attr in child) {
+  167:                                          value = child[attr];
+  168:                                          element = element.att(attr, value);
+  169:                                      }
+*****
+
+***** HC\0.js
+  162:                                  if (_this.options.cdata && requiresCDATA(child)) {
+  163:                                  } else {
+  164:                                  }
+***** HC\ORIGINAL.JS
+  172:                                  if (_this.options.cdata && requiresCDATA(child)) {
+  173:                                      element = element.raw(wrapCDATA(child));
+  174:                                  } else {
+  175:                                      element = element.txt(child);
+  176:                                  }
+*****
+
+***** HC\0.js
+  176:                                      } else {
+  177:                                      }
+***** HC\ORIGINAL.JS
+  188:                                      } else {
+  189:                                          element = render(element.ele(key), entry).up();
+  190:                                      }
+*****
+
+***** HC\0.js
+  235:                  }
+  236:              }
+***** HC\ORIGINAL.JS
+  248:                  }
+  249:                  this.options.tagNameProcessors.unshift(processors.normalize);
+  250:              }
+*****
+
+***** HC\0.js
+  243:                      chunk = this.remaining;
+  244:                      this.saxParser = this.saxParser.write(chunk);
+  245:                      return;
+  246:                  } else {
+  247:                      chunk = this.remaining.substr(this.options.chunkSize);
+  248:                      this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+***** HC\ORIGINAL.JS
+  257:                      chunk = this.remaining;
+  258:                      this.remaining = '';
+  259:                      this.saxParser = this.saxParser.write(chunk);
+  260:                      return this.saxParser.close();
+  261:                  } else {
+  262:                      chunk = this.remaining.substr(0, this.options.chunkSize);
+  263:                      this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+*****
+
+***** HC\0.js
+  249:                      this.saxParser = this.saxParser.write(chunk);
+  250:                      return;
+  251:                  }
+***** HC\ORIGINAL.JS
+  264:                      this.saxParser = this.saxParser.write(chunk);
+  265:                      return setImmediate(this.processAsync);
+  266:                  }
+*****
+
+***** HC\0.js
+  255:                      this.saxParser.errThrown = true;
+  256:                      return;
+  257:                  }
+***** HC\ORIGINAL.JS
+  270:                      this.saxParser.errThrown = true;
+  271:                      return this.emit(err);
+  272:                  }
+*****
+
+***** HC\0.js
+  440:                          if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChild
+  441:  ren && text.replace().trim() !== '') {
+  442:                              s[_this.options.childkey] = s[_this.options.childkey] || [];
+***** HC\ORIGINAL.JS
+  455:                          if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChild
+  456:  ren && text.replace(/\\n/g, '').trim() !== '') {
+  457:                              s[_this.options.childkey] = s[_this.options.childkey] || [];
+*****
+
+***** HC\0.js
+  490:                      this.emit('error', err);
+  491:                      return;
+  492:                  } else if (this.saxParser.ended) {
+***** HC\ORIGINAL.JS
+  505:                      this.emit('error', err);
+  506:                      return this.saxParser.errThrown = true;
+  507:                  } else if (this.saxParser.ended) {
+*****
+

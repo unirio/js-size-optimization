@@ -1,0 +1,202 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+    5:          bools: {},
+    6:          strings: {}
+    7:      };
+***** HC\ORIGINAL.JS
+    5:          bools: {},
+    6:          strings: {},
+    7:          unknownFn: null
+    8:      };
+*****
+
+***** HC\0.js
+   42:      }
+   43:      function argDefined() {
+   44:          return flags.allBools && /^--[^=]+$/.test(arg) || flags.strings[key] || flags.bools[key] || aliases[key];
+***** HC\ORIGINAL.JS
+   43:      }
+   44:      function argDefined(key, arg) {
+   45:          return flags.allBools && /^--[^=]+$/.test(arg) || flags.strings[key] || flags.bools[key] || aliases[key];
+*****
+
+***** HC\0.js
+   45:      }
+   46:      function setArg(key, val) {
+   47:          if (arg && flags.unknownFn && !argDefined()) {
+   48:              if (flags.unknownFn(arg) === false)
+***** HC\ORIGINAL.JS
+   46:      }
+   47:      function setArg(key, val, arg) {
+   48:          if (arg && flags.unknownFn && !argDefined(key, arg)) {
+   49:              if (flags.unknownFn(arg) === false)
+*****
+
+***** HC\0.js
+   75:      }
+   76:      function aliasIsBoolean() {
+   77:          return aliases[key].some(function (x) {
+***** HC\ORIGINAL.JS
+   76:      }
+   77:      function aliasIsBoolean(key) {
+   78:          return aliases[key].some(function (x) {
+*****
+
+***** HC\0.js
+   92:              }
+   93:              setArg(key, value);
+   94:          } else if (/^--no-.+/.test(arg)) {
+***** HC\ORIGINAL.JS
+   93:              }
+   94:              setArg(key, value, arg);
+   95:          } else if (/^--no-.+/.test(arg)) {
+*****
+
+***** HC\0.js
+   95:              var key = arg.match(/^--no-(.+)/)[1];
+   96:              setArg(key, false);
+   97:          } else if (/^--.+/.test(arg)) {
+***** HC\ORIGINAL.JS
+   96:              var key = arg.match(/^--no-(.+)/)[1];
+   97:              setArg(key, false, arg);
+   98:          } else if (/^--.+/.test(arg)) {
+*****
+
+***** HC\0.js
+  100:              if (next !== undefined && !/^-/.test(next) && !flags.bools[key] && !flags.allBools && (aliases[key] ? !aliasIsBoole
+  101:  an() : true)) {
+  102:                  setArg(key, next);
+  103:                  i++;
+***** HC\ORIGINAL.JS
+  101:              if (next !== undefined && !/^-/.test(next) && !flags.bools[key] && !flags.allBools && (aliases[key] ? !aliasIsBoole
+  102:  an(key) : true)) {
+  103:                  setArg(key, next, arg);
+  104:                  i++;
+*****
+
+***** HC\0.js
+  104:              } else if (/^(true|false)$/.test(next)) {
+  105:                  setArg(key, next === 'true');
+  106:                  i++;
+***** HC\ORIGINAL.JS
+  105:              } else if (/^(true|false)$/.test(next)) {
+  106:                  setArg(key, next === 'true', arg);
+  107:                  i++;
+*****
+
+***** HC\0.js
+  107:              } else {
+  108:                  setArg(key, flags.strings[key] ? '' : true);
+  109:              }
+***** HC\ORIGINAL.JS
+  108:              } else {
+  109:                  setArg(key, flags.strings[key] ? '' : true, arg);
+  110:              }
+*****
+
+***** HC\0.js
+  111:              var letters = arg.slice(1, -1).split('');
+  112:              var broken;
+  113:              for (var j = 0; j < letters.length; j++) {
+***** HC\ORIGINAL.JS
+  112:              var letters = arg.slice(1, -1).split('');
+  113:              var broken = false;
+  114:              for (var j = 0; j < letters.length; j++) {
+*****
+
+***** HC\0.js
+  115:                  if (next === '-') {
+  116:                      setArg(letters[j], next);
+  117:                      continue;
+***** HC\ORIGINAL.JS
+  116:                  if (next === '-') {
+  117:                      setArg(letters[j], next, arg);
+  118:                      continue;
+*****
+
+***** HC\0.js
+  118:                  }
+  119:                  if (/[A-Za-z]/.test() && /=/.test(next)) {
+  120:                      setArg(letters[j], next.split('=')[1]);
+  121:                      broken = true;
+***** HC\ORIGINAL.JS
+  119:                  }
+  120:                  if (/[A-Za-z]/.test(letters[j]) && /=/.test(next)) {
+  121:                      setArg(letters[j], next.split('=')[1], arg);
+  122:                      broken = true;
+*****
+
+***** HC\0.js
+  124:                  if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+  125:                      setArg(letters[j], next);
+  126:                      broken = true;
+***** HC\ORIGINAL.JS
+  125:                  if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+  126:                      setArg(letters[j], next, arg);
+  127:                      broken = true;
+*****
+
+***** HC\0.js
+  129:                  if (letters[j + 1] && letters[j + 1].match(/\W/)) {
+  130:                      setArg(letters[j], arg.slice(j + 2));
+  131:                      broken = true;
+***** HC\ORIGINAL.JS
+  130:                  if (letters[j + 1] && letters[j + 1].match(/\W/)) {
+  131:                      setArg(letters[j], arg.slice(j + 2), arg);
+  132:                      broken = true;
+*****
+
+***** HC\0.js
+  133:                  } else {
+  134:                      setArg(letters[j], flags.strings[letters[j]] ? '' : true);
+  135:                  }
+***** HC\ORIGINAL.JS
+  134:                  } else {
+  135:                      setArg(letters[j], flags.strings[letters[j]] ? '' : true, arg);
+  136:                  }
+*****
+
+***** HC\0.js
+  138:              if (!broken && key !== '-') {
+  139:                  if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1]) && !flags.bools[key] && (aliases[key] ? !aliasIsBoolean() :
+  140:   true)) {
+  141:                      setArg(key, args[i + 1]);
+  142:                      i++;
+***** HC\ORIGINAL.JS
+  139:              if (!broken && key !== '-') {
+  140:                  if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1]) && !flags.bools[key] && (aliases[key] ? !aliasIsBoolean(key
+  141:  ) : true)) {
+  142:                      setArg(key, args[i + 1], arg);
+  143:                      i++;
+*****
+
+***** HC\0.js
+  143:                  } else if (args[i + 1] && /true|false/.test(args[i + 1])) {
+  144:                      setArg(key, args[i + 1] === 'true');
+  145:                      i++;
+***** HC\ORIGINAL.JS
+  144:                  } else if (args[i + 1] && /true|false/.test(args[i + 1])) {
+  145:                      setArg(key, args[i + 1] === 'true', arg);
+  146:                      i++;
+*****
+
+***** HC\0.js
+  146:                  } else {
+  147:                      setArg(key, flags.strings[key] ? '' : true);
+  148:                  }
+***** HC\ORIGINAL.JS
+  147:                  } else {
+  148:                      setArg(key, flags.strings[key] ? '' : true, arg);
+  149:                  }
+*****
+
+***** HC\0.js
+  188:  function isNumber(x) {
+  189:      if (/^0x[0-9a-f]+$/i.test(x))
+***** HC\ORIGINAL.JS
+  189:  function isNumber(x) {
+  190:      if (typeof x === 'number')
+  191:          return true;
+  192:      if (/^0x[0-9a-f]+$/i.test(x))
+*****
+

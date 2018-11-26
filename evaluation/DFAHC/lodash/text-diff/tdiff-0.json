@@ -1,0 +1,461 @@
+Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+***** HC\0.js
+   84:          'Error',
+   85:          'Function',
+   86:          'Int16Array',
+***** HC\ORIGINAL.JS
+   84:          'Error',
+   85:          'Float32Array',
+   86:          'Float64Array',
+   87:          'Function',
+   88:          'Int8Array',
+   89:          'Int16Array',
+*****
+
+***** HC\0.js
+   93:          'Set',
+   94:          'Uint8Array',
+   95:          'WeakMap',
+***** HC\ORIGINAL.JS
+   96:          'Set',
+   97:          'String',
+   98:          'TypeError',
+   99:          'Uint8Array',
+  100:          'Uint8ClampedArray',
+  101:          'Uint16Array',
+  102:          'Uint32Array',
+  103:          'WeakMap',
+*****
+
+***** HC\0.js
+  109:  g] = true;
+  110:      /** Used to identify `toStringTag` values supported by `_.clone`. */
+***** HC\ORIGINAL.JS
+  117:  g] = true;
+  118:      typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayT
+  119:  ags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedA
+  120:  rrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTa
+  121:  g] = false;
+  122:      /** Used to identify `toStringTag` values supported by `_.clone`. */
+*****
+
+***** HC\0.js
+  115:  neableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+  116:      /** Used to map latin-1 supplementary letters to basic latin letters. */
+***** HC\ORIGINAL.JS
+  127:  neableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+  128:      cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[mapTag] = cloneableTags[setTag] = cloneableTags[weakMapTag
+  129:  ] = false;
+  130:      /** Used to map latin-1 supplementary letters to basic latin letters. */
+*****
+
+***** HC\0.js
+  248:      /** Detect free variable `global` from Node.js. */
+  249:      var freeGlobal;
+  250:      /** Detect free variable `self`. */
+  251:      var freeSelf;
+  252:      /** Detect free variable `window`. */
+  253:      var freeWindow;
+  254:      /** Detect the popular CommonJS extension `module.exports`. */
+***** HC\ORIGINAL.JS
+  262:      /** Detect free variable `global` from Node.js. */
+  263:      var freeGlobal = checkGlobal(freeExports && freeModule && typeof global == 'object' && global);
+  264:      /** Detect free variable `self`. */
+  265:      var freeSelf = checkGlobal(objectTypes[typeof self] && self);
+  266:      /** Detect free variable `window`. */
+  267:      var freeWindow = checkGlobal(objectTypes[typeof window] && window);
+  268:      /** Detect the popular CommonJS extension `module.exports`. */
+*****
+
+***** HC\0.js
+  256:      /** Detect `this` as the global object. */
+  257:      var thisGlobal;
+  258:      /**
+***** HC\ORIGINAL.JS
+  270:      /** Detect `this` as the global object. */
+  271:      var thisGlobal = checkGlobal(objectTypes[typeof this] && this);
+  272:      /**
+*****
+
+***** HC\0.js
+  391:          }
+  392:          return;
+  393:      }
+***** HC\ORIGINAL.JS
+  405:          }
+  406:          return 0;
+  407:      }
+*****
+
+***** HC\0.js
+  491:              try {
+  492:              } catch (e) {
+***** HC\ORIGINAL.JS
+  505:              try {
+  506:                  result = !!(value + '');
+  507:              } catch (e) {
+*****
+
+***** HC\0.js
+  548:      function sortedUniq(array, iteratee) {
+  549:          while (++index < length) {
+  550:              var computed = iteratee ? iteratee(value, index, array) : value;
+  551:              if (!index || seen !== computed) {
+***** HC\ORIGINAL.JS
+  563:      function sortedUniq(array, iteratee) {
+  564:          var seen, index = -1, length = array.length, resIndex = -1, result = [];
+  565:          while (++index < length) {
+  566:              var value = array[index], computed = iteratee ? iteratee(value, index, array) : value;
+  567:              if (!index || seen !== computed) {
+*****
+
+***** HC\0.js
+  639:          var Array = context.Array, Date = context.Date, Error = context.Error, Function = context.Function, Math = context.Math
+  640:  , Object = context.Object, RegExp = context.RegExp;
+  641:          /** Used for native method references. */
+***** HC\ORIGINAL.JS
+  655:          var Array = context.Array, Date = context.Date, Error = context.Error, Function = context.Function, Math = context.Math
+  656:  , Number = context.Number, Object = context.Object, RegExp = context.RegExp, String = context.String, TypeError = context.TypeE
+  657:  rror;
+  658:          /** Used for native method references. */
+*****
+
+***** HC\0.js
+  661:          /** Native value references. */
+  662:          var ArrayBuffer = context.ArrayBuffer, Reflect = context.Reflect, Set, Uint8Array = context.Uint8Array, WeakMap = getNa
+  663:  tive(context, 'WeakMap'), clearTimeout = context.clearTimeout, enumerate = Reflect ? Reflect.enumerate : undefined, getPrototyp
+  664:  eOf = Object.getPrototypeOf, parseFloat = context.parseFloat, pow = Math.pow, propertyIsEnumerable = objectProto.propertyIsEnum
+  665:  erable, setTimeout = context.setTimeout, splice = arrayProto.splice;
+  666:          /* Native method references for those with the same name as other `lodash` methods. */
+  667:          var nativeCeil = Math.ceil, nativeCreate, nativeFloor = Math.floor, nativeIsFinite = context.isFinite, nativeKeys = Obj
+  668:  ect.keys, nativeMax = Math.max, nativeMin = Math.min, nativeParseInt = context.parseInt, nativeRandom = Math.random;
+  669:          /** Used as references for `-Infinity` and `Infinity`. */
+***** HC\ORIGINAL.JS
+  678:          /** Native value references. */
+  679:          var ArrayBuffer = context.ArrayBuffer, Reflect = context.Reflect, Set = getNative(context, 'Set'), Uint8Array = context
+  680:  .Uint8Array, WeakMap = getNative(context, 'WeakMap'), clearTimeout = context.clearTimeout, enumerate = Reflect ? Reflect.enumer
+  681:  ate : undefined, getPrototypeOf = Object.getPrototypeOf, parseFloat = context.parseFloat, pow = Math.pow, propertyIsEnumerable 
+  682:  = objectProto.propertyIsEnumerable, setTimeout = context.setTimeout, splice = arrayProto.splice;
+  683:          /* Native method references for those with the same name as other `lodash` methods. */
+  684:          var nativeCeil = Math.ceil, nativeCreate = getNative(Object, 'create'), nativeFloor = Math.floor, nativeIsFinite = cont
+  685:  ext.isFinite, nativeKeys = Object.keys, nativeMax = Math.max, nativeMin = Math.min, nativeParseInt = context.parseInt, nativeRa
+  686:  ndom = Math.random;
+  687:          /** Used as references for `-Infinity` and `Infinity`. */
+*****
+
+***** HC\0.js
+  878:              this.__dir__ = 1;
+  879:              this.__iteratees__ = [];
+***** HC\ORIGINAL.JS
+  896:              this.__dir__ = 1;
+  897:              this.__filtered__ = false;
+  898:              this.__iteratees__ = [];
+*****
+
+***** HC\0.js
+ 1062:          function cachePush(value) {
+ 1063:              if (typeof value == 'string' || isObject(value)) {
+***** HC\ORIGINAL.JS
+ 1081:          function cachePush(value) {
+ 1082:              var data = this.data;
+ 1083:              if (typeof value == 'string' || isObject(value)) {
+*****
+
+***** HC\0.js
+ 1548:              length = start > end ? 0 : end >>> 0;
+ 1549:              while (start < length) {
+***** HC\ORIGINAL.JS
+ 1568:              length = start > end ? 0 : end >>> 0;
+ 1569:              start >>>= 0;
+ 1570:              while (start < length) {
+*****
+
+***** HC\0.js
+ 1565:                  if (predicate(value, index, collection)) {
+ 1566:                  }
+***** HC\ORIGINAL.JS
+ 1586:                  if (predicate(value, index, collection)) {
+ 1587:                      result.push(value);
+ 1588:                  }
+*****
+
+***** HC\0.js
+ 1608:                      if (isDeep) {
+ 1609:                      } else {
+***** HC\ORIGINAL.JS
+ 1630:                      if (isDeep) {
+ 1631:                          // Recursively flatten arrays (susceptible to call stack limits).
+ 1632:                          baseFlatten(value, isDeep, isStrict, result);
+ 1633:                      } else {
+*****
+
+***** HC\0.js
+ 1848:                      if (objValue === undefined && !(key in object)) {
+ 1849:                          return;
+ 1850:                      }
+***** HC\ORIGINAL.JS
+ 1872:                      if (objValue === undefined && !(key in object)) {
+ 1873:                          return false;
+ 1874:                      }
+*****
+
+***** HC\0.js
+ 1853:  ckA, stackB) : undefined;
+ 1854:                      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, stackA, stackB) : result)) {
+ 1855:                          return false;
+***** HC\ORIGINAL.JS
+ 1877:  ckA, stackB) : undefined;
+ 1878:                      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true, stackA, stackB) : result)) {
+ 1879:                          return false;
+*****
+
+***** HC\0.js
+ 1897:          if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
+ 1898:          }
+***** HC\ORIGINAL.JS
+ 1921:          if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
+ 1922:              baseKeysIn = function (object) {
+ 1923:                  var data, iterator = enumerate(object), result = [];
+ 1924:                  while (!(data = iterator.next()).done) {
+ 1925:                      result.push(data.value);
+ 1926:                  }
+ 1927:                  return result;
+ 1928:              };
+ 1929:          }
+*****
+
+***** HC\0.js
+ 1924:                  var key = matchData[0][0], value = matchData[0][1];
+ 1925:                  return;
+ 1926:              }
+***** HC\ORIGINAL.JS
+ 1955:                  var key = matchData[0][0], value = matchData[0][1];
+ 1956:                  return function (object) {
+ 1957:                      if (object == null) {
+ 1958:                          return false;
+ 1959:                      }
+ 1960:                      return object[key] === value && (value !== undefined || key in Object(object));
+ 1961:                  };
+ 1962:              }
+*****
+
+***** HC\0.js
+ 2009:                  } else {
+ 2010:                  }
+***** HC\ORIGINAL.JS
+ 2045:                  } else {
+ 2046:                      isCommon = isFunction(srcValue);
+ 2047:                  }
+*****
+
+***** HC\0.js
+ 2290:              } else {
+ 2291:                  seen = iteratee ? [] : result;
+***** HC\ORIGINAL.JS
+ 2327:              } else {
+ 2328:                  isLarge = false;
+ 2329:                  seen = iteratee ? [] : result;
+*****
+
+***** HC\0.js
+ 2296:                      if (isCommon && value === value) {
+ 2297:                          while (seenIndex--) {
+***** HC\ORIGINAL.JS
+ 2334:                      if (isCommon && value === value) {
+ 2335:                          var seenIndex = seen.length;
+ 2336:                          while (seenIndex--) {
+*****
+
+***** HC\0.js
+ 2423:                  } else if (computed == null) {
+ 2424:                  } else {
+***** HC\ORIGINAL.JS
+ 2462:                  } else if (computed == null) {
+ 2463:                      setLow = false;
+ 2464:                  } else {
+*****
+
+***** HC\0.js
+ 2443:              var result = new ArrayBuffer(buffer.byteLength), view = new Uint8Array(result);
+ 2444:              return result;
+***** HC\ORIGINAL.JS
+ 2483:              var result = new ArrayBuffer(buffer.byteLength), view = new Uint8Array(result);
+ 2484:              view.set(new Uint8Array(buffer));
+ 2485:              return result;
+*****
+
+***** HC\0.js
+ 2588:                  if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+ 2589:                      length = 1;
+***** HC\ORIGINAL.JS
+ 2629:                  if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+ 2630:                      customizer = length < 3 ? undefined : customizer;
+ 2631:                      length = 1;
+*****
+
+***** HC\0.js
+ 2721:                  }
+ 2722:                  // Mimic the constructor's `return` behavior.
+***** HC\ORIGINAL.JS
+ 2763:                  }
+ 2764:                  var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding, args);
+ 2765:                  // Mimic the constructor's `return` behavior.
+*****
+
+***** HC\0.js
+ 2812:                          bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+ 2813:                          if (!isCurryBound) {
+***** HC\ORIGINAL.JS
+ 2855:                          bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+ 2856:                          bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG);
+ 2857:                          if (!isCurryBound) {
+*****
+
+***** HC\0.js
+ 3163:              var result = lodash.indexOf || indexOf;
+ 3164:              return collection ? result(collection, target, fromIndex) : result;
+***** HC\ORIGINAL.JS
+ 3207:              var result = lodash.indexOf || indexOf;
+ 3208:              result = result === indexOf ? baseIndexOf : result;
+ 3209:              return collection ? result(collection, target, fromIndex) : result;
+*****
+
+***** HC\0.js
+ 3176:              var result = lodash.iteratee || iteratee;
+ 3177:              return arguments.length ? result(arguments[0]) : result;
+***** HC\ORIGINAL.JS
+ 3221:              var result = lodash.iteratee || iteratee;
+ 3222:              result = result === iteratee ? baseIteratee : result;
+ 3223:              return arguments.length ? result(arguments[0]) : result;
+*****
+
+***** HC\0.js
+ 3199:              while (length--) {
+ 3200:              }
+***** HC\ORIGINAL.JS
+ 3245:              while (length--) {
+ 3246:                  result[length][2] = isStrictComparable(result[length][1]);
+ 3247:              }
+*****
+
+***** HC\0.js
+ 3411:              if (!isObject(object)) {
+ 3412:                  return;
+ 3413:              }
+***** HC\ORIGINAL.JS
+ 3458:              if (!isObject(object)) {
+ 3459:                  return false;
+ 3460:              }
+*****
+
+***** HC\0.js
+ 3691:          function chunk(array, size) {
+ 3692:              size = nativeMax(toInteger(size));
+ 3693:              var length = array ? array.length : 0;
+***** HC\ORIGINAL.JS
+ 3738:          function chunk(array, size) {
+ 3739:              size = nativeMax(toInteger(size), 0);
+ 3740:              var length = array ? array.length : 0;
+*****
+
+***** HC\0.js
+ 4127:          var intersection = restParam(function (arrays) {
+ 4128:              var othLength = arrays.length, caches = Array(length), indexOf = getIndexOf(), result = [];
+ 4129:              while (othIndex--) {
+***** HC\ORIGINAL.JS
+ 4174:          var intersection = restParam(function (arrays) {
+ 4175:              var othLength = arrays.length, othIndex = othLength, caches = Array(length), indexOf = getIndexOf(), isCommon = ind
+ 4176:  exOf === baseIndexOf, result = [];
+ 4177:              while (othIndex--) {
+*****
+
+***** HC\0.js
+ 4130:                  var value = arrays[othIndex] = isArrayLike(value = arrays[othIndex]) ? value : [];
+ 4131:              }
+***** HC\ORIGINAL.JS
+ 4178:                  var value = arrays[othIndex] = isArrayLike(value = arrays[othIndex]) ? value : [];
+ 4179:                  caches[othIndex] = isCommon && value.length >= 120 ? createCache(othIndex && value) : null;
+ 4180:              }
+*****
+
+***** HC\0.js
+ 4674:                  iteratee = isSorted;
+ 4675:              }
+***** HC\ORIGINAL.JS
+ 4723:                  iteratee = isSorted;
+ 4724:                  isSorted = false;
+ 4725:              }
+*****
+
+***** HC\0.js
+ 5024:              return this.thru(function (array) {
+ 5025:                  return arrayConcat(isArray(array) ? array : [], values);
+ 5026:              });
+***** HC\ORIGINAL.JS
+ 5074:              return this.thru(function (array) {
+ 5075:                  return arrayConcat(isArray(array) ? array : [Object(array)], values);
+ 5076:              });
+*****
+
+***** HC\0.js
+ 5944:                      var temp = n;
+ 5945:                      func = temp;
+***** HC\ORIGINAL.JS
+ 5994:                      var temp = n;
+ 5995:                      n = func;
+ 5996:                      func = temp;
+*****
+
+***** HC\0.js
+ 6291:          function debounce(func, wait, options) {
+ 6292:              var args, maxTimeoutId, result, thisArg, timeoutId, trailingCall, lastCalled = 0, leading = false, maxWait = false,
+ 6293:   trailing = true;
+ 6294:              if (typeof func != 'function') {
+***** HC\ORIGINAL.JS
+ 6342:          function debounce(func, wait, options) {
+ 6343:              var args, maxTimeoutId, result, stamp, thisArg, timeoutId, trailingCall, lastCalled = 0, leading = false, maxWait =
+ 6344:   false, trailing = true;
+ 6345:              if (typeof func != 'function') {
+*****
+
+***** HC\0.js
+ 8932:              string = baseToString(string);
+ 8933:              return string && string.charAt().toUpperCase() + string.slice(1);
+ 8934:          }
+***** HC\ORIGINAL.JS
+ 8983:              string = baseToString(string);
+ 8984:              return string && string.charAt(0).toUpperCase() + string.slice(1);
+ 8985:          }
+*****
+
+***** HC\0.js
+ 9083:              string = baseToString(string);
+ 9084:              var strLength = string.length;
+***** HC\ORIGINAL.JS
+ 9134:              string = baseToString(string);
+ 9135:              length = +length;
+ 9136:              var strLength = string.length;
+*****
+
+***** HC\0.js
+10099:              }
+10100:              var index = -1, result = Array();
+10101:              iteratee = toFunction(iteratee);
+***** HC\ORIGINAL.JS
+10151:              }
+10152:              var index = -1, result = Array(nativeMin(n, MAX_ARRAY_LENGTH));
+10153:              iteratee = toFunction(iteratee);
+*****
+
+***** HC\0.js
+10835:          // referenced as the "underscore" module.
+10836:          define();
+10837:      }    // Check for `exports` after `define` in case a build optimizer adds an `exports` object.
+***** HC\ORIGINAL.JS
+10887:          // referenced as the "underscore" module.
+10888:          define(function () {
+10889:              return _;
+10890:          });
+10891:      }    // Check for `exports` after `define` in case a build optimizer adds an `exports` object.
+*****
+
