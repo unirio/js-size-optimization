@@ -1,11 +1,46 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation";
+baseDir <- "/Users/Marcio barros/Desktop/Codigos/js-size-optimization/evaluation";
+
+# Instances
+instances <- c(
+	"browserify",
+	"d3-node",
+	"decimal.js",
+	"esprima",
+	"exectimer",
+	"express",
+	"jquery",
+	"lodash",
+	"mathjs",
+	"minimist",
+	"moment",
+	"node-semver",
+	"pug",
+	"tleaf",
+	"UglifyJS2",
+	"underscore",
+	"uuid",
+	"xml2js"
+);
 
 # Load instance characteristics
 instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
-instances <- read_delim(instancesFilename, delim=",");
+instanceData <- read_delim(instancesFilename, delim=",");
+
+
+for (instance_ in instances) {
+	instanceFilename <- paste(baseDir, "/DFAHC/", instance_, "/HC/0_modifications.csv", sep="");
+	instanceDFAHC <- read_delim(instanceFilename, delim=";");
+	instanceDFAHC %>% mutate(chars = as.integer(`totalChars `));
+	
+}
+
+
+
+
+
 
 # Load FAHC results
 fahcFilename <- paste(baseDir, "/DFAHC/results.csv", sep="");
