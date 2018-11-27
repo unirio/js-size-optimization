@@ -85,14 +85,3 @@ counter;index;instructionType;totalChars
 982;35911;Literal;70231 
 983;113355;Identifier;70178 
 990;143380;Identifier;70170 
-counter;index;instructionType;totalChars 
-0;0;original;71864 
-1;108016;Identifier;71863 
-10;100412;Identifier;71861 
-15;138323;Identifier;71854 
-30;52256;ArrayExpression;71854 
-31;83890;Identifier;71755 
-40;240573;BreakStatement;71755 
-51;91067;Identifier;71763 
-52;110617;Identifier;71778 
-61;87009;Identifier;71776 

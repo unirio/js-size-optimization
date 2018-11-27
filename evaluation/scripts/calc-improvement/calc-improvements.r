@@ -3,6 +3,7 @@ rm(list = ls());
 library("tidyverse");
 baseDir <- "/Users/Marcio barros/Desktop/Codigos/js-size-optimization/evaluation";
 
+
 # Instances
 instances <- c(
 	"browserify",
@@ -17,6 +18,7 @@ instances <- c(
 	"minimist",
 	"moment",
 	"node-semver",
+	"plivo-node",
 	"pug",
 	"tleaf",
 	"UglifyJS2",
@@ -25,60 +27,166 @@ instances <- c(
 	"xml2js"
 );
 
+
 # Load instance characteristics
 instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
 instanceData <- read_delim(instancesFilename, delim=",");
 
 
+# Load DFAHC resuts
+dfahc <- tibble(instance = character(), original = numeric(), reduced = numeric());
+
 for (instance_ in instances) {
 	instanceFilename <- paste(baseDir, "/DFAHC/", instance_, "/HC/0_modifications.csv", sep="");
 	instanceDFAHC <- read_delim(instanceFilename, delim=";");
-	instanceDFAHC %>% mutate(chars = as.integer(`totalChars `));
-	
+
+	instanceDFAHC <- instanceDFAHC %>% 
+						mutate(row = as.integer(`counter`)) %>%
+						mutate(chars = as.integer(`totalChars `)) %>%
+						select(row, chars);
+						
+	maxRow <- max(instanceDFAHC$row);
+	original <- instanceDFAHC %>% filter(row == 0) %>% pull(chars);
+	reduced <- instanceDFAHC %>% filter(row == maxRow) %>% pull(chars);
+	dfahc <- dfahc %>% union(tibble(instance = instance_, original = original, reduced = reduced));
 }
 
+dfahc <- dfahc %>% 
+		arrange(instance) %>%
+		mutate(imp = 100 * (1 - reduced / original));
 
-
-
-
-
-# Load FAHC results
-fahcFilename <- paste(baseDir, "/DFAHC/results.csv", sep="");
-fahc <- read_delim(fahcFilename, delim=";");
-fahc <- fahc %>% mutate(imp = 100 * diffchars / originalchars);
-
+		
 # Load SFAHC results
-sfahcFilename <- paste(baseDir, "/SFAHC/results.csv", sep="");
-sfahc <- read_delim(sfahcFilename, delim=";");
-sfahc <- sfahc %>% mutate(imp = 100 * diffchars / originalchars);
+sfahc <- tibble(instance = character(), round = numeric(), original = numeric(), reduced = numeric());
 
+for (instance_ in instances) {
+	for (round_ in 0:9) {
+		instanceFilename <- paste(baseDir, "/SFAHC/", instance_, "/HC/", round_, "_modifications.csv", sep="");
+		instanceSFAHC <- read_delim(instanceFilename, delim=";");
+
+		instanceSFAHC <- instanceSFAHC %>% 
+							mutate(row = as.integer(`counter`)) %>%
+							mutate(chars = as.integer(`totalChars `)) %>%
+							select(row, chars);
+							
+		maxRow <- max(instanceSFAHC$row);
+		original <- instanceSFAHC %>% filter(row == 0) %>% pull(chars);
+		reduced <- instanceSFAHC %>% filter(row == maxRow) %>% pull(chars);
+		sfahc <- sfahc %>% union(tibble(instance = instance_, round = round_, original = original, reduced = reduced));
+	}
+}
+
+sfahc <- sfahc %>% 
+		arrange(instance, round) %>%
+		mutate(imp = 100 * (1 - reduced / original));
+
+		
 # Load SHC results
-shcFilename <- paste(baseDir, "/SHC/results.csv", sep="");
-shc <- read_delim(shcFilename, delim=";");
-shc <- shc %>% mutate(imp = 100 * diffchars / originalchars);
+shc <- tibble(instance = character(), round = numeric(), original = numeric(), reduced = numeric());
 
+for (instance_ in instances) {
+	for (round_ in 0:9) {
+		instanceFilename <- paste(baseDir, "/SHC/", instance_, "/RD/", round_, "_modifications.csv", sep="");
+		instanceSHC <- read_delim(instanceFilename, delim=";");
+
+		instanceSHC <- instanceSHC %>% 
+							mutate(row = as.integer(`counter`)) %>%
+							mutate(chars = as.integer(`totalChars `)) %>%
+							select(row, chars);
+							
+		maxRow <- max(instanceSHC$row);
+		original <- instanceSHC %>% filter(row == 0) %>% pull(chars);
+		reduced <- instanceSHC %>% filter(row == maxRow) %>% pull(chars);
+		shc <- shc %>% union(tibble(instance = instance_, round = round_, original = original, reduced = reduced));
+	}
+}
+
+shc <- shc %>% 
+		arrange(instance, round) %>%
+		mutate(imp = 100 * (1 - reduced / original));
+
+		
 # Prepare consolidated data
-fahc_consolidate <- fahc %>%
-	group_by(Lib) %>% 
-	select(Lib, imp);
+dfahc_consolidate <- dfahc %>%
+	group_by(instance) %>% 
+	select(instance, imp);
 
 sfahc_consolidate <- sfahc %>% 
-	group_by(Lib) %>% 
+	group_by(instance) %>% 
 	summarize(sfahc_mean = mean(imp), sfahc_sd = sd(imp), sfahc_median = median(imp), sfahc_max = max(imp));
 	
 shc_consolidate <- shc %>% 
-	group_by(Lib) %>% 
+	group_by(instance) %>% 
 	summarize(shc_mean = mean(imp), shc_sd = sd(imp), shc_median = median(imp), shc_max = max(imp));
 
+	
 # Generate results
-improvements <- fahc_consolidate %>%
+improvements <- dfahc_consolidate %>%
 	inner_join(sfahc_consolidate) %>%
 	inner_join(shc_consolidate) %>%
-	arrange(Lib);
+	arrange(instance);
 
+	
 # Save main results
 improvementsFilename <- paste(baseDir, "/results/improvements.csv", sep="");
 write.table(improvements, file = improvementsFilename, quote=FALSE, row.names=FALSE);
+
+
+# Boxplots for solution quality
+boxplotFilename <- paste(baseDir, '/results/boxplots.pdf', sep="");
+pdf(boxplotFilename, width=7, height=3);
+
+par(mfrow=c(3, 7));
+par(mar=c(2.1, 1.1, 1.1, 1.1));
+par(mgp=c(2.5, 0.75, 0));
+par(las=1);
+
+for (instance_ in instances) {
+	bp_dfahc <- dfahc %>% filter(instance == instance_);
+	bp_sfahc <- sfahc %>% filter(instance == instance_);
+	bp_shc <- shc %>% filter(instance == instance_);
+	
+	ymin <- min(bp_dfahc$imp, bp_sfahc$imp, bp_shc$imp) - 0.1;
+	ymax <- max(bp_dfahc$imp, bp_sfahc$imp, bp_shc$imp) + 0.1;
+	
+	boxplot(bp_shc$imp, bp_sfahc$imp, ylim=c(ymin, ymax), main=instance_, names=c("SHC", "SFAHC"), cex.lab=0.6, cex.axis=0.6, cex.main=0.8, cex.sub=0.6);
+	abline(h=bp_dfahc$imp, col="Red");
+}
+
+dev.off();
+
+
+# Boxplots for solution quality (Thesis document version)
+boxplotFilename <- paste(baseDir, '/results/boxplots-thesis.pdf', sep="");
+pdf(boxplotFilename, width=6, height=8);
+
+par(mfrow=c(5, 4));
+par(mar=c(2.1, 1.1, 1.1, 1.1));
+par(mgp=c(2.5, 0.75, 0));
+par(las=1);
+
+for (instance_ in instances) {
+	bp_dfahc <- dfahc %>% filter(instance == instance_);
+	bp_sfahc <- sfahc %>% filter(instance == instance_);
+	bp_shc <- shc %>% filter(instance == instance_);
+	
+	ymin <- min(bp_dfahc$imp, bp_sfahc$imp, bp_shc$imp) - 0.1;
+	ymax <- max(bp_dfahc$imp, bp_sfahc$imp, bp_shc$imp) + 0.1;
+
+	boxplot(bp_shc$imp, bp_sfahc$imp, ylim=c(ymin, ymax), main=instance_, names=c("SHC", "SFAHC"), cex.lab=0.6, cex.axis=0.6, cex.main=0.8, cex.sub=0.6);
+	abline(h=bp_dfahc$imp, col="Red");
+}
+
+dev.off()
+
+
+
+
+
+
+#
+# REVIEW FROM HERE ...
+#
 
 # SHC x DFACH
 focusInstances <- c("uuid", "xml2js");
