@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/codigos/js-size-optimization/evaluation/";
+baseDir <- "/Users/Marcio Barros/Desktop/codigos/js-size-optimization/evaluation/";
 
 #
 # Load files
