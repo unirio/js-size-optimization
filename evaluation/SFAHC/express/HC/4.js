@@ -743,7 +743,7 @@ res.location = function (url) {
  *
  * @public
  */
-res.redirect = function (url) {
+res.redirect = function redirect(url) {
     var address = url;
     var body;
     var status = 302;
@@ -932,7 +932,6 @@ function stringify(value, replacer, spaces) {
             case 38:
                 return '\\u0026';
             default:
-                return;
             }
         });
     }

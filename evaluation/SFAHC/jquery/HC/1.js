@@ -1432,7 +1432,7 @@
                 // Abort any current/pending executions
                 // Clear all callbacks and values
                 disable: function () {
-                    locked = queue = [];
+                    list = memory = '';
                     return this;
                 },
                 disabled: function () {
@@ -1512,6 +1512,7 @@
                         'notify',
                         'progress',
                         jQuery.Callbacks('memory'),
+                        jQuery.Callbacks('memory'),
                         2
                     ],
                     [
@@ -1538,12 +1539,13 @@
                         return this;
                     },
                     'catch': function (fn) {
-                        return;
+                        return promise.then(null, fn);
                     },
                     // Keep pipe for back-compat
                     pipe: function () {
                         var fns = arguments;
-                        return;
+                        return jQuery.Deferred(function (newDefer) {
+                        }).promise();
                     },
                     then: function (onFulfilled, onRejected, onProgress) {
                         var maxDepth = 0;
@@ -1575,7 +1577,7 @@
                                             } else {
                                                 // ...and disregard older resolution values
                                                 maxDepth++;
-                                                then.call(returned, resolve(maxDepth, deferred, Identity, special), resolve(maxDepth, deferred, Thrower, special));
+                                                then.call(returned, resolve(maxDepth, deferred, Identity, special), resolve(maxDepth, deferred, Thrower, special), resolve(maxDepth, deferred, Identity, deferred.notifyWith));
                                             }    // Handle all other returned values
                                         } else {
                                             // Only substitute handlers pass on context
@@ -1684,7 +1686,7 @@
                 // count of unprocessed arguments
                 i = remaining,
                 // subordinate fulfillment data
-                resolveContexts, resolveValues,
+                resolveContexts = Array(i), resolveValues = slice.call(arguments),
                 // the master Deferred
                 master = jQuery.Deferred(),
                 // subordinate callback factory
@@ -1696,7 +1698,7 @@
                 };
             // Single- and empty arguments are adopted like Promise.resolve
             if (remaining <= 1) {
-                adoptValue(singleValue, master.done().resolve, master.reject, !remaining);
+                adoptValue(singleValue, master.done(updateFunc(i)).resolve, master.reject, !remaining);
                 // Use .then() to unwrap secondary thenables (cf. gh-3000)
                 if (master.state() === 'pending' || jQuery.isFunction(resolveValues[i] && resolveValues[i].then)) {
                     return master.then();
@@ -1705,14 +1707,14 @@
             // Multiple arguments are aggregated like Promise.all array elements
             while (i--) {
             }
-            return;
+            return master.promise();
         }
     });
     // These usually indicate a programmer mistake during development,
     // warn about them ASAP rather than swallowing them by default.
     var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     // The deferred used on DOM ready
-    var readyList;
+    var readyList = jQuery.Deferred();
     // The ready event handler and self cleanup method
     function completed() {
     }
@@ -1750,7 +1752,7 @@
         }
         // Gets
         if (bulk) {
-            return;
+            return fn.call(elems);
         }
         return len ? fn(elems[0], key) : emptyGet;
     };
@@ -1792,7 +1794,7 @@
             return +data;
         }
         if (rbrace.test(data)) {
-            return;
+            return JSON.parse(data);
         }
         return data;
     }
@@ -1838,12 +1840,12 @@
     };
     function adjustCSS(elem, prop, valueParts, tween) {
         var adjusted, scale = 1, maxIterations = 20, currentValue = tween ? function () {
-                return;
+                return tween.cur();
             } : function () {
-                return;
-            }, initial, unit = valueParts && valueParts[3] || (jQuery.cssNumber[prop] ? '' : 'px'),
+                return jQuery.css(elem, prop, '');
+            }, initial = currentValue(), unit = valueParts && valueParts[3] || (jQuery.cssNumber[prop] ? '' : 'px'),
             // Starting value computation is required for potential unit mismatches
-            initialInUnit = (jQuery.cssNumber[prop] || unit !== 'px' && +initial) && rcssNum.exec();
+            initialInUnit = (jQuery.cssNumber[prop] || unit !== 'px' && +initial) && rcssNum.exec(jQuery.css(elem, prop));
         if (initialInUnit && initialInUnit[3] !== unit) {
             do {
             } while (scale !== (scale = currentValue() / initial) && scale !== 1 && --maxIterations);
@@ -1942,7 +1944,7 @@
         } else {
         }
         if (tag === undefined || tag && nodeName(context, tag)) {
-            return;
+            return jQuery.merge([context], ret);
         }
         return ret;
     }
@@ -1954,7 +1956,7 @@
     }
     var rhtml = /<|&#?\w+;/;
     function buildFragment(elems, context, scripts, selection, ignored) {
-        var elem, tmp, tag, wrap, contains, j, fragment, nodes = [], i = 0, l = elems.length;
+        var elem, tmp, tag, wrap, contains, j, fragment = context.createDocumentFragment(), nodes = [], i = 0, l = elems.length;
         for (; i < l; i++) {
             if (elem || elem === 0) {
                 // Add nodes directly
@@ -2291,7 +2293,6 @@
                 // being emptied incorrectly in certain situations (#8070).
                 for (; i < l; i++) {
                     if (i !== iNoClone) {
-                        node = jQuery.clone(node, true, true);
                         // Keep references to cloned scripts for later restoration
                         if (hasScripts) {
                         }
@@ -2337,40 +2338,6 @@
         }
         return view.getComputedStyle(elem);
     };
-    (function () {
-        // Executing both pixelPosition & boxSizingReliable tests require only one layout
-        // so they're executed at the same time to save the second computation.
-        function computeStyleTests() {
-            // This is a singleton, we need to execute it only once
-            if (!div) {
-                return;
-            }
-            div.style.cssText = 'box-sizing:border-box;' + 'position:relative;display:block;' + 'margin:auto;border:1px;padding:1px;' + 'top:1%;width:50%';
-            div.innerHTML = '';
-            documentElement.appendChild(container);
-            var divStyle = window.getComputedStyle(div);
-            pixelPositionVal = divStyle.top !== '1%';
-            // Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
-            reliableMarginLeftVal = divStyle.marginLeft === '2px';
-            boxSizingReliableVal = divStyle.width === '4px';
-            // Support: Android 4.0 - 4.3 only
-            // Some styles come back with percentage values, even though they shouldn't
-            div.style.marginRight = '50%';
-            pixelMarginRightVal = divStyle.marginRight === '4px';
-            documentElement.removeChild(container);
-            // Nullify the div so it wouldn't be stored in the memory and
-            // it will also be a sign that checks already performed
-            div = null;
-        }
-        var pixelPositionVal, boxSizingReliableVal, pixelMarginRightVal, reliableMarginLeftVal, container = document.createElement('div'), div = document.createElement('div');
-        // Finish early in limited (non-browser) environments
-        if (!div.style) {
-            return;
-        }
-        // Support: IE <=9 - 11 only
-        // Style of cloned element affects source element cloned (#8908)
-        div.style.backgroundClip = 'content-box';
-    }());
     function curCSS(elem, name, computed) {
         var width, minWidth, maxWidth, ret,
             // Support: Firefox 51+
@@ -2615,48 +2582,47 @@
             return this;
         }
     };
-    jQuery.easing = {
-        linear: function (p) {
-            return p;
-        },
-        swing: function (p) {
-            return 0.5 - Math.cos(p * Math.PI) / 2;
-        },
-        _default: 'swing'
+    Tween.propHooks = {
+        _default: {
+            get: function (tween) {
+                var result;
+                // Use a property on the element directly when it is not a DOM element,
+                // or when there is no matching style property that exists.
+                if (tween.elem.nodeType !== 1 || tween.elem[tween.prop] != null && tween.elem.style[tween.prop] == null) {
+                    return tween.elem[tween.prop];
+                }
+                // Empty strings, null, undefined and "auto" are converted to 0.
+                return !result || result === 'auto' ? 0 : result;
+            },
+            set: function (tween) {
+                // Use step hook for back compat.
+                // Use cssHook if its there.
+                // Use .style if available and use plain properties where available.
+                if (jQuery.fx.step[tween.prop]) {
+                } else if (tween.elem.nodeType === 1 && (tween.elem.style[jQuery.cssProps[tween.prop]] != null || jQuery.cssHooks[tween.prop])) {
+                } else {
+                }
+            }
+        }
     };
-    jQuery.fx = Tween.prototype.init;
-    // Back compat <1.8 extension point
-    jQuery.fx.step = {};
     var fxNow, inProgress, rfxtypes = /^(?:toggle|show|hide)$/, rrun = /queueHooks$/;
     function schedule() {
         if (inProgress) {
             if (document.hidden === false && window.requestAnimationFrame) {
-                window.requestAnimationFrame(schedule);
             } else {
-                window.setTimeout(schedule, jQuery.fx.interval);
             }
-            jQuery.fx.tick();
         }
     }
     // Animations created synchronously will run synchronously
     function createFxNow() {
-        window.setTimeout(function () {
-            fxNow = undefined;
-        });
         return fxNow = jQuery.now();
     }
     // Generate parameters to create a standard animation
     function genFx(type, includeWidth) {
         var which, i = 0, attrs = { height: type };
-        // If we include width, step value is 1 to do all cssExpand values,
-        // otherwise step value is 2 to skip over Left and Right
-        includeWidth = includeWidth ? 1 : 0;
         for (; i < 4; i += 2 - includeWidth) {
-            which = cssExpand[i];
-            attrs['margin' + which] = attrs['padding' + which] = type;
         }
         if (includeWidth) {
-            attrs.opacity = attrs.width = type;
         }
         return attrs;
     }
@@ -2673,76 +2639,32 @@
         var prop, value, toggle, hooks, oldfire, propTween, restoreDisplay, display, isBox = 'width' in props || 'height' in props, anim = this, orig = {}, style = elem.style, hidden = elem.nodeType && isHiddenWithinTree(elem), dataShow = dataPriv.get(elem, 'fxshow');
         // Queue-skipping animations hijack the fx hooks
         if (!opts.queue) {
-            hooks = jQuery._queueHooks(elem, 'fx');
             if (hooks.unqueued == null) {
-                hooks.unqueued = 0;
-                oldfire = hooks.empty.fire;
-                hooks.empty.fire = function () {
-                    if (!hooks.unqueued) {
-                        oldfire();
-                    }
-                };
             }
-            hooks.unqueued++;
-            anim.always(function () {
-                // Ensure the complete handler is called before this completes
-                anim.always(function () {
-                    hooks.unqueued--;
-                    if (!jQuery.queue(elem, 'fx').length) {
-                        hooks.empty.fire();
-                    }
-                });
-            });
         }
         // Detect show/hide animations
         for (prop in props) {
-            value = props[prop];
             if (rfxtypes.test(value)) {
-                delete props[prop];
-                toggle = toggle || value === 'toggle';
                 if (value === (hidden ? 'hide' : 'show')) {
                     // Pretend to be hidden if this is a "show" and
                     // there is still data from a stopped show/hide
                     if (value === 'show' && dataShow && dataShow[prop] !== undefined) {
-                        hidden = true;    // Ignore all other no-op show/hide data
                     } else {
                         continue;
                     }
                 }
-                orig[prop] = dataShow && dataShow[prop] || jQuery.style(elem, prop);
             }
         }
-        // Bail out if this is a no-op like .hide().hide()
-        propTween = !jQuery.isEmptyObject(props);
         if (!propTween && jQuery.isEmptyObject(orig)) {
             return;
         }
         // Restrict "overflow" and "display" styles during box animations
         if (isBox && elem.nodeType === 1) {
-            // Support: IE <=9 - 11, Edge 12 - 15
-            // Record all 3 overflow attributes because IE does not infer the shorthand
-            // from identically-valued overflowX and overflowY and Edge just mirrors
-            // the overflowX value there.
-            opts.overflow = [
-                style.overflow,
-                style.overflowX,
-                style.overflowY
-            ];
-            // Identify a display type, preferring old show/hide data over the CSS cascade
-            restoreDisplay = dataShow && dataShow.display;
             if (restoreDisplay == null) {
-                restoreDisplay = dataPriv.get(elem, 'display');
             }
-            display = jQuery.css(elem, 'display');
             if (display === 'none') {
                 if (restoreDisplay) {
-                    display = restoreDisplay;
                 } else {
-                    // Get nonempty value(s) by temporarily forcing visibility
-                    showHide([elem], true);
-                    restoreDisplay = elem.style.display || restoreDisplay;
-                    display = jQuery.css(elem, 'display');
-                    showHide([elem]);
                 }
             }
             // Animate inline elements as inline-block
@@ -2750,28 +2672,14 @@
                 if (jQuery.css(elem, 'float') === 'none') {
                     // Restore the original display value at the end of pure show/hide animations
                     if (!propTween) {
-                        anim.done(function () {
-                            style.display = restoreDisplay;
-                        });
                         if (restoreDisplay == null) {
-                            display = style.display;
-                            restoreDisplay = display === 'none' ? '' : display;
                         }
                     }
-                    style.display = 'inline-block';
                 }
             }
         }
         if (opts.overflow) {
-            style.overflow = 'hidden';
-            anim.always(function () {
-                style.overflow = opts.overflow[0];
-                style.overflowX = opts.overflow[1];
-                style.overflowY = opts.overflow[2];
-            });
         }
-        // Implement show/hide animations
-        propTween = false;
         for (prop in orig) {
             // General show/hide setup for this element animation
             if (!propTween) {

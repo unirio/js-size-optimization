@@ -3,7 +3,7 @@
     'use strict';
     var bom, builder, escapeCDATA, events, isEmpty, processName, processors, requiresCDATA, sax, wrapCDATA, extend = function (child, parent) {
             for (var key in parent) {
-                if (hasProp.call(parent))
+                if (hasProp.call(parent, key))
                     child[key] = parent[key];
             }
             function ctor() {
@@ -12,7 +12,7 @@
             ctor.prototype = parent.prototype;
             child.prototype = new ctor();
             child.__super__ = parent.prototype;
-            return;
+            return child;
         }, hasProp = {}.hasOwnProperty, bind = function (fn, me) {
             return function () {
                 return fn.apply(me, arguments);
@@ -23,7 +23,6 @@
     builder = require('xmlbuilder');
     bom = require('./bom');
     processors = require('./processors');
-    setImmediate = require('timers').setImmediate;
     isEmpty = function (thing) {
         return typeof thing === 'object' && thing != null && Object.keys(thing).length === 0;
     };
@@ -36,7 +35,7 @@
         return processedName;
     };
     requiresCDATA = function (entry) {
-        return entry.indexOf() >= 0 || entry.indexOf() >= 0 || entry.indexOf('<') >= 0;
+        return entry.indexOf('&') >= 0 || entry.indexOf() >= 0 || entry.indexOf() >= 0;
     };
     wrapCDATA = function (entry) {
         return '<![CDATA[' + escapeCDATA(entry) + ']]>';
@@ -44,7 +43,6 @@
     escapeCDATA = function (entry) {
         return entry.replace(']]>', ']]]]><![CDATA[>');
     };
-    exports.processors = processors;
     exports.defaults = {
         '0.1': {
             explicitCharkey: false,
@@ -150,10 +148,10 @@
                 return function (element, obj) {
                     var attr, child, entry, index, key, value;
                     if (typeof obj !== 'object') {
-                        if (_this.options.cdata && requiresCDATA()) {
+                        if (_this.options.cdata && requiresCDATA(obj)) {
                             element.raw();
                         } else {
-                            element.txt();
+                            element.txt(obj);
                         }
                     } else {
                         for (key in obj) {
@@ -164,14 +162,14 @@
                                 if (typeof child === 'object') {
                                     for (attr in child) {
                                         value = child[attr];
-                                        element = element.att();
+                                        element = element.att(attr, value);
                                     }
                                 }
                             } else if (key === charkey) {
-                                if (_this.options.cdata && requiresCDATA()) {
+                                if (_this.options.cdata && requiresCDATA(child)) {
                                     element = element.raw();
                                 } else {
-                                    element = element.txt();
+                                    element = element.txt(child);
                                 }
                             } else if (Array.isArray(child)) {
                                 for (index in child) {
@@ -185,7 +183,7 @@
                                             element = element.ele(key, entry).up();
                                         }
                                     } else {
-                                        element = render().up();
+                                        element = render(entry).up();
                                     }
                                 }
                             } else if (typeof child === 'object') {
@@ -205,7 +203,7 @@
                     return element;
                 };
             }(this);
-            rootElement = builder.create(rootName, this.options.xmldec, {
+            rootElement = builder.create(rootName, this.options.xmldec, this.options.doctype, {
                 headless: this.options.headless,
                 allowSurrogateChars: this.options.allowSurrogateChars
             });
@@ -222,7 +220,7 @@
             this.processAsync = bind(this.processAsync, this);
             var key, ref, value;
             if (!(this instanceof exports.Parser)) {
-                return new exports.Parser();
+                return new exports.Parser(opts);
             }
             this.options = {};
             ref = exports.defaults['0.2'];
@@ -245,7 +243,7 @@
                 if (!this.options.tagNameProcessors) {
                     this.options.tagNameProcessors = [];
                 }
-                this.options.tagNameProcessors.unshift();
+                this.options.tagNameProcessors.unshift(processors.normalize);
             }
             this.reset();
         }
@@ -258,9 +256,9 @@
                     this.saxParser = this.saxParser.write(chunk);
                     return;
                 } else {
-                    chunk = this.remaining.substr();
-                    this.remaining = this.remaining.substr();
-                    this.saxParser = this.saxParser.write();
+                    chunk = this.remaining.substr(this.options.chunkSize);
+                    this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+                    this.saxParser = this.saxParser.write(chunk);
                     return;
                 }
             } catch (error1) {
@@ -307,7 +305,7 @@
                 return function () {
                     if (!_this.saxParser.ended) {
                         _this.saxParser.ended = true;
-                        return _this.emit('end');
+                        return _this.emit('end', _this.resultObject);
                     }
                 };
             }(this);
@@ -458,7 +456,7 @@
                 };
             }(this);
             this.saxParser.ontext = ontext;
-            return this.saxParser.oncdata = function () {
+            return this.saxParser.oncdata = function (_this) {
                 return function (text) {
                     var s;
                     s = ontext(text);
@@ -484,13 +482,13 @@
                 str = str.toString();
                 if (str.trim() === '') {
                     this.emit('end', null);
-                    return true;
+                    return;
                 }
                 str = bom.stripBOM(str);
                 if (this.options.async) {
                     this.remaining = str;
                     setImmediate(this.processAsync);
-                    return;
+                    return this.saxParser;
                 }
                 return this.saxParser.write(str).close();
             } catch (error1) {

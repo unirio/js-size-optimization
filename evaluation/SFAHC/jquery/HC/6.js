@@ -1290,7 +1290,7 @@
                     return;    // HANDLE: $(expr, context)
                                // (which is just equivalent to: $(context).find(expr)
                 } else {
-                    return this.constructor(context).find(selector);
+                    return;
                 }    // HANDLE: $(DOMElement)
             } else if (selector.nodeType) {
                 return this;    // HANDLE: $(function)
@@ -1299,7 +1299,7 @@
                 return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
                 selector(jQuery);
             }
-            return jQuery.makeArray(selector, this);
+            return;
         };
     var rparentsprev = /^(?:parents|prev(?:Until|All))/,
         // Methods guaranteed to produce a unique set when starting from a unique set

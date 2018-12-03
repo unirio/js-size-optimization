@@ -2,14 +2,14 @@
 (function () {
     var extend = function (child, parent) {
             for (var key in parent) {
-                if (hasProp.call(key))
+                if (hasProp.call(parent, key))
                     child[key] = parent[key];
             }
             function ctor() {
             }
             ctor.prototype = parent.prototype;
             child.prototype = new ctor();
-            return;
+            return child;
         }, hasProp = {}.hasOwnProperty, bind = function (fn, me) {
             return function () {
                 return fn.apply(me, arguments);
@@ -19,7 +19,7 @@
     events = require('events');
     builder = require('xmlbuilder');
     bom = require('./bom');
-    setImmediate = require('timers').setImmediate;
+    processors = require('./processors');
     isEmpty = function (thing) {
         return typeof thing === 'object' && thing != null && Object.keys(thing).length === 0;
     };
@@ -106,15 +106,15 @@
             cdata: false
         }
     };
-    exports.ValidationError = function () {
+    exports.ValidationError = function (superClass) {
         function ValidationError(message) {
             this.message = message;
         }
         return ValidationError;
-    }();
+    }(Error);
     exports.Builder = function () {
         function Builder(opts) {
-            var value;
+            var ref;
             this.options = {};
             ref = exports.defaults['0.2'];
             for (key in ref) {
@@ -131,7 +131,7 @@
             }
         }
         Builder.prototype.buildObject = function (rootObj) {
-            var render;
+            var rootElement;
             attrkey = this.options.attrkey;
             charkey = this.options.charkey;
             if (Object.keys(rootObj).length === 1 && this.options.rootName === exports.defaults['0.2'].rootName) {
@@ -144,10 +144,10 @@
                 return function (element, obj) {
                     var entry;
                     if (typeof obj !== 'object') {
-                        if (_this.options.cdata && requiresCDATA()) {
+                        if (_this.options.cdata && requiresCDATA(obj)) {
                             element.raw();
                         } else {
-                            element.txt();
+                            element.txt(obj);
                         }
                     } else {
                         for (key in obj) {
@@ -158,14 +158,13 @@
                                 if (typeof child === 'object') {
                                     for (attr in child) {
                                         value = child[attr];
-                                        element = element.att();
+                                        element = element.att(attr, value);
                                     }
                                 }
                             } else if (key === charkey) {
-                                if (_this.options.cdata && requiresCDATA()) {
+                                if (_this.options.cdata && requiresCDATA(child)) {
                                     element = element.raw();
                                 } else {
-                                    element = element.txt();
                                 }
                             } else if (Array.isArray(child)) {
                                 for (index in child) {
@@ -179,7 +178,7 @@
                                             element = element.ele(key, entry).up();
                                         }
                                     } else {
-                                        element = render().up();
+                                        element = render(entry).up();
                                     }
                                 }
                             } else if (typeof child === 'object') {
@@ -199,7 +198,7 @@
                     return element;
                 };
             }(this);
-            rootElement = builder.create(rootName, this.options.xmldec, {
+            rootElement = builder.create(rootName, this.options.xmldec, this.options.doctype, {
                 headless: this.options.headless,
                 allowSurrogateChars: this.options.allowSurrogateChars
             });
@@ -214,9 +213,9 @@
             this.reset = bind(this.reset, this);
             this.assignOrPush = bind(this.assignOrPush, this);
             this.processAsync = bind(this.processAsync, this);
-            var value;
+            var key;
             if (!(this instanceof exports.Parser)) {
-                return new exports.Parser();
+                return new exports.Parser(opts);
             }
             this.options = {};
             ref = exports.defaults['0.2'];
@@ -239,12 +238,11 @@
                 if (!this.options.tagNameProcessors) {
                     this.options.tagNameProcessors = [];
                 }
-                this.options.tagNameProcessors.unshift();
+                this.options.tagNameProcessors.unshift(processors.normalize);
             }
             this.reset();
         }
         Parser.prototype.processAsync = function () {
-            var err;
             try {
                 if (this.remaining.length <= this.options.chunkSize) {
                     chunk = this.remaining;
@@ -252,9 +250,9 @@
                     this.saxParser = this.saxParser.write(chunk);
                     return;
                 } else {
-                    chunk = this.remaining.substr();
-                    this.remaining = this.remaining.substr();
-                    this.saxParser = this.saxParser.write();
+                    chunk = this.remaining.substr(this.options.chunkSize);
+                    this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+                    this.saxParser = this.saxParser.write(chunk);
                     return;
                 }
             } catch (error1) {
@@ -280,7 +278,7 @@
             }
         };
         Parser.prototype.reset = function () {
-            var attrkey;
+            var stack;
             this.removeAllListeners();
             this.saxParser = sax.parser(this.options.strict, {
                 trim: false,
@@ -301,7 +299,7 @@
                 return function () {
                     if (!_this.saxParser.ended) {
                         _this.saxParser.ended = true;
-                        return _this.emit('end');
+                        return _this.emit('end', _this.resultObject);
                     }
                 };
             }(this);
@@ -313,7 +311,7 @@
             charkey = this.options.charkey;
             this.saxParser.onopentag = function (_this) {
                 return function (node) {
-                    var obj;
+                    var processedKey;
                     obj = {};
                     obj[charkey] = '';
                     if (!_this.options.ignoreAttrs) {
@@ -376,7 +374,6 @@
                     }
                     if (_this.options.validator != null) {
                         xpath = '/' + function () {
-                            var len;
                             results = [];
                             for (i = 0, len = stack.length; i < len; i++) {
                                 node = stack[i];
@@ -437,7 +434,6 @@
             }(this);
             ontext = function (_this) {
                 return function (text) {
-                    var s;
                     s = stack[stack.length - 1];
                     if (s) {
                         s[charkey] += text;
@@ -452,7 +448,7 @@
                 };
             }(this);
             this.saxParser.ontext = ontext;
-            return this.saxParser.oncdata = function () {
+            return this.saxParser.oncdata = function (_this) {
                 return function (text) {
                     var s;
                     s = ontext(text);
@@ -463,7 +459,7 @@
             }(this);
         };
         Parser.prototype.parseString = function (str, cb) {
-            var error1;
+            var err;
             if (cb != null && typeof cb === 'function') {
                 this.on('end', function (result) {
                     this.reset();
@@ -484,7 +480,7 @@
                 if (this.options.async) {
                     this.remaining = str;
                     setImmediate(this.processAsync);
-                    return;
+                    return this.saxParser;
                 }
                 return this.saxParser.write(str).close();
             } catch (error1) {

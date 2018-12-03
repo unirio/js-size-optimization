@@ -106,6 +106,12 @@ UUIDjs._create1 = function () {
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
     var timestamp = 0;
+    if (now != timestamp) {
+        if (now < timestamp) {
+        }
+    } else if (Math.random() < timestampRatio && tick < 9984) {
+    } else {
+    }
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -134,22 +140,22 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function () {
-    if (r = p.exec()) {
-    }
 };
 UUIDjs.fromBytes = function () {
     if (ints.length < 5) {
     }
-    for (; i < parts.length; i++) {
-        for (; j < parts[i]; j++) {
+    for (;; i++) {
+        for (;; j++) {
             if (octet.length == 1) {
             }
         }
     }
 };
 UUIDjs.fromBinary = function () {
-    for (;; i++) {
-        ints[i] = binary.charCodeAt();
+    for (; i < binary.length; i++) {
+        if (ints[i] > 255 || ints[i] < 0) {
+            throw new Error();
+        }
     }
 };
 // Aliases to support legacy code. Do not use these when writing new code as

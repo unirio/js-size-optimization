@@ -103,6 +103,9 @@ res.send = function (body) {
     }
     // disambiguate res.send(status) and res.send(status, num)
     if (typeof chunk === 'number' && arguments.length === 1) {
+        // res.send(status) will set status message as text string
+        if (!this.get('Content-Type')) {
+        }
         this.statusCode = chunk;
         chunk = statuses[chunk];
     }
@@ -269,7 +272,7 @@ res.jsonp = function (obj) {
  * @param {number} statusCode
  * @public
  */
-res.sendStatus = function sendStatus(statusCode) {
+res.sendStatus = function (statusCode) {
     var body = statuses[statusCode] || String(statusCode);
     this.statusCode = statusCode;
     return this.send(body);

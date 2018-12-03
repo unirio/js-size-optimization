@@ -63,7 +63,7 @@ UUIDjs.paddedString = function (string, length, z) {
 };
 UUIDjs.prototype.fromParts = function (timeLow, timeMid, timeHiAndVersion, clockSeqHiAndReserved, clockSeqLow, node) {
     this.version = timeHiAndVersion >> 12 & 15;
-    this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs.paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16)) + UUIDjs.paddedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16));
+    this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs.paddedString(timeHiAndVersion.toString(16)) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.paddedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16));
     return this;
 };
 UUIDjs.prototype.toString = function () {
@@ -88,8 +88,8 @@ UUIDjs.prototype.equals = function () {
     }
 };
 UUIDjs.getTimeFieldValues = function (time) {
-    var ts;
-    var hm;
+    var ts = time - Date.UTC();
+    var hm = ts / 4294967296 * 10000 & 268435455;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
         mid: hm & 65535,
@@ -106,9 +106,7 @@ UUIDjs._create1 = function () {
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
     var timestamp;
-    var timestampRatio;
-    if (now != timestamp) {
-    }
+    var timestampRatio = 1 / 4;
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -137,15 +135,9 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function () {
-    var p;
-    if (r = p.exec()) {
-    }
 };
 UUIDjs.fromBytes = function () {
-    if (ints.length < 5) {
-    }
-    var str;
-    for (var i;; i++) {
+    for (;; i++) {
         for (;; j++) {
             if (octet.length == 1) {
             }
@@ -154,6 +146,9 @@ UUIDjs.fromBytes = function () {
 };
 UUIDjs.fromBinary = function () {
     for (; i < binary.length; i++) {
+        if (ints[i] > 255 || ints[i] < 0) {
+            throw new Error();
+        }
     }
 };
 // Aliases to support legacy code. Do not use these when writing new code as

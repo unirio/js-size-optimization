@@ -84,7 +84,7 @@ res.links = function (links) {
  * @param {string|number|boolean|object|Buffer} body
  * @public
  */
-res.send = function (body) {
+res.send = function send(body) {
     var chunk = body;
     var encoding;
     var req = this.req;
@@ -103,9 +103,6 @@ res.send = function (body) {
     }
     // disambiguate res.send(status) and res.send(status, num)
     if (typeof chunk === 'number' && arguments.length === 1) {
-        // res.send(status) will set status message as text string
-        if (!this.get('Content-Type')) {
-        }
         this.statusCode = chunk;
         chunk = statuses[chunk];
     }
@@ -198,7 +195,6 @@ res.json = function (obj) {
     }
     // settings
     var app = this.app;
-    var escape;
     var replacer = app.get('json replacer');
     var spaces = app.get('json spaces');
     var body = stringify(val, replacer, spaces, escape);
@@ -233,6 +229,7 @@ res.jsonp = function (obj) {
     }
     // settings
     var app = this.app;
+    var escape;
     var replacer = app.get('json replacer');
     var spaces = app.get('json spaces');
     var body = stringify(val, replacer, spaces, escape);
@@ -389,7 +386,7 @@ res.sendFile = function (path, options, callback) {
  *
  * @public
  */
-res.sendfile = function (path, options) {
+res.sendfile = function (path, options, callback) {
     var done;
     var req = this.req;
     var res = this;

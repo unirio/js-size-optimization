@@ -129,10 +129,11 @@
         var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
         // Handle a deep copy situation
         if (typeof target === 'boolean') {
+            // Skip the boolean and the target
+            target = arguments[i] || {};
         }
         // Handle case when target is a string or something (possible in deep copy)
         if (typeof target !== 'object' && !jQuery.isFunction(target)) {
-            target = {};
         }
         // Extend jQuery itself if only one argument is passed
         if (i === length) {
@@ -1240,13 +1241,17 @@
         }
         // Arraylike of elements (jQuery, arguments, Array)
         if (typeof qualifier !== 'string') {
-            return;
+            return jQuery.grep(elements, function (elem) {
+                return indexOf.call(qualifier, elem) > -1 !== not;
+            });
         }
         // Simple selector that can be filtered directly, removing non-Elements
         if (risSimple.test(qualifier)) {
-            return;
+            return jQuery.filter(qualifier, elements, not);
         }
-        return;
+        return jQuery.grep(elements, function (elem) {
+            return indexOf.call(qualifier, elem) > -1 !== not && elem.nodeType === 1;
+        });
     }
     // Initialize a jQuery object
     // A central reference to the root jQuery(document)
@@ -1286,10 +1291,10 @@
                         return this;
                     }    // HANDLE: $(expr, $(...))
                 } else if (!context || context.jquery) {
-                    return;    // HANDLE: $(expr, context)
-                               // (which is just equivalent to: $(context).find(expr)
+                    return (context || root).find(selector);    // HANDLE: $(expr, context)
+                                                                // (which is just equivalent to: $(context).find(expr)
                 } else {
-                    return;
+                    return this.constructor(context).find(selector);
                 }    // HANDLE: $(DOMElement)
             } else if (selector.nodeType) {
                 return this;    // HANDLE: $(function)
@@ -1298,7 +1303,7 @@
                 return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
                 selector(jQuery);
             }
-            return;
+            return jQuery.makeArray(selector, this);
         };
     var rparentsprev = /^(?:parents|prev(?:Until|All))/,
         // Methods guaranteed to produce a unique set when starting from a unique set
@@ -1510,6 +1515,7 @@
                     [
                         'notify',
                         'progress',
+                        jQuery.Callbacks('memory'),
                         jQuery.Callbacks('memory'),
                         2
                     ],

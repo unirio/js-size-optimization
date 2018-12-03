@@ -2,6 +2,10 @@
     /* istanbul ignore next */
     if (typeof exports === 'object' && typeof module === 'object')
         module.exports = factory();
+    else if (typeof define === 'function' && define.amd)
+        define([], factory);    /* istanbul ignore next */
+    else if (typeof exports === 'object')
+        exports['esprima'] = factory();
 }(this, function () {
     return /******/     function (modules) {
         // webpackBootstrap
@@ -501,7 +505,7 @@
                         if (comments.length > 0 && this.delegate) {
                             for (var i = 0; i < comments.length; ++i) {
                                 var e = comments[i];
-                                var node;
+                                var node = void 0;
                                 node = {
                                     type: e.multiLine ? 'BlockComment' : 'LineComment',
                                     value: this.scanner.source.slice(e.slice[0], e.slice[1])
@@ -696,6 +700,9 @@
                 };
                 // Return true if the next token is an assignment operator
                 Parser.prototype.matchAssign = function () {
+                    if (this.lookahead.type !== token_1.Token.Punctuator) {
+                        return false;
+                    }
                     var op = this.lookahead.value;
                     return op === '=' || op === '*=' || op === '**=' || op === '/=' || op === '%=' || op === '+=' || op === '-=' || op === '<<=' || op === '>>=' || op === '>>>=' || op === '&=' || op === '^=' || op === '|=';
                 };
@@ -979,6 +986,8 @@
                         value = this.parseGeneratorMethod();
                         method = true;
                     } else {
+                        if (!key) {
+                        }
                         kind = 'init';
                         if (this.match(':')) {
                             if (!computed) {
@@ -1147,6 +1156,9 @@
                                         };
                                     } else {
                                         expressions.push(this.inheritCoverGrammar(this.parseAssignmentExpression));
+                                    }
+                                    if (arrow) {
+                                        break;
                                     }
                                 }
                                 if (!arrow) {
@@ -1417,7 +1429,6 @@
                             while (stack.length > 2 && prec <= stack[stack.length - 2].prec) {
                                 right = stack.pop();
                                 var operator = stack.pop().value;
-                                left = stack.pop();
                                 markers.pop();
                                 var node = this.startNode(markers[markers.length - 1]);
                                 stack.push(this.finalize(node, new Node.BinaryExpression(operator, left, right)));
@@ -2200,6 +2211,8 @@
                     var node = this.createNode();
                     this.expectKeyword('catch');
                     this.expect('(');
+                    if (this.match(')')) {
+                    }
                     var params = [];
                     var param = this.parsePattern(params);
                     var paramMap = {};
@@ -2382,6 +2395,8 @@
                 Parser.prototype.parseRestElement = function (params) {
                     var node = this.createNode();
                     this.nextToken();
+                    if (this.match('{')) {
+                    }
                     var param = this.parseVariableIdentifier();
                     if (this.match('=')) {
                         this.throwError(messages_1.Messages.DefaultRestParameter);
@@ -2547,6 +2562,9 @@
                         var statement = this.parseDirective();
                         body.push(statement);
                         var directive = statement.directive;
+                        if (typeof directive !== 'string') {
+                            break;
+                        }
                         if (directive === 'use strict') {
                             this.context.strict = true;
                             if (firstRestricted) {
@@ -2975,6 +2993,10 @@
         /***/
         function (module, exports) {
             function assert(condition, message) {
+                /* istanbul ignore if */
+                if (!condition) {
+                    throw new Error('ASSERT: ' + message);
+                }
             }
             exports.assert = assert;    /***/
         },
@@ -3096,6 +3118,7 @@
         /***/
         function (module, exports) {
             (function (Token) {
+                Token[Token['BooleanLiteral'] = 1] = 'BooleanLiteral';
                 Token[Token['EOF'] = 2] = 'EOF';
                 Token[Token['Identifier'] = 3] = 'Identifier';
                 Token[Token['Keyword'] = 4] = 'Keyword';
@@ -3103,7 +3126,6 @@
                 Token[Token['NumericLiteral'] = 6] = 'NumericLiteral';
                 Token[Token['Punctuator'] = 7] = 'Punctuator';
                 Token[Token['StringLiteral'] = 8] = 'StringLiteral';
-                Token[Token['RegularExpression'] = 9] = 'RegularExpression';
                 Token[Token['Template'] = 10] = 'Template';
             }(exports.Token || (exports.Token = {})));
             var Token = exports.Token;
@@ -3579,6 +3601,7 @@
                     } else if (id === 'null') {
                         type = token_1.Token.NullLiteral;
                     } else if (id === 'true' || id === 'false') {
+                        type = token_1.Token.BooleanLiteral;
                     } else {
                         type = token_1.Token.Identifier;
                     }
@@ -3762,6 +3785,9 @@
                         var ch = this.source[i];
                         if (ch === '8' || ch === '9') {
                             return false;
+                        }
+                        if (!character_1.Character.isOctalDigit(ch.charCodeAt(0))) {
+                            return true;
                         }
                     }
                     return true;
@@ -4023,6 +4049,8 @@
                     if (!terminated) {
                         this.throwUnexpectedToken();
                     }
+                    if (!head) {
+                    }
                     return {
                         type: token_1.Token.Template,
                         value: {
@@ -4080,7 +4108,7 @@
                 ;
                 Scanner.prototype.scanRegExpBody = function () {
                     var ch = this.source[this.index];
-                    assert_1.assert('Regular expression literal must start with a slash');
+                    assert_1.assert(ch === '/', 'Regular expression literal must start with a slash');
                     var str = this.source[this.index++];
                     var classMarker = false;
                     var terminated = false;
@@ -4188,6 +4216,10 @@
                     var cp = this.source.charCodeAt(this.index);
                     if (character_1.Character.isIdentifierStart(cp)) {
                         return this.scanIdentifier();
+                    }
+                    // Very common: ( and ) and ;
+                    if (cp === 40 || cp === 41 || cp === 59) {
+                        return this.scanPunctuator();
                     }
                     // String literal starts with single quote (U+0027) or double quote (U+0022).
                     if (cp === 39 || cp === 34) {
@@ -5772,7 +5804,64 @@
                 ;
                 // A function following one of those tokens is an expression.
                 Reader.prototype.beforeFunctionExpression = function (t) {
-                    return;
+                    return [
+                        '(',
+                        '{',
+                        '[',
+                        'in',
+                        'typeof',
+                        'instanceof',
+                        'new',
+                        'return',
+                        'case',
+                        'delete',
+                        'throw',
+                        'void',
+                        // assignment operators
+                        '=',
+                        '+=',
+                        '-=',
+                        '*=',
+                        '**=',
+                        '/=',
+                        '%=',
+                        '<<=',
+                        '>>=',
+                        '>>>=',
+                        '&=',
+                        '|=',
+                        '^=',
+                        ',',
+                        // binary/unary operators
+                        '+',
+                        '-',
+                        '*',
+                        '**',
+                        '/',
+                        '%',
+                        '++',
+                        '--',
+                        '<<',
+                        '>>',
+                        '>>>',
+                        '&',
+                        '|',
+                        '^',
+                        '!',
+                        '~',
+                        '&&',
+                        '||',
+                        '?',
+                        ':',
+                        '===',
+                        '==',
+                        '>=',
+                        '<=',
+                        '<',
+                        '>',
+                        '!=',
+                        '!=='
+                    ].indexOf(t) >= 0;
                 };
                 ;
                 // Determine if forward slash (/) is an operator or part of a regular expression

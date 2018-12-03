@@ -129,11 +129,10 @@
         var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
         // Handle a deep copy situation
         if (typeof target === 'boolean') {
-            // Skip the boolean and the target
-            target = arguments[i] || {};
         }
         // Handle case when target is a string or something (possible in deep copy)
         if (typeof target !== 'object' && !jQuery.isFunction(target)) {
+            target = {};
         }
         // Extend jQuery itself if only one argument is passed
         if (i === length) {
@@ -1233,21 +1232,29 @@
     // Implement the identical functionality for filter and not
     function winnow(elements, qualifier, not) {
         if (jQuery.isFunction(qualifier)) {
-            return;
+            return jQuery.grep(elements, function (elem, i) {
+                return !!qualifier.call(elem, i, elem) !== not;
+            });
         }
         // Single element
         if (qualifier.nodeType) {
-            return;
+            return jQuery.grep(elements, function (elem) {
+                return elem === qualifier !== not;
+            });
         }
         // Arraylike of elements (jQuery, arguments, Array)
         if (typeof qualifier !== 'string') {
-            return;
+            return jQuery.grep(elements, function (elem) {
+                return indexOf.call(qualifier, elem) > -1 !== not;
+            });
         }
         // Simple selector that can be filtered directly, removing non-Elements
         if (risSimple.test(qualifier)) {
-            return;
+            return jQuery.filter(qualifier, elements, not);
         }
-        return;
+        return jQuery.grep(elements, function (elem) {
+            return indexOf.call(qualifier, elem) > -1 !== not && elem.nodeType === 1;
+        });
     }
     // Initialize a jQuery object
     // A central reference to the root jQuery(document)
@@ -1287,10 +1294,10 @@
                         return this;
                     }    // HANDLE: $(expr, $(...))
                 } else if (!context || context.jquery) {
-                    return;    // HANDLE: $(expr, context)
-                               // (which is just equivalent to: $(context).find(expr)
+                    return (context || root).find(selector);    // HANDLE: $(expr, context)
+                                                                // (which is just equivalent to: $(context).find(expr)
                 } else {
-                    return;
+                    return this.constructor(context).find(selector);
                 }    // HANDLE: $(DOMElement)
             } else if (selector.nodeType) {
                 return this;    // HANDLE: $(function)
@@ -1299,7 +1306,7 @@
                 return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
                 selector(jQuery);
             }
-            return;
+            return jQuery.makeArray(selector, this);
         };
     var rparentsprev = /^(?:parents|prev(?:Until|All))/,
         // Methods guaranteed to produce a unique set when starting from a unique set
@@ -1383,6 +1390,7 @@
                 if (locked) {
                     // Keep an empty list if we have data for future add calls
                     if (memory) {
+                        list = [];    // Otherwise, this object is spent
                     } else {
                     }
                 }
@@ -1394,7 +1402,6 @@
                     if (list) {
                         // If we have memory from a past run, we should fire after adding
                         if (memory && !firing) {
-                            firingIndex = list.length - 1;
                             queue.push(memory);
                         }
                         (function add(args) {
@@ -1432,7 +1439,7 @@
                 // Abort any current/pending executions
                 // Clear all callbacks and values
                 disable: function () {
-                    list = memory = '';
+                    locked = queue = [];
                     return this;
                 },
                 disabled: function () {
@@ -1512,6 +1519,7 @@
                         'notify',
                         'progress',
                         jQuery.Callbacks('memory'),
+                        jQuery.Callbacks('memory'),
                         2
                     ],
                     [
@@ -1538,12 +1546,13 @@
                         return this;
                     },
                     'catch': function (fn) {
-                        return;
+                        return promise.then(null, fn);
                     },
                     // Keep pipe for back-compat
                     pipe: function () {
                         var fns = arguments;
-                        return;
+                        return jQuery.Deferred(function (newDefer) {
+                        }).promise();
                     },
                     then: function (onFulfilled, onRejected, onProgress) {
                         var maxDepth = 0;
@@ -1575,7 +1584,7 @@
                                             } else {
                                                 // ...and disregard older resolution values
                                                 maxDepth++;
-                                                then.call(returned, resolve(maxDepth, deferred, Identity, special), resolve(maxDepth, deferred, Thrower, special));
+                                                then.call(returned, resolve(maxDepth, deferred, Identity, special), resolve(maxDepth, deferred, Thrower, special), resolve(maxDepth, deferred, Identity, deferred.notifyWith));
                                             }    // Handle all other returned values
                                         } else {
                                             // Only substitute handlers pass on context

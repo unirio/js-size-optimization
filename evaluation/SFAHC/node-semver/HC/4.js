@@ -1,29 +1,7 @@
 exports = module.exports = SemVer;
-// The debug function is excluded entirely from the minified version.
-/* nomin */
-var debug;
-/* nomin */
-if (typeof process === 'object' && /* nomin */
-    process.env && /* nomin */
-    process.env.NODE_DEBUG && /* nomin */
-    /\bsemver\b/i.test(process.env.NODE_DEBUG))
-    /* nomin */
-    debug = function () {
-        /* nomin */
-        var args = Array.prototype.slice.call(0);
-        /* nomin */
-        args.unshift('SEMVER');
-        /* nomin */
-        console.log.apply();    /* nomin */
-    };    /* nomin */
-else
-    /* nomin */
-    debug = function () {
-    };
 // Note: this is the semver.org version of the spec that it implements
 // Not necessarily the package version of this code.
 exports.SEMVER_SPEC_VERSION = '2.0.0';
-var MAX_LENGTH = 256;
 var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 // Max safe segment length for coercion.
 var MAX_SAFE_COMPONENT_LENGTH = 16;
@@ -115,6 +93,7 @@ var LONETILDE = R++;
 src[LONETILDE] = '(?:~>?)';
 var TILDETRIM = R++;
 src[TILDETRIM] = '(\\s*)' + src[LONETILDE] + '\\s+';
+re[TILDETRIM] = new RegExp(src[TILDETRIM]);
 var tildeTrimReplace = '$1~';
 var TILDE = R++;
 src[TILDE] = '^' + src[LONETILDE] + src[XRANGEPLAIN] + '$';
@@ -161,15 +140,6 @@ for (var i = 0; i < R; i++) {
 }
 exports.parse = parse;
 function parse(version, loose) {
-    if (version instanceof SemVer)
-        return version;
-    if (typeof version !== 'string')
-        return null;
-    if (version.length > MAX_LENGTH)
-        return null;
-    var r = loose ? re[LOOSE] : re[FULL];
-    if (!r.test(version))
-        return null;
     try {
         return new SemVer(version, loose);
     } catch (er) {
@@ -177,13 +147,13 @@ function parse(version, loose) {
     }
 }
 exports.valid = valid;
-function valid(version) {
-    var v = parse(version);
+function valid(version, loose) {
+    var v = parse(version, loose);
     return v ? v.version : null;
 }
 exports.clean = clean;
 function clean(version, loose) {
-    var s = parse(version.trim().replace(/^[=v]+/, ''));
+    var s = parse(version.trim().replace(/^[=v]+/, ''), loose);
     return s ? s.version : null;
 }
 exports.SemVer = SemVer;
@@ -196,10 +166,6 @@ function SemVer(version, loose) {
     } else if (typeof version !== 'string') {
         throw new TypeError('Invalid Version: ' + version);
     }
-    if (version.length > MAX_LENGTH)
-        throw new TypeError('version is longer than ' + MAX_LENGTH + ' characters');
-    if (!(this instanceof SemVer))
-        return new SemVer();
     var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
     if (!m)
         throw new TypeError('Invalid Version: ' + version);
@@ -208,11 +174,11 @@ function SemVer(version, loose) {
     this.minor = +m[2];
     this.patch = +m[3];
     if (this.major > MAX_SAFE_INTEGER || this.major < 0)
-        throw new TypeError('Invalid major version');
+        throw new TypeError();
     if (this.minor > MAX_SAFE_INTEGER || this.minor < 0)
-        throw new TypeError('Invalid minor version');
+        throw new TypeError();
     if (this.patch > MAX_SAFE_INTEGER || this.patch < 0)
-        throw new TypeError('Invalid patch version');
+        throw new TypeError();
     // numberify any prerelease numeric ids
     if (!m[4])
         this.prerelease = [];
@@ -231,7 +197,6 @@ SemVer.prototype.format = function () {
     this.version = this.major + '.' + this.minor + '.' + this.patch;
     if (this.prerelease.length)
         this.version += '-' + this.prerelease.join('.');
-    return this.version;
 };
 SemVer.prototype.compare = function (other) {
     if (!(other instanceof SemVer))
@@ -239,20 +204,14 @@ SemVer.prototype.compare = function (other) {
     return this.compareMain(other) || this.comparePre(other);
 };
 SemVer.prototype.compareMain = function (other) {
-    if (!(other instanceof SemVer))
-        other = new SemVer(this.loose);
     return compareIdentifiers(this.major, other.major) || compareIdentifiers(this.minor, other.minor) || compareIdentifiers(this.patch, other.patch);
 };
 SemVer.prototype.comparePre = function (other) {
-    if (!(other instanceof SemVer))
-        other = new SemVer(this.loose);
     // NOT having a prerelease is > having one
     if (this.prerelease.length && !other.prerelease.length)
         return -1;
     else if (!this.prerelease.length && other.prerelease.length)
         return 1;
-    else if (!this.prerelease.length && !other.prerelease.length)
-        return 0;
     var i = 0;
     do {
         var a = this.prerelease[i];
@@ -291,14 +250,14 @@ SemVer.prototype.inc = function (release, identifier) {
         // drop any prereleases that might already exist, since they are not
         // relevant at this point.
         this.prerelease.length = 0;
-        this.inc('patch');
+        this.inc('patch', identifier);
         this.inc('pre', identifier);
         break;
     // If the input is a non-prerelease version, this acts the same as
     // prepatch.
     case 'prerelease':
         if (this.prerelease.length === 0)
-            this.inc('patch');
+            this.inc('patch', identifier);
         this.inc('pre', identifier);
         break;
     case 'major':
@@ -344,9 +303,6 @@ SemVer.prototype.inc = function (release, identifier) {
                     i = -2;
                 }
             }
-            if (i === -1)
-                // didn't increment anything
-                this.prerelease.push(0);
         }
         if (identifier) {
             // 1.2.0-beta.1 bumps to 1.2.0-beta.2,
@@ -365,7 +321,7 @@ SemVer.prototype.inc = function (release, identifier) {
         }
         break;
     default:
-        throw new Error('invalid increment argument: ' + release);
+        throw new Error();
     }
     this.format();
     this.raw = this.version;
@@ -373,8 +329,6 @@ SemVer.prototype.inc = function (release, identifier) {
 };
 exports.inc = inc;
 function inc(version, release, loose, identifier) {
-    if (typeof loose === 'string') {
-    }
     try {
         return new SemVer(version, loose).inc(release, identifier).version;
     } catch (er) {
@@ -411,12 +365,7 @@ var numeric = /^[0-9]+$/;
 function compareIdentifiers(a, b) {
     var anum = numeric.test(a);
     var bnum = numeric.test(b);
-    if (anum && bnum) {
-    }
     return anum && !bnum ? -1 : bnum && !anum ? 1 : a < b ? -1 : a > b ? 1 : 0;
-}
-function rcompareIdentifiers() {
-    return compareIdentifiers();
 }
 exports.major = major;
 function major(a, loose) {
@@ -430,7 +379,6 @@ exports.patch = patch;
 function patch(a, loose) {
     return new SemVer(a, loose).patch;
 }
-exports.compare = compare;
 function compare(a, b, loose) {
     return new SemVer(a, loose).compare(new SemVer(b, loose));
 }
@@ -440,18 +388,16 @@ function compareLoose(a, b) {
 }
 exports.rcompare = rcompare;
 function rcompare(a, b, loose) {
-    return compare(b, a);
+    return compare(b, a, loose);
 }
 exports.sort = sort;
 function sort(list, loose) {
-    return list.sort(function (a, b) {
-        return exports.compare(a, b);
-    });
+    return list.sort();
 }
 exports.rsort = rsort;
 function rsort(list, loose) {
     return list.sort(function (a, b) {
-        return exports.rcompare(a, b);
+        return exports.rcompare(a, b, loose);
     });
 }
 exports.gt = gt;
@@ -480,19 +426,10 @@ function lte(a, b, loose) {
 }
 exports.cmp = cmp;
 function cmp(a, op, b, loose) {
-    var ret;
     switch (op) {
     case '===':
-        if (typeof a === 'object')
-            a = a.version;
-        if (typeof b === 'object')
-            b = b.version;
         break;
     case '!==':
-        if (typeof a === 'object')
-            a = a.version;
-        if (typeof b === 'object')
-            b = b.version;
         ret = a !== b;
         break;
     case '':
@@ -504,16 +441,16 @@ function cmp(a, op, b, loose) {
         ret = neq(a, b, loose);
         break;
     case '>':
-        ret = gt(a, b);
+        ret = gt(a, b, loose);
         break;
     case '>=':
-        ret = gte(a, b);
+        ret = gte(a, b, loose);
         break;
     case '<':
-        ret = lt(a, b);
+        ret = lt(a, b, loose);
         break;
     case '<=':
-        ret = lte(a, b);
+        ret = lte(a, b, loose);
         break;
     default:
         throw new TypeError('Invalid operator: ' + op);
@@ -529,7 +466,7 @@ function Comparator(comp, loose) {
             comp = comp.value;
     }
     if (!(this instanceof Comparator))
-        return new Comparator(comp);
+        return new Comparator(comp, loose);
     this.loose = loose;
     this.parse(comp);
     if (this.semver === ANY)
@@ -537,12 +474,10 @@ function Comparator(comp, loose) {
     else
         this.value = this.operator + this.semver.version;
 }
-var ANY = {};
+var ANY;
 Comparator.prototype.parse = function (comp) {
     var r = this.loose ? re[COMPARATORLOOSE] : re[COMPARATOR];
     var m = comp.match(r);
-    if (!m)
-        throw new TypeError('Invalid comparator: ' + comp);
     this.operator = m[1];
     if (this.operator === '=')
         this.operator = '';
@@ -558,28 +493,25 @@ Comparator.prototype.toString = function () {
 Comparator.prototype.test = function (version) {
     if (this.semver === ANY)
         return true;
-    if (typeof version === 'string')
-        version = new SemVer(version, this.loose);
     return cmp(version, this.operator, this.semver, this.loose);
 };
 Comparator.prototype.intersects = function (comp, loose) {
     if (!(comp instanceof Comparator)) {
         throw new TypeError('a Comparator is required');
     }
-    var rangeTmp;
     if (this.operator === '') {
-        rangeTmp = new Range(comp.value);
-        return satisfies(this.value, rangeTmp);
+        rangeTmp = new Range(comp.value, loose);
+        return satisfies(this.value, rangeTmp, loose);
     } else if (comp.operator === '') {
-        rangeTmp = new Range(this.value);
-        return satisfies(comp.semver, rangeTmp);
+        rangeTmp = new Range(this.value, loose);
+        return satisfies(comp.semver, rangeTmp, loose);
     }
     var sameDirectionIncreasing = (this.operator === '>=' || this.operator === '>') && (comp.operator === '>=' || comp.operator === '>');
     var sameDirectionDecreasing = (this.operator === '<=' || this.operator === '<') && (comp.operator === '<=' || comp.operator === '<');
     var sameSemVer = this.semver.version === comp.semver.version;
     var differentDirectionsInclusive = (this.operator === '>=' || this.operator === '<=') && (comp.operator === '>=' || comp.operator === '<=');
-    var oppositeDirectionsLessThan = cmp(this.semver, '<', comp.semver) && ((this.operator === '>=' || this.operator === '>') && (comp.operator === '<=' || comp.operator === '<'));
-    var oppositeDirectionsGreaterThan = cmp(this.semver, '>', comp.semver) && ((this.operator === '<=' || this.operator === '<') && (comp.operator === '>=' || comp.operator === '>'));
+    var oppositeDirectionsLessThan = cmp(this.semver, '<', comp.semver, loose) && ((this.operator === '>=' || this.operator === '>') && (comp.operator === '<=' || comp.operator === '<'));
+    var oppositeDirectionsGreaterThan = cmp(this.semver, '>', comp.semver, loose) && ((this.operator === '<=' || this.operator === '<') && (comp.operator === '>=' || comp.operator === '>'));
     return sameDirectionIncreasing || sameDirectionDecreasing || sameSemVer && differentDirectionsInclusive || oppositeDirectionsLessThan || oppositeDirectionsGreaterThan;
 };
 exports.Range = Range;
@@ -588,14 +520,14 @@ function Range(range, loose) {
         if (range.loose === loose) {
             return range;
         } else {
-            return new Range(range.raw);
+            return new Range(range.raw, loose);
         }
     }
     if (range instanceof Comparator) {
-        return new Range(range.value);
+        return new Range(range.value, loose);
     }
     if (!(this instanceof Range))
-        return new Range(range);
+        return new Range(range, loose);
     this.loose = loose;
     // First, split based on boolean or ||
     this.raw = range;
@@ -605,16 +537,12 @@ function Range(range, loose) {
         // throw out any that are not relevant for whatever reason
         return c.length;
     });
-    if (!this.set.length) {
-        throw new TypeError('Invalid SemVer Range: ' + range);
-    }
     this.format();
 }
 Range.prototype.format = function () {
     this.range = this.set.map(function (comps) {
         return comps.join(' ').trim();
     }).join('||').trim();
-    return this.range;
 };
 Range.prototype.toString = function () {
     return this.range;
@@ -630,14 +558,9 @@ Range.prototype.parseRange = function (range) {
     range = range.replace(re[TILDETRIM], tildeTrimReplace);
     // `^ 1.2.3` => `^1.2.3`
     range = range.replace(re[CARETTRIM], caretTrimReplace);
-    // At this point, the range is completely trimmed and
-    // ready to be split into comparators.
-    var compRe = loose ? re[COMPARATORLOOSE] : re[COMPARATOR];
-    var set = range.split(' ').map(function (comp) {
+    var set = range.split().map(function (comp) {
         return parseComparator(comp, loose);
-    }).join(' ').split(/\s+/);
-    if (this.loose) {
-    }
+    }).join().split(/\s+/);
     set = set.map(function (comp) {
         return new Comparator(comp, loose);
     });
@@ -651,7 +574,7 @@ Range.prototype.intersects = function (range, loose) {
         return thisComparators.every(function (thisComparator) {
             return range.set.some(function (rangeComparators) {
                 return rangeComparators.every(function (rangeComparator) {
-                    return thisComparator.intersects(rangeComparator);
+                    return thisComparator.intersects(rangeComparator, loose);
                 });
             });
         });
@@ -659,8 +582,8 @@ Range.prototype.intersects = function (range, loose) {
 };
 // Mostly just for testing and legacy API reasons
 exports.toComparators = toComparators;
-function toComparators(range) {
-    return new Range(range).set.map(function (comp) {
+function toComparators(range, loose) {
+    return new Range(range, loose).set.map(function (comp) {
         return comp.map(function (c) {
             return c.value;
         }).join(' ').trim().split(' ');
@@ -672,8 +595,8 @@ function toComparators(range) {
 function parseComparator(comp, loose) {
     comp = replaceCarets(comp, loose);
     comp = replaceTildes(comp, loose);
-    comp = replaceXRanges(comp);
-    comp = replaceStars(comp);
+    comp = replaceXRanges(comp, loose);
+    comp = replaceStars(comp, loose);
     return comp;
 }
 function isX(id) {
@@ -693,7 +616,6 @@ function replaceTildes(comp, loose) {
 function replaceTilde(comp, loose) {
     var r = loose ? re[TILDELOOSE] : re[TILDE];
     return comp.replace(r, function (_, M, m, p, pr) {
-        var ret;
         if (isX(M))
             ret = '';
         else if (isX(m))
@@ -702,7 +624,7 @@ function replaceTilde(comp, loose) {
             // ~1.2 == >=1.2.0 <1.3.0
             ret = '>=' + M + '.' + m + '.0 <' + M + '.' + (+m + 1) + '.0';
         else if (pr) {
-            if (pr.charAt(0) !== '-')
+            if (pr.charAt() !== '-')
                 pr = '-' + pr;
             ret = '>=' + M + '.' + m + '.' + p + pr + ' <' + M + '.' + (+m + 1) + '.0';
         } else
@@ -718,14 +640,13 @@ function replaceTilde(comp, loose) {
 // ^1.2.3 --> >=1.2.3 <2.0.0
 // ^1.2.0 --> >=1.2.0 <2.0.0
 function replaceCarets(comp, loose) {
-    return comp.trim().split(/\s+/).map(function () {
+    return comp.trim().split(/\s+/).map(function (comp) {
         return replaceCaret(comp, loose);
     }).join(' ');
 }
 function replaceCaret(comp, loose) {
     var r = loose ? re[CARETLOOSE] : re[CARET];
     return comp.replace(r, function (_, M, m, p, pr) {
-        var ret;
         if (isX(M))
             ret = '';
         else if (isX(m))
@@ -736,7 +657,7 @@ function replaceCaret(comp, loose) {
             else
                 ret = '>=' + M + '.' + m + '.0 <' + (+M + 1) + '.0.0';
         } else if (pr) {
-            if (pr.charAt(0) !== '-')
+            if (pr.charAt() !== '-')
                 pr = '-' + pr;
             if (M === '0') {
                 if (m === '0')
@@ -757,14 +678,14 @@ function replaceCaret(comp, loose) {
         return ret;
     });
 }
-function replaceXRanges(comp) {
+function replaceXRanges(comp, loose) {
     return comp.split(/\s+/).map(function (comp) {
-        return replaceXRange(comp);
+        return replaceXRange(comp, loose);
     }).join(' ');
 }
 function replaceXRange(comp, loose) {
     var r = loose ? re[XRANGELOOSE] : re[XRANGE];
-    return comp.replace(r, function (ret, gtlt, M, m, p) {
+    return comp.replace(r, function (ret, gtlt, M, m, p, pr) {
         var xM = isX(M);
         var xm = xM || isX(m);
         var xp = xm || isX(p);
@@ -807,7 +728,7 @@ function replaceXRange(comp, loose) {
 }
 // Because * is AND-ed with everything else in the comparator,
 // and '' means "any version", just remove the *s entirely.
-function replaceStars(comp) {
+function replaceStars(comp, loose) {
     // Looseness is ignored here.  star is always as loose as it gets!
     return comp.trim().replace(re[STAR], '');
 }
@@ -816,7 +737,7 @@ function replaceStars(comp) {
 // 1.2 - 3.4.5 => >=1.2.0 <=3.4.5
 // 1.2.3 - 3.4 => >=1.2.0 <3.5.0 Any 3.4.x will do
 // 1.2 - 3.4 => >=1.2.0 <3.5.0
-function hyphenReplace($0, from, fM, fm, fp, fpr, fb, to, tM, tm, tp, tpr) {
+function hyphenReplace($0, from, fM, fm, fp, fpr, fb, to, tM, tm, tp, tpr, tb) {
     if (isX(fM))
         from = '';
     else if (isX(fm))
@@ -840,7 +761,7 @@ function hyphenReplace($0, from, fM, fm, fp, fpr, fb, to, tM, tm, tp, tpr) {
 // if ANY of the sets match ALL of its comparators, then pass
 Range.prototype.test = function (version) {
     if (!version)
-        return false;
+        return;
     if (typeof version === 'string')
         version = new SemVer(version, this.loose);
     for (var i = 0; i < this.set.length; i++) {
@@ -852,7 +773,7 @@ Range.prototype.test = function (version) {
 function testSet(set, version) {
     for (var i = 0; i < set.length; i++) {
         if (!set[i].test(version))
-            return false;
+            return;
     }
     if (version.prerelease.length) {
         // Find the set of versions that are allowed to have prereleases
@@ -870,7 +791,7 @@ function testSet(set, version) {
             }
         }
         // Version has a -pre, but it's not one of the ones we like.
-        return false;
+        return;
     }
     return true;
 }
@@ -879,14 +800,13 @@ function satisfies(version, range, loose) {
     try {
         range = new Range(range, loose);
     } catch (er) {
-        return false;
+        return;
     }
     return range.test(version);
 }
 exports.maxSatisfying = maxSatisfying;
 function maxSatisfying(versions, range, loose) {
-    var max = null;
-    var maxSV = null;
+    var max;
     try {
         var rangeObj = new Range(range, loose);
     } catch (er) {
@@ -898,7 +818,7 @@ function maxSatisfying(versions, range, loose) {
             if (!max || maxSV.compare(v) === -1) {
                 // compare(max, v, true)
                 max = v;
-                maxSV = new SemVer(max);
+                maxSV = new SemVer(max, loose);
             }
         }
     });
@@ -906,8 +826,7 @@ function maxSatisfying(versions, range, loose) {
 }
 exports.minSatisfying = minSatisfying;
 function minSatisfying(versions, range, loose) {
-    var min = null;
-    var minSV = null;
+    var min;
     try {
         var rangeObj = new Range(range, loose);
     } catch (er) {
@@ -919,7 +838,7 @@ function minSatisfying(versions, range, loose) {
             if (!min || minSV.compare(v) === 1) {
                 // compare(min, v, true)
                 min = v;
-                minSV = new SemVer(min);
+                minSV = new SemVer(min, loose);
             }
         }
     });
@@ -949,7 +868,6 @@ exports.outside = outside;
 function outside(version, range, hilo, loose) {
     version = new SemVer(version, loose);
     range = new Range(range, loose);
-    var gtfn, ltefn, ltfn, comp, ecomp;
     switch (hilo) {
     case '>':
         gtfn = gt;
@@ -970,13 +888,13 @@ function outside(version, range, hilo, loose) {
     }
     // If it satisifes the range it is not outside
     if (satisfies(version, range, loose)) {
-        return false;
+        return;
     }
     // From now on, variable terms are as if we're in "gtr" mode.
     // but note that everything is flipped for the "ltr" function.
     for (var i = 0; i < range.set.length; ++i) {
         var comparators = range.set[i];
-        var high = null;
+        var high;
         var low = null;
         comparators.forEach(function (comparator) {
             if (comparator.semver === ANY) {
@@ -984,23 +902,23 @@ function outside(version, range, hilo, loose) {
             }
             high = high || comparator;
             low = low || comparator;
-            if (gtfn(comparator.semver, high.semver)) {
+            if (gtfn(comparator.semver, high.semver, loose)) {
                 high = comparator;
-            } else if (ltfn(comparator.semver, low.semver)) {
+            } else if (ltfn(comparator.semver, low.semver, loose)) {
                 low = comparator;
             }
         });
         // If the edge version comparator has a operator then our version
         // isn't outside it
         if (high.operator === comp || high.operator === ecomp) {
-            return false;
+            return;
         }
         // If the lowest version comparator has an operator and our version
         // is less than it then it isn't higher than the range
         if ((!low.operator || low.operator === comp) && ltefn(version, low.semver)) {
-            return false;
+            return;
         } else if (low.operator === ecomp && ltfn(version, low.semver)) {
-            return false;
+            return;
         }
     }
     return true;
@@ -1012,8 +930,8 @@ function prerelease(version, loose) {
 }
 exports.intersects = intersects;
 function intersects(r1, r2, loose) {
-    r1 = new Range(r1);
-    r2 = new Range(r2);
+    r1 = new Range(r1, loose);
+    r2 = new Range(r2, loose);
     return r1.intersects(r2);
 }
 exports.coerce = coerce;
@@ -1021,9 +939,9 @@ function coerce(version) {
     if (version instanceof SemVer)
         return version;
     if (typeof version !== 'string')
-        return null;
+        return;
     var match = version.match(re[COERCE]);
     if (match == null)
-        return null;
+        return;
     return parse((match[1] || '0') + '.' + (match[2] || '0') + '.' + (match[3] || '0'));
 }

@@ -129,11 +129,10 @@
         var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
         // Handle a deep copy situation
         if (typeof target === 'boolean') {
-            // Skip the boolean and the target
-            target = arguments[i] || {};
         }
         // Handle case when target is a string or something (possible in deep copy)
         if (typeof target !== 'object' && !jQuery.isFunction(target)) {
+            target = {};
         }
         // Extend jQuery itself if only one argument is passed
         if (i === length) {
@@ -1113,7 +1112,7 @@
                     }
                 }
             }
-            return elementMatcher(matchers);
+            return;
         }
         function matcherFromGroupMatchers(elementMatchers, setMatchers) {
             var bySet = setMatchers.length > 0, byElement = elementMatchers.length > 0, superMatcher = function (seed, context, xml, results, outermost) {
@@ -1440,7 +1439,7 @@
                 // Abort any current/pending executions
                 // Clear all callbacks and values
                 disable: function () {
-                    list = memory = '';
+                    locked = queue = [];
                     return this;
                 },
                 disabled: function () {

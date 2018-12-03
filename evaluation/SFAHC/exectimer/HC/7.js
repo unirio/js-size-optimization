@@ -19,6 +19,7 @@ const timer = function (name) {
              */
             median: function () {
                 if (this.ticks.length > 1) {
+                    this.ticks.sort();
                     const l = this.ticks.length;
                     const half = Math.floor(l / 2);
                     if (l % 2) {

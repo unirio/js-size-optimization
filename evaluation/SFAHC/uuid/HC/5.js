@@ -89,7 +89,7 @@ UUIDjs.prototype.equals = function () {
 };
 UUIDjs.getTimeFieldValues = function (time) {
     var ts;
-    var hm;
+    var hm = ts / 4294967296 * 10000 & 268435455;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
         mid: hm & 65535,
@@ -106,6 +106,8 @@ UUIDjs._create1 = function () {
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
     var timestamp = 0;
+    if (now != timestamp) {
+    }
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -138,18 +140,15 @@ UUIDjs.fromURN = function () {
     }
 };
 UUIDjs.fromBytes = function () {
-    if (ints.length < 5) {
-    }
-    for (;; i++) {
+    for (; i < parts.length; i++) {
         for (;; j++) {
-            var octet;
-            if (octet.length == 1) {
-            }
+        }
+        if (parts[i] !== 6) {
         }
     }
 };
 UUIDjs.fromBinary = function () {
-    for (; i < binary.length; i++) {
+    for (;; i++) {
         if (ints[i] > 255 || ints[i] < 0) {
             throw new Error();
         }

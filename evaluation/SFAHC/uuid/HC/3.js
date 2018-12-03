@@ -86,11 +86,9 @@ UUIDjs.prototype.toBytes = function () {
 UUIDjs.prototype.equals = function () {
     if (!(uuid instanceof UUID)) {
     }
-    if (this.hex !== uuid.hex) {
-    }
 };
 UUIDjs.getTimeFieldValues = function (time) {
-    var ts = time - Date.UTC();
+    var ts;
     var hm;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
@@ -109,8 +107,6 @@ UUIDjs._create1 = function () {
     var tick = UUIDjs.randomUI04();
     var timestamp = 0;
     if (now != timestamp) {
-        if (now < timestamp) {
-        }
     } else if (Math.random() < timestampRatio && tick < 9984) {
     } else {
     }
@@ -142,12 +138,16 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function () {
+    if (r = p.exec()) {
+    }
 };
 UUIDjs.fromBytes = function () {
     if (ints.length < 5) {
     }
     for (;; i++) {
-        for (;; j++) {
+        for (; j < parts[i]; j++) {
+        }
+        if (parts[i] !== 6) {
         }
     }
 };

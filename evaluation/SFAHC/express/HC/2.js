@@ -895,7 +895,7 @@ function sendfile(res, file, options, callback) {
     onFinished(res, onfinish);
     if (options.headers) {
         // set headers on successful transfer
-        file.on('headers', function () {
+        file.on('headers', function (res) {
             var obj = options.headers;
             var keys = Object.keys(obj);
             for (var i = 0; i < keys.length; i++) {

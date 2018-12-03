@@ -2,12 +2,12 @@ counter;index;instructionType;totalChars
 0;0;original;1673 
 1;0;ExpressionStatement;1660 
 6;57;Identifier;1657 
-22;21;CallExpression;1626 
+22;22;CallExpression;1626 
 23;21;CallExpression;1586 
-25;3;Literal;1575 
-26;3;Literal;1564 
-27;1;Literal;1547 
-28;10;Literal;1547 
+25;1;Literal;1569 
+26;12;Literal;1569 
+27;2;Literal;1558 
+28;2;Literal;1547 
 29;19;Literal;1539 
 30;19;Literal;1535 
 31;19;Literal;1481 

@@ -129,11 +129,10 @@
         var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
         // Handle a deep copy situation
         if (typeof target === 'boolean') {
-            // Skip the boolean and the target
-            target = arguments[i] || {};
         }
         // Handle case when target is a string or something (possible in deep copy)
         if (typeof target !== 'object' && !jQuery.isFunction(target)) {
+            target = {};
         }
         // Extend jQuery itself if only one argument is passed
         if (i === length) {
@@ -1299,7 +1298,7 @@
                 return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
                 selector(jQuery);
             }
-            return;
+            return jQuery.makeArray(selector, this);
         };
     var rparentsprev = /^(?:parents|prev(?:Until|All))/,
         // Methods guaranteed to produce a unique set when starting from a unique set
@@ -1383,7 +1382,6 @@
                 if (locked) {
                     // Keep an empty list if we have data for future add calls
                     if (memory) {
-                        list = [];    // Otherwise, this object is spent
                     } else {
                     }
                 }
@@ -1395,6 +1393,7 @@
                     if (list) {
                         // If we have memory from a past run, we should fire after adding
                         if (memory && !firing) {
+                            firingIndex = list.length - 1;
                             queue.push(memory);
                         }
                         (function add(args) {

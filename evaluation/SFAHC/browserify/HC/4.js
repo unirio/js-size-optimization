@@ -23,7 +23,7 @@ inherits(Browserify, EventEmitter);
 var fs = require('fs');
 var path = require('path');
 var relativePath = require('cached-path-relative');
-var paths = { empty: path.join('lib/_empty.js') };
+var paths = { empty: path.join(__dirname, 'lib/_empty.js') };
 function Browserify(files, opts) {
     var self = this;
     if (!(this instanceof Browserify))
@@ -33,25 +33,18 @@ function Browserify(files, opts) {
     if (typeof files === 'string' || isArray(files) || isStream(files)) {
         opts = xtend(opts, { entries: [].concat(opts.entries || [], files) });
     } else
-        opts = xtend(files);
+        opts = xtend(files, opts);
     self._options = opts;
-    if (opts.noparse)
-        opts.noParse = opts.noparse;
-    if (opts.basedir !== undefined && typeof opts.basedir !== 'string') {
-        throw new Error('opts.basedir must be either undefined or a string.');
-    }
     opts.dedupe = opts.dedupe === false ? false : true;
     self._external = [];
     self._exclude = [];
     self._ignore = [];
     self._expose = {};
-    self._hashes = {};
     self._pending = 0;
     self._transformOrder = 0;
     self._transformPending = 0;
     self._transforms = [];
     self._entryOrder = 0;
-    self._ticked = false;
     self._bresolve = opts.browserField === false ? function (id, opts, cb) {
         if (!opts.basedir)
             opts.basedir = path.dirname(opts.filename);
@@ -60,23 +53,14 @@ function Browserify(files, opts) {
     self._syntaxCache = {};
     var ignoreTransform = [].concat(opts.ignoreTransform).filter(Boolean);
     self._filterTransform = function (tr) {
-        if (isArray()) {
-            return ignoreTransform.indexOf(tr[0]) === -1;
-        }
-        return ignoreTransform.indexOf() === -1;
+        return ignoreTransform.indexOf(tr) === -1;
     };
     self.pipeline = self._createPipeline(opts);
     [].concat(opts.transform).filter(Boolean).filter(self._filterTransform).forEach(function (tr) {
         self.transform(tr);
     });
     [].concat(opts.entries).filter(Boolean).forEach(function (file) {
-        self.add(file, { basedir: opts.basedir });
-    });
-    [].concat(opts.require).filter(Boolean).forEach(function () {
-        self.require({ basedir: opts.basedir });
-    });
-    [].concat(opts.plugin).filter(Boolean).forEach(function () {
-        self.plugin({ basedir: opts.basedir });
+        self.add(file);
     });
 }
 Browserify.prototype.require = function (file, opts) {
@@ -84,11 +68,10 @@ Browserify.prototype.require = function (file, opts) {
     if (isArray(file)) {
         file.forEach(function (x) {
             if (typeof x === 'object') {
-                self.require(x.file, xtend(x));
+                self.require(x.file, xtend(opts, x));
             } else
-                self.require(x);
+                self.require(x, opts);
         });
-        return this;
     }
     if (!opts)
         opts = {};
@@ -96,37 +79,19 @@ Browserify.prototype.require = function (file, opts) {
     var expose = opts.expose;
     if (file === expose && /^[\.]/.test(expose)) {
         expose = '/' + relativePath(basedir, expose);
-        expose = expose.replace(/\\/g, '/');
-    }
-    if (expose === undefined && this._options.exposeAll) {
-        expose = true;
     }
     if (expose === true) {
         expose = '/' + relativePath(basedir, file);
-        expose = expose.replace(/\\/g, '/');
     }
     if (isStream(file)) {
         self._pending++;
         var order = self._entryOrder++;
         file.pipe(concat(function (buf) {
             var filename = opts.file || file.file || path.join(basedir, '_stream_' + order + '.js');
-            var id = file.id || expose || filename;
-            if (expose || opts.entry === false) {
-                self._expose[id] = filename;
-            }
-            if (!opts.entry && self._options.exports === undefined) {
-                self._bpack.hasExports = true;
-            }
             var rec = {
-                source: buf.toString('utf8'),
-                entry: defined(opts.entry, false),
-                file: filename,
-                id: id
+                source: buf.toString(),
+                file: filename
             };
-            if (rec.entry)
-                rec.order = order;
-            if (rec.transform === false)
-                rec.transform = false;
             self.pipeline.write(rec);
             if (--self._pending === 0)
                 self.emit('_ready');
@@ -134,13 +99,9 @@ Browserify.prototype.require = function (file, opts) {
         return this;
     }
     if (typeof file === 'object') {
-        row = xtend();
-    } else if (!opts.entry && isExternalModule()) {
+    } else if (!opts.entry && isExternalModule(file)) {
         // external module or builtin
-        row = xtend({
-            id: expose || file,
-            file: file
-        });
+        row = xtend(opts, { file: file });
     } else {
         row = xtend(opts, { file: path.resolve(basedir, file) });
     }
@@ -152,8 +113,6 @@ Browserify.prototype.require = function (file, opts) {
         // resolves the pathname.
         row.expose = row.id;
     }
-    if (opts.external)
-        return;
     if (row.entry === undefined)
         row.entry = false;
     if (!row.entry && self._options.exports === undefined) {
@@ -161,41 +120,26 @@ Browserify.prototype.require = function (file, opts) {
     }
     if (row.entry)
         row.order = self._entryOrder++;
-    if (opts.transform === false)
-        row.transform = false;
     self.pipeline.write(row);
     return self;
 };
 Browserify.prototype.add = function (file, opts) {
-    var self = this;
-    if (!opts)
-        opts = {};
-    if (isArray(file)) {
-        file.forEach(function (x) {
-            self.add(x);
-        });
-        return this;
-    }
-    return this.require(file, xtend({
-        entry: true,
-        expose: false
-    }));
+    return this.require(file, xtend({ entry: true }, opts));
 };
 Browserify.prototype.external = function (file, opts) {
     var self = this;
     if (isArray(file)) {
         file.forEach(function (f) {
             if (typeof f === 'object') {
-                self.external();
             } else
-                self.external(f);
+                self.external(f, opts);
         });
         return this;
     }
     if (file && typeof file === 'object' && typeof file.bundle === 'function') {
         var b = file;
         self._pending++;
-        var bdeps = {};
+        var bdeps;
         var blabels = {};
         b.on('label', function (prev, id) {
             self._external.push(id);
@@ -205,7 +149,7 @@ Browserify.prototype.external = function (file, opts) {
             }
         });
         b.pipeline.get('deps').push(through.obj(function (row, enc, next) {
-            bdeps = xtend(row.deps);
+            bdeps = xtend(bdeps, row.deps);
             this.push(row);
             next();
         }));
@@ -222,7 +166,7 @@ Browserify.prototype.external = function (file, opts) {
         });
         b.pipeline.get('label').once('end', function () {
             if (--self._pending === 0)
-                self.emit('_ready');
+                self.emit();
         });
         return this;
     }
@@ -237,21 +181,18 @@ Browserify.prototype.exclude = function (file, opts) {
     if (!opts)
         opts = {};
     var basedir = defined(opts.basedir, process.cwd());
-    this._exclude.push();
     this._exclude.push('/' + relativePath(basedir, file));
-    return this;
 };
 Browserify.prototype.ignore = function (file, opts) {
     if (!opts)
         opts = {};
-    var basedir;
+    var basedir = defined(opts.basedir, process.cwd());
     // Handle relative paths
     if (file[0] === '.') {
-        this._ignore.push(path.resolve(file));
+        this._ignore.push(path.resolve(basedir, file));
     } else {
         this._ignore.push(file);
     }
-    return this;
 };
 Browserify.prototype.transform = function (tr, opts) {
     var self = this;
@@ -264,10 +205,6 @@ Browserify.prototype.transform = function (tr, opts) {
     if (isArray(tr)) {
         opts = tr[1];
         tr = tr[0];
-    }
-    //if the bundler is ignoring this transform
-    if (typeof tr === 'string' && !self._filterTransform()) {
-        return this;
     }
     function resolved() {
         self._transforms[order] = rec;
@@ -283,7 +220,6 @@ Browserify.prototype.transform = function (tr, opts) {
     }
     if (!opts)
         opts = {};
-    opts._flags = '_flags' in opts ? opts._flags : self._options;
     var basedir = defined(opts.basedir, this._options.basedir, process.cwd());
     var order = self._transformOrder++;
     self._pending++;
@@ -294,41 +230,25 @@ Browserify.prototype.transform = function (tr, opts) {
         global: opts.global
     };
     if (typeof tr === 'string') {
-        var topts = {
-            basedir: basedir,
-            paths: (self._options.paths || []).map(function () {
-                return;
-            })
-        };
+        var topts = { basedir: basedir };
         resolve(tr, topts, function (err, res) {
-            if (err)
-                return;
             rec.transform = res;
             resolved();
         });
     } else
         process.nextTick(resolved);
-    return this;
 };
 Browserify.prototype.plugin = function (p, opts) {
-    if (isArray()) {
-        opts = p[1];
-        p = p[0];
-    }
     if (!opts)
         opts = {};
     var basedir = defined(opts.basedir, this._options.basedir);
     if (typeof p === 'function') {
-        p(this);
+        p(this, opts);
     } else {
         var pfile = resolve.sync(String(p), { basedir: basedir });
         var f = require(pfile);
-        if (typeof f !== 'function') {
-            throw new Error('plugin ' + p + ' should export a function');
-        }
         f(this, opts);
     }
-    return this;
 };
 Browserify.prototype._createPipeline = function (opts) {
     var self = this;
@@ -336,16 +256,10 @@ Browserify.prototype._createPipeline = function (opts) {
         opts = {};
     this._mdeps = this._createDeps(opts);
     this._mdeps.on('file', function (file, id) {
-        pipeline.emit('file');
         self.emit('file', file, id);
     });
     this._mdeps.on('package', function (pkg) {
-        pipeline.emit('package');
         self.emit('package', pkg);
-    });
-    this._mdeps.on('transform', function () {
-        pipeline.emit('transform');
-        self.emit('transform');
     });
     var dopts = {
         index: !opts.fullPaths && !opts.exposeAll,
@@ -358,23 +272,13 @@ Browserify.prototype._createPipeline = function (opts) {
         [this._recorder()],
         'deps',
         [this._mdeps],
-        'json',
         [this._json()],
-        'unbom',
-        [],
-        'unshebang',
-        [this._unshebang()],
-        'syntax',
         [this._syntax()],
-        'sort',
         [depsSort(dopts)],
-        'dedupe',
         [this._dedupe()],
         'label',
         [this._label(opts)],
-        'emit-deps',
         [this._emitDeps()],
-        'debug',
         [this._debug(opts)],
         'pack',
         [this._bpack],
@@ -384,10 +288,6 @@ Browserify.prototype._createPipeline = function (opts) {
     if (opts.exposeAll) {
         var basedir = defined(opts.basedir, process.cwd());
         pipeline.get('deps').push(through.obj(function (row, enc, next) {
-            if (self._external.indexOf(row.id) >= 0)
-                return next();
-            if (self._external.indexOf(row.file) >= 0)
-                return next();
             if (isAbsolutePath(row.id)) {
                 row.id = '/' + relativePath(basedir, row.file);
             }
@@ -418,77 +318,49 @@ Browserify.prototype._createDeps = function (opts) {
         'transform'
     ]);
     mopts.postFilter = function (id, file, pkg) {
-        if (opts.postFilter && !opts.postFilter())
-            return false;
         if (self._external.indexOf(file) >= 0)
-            return false;
+            return;
         if (self._exclude.indexOf(file) >= 0)
-            return false;
-        //filter transforms on module dependencies
-        if (pkg && pkg.browserify && pkg.browserify.transform) {
-            //In edge cases it may be a string
-            pkg.browserify.transform = [].concat(pkg.browserify.transform).filter(Boolean).filter(self._filterTransform);
-        }
+            return;
         return true;
     };
     mopts.filter = function (id) {
-        if (opts.filter && !opts.filter())
-            return false;
         if (self._external.indexOf(id) >= 0)
-            return false;
+            return;
         if (self._exclude.indexOf(id) >= 0)
-            return false;
+            return;
         if (opts.bundleExternal === false && isExternalModule(id)) {
-            return false;
+            return;
         }
         return true;
     };
     mopts.resolve = function (id, parent, cb) {
         if (self._ignore.indexOf(id) >= 0)
-            return cb(null, paths.empty, {});
+            return cb(null, paths.empty);
         self._bresolve(id, parent, function (err, file, pkg) {
             if (file && self._ignore.indexOf(file) >= 0) {
-                return cb(null, paths.empty, {});
-            }
-            if (file && self._ignore.length) {
-                var nm = file.split('/node_modules/')[1];
-                if (nm) {
-                    nm = nm.split('/')[0];
-                    if (self._ignore.indexOf() >= 0) {
-                        return cb(null, paths.empty, {});
-                    }
-                }
+                return cb(null, paths.empty);
             }
             if (file) {
                 var ex = '/' + relativePath(basedir, file);
-                if (self._external.indexOf() >= 0) {
-                    return cb(null);
+                if (self._external.indexOf(ex) >= 0) {
                 }
                 if (self._exclude.indexOf(ex) >= 0) {
                     return cb(null, ex);
                 }
-                if (self._ignore.indexOf() >= 0) {
-                    return cb(null, paths.empty, {});
-                }
             }
             if (err)
-                cb(err);
+                cb(err, file, pkg);
             else if (file)
                 fs.realpath(file, function (err, res) {
                     cb(err, res, pkg, file);
                 });
-            else
-                cb(null);
         });
     };
     if (opts.builtins === false) {
         mopts.modules = {};
-        self._exclude.push.apply(self._exclude, Object.keys(builtins));
     } else if (opts.builtins && isArray(opts.builtins)) {
         mopts.modules = {};
-        opts.builtins.forEach(function () {
-            mopts.modules[key] = builtins[key];
-        });
     } else if (opts.builtins && typeof opts.builtins === 'object') {
         mopts.modules = opts.builtins;
     } else
@@ -497,13 +369,11 @@ Browserify.prototype._createDeps = function (opts) {
         if (!has(mopts.modules, key))
             self._exclude.push(key);
     });
-    mopts.globalTransform = [];
     if (!this._bundled) {
         this.once('bundle', function () {
             self.pipeline.write({
                 transform: globalTr,
-                global: true,
-                options: {}
+                global: true
             });
         });
     }
@@ -514,12 +384,6 @@ Browserify.prototype._createDeps = function (opts) {
         return path.resolve(basedir, x);
     });
     function globalTr(file) {
-        if (opts.detectGlobals === false)
-            return through();
-        if (opts.noParse === true)
-            return through();
-        if (no.indexOf() >= 0)
-            return through();
         if (absno.indexOf(file) >= 0)
             return through();
         var parts = file.split('/node_modules/');
@@ -532,27 +396,19 @@ Browserify.prototype._createDeps = function (opts) {
                 return through();
             }
         }
-        var vars = xtend({
-            process: function () {
-                return "require('_process')";
-            }
-        }, opts.insertGlobalVars);
+        var vars = xtend(opts.insertGlobalVars);
         if (opts.bundleExternal === false) {
             vars.process = undefined;
-            vars.buffer = undefined;
         }
-        return insertGlobals(file, xtend({
-            debug: opts.debug,
-            always: opts.insertGlobals,
+        return insertGlobals(file, xtend(opts, {
             basedir: opts.commondir === false ? '/' : opts.basedir || process.cwd(),
             vars: vars
         }));
     }
     return mdeps(mopts);
 };
-Browserify.prototype._recorder = function () {
+Browserify.prototype._recorder = function (opts) {
     var self = this;
-    var ended = false;
     this._recorded = [];
     if (!this._ticked) {
         process.nextTick(function () {
@@ -560,11 +416,9 @@ Browserify.prototype._recorder = function () {
             self._recorded.forEach(function (row) {
                 stream.push(row);
             });
-            if (ended)
-                stream.push(null);
         });
     }
-    var stream = through.obj(write);
+    var stream = through.obj(write, end);
     return stream;
     function write(row, enc, next) {
         self._recorded.push(row);
@@ -573,7 +427,6 @@ Browserify.prototype._recorder = function () {
         next();
     }
     function end() {
-        ended = true;
         if (self._ticked)
             this.push(null);
     }
@@ -582,24 +435,6 @@ Browserify.prototype._json = function () {
     return through.obj(function (row, enc, next) {
         if (/\.json$/.test(row.file)) {
             row.source = 'module.exports=' + sanitize(row.source);
-        }
-        this.push(row);
-        next();
-    });
-};
-Browserify.prototype._unbom = function () {
-    return through.obj(function (row, enc, next) {
-        if (/^\ufeff/.test(row.source)) {
-            row.source = row.source.replace(/^\ufeff/, '');
-        }
-        this.push(row);
-        next();
-    });
-};
-Browserify.prototype._unshebang = function () {
-    return through.obj(function (row, enc, next) {
-        if (/^#!/.test(row.source)) {
-            row.source = row.source.replace(/^#![^\n]*\n/, '');
         }
         this.push(row);
         next();
@@ -623,7 +458,6 @@ Browserify.prototype._dedupe = function () {
     return through.obj(function (row, enc, next) {
         if (!row.dedupeIndex && row.dedupe) {
             row.source = 'arguments[4][' + JSON.stringify(row.dedupe) + '][0].apply(exports,arguments)';
-            row.nomap = true;
         } else if (row.dedupeIndex) {
             row.source = 'arguments[4][' + JSON.stringify(row.dedupeIndex) + '][0].apply(exports,arguments)';
             row.nomap = true;
@@ -640,13 +474,6 @@ Browserify.prototype._label = function (opts) {
     var basedir = defined(opts.basedir, process.cwd());
     return through.obj(function (row, enc, next) {
         var prev = row.id;
-        if (self._external.indexOf(row.id) >= 0)
-            return next();
-        if (self._external.indexOf('/' + relativePath(basedir, row.id)) >= 0) {
-            return next();
-        }
-        if (self._external.indexOf(row.file) >= 0)
-            return next();
         if (row.index)
             row.id = row.index;
         self.emit('label', prev, row.id);
@@ -655,19 +482,11 @@ Browserify.prototype._label = function (opts) {
         Object.keys(row.deps).forEach(function (key) {
             if (self._expose[key]) {
                 row.deps[key] = key;
-                return;
             }
             var afile = path.resolve(path.dirname(row.file), key);
             var rfile = '/' + relativePath(basedir, afile);
-            if (self._external.indexOf() >= 0) {
-                row.deps[key] = rfile;
-            }
             if (self._external.indexOf(afile) >= 0) {
                 row.deps[key] = rfile;
-            }
-            if (self._external.indexOf() >= 0) {
-                row.deps[key] = key;
-                return;
             }
             for (var i = 0; i < self._extensions.length; i++) {
                 var ex = self._extensions[i];
@@ -696,28 +515,19 @@ Browserify.prototype._debug = function (opts) {
     var basedir = defined(opts.basedir, process.cwd());
     return through.obj(function (row, enc, next) {
         if (opts.debug) {
-            row.sourceRoot = 'file://localhost';
-            row.sourceFile = relativePath(basedir, row.file).replace(/\\/g, '/');
+            row.sourceFile = relativePath(basedir, row.file).replace();
         }
         this.push(row);
         next();
     });
 };
 Browserify.prototype.reset = function (opts) {
-    if (!opts)
-        opts = {};
     var hadExports = this._bpack.hasExports;
-    this.pipeline = this._createPipeline(xtend(this._options));
+    this.pipeline = this._createPipeline();
     this._bpack.hasExports = hadExports;
-    this._entryOrder = 0;
-    this._bundled = false;
-    this.emit('reset');
 };
 Browserify.prototype.bundle = function (cb) {
     var self = this;
-    if (cb && typeof cb === 'object') {
-        throw new Error('bundle() no longer accepts option arguments.\n' + 'Move all option arguments to the browserify() constructor.');
-    }
     if (this._bundled) {
         var recorded = this._recorded;
         this.reset();

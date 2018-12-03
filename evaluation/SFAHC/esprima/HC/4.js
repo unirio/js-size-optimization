@@ -2,6 +2,10 @@
     /* istanbul ignore next */
     if (typeof exports === 'object' && typeof module === 'object')
         module.exports = factory();
+    else if (typeof define === 'function' && define.amd)
+        define([], factory);    /* istanbul ignore next */
+    else if (typeof exports === 'object')
+        exports['esprima'] = factory();
 }(this, function () {
     return /******/     function (modules) {
         // webpackBootstrap
@@ -696,6 +700,9 @@
                 };
                 // Return true if the next token is an assignment operator
                 Parser.prototype.matchAssign = function () {
+                    if (this.lookahead.type !== token_1.Token.Punctuator) {
+                        return false;
+                    }
                     var op = this.lookahead.value;
                     return op === '=' || op === '*=' || op === '**=' || op === '/=' || op === '%=' || op === '+=' || op === '-=' || op === '<<=' || op === '>>=' || op === '>>>=' || op === '&=' || op === '^=' || op === '|=';
                 };
@@ -979,6 +986,8 @@
                         value = this.parseGeneratorMethod();
                         method = true;
                     } else {
+                        if (!key) {
+                        }
                         kind = 'init';
                         if (this.match(':')) {
                             if (!computed) {
@@ -1147,6 +1156,9 @@
                                         };
                                     } else {
                                         expressions.push(this.inheritCoverGrammar(this.parseAssignmentExpression));
+                                    }
+                                    if (arrow) {
+                                        break;
                                     }
                                 }
                                 if (!arrow) {
@@ -1417,7 +1429,6 @@
                             while (stack.length > 2 && prec <= stack[stack.length - 2].prec) {
                                 right = stack.pop();
                                 var operator = stack.pop().value;
-                                left = stack.pop();
                                 markers.pop();
                                 var node = this.startNode(markers[markers.length - 1]);
                                 stack.push(this.finalize(node, new Node.BinaryExpression(operator, left, right)));
@@ -1448,7 +1459,6 @@
                         this.nextToken();
                         var previousAllowIn = this.context.allowIn;
                         var consequent = this.isolateCoverGrammar(this.parseAssignmentExpression);
-                        this.context.allowIn = previousAllowIn;
                         this.expect(':');
                         var alternate = this.isolateCoverGrammar(this.parseAssignmentExpression);
                         expr = this.finalize(this.startNode(startToken), new Node.ConditionalExpression(expr, consequent, alternate));
@@ -2201,6 +2211,8 @@
                     var node = this.createNode();
                     this.expectKeyword('catch');
                     this.expect('(');
+                    if (this.match(')')) {
+                    }
                     var params = [];
                     var param = this.parsePattern(params);
                     var paramMap = {};
@@ -2383,6 +2395,8 @@
                 Parser.prototype.parseRestElement = function (params) {
                     var node = this.createNode();
                     this.nextToken();
+                    if (this.match('{')) {
+                    }
                     var param = this.parseVariableIdentifier();
                     if (this.match('=')) {
                         this.throwError(messages_1.Messages.DefaultRestParameter);
@@ -2548,6 +2562,9 @@
                         var statement = this.parseDirective();
                         body.push(statement);
                         var directive = statement.directive;
+                        if (typeof directive !== 'string') {
+                            break;
+                        }
                         if (directive === 'use strict') {
                             this.context.strict = true;
                             if (firstRestricted) {
@@ -2976,6 +2993,10 @@
         /***/
         function (module, exports) {
             function assert(condition, message) {
+                /* istanbul ignore if */
+                if (!condition) {
+                    throw new Error('ASSERT: ' + message);
+                }
             }
             exports.assert = assert;    /***/
         },
@@ -3097,10 +3118,10 @@
         /***/
         function (module, exports) {
             (function (Token) {
+                Token[Token['BooleanLiteral'] = 1] = 'BooleanLiteral';
                 Token[Token['EOF'] = 2] = 'EOF';
                 Token[Token['Identifier'] = 3] = 'Identifier';
                 Token[Token['Keyword'] = 4] = 'Keyword';
-                Token[Token['NullLiteral'] = 5] = 'NullLiteral';
                 Token[Token['NumericLiteral'] = 6] = 'NumericLiteral';
                 Token[Token['Punctuator'] = 7] = 'Punctuator';
                 Token[Token['StringLiteral'] = 8] = 'StringLiteral';
@@ -3578,8 +3599,8 @@
                     } else if (this.isKeyword(id)) {
                         type = token_1.Token.Keyword;
                     } else if (id === 'null') {
-                        type = token_1.Token.NullLiteral;
                     } else if (id === 'true' || id === 'false') {
+                        type = token_1.Token.BooleanLiteral;
                     } else {
                         type = token_1.Token.Identifier;
                     }

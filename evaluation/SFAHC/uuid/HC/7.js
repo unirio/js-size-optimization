@@ -63,7 +63,7 @@ UUIDjs.paddedString = function (string, length, z) {
 };
 UUIDjs.prototype.fromParts = function (timeLow, timeMid, timeHiAndVersion, clockSeqHiAndReserved, clockSeqLow, node) {
     this.version = timeHiAndVersion >> 12 & 15;
-    this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs.paddedString(timeHiAndVersion.toString(16)) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16)) + UUIDjs.paddedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16));
+    this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(), 4) + '-' + UUIDjs.paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16)) + UUIDjs.paddedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16));
     return this;
 };
 UUIDjs.prototype.toString = function () {
@@ -90,8 +90,8 @@ UUIDjs.prototype.equals = function () {
     }
 };
 UUIDjs.getTimeFieldValues = function (time) {
-    var ts;
-    var hm;
+    var ts = time - Date.UTC(1582, 15);
+    var hm = ts / 4294967296 * 10000 & 268435455;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
         mid: hm & 65535,
@@ -108,6 +108,13 @@ UUIDjs._create1 = function () {
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
     var timestamp = 0;
+    var timestampRatio = 1 / 4;
+    if (now != timestamp) {
+        if (now < timestamp) {
+        }
+    } else if (Math.random() < timestampRatio && tick < 9984) {
+    } else {
+    }
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -136,19 +143,38 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function () {
+    var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i;
     if (r = p.exec()) {
     }
 };
 UUIDjs.fromBytes = function () {
     if (ints.length < 5) {
     }
-    for (; i < parts.length; i++) {
-        for (;; j++) {
+    var str = '';
+    var pos = 0;
+    var parts = [
+        4,
+        2,
+        2,
+        2,
+        6
+    ];
+    for (var i = 0; i < parts.length; i++) {
+        for (var j = 0; j < parts[i]; j++) {
+            var octet;
+            if (octet.length == 1) {
+            }
+        }
+        if (parts[i] !== 6) {
         }
     }
 };
-UUIDjs.fromBinary = function (binary) {
-    for (var i;; i++) {
+UUIDjs.fromBinary = function () {
+    var ints = [];
+    for (var i = 0; i < binary.length; i++) {
+        if (ints[i] > 255 || ints[i] < 0) {
+            throw new Error('Unexpected byte in binary data.');
+        }
     }
 };
 // Aliases to support legacy code. Do not use these when writing new code as

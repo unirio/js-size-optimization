@@ -142,7 +142,7 @@ merge(Compressor.prototype, {
     toplevel: function (def) {
         for (var i = 0, len = def.orig.length; i < len; i++)
             if (!this.toplevel[def.orig[i] instanceof AST_SymbolDefun ? 'funcs' : 'vars'])
-                return false;
+                return;
         return true;
     },
     compress: function (node) {
@@ -388,8 +388,6 @@ merge(Compressor.prototype, {
                     node.condition.walk(tw);
                     push();
                     node.consequent.walk(tw);
-                    pop();
-                    push();
                     node.alternative.walk(tw);
                     pop();
                     return true;
@@ -425,7 +423,6 @@ merge(Compressor.prototype, {
                     if (node.condition) {
                         push();
                         node.condition.walk(tw);
-                        pop();
                     }
                     push();
                     node.body.walk(tw);
@@ -653,7 +650,6 @@ merge(Compressor.prototype, {
     function tighten_body(statements, compressor) {
         var CHANGED, max_iter = 10;
         do {
-            CHANGED = false;
             statements = eliminate_spurious_blocks(statements);
             if (compressor.option('dead_code')) {
                 statements = eliminate_dead_code(statements, compressor);
@@ -718,12 +714,6 @@ merge(Compressor.prototype, {
                         // Replace variable with assignment when found
                         if (!(node instanceof AST_SymbolDeclaration) && !is_lhs(node, parent) && lhs.equivalent_to(node)) {
                             CHANGED = replaced = abort = true;
-                            compressor.info('Collapsing {name} [{file}:{line},{col}]', {
-                                name: node.print_to_string(),
-                                file: node.start.file,
-                                line: node.start.line,
-                                col: node.start.col
-                            });
                             if (candidate instanceof AST_UnaryPostfix) {
                                 return make_node(AST_UnaryPrefix, candidate, candidate);
                             }
@@ -800,8 +790,6 @@ merge(Compressor.prototype, {
                 var tw = new TreeWalker(function (node, descend) {
                     if (node instanceof AST_Scope) {
                         var save_scope = scope;
-                        descend();
-                        scope = save_scope;
                         return true;
                     }
                     if (node instanceof AST_SymbolRef || node instanceof AST_PropAccess) {
@@ -1199,8 +1187,6 @@ merge(Compressor.prototype, {
                     return true;
             return false;
         });
-        def(AST_Function, return_false);
-        def(AST_UnaryPostfix, return_false);
         def(AST_UnaryPrefix, function () {
             return this.operator == 'void';
         });
@@ -2146,7 +2132,6 @@ merge(Compressor.prototype, {
                     } else {
                         var value = def.value && def.value.drop_side_effect_free(compressor);
                         if (value) {
-                            compressor.warn('Side effects in initialization of unused variable {name} [{file}:{line},{col}]', template(def.name));
                             merge_sequence(side_effects, value);
                         } else {
                             compressor[def.name.unreferenced() ? 'warn' : 'info']('Dropping unused variable {name} [{file}:{line},{col}]', template(def.name));
@@ -2297,9 +2282,7 @@ merge(Compressor.prototype, {
                     if (self instanceof AST_Lambda && find_if(function (x) {
                             return x.name == def.name.name;
                         }, self.argnames)) {
-                        vars.del(name);
                     } else {
-                        def = def.clone();
                         def.value = null;
                         defs.push(def);
                         vars.set(name, def);
@@ -2371,7 +2354,6 @@ merge(Compressor.prototype, {
                 changed |= node !== nodes[i];
                 if (node) {
                     merge_sequence(ret, node);
-                    first_in_statement = false;
                 }
             }
             return changed ? ret.length ? ret : null : nodes;
@@ -2476,20 +2458,6 @@ merge(Compressor.prototype, {
             if (this.expression.may_throw_on_access(compressor))
                 return this;
             return this.expression.drop_side_effect_free(compressor, first_in_statement);
-        });
-        def(AST_Sub, function (compressor, first_in_statement) {
-            if (this.expression.may_throw_on_access(compressor))
-                return this;
-            var expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
-            if (!expression)
-                return this.property.drop_side_effect_free(compressor, first_in_statement);
-            var property = this.property.drop_side_effect_free(compressor);
-            if (!property)
-                return expression;
-            return make_sequence(this, [
-                expression,
-                property
-            ]);
         });
         def(AST_Sequence, function (compressor) {
             var last = this.expressions[this.expressions.length - 1];
@@ -3199,7 +3167,6 @@ merge(Compressor.prototype, {
                     expr = expr.drop_side_effect_free(compressor, first);
                 if (expr) {
                     merge_sequence(expressions, expr);
-                    first = false;
                 }
             });
         }

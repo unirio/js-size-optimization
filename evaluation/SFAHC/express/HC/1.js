@@ -103,9 +103,6 @@ res.send = function (body) {
     }
     // disambiguate res.send(status) and res.send(status, num)
     if (typeof chunk === 'number' && arguments.length === 1) {
-        // res.send(status) will set status message as text string
-        if (!this.get('Content-Type')) {
-        }
         this.statusCode = chunk;
         chunk = statuses[chunk];
     }
@@ -198,7 +195,6 @@ res.json = function (obj) {
     }
     // settings
     var app = this.app;
-    var escape;
     var replacer = app.get('json replacer');
     var spaces = app.get('json spaces');
     var body = stringify(val, replacer, spaces, escape);
@@ -477,7 +473,7 @@ res.download = function (path, filename, options, callback) {
  * @return {ServerResponse} for chaining
  * @public
  */
-res.contentType = res.type = function (type) {
+res.contentType = res.type = function contentType(type) {
     var ct = type.indexOf('/') === -1 ? mime.lookup(type) : type;
     return this.set('Content-Type', ct);
 };

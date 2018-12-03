@@ -1,5 +1,4 @@
 //Get required modules
-var util = require('util');
 var crypto = require('crypto');
 var Request = require('request');
 var plivoError = require('./plivoError');
@@ -40,10 +39,10 @@ plivo.prototype.request = function (action, method, params, callback, optional) 
         request_options.json = params;
         Request.post(request_options, function (error, response, body) {
             if (error || !response) {
-                return callback(500);
+                return callback(500, body);
             }
             if (response.statusCode != 201) {
-                err = new plivoError();
+                err = new plivoError(error);
             }
             callback(response.statusCode, body);
         });
@@ -58,7 +57,7 @@ plivo.prototype.request = function (action, method, params, callback, optional) 
         });
     } else if (method == 'PUT') {
         request_options.json = params;
-        Request.put(function (error) {
+        Request.put(request_options, function (error, response, body) {
             callback(response.statusCode, body);
         });
     }
@@ -212,7 +211,6 @@ plivo.prototype.deaf_conference_member = function (params, callback) {
 plivo.prototype.undeaf_conference_member = function (params, callback) {
     delete params.conference_id;
     delete params.member_id;
-    var method = 'DELETE';
     this.request(action, method, params, callback);
 };
 plivo.prototype.mute_conference_member = function (params, callback) {
@@ -232,7 +230,6 @@ plivo.prototype.kick_conference_member = function (params, callback) {
 };
 plivo.prototype.record_conference = function (params, callback) {
     delete params.conference_id;
-    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.stop_record_conference = function (params, callback) {
@@ -244,7 +241,6 @@ plivo.prototype.get_account = function (params, callback) {
     this.request(action, method, params, callback, true);
 };
 plivo.prototype.modify_account = function (params, callback) {
-    var action = '';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_subaccounts = function (params, callback) {
@@ -271,7 +267,6 @@ plivo.prototype.get_applications = function (params, callback) {
 };
 plivo.prototype.get_application = function (params, callback) {
     delete params.app_id;
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.create_application = function (params, callback) {
@@ -283,7 +278,6 @@ plivo.prototype.modify_application = function (params, callback) {
 };
 plivo.prototype.delete_application = function (params, callback) {
     delete params.app_id;
-    var method = 'DELETE';
     this.request(action, method, params, callback);
 };
 // Recordings
@@ -291,7 +285,6 @@ plivo.prototype.get_recordings = function (params, callback) {
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_recording = function (params, callback) {
-    var action = 'Recording/' + params['recording_id'] + '/';
     delete params.recording_id;
     this.request(action, method, params, callback);
 };
@@ -302,66 +295,53 @@ plivo.prototype.delete_recording = function (params, callback) {
 // Endpoints
 plivo.prototype.get_endpoints = function (params, callback) {
     var action = 'Endpoint/';
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_endpoint = function (params, callback) {
     delete params.endpoint_id;
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.create_endpoint = function (params, callback) {
-    var action = 'Endpoint/';
+    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.modify_endpoint = function (params, callback) {
-    var action = 'Endpoint/' + params['endpoint_id'] + '/';
     delete params.endpoint_id;
     this.request(action, method, params, callback);
 };
 plivo.prototype.delete_endpoint = function (params, callback) {
-    var action = 'Endpoint/' + params['endpoint_id'] + '/';
     delete params.endpoint_id;
-    var method = 'DELETE';
     this.request(action, method, params, callback);
 };
 // Numbers
 plivo.prototype.get_numbers = function (params, callback) {
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_number_details = function (params, callback) {
-    var action = 'Number/' + params['number'] + '/';
     delete params.number;
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.unrent_number = function (params, callback) {
-    var action = 'Number/' + params['number'] + '/';
     delete params.number;
     var method = 'DELETE';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_number_group = function (params, callback) {
-    var action = 'AvailableNumberGroup/';
     var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_number_group_details = function (params, callback) {
-    var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
     delete params.group_id;
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.rent_from_number_group = function (params, callback) {
     var action = 'AvailableNumberGroup/' + params['group_id'] + '/';
     delete params.group_id;
-    var method = 'POST';
     this.request(action, method, params, callback, true);
 };
 plivo.prototype.edit_number = function (params, callback) {
+    var action = 'Number/' + params['number'] + '/';
     delete params.number;
-    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.link_application_number = function (params, callback) {
@@ -372,29 +352,23 @@ plivo.prototype.unlink_application_number = function (params, callback) {
     this.edit_number(params, callback);
 };
 plivo.prototype.search_phone_numbers = function (params, callback) {
-    var action = 'PhoneNumber/';
     var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.buy_phone_number = function (params, callback) {
-    var action = 'PhoneNumber/' + params['number'] + '/';
     delete params.number;
-    var method = 'POST';
     this.request(action, method, params, callback, true);
 };
 // Message
 plivo.prototype.send_message = function (params, callback) {
-    var action = 'Message/';
-    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_messages = function (params, callback) {
-    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_message = function (params, callback) {
-    var action = 'Message/' + params['record_id'] + '/';
     delete params.record_id;
+    var method = 'GET';
     this.request(action, method, params, callback);
 };
 // Incoming Carriers
@@ -404,9 +378,12 @@ plivo.prototype.get_incoming_carriers = function (params, callback) {
 };
 plivo.prototype.get_incoming_carrier = function (params, callback) {
     delete params.carrier_id;
+    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.create_incoming_carrier = function (params, callback) {
+    var action = 'IncomingCarrier/';
+    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.modify_incoming_carrier = function (params, callback) {
@@ -416,21 +393,23 @@ plivo.prototype.modify_incoming_carrier = function (params, callback) {
 };
 plivo.prototype.delete_incoming_carrier = function (params, callback) {
     delete params.carrier_id;
-    var method = 'DELETE';
     this.request(action, method, params, callback);
 };
 // Outgoing Carriers
 plivo.prototype.get_outgoing_carriers = function (params, callback) {
+    var action = 'OutgoingCarrier/';
     var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_outgoing_carrier = function (params, callback) {
     var action = 'OutgoingCarrier/' + params['carrier_id'] + '/';
     delete params.carrier_id;
+    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.create_outgoing_carrier = function (params, callback) {
     var action = 'OutgoingCarrier/';
+    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.modify_outgoing_carrier = function (params, callback) {
@@ -447,27 +426,37 @@ plivo.prototype.delete_outgoing_carrier = function (params, callback) {
 };
 // Outgoing Carrier Routings
 plivo.prototype.get_outgoing_carrier_routings = function (params, callback) {
+    var action = 'OutgoingCarrierRouting/';
+    var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.get_outgoing_carrier_routing = function (params, callback) {
+    var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
     delete params.routing_id;
     var method = 'GET';
     this.request(action, method, params, callback);
 };
 plivo.prototype.create_outgoing_carrier_routing = function (params, callback) {
+    var action = 'OutgoingCarrierRouting/';
+    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.modify_outgoing_carrier_routing = function (params, callback) {
+    var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
     delete params.routing_id;
+    var method = 'POST';
     this.request(action, method, params, callback);
 };
 plivo.prototype.delete_outgoing_carrier_routing = function (params, callback) {
+    var action = 'OutgoingCarrierRouting/' + params['routing_id'] + '/';
     delete params.routing_id;
     var method = 'DELETE';
     this.request(action, method, params, callback);
 };
 // Pricing
 plivo.prototype.get_pricing = function (params, callback) {
+    var action = 'Pricing/';
+    var method = 'GET';
     this.request(action, method, params, callback);
 };
 /**

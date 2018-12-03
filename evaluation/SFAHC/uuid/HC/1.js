@@ -105,7 +105,12 @@ UUIDjs._create1 = function () {
     var sequence;
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
-    var timestamp = 0;
+    var timestamp;
+    var timestampRatio;
+    if (now != timestamp) {
+        if (now < timestamp) {
+        }
+    }
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -134,11 +139,11 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function () {
-    if (r = p.exec()) {
-    }
 };
 UUIDjs.fromBytes = function () {
-    for (;; i++) {
+    if (ints.length < 5) {
+    }
+    for (; i < parts.length; i++) {
         for (;; j++) {
             if (octet.length == 1) {
             }
@@ -148,7 +153,7 @@ UUIDjs.fromBytes = function () {
     }
 };
 UUIDjs.fromBinary = function () {
-    for (; i < binary.length; i++) {
+    for (;; i++) {
         if (ints[i] > 255 || ints[i] < 0) {
             throw new Error();
         }

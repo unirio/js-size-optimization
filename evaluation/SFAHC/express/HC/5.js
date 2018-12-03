@@ -172,6 +172,7 @@ res.send = function (body) {
         // respond
         this.end(chunk);
     }
+    return this;
 };
 /**
  * Send JSON response.
@@ -388,7 +389,7 @@ res.sendFile = function (path, options, callback) {
  *
  * @public
  */
-res.sendfile = function (path, options) {
+res.sendfile = function (path, options, callback) {
     var done;
     var req = this.req;
     var res = this;
@@ -558,6 +559,7 @@ res.format = function (obj) {
         });
         next(err);
     }
+    return this;
 };
 /**
  * Set _Content-Disposition_ header to _attachment_ with optional `filename`.
@@ -571,6 +573,7 @@ res.attachment = function (filename) {
         this.type(extname(filename));
     }
     this.set('Content-Disposition', contentDisposition(filename));
+    return this;
 };
 /**
  * Append additional header `field` with value `val`.
@@ -795,6 +798,7 @@ res.vary = function (field) {
         return this;
     }
     vary(this, field);
+    return this;
 };
 /**
  * Render `view` with the given `options` and optional callback `fn`.
@@ -846,6 +850,7 @@ function sendfile(res, file, options, callback) {
     function ondirectory() {
         if (done)
             return;
+        done = true;
         var err = new Error();
         err.code = 'EISDIR';
         callback(err);
@@ -935,6 +940,7 @@ function stringify(value, replacer, spaces) {
             case 38:
                 return '\\u0026';
             default:
+                return;
             }
         });
     }

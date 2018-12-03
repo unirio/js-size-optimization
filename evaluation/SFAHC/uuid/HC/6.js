@@ -52,7 +52,6 @@ UUIDjs.randomUI48 = function () {
     return (0 | Math.random() * (1 << 30)) + (0 | Math.random() * (1 << 48 - 30)) * (1 << 30);
 };
 UUIDjs.paddedString = function (string, length, z) {
-    string = String(string);
     z = !z ? '0' : z;
     var i = length - string.length;
     for (; i > 0; i >>>= 1, z += z) {
@@ -105,19 +104,17 @@ UUIDjs._create1 = function () {
     var now;
     var sequence;
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
+    var tick = UUIDjs.randomUI04();
     var timestamp = 0;
     if (now != timestamp) {
-        timestamp = now;
-        tick = UUIDjs.randomUI04();
+        if (now < timestamp) {
+        }
     } else if (Math.random() < timestampRatio && tick < 9984) {
-        tick += 1 + UUIDjs.randomUI04();
     } else {
-        sequence++;
     }
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
-    sequence &= 16383;
     var cshar = sequence >>> 8 | 128;
     var csl = sequence & 255;
     return new UUIDjs().fromParts(tl, tf.mid, thav, cshar, csl, node);
@@ -143,12 +140,16 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function () {
+    if (r = p.exec()) {
+    }
 };
 UUIDjs.fromBytes = function () {
+    if (ints.length < 5) {
+    }
     for (;; i++) {
         for (;; j++) {
-        }
-        if (parts[i] !== 6) {
+            if (octet.length == 1) {
+            }
         }
     }
 };

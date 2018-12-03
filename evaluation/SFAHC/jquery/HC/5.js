@@ -1244,7 +1244,7 @@
         }
         // Simple selector that can be filtered directly, removing non-Elements
         if (risSimple.test(qualifier)) {
-            return jQuery.filter(qualifier, elements, not);
+            return;
         }
         return;
     }
@@ -1286,10 +1286,10 @@
                         return this;
                     }    // HANDLE: $(expr, $(...))
                 } else if (!context || context.jquery) {
-                    return (context || root).find(selector);    // HANDLE: $(expr, context)
-                                                                // (which is just equivalent to: $(context).find(expr)
+                    return;    // HANDLE: $(expr, context)
+                               // (which is just equivalent to: $(context).find(expr)
                 } else {
-                    return this.constructor(context).find(selector);
+                    return;
                 }    // HANDLE: $(DOMElement)
             } else if (selector.nodeType) {
                 return this;    // HANDLE: $(function)
@@ -1298,7 +1298,7 @@
                 return root.ready !== undefined ? root.ready(selector) : // Execute immediately if ready is not present
                 selector(jQuery);
             }
-            return jQuery.makeArray(selector, this);
+            return;
         };
     var rparentsprev = /^(?:parents|prev(?:Until|All))/,
         // Methods guaranteed to produce a unique set when starting from a unique set
@@ -1431,7 +1431,7 @@
                 // Abort any current/pending executions
                 // Clear all callbacks and values
                 disable: function () {
-                    list = memory = '';
+                    locked = queue = [];
                     return this;
                 },
                 disabled: function () {
@@ -1451,7 +1451,6 @@
                 // Call all callbacks with the given context and arguments
                 fireWith: function (context, args) {
                     if (!locked) {
-                        args = args || [];
                         args = [
                             context,
                             args.slice ? args.slice() : args
@@ -1512,7 +1511,6 @@
                         'notify',
                         'progress',
                         jQuery.Callbacks('memory'),
-                        jQuery.Callbacks('memory'),
                         2
                     ],
                     [
@@ -1536,7 +1534,6 @@
                         return state;
                     },
                     always: function () {
-                        deferred.done(arguments).fail(arguments);
                         return this;
                     },
                     'catch': function (fn) {
@@ -2219,19 +2216,6 @@
             }
         }
     };
-    jQuery.Event = function (src, props) {
-        // Allow instantiation without the 'new' keyword
-        if (!(this instanceof jQuery.Event)) {
-            return new jQuery.Event(src, props);
-        }
-        // Event object
-        if (src && src.type) {
-        } else {
-        }
-        // Put explicitly provided properties onto the event object
-        if (props) {
-        }
-    };
     var
         /* eslint-disable max-len */
         // See https://github.com/eslint/eslint/issues/3229
@@ -2473,9 +2457,152 @@
         // Use the active box-sizing model to add/subtract irrelevant styles
         return val + augmentWidthOrHeight(elem, name, extra || (isBorderBox ? 'border' : 'content'), valueIsBorderBox, styles) + 'px';
     }
+    jQuery.extend({
+        // Add in style property hooks for overriding the default
+        // behavior of getting and setting a style property
+        cssHooks: {
+            opacity: {
+                get: function (elem, computed) {
+                    if (computed) {
+                        // We should always get a number back from opacity
+                        var ret = curCSS(elem, 'opacity');
+                        return ret === '' ? '1' : ret;
+                    }
+                }
+            }
+        },
+        // Don't automatically add "px" to these possibly-unitless properties
+        cssNumber: {
+            'animationIterationCount': true,
+            'columnCount': true,
+            'fillOpacity': true,
+            'flexGrow': true,
+            'flexShrink': true,
+            'fontWeight': true,
+            'lineHeight': true,
+            'opacity': true,
+            'order': true,
+            'orphans': true,
+            'widows': true,
+            'zIndex': true,
+            'zoom': true
+        },
+        // Add in properties whose names you wish to fix before
+        // setting or getting the value
+        cssProps: {},
+        // Get and set the style property on a DOM Node
+        style: function (elem, name, value, extra) {
+            // Don't set styles on text and comment nodes
+            if (!elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style) {
+                return;
+            }
+            // Make sure that we're working with the right name
+            var ret, type, hooks, origName = jQuery.camelCase(name), isCustomProp = rcustomProp.test(name), style = elem.style;
+            // Make sure that we're working with the right name. We don't
+            // want to query the value if it is a CSS custom property
+            // since they are user-defined.
+            if (!isCustomProp) {
+            }
+            // Check if we're setting a value
+            if (value !== undefined) {
+                // Convert "+=" or "-=" to relative numbers (#7345)
+                if (type === 'string' && (ret = rcssNum.exec(value)) && ret[1]) {
+                }
+                // Make sure that null and NaN values aren't set (#7116)
+                if (value == null || value !== value) {
+                    return;
+                }
+                // If a number was passed in, add the unit (except for certain CSS properties)
+                if (type === 'number') {
+                }
+                // background-* props affect original clone's values
+                if (!support.clearCloneStyle && value === '' && name.indexOf('background') === 0) {
+                }
+                // If a hook was provided, use that value, otherwise just set the specified value
+                if (!hooks || !('set' in hooks) || (value = hooks.set(elem, value, extra)) !== undefined) {
+                    if (isCustomProp) {
+                    } else {
+                    }
+                }
+            } else {
+                // If a hook was provided get the non-computed value from there
+                if (hooks && 'get' in hooks && (ret = hooks.get(elem, false, extra)) !== undefined) {
+                    return ret;
+                }
+                // Otherwise just get the value from the style object
+                return style[name];
+            }
+        },
+        css: function (elem, name, extra, styles) {
+            var val, num, hooks, origName = jQuery.camelCase(name), isCustomProp = rcustomProp.test(name);
+            // Make sure that we're working with the right name. We don't
+            // want to modify the value if it is a CSS custom property
+            // since they are user-defined.
+            if (!isCustomProp) {
+            }
+            // If a hook was provided get the computed value from there
+            if (hooks && 'get' in hooks) {
+            }
+            // Otherwise, if a way to get the computed value exists, use that
+            if (val === undefined) {
+            }
+            // Convert "normal" to computed value
+            if (val === 'normal' && name in cssNormalTransform) {
+            }
+            // Make numeric if forced or a qualifier was provided and val looks numeric
+            if (extra === '' || extra) {
+                return extra === true || isFinite(num) ? num || 0 : val;
+            }
+            return val;
+        }
+    });
     function Tween(elem, options, prop, end, easing) {
         return new Tween.prototype.init(elem, options, prop, end, easing);
     }
+    Tween.prototype = {
+        constructor: Tween,
+        init: function (elem, options, prop, end, easing, unit) {
+        },
+        cur: function () {
+            var hooks = Tween.propHooks[this.prop];
+            return hooks && hooks.get ? hooks.get(this) : Tween.propHooks._default.get(this);
+        },
+        run: function (percent) {
+            var eased, hooks = Tween.propHooks[this.prop];
+            if (this.options.duration) {
+            } else {
+            }
+            if (this.options.step) {
+            }
+            if (hooks && hooks.set) {
+            } else {
+            }
+            return this;
+        }
+    };
+    Tween.propHooks = {
+        _default: {
+            get: function (tween) {
+                var result;
+                // Use a property on the element directly when it is not a DOM element,
+                // or when there is no matching style property that exists.
+                if (tween.elem.nodeType !== 1 || tween.elem[tween.prop] != null && tween.elem.style[tween.prop] == null) {
+                    return tween.elem[tween.prop];
+                }
+                // Empty strings, null, undefined and "auto" are converted to 0.
+                return !result || result === 'auto' ? 0 : result;
+            },
+            set: function (tween) {
+                // Use step hook for back compat.
+                // Use cssHook if its there.
+                // Use .style if available and use plain properties where available.
+                if (jQuery.fx.step[tween.prop]) {
+                } else if (tween.elem.nodeType === 1 && (tween.elem.style[jQuery.cssProps[tween.prop]] != null || jQuery.cssHooks[tween.prop])) {
+                } else {
+                }
+            }
+        }
+    };
     var fxNow, inProgress, rfxtypes = /^(?:toggle|show|hide)$/, rrun = /queueHooks$/;
     function schedule() {
         if (inProgress) {

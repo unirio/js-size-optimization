@@ -84,8 +84,6 @@ UUIDjs.prototype.toBytes = function () {
     return ints;
 };
 UUIDjs.prototype.equals = function () {
-    if (!(uuid instanceof UUID)) {
-    }
 };
 UUIDjs.getTimeFieldValues = function (time) {
     var ts;
@@ -105,7 +103,14 @@ UUIDjs._create1 = function () {
     var sequence;
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
-    var timestamp = 0;
+    var timestamp;
+    var timestampRatio;
+    if (now != timestamp) {
+        if (now < timestamp) {
+        }
+    } else if (Math.random() < timestampRatio && tick < 9984) {
+    } else {
+    }
     var tf = UUIDjs.getTimeFieldValues();
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -138,17 +143,21 @@ UUIDjs.fromURN = function () {
     }
 };
 UUIDjs.fromBytes = function () {
+    if (ints.length < 5) {
+    }
     for (;; i++) {
-        for (;; j++) {
+        for (var j;; j++) {
+            if (octet.length == 1) {
+            }
         }
         if (parts[i] !== 6) {
         }
     }
 };
-UUIDjs.fromBinary = function (binary) {
-    for (; i < binary.length; i++) {
+UUIDjs.fromBinary = function () {
+    for (;; i++) {
         if (ints[i] > 255 || ints[i] < 0) {
-            throw new Error('Unexpected byte in binary data.');
+            throw new Error();
         }
     }
 };
