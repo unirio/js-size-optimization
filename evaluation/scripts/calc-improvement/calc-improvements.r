@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio barros/Desktop/Codigos/js-size-optimization/evaluation";
+baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation";
 
 
 # Instances
@@ -29,8 +29,8 @@ instances <- c(
 
 
 # Load instance characteristics
-instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
-instanceData <- read_delim(instancesFilename, delim=",");
+#instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
+#instanceData <- read_delim(instancesFilename, delim=",");
 
 
 # Load DFAHC resuts
