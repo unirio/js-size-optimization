@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation";
+baseDir <- "/Users/Marcio barros/Desktop/Codigos/js-size-optimization/evaluation";
 
 
 # Instances
@@ -26,11 +26,6 @@ instances <- c(
 	"uuid",
 	"xml2js"
 );
-
-
-# Load instance characteristics
-#instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
-#instanceData <- read_delim(instancesFilename, delim=",");
 
 
 # Load DFAHC resuts
@@ -180,33 +175,108 @@ for (instance_ in instances) {
 dev.off()
 
 
+# Comparing SHC x DFACH: instances SHC(max) < DFAHC
+count <- shc %>% 
+			group_by(instance) %>% 
+			summarize(shc_max = max(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, shc_max) %>% 
+			filter(dfahc > shc_max) %>%
+			summarize(count = n());
+
+print(paste("All solutions found by SHC are worse than DFAHC for", count$count, "instance(s)."));
 
 
+# Comparing SHC x DFACH: instances SHC(min) > DFAHC
+count <- shc %>% 
+			group_by(instance) %>% 
+			summarize(shc_min = min(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, shc_min) %>% 
+			filter(shc_min > dfahc) %>%
+			summarize(count = n());
 
+print(paste("All solutions found by SHC are better than DFAHC for", count$count, "instance(s)."));
 
-#
-# REVIEW FROM HERE ...
-#
-
-# SHC x DFACH
-focusInstances <- c("uuid", "xml2js");
+	
+# Comparing SHC x DFACH: inference test for middle-case instances
+focusInstances <- shc %>% 
+			group_by(instance) %>% 
+			summarize(shc_min = min(imp), shc_max = max(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, shc_min, shc_max) %>% 
+			filter(shc_min <= dfahc & shc_max >= dfahc) %>%
+			.$instance;
 
 for (instance_ in focusInstances) {
-	wshc <- shc %>% filter(Lib == instance_);
-	wfahc <- fahc %>% filter(Lib == instance_);
+	wshc <- shc %>% filter(instance == instance_);
+	wfahc <- dfahc %>% filter(instance == instance_);
 	pValue <- wilcox.test(wshc$imp, mu = wfahc$imp)$p.value;
-	print(paste("SHC x DFAHC: pValue(", instance_, ") = ", pValue, sep=""));
+	print(paste("SHC x DFAHC: WMW pValue(", instance_, ") = ", pValue, sep=""));
 }
 
-# SFAHC x DFACH
-focusInstances <- c("d3-node", "decimal.js", "exectimer", "express", "jquery", "mathjs", "minimist", "node-semver", "tleaf", "UglifyJS2", "uuid");
+
+# Comparing SFAHC x DFACH: instances SFAHC(max) < DFAHC
+count <- sfahc %>% 
+			group_by(instance) %>% 
+			summarize(sfahc_max = max(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, sfahc_max) %>% 
+			filter(dfahc > sfahc_max) %>%
+			summarize(count = n());
+
+print(paste("All solutions found by SFAHC are worse than DFAHC for", count$count, "instance(s)."));
+
+
+# Comparing SFAHC x DFACH: instances SFAHC(min) > DFAHC
+count <- sfahc %>% 
+			group_by(instance) %>% 
+			summarize(sfahc_min = min(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, sfahc_min) %>% 
+			filter(sfahc_min > dfahc) %>%
+			summarize(count = n());
+
+print(paste("All solutions found by SFAHC are better than DFAHC for", count$count, "instance(s)."));
+
+
+# Comparing SFAHC x DFACH: inference test for middle-case instances
+focusInstances <- sfahc %>% 
+			group_by(instance) %>% 
+			summarize(sfahc_min = min(imp), sfahc_max = max(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, sfahc_min, sfahc_max) %>% 
+			filter(sfahc_min <= dfahc & sfahc_max >= dfahc) %>%
+			.$instance;
 
 for (instance_ in focusInstances) {
-	wsfahc <- sfahc %>% filter(Lib == instance_);
-	wfahc <- fahc %>% filter(Lib == instance_);
-	pValue <- wilcox.test(wsfahc$imp, mu = wfahc$imp)$p.value;
+	wsfahc <- sfahc %>% filter(instance == instance_);
+	wdfahc <- dfahc %>% filter(instance == instance_);
+	pValue <- wilcox.test(wsfahc$imp, mu = wdfahc$imp)$p.value;
 	print(paste("SFAHC x DFAHC: pValue(", instance_, ") = ", pValue, sep=""));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+# Load instance characteristics
+#instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
+#instanceData <- read_delim(instancesFilename, delim=",");
+
 
 # Analise de correlacao
 improvementsToCorrelation <- improvements %>% inner_join(instances, by=c("Lib" = "lib"));
