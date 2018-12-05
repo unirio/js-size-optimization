@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio barros/Desktop/Codigos/js-size-optimization/evaluation";
+baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation";
 
 
 # Instances
@@ -263,23 +263,13 @@ for (instance_ in focusInstances) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 # Load instance characteristics
-#instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
-#instanceData <- read_delim(instancesFilename, delim=",");
+instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");
+instanceData <- read_delim(instancesFilename, delim=",");
 
 
 # Analise de correlacao
-improvementsToCorrelation <- improvements %>% inner_join(instances, by=c("Lib" = "lib"));
+improvementsToCorrelation <- improvements %>% inner_join(instanceData, by=c("instance" = "lib"));
 
 cor(improvementsToCorrelation$imp, improvementsToCorrelation$loc, method="spearman");
 cor(improvementsToCorrelation$imp, improvementsToCorrelation$tests, method="spearman");
