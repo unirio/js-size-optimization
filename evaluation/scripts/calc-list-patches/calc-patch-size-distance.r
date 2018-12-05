@@ -24,22 +24,16 @@ size <- data %>%
 		summarize(meanSize = mean(psize, na.rm=TRUE), medianSize = median(psize));
 
 totalSize <- data %>% 
-		group_by(lib, round) %>% 
-		summarize(totalSize = sum(psize)) %>%
 		group_by(lib) %>% 
-		summarize(meanTotalSize = sum(totalSize) / 60);
+		summarize(meanTotalSize = sum(psize));
 		
 size <- size %>%
 		inner_join(totalSize, by_x="lib", by_y="lib");
 
-overallSize <- data %>% 
-		summarize(meanSize = mean(psize, na.rm=TRUE), medianSize = median(psize));
-
-overallTotalSize <- data %>% 
-		group_by(lib, round) %>% 
-		summarize(totalSize = sum(psize));
-
-meanMeanTotalSize <- mean(overallTotalSize$totalSize);
+overallSize <- tibble(instance = "Total") %>% 
+		mutate(meanSize = mean(data$psize)) %>%
+		mutate(medianSize = median(data$psize)) %>%
+		mutate(meanTotalSize = mean(totalSize$meanTotalSize));
 		
 sizeToCorrelation <- size %>% 
 		inner_join(instances, by_x="lib", by_y="lib") %>%
@@ -52,19 +46,18 @@ correlationMeanTotalSizeLoc <- cor(sizeToCorrelation$meanTotalSize, sizeToCorrel
 		
 # Distance analysis
 distance <- data %>% 
-		arrange(lib, round, start) %>% 
+		arrange(lib, start) %>% 
 		mutate(lastLib = lag(lib, default="")) %>%
-		mutate(lastRound = lag(round, default=0)) %>%
 		mutate(lastPFinish = lag(pfinish, default=0)) %>%
-		mutate(distance = ifelse(round != lastRound | lib != lastLib, NA, pstart - lastPFinish)) %>%
+		mutate(distance = ifelse(lib != lastLib, pstart, pstart - lastPFinish)) %>%
 		group_by(lib) %>% 
 		summarize(meanDistance = mean(distance, na.rm=TRUE), medianDistance = median(distance, na.rm=TRUE));
 		
 overallDistance <- data %>% 
-		arrange(lib, round) %>% 
-		mutate(lastRound = lag(round, default=0)) %>%
+		arrange(lib) %>% 
+		mutate(lastLib = lag(lib, default="")) %>%
 		mutate(lastPFinish = lag(pfinish, default=0)) %>%
-		mutate(distance = ifelse(round != lastRound, pstart, pstart - lastPFinish)) %>%
+		mutate(distance = ifelse(lib != lastLib, pstart, pstart - lastPFinish)) %>%
 		summarize(meanDistance = mean(distance, na.rm=TRUE), medianDistance = median(distance));
 		
 distanceToCorrelation <- distance %>% 

@@ -1,59 +1,71 @@
 > size
    lib         meanSize medianSize meanTotalSize
- 1 browserify    0.679     0.396          0.656 
- 2 d3-node       5.12      3.26           0.598 
- 3 decimal.js    0.166     0.125          0.288 
- 4 esprima       0.0260    0.0151         0.0585
- 5 exectimer     1.30      0.513          0.282 
- 6 express       0.130     0.0880         0.130 
- 7 jquery        0.0660    0.0131         0.0627
- 8 lodash        0.0183    0.00926        0.0131
- 9 mathjs        0.0322    0.00641        0.0295
-10 minimist      0.709     0.518          0.225 
-11 moment        0.0213    0.0100         0.0369
-12 node-semver   0.192     0.0755         0.220 
-13 plivo-node    0.314     0.328          0.424 
-14 pug           1.38      0.5            0.667 
-15 UglifyJS2     0.0822    0.0244         0.186 
-16 underscore    0.190     0.0675         0.244 
-17 uuid          2.60      0.718          0.606 
-18 xml2js        0.291     0.190          0.0824
+ 1 browserify    0.679     0.396          39.4  
+ 2 d3-node       5.12      3.26           35.9  
+ 3 decimal.js    0.166     0.125          17.3  
+ 4 esprima       0.0260    0.0151          3.51 
+ 5 exectimer     1.30      0.513          16.9  
+ 6 express       0.130     0.0880          7.83 
+ 7 jquery        0.0660    0.0131          3.76 
+ 8 lodash        0.0183    0.00926         0.787
+ 9 mathjs        0.0322    0.00641         1.77 
+10 minimist      0.709     0.518          13.5  
+11 moment        0.0213    0.0100          2.21 
+12 node-semver   0.192     0.0755         13.2  
+13 plivo-node    0.314     0.328          25.5  
+14 pug           1.38      0.5            40    
+15 tleaf        14.4      16.9            86.5  
+16 UglifyJS2     0.0822    0.0244         11.2  
+17 underscore    0.190     0.0675         14.7  
+18 uuid          2.60      0.718          36.4  
+19 xml2js        0.291     0.190           4.94
+
+> overallSize
+# A tibble: 1 x 4
+  instance meanSize medianSize meanTotalSize
+  <chr>       <dbl>      <dbl>         <dbl>
+1 Total       0.346     0.0717          19.7
 
 > correlationMeanSizeLoc
-[1] -0.9442724
+[1] -0.9508772
 
 > correlationMedianSizeLoc
-[1] -0.9731682
+[1] -0.9754386
 
 > correlationMeanTotalSizeLoc
-[1] -0.750258
+[1] -0.7807018
 
 > distance
    lib         meanDistance medianDistance
- 1 browserify         1.03          0.793 
- 2 d3-node            9.24          7.61  
- 3 decimal.js         1.32          0.502 
- 4 esprima            0.696         0.317 
- 5 exectimer          6.67          4.62  
- 6 express            1.41          0.880 
- 7 jquery             0.165         0.112 
- 8 lodash             2.37          1.21  
- 9 mathjs             0.128         0.0737
-10 minimist           5.12          2.07  
-11 moment             0.352         0.231 
-12 node-semver        1.10          0.529 
-13 plivo-node         0.940         0.657 
-14 pug                2.39          1.25  
-15 UglifyJS2          0.687         0.317 
-16 underscore         1.18          0.675 
-17 uuid               4.82          3.83  
-18 xml2js             5.87          2.19 
+ 1 browserify         1.10          0.793 
+ 2 d3-node            8.23          5.43  
+ 3 decimal.js         1.31          0.502 
+ 4 esprima            0.692         0.317 
+ 5 exectimer          6.23          4.10  
+ 6 express            1.40          0.880 
+ 7 jquery             0.165         0.118 
+ 8 lodash             2.34          1.19  
+ 9 mathjs             0.126         0.0705
+10 minimist           5.02          2.07  
+11 moment             0.349         0.231 
+12 node-semver        1.09          0.529 
+13 plivo-node         0.933         0.657 
+14 pug                2.33          1.25  
+15 tleaf              2.88          3.01  
+16 UglifyJS2          0.690         0.329 
+17 underscore         1.18          0.675 
+18 uuid               5.13          4.07  
+19 xml2js             5.56          1.90 
+
+> overallDistance
+  meanDistance medianDistance
+1         1.25          0.529
 
 > correlationMeanDistanceLoc
-[1] -0.8059856
+[1] -0.7947368
 
 > correlationMedianDistanceLoc
-[1] -0.8472652
+[1] -0.8701754
 
 > patchCountFrequency
 # A tibble: 18 x 7
@@ -73,7 +85,8 @@
 12 node-semver     0    NA    NA    NA    NA     1
 13 plivo-node      0    NA    NA    NA    NA     1
 14 pug             0    NA    NA    NA    NA     1
-15 UglifyJS2       0    NA    NA    NA    NA     1
-16 underscore      0    NA    NA    NA    NA     1
-17 uuid            0    NA    NA    NA    NA     1
-18 xml2js          0    NA    NA    NA    NA     1
+15 tleaf           0    NA    NA    NA    NA     1
+16 UglifyJS2       0    NA    NA    NA    NA     1
+17 underscore      0    NA    NA    NA    NA     1
+18 uuid            0    NA    NA    NA    NA     1
+19 xml2js          0    NA    NA    NA    NA     1

@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/exploratory-study";
+baseDir <- "/Users/Marcio.Barros/Desktop/Codigos/js-size-optimization/exploratory-study";
 
 # Load files
 instancesFilename <- paste(baseDir, "/instance-data/instances.csv", sep="");

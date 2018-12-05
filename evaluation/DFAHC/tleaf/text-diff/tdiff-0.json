@@ -1,1 +1,186 @@
-Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
+Comparing files HC\0.js and HC\ORIGINAL.JS
+***** HC\0.js
+    1:  var inquirer = require('inquirer');
+    2:  var config = require('./config');
+***** HC\ORIGINAL.JS
+    1:  'use strict';
+    2:  var inquirer = require('inquirer');
+    3:  var _ = require('lodash');
+    4:  var config = require('./config');
+*****
+
+***** HC\0.js
+    6:  ask.createUnit = function (callback) {
+    7:      var questions = [{
+    8:              name: 'type',
+    9:              choices: config.units.process
+   10:          }];
+   11:      inquirer.prompt(questions, function (answers) {
+   12:          var unit = {};
+   13:          // unit.deps will be populated by reference
+   14:          addUnitDependency(unit.deps);
+   15:      });
+***** HC\ORIGINAL.JS
+    8:  ask.createUnit = function (callback) {
+    9:      var questions = [
+   10:          {
+   11:              type: 'list',
+   12:              name: 'type',
+   13:              message: 'Unit type:',
+   14:              choices: config.units.process
+   15:          },
+   16:          {
+   17:              type: 'input',
+   18:              name: 'name',
+   19:              message: 'Unit name:',
+   20:              validate: required
+   21:          },
+   22:          {
+   23:              type: 'input',
+   24:              name: 'module',
+   25:              message: 'Module name:',
+   26:              validate: required
+   27:          }
+   28:      ];
+   29:      inquirer.prompt(questions, function (answers) {
+   30:          var unit = {
+   31:              name: answers.name,
+   32:              type: answers.type,
+   33:              module: { name: answers.module },
+   34:              deps: []
+   35:          };
+   36:          // unit.deps will be populated by reference
+   37:          addUnitDependency(unit.deps, function () {
+   38:              callback(unit);
+   39:          });
+   40:      });
+*****
+
+***** HC\0.js
+   17:  ask.pickUnit = function (units, callback) {
+   18:  };
+   19:  ask.identifyDeps = function (deps, callback) {
+   20:      if (!config.dependencies.process.length) {
+   21:          return;
+   22:      }
+   23:      var questions = deps.map(function (dep, index) {
+   24:          return { choices: config.dependencies.process };
+   25:      });
+   26:      inquirer.prompt(questions, function (answers) {
+   27:      });
+***** HC\ORIGINAL.JS
+   42:  ask.pickUnit = function (units, callback) {
+   43:      if (units.length === 1) {
+   44:          return callback(_.first(units));
+   45:      }
+   46:      var question = {
+   47:          type: 'list',
+   48:          name: 'unit',
+   49:          message: 'What unit do you want to test?',
+   50:          choices: function () {
+   51:              return units.map(function (unit, index) {
+   52:                  return {
+   53:                      name: [
+   54:                          _.capitalize(unit.type),
+   55:                          '"' + unit.name + '"',
+   56:                          'from module',
+   57:                          '"' + unit.module.name + '"'
+   58:                      ].join(' '),
+   59:                      value: index
+   60:                  };
+   61:              });
+   62:          }
+   63:      };
+   64:      inquirer.prompt(question, function (answer) {
+   65:          var unit = units[answer.unit];
+   66:          callback(unit);
+   67:      });
+*****
+
+***** HC\0.js
+   28:  };
+   29:  ////////
+***** HC\ORIGINAL.JS
+   68:  };
+   69:  ask.identifyDeps = function (deps, callback) {
+   70:      if (!config.dependencies.process.length) {
+   71:          return callback([]);
+   72:      }
+   73:      var questions = deps.map(function (dep, index) {
+   74:          return {
+   75:              type: 'list',
+   76:              name: index.toString(),
+   77:              message: 'What is a type of "' + dep.name + '"?',
+   78:              choices: config.dependencies.process
+   79:          };
+   80:      });
+   81:      inquirer.prompt(questions, function (answers) {
+   82:          var identified = _.map(answers, function (type, index) {
+   83:              var dep = deps[index];
+   84:              dep.type = type;
+   85:              return dep;
+   86:          });
+   87:          callback(identified);
+   88:      });
+   89:  };
+   90:  ////////
+*****
+
+***** HC\0.js
+   31:      if (!config.dependencies.process.length) {
+   32:          return;
+   33:      }
+   34:      var questions = [{
+   35:              name: 'type',
+   36:              choices: config.dependencies.process
+   37:          }];
+   38:      inquirer.prompt(questions, function (answers) {
+   39:      });
+***** HC\ORIGINAL.JS
+   92:      if (!config.dependencies.process.length) {
+   93:          return callback();
+   94:      }
+   95:      var questions = [
+   96:          {
+   97:              type: 'input',
+   98:              name: 'name',
+   99:              message: 'Dependency name ("Enter" to skip): '
+  100:          },
+  101:          {
+  102:              type: 'list',
+  103:              name: 'type',
+  104:              message: 'Dependency type:',
+  105:              choices: config.dependencies.process,
+  106:              when: function (answers) {
+  107:                  return !isEmptyString(answers.name);
+  108:              }
+  109:          }
+  110:      ];
+  111:      inquirer.prompt(questions, function (answers) {
+  112:          // if user types in empty name - finish adding deps
+  113:          if (isEmptyString(answers.name)) {
+  114:              return callback();
+  115:          }
+  116:          var dep = {
+  117:              name: answers.name,
+  118:              type: answers.type
+  119:          };
+  120:          deps.push(dep);
+  121:          // recursive, pass deps array along the way until everything resolves
+  122:          addUnitDependency(deps, callback);
+  123:      });
+*****
+
+***** HC\0.js
+***** HC\ORIGINAL.JS
+  125:  function required(input) {
+  126:      if (isEmptyString(input)) {
+  127:          return 'Value is required';
+  128:      }
+  129:      return true;
+  130:  }
+  131:  function isEmptyString(string) {
+  132:      return _.isEmpty(_.trim(string));
+  133:  }
+*****
+
