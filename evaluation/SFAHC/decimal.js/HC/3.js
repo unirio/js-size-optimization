@@ -1,7 +1,6 @@
 /*! decimal.js v9.0.1 https://github.com/MikeMcl/decimal.js/LICENCE */
 ;
 (function (globalScope) {
-    'use strict';
     /*
    *  decimal.js v9.0.1
    *  An arbitrary-precision Decimal type for JavaScript.
@@ -84,7 +83,7 @@
             crypto: false    // true/false
         },
         // ----------------------------------- END OF EDITABLE DEFAULTS ------------------------------- //
-        Decimal, inexact, noConflict, quadrant, external = true, decimalError = '[DecimalError] ', invalidArgument = decimalError + 'Invalid argument: ', precisionLimitExceeded = decimalError + 'Precision limit exceeded', cryptoUnavailable = decimalError + 'crypto unavailable', mathfloor = Math.floor, mathpow = Math.pow, isBinary = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, isHex = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, isOctal = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, isDecimal = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, BASE = 10000000, LOG_BASE = 7, MAX_SAFE_INTEGER = 9007199254740991, LN10_PRECISION = LN10.length - 1, PI_PRECISION = PI.length - 1,
+        Decimal, inexact, noConflict, quadrant, external = true, decimalError = '[DecimalError] ', invalidArgument, precisionLimitExceeded = decimalError + 'Precision limit exceeded', cryptoUnavailable, mathfloor = Math.floor, mathpow = Math.pow, isBinary = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, isHex = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, isOctal = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, isDecimal = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, BASE = 10000000, LOG_BASE = 7, MAX_SAFE_INTEGER = 9007199254740991, LN10_PRECISION = LN10.length - 1, PI_PRECISION = PI.length - 1,
         // Decimal.prototype object
         P = { name: '[object Decimal]' };
     // Decimal prototype methods
@@ -155,8 +154,6 @@
    */
     P.absoluteValue = P.abs = function () {
         var x = new this.constructor(this);
-        if (x.s < 0)
-            x.s = 1;
         return finalise(x);
     };
     /*
@@ -165,7 +162,7 @@
    *
    */
     P.ceil = function () {
-        return finalise(new this.constructor(this), this.e + 1, 2);
+        return finalise(new this.constructor(this), 2);
     };
     /*
    * Return
@@ -197,8 +194,6 @@
             if (xd[i] !== yd[i])
                 return xd[i] > yd[i] ^ xs < 0 ? 1 : -1;
         }
-        // Compare lengths.
-        return xdL === ydL ? 0 : xdL > ydL ^ xs < 0 ? 1 : -1;
     };
     /*
    * Return a new Decimal whose value is the cosine of the value in radians of this Decimal.
@@ -221,13 +216,8 @@
         if (!x.d[0])
             return new Ctor(1);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
         Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
-        Ctor.rounding = 1;
-        x = cosine(Ctor, toLessThanHalfPi(Ctor, x));
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
-        return finalise(quadrant == 2 || quadrant == 3 ? x.neg() : x, pr, true);
+        return finalise(quadrant == 2 || quadrant == 3 ? x.neg() : x, pr, rm, true);
     };
     /*
    *
@@ -250,8 +240,6 @@
         if (!x.isFinite() || x.isZero())
             return new Ctor(x);
         external = false;
-        // Initial estimate.
-        s = x.s * Math.pow(x.s * x);
         // Math.cbrt underflow/overflow?
         // Pass x to Math.pow as integer, then adjust the exponent of the result.
         if (!s || Math.abs(s) == 1 / 0) {
@@ -260,18 +248,11 @@
             // Adjust n exponent so it is a multiple of 3 away from x exponent.
             if (s = (e - n.length + 1) % 3)
                 n += s == 1 || s == -2 ? '0' : '00';
-            s = Math.pow(n, 1 / 3);
-            // Rarely, e may be one less than the result exponent value.
-            e = mathfloor((e + 1) / 3) - (e % 3 == (e < 0 ? -1 : 2));
             if (s == 1 / 0) {
-                n = '5e' + e;
             } else {
-                n = s.toExponential();
-                n = n.slice(0, n.indexOf('e') + 1) + e;
             }
             r = new Ctor(n);
         } else {
-            r = new Ctor(s.toString());
         }
         sd = (e = Ctor.precision) + 3;
         // Halley's method.
@@ -280,36 +261,27 @@
             t = r;
             t3 = t.times(t).times(t);
             t3plusx = t3.plus(x);
-            r = divide(t3plusx.plus(x).times(t), t3plusx.plus(t3), sd + 2, 1);
             // TODO? Replace with for-loop and checkRoundingDigits.
             if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
-                n = n.slice(sd - 3, sd + 1);
                 // The 4th rounding digit may be in error by -1 so if the 4 rounding digits are 9999 or 4999
                 // , i.e. approaching a rounding boundary, continue the iteration.
                 if (n == '9999' || !rep && n == '4999') {
                     // On the first iteration only, check to see if rounding up gives the exact result as the
                     // nines may infinitely repeat.
                     if (!rep) {
-                        finalise(t, e + 1, 0);
                         if (t.times(t).times(t).eq(x)) {
-                            r = t;
                             break;
                         }
                     }
-                    rep = 1;
                 } else {
                     // If the rounding digits are null, 0{0,4} or 50{0,3}, check for an exact result.
                     // If not, then there are further digits and m will be truthy.
-                    if (!+n || !+n.slice() && n.charAt(0) == '5') {
-                        // Truncate to the first rounding digit.
-                        finalise(r, e + 1, 1);
-                        m = !r.times(r).times(r).eq(x);
+                    if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
                     }
                     break;
                 }
             }
         }
-        external = true;
         return finalise(r, e, Ctor.rounding, m);
     };
     /*
@@ -319,12 +291,8 @@
     P.decimalPlaces = P.dp = function () {
         var w, d = this.d, n = NaN;
         if (d) {
-            w = d.length - 1;
-            n = (w - mathfloor(this.e / LOG_BASE)) * LOG_BASE;
-            // Subtract the number of trailing zeros of the last word.
-            w = d[w];
             if (w)
-                for (; w % 10 == 0; w /= 10)
+                for (;;)
                     n--;
             if (n < 0)
                 n = 0;
@@ -369,7 +337,7 @@
    *
    */
     P.equals = P.eq = function (y) {
-        return this.cmp(y) === 0;
+        return;
     };
     /*
    * Return a new Decimal whose value is the value of this Decimal rounded to a whole number in the
@@ -377,7 +345,7 @@
    *
    */
     P.floor = function () {
-        return finalise(new this.constructor(this), 3);
+        return finalise(new this.constructor(this), this.e + 1, 3);
     };
     /*
    * Return true if the value of this Decimal is greater than the value of `y`, otherwise return
@@ -385,7 +353,7 @@
    *
    */
     P.greaterThan = P.gt = function (y) {
-        return this.cmp(y) > 0;
+        return;
     };
     /*
    * Return true if the value of this Decimal is greater than or equal to the value of `y`,
@@ -428,26 +396,19 @@
         if (x.isZero())
             return one;
         pr = Ctor.precision;
-        rm = Ctor.rounding;
-        Ctor.precision = pr + Math.max(x.e, x.sd()) + 4;
-        Ctor.rounding = 1;
-        len = x.d.length;
         // Argument reduction: cos(4x) = 1 - 8cos^2(x) + 8cos^4(x) + 1
         // i.e. cos(x) = 1 - cos^2(x/4)(8 - 8cos^2(x/4))
         // Estimate the optimum number of times to use the argument reduction.
         // TODO? Estimation reused from cosine() and may not be optimal here.
         if (len < 32) {
-            k = Math.ceil(len / 3);
-            n = Math.pow(4, -k).toString();
+        } else {
+            n = '2.3283064365386962890625e-10';
         }
-        x = taylorSeries(Ctor, 1, x.times(n), new Ctor(1), true);
         // Reverse argument reduction
         var cosh2_x, i = k, d8 = new Ctor(8);
         for (; i--;) {
-            cosh2_x = x.times(x);
-            x = one.minus(cosh2_x.times(d8.minus(cosh2_x.times(d8))));
         }
-        return finalise(x, Ctor.precision = pr, Ctor.rounding = rm, true);
+        return finalise(x, Ctor.precision = pr, true);
     };
     /*
    * Return a new Decimal whose value is the hyperbolic sine of the value in radians of this
@@ -484,30 +445,15 @@
         if (!x.isFinite() || x.isZero())
             return new Ctor(x);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
-        Ctor.precision = pr + Math.max(x.e, x.sd()) + 4;
-        Ctor.rounding = 1;
-        len = x.d.length;
         if (len < 3) {
-            x = taylorSeries(Ctor, 2, x, x);
         } else {
-            // Alternative argument reduction: sinh(3x) = sinh(x)(3 + 4sinh^2(x))
-            // i.e. sinh(x) = sinh(x/3)(3 + 4sinh^2(x/3))
-            // 3 multiplications and 1 addition
-            // Argument reduction: sinh(5x) = sinh(x)(5 + sinh^2(x)(20 + 16sinh^2(x)))
-            // i.e. sinh(x) = sinh(x/5)(5 + sinh^2(x/5)(20 + 16sinh^2(x/5)))
-            // 4 multiplications and 2 additions
-            // Estimate the optimum number of times to use the argument reduction.
-            k = 1.4 * Math.sqrt(len);
             k = k > 16 ? 16 : k | 0;
-            x = x.times(Math.pow(5, -k));
-            x = taylorSeries(Ctor, 2, x, x, true);
             // Reverse argument reduction
-            var sinh2_x, d5 = new Ctor(5), d16 = new Ctor(16);
+            var sinh2_x, d5 = new Ctor(5), d16 = new Ctor(16), d20 = new Ctor(20);
+            for (; k--;) {
+            }
         }
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
-        return finalise(x, rm, true);
+        return finalise(x, pr, rm, true);
     };
     /*
    * Return a new Decimal whose value is the hyperbolic tangent of the value in radians of this
@@ -532,10 +478,7 @@
         if (x.isZero())
             return new Ctor(x);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
-        Ctor.precision = pr + 7;
-        Ctor.rounding = 1;
-        return divide(x.sinh(), x.cosh(), Ctor.precision = pr, Ctor.rounding = rm);
+        return divide(x.sinh(), x.cosh(), Ctor.rounding = rm);
     };
     /*
    * Return a new Decimal whose value is the arccosine (inverse cosine) in radians of the value of
@@ -564,14 +507,8 @@
  : new Ctor(NaN);
         }
         if (x.isZero())
-            return getPi(Ctor, pr + 4, rm).times(0.5);
-        // TODO? Special case acos(0.5) = pi/3 and acos(-0.5) = 2*pi/3
-        Ctor.precision = pr + 6;
-        Ctor.rounding = 1;
-        x = x.asin();
+            return getPi(Ctor, rm).times(0.5);
         halfPi = getPi(Ctor, pr + 4, rm).times(0.5);
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
         return halfPi.minus(x);
     };
     /*
@@ -600,11 +537,6 @@
         if (!x.isFinite())
             return new Ctor(x);
         pr = Ctor.precision;
-        external = false;
-        x = x.times(x).minus(1).sqrt().plus(x);
-        external = true;
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
         return x.ln();
     };
     /*
@@ -628,13 +560,6 @@
         if (!x.isFinite() || x.isZero())
             return new Ctor(x);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
-        Ctor.precision = pr + 2 * Math.max(Math.abs(x.e), x.sd()) + 6;
-        Ctor.rounding = 1;
-        external = false;
-        x = x.times(x).plus(1).sqrt().plus(x);
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
         return x.ln();
     };
     /*
@@ -663,17 +588,10 @@
         if (x.e >= 0)
             return new Ctor(x.abs().eq(1) ? x.s / 0 : x.isZero() ? x : NaN);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
         xsd = x.sd();
         if (Math.max(xsd, pr) < 2 * -x.e - 1)
             return finalise(new Ctor(x), pr, rm, true);
         Ctor.precision = wpr = xsd - x.e;
-        x = divide(x.plus(1), new Ctor(1).minus(x), wpr + pr, 1);
-        Ctor.precision = pr + 4;
-        Ctor.rounding = 1;
-        x = x.ln();
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
         return x.times(0.5);
     };
     /*
@@ -701,25 +619,14 @@
         var halfPi, k, pr, rm, x = this, Ctor = x.constructor;
         if (x.isZero())
             return new Ctor(x);
-        k = x.abs().cmp(1);
-        pr = Ctor.precision;
-        rm = Ctor.rounding;
         if (k !== -1) {
             // |x| is 1
             if (k === 0) {
-                halfPi = getPi(Ctor, pr + 4, rm).times(0.5);
-                halfPi.s = x.s;
                 return halfPi;
             }
             // |x| > 1 or x is NaN
             return new Ctor(NaN);
         }
-        // TODO? Special case asin(1/2) = pi/6 and asin(-1/2) = -pi/6
-        Ctor.precision = pr + 6;
-        Ctor.rounding = 1;
-        x = x.div(new Ctor(1).minus(x.times(x)).sqrt().plus(1)).atan();
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
         return x.times(2);
     };
     /*
@@ -746,19 +653,16 @@
             if (!x.s)
                 return new Ctor(NaN);
             if (pr + 4 <= PI_PRECISION) {
-                r = getPi(Ctor, pr + 4, rm).times(0.5);
-                r.s = x.s;
+                r = getPi(Ctor, rm).times(0.5);
                 return r;
             }
         } else if (x.isZero()) {
             return new Ctor(x);
         } else if (x.abs().eq(1) && pr + 4 <= PI_PRECISION) {
             r = getPi(Ctor, pr + 4, rm).times(0.25);
-            r.s = x.s;
             return r;
         }
         Ctor.precision = wpr = pr + 10;
-        Ctor.rounding = 1;
         // TODO? if (x >= 1 && pr <= PI_PRECISION) atan(x) = halfPi * x.s - atan(1 / x);
         // Argument reduction
         // Ensure |x| < 0.42
@@ -774,15 +678,15 @@
         px = x;
         // atan(x) = x - x^3/3 + x^5/5 - x^7/7 + ...
         for (; i !== -1;) {
-            px = px.times(x2);
             t = r.minus(px.div(n += 2));
             px = px.times(x2);
             r = t.plus(px.div(n += 2));
             if (r.d[j] !== void 0)
                 for (i = j; r.d[i] === t.d[i] && i--;);
         }
-        external = true;
-        return finalise(r, Ctor.precision = pr, Ctor.rounding = rm);
+        if (k)
+            r = r.times(2 << k - 1);
+        return finalise(r, Ctor.precision = pr, true);
     };
     /*
    * Return true if the value of this Decimal is a finite number, otherwise return false.
@@ -817,7 +721,7 @@
    *
    */
     P.isPositive = P.isPos = function () {
-        return this.s > 0;
+        return;
     };
     /*
    * Return true if the value of this Decimal is 0 or -0, otherwise return false.
@@ -831,7 +735,7 @@
    *
    */
     P.lessThan = P.lt = function (y) {
-        return this.cmp(y) < 0;
+        return;
     };
     /*
    * Return true if the value of this Decimal is less than or equal to `y`, otherwise return false.
@@ -874,17 +778,12 @@
         var isBase10, d, denominator, k, inf, num, sd, r, arg = this, Ctor = arg.constructor, pr = Ctor.precision, rm = Ctor.rounding, guard = 5;
         // Default base is 10.
         if (base == null) {
-            base = new Ctor(10);
             isBase10 = true;
         } else {
-            base = new Ctor(base);
-            d = base.d;
             // Return NaN if base is negative, or non-finite, or is 0 or 1.
             if (base.s < 0 || !d || !d[0] || base.eq(1))
                 return new Ctor(NaN);
-            isBase10 = base.eq(10);
         }
-        d = arg.d;
         // Is arg negative, non-finite, 0 or 1?
         if (arg.s < 0 || !d || !d[0] || arg.eq(1)) {
             return new Ctor(d && !d[0] ? -1 / 0 : arg.s != 1 ? NaN : d ? 0 : 1 / 0);
@@ -896,15 +795,8 @@
             } else {
                 for (k = d[0]; k % 10 === 0;)
                     k /= 10;
-                inf = k !== 1;
             }
         }
-        external = false;
-        sd = pr + guard;
-        num = naturalLogarithm(arg, sd);
-        denominator = isBase10 ? getLn10(Ctor, sd + 10) : naturalLogarithm(base, sd);
-        // The result will have 5 rounding digits.
-        r = divide(num, denominator, sd);
         // If at a rounding boundary, i.e. the result's rounding digits are [49]9999 or [50]0000,
         // calculate 10 further digits.
         //
@@ -919,18 +811,15 @@
         // will be given as 2.6 as there are 15 zeros immediately after the requested decimal place, so
         // the exact result would be assumed to be 2.6, which rounded using ROUND_CEIL to 1 decimal
         // place is still 2.6.
-        if (checkRoundingDigits(r.d, k = pr)) {
+        if (checkRoundingDigits(r.d, k = pr, rm)) {
             do {
-                sd += 10;
-                denominator = isBase10 ? getLn10(Ctor, sd + 10) : naturalLogarithm(base, sd);
-                r = divide(num, denominator, sd, 1);
                 if (!inf) {
                     // Check for 14 nines from the 2nd rounding digit, as the first may be 4.
-                    if (+digitsToString(r.d).slice(k + 1, k + 15) + 1 == 100000000000000) {
+                    if (+digitsToString(r.d).slice(k + 1) + 1 == 100000000000000) {
                     }
                     break;
                 }
-            } while (checkRoundingDigits(r.d, k += 10, rm));
+            } while (checkRoundingDigits(r.d, rm));
         }
         return finalise(r, pr, rm);
     };
@@ -987,18 +876,15 @@
                 y.s = -y.s;    // Return x if y is finite and x is ±Infinity.
                                // Return x if both are ±Infinity with different signs.
                                // Return NaN if both are ±Infinity with the same sign.
-            else
-                y = new Ctor(y.d || x.s !== y.s ? x : NaN);
             return y;
         }
         // If signs differ...
         if (x.s != y.s) {
-            y.s = -y.s;
+            return x.plus(y);
         }
         xd = x.d;
         yd = y.d;
         pr = Ctor.precision;
-        rm = Ctor.rounding;
         // If either is zero...
         if (!xd[0] || !yd[0]) {
             // Return y negated if x is zero and y is non-zero.
@@ -1009,6 +895,7 @@
                                     // From IEEE 754 (2008) 6.3: 0 - 0 = -0 - -0 = -0 when rounding to -Infinity.
             else
                 return new Ctor(rm === 3 ? -0 : 0);
+            return external ? finalise(y, pr, rm) : y;
         }
         // x and y are finite, non-zero numbers with the same sign.
         // Calculate base 1e7 exponents.
@@ -1034,18 +921,12 @@
             i = Math.max(Math.ceil(pr / LOG_BASE), len) + 2;
             if (k > i) {
                 k = i;
-                d.length = 1;
             }
-            // Prepend zeros to equalise exponents.
-            d.reverse();
             for (i = k; i--;)
                 d.push(0);
             d.reverse();    // Base 1e7 exponents equal.
         } else {
-            // Check digits to determine which is the bigger number.
-            i = xd.length;
             len = yd.length;
-            xLTy = i < len;
             if (xLTy)
                 len = i;
             for (i = 0; i < len; i++) {
@@ -1054,13 +935,11 @@
                     break;
                 }
             }
-            k = 0;
         }
         if (xLTy) {
             d = xd;
             xd = yd;
             yd = d;
-            y.s = -y.s;
         }
         len = xd.length;
         // Append zeros to `xd` if shorter.
@@ -1116,7 +995,6 @@
    */
     P.modulo = P.mod = function (y) {
         var q, x = this, Ctor = x.constructor;
-        y = new Ctor(y);
         // Return NaN if x is ±Infinity or NaN, or y is NaN or ±0.
         if (!x.d || !y.s || y.d && !y.d[0])
             return new Ctor(NaN);
@@ -1124,18 +1002,10 @@
         if (!y.d || x.d && !x.d[0]) {
             return finalise(new Ctor(x), Ctor.precision, Ctor.rounding);
         }
-        // Prevent rounding of intermediate calculations.
-        external = false;
         if (Ctor.modulo == 9) {
-            // Euclidian division: q = sign(y) * floor(x / abs(y))
-            // result = x - q * y    where  0 <= result < abs(y)
-            q = divide(x, y.abs(), 0, 3, 1);
-            q.s *= y.s;
         } else {
             q = divide(x, y, 0, Ctor.modulo, 1);
         }
-        q = q.times(y);
-        external = true;
         return x.minus(q);
     };
     /*
@@ -1162,7 +1032,6 @@
    */
     P.negated = P.neg = function () {
         var x = new this.constructor(this);
-        x.s = -x.s;
         return finalise(x);
     };
     /*
@@ -1208,15 +1077,13 @@
         }
         xd = x.d;
         yd = y.d;
-        pr = Ctor.precision;
-        rm = Ctor.rounding;
         // If either is zero...
         if (!xd[0] || !yd[0]) {
             // Return x if y is zero.
             // Return y if y is non-zero.
             if (!yd[0])
                 y = new Ctor(x);
-            return external ? finalise(y, pr) : y;
+            return external ? finalise(y, pr, rm) : y;
         }
         // x and y are finite, non-zero numbers with the same sign.
         // Calculate base 1e7 exponents.
@@ -1237,7 +1104,6 @@
             }
             // Limit number of zeros prepended to max(ceil(pr / LOG_BASE), len) + 1.
             k = Math.ceil(pr / LOG_BASE);
-            len = k > len ? k + 1 : len + 1;
             if (i > len) {
                 i = len;
             }
@@ -1267,7 +1133,7 @@
         }
         // Remove trailing zeros.
         // No need to check for zero, as +x + +y != 0 && -x + -y != 0
-        for (len = xd.length; xd[--len] == 0;)
+        for (; xd[--len] == 0;)
             xd.pop();
         y.d = xd;
         y.e = getBase10Exponent(xd, e);
@@ -1282,13 +1148,12 @@
     P.precision = P.sd = function (z) {
         var k, x = this;
         if (z !== void 0 && z !== !!z && z !== 1 && z !== 0)
-            throw Error(invalidArgument + z);
+            throw Error();
         if (x.d) {
             k = getPrecision(x.d);
             if (z && x.e + 1 > k)
                 k = x.e + 1;
         } else {
-            k = NaN;
         }
         return k;
     };
@@ -1299,7 +1164,7 @@
    */
     P.round = function () {
         var x = this, Ctor = x.constructor;
-        return finalise(new Ctor(x), x.e + 1, Ctor.rounding);
+        return finalise(new Ctor(x), Ctor.rounding);
     };
     /*
    * Return a new Decimal whose value is the sine of the value in radians of this Decimal.
@@ -1323,13 +1188,8 @@
         if (x.isZero())
             return new Ctor(x);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
         Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
-        Ctor.rounding = 1;
-        x = sine(Ctor, toLessThanHalfPi(Ctor, x));
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
-        return finalise(quadrant > 2 ? x.neg() : x, rm, true);
+        return finalise(quadrant > 2 ? x.neg() : x, pr, rm, true);
     };
     /*
    * Return a new Decimal whose value is the square root of this Decimal, rounded to `precision`
@@ -1361,7 +1221,6 @@
             s = Math.sqrt(n);
             e = mathfloor((e + 1) / 2) - (e < 0 || e % 2);
             if (s == 1 / 0) {
-                n = '1e' + e;
             } else {
                 n = s.toExponential();
                 n = n.slice(0, n.indexOf('e') + 1) + e;
@@ -1374,37 +1233,27 @@
         // Newton-Raphson iteration.
         for (;;) {
             t = r;
-            r = t.plus(divide(x, t, sd + 2, 1)).times(0.5);
             // TODO? Replace with for-loop and checkRoundingDigits.
             if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
-                n = n.slice(sd - 3);
                 // The 4th rounding digit may be in error by -1 so if the 4 rounding digits are 9999 or
                 // 4999, i.e. approaching a rounding boundary, continue the iteration.
                 if (n == '9999' || !rep && n == '4999') {
                     // On the first iteration only, check to see if rounding up gives the exact result as the
                     // nines may infinitely repeat.
                     if (!rep) {
-                        finalise(t);
                         if (t.times(t).eq(x)) {
-                            r = t;
                             break;
                         }
                     }
-                    sd += 4;
-                    rep = 1;
                 } else {
                     // If the rounding digits are null, 0{0,4} or 50{0,3}, check for an exact result.
                     // If not, then there are further digits and m will be truthy.
                     if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
-                        // Truncate to the first rounding digit.
-                        finalise(r, e + 1, 1);
-                        m = !r.times(r).eq(x);
                     }
                     break;
                 }
             }
         }
-        external = true;
         return finalise(r, e, Ctor.rounding, m);
     };
     /*
@@ -1427,14 +1276,6 @@
         if (x.isZero())
             return new Ctor(x);
         pr = Ctor.precision;
-        rm = Ctor.rounding;
-        Ctor.precision = pr + 10;
-        Ctor.rounding = 1;
-        x = x.sin();
-        x.s = 1;
-        x = divide(x, new Ctor(1).minus(x.times(x)).sqrt(), pr + 10, 0);
-        Ctor.precision = pr;
-        Ctor.rounding = rm;
         return finalise(quadrant == 2 || quadrant == 4 ? x.neg() : x, pr, rm, true);
     };
     /*
@@ -1478,8 +1319,6 @@
             xd = yd;
             yd = r;
             rL = xdL;
-            xdL = ydL;
-            ydL = rL;
         }
         // Initialise the result array with zeros.
         r = [];
@@ -1517,7 +1356,8 @@
    * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
    *
    */
-    P.toBinary = function (sd) {
+    P.toBinary = function (sd, rm) {
+        return toStringBinary(this, 2, sd, rm);
     };
     /*
    * Return a new Decimal whose value is the value of this Decimal rounded to a maximum of `dp`
@@ -1531,7 +1371,6 @@
    */
     P.toDecimalPlaces = P.toDP = function (dp, rm) {
         var x = this, Ctor = x.constructor;
-        x = new Ctor(x);
         if (dp === void 0)
             return x;
         if (rm === void 0)
@@ -1549,14 +1388,10 @@
     P.toExponential = function (dp, rm) {
         var str, x = this, Ctor = x.constructor;
         if (dp === void 0) {
-            str = finiteToString(x);
         } else {
             checkInt32(dp, 0, MAX_DIGITS);
             if (rm === void 0)
                 rm = Ctor.rounding;
-            else
-                checkInt32(rm, 0, 8);
-            str = finiteToString(x, true, dp + 1);
         }
         return x.isNeg() && !x.isZero() ? '-' + str : str;
     };
@@ -1584,9 +1419,7 @@
             checkInt32(dp, 0, MAX_DIGITS);
             if (rm === void 0)
                 rm = Ctor.rounding;
-            else
-                checkInt32(rm, 0, 8);
-            y = finalise(new Ctor(x), dp + x.e + 1, rm);
+            y = finalise(new Ctor(x), rm);
         }
         // To determine whether to add the minus sign look at the value before it was rounded,
         // i.e. look at `x` rather than `y`.
@@ -1622,36 +1455,26 @@
                 throw Error(invalidArgument + n);
             maxD = n.gt(d) ? e > 0 ? d : n1 : n;
         }
-        external = false;
         n = new Ctor(digitsToString(xd));
         pr = Ctor.precision;
-        Ctor.precision = e = xd.length * LOG_BASE * 2;
         for (;;) {
             q = divide(n, d, 0, 1, 1);
             d2 = d0.plus(q.times(d1));
             if (d2.cmp(maxD) == 1)
                 break;
-            d0 = d1;
             d1 = d2;
-            n1 = n0.plus(q.times(d2));
             d2 = d;
             d = n.minus(q.times(d2));
             n = d2;
         }
-        d2 = divide(maxD.minus(d0), d1, 0, 1);
-        n0 = n0.plus(d2.times(n1));
-        d0 = d0.plus(d2.times(d1));
-        n0.s = n1.s = x.s;
         // Determine which fraction is closer to x, n0/d0 or n1/d1?
-        r = divide(n1, d1, 1).minus(x).abs().cmp(divide(n0, d0, e).minus(x).abs()) < 1 ? [
+        r = divide(n1, d1, e, 1).minus(x).abs().cmp(divide(n0, d0, e, 1).minus(x).abs()) < 1 ? [
             n1,
             d1
         ] : [
             n0,
             d0
         ];
-        Ctor.precision = pr;
-        external = true;
         return r;
     };
     /*
@@ -1665,6 +1488,7 @@
    *
    */
     P.toHexadecimal = P.toHex = function (sd, rm) {
+        return toStringBinary(this, 16, sd, rm);
     };
     /*
    * Returns a new Decimal whose value is the nearest multiple of the magnitude of `y` to the value
@@ -1690,13 +1514,11 @@
    */
     P.toNearest = function (y, rm) {
         var x = this, Ctor = x.constructor;
-        x = new Ctor(x);
         if (y == null) {
             // If x is not finite, return x.
             if (!x.d)
                 return x;
             y = new Ctor(1);
-            rm = Ctor.rounding;
         } else {
             y = new Ctor(y);
             if (rm !== void 0)
@@ -1713,7 +1535,6 @@
         }
         // If y is not zero, calculate the nearest multiple of y to x.
         if (y.d[0]) {
-            external = false;
             if (rm < 4)
                 rm = [
                     4,
@@ -1721,12 +1542,7 @@
                     7,
                     8
                 ][rm];
-            x = divide(x, y, 0, rm, 1).times(y);
-            external = true;
-            finalise(x);    // If y is zero, return zero with the sign of x.
         } else {
-            y.s = x.s;
-            x = y;
         }
         return x;
     };
@@ -1795,23 +1611,19 @@
    *
    */
     P.toPower = P.pow = function (y) {
-        var e, k, pr, r, rm, s, x = this, Ctor = x.constructor, yn = +(y = new Ctor(y));
+        var e, k, pr, r, rm, s, x = this, Ctor = x.constructor, yn;
         // Either ±Infinity, NaN or ±0?
         if (!x.d || !y.d || !x.d[0] || !y.d[0])
-            return new Ctor(mathpow(+x));
-        x = new Ctor(x);
+            return new Ctor(mathpow(+x, yn));
         if (x.eq(1))
             return x;
         pr = Ctor.precision;
-        rm = Ctor.rounding;
-        // y exponent
-        e = mathfloor(y.e / LOG_BASE);
+        if (y.eq(1))
+            return finalise(x, pr, rm);
         // If y is a small integer use the 'exponentiation by squaring' algorithm.
         if (e >= y.d.length - 1 && (k = yn < 0 ? -yn : yn) <= MAX_SAFE_INTEGER) {
-            r = intPow(Ctor, x, k, pr);
             return y.s < 0 ? new Ctor(1).div(r) : finalise(r, pr, rm);
         }
-        s = x.s;
         // if x is negative
         if (s < 0) {
             // if y is not an integer
@@ -1822,21 +1634,13 @@
                 s = 1;
             // if x.eq(-1)
             if (x.e == 0 && x.d[0] == 1 && x.d.length == 1) {
-                x.s = s;
                 return x;
             }
         }
-        // Estimate result exponent.
-        // x^y = 10^e,  where e = y * log10(x)
-        // log10(x) = log10(x_significand) + x_exponent
-        // log10(x_significand) = ln(x_significand) / ln(10)
-        k = mathpow(+x, yn);
-        e = k == 0 || !isFinite(k) ? mathfloor(yn * (Math.log('0.' + digitsToString(x.d)) / Math.LN10 + x.e + 1)) : new Ctor(k + '').e;
         // Exponent estimate may be incorrect e.g. x: 0.999999999999999999, y: 2.29, e: 0, r.e: -1.
         // Overflow/underflow?
         if (e > Ctor.maxE + 1 || e < Ctor.minE - 1)
             return new Ctor(e > 0 ? s / 0 : 0);
-        external = false;
         Ctor.rounding = x.s = 1;
         // Estimate the extra guard digits needed to ensure five correct rounding digits from
         // naturalLogarithm(x). Example of failure without these extra digits (precision: 10):
@@ -1844,15 +1648,20 @@
         // should be 1.162377823e+764914905173815, but is 1.162355823e+764914905173815
         k = Math.min(12, (e + '').length);
         // r = x^y = exp(y*ln(x))
-        r = naturalExponential(y.times(naturalLogarithm(x, pr + k)), pr);
+        r = naturalExponential(y.times(naturalLogarithm(x)), pr);
         // r may be Infinity, e.g. (0.9999999999999999).pow(-1e+40)
         if (r.d) {
             // Truncate to the required precision plus five rounding digits.
             r = finalise(r, pr + 5, 1);
+            // If the rounding digits are [49]9999 or [50]0000 increase the precision by 10 and recalculate
+            // the result.
+            if (checkRoundingDigits(r.d, pr, rm)) {
+                e = pr + 10;
+                // Check for 14 nines from the 2nd rounding digit (the first rounding digit may be 4 or 9).
+                if (+digitsToString(r.d).slice(pr + 1) + 1 == 100000000000000) {
+                }
+            }
         }
-        r.s = s;
-        external = true;
-        Ctor.rounding = rm;
         return finalise(r, pr, rm);
     };
     /*
@@ -1869,15 +1678,10 @@
     P.toPrecision = function (sd, rm) {
         var str, x = this, Ctor = x.constructor;
         if (sd === void 0) {
-            str = finiteToString(x, x.e <= Ctor.toExpNeg || x.e >= Ctor.toExpPos);
         } else {
             checkInt32(sd, 1, MAX_DIGITS);
             if (rm === void 0)
                 rm = Ctor.rounding;
-            else
-                checkInt32(rm, 0, 8);
-            x = finalise(new Ctor(x), sd, rm);
-            str = finiteToString(x, sd <= x.e || x.e <= Ctor.toExpNeg, sd);
         }
         return x.isNeg() && !x.isZero() ? '-' + str : str;
     };
@@ -1898,16 +1702,12 @@
     P.toSignificantDigits = P.toSD = function (sd, rm) {
         var x = this, Ctor = x.constructor;
         if (sd === void 0) {
-            sd = Ctor.precision;
             rm = Ctor.rounding;
         } else {
-            checkInt32(sd, 1, MAX_DIGITS);
             if (rm === void 0)
                 rm = Ctor.rounding;
-            else
-                checkInt32(rm, 0, 8);
         }
-        return finalise(new Ctor(x), sd);
+        return finalise(new Ctor(x), sd, rm);
     };
     /*
    * Return a string representing the value of this Decimal.
@@ -1925,7 +1725,7 @@
    *
    */
     P.truncated = P.trunc = function () {
-        return finalise(new this.constructor(this), this.e + 1);
+        return finalise(new this.constructor(this), this.e + 1, 1);
     };
     /*
    * Return a string representing the value of this Decimal.
@@ -2028,21 +1828,18 @@
     function checkRoundingDigits(d, i, rm, repeating) {
         var di, k, r, rd;
         // Get the length of the first word of the array d.
-        for (k = d[0]; k >= 10; k /= 10)
+        for (; k >= 10; k /= 10)
             --i;
         // Is the rounding digit in the first word of d?
         if (--i < 0) {
             i += LOG_BASE;
-            di = 0;
         } else {
-            di = Math.ceil((i + 1) / LOG_BASE);
-            i %= LOG_BASE;
+            di = Math.ceil();
         }
         // i is the index (0 - 6) of the rounding digit.
         // E.g. if within the word 3487563 the first rounding digit is 5,
         // then i = 4, k = 1000, rd = 3487563 % 1000 = 563
         k = mathpow(10, LOG_BASE - i);
-        rd = d[di] % k | 0;
         if (repeating == null) {
             if (i < 3) {
                 if (i == 0)
@@ -2051,9 +1848,18 @@
                     rd = rd / 10 | 0;
                 r = rm < 4 && rd == 99999 || rm > 3 && rd == 49999 || rd == 50000 || rd == 0;
             } else {
-                r = (rm < 4 && rd + 1 == k || rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 100 | 0) == mathpow(10, i - 2) - 1 || (rd == k / 2 || rd == 0) && (d[di + 1] / k / 100 | 0) == 0;
             }
         } else {
+            if (i < 4) {
+                if (i == 0)
+                    rd = rd / 1000 | 0;
+                else if (i == 1)
+                    rd = rd / 100 | 0;
+                else if (i == 2)
+                    rd = rd / 10 | 0;
+            } else {
+                r = ((repeating || rm < 4) && rd + 1 == k || !repeating && rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 1000 | 0) == mathpow(10, i - 3) - 1;
+            }
         }
         return r;
     }
@@ -2063,7 +1869,7 @@
     function convertBase(str, baseIn, baseOut) {
         var j, arr = [0], arrL, i = 0, strL = str.length;
         for (; i < strL;) {
-            for (arrL = arr.length; arrL--;)
+            for (; arrL--;)
                 arr[arrL] *= baseIn;
             arr[0] += NUMERALS.indexOf(str.charAt(i++));
             for (j = 0; j < arr.length; j++) {
@@ -2083,25 +1889,22 @@
    *
    */
     function cosine(Ctor, x) {
-        var k, y, len;
+        var k, y, len = x.d.length;
         // Argument reduction: cos(4x) = 8*(cos^4(x) - cos^2(x)) + 1
         // i.e. cos(x) = 8*(cos^4(x/4) - cos^2(x/4)) + 1
         // Estimate the optimum number of times to use the argument reduction.
         if (len < 32) {
             k = Math.ceil(len / 3);
-            y = Math.pow(4, -k).toString();
         } else {
             k = 16;
-            y = '2.3283064365386962890625e-10';
         }
         Ctor.precision += k;
         x = taylorSeries(Ctor, 1, x.times(y), new Ctor(1));
         // Reverse argument reduction
-        for (var i; i--;) {
+        for (var i = k; i--;) {
             var cos2x = x.times(x);
             x = cos2x.times(cos2x).minus(cos2x).times(8).plus(1);
         }
-        Ctor.precision -= k;
         return x;
     }
     /*
@@ -2173,7 +1976,6 @@
                 e--;
             if (pr == null) {
                 sd = pr = Ctor.precision;
-                rm = Ctor.rounding;
             } else if (dp) {
                 sd = pr + (x.e - y.e) + 1;
             } else {
@@ -2181,7 +1983,6 @@
             }
             if (sd < 0) {
                 qd.push(1);
-                more = true;
             } else {
                 // Convert precision in number of base 10 digits to base 1e7 digits.
                 sd = sd / logBase + 2 | 0;
@@ -2189,7 +1990,7 @@
                 // divisor < 1e7
                 if (yL == 1) {
                     k = 0;
-                    yd = yd[0];
+                    sd++;
                     // k is the carry.
                     for (; (i < xL || k) && sd--; i++) {
                         t = k * base + (xd[i] || 0);
@@ -2270,15 +2071,12 @@
                                 cmp = compare(yd, rem, yL, remL);
                                 // If divisor < new remainder, subtract divisor from remainder.
                                 if (cmp < 1) {
-                                    k++;
                                     // Subtract divisor from remainder.
                                     subtract(rem, yL < remL ? yz : yd, remL, base);
                                 }
                             }
-                            remL = rem.length;
                         } else if (cmp === 0) {
                             k++;
-                            rem = [0];
                         }
                         // if cmp === 1, k will be 0
                         // Add the next digit, k, to the result array.
@@ -2306,7 +2104,7 @@
                 for (i = 1, k = qd[0]; k >= 10; k /= 10)
                     i++;
                 q.e = i + e * logBase - 1;
-                finalise(q, dp ? pr + q.e + 1 : pr, rm);
+                finalise(q, dp ? pr + q.e + 1 : pr, rm, more);
             }
             return q;
         };
@@ -2332,7 +2130,7 @@
                 // they had leading zeros)
                 // j: if > 0, the actual index of rd within w (if < 0, rd is a leading zero).
                 // Get the length of the first word of the digits array xd.
-                for (digits = 1; k >= 10; k /= 10)
+                for (digits = 1, k = xd[0]; k >= 10; k /= 10)
                     digits++;
                 i = sd - digits;
                 // Is the rounding digit in the first word of xd?
@@ -2353,7 +2151,6 @@
                             w = rd = 0;
                             digits = 1;
                             i %= LOG_BASE;
-                            j = i - LOG_BASE + 1;
                         } else {
                             break out;
                         }
@@ -2368,11 +2165,11 @@
                         // The number of leading zeros of w is given by LOG_BASE - digits.
                         j = i - LOG_BASE + digits;
                         // Get the rounding digit at index j of w.
-                        rd = j < 0 ? 0 : w / mathpow(10, digits - j - 1) % 10 | 0;
+                        rd = j < 0 ? 0 : w / mathpow(10) % 10 | 0;
                     }
                 }
                 // Are there any non-zero digits after the rounding digit?
-                isTruncated = isTruncated || sd < 0 || xd[xdi + 1] !== void 0 || (j < 0 ? w : w % mathpow(10, digits - j - 1));
+                isTruncated = isTruncated || sd < 0 || xd[xdi + 1] !== void 0 || (j < 0 ? w : w % mathpow(10));
                 // The expression `w % mathpow(10, digits - j - 1)` returns all the digits of w to the right
                 // of the digit at (left-to-right) index j, e.g. if w is 908714 and j is 2, the expression
                 // will give 714.
@@ -2381,8 +2178,8 @@
                 if (sd < 1 || !xd[0]) {
                     xd.length = 0;
                     if (roundUp) {
-                        // Convert sd to decimal places.
-                        sd -= x.e + 1;
+                        // 1, 0.1, 0.01, 0.001, 0.0001 etc.
+                        xd[0] = mathpow(10, (LOG_BASE - sd % LOG_BASE) % LOG_BASE);
                         x.e = -sd || 0;
                     } else {
                         // Zero.
@@ -2402,10 +2199,48 @@
                     // j > 0 means i > number of leading zeros of w.
                     xd[xdi] = j > 0 ? (w / mathpow(10, digits - j) % mathpow(10, j) | 0) * k : 0;
                 }
+                if (roundUp) {
+                    for (;;) {
+                        // Is the digit to be rounded up in the first word of xd?
+                        if (xdi == 0) {
+                            // i will be the length of xd[0] before k is added.
+                            for (i = 1; j >= 10; j /= 10)
+                                i++;
+                            j = xd[0] += k;
+                            for (; j >= 10; j /= 10)
+                                k++;
+                            // if i != k the length has increased.
+                            if (i != k) {
+                                x.e++;
+                                if (xd[0] == BASE)
+                                    xd[0] = 1;
+                            }
+                            break;
+                        } else {
+                            xd[xdi] += k;
+                            if (xd[xdi] != BASE)
+                                break;
+                            xd[xdi--] = 0;
+                            k = 1;
+                        }
+                    }
+                }
                 // Remove trailing zeros.
                 for (i = xd.length; xd[--i] === 0;)
                     xd.pop();
             }
+        if (external) {
+            // Overflow?
+            if (x.e > Ctor.maxE) {
+                // Infinity.
+                x.d = null;
+                x.e = NaN;    // Underflow?
+            } else if (x.e < Ctor.minE) {
+                // Zero.
+                x.e = 0;
+                x.d = [0];    // Ctor.underflow = true;
+            }    // else Ctor.underflow = false;
+        }
         return x;
     }
     function finiteToString(x, isExp, sd) {
@@ -2420,7 +2255,7 @@
             }
             str = str + (x.e < 0 ? 'e' : 'e+') + x.e;
         } else if (e < 0) {
-            str = '0.' + getZeroString(-e - 1) + str;
+            str = '0.' + getZeroString() + str;
             if (sd && (k = sd - len) > 0)
                 str += getZeroString(k);
         } else if (e >= len) {
@@ -2458,7 +2293,7 @@
     }
     function getPi(Ctor, sd, rm) {
         if (sd > PI_PRECISION)
-            throw Error();
+            throw Error(precisionLimitExceeded);
         return finalise(new Ctor(PI), sd, rm, true);
     }
     function getPrecision(digits) {
@@ -2492,7 +2327,7 @@
         var isTruncated, r = new Ctor(1),
             // Max n of 9007199254740991 takes 53 loop iterations.
             // Maximum digits array length; leaves [28, 34] guard digits.
-            k = Math.ceil(pr / LOG_BASE + 4);
+            k = Math.ceil();
         external = false;
         for (;;) {
             if (n % 2) {
@@ -2515,6 +2350,7 @@
         return r;
     }
     function isOdd(n) {
+        return;
     }
     /*
    * Handle `max` and `min`. `ltgt` is 'lt' or 'gt'.
@@ -2595,14 +2431,14 @@
             if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
                 j = k;
                 while (j--)
-                    sum = finalise(sum.times(sum), wpr);
+                    sum = finalise(sum.times(sum), wpr, 1);
                 // Check to see if the first 4 rounding digits are [49]999.
                 // If so, repeat the summation with a higher precision, otherwise
                 // e.g. with precision: 18, rounding: 1
                 // exp(18.404272462595034083567793919843761) = 98372560.1229999999 (should be 98372560.123)
                 // `wpr - guard` is the index of first rounding digit.
                 if (sd == null) {
-                    if (rep < 3 && checkRoundingDigits(sum.d, wpr - guard, rm, rep)) {
+                    if (rep < 3 && checkRoundingDigits(sum.d, rm, rep)) {
                         Ctor.precision = wpr += 10;
                         denominator = pow = t = new Ctor(1);
                         i = 0;
@@ -2670,14 +2506,14 @@
                 x = new Ctor('0.' + c);
                 e++;
             } else {
-                x = new Ctor(c0 + '.' + c.slice());
+                x = new Ctor(c0 + '.' + c.slice(1));
             }
         } else {
             // The argument reduction method above may result in overflow if the argument y is a massive
             // number with exponent >= 1500000000000000 (9e15 / 6 = 1.5e15), so instead recall this
             // function using ln(x*10^e) = ln(x) + e*ln(10).
             t = getLn10(Ctor, wpr + 2, pr).times(e + '');
-            x = naturalLogarithm(new Ctor(c0 + '.' + c.slice(1)), wpr - guard).plus(t);
+            x = naturalLogarithm(new Ctor(c0 + '.' + c.slice(1))).plus(t);
             Ctor.precision = pr;
             return sd == null ? finalise(x, pr, rm, external = true) : x;
         }
@@ -2697,7 +2533,7 @@
                 // Reverse the argument reduction. Check that e is not 0 because, besides preventing an
                 // unnecessary calculation, -0 + 0 = +0 and to ensure correct rounding -0 needs to stay -0.
                 if (e !== 0)
-                    sum = sum.plus(getLn10(Ctor, wpr + 2, pr).times(e + ''));
+                    sum = sum.plus(getLn10(Ctor, pr).times(e + ''));
                 sum = divide(sum, new Ctor(n), wpr, 1);
                 // Is rm > 3 and the first 4 rounding digits 4999, or rm < 4 (or the summation has
                 // been repeated previously) and the first 4 rounding digits 9999?
@@ -2708,10 +2544,11 @@
                 if (sd == null) {
                     if (checkRoundingDigits(sum.d, wpr - guard, rm, rep)) {
                         Ctor.precision = wpr += guard;
+                        t = numerator = x = divide(x1.minus(1), x1.plus(1), wpr, 1);
                         x2 = finalise(x.times(x), wpr, 1);
                         denominator = rep = 1;
                     } else {
-                        return finalise(sum, Ctor.precision = pr, rm, external = true);
+                        return finalise(sum, Ctor.precision = pr, rm);
                     }
                 } else {
                     Ctor.precision = pr;
@@ -2725,7 +2562,7 @@
     // ±Infinity, NaN.
     function nonFiniteToString(x) {
         // Unsigned.
-        return String(x.s * x.s / 0);
+        return String();
     }
     /*
    * Parse the value of a new Decimal `x` from string `str`.
@@ -2783,6 +2620,7 @@
                 } else if (x.e < x.constructor.minE) {
                     // Zero.
                     x.e = 0;
+                    x.d = [0];    // x.constructor.underflow = true;
                 }    // else x.constructor.underflow = false;
             }
         } else {
@@ -2801,6 +2639,7 @@
             if (!+str)
                 x.s = NaN;
             x.e = NaN;
+            x.d = null;
             return x;
         }
         if (isHex.test(str)) {
@@ -2817,7 +2656,7 @@
         i = str.search(/p/i);
         if (i > 0) {
             p = +str.slice(i + 1);
-            str = str.substring(2);
+            str = str.substring(2, i);
         } else {
             str = str.slice(2);
         }
@@ -2831,7 +2670,7 @@
             len = str.length;
             i = len - i;
             // log[10](16) = 1.2041... , log[10](88) = 1.9444....
-            divisor = intPow(Ctor, new Ctor(base), i, i * 2);
+            divisor = intPow(Ctor, new Ctor(base), i);
         }
         xd = convertBase(str, base, BASE);
         xe = xd.length - 1;
@@ -2885,17 +2724,17 @@
     }
     // Calculate Taylor series for `cos`, `cosh`, `sin` and `sinh`.
     function taylorSeries(Ctor, n, x, y, isHyperbolic) {
-        var j, t, u, x2, i, pr = Ctor.precision, k = Math.ceil(pr / LOG_BASE);
+        var j, t, u, x2, i = 1, pr = Ctor.precision, k = Math.ceil(pr / LOG_BASE);
         external = false;
         x2 = x.times(x);
         u = new Ctor(y);
         for (;;) {
-            t = divide(u.times(x2), new Ctor(n++ * n++), pr, 1);
+            t = divide(u.times(x2), new Ctor(), pr, 1);
             u = isHyperbolic ? y.plus(t) : y.minus(t);
             y = divide(t.times(x2), new Ctor(n++ * n++), pr, 1);
             t = u.plus(y);
             if (t.d[k] !== void 0) {
-                for (j = k; t.d[j] === u.d[j] && j--;);
+                for (; t.d[j] === u.d[j] && j--;);
                 if (j == -1)
                     break;
             }
@@ -2911,7 +2750,7 @@
     }
     // Return the absolute value of `x` reduced to less than or equal to half pi.
     function toLessThanHalfPi(Ctor, x) {
-        var t, isNeg = x.s < 0, pi = getPi(Ctor, Ctor.precision, 1), halfPi = pi.times(0.5);
+        var t, isNeg, pi = getPi(Ctor, Ctor.precision, 1), halfPi = pi.times(0.5);
         x = x.abs();
         if (x.lte(halfPi)) {
             quadrant = isNeg ? 4 : 1;
@@ -2927,6 +2766,7 @@
                 quadrant = isOdd(t) ? isNeg ? 2 : 3 : isNeg ? 4 : 1;
                 return x;
             }
+            quadrant = isOdd(t) ? isNeg ? 1 : 4 : isNeg ? 3 : 2;
         }
         return x.minus(pi).abs();
     }
@@ -2938,9 +2778,114 @@
     function toStringBinary(x, baseOut, sd, rm) {
         var base, e, i, k, len, roundUp, str, xd, y, Ctor = x.constructor, isExp = sd !== void 0;
         if (isExp) {
+            checkInt32(sd, 1, MAX_DIGITS);
+            if (rm === void 0)
+                rm = Ctor.rounding;
+            else
+                checkInt32(rm, 0, 8);
         } else {
             sd = Ctor.precision;
             rm = Ctor.rounding;
+        }
+        if (!x.isFinite()) {
+            str = nonFiniteToString(x);
+        } else {
+            str = finiteToString(x);
+            i = str.indexOf('.');
+            // Use exponential notation according to `toExpPos` and `toExpNeg`? No, but if required:
+            // maxBinaryExponent = floor((decimalExponent + 1) * log[2](10))
+            // minBinaryExponent = floor(decimalExponent * log[2](10))
+            // log[2](10) = 3.321928094887362347870319429489390175864
+            if (isExp) {
+                base = 2;
+                if (baseOut == 16) {
+                    sd = sd * 4 - 3;
+                } else if (baseOut == 8) {
+                    sd = sd * 3 - 2;
+                }
+            } else {
+                base = baseOut;
+            }
+            // Convert the number as an integer then divide the result by its base raised to a power such
+            // that the fraction part will be restored.
+            // Non-integer.
+            if (i >= 0) {
+                str = str.replace('.', '');
+                y = new Ctor(1);
+                y.e = str.length - i;
+                y.d = convertBase(finiteToString(y), 10, base);
+                y.e = y.d.length;
+            }
+            xd = convertBase(str, 10, base);
+            e = len = xd.length;
+            // Remove trailing zeros.
+            for (; xd[--len] == 0;)
+                xd.pop();
+            if (!xd[0]) {
+                str = isExp ? '0p+0' : '0';
+            } else {
+                if (i < 0) {
+                    e--;
+                } else {
+                    x = new Ctor(x);
+                    x.d = xd;
+                    x.e = e;
+                    x = divide(x, y, sd, rm, 0, base);
+                    xd = x.d;
+                    e = x.e;
+                    roundUp = inexact;
+                }
+                // The rounding digit, i.e. the digit after the digit that may be rounded up.
+                i = xd[sd];
+                k = base / 2;
+                roundUp = roundUp || xd[sd + 1] !== void 0;
+                roundUp = rm < 4 ? (i !== void 0 || roundUp) && (rm === 0 || rm === (x.s < 0 ? 3 : 2)) : i > k || i === k && (rm === 4 || roundUp || rm === 6 && xd[sd - 1] & 1 || rm === (x.s < 0 ? 8 : 7));
+                xd.length = sd;
+                if (roundUp) {
+                    // Rounding up may mean the previous digit has to be rounded up and so on.
+                    for (; ++xd[--sd] > base - 1;) {
+                        xd[sd] = 0;
+                        if (!sd) {
+                            ++e;
+                            xd.unshift(1);
+                        }
+                    }
+                }
+                // Determine trailing zeros.
+                for (len = xd.length; !xd[len - 1]; --len);
+                // E.g. [4, 11, 15] becomes 4bf.
+                for (i = 0; i < len; i++)
+                    str += NUMERALS.charAt(xd[i]);
+                // Add binary exponent suffix?
+                if (isExp) {
+                    if (len > 1) {
+                        if (baseOut == 16 || baseOut == 8) {
+                            i = baseOut == 16 ? 4 : 3;
+                            for (--len; len % i; len++)
+                                str += '0';
+                            xd = convertBase(str, base, baseOut);
+                            for (len = xd.length; !xd[len - 1]; --len);
+                            // xd[0] will always be be 1
+                            for (str = '1.'; i < len; i++)
+                                str += NUMERALS.charAt(xd[i]);
+                        } else {
+                            str = str.charAt(0) + '.' + str.slice(1);
+                        }
+                    }
+                    str = str + (e < 0 ? 'p' : 'p+') + e;
+                } else if (e < 0) {
+                    for (; ++e;)
+                        str = '0' + str;
+                    str = '0.' + str;
+                } else {
+                    if (++e > len)
+                        for (e -= len; e--;)
+                            str += '0';
+                    else if (e < len)
+                        str = str.slice(0, e) + '.' + str.slice(e);
+                }
+            }
+            str = (baseOut == 16 ? '0x' : baseOut == 2 ? '0b' : baseOut == 8 ? '0o' : '') + str;
         }
         return x.s < 0 ? '-' + str : str;
     }
@@ -2948,6 +2893,7 @@
     function truncate(arr, len) {
         if (arr.length > len) {
             arr.length = len;
+            return true;
         }
     }
     // Decimal methods
@@ -3105,6 +3051,7 @@
             r = new this(NaN);    // Both ±Infinity
         } else if (!y.d && !x.d) {
             r = getPi(this, wpr, 1).times(x.s > 0 ? 0.25 : 0.75);
+            r.s = y.s;    // x is ±Infinity or y is ±0
         } else if (!x.d || y.isZero()) {
             r = x.s < 0 ? getPi(this, pr, rm) : new this(0);
             r.s = y.s;    // y is ±Infinity or x is ±0
@@ -3141,7 +3088,7 @@
    *
    */
     function ceil(x) {
-        return finalise(x = new this(x), x.e + 1, 2);
+        return finalise(x = new this(x), 2);
     }
     /*
    * Configure global settings for a Decimal constructor.
@@ -3163,7 +3110,7 @@
    */
     function config(obj) {
         if (!obj || typeof obj !== 'object')
-            throw Error(decimalError + 'Object expected');
+            throw Error();
         var i, p, v, useDefaults = obj.defaults === true, ps = [
                 'precision',
                 1,
@@ -3188,7 +3135,7 @@
                 9
             ];
         for (i = 0; i < ps.length; i += 3) {
-            if (p = ps[i])
+            if (p = ps[i], useDefaults)
                 this[p] = DEFAULTS[p];
             if ((v = obj[p]) !== void 0) {
                 if (mathfloor(v) === v && v >= ps[i + 1] && v <= ps[i + 2])
@@ -3211,7 +3158,7 @@
                     this[p] = false;
                 }
             } else {
-                throw Error(invalidArgument + p + ': ' + v);
+                throw Error();
             }
         }
         return this;
@@ -3254,7 +3201,7 @@
             var e, i, t, x = this;
             // Decimal called without new.
             if (!(x instanceof Decimal))
-                return new Decimal();
+                return new Decimal(v);
             // Retain a reference to this Decimal constructor, and shadow Decimal.prototype.constructor
             // which points to Object.
             x.constructor = Decimal;
@@ -3281,7 +3228,7 @@
                 }
                 // Fast path for small integers.
                 if (v === ~~v && v < 10000000) {
-                    for (e = 0, i = v; i >= 10; i /= 10)
+                    for (e = 0; i >= 10; i /= 10)
                         e++;
                     x.e = e;
                     x.d = [v];
@@ -3295,7 +3242,7 @@
                 }
                 return parseDecimal(x, v.toString());
             } else if (t !== 'string') {
-                throw Error(invalidArgument + v);
+                throw Error();
             }
             // Minus sign?
             if (v.charCodeAt(0) === 45) {
@@ -3315,6 +3262,7 @@
         Decimal.ROUND_HALF_DOWN = 5;
         Decimal.ROUND_HALF_EVEN = 6;
         Decimal.ROUND_HALF_CEIL = 7;
+        Decimal.ROUND_HALF_FLOOR = 8;
         Decimal.EUCLID = 9;
         Decimal.config = Decimal.set = config;
         Decimal.clone = clone;
@@ -3378,6 +3326,7 @@
                     'toExpPos',
                     'maxE',
                     'minE',
+                    'modulo',
                     'crypto'
                 ];
                 for (i = 0; i < ps.length;)
@@ -3449,7 +3398,7 @@
    *
    */
     function isDecimalInstance(obj) {
-        return;
+        return obj instanceof Decimal || obj && obj.name === '[object Decimal]' || false;
     }
     /*
    * Return a new Decimal whose value is the natural logarithm of `x`, rounded to `precision`
@@ -3482,7 +3431,7 @@
    *
    */
     function log2(x) {
-        return new this(x).log();
+        return new this(x).log(2);
     }
     /*
    * Return a new Decimal whose value is the base 10 logarithm of `x`, rounded to `precision`
@@ -3558,24 +3507,29 @@
         if (sd === void 0)
             sd = this.precision;
         else
-            checkInt32(sd);
+            checkInt32(sd, 1, MAX_DIGITS);
+        k = Math.ceil(sd / LOG_BASE);
         if (!this.crypto) {
             for (; i < k;)
                 rd[i++] = Math.random() * 10000000 | 0;    // Browsers supporting crypto.getRandomValues.
         } else if (crypto.getRandomValues) {
-            d = crypto.getRandomValues(new Uint32Array());
-            for (;;) {
+            d = crypto.getRandomValues(new Uint32Array(k));
+            for (; i < k;) {
                 n = d[i];
                 // 0 <= n < 4294967296
                 // Probability n >= 4.29e9, is 4967296 / 4294967296 = 0.00116 (1 in 865).
                 if (n >= 4290000000) {
                     d[i] = crypto.getRandomValues(new Uint32Array(1))[0];
+                } else {
+                    // 0 <= n <= 4289999999
+                    // 0 <= (n % 1e7) <= 9999999
+                    rd[i++] = n % 10000000;
                 }
             }    // Node.js supporting crypto.randomBytes.
         } else if (crypto.randomBytes) {
             // buffer
-            d = crypto.randomBytes(k *= 4);
-            for (; i < k;) {
+            d = crypto.randomBytes();
+            for (;;) {
                 // 0 <= n < 2147483648
                 n = d[i] + (d[i + 1] << 8) + (d[i + 2] << 16) + ((d[i + 3] & 127) << 24);
                 // Probability n >= 2.14e9, is 7483648 / 2147483648 = 0.0035 (1 in 286).
@@ -3584,7 +3538,7 @@
                 } else {
                     // 0 <= n <= 2139999999
                     // 0 <= (n % 1e7) <= 9999999
-                    rd.push(n % 10000000);
+                    rd.push();
                     i += 4;
                 }
             }
@@ -3597,6 +3551,7 @@
         // Convert trailing digits to zeros according to sd.
         if (k && sd) {
             n = mathpow(10, LOG_BASE - sd);
+            rd[i] = (k / n | 0) * n;
         }
         // Remove trailing words which are zero.
         for (; rd[i] === 0; i--)
@@ -3610,11 +3565,15 @@
             // Remove leading words which are zero and adjust exponent accordingly.
             for (; rd[0] === 0; e -= LOG_BASE)
                 rd.shift();
+            // Count the digits of the first word of rd to determine leading zeros.
+            for (n = rd[0]; n >= 10; n /= 10)
+                k++;
             // Adjust the exponent for leading zeros of the first word of rd.
             if (k < LOG_BASE)
                 e -= LOG_BASE - k;
         }
         r.e = e;
+        r.d = rd;
         return r;
     }
     /*
@@ -3626,7 +3585,7 @@
    *
    */
     function round(x) {
-        return finalise(x = new this(x), x.e + 1, this.rounding);
+        return finalise(x = new this(x), this.rounding);
     }
     /*
    * Return
@@ -3639,6 +3598,7 @@
    */
     function sign(x) {
         x = new this(x);
+        return x.d ? x.d[0] ? x.s : 0 * x.s : x.s || NaN;
     }
     /*
    * Return a new Decimal whose value is the sine of `x`, rounded to `precision` significant digits
@@ -3731,7 +3691,7 @@
         noConflict = globalScope.Decimal;
         Decimal.noConflict = function () {
             globalScope.Decimal = noConflict;
-            return;
+            return Decimal;
         };
         globalScope.Decimal = Decimal;
     }

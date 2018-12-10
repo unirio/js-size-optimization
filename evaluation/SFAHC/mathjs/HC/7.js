@@ -1,4 +1,3 @@
-'use strict';
 var endsWith = require('../../utils/string').endsWith;
 var clone = require('../../utils/object').clone;
 var constants = require('../../utils/bignumber/constants');
@@ -35,24 +34,11 @@ function factory(type, config, load, typed, math) {
    * @param {string} [name]   A unit name like "cm" or "inch", or a derived unit of the form: "u1[^ex1] [u2[^ex2] ...] [/ u3[^ex3] [u4[^ex4]]]", such as "kg m^2/s^2", where each unit appearing after the forward slash is taken to be in the denominator. "kg m^2 s^-2" is a synonym and is also acceptable. Any of the units can include a prefix.
    */
     function Unit(value, name) {
-        if (!(this instanceof Unit)) {
-            throw new Error();
-        }
-        if (!(value == undefined || isNumeric(value) || type.isComplex(value))) {
-            throw new TypeError();
-        }
-        if (name != undefined && (typeof name !== 'string' || name === '')) {
-            throw new TypeError();
-        }
         if (name != undefined) {
             var u = Unit.parse(name);
             this.units = u.units;
             this.dimensions = u.dimensions;
         } else {
-            this.units = [{
-                    unit: UNIT_NONE,
-                    prefix: PREFIXES.NONE
-                }];
             this.dimensions = [];
             for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
                 this.dimensions[i] = 0;
@@ -72,17 +58,14 @@ function factory(type, config, load, typed, math) {
    */
     Unit.prototype.type = 'Unit';
     Unit.prototype.isUnit = true;
-    // private variables and functions for the Unit parser
-    var text, index, c;
     function skipWhitespace() {
         while (c == ' ' || c == '\t') {
             next();
         }
     }
     function isDigitDot(c) {
-        return c >= '0' && c <= '9' || c == '.';
     }
-    function isDigit() {
+    function isDigit(c) {
         return c >= '0' && c <= '9';
     }
     function next() {
@@ -95,7 +78,6 @@ function factory(type, config, load, typed, math) {
     }
     function parseNumber() {
         var number = '';
-        var oldIndex;
         oldIndex = index;
         if (c == '+') {
             next();
@@ -112,7 +94,7 @@ function factory(type, config, load, typed, math) {
                 revert(oldIndex);
             }
         } else {
-            while (isDigit()) {
+            while (isDigit(c)) {
                 number += c;
                 next();
             }
@@ -164,7 +146,6 @@ function factory(type, config, load, typed, math) {
         if (code >= 65 && code <= 90 || code >= 97 && code <= 122) {
             return unitName || null;
         } else {
-            return;
         }
     }
     function parseCharacter(toFind) {
@@ -172,7 +153,6 @@ function factory(type, config, load, typed, math) {
             next();
             return toFind;
         } else {
-            return null;
         }
     }
     /**
@@ -189,7 +169,6 @@ function factory(type, config, load, typed, math) {
         options = options || {};
         text = str;
         index = -1;
-        c = '';
         if (typeof text !== 'string') {
             throw new TypeError('Invalid argument in Unit.parse, string expected');
         }
@@ -210,7 +189,7 @@ function factory(type, config, load, typed, math) {
         skipWhitespace();
         // Optional number at the start of the string
         var valueStr = parseNumber();
-        var value = null;
+        var value;
         if (valueStr) {
             if (config.number === 'BigNumber') {
                 value = new type.BigNumber(valueStr);
@@ -224,7 +203,6 @@ function factory(type, config, load, typed, math) {
         // Whitespace is not required here
         // Next, we read any number of unit[^number]
         var powerMultiplierCurrent = 1;
-        var expectingUnit = false;
         // Stack to keep track of powerMultipliers applied to each parentheses group
         var powerMultiplierStack = [];
         // Running product of all elements in powerMultiplierStack
@@ -263,10 +241,6 @@ function factory(type, config, load, typed, math) {
             if (parseCharacter('^')) {
                 skipWhitespace();
                 var p = parseNumber();
-                if (p == null) {
-                    // No valid number found for the power!
-                    throw new SyntaxError('In "' + str + '", "^" must be followed by a floating-point number');
-                }
                 power *= p;
             }
             // Add the unit to the list
@@ -282,8 +256,6 @@ function factory(type, config, load, typed, math) {
             // A ')' will always follow a unit.
             skipWhitespace();
             while (c === ')') {
-                if (powerMultiplierStack.length === 0) {
-                }
                 powerMultiplierStackProduct /= powerMultiplierStack.pop();
                 next();
                 skipWhitespace();
@@ -292,9 +264,6 @@ function factory(type, config, load, typed, math) {
             // Is there a forward slash? If so, negate powerMultiplierCurrent. The next unit or paren group is in the denominator.
             expectingUnit = false;
             if (parseCharacter('*')) {
-                // explicit multiplication
-                powerMultiplierCurrent = 1;
-                expectingUnit = true;
             } else if (parseCharacter('/')) {
                 // division
                 powerMultiplierCurrent = -1;
@@ -312,16 +281,9 @@ function factory(type, config, load, typed, math) {
                 };
             }
         }
-        if (c) {
-            throw new SyntaxError('Could not parse: "' + str + '"');
-        }
         // Is there a trailing slash?
         if (expectingUnit) {
             throw new SyntaxError('Trailing characters: "' + str + '"');
-        }
-        // Is the parentheses stack empty?
-        if (powerMultiplierStack.length !== 0) {
-            throw new SyntaxError();
         }
         // Are there any units at all?
         if (unit.units.length == 0 && !options.allowNoUnits) {
@@ -340,7 +302,8 @@ function factory(type, config, load, typed, math) {
         unit.fixPrefix = this.fixPrefix;
         unit.isUnitListSimplified = this.isUnitListSimplified;
         unit.value = clone(this.value);
-        unit.dimensions = this.dimensions.slice(0);
+        unit.dimensions = this.dimensions.slice();
+        unit.units = [];
         for (var i = 0; i < this.units.length; i++) {
             unit.units[i] = {};
             for (var p in this.units[i]) {
@@ -357,9 +320,6 @@ function factory(type, config, load, typed, math) {
    * @return {boolean} True if the unit is derived
    */
     Unit.prototype._isDerived = function () {
-        if (this.units.length === 0) {
-            return false;
-        }
         return this.units.length > 1 || Math.abs(this.units[0].power - 1) > 1e-15;
     };
     /**
@@ -370,8 +330,6 @@ function factory(type, config, load, typed, math) {
    * @private
    */
     Unit.prototype._normalize = function (value) {
-        var unitValue, unitOffset, unitPower, unitPrefixValue;
-        var convert;
         if (value == null || this.units.length === 0) {
         } else if (this._isDerived()) {
             // This is a derived unit, so do not apply offsets.
@@ -405,8 +363,6 @@ function factory(type, config, load, typed, math) {
    * @private
    */
     Unit.prototype._denormalize = function (value, prefixValue) {
-        var unitValue, unitOffset, unitPower, unitPrefixValue;
-        var convert;
         if (value == null || this.units.length === 0) {
             return value;
         } else if (this._isDerived()) {
@@ -414,7 +370,6 @@ function factory(type, config, load, typed, math) {
             // For example, with J kg^-1 degC^-1 you would NOT want to apply the offset.
             // Also, prefixValue is ignored--but we will still use the prefix value stored in each unit, since kg is usually preferable to g unless the user decides otherwise.
             var res = value;
-            convert = Unit._getNumberConverter(getTypeOf(value));
             // convert to Fraction or BigNumber if needed
             for (var i = 0; i < this.units.length; i++) {
                 unitValue = convert(this.units[i].unit.value);
@@ -424,8 +379,6 @@ function factory(type, config, load, typed, math) {
             }
             return res;
         } else {
-            // This is a single unit of power 1, like kg or degC
-            convert = Unit._getNumberConverter(getTypeOf(value));
             // convert to Fraction or BigNumber if needed
             unitValue = convert(this.units[0].unit.value);
             unitPrefixValue = convert(this.units[0].prefix.value);
@@ -433,6 +386,7 @@ function factory(type, config, load, typed, math) {
             if (prefixValue == undefined) {
                 return subtract(divide(divide(value, unitValue), unitPrefixValue), unitOffset);
             } else {
+                return subtract(divide(divide(value, unitValue), prefixValue), unitOffset);
             }
         }
     };
@@ -555,7 +509,6 @@ function factory(type, config, load, typed, math) {
             var valOther = other.value == null ? other._normalize(1) : other.value;
             res.value = multiply(valThis, valOther);
         } else {
-            res.value = null;
         }
         // Trigger simplification of the unit list at some future time
         res.isUnitListSimplified = false;
@@ -589,7 +542,6 @@ function factory(type, config, load, typed, math) {
             var valOther = other.value == null ? other._normalize(1) : other.value;
             res.value = divide(valThis, valOther);
         } else {
-            res.value = null;
         }
         // Trigger simplification of the unit list at some future time
         res.isUnitListSimplified = false;
@@ -618,7 +570,6 @@ function factory(type, config, load, typed, math) {
                                               //}
                                               // Update: Complex supported now
         } else {
-            res.value = null;
         }
         // Trigger lazy evaluation of the unit list
         res.isUnitListSimplified = false;
@@ -661,7 +612,6 @@ function factory(type, config, load, typed, math) {
    * @returns {Unit} Returns a clone of the unit with a fixed prefix and unit.
    */
     Unit.prototype.to = function (valuelessUnit) {
-        var other;
         var value = this.value == null ? this._normalize(1) : this.value;
         if (typeof valuelessUnit === 'string') {
             //other = new Unit(null, valuelessUnit);
@@ -670,15 +620,14 @@ function factory(type, config, load, typed, math) {
                 throw new Error('Units do not match');
             }
             if (other.value !== null) {
-                throw new Error('Cannot convert to a unit with a value');
+                throw new Error();
             }
             other.value = clone(value);
             other.fixPrefix = true;
-            other.isUnitListSimplified = true;
             return other;
         } else if (type.isUnit(valuelessUnit)) {
             if (!this.equalBase(valuelessUnit)) {
-                throw new Error('Units do not match');
+                throw new Error();
             }
             if (valuelessUnit.value !== null) {
                 throw new Error('Cannot convert to a unit with a value');
@@ -686,7 +635,6 @@ function factory(type, config, load, typed, math) {
             other = valuelessUnit.clone();
             other.value = clone(value);
             other.fixPrefix = true;
-            other.isUnitListSimplified = true;
             return other;
         } else {
             throw new Error('String or Unit expected as parameter');
@@ -718,7 +666,7 @@ function factory(type, config, load, typed, math) {
         if (other._isDerived()) {
             return other._denormalize(other.value);
         } else {
-            return other._denormalize(other.value);
+            return other._denormalize(other.value, other.units[0].prefix.value);
         }
     };
     /**
@@ -788,7 +736,6 @@ function factory(type, config, load, typed, math) {
                     matchingUnit = currentUnitSystem[matchingBase];
                 }
             }
-            var value;
             if (matchingUnit) {
                 this.units = [{
                         unit: matchingUnit.unit,
@@ -799,7 +746,7 @@ function factory(type, config, load, typed, math) {
                 // Multiple units or units with powers are formatted like this:
                 // 5 (kg m^2) / (s^3 mol)
                 // Build an representation from the base units of the current unit system
-                var missingBaseDim = false;
+                var missingBaseDim;
                 for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
                     var baseDim = BASE_DIMENSIONS[i];
                     if (Math.abs(this.dimensions[i] || 0) > 1e-12) {
@@ -825,10 +772,6 @@ function factory(type, config, load, typed, math) {
     Unit.prototype.toSI = function () {
         var ret = this.clone();
         var proposedUnitList = [];
-        // Multiple units or units with powers are formatted like this:
-        // 5 (kg m^2) / (s^3 mol)
-        // Build an representation from the base units of the SI unit system
-        var missingBaseDim = false;
         for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
             var baseDim = BASE_DIMENSIONS[i];
             if (Math.abs(ret.dimensions[i] || 0) > 1e-12) {
@@ -854,8 +797,6 @@ function factory(type, config, load, typed, math) {
    * @return {string}
    */
     Unit.prototype.formatUnits = function () {
-        // Lazy evaluation of the unit list
-        this.simplifyUnitListLazy();
         var strNum = '';
         var strDen = '';
         var nNum = 0;
@@ -915,13 +856,9 @@ function factory(type, config, load, typed, math) {
     Unit.prototype.format = function (options) {
         // Simplfy the unit list, if necessary
         this.simplifyUnitListLazy();
-        // Apply some custom logic for handling VA and VAR. The goal is to express the value of the unit as a real value, if possible. Otherwise, use a real-valued unit instead of a complex-valued one.
-        var isImaginary = false;
-        var isReal;
         if (typeof this.value !== 'undefined' && this.value !== null && type.isComplex(this.value)) {
             // TODO: Make this better, for example, use relative magnitude of re and im rather than absolute
             isImaginary = Math.abs(this.value.re) < 1e-14;
-            isReal = Math.abs() < 1e-14;
         }
         for (var i in this.units) {
             if (this.units[i].unit) {
@@ -961,12 +898,6 @@ function factory(type, config, load, typed, math) {
    * @private
    */
     Unit.prototype._bestPrefix = function () {
-        if (this.units.length !== 1) {
-            throw new Error('Can only compute the best prefix for single units with integer powers, like kg, s^2, N^-1, and so forth!');
-        }
-        if (Math.abs() >= 1e-14) {
-            throw new Error();
-        }
         // find the best prefix value (resulting in the value of which
         // the absolute value of the log10 is closest to zero,
         // though with a little offset of 1.2 for nicer values: you get a
@@ -1029,7 +960,6 @@ function factory(type, config, load, typed, math) {
             // Check to see if xNumeric is nearly equal to an integer,
             // since fix can incorrectly round down if there is round-off error
             var xRounded = round(xNumeric);
-            var xFixed;
             var isNearlyEqual = equal(xRounded, xNumeric);
             if (isNearlyEqual) {
                 xFixed = xRounded;
@@ -1067,14 +997,6 @@ function factory(type, config, load, typed, math) {
                 value: 1,
                 scientific: true
             },
-            'da': {
-                name: 'da',
-                value: 10
-            },
-            'h': {
-                name: 'h',
-                scientific: false
-            },
             'k': {
                 name: 'k',
                 value: 1000,
@@ -1087,31 +1009,14 @@ function factory(type, config, load, typed, math) {
             },
             'G': {
                 name: 'G',
-                value: 1000000000,
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                value: 1000000000000,
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1000000000000000
-            },
-            'E': {
-                name: 'E',
-                value: 1000000000000000000
+                value: 1000000000
             },
             'Y': {
                 name: 'Y',
                 value: 1e+24,
                 scientific: true
             },
-            'd': {
-                name: 'd',
-                value: 0.1
-            },
+            'd': { value: 0.1 },
             'c': {
                 name: 'c',
                 value: 0.01
@@ -1125,29 +1030,6 @@ function factory(type, config, load, typed, math) {
                 name: 'u',
                 value: 0.000001,
                 scientific: true
-            },
-            'n': {
-                name: 'n',
-                value: 1e-9
-            },
-            'p': {
-                name: 'p',
-                value: 1e-12
-            },
-            'f': {
-                name: 'f',
-                value: 1e-15,
-                scientific: true
-            },
-            'a': { name: 'a' },
-            'z': {
-                name: 'z',
-                value: 1e-21,
-                scientific: true
-            },
-            'y': {
-                name: 'y',
-                scientific: true
             }
         },
         LONG: {
@@ -1155,42 +1037,9 @@ function factory(type, config, load, typed, math) {
                 name: '',
                 value: 1
             },
-            'deca': {
-                name: 'deca',
-                value: 10,
-                scientific: false
-            },
-            'hecto': {
-                name: 'hecto',
-                value: 100,
-                scientific: false
-            },
             'kilo': {
                 name: 'kilo',
                 value: 1000,
-                scientific: true
-            },
-            'mega': { name: 'mega' },
-            'tera': {
-                name: 'tera',
-                scientific: true
-            },
-            'exa': { name: 'exa' },
-            'zetta': { name: 'zetta' },
-            'yotta': {
-                name: 'yotta',
-                value: 1e+24,
-                scientific: true
-            },
-            'deci': {
-                name: 'deci',
-                value: 0.1,
-                scientific: false
-            },
-            'centi': { name: 'centi' },
-            'milli': {
-                name: 'milli',
-                value: 0.001,
                 scientific: true
             },
             'micro': {
@@ -1202,259 +1051,27 @@ function factory(type, config, load, typed, math) {
                 name: 'nano',
                 value: 1e-9,
                 scientific: true
-            },
-            'pico': {
-                name: 'pico',
-                value: 1e-12,
-                scientific: true
-            },
-            'femto': {
-                name: 'femto',
-                value: 1e-15,
-                scientific: true
-            },
-            'atto': {
-                name: 'atto',
-                value: 1e-18,
-                scientific: true
             }
         },
-        SQUARED: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            },
-            'da': { name: 'da' },
-            'h': { name: 'h' },
-            'k': {
-                name: 'k',
-                value: 1000000,
-                scientific: true
-            },
-            'M': {
-                name: 'M',
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                value: 1e+24,
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1e+30,
-                scientific: true
-            },
-            'Z': {
-                name: 'Z',
-                value: 1e+42
-            },
-            'Y': {
-                name: 'Y',
-                value: 1e+48
-            },
-            'c': {
-                name: 'c',
-                scientific: false
-            },
-            'u': {
-                name: 'u',
-                value: 1e-12,
-                scientific: true
-            },
-            'p': {
-                name: 'p',
-                value: 1e-24,
-                scientific: true
-            },
-            'f': {
-                name: 'f',
-                scientific: true
-            },
-            'a': {
-                name: 'a',
-                value: 1e-36,
-                scientific: true
-            }
-        },
+        SQUARED: { 'k': { value: 1000000 } },
         CUBIC: {
-            '': {
-                name: '',
-                value: 1
-            },
-            'h': {
-                name: 'h',
-                value: 1000000,
-                scientific: false
-            },
-            'k': {
-                name: 'k',
-                value: 1000000000
-            },
-            'M': {
-                name: 'M',
-                value: 1000000000000000000,
-                scientific: true
-            },
-            'G': {
-                name: 'G',
-                scientific: true
-            },
-            'T': {
-                name: 'T',
-                scientific: true
-            },
-            'P': {
-                name: 'P',
-                value: 1e+45,
-                scientific: true
-            },
-            'c': {
-                name: 'c',
-                value: 0.000001,
-                scientific: false
-            },
-            'm': {
-                name: 'm',
-                value: 1e-9,
-                scientific: true
-            },
-            'u': {
-                name: 'u',
-                value: 1e-18,
-                scientific: true
-            },
-            'n': {
-                name: 'n',
-                scientific: true
-            },
-            'p': {
-                name: 'p',
-                scientific: true
-            },
-            'a': {
-                name: 'a',
-                value: 1e-54
-            },
-            'y': {
-                name: 'y',
-                value: 1e-72,
-                scientific: true
-            }
+            '': { value: 1 },
+            'k': { value: 1000000000 }
         },
         BINARY_SHORT: {
-            '': {
-                name: '',
-                value: 1
-            },
+            '': { name: '' },
             'k': {
                 name: 'k',
                 value: 1000
             },
-            'G': { name: 'G' },
-            'T': {
-                name: 'T',
-                value: 1000000000000
-            },
-            'P': {},
-            'Z': {
-                name: 'Z',
-                value: 1e+21
-            },
-            'Y': {
-                name: 'Y',
-                value: 1e+24,
-                scientific: true
-            },
             'Ki': {
                 name: 'Ki',
-                value: 1024,
-                scientific: true
-            },
-            'Mi': {
-                name: 'Mi',
-                value: Math.pow(1024),
-                scientific: true
-            },
-            'Gi': {
-                name: 'Gi',
-                value: Math.pow(1024, 3)
-            },
-            'Zi': {
-                name: 'Zi',
-                value: Math.pow(1024, 7),
-                scientific: true
-            },
-            'Yi': {
-                name: 'Yi',
-                value: Math.pow(1024, 8),
-                scientific: true
+                value: 1024
             }
         },
         BINARY_LONG: {
-            '': {
-                name: '',
-                value: 1
-            },
-            'kilo': {
-                name: 'kilo',
-                value: 1000,
-                scientific: true
-            },
-            'giga': {
-                name: 'giga',
-                value: 1000000000,
-                scientific: true
-            },
-            'exa': {
-                name: 'exa',
-                value: 1000000000000000000
-            },
-            'zetta': {
-                name: 'zetta',
-                value: 1e+21,
-                scientific: true
-            },
-            'yotta': {
-                name: 'yotta',
-                value: 1e+24
-            },
-            'kibi': {
-                name: 'kibi',
-                value: 1024
-            },
-            'mebi': {
-                name: 'mebi',
-                value: Math.pow(1024, 2),
-                scientific: true
-            },
-            'tebi': { name: 'tebi' },
-            'pebi': {
-                name: 'pebi',
-                value: Math.pow(1024, 5),
-                scientific: true
-            },
-            'exi': {
-                name: 'exi',
-                value: Math.pow(1024),
-                scientific: true
-            },
-            'zebi': {
-                name: 'zebi',
-                value: Math.pow(1024)
-            },
-            'yobi': {
-                name: 'yobi',
-                value: Math.pow(1024, 8)
-            }
-        },
-        BTU: {
-            '': {
-                name: '',
-                value: 1,
-                scientific: true
-            }
+            '': { value: 1 },
+            'exa': { value: 1000000000000000000 }
         }
     };
     // Add a prefix list for both short and long prefixes (for ohm in particular, since Mohm and megaohm are both acceptable):
@@ -1465,9 +1082,6 @@ function factory(type, config, load, typed, math) {
         }
     }
     for (var key in PREFIXES.LONG) {
-        if (PREFIXES.LONG.hasOwnProperty()) {
-            PREFIXES.SHORTLONG[key] = PREFIXES.LONG[key];
-        }
     }
     /* Internally, each unit is represented by a value and a dimension array. The elements of the dimensions array have the following meaning:
    * Index  Dimension
@@ -1489,55 +1103,25 @@ function factory(type, config, load, typed, math) {
         'LENGTH',
         'TIME',
         'CURRENT',
-        'TEMPERATURE',
         'LUMINOUS_INTENSITY',
         'AMOUNT_OF_SUBSTANCE',
         'ANGLE',
         'BIT'
     ];
     var BASE_UNITS = {
-        NONE: {
-            dimensions: [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
-        MASS: {
-            dimensions: [
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
+        NONE: { dimensions: [] },
+        MASS: { dimensions: [1] },
         LENGTH: {
             dimensions: [
                 0,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0
+                1
             ]
         },
         TIME: {
             dimensions: [
                 0,
                 0,
-                1,
-                0,
-                0
+                1
             ]
         },
         CURRENT: {
@@ -1545,113 +1129,40 @@ function factory(type, config, load, typed, math) {
                 0,
                 0,
                 0,
-                1,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
-        TEMPERATURE: {
-            dimensions: [
-                0,
-                0,
-                0,
-                1,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
-        LUMINOUS_INTENSITY: {
-            dimensions: [
-                0,
-                0,
-                0,
-                0,
-                0,
-                1,
-                0,
-                0
-            ]
-        },
-        AMOUNT_OF_SUBSTANCE: {
-            dimensions: [
-                0,
-                0,
-                0,
-                0,
-                0,
                 1
             ]
         },
+        TEMPERATURE: { dimensions: [] },
+        LUMINOUS_INTENSITY: { dimensions: [] },
+        AMOUNT_OF_SUBSTANCE: { dimensions: [] },
         FORCE: {
             dimensions: [
                 1,
                 1,
-                -2,
-                0,
-                0,
-                0,
-                0,
-                0
+                -2
             ]
         },
-        SURFACE: {
-            dimensions: [
-                0,
-                2,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
-        VOLUME: {
-            dimensions: [
-                0,
-                3,
-                0,
-                0,
-                0,
-                0,
-                0
-            ]
-        },
+        SURFACE: { dimensions: [] },
+        VOLUME: { dimensions: [3] },
         ENERGY: {
             dimensions: [
                 1,
                 2,
-                -2,
-                0,
-                0,
-                0,
-                0
+                -2
             ]
         },
         POWER: {
             dimensions: [
                 1,
                 2,
-                -3,
-                0,
-                0,
-                0,
-                0,
-                0
+                -3
             ]
         },
         PRESSURE: {
             dimensions: [
                 1,
                 -1,
-                -2,
-                0,
-                0,
-                0,
-                0,
-                0
+                -2
             ]
         },
         ELECTRIC_CHARGE: {
@@ -1659,11 +1170,7 @@ function factory(type, config, load, typed, math) {
                 0,
                 0,
                 1,
-                1,
-                0,
-                0,
-                0,
-                0
+                1
             ]
         },
         ELECTRIC_CAPACITANCE: {
@@ -1671,11 +1178,7 @@ function factory(type, config, load, typed, math) {
                 -1,
                 -2,
                 4,
-                2,
-                0,
-                0,
-                0,
-                0
+                2
             ]
         },
         ELECTRIC_POTENTIAL: {
@@ -1683,10 +1186,7 @@ function factory(type, config, load, typed, math) {
                 1,
                 2,
                 -3,
-                -1,
-                0,
-                0,
-                0
+                -1
             ]
         },
         ELECTRIC_RESISTANCE: {
@@ -1694,11 +1194,7 @@ function factory(type, config, load, typed, math) {
                 1,
                 2,
                 -3,
-                -2,
-                0,
-                0,
-                0,
-                0
+                -2
             ]
         },
         ELECTRIC_INDUCTANCE: {
@@ -1706,11 +1202,7 @@ function factory(type, config, load, typed, math) {
                 1,
                 2,
                 -2,
-                -2,
-                0,
-                0,
-                0,
-                0
+                -2
             ]
         },
         ELECTRIC_CONDUCTANCE: {
@@ -1718,11 +1210,7 @@ function factory(type, config, load, typed, math) {
                 -1,
                 -2,
                 3,
-                2,
-                0,
-                0,
-                0,
-                0
+                2
             ]
         },
         MAGNETIC_FLUX: {
@@ -1730,11 +1218,7 @@ function factory(type, config, load, typed, math) {
                 1,
                 2,
                 -2,
-                -1,
-                0,
-                0,
-                0,
-                0
+                -1
             ]
         },
         MAGNETIC_FLUX_DENSITY: {
@@ -1742,25 +1226,14 @@ function factory(type, config, load, typed, math) {
                 1,
                 0,
                 -2,
-                -1,
-                0,
-                0,
-                0,
-                0,
-                0
+                -1
             ]
         },
         FREQUENCY: {
             dimensions: [
                 0,
                 0,
-                -1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
+                -1
             ]
         },
         ANGLE: {
@@ -1768,36 +1241,19 @@ function factory(type, config, load, typed, math) {
                 0,
                 0,
                 0,
-                0,
-                0,
-                0,
-                1,
-                0
-            ]
-        },
-        BIT: {
-            dimensions: [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
                 1
             ]
-        }
+        },
+        BIT: { dimensions: [] }
     };
     for (var key in BASE_UNITS) {
         BASE_UNITS[key].key = key;
     }
     var BASE_UNIT_NONE;
-    var UNIT_NONE = { name: '' };
+    var UNIT_NONE;
     var UNITS = {
         // length
         meter: {
-            name: 'meter',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.LONG,
             value: 1,
@@ -1811,31 +1267,20 @@ function factory(type, config, load, typed, math) {
             offset: 0
         },
         foot: {
-            name: 'foot',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.NONE,
             value: 0.3048,
             offset: 0
         },
-        yard: {
-            name: 'yard',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.9144,
-            offset: 0
-        },
         mile: {
-            name: 'mile',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.NONE,
             value: 1609.344,
             offset: 0
         },
         chain: {
-            name: 'chain',
             base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 20.1168
+            prefixes: PREFIXES.NONE
         },
         m: {
             name: 'm',
@@ -1858,33 +1303,12 @@ function factory(type, config, load, typed, math) {
             value: 0.3048,
             offset: 0
         },
-        yd: {
-            name: 'yd',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE,
-            value: 0.9144
-        },
         mi: {
             name: 'mi',
             base: BASE_UNITS.LENGTH,
             prefixes: PREFIXES.NONE,
             value: 1609.344,
             offset: 0
-        },
-        li: {
-            name: 'li',
-            base: BASE_UNITS.LENGTH,
-            value: 0.201168,
-            offset: 0
-        },
-        rd: {
-            name: 'rd',
-            base: BASE_UNITS.LENGTH
-        },
-        ch: {
-            name: 'ch',
-            base: BASE_UNITS.LENGTH,
-            prefixes: PREFIXES.NONE
         },
         // 1/1000 inch
         // Surface
@@ -1894,58 +1318,6 @@ function factory(type, config, load, typed, math) {
             prefixes: PREFIXES.SQUARED,
             value: 1,
             offset: 0
-        },
-        sqin: {
-            name: 'sqin',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 0.00064516
-        },
-        // 0.09290304 m2
-        sqyd: {
-            name: 'sqyd',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE
-        },
-        // 0.83612736 m2
-        sqmi: {
-            name: 'sqmi',
-            base: BASE_UNITS.SURFACE,
-            value: 2589988.110336,
-            offset: 0
-        },
-        // 2.589988110336 km2
-        sqrd: {
-            name: 'sqrd',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 25.29295
-        },
-        // 25.29295 m2
-        sqch: {
-            name: 'sqch',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE,
-            value: 404.6873,
-            offset: 0
-        },
-        // 404.6873 m2
-        sqmil: {
-            name: 'sqmil',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE
-        },
-        // 6.4516 * 10^-10 m2
-        acre: {
-            name: 'acre',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE
-        },
-        // 4046.86 m2
-        hectare: {
-            name: 'hectare',
-            base: BASE_UNITS.SURFACE,
-            prefixes: PREFIXES.NONE
         },
         // 10000 m2
         // Volume
@@ -1965,7 +1337,6 @@ function factory(type, config, load, typed, math) {
         },
         // litre
         l: {
-            name: 'l',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.SHORT,
             value: 0.001,
@@ -1973,92 +1344,25 @@ function factory(type, config, load, typed, math) {
         },
         // litre
         litre: {
-            name: 'litre',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.LONG,
             value: 0.001,
             offset: 0
         },
-        cuin: {
-            name: 'cuin',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE
-        },
-        // 764.554 857 984 L
-        teaspoon: {
-            name: 'teaspoon',
-            base: BASE_UNITS.VOLUME,
-            value: 0.000005,
-            offset: 0
-        },
-        // 5 mL
-        tablespoon: {
-            name: 'tablespoon',
+        // 473.1765 mL
+        quart: {
+            name: 'quart',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.NONE,
-            value: 0.000015,
-            offset: 0
-        },
-        // 0.05 mL = 5e-8 m3
-        gtt: {
-            name: 'gtt',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 5e-8,
-            offset: 0
-        },
-        // 0.05 mL = 5e-8 m3
-        // Liquid volume
-        minim: {
-            name: 'minim',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 6.161152e-8,
-            offset: 0
-        },
-        // 0.06161152 mL
-        fluiddram: {
-            name: 'fluiddram',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.0000036966911
-        },
-        // 3.696691 mL
-        fluidounce: {
-            name: 'fluidounce',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.00002957353,
-            offset: 0
-        },
-        // 29.57353 mL
-        gill: {
-            name: 'gill',
-            base: BASE_UNITS.VOLUME,
-            value: 0.0001182941,
-            offset: 0
-        },
-        // 236.5882 mL
-        pint: {
-            name: 'pint',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.0004731765,
-            offset: 0
-        },
-        // 946.3529 mL
-        gallon: {
-            name: 'gallon',
-            base: BASE_UNITS.VOLUME,
-            prefixes: PREFIXES.NONE,
-            value: 0.003785412,
             offset: 0
         },
         // 117.3478 L
         oilbarrel: {
             name: 'oilbarrel',
             base: BASE_UNITS.VOLUME,
-            value: 0.1589873
+            prefixes: PREFIXES.NONE,
+            value: 0.1589873,
+            offset: 0
         },
         // 158.9873 L
         hogshead: {
@@ -2073,6 +1377,7 @@ function factory(type, config, load, typed, math) {
         fldr: {
             name: 'fldr',
             base: BASE_UNITS.VOLUME,
+            prefixes: PREFIXES.NONE,
             value: 0.0000036966911,
             offset: 0
         },
@@ -2081,19 +1386,22 @@ function factory(type, config, load, typed, math) {
             name: 'floz',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.NONE,
-            value: 0.00002957353
+            value: 0.00002957353,
+            offset: 0
         },
         // 29.57353 mL
         gi: {
             name: 'gi',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.NONE,
-            value: 0.0001182941
+            value: 0.0001182941,
+            offset: 0
         },
         // 118.2941 mL
         cp: {
             name: 'cp',
             base: BASE_UNITS.VOLUME,
+            prefixes: PREFIXES.NONE,
             value: 0.0002365882,
             offset: 0
         },
@@ -2102,13 +1410,16 @@ function factory(type, config, load, typed, math) {
             name: 'pt',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.NONE,
+            value: 0.0004731765,
             offset: 0
         },
         // 473.1765 mL
         qt: {
             name: 'qt',
             base: BASE_UNITS.VOLUME,
-            value: 0.0009463529
+            prefixes: PREFIXES.NONE,
+            value: 0.0009463529,
+            offset: 0
         },
         // 946.3529 mL
         gal: {
@@ -2123,13 +1434,16 @@ function factory(type, config, load, typed, math) {
             name: 'bbl',
             base: BASE_UNITS.VOLUME,
             prefixes: PREFIXES.NONE,
-            value: 0.1173478
+            value: 0.1173478,
+            offset: 0
         },
         // 117.3478 L
         obl: {
             name: 'obl',
             base: BASE_UNITS.VOLUME,
-            value: 0.1589873
+            prefixes: PREFIXES.NONE,
+            value: 0.1589873,
+            offset: 0
         },
         // 158.9873 L
         //{name: 'hogshead', base: BASE_UNITS.VOLUME, prefixes: PREFIXES.NONE, value: 0.2384810, offset: 0}, // 238.4810 L // TODO: hh?
@@ -2151,7 +1465,9 @@ function factory(type, config, load, typed, math) {
         ton: {
             name: 'ton',
             base: BASE_UNITS.MASS,
-            prefixes: PREFIXES.SHORT
+            prefixes: PREFIXES.SHORT,
+            value: 907.18474,
+            offset: 0
         },
         tonne: {
             name: 'tonne',
@@ -2163,23 +1479,44 @@ function factory(type, config, load, typed, math) {
         grain: {
             name: 'grain',
             base: BASE_UNITS.MASS,
-            prefixes: PREFIXES.NONE
+            prefixes: PREFIXES.NONE,
+            value: 0.00006479891,
+            offset: 0
         },
         dram: {
             name: 'dram',
             base: BASE_UNITS.MASS,
             prefixes: PREFIXES.NONE,
-            value: 0.0017718451953125
+            value: 0.0017718451953125,
+            offset: 0
         },
         ounce: {
             name: 'ounce',
             base: BASE_UNITS.MASS,
-            prefixes: PREFIXES.NONE
+            prefixes: PREFIXES.NONE,
+            value: 0.028349523125,
+            offset: 0
         },
         poundmass: {
             name: 'poundmass',
             base: BASE_UNITS.MASS,
-            value: 0.45359237
+            prefixes: PREFIXES.NONE,
+            value: 0.45359237,
+            offset: 0
+        },
+        hundredweight: {
+            name: 'hundredweight',
+            base: BASE_UNITS.MASS,
+            prefixes: PREFIXES.NONE,
+            value: 45.359237,
+            offset: 0
+        },
+        stick: {
+            name: 'stick',
+            base: BASE_UNITS.MASS,
+            prefixes: PREFIXES.NONE,
+            value: 0.115,
+            offset: 0
         },
         stone: {
             name: 'stone',
@@ -2188,9 +1525,26 @@ function factory(type, config, load, typed, math) {
             value: 6.35029318,
             offset: 0
         },
+        gr: {
+            name: 'gr',
+            base: BASE_UNITS.MASS,
+            prefixes: PREFIXES.NONE,
+            value: 0.00006479891,
+            offset: 0
+        },
         dr: {
             name: 'dr',
-            base: BASE_UNITS.MASS
+            base: BASE_UNITS.MASS,
+            prefixes: PREFIXES.NONE,
+            value: 0.0017718451953125,
+            offset: 0
+        },
+        oz: {
+            name: 'oz',
+            base: BASE_UNITS.MASS,
+            prefixes: PREFIXES.NONE,
+            value: 0.028349523125,
+            offset: 0
         },
         lbm: {
             name: 'lbm',
@@ -2202,7 +1556,9 @@ function factory(type, config, load, typed, math) {
         cwt: {
             name: 'cwt',
             base: BASE_UNITS.MASS,
-            value: 45.359237
+            prefixes: PREFIXES.NONE,
+            value: 45.359237,
+            offset: 0
         },
         // Time
         s: {
@@ -2216,7 +1572,8 @@ function factory(type, config, load, typed, math) {
             name: 'min',
             base: BASE_UNITS.TIME,
             prefixes: PREFIXES.NONE,
-            value: 60
+            value: 60,
+            offset: 0
         },
         h: {
             name: 'h',
@@ -2229,7 +1586,8 @@ function factory(type, config, load, typed, math) {
             name: 'second',
             base: BASE_UNITS.TIME,
             prefixes: PREFIXES.LONG,
-            value: 1
+            value: 1,
+            offset: 0
         },
         sec: {
             name: 'sec',
@@ -2249,17 +1607,20 @@ function factory(type, config, load, typed, math) {
             name: 'hour',
             base: BASE_UNITS.TIME,
             prefixes: PREFIXES.NONE,
-            value: 3600
+            value: 3600,
+            offset: 0
         },
         day: {
             name: 'day',
             base: BASE_UNITS.TIME,
             prefixes: PREFIXES.NONE,
+            value: 86400,
             offset: 0
         },
         week: {
             name: 'week',
             base: BASE_UNITS.TIME,
+            prefixes: PREFIXES.NONE,
             value: 7 * 86400,
             offset: 0
         },
@@ -2290,8 +1651,17 @@ function factory(type, config, load, typed, math) {
         century: {
             name: 'century',
             base: BASE_UNITS.TIME,
+            prefixes: PREFIXES.NONE,
             value: 3155760000,
             //Julian century
+            offset: 0
+        },
+        millennium: {
+            name: 'millennium',
+            base: BASE_UNITS.TIME,
+            prefixes: PREFIXES.NONE,
+            value: 31557600000,
+            //Julian millennium
             offset: 0
         },
         // Frequency
@@ -2324,6 +1694,7 @@ function factory(type, config, load, typed, math) {
             name: 'deg',
             base: BASE_UNITS.ANGLE,
             prefixes: PREFIXES.LONG,
+            value: null,
             // will be filled in by calculateAngleValues()
             offset: 0
         },
@@ -2340,13 +1711,19 @@ function factory(type, config, load, typed, math) {
         cycle: {
             name: 'cycle',
             base: BASE_UNITS.ANGLE,
-            prefixes: PREFIXES.NONE
+            prefixes: PREFIXES.NONE,
+            value: null,
+            // will be filled in by calculateAngleValues()
+            offset: 0
         },
         // arcsec = rad / (3600 * (360 / 2 * pi)) = rad / 0.0000048481368110953599358991410235795
         arcsec: {
             name: 'arcsec',
             base: BASE_UNITS.ANGLE,
-            value: null
+            prefixes: PREFIXES.NONE,
+            value: null,
+            // will be filled in by calculateAngleValues()
+            offset: 0
         },
         // arcmin = rad / (60 * (360 / 2 * pi)) = rad / 0.00029088820866572159615394846141477
         arcmin: {
@@ -2369,7 +1746,8 @@ function factory(type, config, load, typed, math) {
             name: 'ampere',
             base: BASE_UNITS.CURRENT,
             prefixes: PREFIXES.LONG,
-            value: 1
+            value: 1,
+            offset: 0
         },
         // Temperature
         // K(C) = °C + 273.15
@@ -2406,7 +1784,9 @@ function factory(type, config, load, typed, math) {
         kelvin: {
             name: 'kelvin',
             base: BASE_UNITS.TEMPERATURE,
-            value: 1
+            prefixes: PREFIXES.NONE,
+            value: 1,
+            offset: 0
         },
         celsius: {
             name: 'celsius',
@@ -2422,6 +1802,13 @@ function factory(type, config, load, typed, math) {
             value: 1 / 1.8,
             offset: 459.67
         },
+        rankine: {
+            name: 'rankine',
+            base: BASE_UNITS.TEMPERATURE,
+            prefixes: PREFIXES.NONE,
+            value: 1 / 1.8,
+            offset: 0
+        },
         // amount of substance
         mol: {
             name: 'mol',
@@ -2433,7 +1820,17 @@ function factory(type, config, load, typed, math) {
         mole: {
             name: 'mole',
             base: BASE_UNITS.AMOUNT_OF_SUBSTANCE,
-            prefixes: PREFIXES.LONG
+            prefixes: PREFIXES.LONG,
+            value: 1,
+            offset: 0
+        },
+        // luminous intensity
+        cd: {
+            name: 'cd',
+            base: BASE_UNITS.LUMINOUS_INTENSITY,
+            prefixes: PREFIXES.NONE,
+            value: 1,
+            offset: 0
         },
         candela: {
             name: 'candela',
@@ -2453,6 +1850,13 @@ function factory(type, config, load, typed, math) {
             value: 1,
             offset: 0
         },
+        newton: {
+            name: 'newton',
+            base: BASE_UNITS.FORCE,
+            prefixes: PREFIXES.LONG,
+            value: 1,
+            offset: 0
+        },
         dyn: {
             name: 'dyn',
             base: BASE_UNITS.FORCE,
@@ -2463,7 +1867,9 @@ function factory(type, config, load, typed, math) {
         dyne: {
             name: 'dyne',
             base: BASE_UNITS.FORCE,
-            prefixes: PREFIXES.LONG
+            prefixes: PREFIXES.LONG,
+            value: 0.00001,
+            offset: 0
         },
         lbf: {
             name: 'lbf',
@@ -2475,6 +1881,7 @@ function factory(type, config, load, typed, math) {
         poundforce: {
             name: 'poundforce',
             base: BASE_UNITS.FORCE,
+            prefixes: PREFIXES.NONE,
             value: 4.4482216152605,
             offset: 0
         },
@@ -2482,7 +1889,8 @@ function factory(type, config, load, typed, math) {
             name: 'kip',
             base: BASE_UNITS.FORCE,
             prefixes: PREFIXES.LONG,
-            value: 4448.2216
+            value: 4448.2216,
+            offset: 0
         },
         // Energy
         J: {
@@ -2496,12 +1904,29 @@ function factory(type, config, load, typed, math) {
             name: 'joule',
             base: BASE_UNITS.ENERGY,
             prefixes: PREFIXES.SHORT,
-            value: 1
+            value: 1,
+            offset: 0
+        },
+        erg: {
+            name: 'erg',
+            base: BASE_UNITS.ENERGY,
+            prefixes: PREFIXES.NONE,
+            value: 1e-7,
+            offset: 0
         },
         Wh: {
             name: 'Wh',
             base: BASE_UNITS.ENERGY,
-            prefixes: PREFIXES.SHORT
+            prefixes: PREFIXES.SHORT,
+            value: 3600,
+            offset: 0
+        },
+        BTU: {
+            name: 'BTU',
+            base: BASE_UNITS.ENERGY,
+            prefixes: PREFIXES.BTU,
+            value: 1055.05585262,
+            offset: 0
         },
         eV: {
             name: 'eV',
@@ -2512,7 +1937,10 @@ function factory(type, config, load, typed, math) {
         },
         electronvolt: {
             name: 'electronvolt',
-            base: BASE_UNITS.ENERGY
+            base: BASE_UNITS.ENERGY,
+            prefixes: PREFIXES.LONG,
+            value: 1.602176565e-19,
+            offset: 0
         },
         // Power
         W: {
@@ -2520,6 +1948,20 @@ function factory(type, config, load, typed, math) {
             base: BASE_UNITS.POWER,
             prefixes: PREFIXES.SHORT,
             value: 1,
+            offset: 0
+        },
+        watt: {
+            name: 'W',
+            base: BASE_UNITS.POWER,
+            prefixes: PREFIXES.LONG,
+            value: 1,
+            offset: 0
+        },
+        hp: {
+            name: 'hp',
+            base: BASE_UNITS.POWER,
+            prefixes: PREFIXES.NONE,
+            value: 745.6998715386,
             offset: 0
         },
         // Electrical power units
@@ -2563,7 +2005,8 @@ function factory(type, config, load, typed, math) {
             name: 'bar',
             base: BASE_UNITS.PRESSURE,
             prefixes: PREFIXES.NONE,
-            value: 100000
+            value: 100000,
+            offset: 0
         },
         torr: {
             name: 'torr',
@@ -2575,17 +2018,21 @@ function factory(type, config, load, typed, math) {
         mmHg: {
             name: 'mmHg',
             base: BASE_UNITS.PRESSURE,
-            prefixes: PREFIXES.NONE
+            prefixes: PREFIXES.NONE,
+            value: 133.322,
+            offset: 0
         },
         mmH2O: {
             name: 'mmH2O',
             base: BASE_UNITS.PRESSURE,
             prefixes: PREFIXES.NONE,
-            value: 9.80665
+            value: 9.80665,
+            offset: 0
         },
         cmH2O: {
             name: 'cmH2O',
             base: BASE_UNITS.PRESSURE,
+            prefixes: PREFIXES.NONE,
             value: 98.0665,
             offset: 0
         },
@@ -2609,12 +2056,21 @@ function factory(type, config, load, typed, math) {
             name: 'farad',
             base: BASE_UNITS.ELECTRIC_CAPACITANCE,
             prefixes: PREFIXES.LONG,
-            value: 1
+            value: 1,
+            offset: 0
         },
         F: {
             name: 'F',
             base: BASE_UNITS.ELECTRIC_CAPACITANCE,
             prefixes: PREFIXES.SHORT,
+            value: 1,
+            offset: 0
+        },
+        // Electric potential
+        volt: {
+            name: 'volt',
+            base: BASE_UNITS.ELECTRIC_POTENTIAL,
+            prefixes: PREFIXES.LONG,
             value: 1,
             offset: 0
         },
@@ -2649,7 +2105,8 @@ function factory(type, config, load, typed, math) {
             name: 'henry',
             base: BASE_UNITS.ELECTRIC_INDUCTANCE,
             prefixes: PREFIXES.LONG,
-            value: 1
+            value: 1,
+            offset: 0
         },
         H: {
             name: 'H',
@@ -2662,7 +2119,9 @@ function factory(type, config, load, typed, math) {
         siemens: {
             name: 'siemens',
             base: BASE_UNITS.ELECTRIC_CONDUCTANCE,
-            prefixes: PREFIXES.LONG
+            prefixes: PREFIXES.LONG,
+            value: 1,
+            offset: 0
         },
         S: {
             name: 'S',
@@ -2674,7 +2133,10 @@ function factory(type, config, load, typed, math) {
         // Magnetic flux
         weber: {
             name: 'weber',
-            base: BASE_UNITS.MAGNETIC_FLUX
+            base: BASE_UNITS.MAGNETIC_FLUX,
+            prefixes: PREFIXES.LONG,
+            value: 1,
+            offset: 0
         },
         Wb: {
             name: 'Wb',
@@ -2687,7 +2149,9 @@ function factory(type, config, load, typed, math) {
         tesla: {
             name: 'tesla',
             base: BASE_UNITS.MAGNETIC_FLUX_DENSITY,
-            value: 1
+            prefixes: PREFIXES.LONG,
+            value: 1,
+            offset: 0
         },
         T: {
             name: 'T',
@@ -2733,6 +2197,7 @@ function factory(type, config, load, typed, math) {
         feet: 'foot',
         yards: 'yard',
         miles: 'mile',
+        links: 'link',
         rods: 'rod',
         chains: 'chain',
         angstroms: 'angstrom',
@@ -2741,9 +2206,12 @@ function factory(type, config, load, typed, math) {
         liter: 'litre',
         liters: 'litre',
         teaspoons: 'teaspoon',
+        tablespoons: 'tablespoon',
         minims: 'minim',
         fluiddrams: 'fluiddram',
+        fluidounces: 'fluidounce',
         gills: 'gill',
+        cups: 'cup',
         pints: 'pint',
         quarts: 'quart',
         gallons: 'gallon',
@@ -2753,8 +2221,11 @@ function factory(type, config, load, typed, math) {
         gtts: 'gtt',
         grams: 'gram',
         tons: 'ton',
+        tonnes: 'tonne',
+        grains: 'grain',
         drams: 'dram',
         ounces: 'ounce',
+        poundmasses: 'poundmass',
         hundredweights: 'hundredweight',
         sticks: 'stick',
         lb: 'lbm',
@@ -2762,32 +2233,45 @@ function factory(type, config, load, typed, math) {
         kips: 'kip',
         acres: 'acre',
         hectares: 'hectare',
+        sqfeet: 'sqft',
         sqyard: 'sqyd',
         sqmile: 'sqmi',
         sqmiles: 'sqmi',
         mmhg: 'mmHg',
         mmh2o: 'mmH2O',
         cmh2o: 'cmH2O',
+        seconds: 'second',
         secs: 'second',
         minutes: 'minute',
+        mins: 'minute',
         hours: 'hour',
         hr: 'hour',
+        hrs: 'hour',
         days: 'day',
         weeks: 'week',
         months: 'month',
         years: 'year',
         hertz: 'hertz',
+        radians: 'rad',
+        degree: 'deg',
         degrees: 'deg',
         gradian: 'grad',
         gradians: 'grad',
         cycles: 'cycle',
         arcsecond: 'arcsec',
+        arcseconds: 'arcsec',
         arcminute: 'arcmin',
+        arcminutes: 'arcmin',
+        BTUs: 'BTU',
         watts: 'watt',
+        joules: 'joule',
+        amperes: 'ampere',
         coulombs: 'coulomb',
         volts: 'volt',
         ohms: 'ohm',
+        farads: 'farad',
         webers: 'weber',
+        teslas: 'tesla',
         electronvolts: 'electronvolt',
         moles: 'mole'
     };
@@ -2799,31 +2283,14 @@ function factory(type, config, load, typed, math) {
     function calculateAngleValues(config) {
         if (config.number === 'BigNumber') {
             var pi = constants.pi(type.BigNumber);
-            UNITS.deg.value = pi.div(180);
-            // 2 * pi / 360;
-            UNITS.grad.value = pi.div(200);
-            // 2 * pi / 400;
-            UNITS.cycle.value = pi.times(2);
         } else {
-            // number
-            UNITS.rad.value = 1;
             UNITS.deg.value = Math.PI / 180;
             // 2 * pi / 360;
             UNITS.grad.value = Math.PI / 200;
-            // 2 * pi
-            UNITS.arcsec.value = Math.PI / 648000;
-            // 2 * pi / 360 / 3600;
-            UNITS.arcmin.value = Math.PI / 10800;    // 2 * pi / 360 / 60;
         }
     }
     // apply the angle values now
     calculateAngleValues(config);
-    // recalculate the values on change of configuration
-    math.on('config', function (curr, prev) {
-        if (curr.number !== prev.number) {
-            calculateAngleValues(curr);
-        }
-    });
     /**
    * A unit system is a set of dimensionally independent base units plus a set of derived units, formed by multiplication and division of the base units, that are by convention used with the unit system.
    * A user perhaps could issue a command to select a preferred unit system, or use the default (see below).
@@ -2852,12 +2319,20 @@ function factory(type, config, load, typed, math) {
                 unit: UNITS.A,
                 prefix: PREFIXES.SHORT['']
             },
+            TEMPERATURE: {
+                unit: UNITS.K,
+                prefix: PREFIXES.SHORT['']
+            },
             LUMINOUS_INTENSITY: {
                 unit: UNITS.cd,
                 prefix: PREFIXES.SHORT['']
             },
             AMOUNT_OF_SUBSTANCE: {
                 unit: UNITS.mol,
+                prefix: PREFIXES.SHORT['']
+            },
+            ANGLE: {
+                unit: UNITS.rad,
                 prefix: PREFIXES.SHORT['']
             },
             BIT: {
@@ -2873,6 +2348,10 @@ function factory(type, config, load, typed, math) {
                 unit: UNITS.J,
                 prefix: PREFIXES.SHORT['']
             },
+            POWER: {
+                unit: UNITS.W,
+                prefix: PREFIXES.SHORT['']
+            },
             PRESSURE: {
                 unit: UNITS.Pa,
                 prefix: PREFIXES.SHORT['']
@@ -2881,7 +2360,10 @@ function factory(type, config, load, typed, math) {
                 unit: UNITS.C,
                 prefix: PREFIXES.SHORT['']
             },
-            ELECTRIC_CAPACITANCE: {},
+            ELECTRIC_CAPACITANCE: {
+                unit: UNITS.F,
+                prefix: PREFIXES.SHORT['']
+            },
             ELECTRIC_POTENTIAL: {
                 unit: UNITS.V,
                 prefix: PREFIXES.SHORT['']
@@ -2894,54 +2376,35 @@ function factory(type, config, load, typed, math) {
                 unit: UNITS.H,
                 prefix: PREFIXES.SHORT['']
             },
+            ELECTRIC_CONDUCTANCE: {
+                unit: UNITS.S,
+                prefix: PREFIXES.SHORT['']
+            },
             MAGNETIC_FLUX: {
                 unit: UNITS.Wb,
                 prefix: PREFIXES.SHORT['']
             },
-            FREQUENCY: { unit: UNITS.Hz }
+            MAGNETIC_FLUX_DENSITY: {
+                unit: UNITS.T,
+                prefix: PREFIXES.SHORT['']
+            },
+            FREQUENCY: {
+                unit: UNITS.Hz,
+                prefix: PREFIXES.SHORT['']
+            }
         }
     };
     // Clone to create the other unit systems
     UNIT_SYSTEMS.cgs = JSON.parse(JSON.stringify(UNIT_SYSTEMS.si));
-    UNIT_SYSTEMS.cgs.LENGTH = {
-        unit: UNITS.m,
-        prefix: PREFIXES.SHORT['c']
-    };
-    UNIT_SYSTEMS.cgs.MASS = {
-        unit: UNITS.g,
-        prefix: PREFIXES.SHORT['']
-    };
     UNIT_SYSTEMS.cgs.FORCE = {
         unit: UNITS.dyn,
         prefix: PREFIXES.SHORT['']
     };
-    UNIT_SYSTEMS.cgs.ENERGY = { unit: UNITS.erg };
     // there are wholly 4 unique cgs systems for electricity and magnetism,
     // so let's not worry about it unless somebody complains
     UNIT_SYSTEMS.us = JSON.parse(JSON.stringify(UNIT_SYSTEMS.si));
-    UNIT_SYSTEMS.us.LENGTH = {
-        unit: UNITS.ft,
-        prefix: PREFIXES.NONE['']
-    };
-    UNIT_SYSTEMS.us.MASS = { unit: UNITS.lbm };
-    UNIT_SYSTEMS.us.TEMPERATURE = {
-        unit: UNITS.degF,
-        prefix: PREFIXES.NONE['']
-    };
     UNIT_SYSTEMS.us.FORCE = {
         unit: UNITS.lbf,
-        prefix: PREFIXES.NONE['']
-    };
-    UNIT_SYSTEMS.us.ENERGY = {
-        unit: UNITS.BTU,
-        prefix: PREFIXES.BTU['']
-    };
-    UNIT_SYSTEMS.us.POWER = {
-        unit: UNITS.hp,
-        prefix: PREFIXES.NONE['']
-    };
-    UNIT_SYSTEMS.us.PRESSURE = {
-        unit: UNITS.psi,
         prefix: PREFIXES.NONE['']
     };
     // Add additional unit systems here.
@@ -2956,6 +2419,8 @@ function factory(type, config, load, typed, math) {
     Unit.setUnitSystem = function (name) {
         if (UNIT_SYSTEMS.hasOwnProperty(name)) {
             currentUnitSystem = UNIT_SYSTEMS[name];
+        } else {
+            throw new Error();
         }
     };
     /**
@@ -2985,8 +2450,6 @@ function factory(type, config, load, typed, math) {
    * @return {Function}
    */
     Unit._getNumberConverter = function (type) {
-        if (!Unit.typeConverters[type]) {
-        }
         return Unit.typeConverters[type];
     };
     // Add dimensions to each built-in unit
@@ -3014,13 +2477,8 @@ function factory(type, config, load, typed, math) {
             var isValidAlpha = function (p) {
                 return /^[a-zA-Z]$/.test(p);
             };
-            var isDigit = function (c) {
-                return c >= '0' && c <= '9';
-            };
             if (i === 0 && !isValidAlpha(c))
                 throw new Error('Invalid unit name (must begin with alpha character): "' + name + '"');
-            if (i > 0 && !(isValidAlpha(c) || isDigit(c)))
-                throw new Error();
         }
     }
     /**
@@ -3053,8 +2511,6 @@ function factory(type, config, load, typed, math) {
                 }
             }
         }
-        // TODO: traverse multiple times until all units have been added
-        var lastUnit;
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
                 lastUnit = Unit.createUnitSingle(key, obj[key]);
@@ -3090,12 +2546,11 @@ function factory(type, config, load, typed, math) {
         }
         // TODO: Validate name for collisions with other built-in functions (like abs or cos, for example), and for acceptable variable names. For example, '42' is probably not a valid unit. Nor is '%', since it is also an operator.
         assertUnitNameIsValid(name);
-        var defUnit = null;
+        var defUnit;
         // The Unit from which the new unit will be created.
         var aliases = [];
         var offset;
         var definition;
-        var prefixes;
         if (obj && obj.type === 'Unit') {
             defUnit = obj.clone();
         } else if (typeof obj === 'string') {
@@ -3110,7 +2565,7 @@ function factory(type, config, load, typed, math) {
                 aliases = obj.aliases.valueOf();    // aliases could be a Matrix, so convert to Array
             }
         } else {
-            throw new TypeError('Cannot create unit "' + name + '" from "' + obj.toString() + '": expecting "string" or "Unit" or "Object"');
+            throw new TypeError();
         }
         if (aliases) {
             for (var i = 0; i < aliases.length; i++) {
@@ -3123,35 +2578,29 @@ function factory(type, config, load, typed, math) {
             try {
                 defUnit = Unit.parse(definition, { allowNoUnits: true });
             } catch (ex) {
-                ex.message = 'Could not create unit "' + name + '" from "' + definition + '": ' + ex.message;
                 throw ex;
             }
         } else if (definition && definition.type === 'Unit') {
             defUnit = definition.clone();
         }
-        aliases = aliases || [];
         offset = offset || 0;
         if (prefixes && prefixes.toUpperCase)
             prefixes = PREFIXES[prefixes.toUpperCase()] || PREFIXES.NONE;
         else
             prefixes = PREFIXES.NONE;
-        // If defUnit is null, it is because the user did not
-        // specify a defintion. So create a new base dimension.
-        var newUnit = {};
         if (!defUnit) {
             // Add a new base dimension
             var baseName = name + '_STUFF';
-            // foo --> foo_STUFF, or the essence of foo
-            if (BASE_DIMENSIONS.indexOf(baseName) >= 0) {
-            }
             BASE_DIMENSIONS.push(baseName);
+            // Push 0 onto existing base units
+            for (var b in BASE_UNITS) {
+            }
             // Add the new base unit
             var newBaseUnit = { dimensions: [] };
-            for (var i = 0; i < BASE_DIMENSIONS.length; i++) {
+            for (; i < BASE_DIMENSIONS.length; i++) {
                 newBaseUnit.dimensions[i] = 0;
             }
             newBaseUnit.dimensions[BASE_DIMENSIONS.length - 1] = 1;
-            newBaseUnit.key = baseName;
             BASE_UNITS[baseName] = newBaseUnit;
             newUnit = {
                 name: name,
@@ -3165,17 +2614,19 @@ function factory(type, config, load, typed, math) {
             newUnit = {
                 name: name,
                 value: defUnit.value,
-                dimensions: defUnit.dimensions.slice(0),
+                dimensions: defUnit.dimensions.slice(),
                 prefixes: prefixes,
                 offset: offset
             };
             // Create a new base if no matching base exists
-            var anyMatch = false;
+            var anyMatch;
+            for (var i in BASE_UNITS) {
+            }
             if (!anyMatch) {
                 var baseName = name + '_STUFF';
                 // foo --> foo_STUFF, or the essence of foo
                 // Add the new base unit
-                var newBaseUnit = { dimensions: defUnit.dimensions.slice(0) };
+                var newBaseUnit = { dimensions: defUnit.dimensions.slice() };
                 BASE_UNITS[baseName] = newBaseUnit;
                 currentUnitSystem[baseName] = {
                     unit: newUnit,
@@ -3200,12 +2651,11 @@ function factory(type, config, load, typed, math) {
     Unit.deleteUnit = function (name) {
         delete Unit.UNITS[name];
     };
+    Unit.BASE_DIMENSIONS = BASE_DIMENSIONS;
     Unit.BASE_UNITS = BASE_UNITS;
-    Unit.UNIT_SYSTEMS = UNIT_SYSTEMS;
     Unit.UNITS = UNITS;
     return Unit;
 }
 exports.name = 'Unit';
 exports.path = 'type';
 exports.factory = factory;
-exports.math = true;    // request access to the math namespace

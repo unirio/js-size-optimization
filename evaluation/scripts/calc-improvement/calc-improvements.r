@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio.Barros/Desktop/Codigos/js-size-optimization/evaluation";
+baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/evaluation";
 
 
 # Instances
@@ -243,6 +243,19 @@ count <- sfahc %>%
 			summarize(count = n());
 
 print(paste("All solutions found by SFAHC are better than DFAHC for", count$count, "instance(s)."));
+
+
+# Comparing SFAHC x DFACH: instances SFAHC(min) > DFAHC
+count <- sfahc %>% 
+			group_by(instance) %>% 
+			summarize(sfahc_min = min(imp), sfahc_max = max(imp)) %>% 
+			inner_join(dfahc) %>% 
+			mutate(dfahc = imp) %>% 
+			select(instance, dfahc, sfahc_min, sfahc_max) %>% 
+			filter(sfahc_min == sfahc_max & sfahc_min == dfahc) %>%
+			summarize(count = n());
+
+print(paste("Perfect draw for SFAHC are DFAHC for", count$count, "instance(s)."));
 
 
 # Comparing SFAHC x DFACH: inference test for middle-case instances
