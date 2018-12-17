@@ -9,10 +9,105 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  243:          pr = Ctor.precision;
-  244:          Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
-  245:          Ctor.precision = pr;
-  246:          return finalise(quadrant == 2 || quadrant == 3 ? x.neg() : x, pr, rm, true);
+   43:          DEFAULTS = {
+   44:              // 1 to MAX_DIGITS
+***** HC\ORIGINAL.JS
+   44:          DEFAULTS = {
+   45:              // These values must be integers within the stated ranges (inclusive).
+   46:              // Most of these values can be changed at run-time using the `Decimal.config` method.
+   47:              // The maximum number of significant digits of the result of a calculation or base conversion.
+   48:              // E.g. `Decimal.config({ precision: 20 });`
+   49:              precision: 20,
+   50:              // 1 to MAX_DIGITS
+*****
+
+***** HC\0.js
+   79:              toExpNeg: -7,
+   80:              // 0 to EXP_LIMIT
+***** HC\ORIGINAL.JS
+   85:              toExpNeg: -7,
+   86:              // 0 to -EXP_LIMIT
+   87:              // The exponent value at and above which `toString` returns exponential notation.
+   88:              // JavaScript numbers: 21
+   89:              toExpPos: 21,
+   90:              // 0 to EXP_LIMIT
+*****
+
+***** HC\0.js
+   83:              minE: -EXP_LIMIT,
+   84:              // 1 to EXP_LIMIT
+***** HC\ORIGINAL.JS
+   93:              minE: -EXP_LIMIT,
+   94:              // -1 to -EXP_LIMIT
+   95:              // The maximum exponent value, above which overflow to Infinity occurs.
+   96:              // JavaScript numbers: 308  (1.7976931348623157e+308)
+   97:              maxE: EXP_LIMIT,
+   98:              // 1 to EXP_LIMIT
+*****
+
+***** HC\0.js
+   86:              crypto: false    // true/false
+   87:          }, inexact, quadrant, external = true, decimalError = '[DecimalError] ', precisionLimitExceeded = decimalError + 'Preci
+   88:  sion limit exceeded', mathfloor = Math.floor, mathpow = Math.pow, isBinary = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, isHe
+   89:  x = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, isOctal = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, isDeci
+   90:  mal = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, BASE = 10000000, LOG_BASE = 7, MAX_SAFE_INTEGER = 9007199254740991, LN10_PRECISION,
+   91:   PI_PRECISION = PI.length - 1,
+   92:          // Decimal.prototype object
+   93:          P = {};
+   94:      // Decimal prototype methods
+***** HC\ORIGINAL.JS
+  100:              crypto: false    // true/false
+  101:          },
+  102:          // ----------------------------------- END OF EDITABLE DEFAULTS ------------------------------- //
+  103:          Decimal, inexact, noConflict, quadrant, external = true, decimalError = '[DecimalError] ', invalidArgument = decimalErr
+  104:  or + 'Invalid argument: ', precisionLimitExceeded = decimalError + 'Precision limit exceeded', cryptoUnavailable = decimalError
+  105:   + 'crypto unavailable', mathfloor = Math.floor, mathpow = Math.pow, isBinary = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, i
+  106:  sHex = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, isOctal = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, isD
+  107:  ecimal = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, BASE = 10000000, LOG_BASE = 7, MAX_SAFE_INTEGER = 9007199254740991, LN10_PRECISI
+  108:  ON = LN10.length - 1, PI_PRECISION = PI.length - 1,
+  109:          // Decimal.prototype object
+  110:          P = { name: '[object Decimal]' };
+  111:      // Decimal prototype methods
+*****
+
+***** HC\0.js
+  161:          var x = new this.constructor(this);
+  162:          return finalise(x);
+***** HC\ORIGINAL.JS
+  178:          var x = new this.constructor(this);
+  179:          if (x.s < 0)
+  180:              x.s = 1;
+  181:          return finalise(x);
+*****
+
+***** HC\0.js
+  180:      P.comparedTo = P.cmp = function (y) {
+  181:          var j, ydL, x = this, xd = x.d, yd = (y = new x.constructor(y)).d, xs = x.s, ys = y.s;
+  182:          // Either NaN or ±Infinity?
+***** HC\ORIGINAL.JS
+  199:      P.comparedTo = P.cmp = function (y) {
+  200:          var i, j, xdL, ydL, x = this, xd = x.d, yd = (y = new x.constructor(y)).d, xs = x.s, ys = y.s;
+  201:          // Either NaN or ±Infinity?
+*****
+
+***** HC\0.js
+  198:          for (i = 0, j = xdL < ydL ? xdL : ydL; i < j; ++i) {
+  199:          }
+  200:      };
+***** HC\ORIGINAL.JS
+  217:          for (i = 0, j = xdL < ydL ? xdL : ydL; i < j; ++i) {
+  218:              if (xd[i] !== yd[i])
+  219:                  return xd[i] > yd[i] ^ xs < 0 ? 1 : -1;
+  220:          }
+  221:          // Compare lengths.
+  222:          return xdL === ydL ? 0 : xdL > ydL ^ xs < 0 ? 1 : -1;
+  223:      };
+*****
+
+***** HC\0.js
+  221:          pr = Ctor.precision;
+  222:          Ctor.precision = pr + Math.max(x.e) + LOG_BASE;
+  223:          return finalise(quadrant == 2 || quadrant == 3 ? x.neg() : x, pr, rm, true);
 ***** HC\ORIGINAL.JS
   244:          pr = Ctor.precision;
   245:          rm = Ctor.rounding;
@@ -25,8 +120,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  268:          external = false;
-  269:          // Math.cbrt underflow/overflow?
+  241:      P.cubeRoot = P.cbrt = function () {
+  242:          var e, m, n, rep, s, sd, t3, x = this, Ctor = x.constructor;
+  243:          if (!x.isFinite() || x.isZero())
+***** HC\ORIGINAL.JS
+  269:      P.cubeRoot = P.cbrt = function () {
+  270:          var e, m, n, r, rep, s, sd, t, t3, t3plusx, x = this, Ctor = x.constructor;
+  271:          if (!x.isFinite() || x.isZero())
+*****
+
+***** HC\0.js
+  245:          external = false;
+  246:          // Math.cbrt underflow/overflow?
 ***** HC\ORIGINAL.JS
   273:          external = false;
   274:          // Initial estimate.
@@ -35,10 +140,10 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  276:                  n += s == 1 || s == -2 ? '0' : '00';
-  277:              if (s == 1 / 0) {
-  278:              } else {
-  279:              }
+  253:                  n += s == 1 || s == -2 ? '0' : '00';
+  254:              if (s == 1 / 0) {
+  255:              } else {
+  256:              }
 ***** HC\ORIGINAL.JS
   283:                  n += s == 1 || s == -2 ? '0' : '00';
   284:              s = Math.pow(n, 1 / 3);
@@ -53,9 +158,9 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  280:              r = new Ctor(n);
-  281:          } else {
-  282:          }
+  257:              r = new Ctor(n);
+  258:          } else {
+  259:          }
 ***** HC\ORIGINAL.JS
   293:              r = new Ctor(n);
   294:              r.s = x.s;
@@ -65,8 +170,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  289:              t3plusx = t3.plus(x);
-  290:              // TODO? Replace with for-loop and checkRoundingDigits.
+  266:              t3plusx = t3.plus(x);
+  267:              // TODO? Replace with for-loop and checkRoundingDigits.
 ***** HC\ORIGINAL.JS
   304:              t3plusx = t3.plus(x);
   305:              r = divide(t3plusx.plus(x).times(t), t3plusx.plus(t3), sd + 2, 1);
@@ -74,8 +179,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  291:              if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
-  292:                  // The 4th rounding digit may be in error by -1 so if the 4 rounding digits are 9999 or 4999
+  268:              if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
+  269:                  // The 4th rounding digit may be in error by -1 so if the 4 rounding digits are 9999 or 4999
 ***** HC\ORIGINAL.JS
   307:              if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
   308:                  n = n.slice(sd - 3, sd + 1);
@@ -83,9 +188,9 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  297:                      if (!rep) {
-  298:                          if (t.times(t).times(t).eq(x)) {
-  299:                              break;
+  274:                      if (!rep) {
+  275:                          if (t.times(t).times(t).eq(x)) {
+  276:                              break;
 ***** HC\ORIGINAL.JS
   314:                      if (!rep) {
   315:                          finalise(t, e + 1, 0);
@@ -95,8 +200,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  301:                      }
-  302:                  } else {
+  278:                      }
+  279:                  } else {
 ***** HC\ORIGINAL.JS
   320:                      }
   321:                      sd += 4;
@@ -105,8 +210,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  305:                      if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
-  306:                      }
+  282:                      if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
+  283:                      }
 ***** HC\ORIGINAL.JS
   326:                      if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
   327:                          // Truncate to the first rounding digit.
@@ -116,8 +221,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  310:          }
-  311:          return finalise(r, e, Ctor.rounding, m);
+  287:          }
+  288:          return finalise(r, e, Ctor.rounding, m);
 ***** HC\ORIGINAL.JS
   334:          }
   335:          external = true;
@@ -125,21 +230,73 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  319:          if (d) {
-  320:              if (w)
+  295:          var w, d = this.d, n = NaN;
+  296:      };
 ***** HC\ORIGINAL.JS
+  343:          var w, d = this.d, n = NaN;
   344:          if (d) {
   345:              w = d.length - 1;
   346:              n = (w - mathfloor(this.e / LOG_BASE)) * LOG_BASE;
   347:              // Subtract the number of trailing zeros of the last word.
   348:              w = d[w];
   349:              if (w)
+  350:                  for (; w % 10 == 0; w /= 10)
+  351:                      n--;
+  352:              if (n < 0)
+  353:                  n = 0;
+  354:          }
+  355:          return n;
+  356:      };
 *****
 
 ***** HC\0.js
-  424:          pr = Ctor.precision;
-  425:          // Argument reduction: cos(4x) = 1 - 8cos^2(x) + 8cos^4(x) + 1
+  327:          var x = this, Ctor = x.constructor;
+  328:          return finalise(divide(x, new Ctor(y), 1, 1), Ctor.precision, Ctor.rounding);
+  329:      };
 ***** HC\ORIGINAL.JS
+  387:          var x = this, Ctor = x.constructor;
+  388:          return finalise(divide(x, new Ctor(y), 0, 1, 1), Ctor.precision, Ctor.rounding);
+  389:      };
+*****
+
+***** HC\0.js
+  350:      P.greaterThan = P.gt = function (y) {
+  351:          return;
+  352:      };
+***** HC\ORIGINAL.JS
+  410:      P.greaterThan = P.gt = function (y) {
+  411:          return this.cmp(y) > 0;
+  412:      };
+*****
+
+***** HC\0.js
+  358:      P.greaterThanOrEqualTo = P.gte = function (y) {
+  359:          var k;
+  360:          return k == 1 || k === 0;
+***** HC\ORIGINAL.JS
+  418:      P.greaterThanOrEqualTo = P.gte = function (y) {
+  419:          var k = this.cmp(y);
+  420:          return k == 1 || k === 0;
+*****
+
+***** HC\0.js
+  387:      P.hyperbolicCosine = P.cosh = function () {
+  388:          var k, pr, rm, len, x = this, Ctor = x.constructor, one = new Ctor(1);
+  389:          if (!x.isFinite())
+***** HC\ORIGINAL.JS
+  447:      P.hyperbolicCosine = P.cosh = function () {
+  448:          var k, n, pr, rm, len, x = this, Ctor = x.constructor, one = new Ctor(1);
+  449:          if (!x.isFinite())
+*****
+
+***** HC\0.js
+  390:              return new Ctor(x.s ? 1 / 0 : NaN);
+  391:          pr = Ctor.precision;
+  392:          // Argument reduction: cos(4x) = 1 - 8cos^2(x) + 8cos^4(x) + 1
+***** HC\ORIGINAL.JS
+  450:              return new Ctor(x.s ? 1 / 0 : NaN);
+  451:          if (x.isZero())
+  452:              return one;
   453:          pr = Ctor.precision;
   454:          rm = Ctor.rounding;
   455:          Ctor.precision = pr + Math.max(x.e, x.sd()) + 4;
@@ -149,9 +306,9 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  429:          if (len < 32) {
-  430:          } else {
-  431:              n = '2.3283064365386962890625e-10';
+  396:          if (len < 32) {
+  397:          } else {
+  398:              n = '2.3283064365386962890625e-10';
 ***** HC\ORIGINAL.JS
   462:          if (len < 32) {
   463:              k = Math.ceil(len / 3);
@@ -162,8 +319,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  432:          }
-  433:          // Reverse argument reduction
+  399:          }
+  400:          // Reverse argument reduction
 ***** HC\ORIGINAL.JS
   468:          }
   469:          x = taylorSeries(Ctor, 1, x.times(n), new Ctor(1), true);
@@ -171,21 +328,26 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  435:          for (; i--;) {
-  436:          }
+  402:          for (; i--;) {
+  403:          }
+  404:          return finalise(x, Ctor.rounding = rm, true);
+  405:      };
 ***** HC\ORIGINAL.JS
   472:          for (; i--;) {
   473:              cosh2_x = x.times(x);
   474:              x = one.minus(cosh2_x.times(d8.minus(cosh2_x.times(d8))));
   475:          }
+  476:          return finalise(x, Ctor.precision = pr, Ctor.rounding = rm, true);
+  477:      };
 *****
 
 ***** HC\0.js
-  473:          pr = Ctor.precision;
-  474:          if (len < 3) {
-  475:          } else {
-  476:              k = k > 16 ? 16 : k | 0;
-  477:              // Reverse argument reduction
+  440:          pr = Ctor.precision;
+  441:          if (len < 3) {
+  442:          } else {
+  443:              k = k > 16 ? 16 : k | 0;
+  444:              for (; k--;) {
+  445:              }
 ***** HC\ORIGINAL.JS
   512:          pr = Ctor.precision;
   513:          rm = Ctor.rounding;
@@ -207,12 +369,7 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
   529:              x = x.times(Math.pow(5, -k));
   530:              x = taylorSeries(Ctor, 2, x, x, true);
   531:              // Reverse argument reduction
-*****
-
-***** HC\0.js
-  479:              for (; k--;) {
-  480:              }
-***** HC\ORIGINAL.JS
+  532:              var sinh2_x, d5 = new Ctor(5), d16 = new Ctor(16), d20 = new Ctor(20);
   533:              for (; k--;) {
   534:                  sinh2_x = x.times(x);
   535:                  x = x.times(d5.plus(sinh2_x.times(d16.times(sinh2_x).plus(d20))));
@@ -220,31 +377,59 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  481:          }
-  482:          return finalise(x, pr, rm, true);
+  446:          }
+  447:          return finalise(x, pr, rm);
+  448:      };
 ***** HC\ORIGINAL.JS
   537:          }
   538:          Ctor.precision = pr;
   539:          Ctor.rounding = rm;
   540:          return finalise(x, pr, rm, true);
+  541:      };
 *****
 
 ***** HC\0.js
-  506:          pr = Ctor.precision;
-  507:          return divide(x.sinh(), x.cosh(), Ctor.precision = pr, Ctor.rounding = rm);
+  465:      P.hyperbolicTangent = P.tanh = function () {
+  466:          var rm, x = this, Ctor = x.constructor;
+  467:          if (x.isZero())
+***** HC\ORIGINAL.JS
+  558:      P.hyperbolicTangent = P.tanh = function () {
+  559:          var pr, rm, x = this, Ctor = x.constructor;
+  560:          if (!x.isFinite())
+  561:              return new Ctor(x.s);
+  562:          if (x.isZero())
+*****
+
+***** HC\0.js
+  469:          pr = Ctor.precision;
+  470:          return divide(x.cosh(), Ctor.precision = pr, Ctor.rounding = rm);
+  471:      };
 ***** HC\ORIGINAL.JS
   564:          pr = Ctor.precision;
   565:          rm = Ctor.rounding;
   566:          Ctor.precision = pr + 7;
   567:          Ctor.rounding = 1;
   568:          return divide(x.sinh(), x.cosh(), Ctor.precision = pr, Ctor.rounding = rm);
+  569:      };
 *****
 
 ***** HC\0.js
-  536:              return getPi(Ctor, pr + 4, rm).times(0.5);
-  537:          halfPi = getPi(Ctor, pr + 4, rm).times(0.5);
-  538:          return halfPi.minus(x);
+  491:      P.inverseCosine = P.acos = function () {
+  492:          var x = this, Ctor = x.constructor, k, rm = Ctor.rounding;
+  493:          if (k !== -1) {
 ***** HC\ORIGINAL.JS
+  589:      P.inverseCosine = P.acos = function () {
+  590:          var halfPi, x = this, Ctor = x.constructor, k = x.abs().cmp(1), pr = Ctor.precision, rm = Ctor.rounding;
+  591:          if (k !== -1) {
+*****
+
+***** HC\0.js
+  498:          if (x.isZero())
+  499:              return;
+  500:          halfPi = getPi(Ctor, pr + 4, rm).times(0.5);
+  501:          return halfPi.minus(x);
+***** HC\ORIGINAL.JS
+  596:          if (x.isZero())
   597:              return getPi(Ctor, pr + 4, rm).times(0.5);
   598:          // TODO? Special case acos(0.5) = pi/3 and acos(-0.5) = 2*pi/3
   599:          Ctor.precision = pr + 6;
@@ -257,8 +442,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  565:          pr = Ctor.precision;
-  566:          return x.ln();
+  522:      P.inverseHyperbolicCosine = P.acosh = function () {
+  523:          var rm, x = this, Ctor = x.constructor;
+  524:          if (x.lte(1))
+***** HC\ORIGINAL.JS
+  626:      P.inverseHyperbolicCosine = P.acosh = function () {
+  627:          var pr, rm, x = this, Ctor = x.constructor;
+  628:          if (x.lte(1))
+*****
+
+***** HC\0.js
+  528:          pr = Ctor.precision;
+  529:          return x.ln();
 ***** HC\ORIGINAL.JS
   632:          pr = Ctor.precision;
   633:          rm = Ctor.rounding;
@@ -273,9 +468,15 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  588:          pr = Ctor.precision;
-  589:          return x.ln();
+  547:      P.inverseHyperbolicSine = P.asinh = function () {
+  548:          var rm, x = this, Ctor = x.constructor;
+  549:          pr = Ctor.precision;
+  550:          return x.ln();
 ***** HC\ORIGINAL.JS
+  659:      P.inverseHyperbolicSine = P.asinh = function () {
+  660:          var pr, rm, x = this, Ctor = x.constructor;
+  661:          if (!x.isFinite() || x.isZero())
+  662:              return new Ctor(x);
   663:          pr = Ctor.precision;
   664:          rm = Ctor.rounding;
   665:          Ctor.precision = pr + 2 * Math.max(Math.abs(x.e), x.sd()) + 6;
@@ -289,8 +490,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  616:          pr = Ctor.precision;
-  617:          xsd = x.sd();
+  571:      P.inverseHyperbolicTangent = P.atanh = function () {
+  572:          var rm, xsd, x = this, Ctor = x.constructor;
+  573:          if (!x.isFinite())
+***** HC\ORIGINAL.JS
+  693:      P.inverseHyperbolicTangent = P.atanh = function () {
+  694:          var pr, rm, wpr, xsd, x = this, Ctor = x.constructor;
+  695:          if (!x.isFinite())
+*****
+
+***** HC\0.js
+  577:          pr = Ctor.precision;
+  578:          xsd = x.sd();
 ***** HC\ORIGINAL.JS
   699:          pr = Ctor.precision;
   700:          rm = Ctor.rounding;
@@ -298,8 +509,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  620:          Ctor.precision = wpr = xsd - x.e;
-  621:          return x.times(0.5);
+  581:          Ctor.precision = wpr = xsd - x.e;
+  582:          return x.times(0.5);
 ***** HC\ORIGINAL.JS
   704:          Ctor.precision = wpr = xsd - x.e;
   705:          x = divide(x.plus(1), new Ctor(1).minus(x), wpr + pr, 1);
@@ -312,29 +523,38 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  647:              return new Ctor(x);
-  648:          if (k !== -1) {
+  605:      P.inverseSine = P.asin = function () {
+  606:          var k, rm, x = this, Ctor = x.constructor;
+  607:          if (x.isZero())
+***** HC\ORIGINAL.JS
+  734:      P.inverseSine = P.asin = function () {
+  735:          var halfPi, k, pr, rm, x = this, Ctor = x.constructor;
+  736:          if (x.isZero())
+*****
+
+***** HC\0.js
+  608:              return new Ctor(x);
+  609:          if (k !== -1) {
+  610:              // |x| > 1 or x is NaN
 ***** HC\ORIGINAL.JS
   737:              return new Ctor(x);
   738:          k = x.abs().cmp(1);
   739:          pr = Ctor.precision;
   740:          rm = Ctor.rounding;
   741:          if (k !== -1) {
-*****
-
-***** HC\0.js
-  650:              if (k === 0) {
-  651:                  return halfPi;
-***** HC\ORIGINAL.JS
+  742:              // |x| is 1
   743:              if (k === 0) {
   744:                  halfPi = getPi(Ctor, pr + 4, rm).times(0.5);
   745:                  halfPi.s = x.s;
   746:                  return halfPi;
+  747:              }
+  748:              // |x| > 1 or x is NaN
 *****
 
 ***** HC\0.js
-  655:          }
-  656:          return x.times(2);
+  612:          }
+  613:          return;
+  614:      };
 ***** HC\ORIGINAL.JS
   750:          }
   751:          // TODO? Special case asin(1/2) = pi/6 and asin(-1/2) = -pi/6
@@ -344,11 +564,26 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
   755:          Ctor.precision = pr;
   756:          Ctor.rounding = rm;
   757:          return x.times(2);
+  758:      };
 *****
 
 ***** HC\0.js
-  682:                  r = getPi(Ctor, pr + 4, rm).times(0.5);
-  683:                  return r;
+  633:      P.inverseTangent = P.atan = function () {
+  634:          var j, n, t, wpr, x = this, Ctor = x.constructor, pr = Ctor.precision, rm = Ctor.rounding;
+  635:          if (!x.isFinite()) {
+  636:              if (pr + 4 <= PI_PRECISION) {
+***** HC\ORIGINAL.JS
+  777:      P.inverseTangent = P.atan = function () {
+  778:          var i, j, k, n, px, t, r, wpr, x2, x = this, Ctor = x.constructor, pr = Ctor.precision, rm = Ctor.rounding;
+  779:          if (!x.isFinite()) {
+  780:              if (!x.s)
+  781:                  return new Ctor(NaN);
+  782:              if (pr + 4 <= PI_PRECISION) {
+*****
+
+***** HC\0.js
+  637:                  r = getPi(Ctor, pr + 4, rm).times(0.5);
+  638:                  return r;
 ***** HC\ORIGINAL.JS
   783:                  r = getPi(Ctor, pr + 4, rm).times(0.5);
   784:                  r.s = x.s;
@@ -356,17 +591,19 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  688:              r = getPi(Ctor, pr + 4, rm).times(0.25);
-  689:              return r;
+  642:          } else if (x.abs().eq(1) && pr + 4 <= PI_PRECISION) {
+  643:              r = getPi(Ctor, rm).times(0.25);
+  644:              return r;
 ***** HC\ORIGINAL.JS
+  789:          } else if (x.abs().eq(1) && pr + 4 <= PI_PRECISION) {
   790:              r = getPi(Ctor, pr + 4, rm).times(0.25);
   791:              r.s = x.s;
   792:              return r;
 *****
 
 ***** HC\0.js
-  691:          Ctor.precision = wpr = pr + 10;
-  692:          // TODO? if (x >= 1 && pr <= PI_PRECISION) atan(x) = halfPi * x.s - atan(1 / x);
+  646:          Ctor.precision = wpr = pr + 10;
+  647:          // TODO? if (x >= 1 && pr <= PI_PRECISION) atan(x) = halfPi * x.s - atan(1 / x);
 ***** HC\ORIGINAL.JS
   794:          Ctor.precision = wpr = pr + 10;
   795:          Ctor.rounding = 1;
@@ -374,8 +611,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  706:          for (; i !== -1;) {
-  707:              t = r.minus(px.div(n += 2));
+  650:          // atan(x) = 2 * atan(x / (1 + sqrt(1 + x^2)))
+  651:          k = Math.min(28);
+  652:          for (i = k; i; --i)
+***** HC\ORIGINAL.JS
+  799:          // atan(x) = 2 * atan(x / (1 + sqrt(1 + x^2)))
+  800:          k = Math.min(28, wpr / LOG_BASE + 2 | 0);
+  801:          for (i = k; i; --i)
+*****
+
+***** HC\0.js
+  661:          for (; i !== -1;) {
+  662:              t = r.minus(px.div(n += 2));
 ***** HC\ORIGINAL.JS
   810:          for (; i !== -1;) {
   811:              px = px.times(x2);
@@ -383,8 +630,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  714:              r = r.times(2 << k - 1);
-  715:          return finalise(r, Ctor.precision = pr, Ctor.rounding = rm, true);
+  665:              if (r.d[j] !== void 0)
+  666:                  for (; r.d[i] === t.d[i] && i--;);
+  667:          }
+***** HC\ORIGINAL.JS
+  815:              if (r.d[j] !== void 0)
+  816:                  for (i = j; r.d[i] === t.d[i] && i--;);
+  817:          }
+*****
+
+***** HC\0.js
+  669:              r = r.times(2 << k - 1);
+  670:          return finalise(r, Ctor.precision = pr, Ctor.rounding = rm, true);
 ***** HC\ORIGINAL.JS
   819:              r = r.times(2 << k - 1);
   820:          external = true;
@@ -392,29 +649,51 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  807:          if (base == null) {
-  808:              isBase10 = true;
+  690:      P.isNaN = function () {
+  691:          return;
+  692:      };
 ***** HC\ORIGINAL.JS
-  913:          if (base == null) {
-  914:              base = new Ctor(10);
-  915:              isBase10 = true;
+  841:      P.isNaN = function () {
+  842:          return !this.s;
+  843:      };
 *****
 
 ***** HC\0.js
-  809:          } else {
-  810:              // Return NaN if base is negative, or non-finite, or is 0 or 1.
+  697:      P.isNegative = P.isNeg = function () {
+  698:          return;
+  699:      };
 ***** HC\ORIGINAL.JS
+  848:      P.isNegative = P.isNeg = function () {
+  849:          return this.s < 0;
+  850:      };
+*****
+
+***** HC\0.js
+  704:      P.isPositive = P.isPos = function () {
+  705:      };
+***** HC\ORIGINAL.JS
+  855:      P.isPositive = P.isPos = function () {
+  856:          return this.s > 0;
+  857:      };
+*****
+
+***** HC\0.js
+  757:      P.logarithm = P.log = function (base) {
+  758:          var isBase10, d, denominator, inf, sd, arg = this, Ctor = arg.constructor, pr = Ctor.precision, guard = 5;
+  759:          // Is arg negative, non-finite, 0 or 1?
+***** HC\ORIGINAL.JS
+  909:      P.logarithm = P.log = function (base) {
+  910:          var isBase10, d, denominator, k, inf, num, sd, r, arg = this, Ctor = arg.constructor, pr = Ctor.precision, rm = Ctor.ro
+  911:  unding, guard = 5;
+  912:          // Default base is 10.
+  913:          if (base == null) {
+  914:              base = new Ctor(10);
+  915:              isBase10 = true;
   916:          } else {
   917:              base = new Ctor(base);
   918:              d = base.d;
   919:              // Return NaN if base is negative, or non-finite, or is 0 or 1.
-*****
-
-***** HC\0.js
-  812:                  return new Ctor(NaN);
-  813:          }
-  814:          // Is arg negative, non-finite, 0 or 1?
-***** HC\ORIGINAL.JS
+  920:              if (base.s < 0 || !d || !d[0] || base.eq(1))
   921:                  return new Ctor(NaN);
   922:              isBase10 = base.eq(10);
   923:          }
@@ -423,26 +702,24 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  821:              if (d.length > 1) {
-  822:              } else {
+  766:              if (d.length > 1) {
+  767:              } else {
+  768:                  for (;;)
+  769:                      k /= 10;
+  770:              }
 ***** HC\ORIGINAL.JS
   932:              if (d.length > 1) {
   933:                  inf = true;
   934:              } else {
-*****
-
-***** HC\0.js
-  824:                      k /= 10;
-  825:              }
-***** HC\ORIGINAL.JS
+  935:                  for (k = d[0]; k % 10 === 0;)
   936:                      k /= 10;
   937:                  inf = k !== 1;
   938:              }
 *****
 
 ***** HC\0.js
-  826:          }
-  827:          // If at a rounding boundary, i.e. the result's rounding digits are [49]9999 or [50]0000,
+  771:          }
+  772:          return finalise(r, pr, rm);
 ***** HC\ORIGINAL.JS
   939:          }
   940:          external = false;
@@ -452,42 +729,59 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
   944:          // The result will have 5 rounding digits.
   945:          r = divide(num, denominator, sd, 1);
   946:          // If at a rounding boundary, i.e. the result's rounding digits are [49]9999 or [50]0000,
-*****
-
-***** HC\0.js
-  842:              do {
-  843:                  if (!inf) {
-***** HC\ORIGINAL.JS
+  947:          // calculate 10 further digits.
+  948:          //
+  949:          // If the result is known to have an infinite decimal expansion, repeat this until it is clear
+  950:          // that the result is above or below the boundary. Otherwise, if after calculating the 10
+  951:          // further digits, the last 14 are nines, round up and assume the result is exact.
+  952:          // Also assume the result is exact if the last 14 are zero.
+  953:          //
+  954:          // Example of a result that will be incorrectly rounded:
+  955:          // log[1048576](4503599627370502) = 2.60000000000000009610279511444746...
+  956:          // The above result correctly rounded using ROUND_CEIL to 1 decimal place should be 2.7, but it
+  957:          // will be given as 2.6 as there are 15 zeros immediately after the requested decimal place, so
+  958:          // the exact result would be assumed to be 2.6, which rounded using ROUND_CEIL to 1 decimal
+  959:          // place is still 2.6.
+  960:          if (checkRoundingDigits(r.d, k = pr, rm)) {
   961:              do {
   962:                  sd += 10;
   963:                  num = naturalLogarithm(arg, sd);
   964:                  denominator = isBase10 ? getLn10(Ctor, sd + 10) : naturalLogarithm(base, sd);
   965:                  r = divide(num, denominator, sd, 1);
   966:                  if (!inf) {
-*****
-
-***** HC\0.js
-  845:                      if (+digitsToString(r.d).slice(k + 1, k + 15) + 1 == 100000000000000) {
-  846:                      }
-***** HC\ORIGINAL.JS
+  967:                      // Check for 14 nines from the 2nd rounding digit, as the first may be 4.
   968:                      if (+digitsToString(r.d).slice(k + 1, k + 15) + 1 == 100000000000000) {
   969:                          r = finalise(r, pr + 1, 0);
   970:                      }
-*****
-
-***** HC\0.js
-  850:          }
-  851:          return finalise(r, pr, rm);
-***** HC\ORIGINAL.JS
+  971:                      break;
+  972:                  }
+  973:              } while (checkRoundingDigits(r.d, k += 10, rm));
   974:          }
   975:          external = true;
   976:          return finalise(r, pr, rm);
 *****
 
 ***** HC\0.js
-  905:                                 // Return NaN if both are ±Infinity with the same sign.
-  906:              return y;
+  815:      P.minus = P.sub = function (y) {
+  816:          var e, j, len, rm, xe, xLTy, yd, x = this, Ctor = x.constructor;
+  817:          y = new Ctor(y);
 ***** HC\ORIGINAL.JS
+ 1019:      P.minus = P.sub = function (y) {
+ 1020:          var d, e, i, j, k, len, pr, rm, xd, xe, xLTy, yd, x = this, Ctor = x.constructor;
+ 1021:          y = new Ctor(y);
+*****
+
+***** HC\0.js
+  819:          if (!x.d || !y.d) {
+  820:              return y;
+***** HC\ORIGINAL.JS
+ 1023:          if (!x.d || !y.d) {
+ 1024:              // Return NaN if either is NaN.
+ 1025:              if (!x.s || !y.s)
+ 1026:                  y = new Ctor(NaN);    // Return y negated if x is finite and y is ±Infinity.
+ 1027:              else if (x.d)
+ 1028:                  y.s = -y.s;    // Return x if y is finite and x is ±Infinity.
+ 1029:                                 // Return x if both are ±Infinity with different signs.
  1030:                                 // Return NaN if both are ±Infinity with the same sign.
  1031:              else
  1032:                  y = new Ctor(y.d || x.s !== y.s ? x : NaN);
@@ -495,27 +789,50 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  909:          if (x.s != y.s) {
-  910:              return x.plus(y);
+  823:          if (x.s != y.s) {
+  824:          }
 ***** HC\ORIGINAL.JS
  1036:          if (x.s != y.s) {
  1037:              y.s = -y.s;
  1038:              return x.plus(y);
+ 1039:          }
 *****
 
 ***** HC\0.js
-  914:          pr = Ctor.precision;
-  915:          // If either is zero...
+  827:          pr = Ctor.precision;
+  828:          // x and y are finite, non-zero numbers with the same sign.
 ***** HC\ORIGINAL.JS
  1042:          pr = Ctor.precision;
  1043:          rm = Ctor.rounding;
  1044:          // If either is zero...
+ 1045:          if (!xd[0] || !yd[0]) {
+ 1046:              // Return y negated if x is zero and y is non-zero.
+ 1047:              if (yd[0])
+ 1048:                  y.s = -y.s;    // Return x if y is zero and x is non-zero.
+ 1049:              else if (xd[0])
+ 1050:                  y = new Ctor(x);    // Return zero if both are zero.
+ 1051:                                      // From IEEE 754 (2008) 6.3: 0 - 0 = -0 - -0 = -0 when rounding to -Infinity.
+ 1052:              else
+ 1053:                  return new Ctor(rm === 3 ? -0 : 0);
+ 1054:              return external ? finalise(y, pr, rm) : y;
+ 1055:          }
+ 1056:          // x and y are finite, non-zero numbers with the same sign.
 *****
 
 ***** HC\0.js
-  950:                  k = i;
-  951:              }
-  952:              for (i = k; i--;)
+  848:              // rounding by limiting the number of zeros to `Math.ceil(pr / LOG_BASE) + 2`.
+  849:              i = Math.max(len) + 2;
+  850:              if (k > i) {
+***** HC\ORIGINAL.JS
+ 1076:              // rounding by limiting the number of zeros to `Math.ceil(pr / LOG_BASE) + 2`.
+ 1077:              i = Math.max(Math.ceil(pr / LOG_BASE), len) + 2;
+ 1078:              if (k > i) {
+*****
+
+***** HC\0.js
+  851:                  k = i;
+  852:              }
+  853:              for (i = k; i--;)
 ***** HC\ORIGINAL.JS
  1079:                  k = i;
  1080:                  d.length = 1;
@@ -526,39 +843,58 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
-  967:              }
-  968:          }
+  856:          } else {
+  857:              len = yd.length;
+  858:              if (xLTy)
+***** HC\ORIGINAL.JS
+ 1087:          } else {
+ 1088:              // Check digits to determine which is the bigger number.
+ 1089:              i = xd.length;
+ 1090:              len = yd.length;
+ 1091:              xLTy = i < len;
+ 1092:              if (xLTy)
+*****
+
+***** HC\0.js
+  859:                  len = i;
+  860:              for (; i < len; i++) {
+  861:                  if (xd[i] != yd[i]) {
+***** HC\ORIGINAL.JS
+ 1093:                  len = i;
+ 1094:              for (i = 0; i < len; i++) {
+ 1095:                  if (xd[i] != yd[i]) {
+*****
+
+***** HC\0.js
+  865:              }
+  866:          }
 ***** HC\ORIGINAL.JS
  1099:              }
  1100:              k = 0;
  1101:          }
-*****
-
-***** HC\0.js
-  972:              yd = d;
-  973:          }
-  974:          // Append zeros to `xd` if shorter.
-***** HC\ORIGINAL.JS
+ 1102:          if (xLTy) {
+ 1103:              d = xd;
+ 1104:              xd = yd;
  1105:              yd = d;
  1106:              y.s = -y.s;
  1107:          }
- 1108:          len = xd.length;
- 1109:          // Append zeros to `xd` if shorter.
 *****
 
 ***** HC\0.js
- 1026:          var q, x = this, Ctor = x.constructor;
- 1027:          // Return NaN if x is ±Infinity or NaN, or y is NaN or ±0.
+  919:      P.modulo = P.mod = function (y) {
+  920:          var x = this, Ctor = x.constructor;
+  921:          // Return NaN if x is ±Infinity or NaN, or y is NaN or ±0.
 ***** HC\ORIGINAL.JS
+ 1160:      P.modulo = P.mod = function (y) {
  1161:          var q, x = this, Ctor = x.constructor;
  1162:          y = new Ctor(y);
  1163:          // Return NaN if x is ±Infinity or NaN, or y is NaN or ±0.
 *****
 
 ***** HC\0.js
- 1033:          }
- 1034:          if (Ctor.modulo == 9) {
- 1035:          } else {
+  927:          }
+  928:          if (Ctor.modulo == 9) {
+  929:          } else {
 ***** HC\ORIGINAL.JS
  1169:          }
  1170:          // Prevent rounding of intermediate calculations.
@@ -572,8 +908,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1037:          }
- 1038:          return x.minus(q);
+  931:          }
+  932:          return x.minus(q);
 ***** HC\ORIGINAL.JS
  1179:          }
  1180:          q = q.times(y);
@@ -582,8 +918,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1063:          var x = new this.constructor(this);
- 1064:          return finalise(x);
+  957:          var x = new this.constructor(this);
+  958:          return finalise(x);
 ***** HC\ORIGINAL.JS
  1207:          var x = new this.constructor(this);
  1208:          x.s = -x.s;
@@ -591,18 +927,46 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1108:          yd = y.d;
- 1109:          // If either is zero...
+  981:      P.plus = P.add = function (y) {
+  982:          var d, i, len, rm, yd, x = this, Ctor = x.constructor;
+  983:          y = new Ctor(y);
+***** HC\ORIGINAL.JS
+ 1232:      P.plus = P.add = function (y) {
+ 1233:          var carry, d, e, i, k, len, pr, rm, xd, yd, x = this, Ctor = x.constructor;
+ 1234:          y = new Ctor(y);
+*****
+
+***** HC\0.js
+  991:                                        // Return y if x is finite and y is ±Infinity.
+  992:              return y;
+***** HC\ORIGINAL.JS
+ 1242:                                        // Return y if x is finite and y is ±Infinity.
+ 1243:              else if (!x.d)
+ 1244:                  y = new Ctor(y.d || x.s === y.s ? x : NaN);
+ 1245:              return y;
+*****
+
+***** HC\0.js
+ 1000:          yd = y.d;
+ 1001:          // x and y are finite, non-zero numbers with the same sign.
 ***** HC\ORIGINAL.JS
  1253:          yd = y.d;
  1254:          pr = Ctor.precision;
  1255:          rm = Ctor.rounding;
  1256:          // If either is zero...
+ 1257:          if (!xd[0] || !yd[0]) {
+ 1258:              // Return x if y is zero.
+ 1259:              // Return y if y is non-zero.
+ 1260:              if (!yd[0])
+ 1261:                  y = new Ctor(x);
+ 1262:              return external ? finalise(y, pr, rm) : y;
+ 1263:          }
+ 1264:          // x and y are finite, non-zero numbers with the same sign.
 *****
 
 ***** HC\0.js
- 1135:              k = Math.ceil(pr / LOG_BASE);
- 1136:              if (i > len) {
+ 1019:              k = Math.ceil(pr / LOG_BASE);
+ 1020:              if (i > len) {
 ***** HC\ORIGINAL.JS
  1282:              k = Math.ceil(pr / LOG_BASE);
  1283:              len = k > len ? k + 1 : len + 1;
@@ -610,8 +974,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1137:                  i = len;
- 1138:              }
+ 1021:                  i = len;
+ 1022:              }
 ***** HC\ORIGINAL.JS
  1285:                  i = len;
  1286:                  d.length = 1;
@@ -619,19 +983,65 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1185:          } else {
- 1186:          }
+ 1030:          i = yd.length;
+ 1031:          // Only start adding at yd.length - 1 as the further digits of xd can be left as they are.
 ***** HC\ORIGINAL.JS
+ 1295:          i = yd.length;
+ 1296:          // If yd is longer than xd, swap xd and yd so xd points to the longer array.
+ 1297:          if (len - i < 0) {
+ 1298:              i = len;
+ 1299:              d = yd;
+ 1300:              yd = xd;
+ 1301:              xd = d;
+ 1302:          }
+ 1303:          // Only start adding at yd.length - 1 as the further digits of xd can be left as they are.
+*****
+
+***** HC\0.js
+ 1054:      P.precision = P.sd = function (z) {
+ 1055:          var x = this;
+ 1056:          if (x.d) {
+***** HC\ORIGINAL.JS
+ 1326:      P.precision = P.sd = function (z) {
+ 1327:          var k, x = this;
+ 1328:          if (z !== void 0 && z !== !!z && z !== 1 && z !== 0)
+ 1329:              throw Error(invalidArgument + z);
+ 1330:          if (x.d) {
+*****
+
+***** HC\0.js
+ 1057:              k = getPrecision(x.d);
+ 1058:          } else {
+ 1059:          }
+***** HC\ORIGINAL.JS
+ 1331:              k = getPrecision(x.d);
+ 1332:              if (z && x.e + 1 > k)
+ 1333:                  k = x.e + 1;
  1334:          } else {
  1335:              k = NaN;
  1336:          }
 *****
 
 ***** HC\0.js
- 1219:          pr = Ctor.precision;
- 1220:          Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
- 1221:          return finalise(quadrant > 2 ? x.neg() : x, pr, rm, true);
+ 1086:      P.sine = P.sin = function () {
+ 1087:          var rm, x = this, Ctor = x.constructor;
+ 1088:          if (!x.isFinite())
 ***** HC\ORIGINAL.JS
+ 1363:      P.sine = P.sin = function () {
+ 1364:          var pr, rm, x = this, Ctor = x.constructor;
+ 1365:          if (!x.isFinite())
+*****
+
+***** HC\0.js
+ 1089:              return new Ctor(NaN);
+ 1090:          pr = Ctor.precision;
+ 1091:          Ctor.precision = pr + Math.max(x.e) + LOG_BASE;
+ 1092:          return finalise(quadrant > 2 ? x.neg() : x, pr, rm);
+ 1093:      };
+***** HC\ORIGINAL.JS
+ 1366:              return new Ctor(NaN);
+ 1367:          if (x.isZero())
+ 1368:              return new Ctor(x);
  1369:          pr = Ctor.precision;
  1370:          rm = Ctor.rounding;
  1371:          Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
@@ -640,11 +1050,36 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
  1374:          Ctor.precision = pr;
  1375:          Ctor.rounding = rm;
  1376:          return finalise(quadrant > 2 ? x.neg() : x, pr, rm, true);
+ 1377:      };
 *****
 
 ***** HC\0.js
- 1265:              t = r;
- 1266:              // TODO? Replace with for-loop and checkRoundingDigits.
+ 1106:      P.squareRoot = P.sqrt = function () {
+ 1107:          var m, n, r, rep, t, x = this, d = x.d, s = x.s, Ctor = x.constructor;
+ 1108:          // Negative/NaN/Infinity/zero?
+***** HC\ORIGINAL.JS
+ 1390:      P.squareRoot = P.sqrt = function () {
+ 1391:          var m, n, sd, r, rep, t, x = this, d = x.d, e = x.e, s = x.s, Ctor = x.constructor;
+ 1392:          // Negative/NaN/Infinity/zero?
+*****
+
+***** HC\0.js
+ 1122:              e = mathfloor((e + 1) / 2) - (e < 0 || e % 2);
+ 1123:              r = new Ctor(n);
+***** HC\ORIGINAL.JS
+ 1406:              e = mathfloor((e + 1) / 2) - (e < 0 || e % 2);
+ 1407:              if (s == 1 / 0) {
+ 1408:                  n = '1e' + e;
+ 1409:              } else {
+ 1410:                  n = s.toExponential();
+ 1411:                  n = n.slice(0, n.indexOf('e') + 1) + e;
+ 1412:              }
+ 1413:              r = new Ctor(n);
+*****
+
+***** HC\0.js
+ 1130:              t = r;
+ 1131:              // TODO? Replace with for-loop and checkRoundingDigits.
 ***** HC\ORIGINAL.JS
  1420:              t = r;
  1421:              r = t.plus(divide(x, t, sd + 2, 1)).times(0.5);
@@ -652,8 +1087,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1267:              if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
- 1268:                  // The 4th rounding digit may be in error by -1 so if the 4 rounding digits are 9999 or
+ 1132:              if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
+ 1133:                  // The 4th rounding digit may be in error by -1 so if the 4 rounding digits are 9999 or
 ***** HC\ORIGINAL.JS
  1423:              if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
  1424:                  n = n.slice(sd - 3, sd + 1);
@@ -661,9 +1096,9 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1273:                      if (!rep) {
- 1274:                          if (t.times(t).eq(x)) {
- 1275:                              break;
+ 1138:                      if (!rep) {
+ 1139:                          if (t.times(t).eq(x)) {
+ 1140:                              break;
 ***** HC\ORIGINAL.JS
  1430:                      if (!rep) {
  1431:                          finalise(t, e + 1, 0);
@@ -673,8 +1108,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1277:                      }
- 1278:                  } else {
+ 1142:                      }
+ 1143:                  } else {
 ***** HC\ORIGINAL.JS
  1436:                      }
  1437:                      sd += 4;
@@ -683,9 +1118,11 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1281:                      if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
- 1282:                      }
+ 1145:                      // If not, then there are further digits and m will be truthy.
+ 1146:                      if (!+n || !+n.slice() && n.charAt(0) == '5') {
+ 1147:                      }
 ***** HC\ORIGINAL.JS
+ 1441:                      // If not, then there are further digits and m will be truthy.
  1442:                      if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
  1443:                          // Truncate to the first rounding digit.
  1444:                          finalise(r, e + 1, 1);
@@ -694,8 +1131,27 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1309:          pr = Ctor.precision;
- 1310:          return finalise(quadrant == 2 || quadrant == 4 ? x.neg() : x, pr, rm, true);
+ 1151:          }
+ 1152:          return finalise(r, e, Ctor.rounding, m);
+***** HC\ORIGINAL.JS
+ 1450:          }
+ 1451:          external = true;
+ 1452:          return finalise(r, e, Ctor.rounding, m);
+*****
+
+***** HC\0.js
+ 1168:          var pr, rm, x = this, Ctor = x.constructor;
+ 1169:          if (x.isZero())
+***** HC\ORIGINAL.JS
+ 1468:          var pr, rm, x = this, Ctor = x.constructor;
+ 1469:          if (!x.isFinite())
+ 1470:              return new Ctor(NaN);
+ 1471:          if (x.isZero())
+*****
+
+***** HC\0.js
+ 1171:          pr = Ctor.precision;
+ 1172:          return finalise(quadrant == 2 || quadrant == 4 ? x.neg() : x, pr, rm, true);
 ***** HC\ORIGINAL.JS
  1473:          pr = Ctor.precision;
  1474:          rm = Ctor.rounding;
@@ -710,8 +1166,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1352:              rL = xdL;
- 1353:          }
+ 1195:      P.times = P.mul = function (y) {
+ 1196:          var carry, i, r, t, ydL, x = this, Ctor = x.constructor, xd = x.d, yd = (y = new Ctor(y)).d;
+ 1197:          y.s *= x.s;
+***** HC\ORIGINAL.JS
+ 1505:      P.times = P.mul = function (y) {
+ 1506:          var carry, e, i, k, r, rL, t, xdL, ydL, x = this, Ctor = x.constructor, xd = x.d, yd = (y = new Ctor(y)).d;
+ 1507:          y.s *= x.s;
+*****
+
+***** HC\0.js
+ 1214:              rL = xdL;
+ 1215:          }
 ***** HC\ORIGINAL.JS
  1524:              rL = xdL;
  1525:              xdL = ydL;
@@ -720,8 +1186,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1404:          var x = this, Ctor = x.constructor;
- 1405:          if (dp === void 0)
+ 1266:          var x = this, Ctor = x.constructor;
+ 1267:          if (dp === void 0)
 ***** HC\ORIGINAL.JS
  1578:          var x = this, Ctor = x.constructor;
  1579:          x = new Ctor(x);
@@ -729,28 +1195,58 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1406:              return x;
- 1407:          if (rm === void 0)
+ 1268:              return x;
+ 1269:          return finalise(x, dp + x.e + 1, rm);
 ***** HC\ORIGINAL.JS
  1581:              return x;
  1582:          checkInt32(dp, 0, MAX_DIGITS);
  1583:          if (rm === void 0)
+ 1584:              rm = Ctor.rounding;
+ 1585:          else
+ 1586:              checkInt32(rm, 0, 8);
+ 1587:          return finalise(x, dp + x.e + 1, rm);
 *****
 
 ***** HC\0.js
- 1430:                  checkInt32(rm, 0, 8);
- 1431:              str = finiteToString(x, true, dp + 1);
+ 1281:          if (dp === void 0) {
+ 1282:          } else {
 ***** HC\ORIGINAL.JS
+ 1599:          if (dp === void 0) {
+ 1600:              str = finiteToString(x, true);
+ 1601:          } else {
+*****
+
+***** HC\0.js
+ 1283:              checkInt32(dp, 0, MAX_DIGITS);
+ 1284:          }
+***** HC\ORIGINAL.JS
+ 1602:              checkInt32(dp, 0, MAX_DIGITS);
+ 1603:              if (rm === void 0)
+ 1604:                  rm = Ctor.rounding;
+ 1605:              else
  1606:                  checkInt32(rm, 0, 8);
  1607:              x = finalise(new Ctor(x), dp + 1, rm);
  1608:              str = finiteToString(x, true, dp + 1);
+ 1609:          }
 *****
 
 ***** HC\0.js
- 1458:                  rm = Ctor.rounding;
- 1459:              y = finalise(new Ctor(x), dp + x.e + 1, rm);
- 1460:          }
+ 1303:      P.toFixed = function (dp, rm) {
+ 1304:          var str, x = this, Ctor = x.constructor;
+ 1305:          if (dp === void 0) {
 ***** HC\ORIGINAL.JS
+ 1628:      P.toFixed = function (dp, rm) {
+ 1629:          var str, y, x = this, Ctor = x.constructor;
+ 1630:          if (dp === void 0) {
+*****
+
+***** HC\0.js
+ 1308:              checkInt32(dp, 0, MAX_DIGITS);
+ 1309:              y = finalise(new Ctor(x), dp + x.e + 1, rm);
+ 1310:          }
+***** HC\ORIGINAL.JS
+ 1633:              checkInt32(dp, 0, MAX_DIGITS);
+ 1634:              if (rm === void 0)
  1635:                  rm = Ctor.rounding;
  1636:              else
  1637:                  checkInt32(rm, 0, 8);
@@ -760,8 +1256,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1494:          }
- 1495:          n = new Ctor(digitsToString(xd));
+ 1326:      P.toFraction = function (maxD) {
+ 1327:          var d, d1, e, n, n1, q, x = this, xd = x.d, Ctor = x.constructor;
+ 1328:          if (!xd)
+***** HC\ORIGINAL.JS
+ 1656:      P.toFraction = function (maxD) {
+ 1657:          var d, d0, d1, d2, e, k, n, n0, n1, pr, q, r, x = this, xd = x.d, Ctor = x.constructor;
+ 1658:          if (!xd)
+*****
+
+***** HC\0.js
+ 1344:          }
+ 1345:          n = new Ctor(digitsToString(xd));
 ***** HC\ORIGINAL.JS
  1674:          }
  1675:          external = false;
@@ -769,29 +1275,47 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1505:              d2 = n1;
- 1506:              n0 = d2;
+ 1346:          pr = Ctor.precision;
+ 1347:          for (;;) {
 ***** HC\ORIGINAL.JS
- 1686:              d2 = n1;
- 1687:              n1 = n0.plus(q.times(d2));
- 1688:              n0 = d2;
+ 1677:          pr = Ctor.precision;
+ 1678:          Ctor.precision = e = xd.length * LOG_BASE * 2;
+ 1679:          for (;;) {
 *****
 
 ***** HC\0.js
- 1510:          }
- 1511:          n0 = n0.plus(d2.times(n1));
- 1512:          n0.s = n1.s = x.s;
+ 1351:                  break;
+ 1352:              d1 = d2;
+ 1353:              d2 = d;
+***** HC\ORIGINAL.JS
+ 1683:                  break;
+ 1684:              d0 = d1;
+ 1685:              d1 = d2;
+ 1686:              d2 = n1;
+ 1687:              n1 = n0.plus(q.times(d2));
+ 1688:              n0 = d2;
+ 1689:              d2 = d;
+*****
+
+***** HC\0.js
+ 1356:          }
+ 1357:          // Determine which fraction is closer to x, n0/d0 or n1/d1?
+ 1358:          r = divide(n1, d1, e, 1).minus(x).abs().cmp(divide(n0, d0, e).minus(x).abs()) < 1 ? [
+ 1359:              n1,
 ***** HC\ORIGINAL.JS
  1692:          }
  1693:          d2 = divide(maxD.minus(d0), d1, 0, 1, 1);
  1694:          n0 = n0.plus(d2.times(n1));
  1695:          d0 = d0.plus(d2.times(d1));
  1696:          n0.s = n1.s = x.s;
+ 1697:          // Determine which fraction is closer to x, n0/d0 or n1/d1?
+ 1698:          r = divide(n1, d1, e, 1).minus(x).abs().cmp(divide(n0, d0, e, 1).minus(x).abs()) < 1 ? [
+ 1699:              n1,
 *****
 
 ***** HC\0.js
- 1520:          ];
- 1521:          return r;
+ 1364:          ];
+ 1365:          return r;
 ***** HC\ORIGINAL.JS
  1704:          ];
  1705:          Ctor.precision = pr;
@@ -800,37 +1324,56 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1559:          var x = this, Ctor = x.constructor;
- 1560:          if (y == null) {
+ 1403:          var x = this, Ctor = x.constructor;
+ 1404:          if (y == null) {
+ 1405:              y = new Ctor(1);
+ 1406:          } else {
 ***** HC\ORIGINAL.JS
  1745:          var x = this, Ctor = x.constructor;
  1746:          x = new Ctor(x);
  1747:          if (y == null) {
-*****
-
-***** HC\0.js
- 1564:              y = new Ctor(1);
- 1565:          } else {
-***** HC\ORIGINAL.JS
+ 1748:              // If x is not finite, return x.
+ 1749:              if (!x.d)
+ 1750:                  return x;
  1751:              y = new Ctor(1);
  1752:              rm = Ctor.rounding;
  1753:          } else {
 *****
 
 ***** HC\0.js
- 1580:          if (y.d[0]) {
- 1581:              if (rm < 4)
+ 1409:                  checkInt32(rm, 0, 8);
+ 1410:              // If y is not finite, return Infinity with the sign of x if y is Infinity, else NaN.
+***** HC\ORIGINAL.JS
+ 1756:                  checkInt32(rm, 0, 8);
+ 1757:              // If x is not finite, return x if y is not NaN, else NaN.
+ 1758:              if (!x.d)
+ 1759:                  return y.s ? x : y;
+ 1760:              // If y is not finite, return Infinity with the sign of x if y is Infinity, else NaN.
+*****
+
+***** HC\0.js
+ 1411:              if (!y.d) {
+ 1412:                  return y;
+***** HC\ORIGINAL.JS
+ 1761:              if (!y.d) {
+ 1762:                  if (y.s)
+ 1763:                      y.s = x.s;
+ 1764:                  return y;
+*****
+
+***** HC\0.js
+ 1416:          if (y.d[0]) {
+ 1417:          } else {
+ 1418:          }
 ***** HC\ORIGINAL.JS
  1768:          if (y.d[0]) {
  1769:              external = false;
  1770:              if (rm < 4)
-*****
-
-***** HC\0.js
- 1587:                  ][rm];
- 1588:          } else {
- 1589:          }
-***** HC\ORIGINAL.JS
+ 1771:                  rm = [
+ 1772:                      4,
+ 1773:                      5,
+ 1774:                      7,
+ 1775:                      8
  1776:                  ][rm];
  1777:              x = divide(x, y, 0, rm, 1).times(y);
  1778:              external = true;
@@ -842,45 +1385,88 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1660:              return new Ctor(mathpow(+x, yn));
- 1661:          if (x.eq(1))
+ 1426:      P.toNumber = function () {
+ 1427:          return;
+ 1428:      };
 ***** HC\ORIGINAL.JS
- 1854:              return new Ctor(mathpow(+x, yn));
- 1855:          x = new Ctor(x);
- 1856:          if (x.eq(1))
+ 1791:      P.toNumber = function () {
+ 1792:          return +this;
+ 1793:      };
 *****
 
 ***** HC\0.js
- 1663:          pr = Ctor.precision;
- 1664:          if (y.eq(1))
+ 1439:      P.toOctal = function (sd, rm) {
+ 1440:      };
 ***** HC\ORIGINAL.JS
+ 1804:      P.toOctal = function (sd, rm) {
+ 1805:          return toStringBinary(this, 8, sd, rm);
+ 1806:      };
+*****
+
+***** HC\0.js
+ 1484:      P.toPower = P.pow = function (y) {
+ 1485:          var e, k, r, rm, s, x = this, Ctor = x.constructor, yn = +(y = new Ctor(y));
+ 1486:          // Either ±Infinity, NaN or ±0?
+***** HC\ORIGINAL.JS
+ 1850:      P.toPower = P.pow = function (y) {
+ 1851:          var e, k, pr, r, rm, s, x = this, Ctor = x.constructor, yn = +(y = new Ctor(y));
+ 1852:          // Either ±Infinity, NaN or ±0?
+*****
+
+***** HC\0.js
+ 1487:          if (!x.d || !y.d || !x.d[0] || !y.d[0])
+ 1488:              return new Ctor(mathpow(yn));
+ 1489:          pr = Ctor.precision;
+ 1490:          if (y.eq(1))
+***** HC\ORIGINAL.JS
+ 1853:          if (!x.d || !y.d || !x.d[0] || !y.d[0])
+ 1854:              return new Ctor(mathpow(+x, yn));
+ 1855:          x = new Ctor(x);
+ 1856:          if (x.eq(1))
+ 1857:              return x;
  1858:          pr = Ctor.precision;
  1859:          rm = Ctor.rounding;
  1860:          if (y.eq(1))
 *****
 
 ***** HC\0.js
- 1672:          }
- 1673:          // if x is negative
+ 1491:              return finalise(x, pr, rm);
+ 1492:          // if x is negative
 ***** HC\ORIGINAL.JS
+ 1861:              return finalise(x, pr, rm);
+ 1862:          // y exponent
+ 1863:          e = mathfloor(y.e / LOG_BASE);
+ 1864:          // If y is a small integer use the 'exponentiation by squaring' algorithm.
+ 1865:          if (e >= y.d.length - 1 && (k = yn < 0 ? -yn : yn) <= MAX_SAFE_INTEGER) {
+ 1866:              r = intPow(Ctor, x, k, pr);
+ 1867:              return y.s < 0 ? new Ctor(1).div(r) : finalise(r, pr, rm);
  1868:          }
  1869:          s = x.s;
  1870:          // if x is negative
 *****
 
 ***** HC\0.js
- 1682:              if (x.e == 0 && x.d[0] == 1 && x.d.length == 1) {
- 1683:                  return x;
+ 1493:          if (s < 0) {
+ 1494:              // Result is positive if x is negative and the last digit of integer y is even.
 ***** HC\ORIGINAL.JS
- 1879:              if (x.e == 0 && x.d[0] == 1 && x.d.length == 1) {
- 1880:                  x.s = s;
- 1881:                  return x;
+ 1871:          if (s < 0) {
+ 1872:              // if y is not an integer
+ 1873:              if (e < y.d.length - 1)
+ 1874:                  return new Ctor(NaN);
+ 1875:              // Result is positive if x is negative and the last digit of integer y is even.
 *****
 
 ***** HC\0.js
- 1685:          }
- 1686:          // Exponent estimate may be incorrect e.g. x: 0.999999999999999999, y: 2.29, e: 0, r.e: -1.
+ 1496:                  s = 1;
+ 1497:          }
+ 1498:          // Exponent estimate may be incorrect e.g. x: 0.999999999999999999, y: 2.29, e: 0, r.e: -1.
 ***** HC\ORIGINAL.JS
+ 1877:                  s = 1;
+ 1878:              // if x.eq(-1)
+ 1879:              if (x.e == 0 && x.d[0] == 1 && x.d.length == 1) {
+ 1880:                  x.s = s;
+ 1881:                  return x;
+ 1882:              }
  1883:          }
  1884:          // Estimate result exponent.
  1885:          // x^y = 10^e,  where e = y * log10(x)
@@ -893,8 +1479,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1689:              return new Ctor(e > 0 ? s / 0 : 0);
- 1690:          Ctor.rounding = x.s = 1;
+ 1501:              return new Ctor(e > 0 ? s / 0 : 0);
+ 1502:          Ctor.rounding = x.s = 1;
 ***** HC\ORIGINAL.JS
  1894:              return new Ctor(e > 0 ? s / 0 : 0);
  1895:          external = false;
@@ -902,8 +1488,22 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1699:          if (r.d) {
- 1700:              // If the rounding digits are [49]9999 or [50]0000 increase the precision by 10 and recalculate
+ 1506:          // should be 1.162377823e+764914905173815, but is 1.162355823e+764914905173815
+ 1507:          k = Math.min((e + '').length);
+ 1508:          // r = x^y = exp(y*ln(x))
+ 1509:          r = naturalExponential(y.times(naturalLogarithm(x)), pr);
+ 1510:          // r may be Infinity, e.g. (0.9999999999999999).pow(-1e+40)
+***** HC\ORIGINAL.JS
+ 1900:          // should be 1.162377823e+764914905173815, but is 1.162355823e+764914905173815
+ 1901:          k = Math.min(12, (e + '').length);
+ 1902:          // r = x^y = exp(y*ln(x))
+ 1903:          r = naturalExponential(y.times(naturalLogarithm(x, pr + k)), pr);
+ 1904:          // r may be Infinity, e.g. (0.9999999999999999).pow(-1e+40)
+*****
+
+***** HC\0.js
+ 1511:          if (r.d) {
+ 1512:              // If the rounding digits are [49]9999 or [50]0000 increase the precision by 10 and recalculate
 ***** HC\ORIGINAL.JS
  1905:          if (r.d) {
  1906:              // Truncate to the required precision plus five rounding digits.
@@ -912,28 +1512,22 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1702:              if (checkRoundingDigits(r.d, pr, rm)) {
- 1703:                  // Check for 14 nines from the 2nd rounding digit (the first rounding digit may be 4 or 9).
+ 1515:                  e = pr + 10;
+ 1516:              }
 ***** HC\ORIGINAL.JS
- 1910:              if (checkRoundingDigits(r.d, pr, rm)) {
  1911:                  e = pr + 10;
  1912:                  // Truncate to the increased precision plus five rounding digits.
  1913:                  r = finalise(naturalExponential(y.times(naturalLogarithm(x, e + k)), e), e + 5, 1);
  1914:                  // Check for 14 nines from the 2nd rounding digit (the first rounding digit may be 4 or 9).
-*****
-
-***** HC\0.js
- 1704:                  if (+digitsToString(r.d).slice(pr + 1, pr + 15) + 1 == 100000000000000) {
- 1705:                  }
-***** HC\ORIGINAL.JS
  1915:                  if (+digitsToString(r.d).slice(pr + 1, pr + 15) + 1 == 100000000000000) {
  1916:                      r = finalise(r, pr + 1, 0);
  1917:                  }
+ 1918:              }
 *****
 
 ***** HC\0.js
- 1707:          }
- 1708:          return finalise(r, pr, rm);
+ 1517:          }
+ 1518:          return finalise(r, pr, rm);
 ***** HC\ORIGINAL.JS
  1919:          }
  1920:          r.s = s;
@@ -943,8 +1537,8 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1723:          if (sd === void 0) {
- 1724:          } else {
+ 1533:          if (sd === void 0) {
+ 1534:          } else {
 ***** HC\ORIGINAL.JS
  1938:          if (sd === void 0) {
  1939:              str = finiteToString(x, x.e <= Ctor.toExpNeg || x.e >= Ctor.toExpPos);
@@ -952,18 +1546,24 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1729:                  checkInt32(rm, 0, 8);
- 1730:              str = finiteToString(x, sd <= x.e || x.e <= Ctor.toExpNeg, sd);
+ 1535:              checkInt32(sd, 1, MAX_DIGITS);
+ 1536:              x = finalise(new Ctor(x), sd, rm);
+ 1537:          }
 ***** HC\ORIGINAL.JS
+ 1941:              checkInt32(sd, 1, MAX_DIGITS);
+ 1942:              if (rm === void 0)
+ 1943:                  rm = Ctor.rounding;
+ 1944:              else
  1945:                  checkInt32(rm, 0, 8);
  1946:              x = finalise(new Ctor(x), sd, rm);
  1947:              str = finiteToString(x, sd <= x.e || x.e <= Ctor.toExpNeg, sd);
+ 1948:          }
 *****
 
 ***** HC\0.js
- 1750:          if (sd === void 0) {
- 1751:          } else {
- 1752:              if (rm === void 0)
+ 1556:          if (sd === void 0) {
+ 1557:          } else {
+ 1558:          }
 ***** HC\ORIGINAL.JS
  1967:          if (sd === void 0) {
  1968:              sd = Ctor.precision;
@@ -971,12 +1571,6 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
  1970:          } else {
  1971:              checkInt32(sd, 1, MAX_DIGITS);
  1972:              if (rm === void 0)
-*****
-
-***** HC\0.js
- 1753:                  rm = Ctor.rounding;
- 1754:          }
-***** HC\ORIGINAL.JS
  1973:                  rm = Ctor.rounding;
  1974:              else
  1975:                  checkInt32(rm, 0, 8);
@@ -984,36 +1578,104 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1879:          if (--i < 0) {
- 1880:          } else {
+ 1576:      P.truncated = P.trunc = function () {
+ 1577:          return finalise(new this.constructor(this), 1);
+ 1578:      };
+***** HC\ORIGINAL.JS
+ 1994:      P.truncated = P.trunc = function () {
+ 1995:          return finalise(new this.constructor(this), this.e + 1, 1);
+ 1996:      };
+*****
+
+***** HC\0.js
+ 1643:      function digitsToString(d) {
+ 1644:          var i, k, indexOfLastWord, str = '', w = d[0];
+ 1645:          if (indexOfLastWord > 0) {
+***** HC\ORIGINAL.JS
+ 2061:      function digitsToString(d) {
+ 2062:          var i, k, ws, indexOfLastWord = d.length - 1, str = '', w = d[0];
+ 2063:          if (indexOfLastWord > 0) {
+*****
+
+***** HC\0.js
+ 1646:              str += w;
+ 1647:              for (i = 1;; i++) {
+ 1648:                  ws = d[i] + '';
+***** HC\ORIGINAL.JS
+ 2064:              str += w;
+ 2065:              for (i = 1; i < indexOfLastWord; i++) {
+ 2066:                  ws = d[i] + '';
+*****
+
+***** HC\0.js
+ 1649:                  k = LOG_BASE - ws.length;
+ 1650:                  str += ws;
+***** HC\ORIGINAL.JS
+ 2067:                  k = LOG_BASE - ws.length;
+ 2068:                  if (k)
+ 2069:                      str += getZeroString(k);
+ 2070:                  str += ws;
+*****
+
+***** HC\0.js
+ 1666:          if (i !== ~~i || i < min || i > max) {
+ 1667:              throw Error();
+ 1668:          }
+***** HC\ORIGINAL.JS
+ 2086:          if (i !== ~~i || i < min || i > max) {
+ 2087:              throw Error(invalidArgument + i);
+ 2088:          }
+*****
+
+***** HC\0.js
+ 1675:      function checkRoundingDigits(d, i, rm, repeating) {
+ 1676:          var k, r, rd;
+ 1677:          // Get the length of the first word of the array d.
+***** HC\ORIGINAL.JS
+ 2095:      function checkRoundingDigits(d, i, rm, repeating) {
+ 2096:          var di, k, r, rd;
+ 2097:          // Get the length of the first word of the array d.
+*****
+
+***** HC\0.js
+ 1681:          if (--i < 0) {
+ 1682:              di = 0;
 ***** HC\ORIGINAL.JS
  2101:          if (--i < 0) {
  2102:              i += LOG_BASE;
  2103:              di = 0;
- 2104:          } else {
 *****
 
 ***** HC\0.js
- 1881:              di = Math.ceil((i + 1) / LOG_BASE);
- 1882:          }
- 1883:          if (repeating == null) {
+ 1683:          } else {
+ 1684:              i %= LOG_BASE;
 ***** HC\ORIGINAL.JS
+ 2104:          } else {
  2105:              di = Math.ceil((i + 1) / LOG_BASE);
  2106:              i %= LOG_BASE;
+*****
+
+***** HC\0.js
+ 1685:          }
+ 1686:          rd = d[di] % k | 0;
+***** HC\ORIGINAL.JS
  2107:          }
  2108:          // i is the index (0 - 6) of the rounding digit.
  2109:          // E.g. if within the word 3487563 the first rounding digit is 5,
  2110:          // then i = 4, k = 1000, rd = 3487563 % 1000 = 563
  2111:          k = mathpow(10, LOG_BASE - i);
  2112:          rd = d[di] % k | 0;
- 2113:          if (repeating == null) {
 *****
 
 ***** HC\0.js
- 1888:                      rd = rd / 10 | 0;
- 1889:              } else {
- 1890:              }
+ 1690:                      rd = rd / 100 | 0;
+ 1691:              } else {
+ 1692:                  r = (rm < 4 && rd + 1 == k || rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 100 | 0) == mathpow(10) - 1 || (rd
+ 1693:   == k / 2 || rd == 0) && (d[di + 1] / k / 100 | 0) == 0;
+ 1694:              }
 ***** HC\ORIGINAL.JS
+ 2116:                      rd = rd / 100 | 0;
+ 2117:                  else if (i == 1)
  2118:                      rd = rd / 10 | 0;
  2119:                  r = rm < 4 && rd == 99999 || rm > 3 && rd == 49999 || rd == 50000 || rd == 0;
  2120:              } else {
@@ -1023,8 +1685,18 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1900:              } else {
- 1901:              }
+ 1700:                      rd = rd / 100 | 0;
+ 1701:                  r = (repeating || rm < 4) && rd == 9999 || !repeating && rm > 3 && rd == 4999;
+***** HC\ORIGINAL.JS
+ 2129:                      rd = rd / 100 | 0;
+ 2130:                  else if (i == 2)
+ 2131:                      rd = rd / 10 | 0;
+ 2132:                  r = (repeating || rm < 4) && rd == 9999 || !repeating && rm > 3 && rd == 4999;
+*****
+
+***** HC\0.js
+ 1702:              } else {
+ 1703:              }
 ***** HC\ORIGINAL.JS
  2133:              } else {
  2134:                  r = ((repeating || rm < 4) && rd + 1 == k || !repeating && rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 1000 
@@ -1033,22 +1705,37 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1935:          if (len < 32) {
- 1936:          } else {
- 1937:          }
+ 1710:      function convertBase(str, baseIn, baseOut) {
+ 1711:          var arr = [0], i = 0, strL = str.length;
+ 1712:          for (; i < strL;) {
 ***** HC\ORIGINAL.JS
- 2170:          if (len < 32) {
- 2171:              k = Math.ceil(len / 3);
- 2172:              y = Math.pow(4, -k).toString();
- 2173:          } else {
- 2174:              k = 16;
- 2175:              y = '2.3283064365386962890625e-10';
- 2176:          }
+ 2143:      function convertBase(str, baseIn, baseOut) {
+ 2144:          var j, arr = [0], arrL, i = 0, strL = str.length;
+ 2145:          for (; i < strL;) {
 *****
 
 ***** HC\0.js
- 1938:          Ctor.precision += k;
- 1939:          // Reverse argument reduction
+ 1732:      function cosine(Ctor, x) {
+ 1733:          // Argument reduction: cos(4x) = 8*(cos^4(x) - cos^2(x)) + 1
+***** HC\ORIGINAL.JS
+ 2165:      function cosine(Ctor, x) {
+ 2166:          var k, y, len = x.d.length;
+ 2167:          // Argument reduction: cos(4x) = 8*(cos^4(x) - cos^2(x)) + 1
+*****
+
+***** HC\0.js
+ 1739:          } else {
+ 1740:              y = '2.3283064365386962890625e-10';
+***** HC\ORIGINAL.JS
+ 2173:          } else {
+ 2174:              k = 16;
+ 2175:              y = '2.3283064365386962890625e-10';
+*****
+
+***** HC\0.js
+ 1742:          Ctor.precision += k;
+ 1743:          x = taylorSeries(Ctor, 1, new Ctor());
+ 1744:          // Reverse argument reduction
 ***** HC\ORIGINAL.JS
  2177:          Ctor.precision += k;
  2178:          x = taylorSeries(Ctor, 1, x.times(y), new Ctor(1));
@@ -1056,58 +1743,91 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 1941:              var cos2x = x.times(x);
- 1942:          }
- 1943:          return x;
+ 1745:          for (var i = k; i--;) {
+ 1746:              x = cos2x.times(cos2x).minus(cos2x).times(8).plus();
+ 1747:          }
 ***** HC\ORIGINAL.JS
+ 2180:          for (var i = k; i--;) {
  2181:              var cos2x = x.times(x);
  2182:              x = cos2x.times(cos2x).minus(cos2x).times(8).plus(1);
  2183:          }
+*****
+
+***** HC\0.js
+ 1748:          Ctor.precision -= k;
+ 1749:      }
+***** HC\ORIGINAL.JS
  2184:          Ctor.precision -= k;
  2185:          return x;
+ 2186:      }
 *****
 
 ***** HC\0.js
- 1998:                  logBase = 1;
- 1999:              } else {
+ 1755:          function multiplyInteger(x, k, base) {
+ 1756:              var temp, i = x.length;
+ 1757:              for (x = x.slice(); i--;) {
 ***** HC\ORIGINAL.JS
- 2240:                  logBase = 1;
- 2241:                  e = x.e - y.e;
- 2242:              } else {
+ 2192:          function multiplyInteger(x, k, base) {
+ 2193:              var temp, carry = 0, i = x.length;
+ 2194:              for (x = x.slice(); i--;) {
 *****
 
 ***** HC\0.js
- 2014:                  sd = pr = Ctor.precision;
- 2015:              } else if (dp) {
+ 1771:                  for (i = r = 0; i < aL; i++) {
+ 1772:                  }
 ***** HC\ORIGINAL.JS
- 2257:                  sd = pr = Ctor.precision;
- 2258:                  rm = Ctor.rounding;
- 2259:              } else if (dp) {
+ 2208:                  for (i = r = 0; i < aL; i++) {
+ 2209:                      if (a[i] != b[i]) {
+ 2210:                          r = a[i] > b[i] ? 1 : -1;
+ 2211:                          break;
+ 2212:                      }
+ 2213:                  }
 *****
 
 ***** HC\0.js
- 2020:              if (sd < 0) {
- 2021:              } else {
+ 1776:          function subtract(a, b, aL, base) {
+ 1777:              var i;
+ 1778:              // Subtract b from a.
+***** HC\ORIGINAL.JS
+ 2217:          function subtract(a, b, aL, base) {
+ 2218:              var i = 0;
+ 2219:              // Subtract b from a.
+*****
+
+***** HC\0.js
+ 1788:          return function (x, y, pr, rm, dp, base) {
+ 1789:              var cmp, i, logBase, more, prod, q, rem, rem0, t, xi, xL, yL, Ctor = x.constructor, sign = x.s == y.s ? 1 : -1, xd 
+ 1790:  = x.d, yd = y.d;
+ 1791:              // Either NaN, Infinity or 0?
+***** HC\ORIGINAL.JS
+ 2229:          return function (x, y, pr, rm, dp, base) {
+ 2230:              var cmp, e, i, k, logBase, more, prod, prodL, q, qd, rem, remL, rem0, sd, t, xi, xL, yd0, yL, yz, Ctor = x.construc
+ 2231:  tor, sign = x.s == y.s ? 1 : -1, xd = x.d, yd = y.d;
+ 2232:              // Either NaN, Infinity or 0?
+*****
+
+***** HC\0.js
+ 1823:              if (sd < 0) {
+ 1824:                  qd.push();
+ 1825:                  more = true;
 ***** HC\ORIGINAL.JS
  2264:              if (sd < 0) {
  2265:                  qd.push(1);
  2266:                  more = true;
- 2267:              } else {
 *****
 
 ***** HC\0.js
- 2027:                      k = 0;
- 2028:                      // k is the carry.
+ 1833:                      yd = yd[0];
+ 1834:                      // k is the carry.
 ***** HC\ORIGINAL.JS
- 2273:                      k = 0;
  2274:                      yd = yd[0];
  2275:                      sd++;
  2276:                      // k is the carry.
 *****
 
 ***** HC\0.js
- 2033:                      }
- 2034:                  } else {
+ 1839:                      }
+ 1840:                  } else {
 ***** HC\ORIGINAL.JS
  2281:                      }
  2282:                      more = k || i < xL;    // divisor >= 1e7
@@ -1115,20 +1835,1384 @@ Comparando os arquivos HC\0.js e HC\ORIGINAL.JS
 *****
 
 ***** HC\0.js
- 2039:                          xd = multiplyInteger(xd, k, base);
- 2040:                          xL = xd.length;
+ 1842:                      k = base / (yd[0] + 1) | 0;
+ 1843:                      rem = xd.slice(0, yL);
 ***** HC\ORIGINAL.JS
+ 2285:                      k = base / (yd[0] + 1) | 0;
+ 2286:                      if (k > 1) {
+ 2287:                          yd = multiplyInteger(yd, k, base);
  2288:                          xd = multiplyInteger(xd, k, base);
  2289:                          yL = yd.length;
  2290:                          xL = xd.length;
+ 2291:                      }
+ 2292:                      xi = yL;
+ 2293:                      rem = xd.slice(0, yL);
 *****
 
 ***** HC\0.js
- 2094:                              }
- 2095:                              if (prodL < remL)
+ 1864:                              k = rem0 / yd0 | 0;
+ 1865:                              if (prodL < remL)
 ***** HC\ORIGINAL.JS
+ 2314:                              k = rem0 / yd0 | 0;
+ 2315:                              //  Algorithm:
+ 2316:                              //  1. product = divisor * trial digit (k)
+ 2317:                              //  2. if product > remainder: product -= divisor, k--
+ 2318:                              //  3. remainder -= product
+ 2319:                              //  4. if product was < remainder at 2:
+ 2320:                              //    5. compare new remainder and divisor
+ 2321:                              //    6. If remainder > divisor: remainder -= divisor, k++
+ 2322:                              if (k > 1) {
+ 2323:                                  if (k >= base)
+ 2324:                                      k = base - 1;
+ 2325:                                  // product = divisor * trial digit.
+ 2326:                                  prod = multiplyInteger(yd, k, base);
+ 2327:                                  prodL = prod.length;
+ 2328:                                  remL = rem.length;
+ 2329:                                  // Compare product and remainder.
+ 2330:                                  cmp = compare(prod, rem, prodL, remL);
+ 2331:                                  // product > remainder.
+ 2332:                                  if (cmp == 1) {
+ 2333:                                      k--;
+ 2334:                                      // Subtract divisor from product.
+ 2335:                                      subtract(prod, yL < prodL ? yz : yd, prodL, base);
+ 2336:                                  }
+ 2337:                              } else {
+ 2338:                                  // cmp is -1.
+ 2339:                                  // If k is 0, there is no need to compare yd and rem again below, so change cmp to 1
+ 2340:                                  // to avoid it. If k is 1 there is a need to compare yd and rem again below.
+ 2341:                                  if (k == 0)
+ 2342:                                      cmp = k = 1;
+ 2343:                                  prod = yd.slice();
  2344:                              }
  2345:                              prodL = prod.length;
  2346:                              if (prodL < remL)
+*****
+
+***** HC\0.js
+ 1868:                              subtract(rem, prod, remL, base);
+ 1869:                              remL = rem.length;
+***** HC\ORIGINAL.JS
+ 2349:                              subtract(rem, prod, remL, base);
+ 2350:                              // If product was < previous remainder.
+ 2351:                              if (cmp == -1) {
+ 2352:                                  remL = rem.length;
+ 2353:                                  // Compare divisor and new remainder.
+ 2354:                                  cmp = compare(yd, rem, yL, remL);
+ 2355:                                  // If divisor < new remainder, subtract divisor from remainder.
+ 2356:                                  if (cmp < 1) {
+ 2357:                                      k++;
+ 2358:                                      // Subtract divisor from remainder.
+ 2359:                                      subtract(rem, yL < remL ? yz : yd, remL, base);
+ 2360:                                  }
+ 2361:                              }
+ 2362:                              remL = rem.length;
+*****
+
+***** HC\0.js
+ 1880:                          } else {
+ 1881:                              remL = 1;
+***** HC\ORIGINAL.JS
+ 2373:                          } else {
+ 2374:                              rem = [xd[xi]];
+ 2375:                              remL = 1;
+*****
+
+***** HC\0.js
+ 1883:                      } while ((xi++ < xL || rem[0] !== void 0) && sd--);
+ 1884:                  }
+***** HC\ORIGINAL.JS
+ 2377:                      } while ((xi++ < xL || rem[0] !== void 0) && sd--);
+ 2378:                      more = rem[0] !== void 0;
+ 2379:                  }
+*****
+
+***** HC\0.js
+ 1890:              if (logBase == 1) {
+ 1891:              } else {
+***** HC\ORIGINAL.JS
+ 2385:              if (logBase == 1) {
+ 2386:                  q.e = e;
+ 2387:                  inexact = more;
+ 2388:              } else {
+*****
+
+***** HC\0.js
+ 1905:      function finalise(x, sd, rm, isTruncated) {
+ 1906:          var digits, i, j, rd, roundUp, w, xdi, Ctor = x.constructor;
+ 1907:          // Don't round if sd is null or undefined.
+***** HC\ORIGINAL.JS
+ 2402:      function finalise(x, sd, rm, isTruncated) {
+ 2403:          var digits, i, j, k, rd, roundUp, w, xd, xdi, Ctor = x.constructor;
+ 2404:          // Don't round if sd is null or undefined.
+*****
+
+***** HC\0.js
+ 1929:                      w = xd[xdi = 0];
+ 1930:                  } else {
+***** HC\ORIGINAL.JS
+ 2426:                      w = xd[xdi = 0];
+ 2427:                      // Get the rounding digit at index j of w.
+ 2428:                      rd = w / mathpow(10, digits - j - 1) % 10 | 0;
+ 2429:                  } else {
+*****
+
+***** HC\0.js
+ 1937:                                  xd.push(0);
+ 1938:                          } else {
+***** HC\ORIGINAL.JS
+ 2436:                                  xd.push(0);
+ 2437:                              w = rd = 0;
+ 2438:                              digits = 1;
+ 2439:                              i %= LOG_BASE;
+ 2440:                              j = i - LOG_BASE + 1;
+ 2441:                          } else {
+*****
+
+***** HC\0.js
+ 1950:                          j = i - LOG_BASE + digits;
+ 1951:                      }
+***** HC\ORIGINAL.JS
+ 2453:                          j = i - LOG_BASE + digits;
+ 2454:                          // Get the rounding digit at index j of w.
+ 2455:                          rd = j < 0 ? 0 : w / mathpow(10, digits - j - 1) % 10 | 0;
+ 2456:                      }
+*****
+
+***** HC\0.js
+ 1953:                  // Are there any non-zero digits after the rounding digit?
+ 1954:                  isTruncated = isTruncated || sd < 0 || xd[xdi + 1] !== void 0 || (j < 0 ? w : w % mathpow(digits - j - 1));
+ 1955:                  if (sd < 1 || !xd[0]) {
+***** HC\ORIGINAL.JS
+ 2458:                  // Are there any non-zero digits after the rounding digit?
+ 2459:                  isTruncated = isTruncated || sd < 0 || xd[xdi + 1] !== void 0 || (j < 0 ? w : w % mathpow(10, digits - j - 1));
+ 2460:                  // The expression `w % mathpow(10, digits - j - 1)` returns all the digits of w to the right
+ 2461:                  // of the digit at (left-to-right) index j, e.g. if w is 908714 and j is 2, the expression
+ 2462:                  // will give 714.
+ 2463:                  roundUp = rm < 4 ? (rd || isTruncated) && (rm == 0 || rm == (x.s < 0 ? 3 : 2)) : rd > 5 || rd == 5 && (rm == 4 
+ 2464:  || isTruncated || rm == 6 && // Check whether the digit to the left of the rounding digit is odd.
+ 2465:                  (i > 0 ? j > 0 ? w / mathpow(10, digits - j) : 0 : xd[xdi - 1]) % 10 & 1 || rm == (x.s < 0 ? 8 : 7));
+ 2466:                  if (sd < 1 || !xd[0]) {
+*****
+
+***** HC\0.js
+ 1957:                      if (roundUp) {
+ 1958:                          // 1, 0.1, 0.01, 0.001, 0.0001 etc.
+ 1959:                          xd[0] = mathpow(10);
+ 1960:                          x.e = -sd || 0;
+***** HC\ORIGINAL.JS
+ 2468:                      if (roundUp) {
+ 2469:                          // Convert sd to decimal places.
+ 2470:                          sd -= x.e + 1;
+ 2471:                          // 1, 0.1, 0.01, 0.001, 0.0001 etc.
+ 2472:                          xd[0] = mathpow(10, (LOG_BASE - sd % LOG_BASE) % LOG_BASE);
+ 2473:                          x.e = -sd || 0;
+*****
+
+***** HC\0.js
+ 1966:                  }
+ 1967:                  if (roundUp) {
+***** HC\ORIGINAL.JS
+ 2479:                  }
+ 2480:                  // Remove excess digits.
+ 2481:                  if (i == 0) {
+ 2482:                      xd.length = xdi;
+ 2483:                      k = 1;
+ 2484:                      xdi--;
+ 2485:                  } else {
+ 2486:                      xd.length = xdi + 1;
+ 2487:                      k = mathpow(10, LOG_BASE - i);
+ 2488:                      // E.g. 56700 becomes 56000 if 7 is the rounding digit.
+ 2489:                      // j > 0 means i > number of leading zeros of w.
+ 2490:                      xd[xdi] = j > 0 ? (w / mathpow(10, digits - j) % mathpow(10, j) | 0) * k : 0;
+ 2491:                  }
+ 2492:                  if (roundUp) {
+*****
+
+***** HC\0.js
+ 1968:                      for (;;) {
+ 1969:                      }
+***** HC\ORIGINAL.JS
+ 2493:                      for (;;) {
+ 2494:                          // Is the digit to be rounded up in the first word of xd?
+ 2495:                          if (xdi == 0) {
+ 2496:                              // i will be the length of xd[0] before k is added.
+ 2497:                              for (i = 1, j = xd[0]; j >= 10; j /= 10)
+ 2498:                                  i++;
+ 2499:                              j = xd[0] += k;
+ 2500:                              for (k = 1; j >= 10; j /= 10)
+ 2501:                                  k++;
+ 2502:                              // if i != k the length has increased.
+ 2503:                              if (i != k) {
+ 2504:                                  x.e++;
+ 2505:                                  if (xd[0] == BASE)
+ 2506:                                      xd[0] = 1;
+ 2507:                              }
+ 2508:                              break;
+ 2509:                          } else {
+ 2510:                              xd[xdi] += k;
+ 2511:                              if (xd[xdi] != BASE)
+ 2512:                                  break;
+ 2513:                              xd[xdi--] = 0;
+ 2514:                              k = 1;
+ 2515:                          }
+ 2516:                      }
+*****
+
+***** HC\0.js
+ 1975:          if (external) {
+ 1976:          }
+***** HC\ORIGINAL.JS
+ 2522:          if (external) {
+ 2523:              // Overflow?
+ 2524:              if (x.e > Ctor.maxE) {
+ 2525:                  // Infinity.
+ 2526:                  x.d = null;
+ 2527:                  x.e = NaN;    // Underflow?
+ 2528:              } else if (x.e < Ctor.minE) {
+ 2529:                  // Zero.
+ 2530:                  x.e = 0;
+ 2531:                  x.d = [0];    // Ctor.underflow = true;
+ 2532:              }    // else Ctor.underflow = false;
+ 2533:          }
+*****
+
+***** HC\0.js
+ 1980:          if (!x.isFinite())
+ 1981:              return;
+ 1982:          var k, e = x.e, str = digitsToString(x.d), len = str.length;
+ 1983:          return str;
+***** HC\ORIGINAL.JS
+ 2537:          if (!x.isFinite())
+ 2538:              return nonFiniteToString(x);
+ 2539:          var k, e = x.e, str = digitsToString(x.d), len = str.length;
+ 2540:          if (isExp) {
+ 2541:              if (sd && (k = sd - len) > 0) {
+ 2542:                  str = str.charAt(0) + '.' + str.slice(1) + getZeroString(k);
+ 2543:              } else if (len > 1) {
+ 2544:                  str = str.charAt(0) + '.' + str.slice(1);
+ 2545:              }
+ 2546:              str = str + (x.e < 0 ? 'e' : 'e+') + x.e;
+ 2547:          } else if (e < 0) {
+ 2548:              str = '0.' + getZeroString(-e - 1) + str;
+ 2549:              if (sd && (k = sd - len) > 0)
+ 2550:                  str += getZeroString(k);
+ 2551:          } else if (e >= len) {
+ 2552:              str += getZeroString(e + 1 - len);
+ 2553:              if (sd && (k = sd - e - 1) > 0)
+ 2554:                  str = str + '.' + getZeroString(k);
+ 2555:          } else {
+ 2556:              if ((k = e + 1) < len)
+ 2557:                  str = str.slice(0, k) + '.' + str.slice(k);
+ 2558:              if (sd && (k = sd - len) > 0) {
+ 2559:                  if (e + 1 === len)
+ 2560:                      str += '.';
+ 2561:                  str += getZeroString(k);
+ 2562:              }
+ 2563:          }
+ 2564:          return str;
+*****
+
+***** HC\0.js
+ 1994:          if (sd > LN10_PRECISION) {
+ 1995:              throw Error(precisionLimitExceeded);
+***** HC\ORIGINAL.JS
+ 2575:          if (sd > LN10_PRECISION) {
+ 2576:              // Reset global state in case the exception is caught.
+ 2577:              external = true;
+ 2578:              if (pr)
+ 2579:                  Ctor.precision = pr;
+ 2580:              throw Error(precisionLimitExceeded);
+*****
+
+***** HC\0.js
+ 2031:      function intPow(Ctor, x, n, pr) {
+ 2032:          var isTruncated,
+ 2033:              // Max n of 9007199254740991 takes 53 loop iterations.
+***** HC\ORIGINAL.JS
+ 2616:      function intPow(Ctor, x, n, pr) {
+ 2617:          var isTruncated, r = new Ctor(1),
+ 2618:              // Max n of 9007199254740991 takes 53 loop iterations.
+*****
+
+***** HC\0.js
+ 2034:              // Maximum digits array length; leaves [28, 34] guard digits.
+ 2035:              k;
+ 2036:          for (;;) {
+***** HC\ORIGINAL.JS
+ 2619:              // Maximum digits array length; leaves [28, 34] guard digits.
+ 2620:              k = Math.ceil(pr / LOG_BASE + 4);
+ 2621:          external = false;
+ 2622:          for (;;) {
+*****
+
+***** HC\0.js
+ 2038:                  r = r.times(x);
+ 2039:              }
+***** HC\ORIGINAL.JS
+ 2624:                  r = r.times(x);
+ 2625:                  if (truncate(r.d, k))
+ 2626:                      isTruncated = true;
+ 2627:              }
+*****
+
+***** HC\0.js
+ 2043:                  n = r.d.length - 1;
+ 2044:                  break;
+***** HC\ORIGINAL.JS
+ 2631:                  n = r.d.length - 1;
+ 2632:                  if (isTruncated && r.d[n] === 0)
+ 2633:                      ++r.d[n];
+ 2634:                  break;
+*****
+
+***** HC\0.js
+ 2049:          external = true;
+ 2050:      }
+***** HC\ORIGINAL.JS
+ 2639:          external = true;
+ 2640:          return r;
+ 2641:      }
+*****
+
+***** HC\0.js
+ 2057:      function maxOrMin(Ctor, args, ltgt) {
+ 2058:          var x = new Ctor(args[0]);
+ 2059:          for (; ++i < args.length;) {
+***** HC\ORIGINAL.JS
+ 2648:      function maxOrMin(Ctor, args, ltgt) {
+ 2649:          var y, x = new Ctor(args[0]), i = 0;
+ 2650:          for (; ++i < args.length;) {
+*****
+
+***** HC\0.js
+ 2063:                  break;
+ 2064:              }
+***** HC\ORIGINAL.JS
+ 2654:                  break;
+ 2655:              } else if (x[ltgt](y)) {
+ 2656:                  x = y;
+ 2657:              }
+*****
+
+***** HC\0.js
+ 2099:      function naturalExponential(x, sd) {
+ 2100:          var denominator, j, sum, t, wpr, rep = 0, i = 0, Ctor = x.constructor, rm = Ctor.rounding, pr = Ctor.precision;
+ 2101:          // 0/NaN/Infinity?
+***** HC\ORIGINAL.JS
+ 2692:      function naturalExponential(x, sd) {
+ 2693:          var denominator, guard, j, pow, sum, t, wpr, rep = 0, i = 0, k = 0, Ctor = x.constructor, rm = Ctor.rounding, pr = Ctor
+ 2694:  .precision;
+ 2695:          // 0/NaN/Infinity?
+*****
+
+***** HC\0.js
+ 2104:          }
+ 2105:          t = new Ctor(0.03125);
+***** HC\ORIGINAL.JS
+ 2698:          }
+ 2699:          if (sd == null) {
+ 2700:              external = false;
+ 2701:              wpr = pr;
+ 2702:          } else {
+ 2703:              wpr = sd;
+ 2704:          }
+ 2705:          t = new Ctor(0.03125);
+*****
+
+***** HC\0.js
+ 2114:          guard = Math.log(mathpow(2, k)) / Math.LN10 * 2 + 5 | 0;
+ 2115:          denominator = pow = sum = new Ctor(1);
+ 2116:          for (;;) {
+***** HC\ORIGINAL.JS
+ 2714:          guard = Math.log(mathpow(2, k)) / Math.LN10 * 2 + 5 | 0;
+ 2715:          wpr += guard;
+ 2716:          denominator = pow = sum = new Ctor(1);
+ 2717:          Ctor.precision = wpr;
+ 2718:          for (;;) {
+*****
+
+***** HC\0.js
+ 2118:              denominator = denominator.times(++i);
+ 2119:              if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+***** HC\ORIGINAL.JS
+ 2720:              denominator = denominator.times(++i);
+ 2721:              t = sum.plus(divide(pow, denominator, wpr, 1));
+ 2722:              if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+*****
+
+***** HC\0.js
+ 2130:                          Ctor.precision = wpr += 10;
+ 2131:                          i = 0;
+ 2132:                      } else {
+***** HC\ORIGINAL.JS
+ 2733:                          Ctor.precision = wpr += 10;
+ 2734:                          denominator = pow = t = new Ctor(1);
+ 2735:                          i = 0;
+ 2736:                          rep++;
+ 2737:                      } else {
+*****
+
+***** HC\0.js
+ 2158:      function naturalLogarithm(y, sd) {
+ 2159:          var c0, e, rep, t, x1, n = 1, guard = 10, x = y, xd = x.d, Ctor = x.constructor, rm = Ctor.rounding, pr = Ctor.precisio
+ 2160:  n;
+ 2161:          // Is x negative or Infinity, NaN, 0 or 1?
+***** HC\ORIGINAL.JS
+ 2763:      function naturalLogarithm(y, sd) {
+ 2764:          var c, c0, denominator, e, numerator, rep, sum, t, wpr, x1, x2, n = 1, guard = 10, x = y, xd = x.d, Ctor = x.constructo
+ 2765:  r, rm = Ctor.rounding, pr = Ctor.precision;
+ 2766:          // Is x negative or Infinity, NaN, 0 or 1?
+*****
+
+***** HC\0.js
+ 2170:          }
+ 2171:          c = digitsToString(xd);
+***** HC\ORIGINAL.JS
+ 2775:          }
+ 2776:          Ctor.precision = wpr += guard;
+ 2777:          c = digitsToString(xd);
+*****
+
+***** HC\0.js
+ 2187:                  c0 = c.charAt(0);
+ 2188:              }
+***** HC\ORIGINAL.JS
+ 2793:                  c0 = c.charAt(0);
+ 2794:                  n++;
+ 2795:              }
+*****
+
+***** HC\0.js
+ 2200:              t = getLn10(Ctor, wpr + 2, pr).times(e + '');
+ 2201:              Ctor.precision = pr;
+ 2202:              return sd == null ? finalise(x, pr, rm) : x;
+ 2203:          }
+***** HC\ORIGINAL.JS
+ 2807:              t = getLn10(Ctor, wpr + 2, pr).times(e + '');
+ 2808:              x = naturalLogarithm(new Ctor(c0 + '.' + c.slice(1)), wpr - guard).plus(t);
+ 2809:              Ctor.precision = pr;
+ 2810:              return sd == null ? finalise(x, pr, rm, external = true) : x;
+ 2811:          }
+*****
+
+***** HC\0.js
+ 2208:          // where x = (y - 1)/(y + 1)    (|x| < 1)
+ 2209:          sum = numerator = x = divide(x.minus(1), x.plus(1), wpr);
+ 2210:          x2 = finalise(x.times(x), wpr, 1);
+***** HC\ORIGINAL.JS
+ 2816:          // where x = (y - 1)/(y + 1)    (|x| < 1)
+ 2817:          sum = numerator = x = divide(x.minus(1), x.plus(1), wpr, 1);
+ 2818:          x2 = finalise(x.times(x), wpr, 1);
+*****
+
+***** HC\0.js
+ 2215:              if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+ 2216:                  // Reverse the argument reduction. Check that e is not 0 because, besides preventing an
+***** HC\ORIGINAL.JS
+ 2823:              if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+ 2824:                  sum = sum.times(2);
+ 2825:                  // Reverse the argument reduction. Check that e is not 0 because, besides preventing an
+*****
+
+***** HC\0.js
+ 2219:                      sum = sum.plus(getLn10(Ctor, wpr + 2, pr).times(e + ''));
+ 2220:                  // Is rm > 3 and the first 4 rounding digits 4999, or rm < 4 (or the summation has
+***** HC\ORIGINAL.JS
+ 2828:                      sum = sum.plus(getLn10(Ctor, wpr + 2, pr).times(e + ''));
+ 2829:                  sum = divide(sum, new Ctor(n), wpr, 1);
+ 2830:                  // Is rm > 3 and the first 4 rounding digits 4999, or rm < 4 (or the summation has
+*****
+
+***** HC\0.js
+ 2228:                          Ctor.precision = wpr += guard;
+ 2229:                          x2 = finalise(x.times(x), wpr, 1);
+ 2230:                      } else {
+***** HC\ORIGINAL.JS
+ 2838:                          Ctor.precision = wpr += guard;
+ 2839:                          t = numerator = x = divide(x1.minus(1), x1.plus(1), wpr, 1);
+ 2840:                          x2 = finalise(x.times(x), wpr, 1);
+ 2841:                          denominator = rep = 1;
+ 2842:                      } else {
+*****
+
+***** HC\0.js
+ 2243:      function nonFiniteToString(x) {
+ 2244:      }
+***** HC\ORIGINAL.JS
+ 2855:      function nonFiniteToString(x) {
+ 2856:          // Unsigned.
+ 2857:          return String(x.s * x.s / 0);
+ 2858:      }
+*****
+
+***** HC\0.js
+ 2248:      function parseDecimal(x, str) {
+ 2249:          var i;
+ 2250:          // Decimal point?
+***** HC\ORIGINAL.JS
+ 2862:      function parseDecimal(x, str) {
+ 2863:          var e, i, len;
+ 2864:          // Decimal point?
+*****
+
+***** HC\0.js
+ 2254:          if ((i = str.search(/e/i)) > 0) {
+ 2255:              e += +str.slice(i + 1);
+***** HC\ORIGINAL.JS
+ 2868:          if ((i = str.search(/e/i)) > 0) {
+ 2869:              // Determine exponent.
+ 2870:              if (e < 0)
+ 2871:                  e = i;
+ 2872:              e += +str.slice(i + 1);
+*****
+
+***** HC\0.js
+ 2288:              x.d.push(+str);
+ 2289:          } else {
+ 2290:              x.d = [0];
+***** HC\ORIGINAL.JS
+ 2905:              x.d.push(+str);
+ 2906:              if (external) {
+ 2907:                  // Overflow?
+ 2908:                  if (x.e > x.constructor.maxE) {
+ 2909:                      // Infinity.
+ 2910:                      x.d = null;
+ 2911:                      x.e = NaN;    // Underflow?
+ 2912:                  } else if (x.e < x.constructor.minE) {
+ 2913:                      // Zero.
+ 2914:                      x.e = 0;
+ 2915:                      x.d = [0];    // x.constructor.underflow = true;
+ 2916:                  }    // else x.constructor.underflow = false;
+ 2917:              }
+ 2918:          } else {
+ 2919:              // Zero.
+ 2920:              x.e = 0;
+ 2921:              x.d = [0];
+*****
+
+***** HC\0.js
+ 2297:      function parseOther(x, str) {
+ 2298:          var base, divisor, isFloat, p, xe;
+ 2299:          if (str === 'Infinity' || str === 'NaN') {
+ 2300:              x.e = NaN;
+ 2301:              return x;
+***** HC\ORIGINAL.JS
+ 2928:      function parseOther(x, str) {
+ 2929:          var base, Ctor, divisor, i, isFloat, len, p, xd, xe;
+ 2930:          if (str === 'Infinity' || str === 'NaN') {
+ 2931:              if (!+str)
+ 2932:                  x.s = NaN;
+ 2933:              x.e = NaN;
+ 2934:              x.d = null;
+ 2935:              return x;
+*****
+
+***** HC\0.js
+ 2304:              base = 16;
+ 2305:          }
+***** HC\ORIGINAL.JS
+ 2938:              base = 16;
+ 2939:              str = str.toLowerCase();
+ 2940:          } else if (isBinary.test(str)) {
+ 2941:              base = 2;
+ 2942:          } else if (isOctal.test(str)) {
+ 2943:              base = 8;
+ 2944:          } else {
+ 2945:              throw Error(invalidArgument + str);
+ 2946:          }
+*****
+
+***** HC\0.js
+ 2308:          if (i > 0) {
+ 2309:              str = str.substring(2, i);
+***** HC\ORIGINAL.JS
+ 2949:          if (i > 0) {
+ 2950:              p = +str.slice(i + 1);
+ 2951:              str = str.substring(2, i);
+*****
+
+***** HC\0.js
+ 2310:          } else {
+ 2311:              str = str.slice();
+ 2312:          }
+***** HC\ORIGINAL.JS
+ 2952:          } else {
+ 2953:              str = str.slice(2);
+ 2954:          }
+*****
+
+***** HC\0.js
+ 2315:          i = str.indexOf('.');
+ 2316:          Ctor = x.constructor;
+ 2317:          xd = convertBase(str, base, BASE);
+***** HC\ORIGINAL.JS
+ 2957:          i = str.indexOf('.');
+ 2958:          isFloat = i >= 0;
+ 2959:          Ctor = x.constructor;
+ 2960:          if (isFloat) {
+ 2961:              str = str.replace('.', '');
+ 2962:              len = str.length;
+ 2963:              i = len - i;
+ 2964:              // log[10](16) = 1.2041... , log[10](88) = 1.9444....
+ 2965:              divisor = intPow(Ctor, new Ctor(base), i, i * 2);
+ 2966:          }
+ 2967:          xd = convertBase(str, base, BASE);
+*****
+
+***** HC\0.js
+ 2319:          // Remove trailing zeros.
+ 2320:          for (; xd[i] === 0; --i)
+ 2321:              xd.pop();
+***** HC\ORIGINAL.JS
+ 2969:          // Remove trailing zeros.
+ 2970:          for (i = xe; xd[i] === 0; --i)
+ 2971:              xd.pop();
+*****
+
+***** HC\0.js
+ 2324:          x.e = getBase10Exponent(xd, xe);
+ 2325:          external = false;
+ 2326:          // Multiply by the binary exponent part if present.
+***** HC\ORIGINAL.JS
+ 2974:          x.e = getBase10Exponent(xd, xe);
+ 2975:          x.d = xd;
+ 2976:          external = false;
+ 2977:          // At what precision to perform the division to ensure exact conversion?
+ 2978:          // maxDecimalIntegerPartDigitCount = ceil(log[10](b) * otherBaseIntegerPartDigitCount)
+ 2979:          // log[10](2) = 0.30103, log[10](8) = 0.90309, log[10](16) = 1.20412
+ 2980:          // E.g. ceil(1.2 * 3) = 4, so up to 4 decimal digits are needed to represent 3 hex int digits.
+ 2981:          // maxDecimalFractionPartDigitCount = {Hex:4|Oct:3|Bin:1} * otherBaseFractionPartDigitCount
+ 2982:          // Therefore using 4 * the number of digits of str will always be enough.
+ 2983:          if (isFloat)
+ 2984:              x = divide(x, divisor, len * 4);
+ 2985:          // Multiply by the binary exponent part if present.
+*****
+
+***** HC\0.js
+ 2327:          if (p)
+ 2328:              x = x.times(Math.abs(p) < 54 ? Math.pow(p) : Decimal.pow(2, p));
+ 2329:          return x;
+***** HC\ORIGINAL.JS
+ 2986:          if (p)
+ 2987:              x = x.times(Math.abs(p) < 54 ? Math.pow(2, p) : Decimal.pow(2, p));
+ 2988:          external = true;
+ 2989:          return x;
+*****
+
+***** HC\0.js
+ 2336:      function sine(Ctor, x) {
+ 2337:          var len = x.d.length;
+ 2338:          // Argument reduction: sin(5x) = 16*sin^5(x) - 20*sin^3(x) + 5*sin(x)
+***** HC\ORIGINAL.JS
+ 2996:      function sine(Ctor, x) {
+ 2997:          var k, len = x.d.length;
+ 2998:          if (len < 3)
+ 2999:              return taylorSeries(Ctor, 2, x, x);
+ 3000:          // Argument reduction: sin(5x) = 16*sin^5(x) - 20*sin^3(x) + 5*sin(x)
+*****
+
+***** HC\0.js
+ 2342:          k = 1.4 * Math.sqrt(len);
+ 2343:          // Max k before Math.pow precision loss is 22
+ 2344:          x = x.times(Math.pow(-k));
+ 2345:          for (; k--;) {
+***** HC\ORIGINAL.JS
+ 3004:          k = 1.4 * Math.sqrt(len);
+ 3005:          k = k > 16 ? 16 : k | 0;
+ 3006:          // Max k before Math.pow precision loss is 22
+ 3007:          x = x.times(Math.pow(5, -k));
+ 3008:          x = taylorSeries(Ctor, 2, x, x);
+ 3009:          // Reverse argument reduction
+ 3010:          var sin2_x, d5 = new Ctor(5), d16 = new Ctor(16), d20 = new Ctor(20);
+ 3011:          for (; k--;) {
+*****
+
+***** HC\0.js
+ 2346:              sin2_x = x.times(x);
+ 2347:          }
+ 2348:      }
+***** HC\ORIGINAL.JS
+ 3012:              sin2_x = x.times(x);
+ 3013:              x = x.times(d5.plus(sin2_x.times(d16.times(sin2_x).minus(d20))));
+ 3014:          }
+ 3015:          return x;
+ 3016:      }
+*****
+
+***** HC\0.js
+ 2350:      function taylorSeries(Ctor, n, x, y, isHyperbolic) {
+ 2351:          var t, x2, pr = Ctor.precision;
+ 2352:          external = false;
+ 2353:          u = new Ctor(y);
+***** HC\ORIGINAL.JS
+ 3018:      function taylorSeries(Ctor, n, x, y, isHyperbolic) {
+ 3019:          var j, t, u, x2, i = 1, pr = Ctor.precision, k = Math.ceil(pr / LOG_BASE);
+ 3020:          external = false;
+ 3021:          x2 = x.times(x);
+ 3022:          u = new Ctor(y);
+*****
+
+***** HC\0.js
+ 2354:          for (;;) {
+ 2355:              u = isHyperbolic ? y.plus(t) : y.minus(t);
+ 2356:              t = u.plus(y);
+***** HC\ORIGINAL.JS
+ 3023:          for (;;) {
+ 3024:              t = divide(u.times(x2), new Ctor(n++ * n++), pr, 1);
+ 3025:              u = isHyperbolic ? y.plus(t) : y.minus(t);
+ 3026:              y = divide(t.times(x2), new Ctor(n++ * n++), pr, 1);
+ 3027:              t = u.plus(y);
+*****
+
+***** HC\0.js
+ 2358:                  for (j = k; t.d[j] === u.d[j] && j--;);
+ 2359:              }
+ 2360:              u = y;
+ 2361:              t = j;
+ 2362:          }
+***** HC\ORIGINAL.JS
+ 3029:                  for (j = k; t.d[j] === u.d[j] && j--;);
+ 3030:                  if (j == -1)
+ 3031:                      break;
+ 3032:              }
+ 3033:              j = u;
+ 3034:              u = y;
+ 3035:              y = t;
+ 3036:              t = j;
+ 3037:              i++;
+ 3038:          }
+*****
+
+***** HC\0.js
+ 2363:          external = true;
+ 2364:          return t;
+***** HC\ORIGINAL.JS
+ 3039:          external = true;
+ 3040:          t.d.length = k + 1;
+ 3041:          return t;
+*****
+
+***** HC\0.js
+ 2367:      function toLessThanHalfPi(Ctor, x) {
+ 2368:          x = x.abs();
+***** HC\ORIGINAL.JS
+ 3044:      function toLessThanHalfPi(Ctor, x) {
+ 3045:          var t, isNeg = x.s < 0, pi = getPi(Ctor, Ctor.precision, 1), halfPi = pi.times(0.5);
+ 3046:          x = x.abs();
+*****
+
+***** HC\0.js
+ 2369:          if (x.lte(halfPi)) {
+ 2370:          }
+***** HC\ORIGINAL.JS
+ 3047:          if (x.lte(halfPi)) {
+ 3048:              quadrant = isNeg ? 4 : 1;
+ 3049:              return x;
+ 3050:          }
+*****
+
+***** HC\0.js
+ 2371:          t = x.divToInt(pi);
+ 2372:          return;
+ 2373:      }
+***** HC\ORIGINAL.JS
+ 3051:          t = x.divToInt(pi);
+ 3052:          if (t.isZero()) {
+ 3053:              quadrant = isNeg ? 3 : 2;
+ 3054:          } else {
+ 3055:              x = x.minus(t.times(pi));
+ 3056:              // 0 <= x < pi
+ 3057:              if (x.lte(halfPi)) {
+ 3058:                  quadrant = isOdd(t) ? isNeg ? 2 : 3 : isNeg ? 4 : 1;
+ 3059:                  return x;
+ 3060:              }
+ 3061:              quadrant = isOdd(t) ? isNeg ? 1 : 4 : isNeg ? 3 : 2;
+ 3062:          }
+ 3063:          return x.minus(pi).abs();
+ 3064:      }
+*****
+
+***** HC\0.js
+ 2379:      function toStringBinary(x, baseOut, sd, rm) {
+ 2380:          var base, i, len, roundUp, str, y, isExp = sd !== void 0;
+ 2381:          if (isExp) {
+ 2382:              if (rm === void 0)
+***** HC\ORIGINAL.JS
+ 3070:      function toStringBinary(x, baseOut, sd, rm) {
+ 3071:          var base, e, i, k, len, roundUp, str, xd, y, Ctor = x.constructor, isExp = sd !== void 0;
+ 3072:          if (isExp) {
+ 3073:              checkInt32(sd, 1, MAX_DIGITS);
+ 3074:              if (rm === void 0)
+*****
+
+***** HC\0.js
+ 2383:                  rm = Ctor.rounding;
+ 2384:          } else {
+***** HC\ORIGINAL.JS
+ 3075:                  rm = Ctor.rounding;
+ 3076:              else
+ 3077:                  checkInt32(rm, 0, 8);
+ 3078:          } else {
+*****
+
+***** HC\0.js
+ 2385:              sd = Ctor.precision;
+ 2386:          }
+***** HC\ORIGINAL.JS
+ 3079:              sd = Ctor.precision;
+ 3080:              rm = Ctor.rounding;
+ 3081:          }
+*****
+
+***** HC\0.js
+ 2400:                  } else if (baseOut == 8) {
+ 2401:                  }
+***** HC\ORIGINAL.JS
+ 3095:                  } else if (baseOut == 8) {
+ 3096:                      sd = sd * 3 - 2;
+ 3097:                  }
+*****
+
+***** HC\0.js
+ 2408:              if (i >= 0) {
+ 2409:                  y = new Ctor(1);
+ 2410:                  y.d = convertBase(10, base);
+ 2411:              }
+***** HC\ORIGINAL.JS
+ 3104:              if (i >= 0) {
+ 3105:                  str = str.replace('.', '');
+ 3106:                  y = new Ctor(1);
+ 3107:                  y.e = str.length - i;
+ 3108:                  y.d = convertBase(finiteToString(y), 10, base);
+ 3109:                  y.e = y.d.length;
+ 3110:              }
+*****
+
+***** HC\0.js
+ 2412:              xd = convertBase(str, 10, base);
+ 2413:              // Remove trailing zeros.
+***** HC\ORIGINAL.JS
+ 3111:              xd = convertBase(str, 10, base);
+ 3112:              e = len = xd.length;
+ 3113:              // Remove trailing zeros.
+*****
+
+***** HC\0.js
+ 2416:              if (!xd[0]) {
+ 2417:              } else {
+***** HC\ORIGINAL.JS
+ 3116:              if (!xd[0]) {
+ 3117:                  str = isExp ? '0p+0' : '0';
+ 3118:              } else {
+*****
+
+***** HC\0.js
+ 2422:                      x.d = xd;
+ 2423:                      x = divide(x, y, sd, rm, 0, base);
+ 2424:                      e = x.e;
+ 2425:                  }
+***** HC\ORIGINAL.JS
+ 3123:                      x.d = xd;
+ 3124:                      x.e = e;
+ 3125:                      x = divide(x, y, sd, rm, 0, base);
+ 3126:                      xd = x.d;
+ 3127:                      e = x.e;
+ 3128:                      roundUp = inexact;
+ 3129:                  }
+*****
+
+***** HC\0.js
+ 2427:                  i = xd[sd];
+ 2428:                  roundUp = roundUp || xd[sd + 1] !== void 0;
+ 2429:                  xd.length = sd;
+***** HC\ORIGINAL.JS
+ 3131:                  i = xd[sd];
+ 3132:                  k = base / 2;
+ 3133:                  roundUp = roundUp || xd[sd + 1] !== void 0;
+ 3134:                  roundUp = rm < 4 ? (i !== void 0 || roundUp) && (rm === 0 || rm === (x.s < 0 ? 3 : 2)) : i > k || i === k && (r
+ 3135:  m === 4 || roundUp || rm === 6 && xd[sd - 1] & 1 || rm === (x.s < 0 ? 8 : 7));
+ 3136:                  xd.length = sd;
+*****
+
+***** HC\0.js
+ 2432:                      for (; ++xd[--sd] > base - 1;) {
+ 2433:                          if (!sd) {
+ 2434:                          }
+***** HC\ORIGINAL.JS
+ 3139:                      for (; ++xd[--sd] > base - 1;) {
+ 3140:                          xd[sd] = 0;
+ 3141:                          if (!sd) {
+ 3142:                              ++e;
+ 3143:                              xd.unshift(1);
+ 3144:                          }
+*****
+
+***** HC\0.js
+ 2439:                  // E.g. [4, 11, 15] becomes 4bf.
+ 2440:                  for (str = ''; i < len; i++)
+ 2441:                      str += NUMERALS.charAt(xd[i]);
+***** HC\ORIGINAL.JS
+ 3149:                  // E.g. [4, 11, 15] becomes 4bf.
+ 3150:                  for (i = 0, str = ''; i < len; i++)
+ 3151:                      str += NUMERALS.charAt(xd[i]);
+*****
+
+***** HC\0.js
+ 2445:                          if (baseOut == 16 || baseOut == 8) {
+ 2446:                              for (--len; len % i; len++)
+***** HC\ORIGINAL.JS
+ 3155:                          if (baseOut == 16 || baseOut == 8) {
+ 3156:                              i = baseOut == 16 ? 4 : 3;
+ 3157:                              for (--len; len % i; len++)
+*****
+
+***** HC\0.js
+ 2447:                                  str += '0';
+ 2448:                              for (len = xd.length; !xd[len - 1]; --len);
+***** HC\ORIGINAL.JS
+ 3158:                                  str += '0';
+ 3159:                              xd = convertBase(str, base, baseOut);
+ 3160:                              for (len = xd.length; !xd[len - 1]; --len);
+*****
+
+***** HC\0.js
+ 2452:                          } else {
+ 2453:                          }
+***** HC\ORIGINAL.JS
+ 3164:                          } else {
+ 3165:                              str = str.charAt(0) + '.' + str.slice(1);
+ 3166:                          }
+*****
+
+***** HC\0.js
+ 2454:                      }
+ 2455:                  } else if (e < 0) {
+***** HC\ORIGINAL.JS
+ 3167:                      }
+ 3168:                      str = str + (e < 0 ? 'p' : 'p+') + e;
+ 3169:                  } else if (e < 0) {
+*****
+
+***** HC\0.js
+ 2457:                          str = '0' + str;
+ 2458:                  } else {
+***** HC\ORIGINAL.JS
+ 3171:                          str = '0' + str;
+ 3172:                      str = '0.' + str;
+ 3173:                  } else {
+*****
+
+***** HC\0.js
+ 2465:              }
+ 2466:          }
+***** HC\ORIGINAL.JS
+ 3180:              }
+ 3181:              str = (baseOut == 16 ? '0x' : baseOut == 2 ? '0b' : baseOut == 8 ? '0o' : '') + str;
+ 3182:          }
+*****
+
+***** HC\0.js
+ 2471:          if (arr.length > len) {
+ 2472:          }
+***** HC\ORIGINAL.JS
+ 3187:          if (arr.length > len) {
+ 3188:              arr.length = len;
+ 3189:              return true;
+ 3190:          }
+*****
+
+***** HC\0.js
+ 2620:      function atan2(y, x) {
+ 2621:          var pr = this.precision, wpr = pr + 4;
+ 2622:          // Either NaN
+***** HC\ORIGINAL.JS
+ 3338:      function atan2(y, x) {
+ 3339:          y = new this(y);
+ 3340:          x = new this(x);
+ 3341:          var r, pr = this.precision, rm = this.rounding, wpr = pr + 4;
+ 3342:          // Either NaN
+*****
+
+***** HC\0.js
+ 2626:              r = getPi(this, wpr, 1).times(x.s > 0 ? 0.25 : 0.75);
+ 2627:          } else if (!x.d || y.isZero()) {
+***** HC\ORIGINAL.JS
+ 3346:              r = getPi(this, wpr, 1).times(x.s > 0 ? 0.25 : 0.75);
+ 3347:              r.s = y.s;    // x is ±Infinity or y is ±0
+ 3348:          } else if (!x.d || y.isZero()) {
+*****
+
+***** HC\0.js
+ 2628:              r = x.s < 0 ? getPi(this, pr, rm) : new this(0);
+ 2629:          } else if (!y.d || x.isZero()) {
+ 2630:          } else if (x.s < 0) {
+ 2631:              r = this.atan(divide(y, x, wpr));
+ 2632:          } else {
+ 2633:          }
+***** HC\ORIGINAL.JS
+ 3349:              r = x.s < 0 ? getPi(this, pr, rm) : new this(0);
+ 3350:              r.s = y.s;    // y is ±Infinity or x is ±0
+ 3351:          } else if (!y.d || x.isZero()) {
+ 3352:              r = getPi(this, wpr, 1).times(0.5);
+ 3353:              r.s = y.s;    // Both non-zero and finite
+ 3354:          } else if (x.s < 0) {
+ 3355:              this.precision = wpr;
+ 3356:              this.rounding = 1;
+ 3357:              r = this.atan(divide(y, x, wpr, 1));
+ 3358:              x = getPi(this, wpr, 1);
+ 3359:              this.precision = pr;
+ 3360:              this.rounding = rm;
+ 3361:              r = y.s < 0 ? r.minus(x) : r.plus(x);
+ 3362:          } else {
+ 3363:              r = this.atan(divide(y, x, wpr, 1));
+ 3364:          }
+*****
+
+***** HC\0.js
+ 2675:              throw Error(decimalError + 'Object expected');
+ 2676:          var p, useDefaults = obj.defaults === true, ps = [
+ 2677:                  1,
+***** HC\ORIGINAL.JS
+ 3406:              throw Error(decimalError + 'Object expected');
+ 3407:          var i, p, v, useDefaults = obj.defaults === true, ps = [
+ 3408:                  'precision',
+ 3409:                  1,
+*****
+
+***** HC\0.js
+ 2678:                  MAX_DIGITS,
+ 2679:                  0,
+ 2680:                  'toExpNeg',
+***** HC\ORIGINAL.JS
+ 3410:                  MAX_DIGITS,
+ 3411:                  'rounding',
+ 3412:                  0,
+ 3413:                  8,
+ 3414:                  'toExpNeg',
+*****
+
+***** HC\0.js
+ 2711:                      if (typeof crypto != 'undefined' && crypto && (crypto.getRandomValues || crypto.randomBytes)) {
+ 2712:                      } else {
+***** HC\ORIGINAL.JS
+ 3445:                      if (typeof crypto != 'undefined' && crypto && (crypto.getRandomValues || crypto.randomBytes)) {
+ 3446:                          this[p] = true;
+ 3447:                      } else {
+*****
+
+***** HC\0.js
+ 2715:                  } else {
+ 2716:                  }
+***** HC\ORIGINAL.JS
+ 3450:                  } else {
+ 3451:                      this[p] = false;
+ 3452:                  }
+*****
+
+***** HC\0.js
+ 2720:          }
+ 2721:      }
+***** HC\ORIGINAL.JS
+ 3456:          }
+ 3457:          return this;
+ 3458:      }
+*****
+
+***** HC\0.js
+ 2747:      function clone(obj) {
+ 2748:          /*
+***** HC\ORIGINAL.JS
+ 3484:      function clone(obj) {
+ 3485:          var i, p, ps;
+ 3486:          /*
+*****
+
+***** HC\0.js
+ 2794:                      x.e = NaN;
+ 2795:                      return;
+***** HC\ORIGINAL.JS
+ 3532:                      x.e = NaN;
+ 3533:                      x.d = null;
+ 3534:                      return;
+*****
+
+***** HC\0.js
+ 2801:              // Minus sign?
+ 2802:              if (v.charCodeAt() === 45) {
+ 2803:                  v = v.slice(1);
+***** HC\ORIGINAL.JS
+ 3540:              // Minus sign?
+ 3541:              if (v.charCodeAt(0) === 45) {
+ 3542:                  v = v.slice(1);
+*****
+
+***** HC\0.js
+ 2811:          Decimal.ROUND_UP = 0;
+ 2812:          Decimal.ROUND_CEIL = 2;
+ 2813:          Decimal.ROUND_HALF_UP = 4;
+ 2814:          Decimal.ROUND_HALF_EVEN = 6;
+ 2815:          Decimal.ROUND_HALF_FLOOR = 8;
+ 2816:          Decimal.config = Decimal.set = config;
+***** HC\ORIGINAL.JS
+ 3550:          Decimal.ROUND_UP = 0;
+ 3551:          Decimal.ROUND_DOWN = 1;
+ 3552:          Decimal.ROUND_CEIL = 2;
+ 3553:          Decimal.ROUND_FLOOR = 3;
+ 3554:          Decimal.ROUND_HALF_UP = 4;
+ 3555:          Decimal.ROUND_HALF_DOWN = 5;
+ 3556:          Decimal.ROUND_HALF_EVEN = 6;
+ 3557:          Decimal.ROUND_HALF_CEIL = 7;
+ 3558:          Decimal.ROUND_HALF_FLOOR = 8;
+ 3559:          Decimal.EUCLID = 9;
+ 3560:          Decimal.config = Decimal.set = config;
+*****
+
+***** HC\0.js
+ 2871:                  ps = [
+ 2872:                      'rounding',
+***** HC\ORIGINAL.JS
+ 3615:                  ps = [
+ 3616:                      'precision',
+ 3617:                      'rounding',
+*****
+
+***** HC\0.js
+ 2874:                      'toExpPos',
+ 2875:                      'minE',
+ 2876:                      'crypto'
+***** HC\ORIGINAL.JS
+ 3619:                      'toExpPos',
+ 3620:                      'maxE',
+ 3621:                      'minE',
+ 3622:                      'modulo',
+ 3623:                      'crypto'
+*****
+
+***** HC\0.js
+ 2913:      function floor(x) {
+ 2914:          return finalise(x = new this(x));
+ 2915:      }
+***** HC\ORIGINAL.JS
+ 3660:      function floor(x) {
+ 3661:          return finalise(x = new this(x), x.e + 1, 3);
+ 3662:      }
+*****
+
+***** HC\0.js
+ 2923:      function hypot() {
+ 2924:          var i, t = new this(0);
+ 2925:          for (i = 0; i < arguments.length;) {
+***** HC\ORIGINAL.JS
+ 3670:      function hypot() {
+ 3671:          var i, n, t = new this(0);
+ 3672:          external = false;
+ 3673:          for (i = 0; i < arguments.length;) {
+*****
+
+***** HC\0.js
+ 2928:                  if (n.s) {
+ 2929:                  }
+***** HC\ORIGINAL.JS
+ 3676:                  if (n.s) {
+ 3677:                      external = true;
+ 3678:                      return new this(1 / 0);
+ 3679:                  }
+*****
+
+***** HC\0.js
+ 2931:              } else if (t.d) {
+ 2932:              }
+***** HC\ORIGINAL.JS
+ 3681:              } else if (t.d) {
+ 3682:                  t = t.plus(n.times(n));
+ 3683:              }
+*****
+
+***** HC\0.js
+ 2975:      function log2(x) {
+ 2976:          return new this(x).log();
+ 2977:      }
+***** HC\ORIGINAL.JS
+ 3726:      function log2(x) {
+ 3727:          return new this(x).log(2);
+ 3728:      }
+*****
+
+***** HC\0.js
+ 2994:      function max() {
+ 2995:          return maxOrMin(this, arguments);
+ 2996:      }
+***** HC\ORIGINAL.JS
+ 3745:      function max() {
+ 3746:          return maxOrMin(this, arguments, 'lt');
+ 3747:      }
+*****
+
+***** HC\0.js
+ 3047:      function random(sd) {
+ 3048:          var d, e, n, r = new this(1), rd = [];
+ 3049:          if (sd === void 0)
+***** HC\ORIGINAL.JS
+ 3798:      function random(sd) {
+ 3799:          var d, e, k, n, i = 0, r = new this(1), rd = [];
+ 3800:          if (sd === void 0)
+*****
+
+***** HC\0.js
+ 3052:              checkInt32(sd, 1, MAX_DIGITS);
+ 3053:          if (!this.crypto) {
+***** HC\ORIGINAL.JS
+ 3803:              checkInt32(sd, 1, MAX_DIGITS);
+ 3804:          k = Math.ceil(sd / LOG_BASE);
+ 3805:          if (!this.crypto) {
+*****
+
+***** HC\0.js
+ 3056:          } else if (crypto.getRandomValues) {
+ 3057:              for (; i < k;) {
+***** HC\ORIGINAL.JS
+ 3808:          } else if (crypto.getRandomValues) {
+ 3809:              d = crypto.getRandomValues(new Uint32Array(k));
+ 3810:              for (; i < k;) {
+*****
+
+***** HC\0.js
+ 3061:                  if (n >= 4290000000) {
+ 3062:                  } else {
+***** HC\ORIGINAL.JS
+ 3814:                  if (n >= 4290000000) {
+ 3815:                      d[i] = crypto.getRandomValues(new Uint32Array(1))[0];
+ 3816:                  } else {
+*****
+
+***** HC\0.js
+ 3068:          } else if (crypto.randomBytes) {
+ 3069:              for (;;) {
+ 3070:                  // 0 <= n < 2147483648
+***** HC\ORIGINAL.JS
+ 3822:          } else if (crypto.randomBytes) {
+ 3823:              // buffer
+ 3824:              d = crypto.randomBytes(k *= 4);
+ 3825:              for (; i < k;) {
+ 3826:                  // 0 <= n < 2147483648
+*****
+
+***** HC\0.js
+ 3073:                  if (n >= 2140000000) {
+ 3074:                  } else {
+***** HC\ORIGINAL.JS
+ 3829:                  if (n >= 2140000000) {
+ 3830:                      crypto.randomBytes(4).copy(d, i);
+ 3831:                  } else {
+*****
+
+***** HC\0.js
+ 3076:                      // 0 <= (n % 1e7) <= 9999999
+ 3077:                      rd.push();
+ 3078:                  }
+***** HC\ORIGINAL.JS
+ 3833:                      // 0 <= (n % 1e7) <= 9999999
+ 3834:                      rd.push(n % 10000000);
+ 3835:                      i += 4;
+ 3836:                  }
+*****
+
+***** HC\0.js
+ 3087:          if (k && sd) {
+ 3088:              rd[i] = (k / n | 0) * n;
+***** HC\ORIGINAL.JS
+ 3845:          if (k && sd) {
+ 3846:              n = mathpow(10, LOG_BASE - sd);
+ 3847:              rd[i] = (k / n | 0) * n;
+*****
+
+***** HC\0.js
+ 3102:              // Count the digits of the first word of rd to determine leading zeros.
+ 3103:              for (k = 1; n >= 10; n /= 10)
+ 3104:                  k++;
+***** HC\ORIGINAL.JS
+ 3861:              // Count the digits of the first word of rd to determine leading zeros.
+ 3862:              for (k = 1, n = rd[0]; n >= 10; n /= 10)
+ 3863:                  k++;
+*****
+
+***** HC\0.js
+ 3109:          r.e = e;
+ 3110:          return r;
+***** HC\ORIGINAL.JS
+ 3868:          r.e = e;
+ 3869:          r.d = rd;
+ 3870:          return r;
+*****
+
+***** HC\0.js
+ 3120:      function round(x) {
+ 3121:          return finalise(x.e + 1, this.rounding);
+ 3122:      }
+***** HC\ORIGINAL.JS
+ 3880:      function round(x) {
+ 3881:          return finalise(x = new this(x), x.e + 1, this.rounding);
+ 3882:      }
+*****
+
+***** HC\0.js
+ 3133:          x = new this(x);
+ 3134:      }
+***** HC\ORIGINAL.JS
+ 3893:          x = new this(x);
+ 3894:          return x.d ? x.d[0] ? x.s : 0 * x.s : x.s || NaN;
+ 3895:      }
+*****
+
+***** HC\0.js
+ 3202:      function trunc(x) {
+ 3203:          return finalise(x.e + 1, 1);
+ 3204:      }
+***** HC\ORIGINAL.JS
+ 3963:      function trunc(x) {
+ 3964:          return finalise(x = new this(x), x.e + 1, 1);
+ 3965:      }
+*****
+
+***** HC\0.js
+ 3207:      Decimal['default'] = Decimal.Decimal = Decimal;
+ 3208:      PI = new Decimal(PI);
+***** HC\ORIGINAL.JS
+ 3968:      Decimal['default'] = Decimal.Decimal = Decimal;
+ 3969:      // Create the internal constants from their string values.
+ 3970:      LN10 = new Decimal(LN10);
+ 3971:      PI = new Decimal(PI);
+*****
+
+***** HC\0.js
+ 3211:      if (typeof define == 'function' && define.amd) {
+ 3212:      } else if (typeof module != 'undefined' && module.exports) {
+***** HC\ORIGINAL.JS
+ 3974:      if (typeof define == 'function' && define.amd) {
+ 3975:          define(function () {
+ 3976:              return Decimal;
+ 3977:          });    // Node and other environments that support module.exports.
+ 3978:      } else if (typeof module != 'undefined' && module.exports) {
+*****
+
+***** HC\0.js
+ 3215:          if (!globalScope) {
+ 3216:          }
+***** HC\ORIGINAL.JS
+ 3981:          if (!globalScope) {
+ 3982:              globalScope = typeof self != 'undefined' && self && self.self == self ? self : Function('return this')();
+ 3983:          }
+*****
+
+***** HC\0.js
+ 3217:          noConflict = globalScope.Decimal;
+ 3218:          globalScope.Decimal = Decimal;
+***** HC\ORIGINAL.JS
+ 3984:          noConflict = globalScope.Decimal;
+ 3985:          Decimal.noConflict = function () {
+ 3986:              globalScope.Decimal = noConflict;
+ 3987:              return Decimal;
+ 3988:          };
+ 3989:          globalScope.Decimal = Decimal;
 *****
 
