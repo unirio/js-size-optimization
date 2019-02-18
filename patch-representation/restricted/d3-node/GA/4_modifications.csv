@@ -1,0 +1,16 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;1673 
+1;2;Literal;1656;m 
+1;3;Property;1663;m 
+1;6;IfStatement;1544;m 
+1;3;Property;1534;m 
+3;1;Property;1522;m 
+3;2;Property;1521;m 
+5;2;Literal;1504;m 
+5;1;Property;1509;m 
+11;16;ExpressionStatement;1381;m 
+11;2;Property;1368;m 
+21;1;Property;1356;m 
+27;2;ExpressionStatement;1329;m 
+31;0;ExpressionStatement;1316;m 
+33;2;ReturnStatement;1316;m 
