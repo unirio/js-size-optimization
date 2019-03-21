@@ -1,4 +1,0 @@
-counter;index;instructionType;totalChars;OperationType 
-0;0;original;16161 
-2;171;ExpressionStatement;16152;m 
-2;180;CallExpression;16103;m 

@@ -1,0 +1,6 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;16161 
+1;4;FunctionDeclaration;15898;m 
+2;5;ReturnStatement;15855;m 
+2;1;SwitchCase;15848;m 
+2;0;SwitchStatement;15660;m 

@@ -1,0 +1,5 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;16161 
+1;0;SwitchStatement;15923;m 
+2;1;NewExpression;15902;m 
+2;4;WhileStatement;15854;m 

@@ -1,0 +1,9 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;16161 
+1;1;Property;16153;m 
+1;0;ForInStatement;16124;m 
+1;0;SwitchCase;16115;m 
+1;2;SwitchCase;16107;m 
+1;3;SwitchCase;16103;m 
+1;0;SwitchStatement;15923;m 
+2;0;ForInStatement;15886;m 

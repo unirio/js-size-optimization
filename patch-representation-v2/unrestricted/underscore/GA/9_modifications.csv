@@ -1,0 +1,8 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;16161 
+1;1;NewExpression;16140;m 
+1;0;SwitchStatement;15923;m 
+16;3;ThisExpression;15918;m 
+16;0;ForInStatement;15886;m 
+17;87;VariableDeclaration;15858;m 
+17;74;AssignmentExpression;15857;m 

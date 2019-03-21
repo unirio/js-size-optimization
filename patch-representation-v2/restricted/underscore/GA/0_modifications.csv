@@ -1,0 +1,6 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;16161 
+1;2;ArrayExpression;16161;m 
+1;345;Literal;16148;m 
+1;115;VariableDeclaration;16168;m 
+2;242;ExpressionStatement;16113;m 
