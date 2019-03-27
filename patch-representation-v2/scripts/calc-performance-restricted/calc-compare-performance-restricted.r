@@ -1,7 +1,7 @@
 # Setup
 rm(list = ls());
 library("tidyverse");
-baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/patch-representation/results/";
+baseDir <- "/Users/Marcio/Desktop/Codigos/js-size-optimization/patch-representation-v2/results/";
 
 # Load files
 patchPerformanceFilename <- paste(baseDir, "performance-restricted-patchrep.csv", sep="");
