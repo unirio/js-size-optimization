@@ -2,8 +2,17 @@ Diretórios no DROPBOX:
 
 * d3-node-todos-os-tipos
 
+* exectimer-todos-os-tipos
+
 * express-todos-os-tipos
+
+* minimist-todos-os-tipos
 
 * node-semver-todos-os-tipos
 
+* tleaf-todos-os-tipos
+
 * underscore-todos-os-tipos
+
+* uuid-todos-os-tipos
+

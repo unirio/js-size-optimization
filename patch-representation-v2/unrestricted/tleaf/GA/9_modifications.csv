@@ -1,0 +1,12 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;1722 
+1;0;IfStatement;1685;m 
+1;4;ObjectExpression;1671;m 
+1;5;FunctionExpression;1603;m 
+1;0;FunctionDeclaration;1290;m 
+1;0;AssignmentExpression;1272;m 
+2;9;ReturnStatement;1272;m 
+3;0;FunctionDeclaration;1233;m 
+16;1;ExpressionStatement;1124;m 
+43;1;ReturnStatement;1157;m 
+44;6;ObjectExpression;1068;m 
