@@ -1,0 +1,10 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;8743 
+1;2;Property;8734;m 
+1;63;IfStatement;8735;m 
+3;62;IfStatement;8727;m 
+3;67;IfStatement;8725;m 
+3;37;ExpressionStatement;8656;m 
+4;33;ReturnStatement;8657;m 
+5;27;ExpressionStatement;8628;m 
+27;154;CallExpression;8582;m 

@@ -1,0 +1,7 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;4800 
+1;9;BinaryExpression;4773;m 
+3;2;ReturnStatement;4762;m 
+5;104;MemberExpression;4760;m 
+5;3;AssignmentExpression;4760;m 
+7;0;Literal;4758;c 

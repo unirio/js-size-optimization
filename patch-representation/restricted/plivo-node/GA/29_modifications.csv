@@ -1,0 +1,15 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;12325 
+1;124;ExpressionStatement;12306;m 
+1;28;VariableDeclaration;12300;m 
+1;12;IfStatement;12156;m 
+3;4;ObjectExpression;12152;m 
+3;174;VariableDeclaration;12156;m 
+3;10;FunctionExpression;11983;m 
+5;320;Literal;11964;m 
+5;33;BinaryExpression;11958;m 
+5;121;BinaryExpression;11952;m 
+6;43;ExpressionStatement;11862;m 
+6;102;ExpressionStatement;11783;m 
+11;319;Literal;11781;m 
+14;4;ObjectExpression;11777;m 

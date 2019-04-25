@@ -1,0 +1,4 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;4800 
+3;2;UnaryExpression;4785;m 
+3;0;IfStatement;4670;m 

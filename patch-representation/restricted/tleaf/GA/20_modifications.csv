@@ -1,0 +1,10 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;1722 
+1;7;CallExpression;1712;m 
+1;0;CallExpression;1702;m 
+1;8;VariableDeclaration;1586;m 
+1;0;ArrayExpression;1507;m 
+1;6;ObjectExpression;1500;m 
+1;0;FunctionDeclaration;1290;m 
+1;0;FunctionDeclaration;1253;m 
+1;1;ExpressionStatement;904;m 

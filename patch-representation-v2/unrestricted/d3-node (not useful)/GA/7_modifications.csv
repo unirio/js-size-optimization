@@ -1,8 +1,0 @@
-counter;index;instructionType;totalChars;OperationType 
-0;0;original;1673 
-1;2;Property;1660;m 
-1;6;IfStatement;1544;m 
-1;3;Property;1589;m 
-1;1;Property;1577;m 
-3;0;ExpressionStatement;1564;m 
-39;12;BlockStatement;1509;m 

@@ -2,10 +2,18 @@ var fs = require('fs');
 
 var libs = 
 [
+	'browserify',
+	'd3-node',
 	'exectimer', 
+	'express',
 	'minimist', 
+	'node-semver',
+	'plivo-node',
+	'pug',
 	'tleaf', 
-	'uuid'
+	'underscore',
+	'uuid',
+	'xml2js'
 ];
 
 var result = "";

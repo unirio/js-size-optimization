@@ -16,7 +16,7 @@ UUIDjs.limitUI12 = UUIDjs.maxFromBits(12);
 UUIDjs.limitUI14 = UUIDjs.maxFromBits(14);
 UUIDjs.limitUI16 = UUIDjs.maxFromBits(16);
 UUIDjs.limitUI32 = UUIDjs.maxFromBits(32);
-UUIDjs.limitUI40 = UUIDjs.maxFromBits(40);
+UUIDjs.limitUI40 = UUIDjs.maxFromBits();
 UUIDjs.limitUI48 = UUIDjs.maxFromBits(48);
 // Returns a random integer between min and max
 // Using Math.round() will give you a non-uniform distribution!
@@ -52,6 +52,7 @@ UUIDjs.randomUI48 = function () {
     return (0 | Math.random() * (1 << 30)) + (0 | Math.random() * (1 << 48 - 30)) * (1 << 30);
 };
 UUIDjs.paddedString = function (string, length, z) {
+    string = String(string);
     z = !z ? '0' : z;
     var i = length - string.length;
     for (; i > 0; i >>>= 1, z += z) {
@@ -63,7 +64,7 @@ UUIDjs.paddedString = function (string, length, z) {
 };
 UUIDjs.prototype.fromParts = function (timeLow, timeMid, timeHiAndVersion, clockSeqHiAndReserved, clockSeqLow, node) {
     this.version = timeHiAndVersion >> 12 & 15;
-    this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16)) + '-' + UUIDjs.paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.paddedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
+    this.hex = UUIDjs.paddedString(timeLow.toString(16), 8) + '-' + UUIDjs.paddedString(timeMid.toString(16), 4) + '-' + UUIDjs.paddedString(timeHiAndVersion.toString(16), 4) + '-' + UUIDjs.paddedString(clockSeqHiAndReserved.toString(16), 2) + UUIDjs.paddedString(clockSeqLow.toString(16), 2) + '-' + UUIDjs.paddedString(node.toString(16), 12);
     return this;
 };
 UUIDjs.prototype.toString = function () {
@@ -95,6 +96,7 @@ UUIDjs.getTimeFieldValues = function (time) {
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
         mid: hm & 65535,
+        hi: hm >>> 16,
         timestamp: ts
     };
 };
@@ -139,8 +141,9 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function (strId) {
+    var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i;
     if (r = p.exec(strId)) {
-        return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(r[5], 16));
+        return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(r[5], 16), parseInt(r[6], 16));
     }
     return null;
 };
@@ -150,11 +153,26 @@ UUIDjs.fromBytes = function (ints) {
     }
     var str = '';
     var pos = 0;
+    var parts = [
+        4,
+        2,
+        2,
+        2,
+        6
+    ];
     for (var i = 0; i < parts.length; i++) {
-        for (;; j++) {
+        for (var j = 0; j < parts[i]; j++) {
+            var octet = ints[pos++].toString(16);
+            if (octet.length == 1) {
+                octet = '0' + octet;
+            }
             str += octet;
         }
+        if (parts[i] !== 6) {
+            str += '-';
+        }
     }
+    return UUIDjs.fromURN(str);
 };
 UUIDjs.fromBinary = function (binary) {
     var ints = [];
@@ -164,7 +182,7 @@ UUIDjs.fromBinary = function (binary) {
             throw new Error('Unexpected byte in binary data.');
         }
     }
-    return;
+    return UUIDjs.fromBytes(ints);
 };
 // Aliases to support legacy code. Do not use these when writing new code as
 // they may be removed in future versions!

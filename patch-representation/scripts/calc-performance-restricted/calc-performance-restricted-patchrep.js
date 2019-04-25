@@ -3,13 +3,21 @@ var esprima = require('esprima');
 
 var libs = 
 [
+	'browserify',
+	'd3-node',
 	'exectimer', 
+	'express',
 	'minimist', 
+	'node-semver',
+	'plivo-node',
+	'pug',
 	'tleaf', 
-	'uuid'
+	'underscore',
+	'uuid',
+	'xml2js'
 ];
 
-var rounds = 5;
+var rounds = 30;
 var result = "";
 
 /*

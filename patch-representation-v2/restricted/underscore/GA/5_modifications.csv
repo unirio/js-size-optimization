@@ -1,5 +1,0 @@
-counter;index;instructionType;totalChars;OperationType 
-0;0;original;16161 
-1;4;FunctionDeclaration;15898;m 
-2;1;NewExpression;15877;m 
-4;0;SwitchStatement;15923;m 

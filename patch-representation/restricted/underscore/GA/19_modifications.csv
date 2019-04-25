@@ -1,0 +1,6 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;16161 
+1;15;Property;16152;m 
+1;104;IfStatement;16129;m 
+1;4;FunctionDeclaration;15898;m 
+2;73;BinaryExpression;15893;m 

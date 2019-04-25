@@ -1,9 +1,0 @@
-counter;index;instructionType;totalChars;OperationType 
-0;0;original;1861 
-1;16;ReturnStatement;1794;m 
-1;2;ExpressionStatement;1722;m 
-13;0;ExpressionStatement;1709;m 
-19;22;ExpressionStatement;1680;m 
-22;18;ExpressionStatement;1669;m 
-22;19;ReturnStatement;1642;m 
-22;17;ExpressionStatement;1674;m 

@@ -85,9 +85,6 @@ UUIDjs.prototype.toBytes = function () {
     return ints;
 };
 UUIDjs.prototype.equals = function (uuid) {
-    if (!(uuid instanceof UUID)) {
-        return;
-    }
     if (this.hex !== uuid.hex) {
         return false;
     }
@@ -98,8 +95,7 @@ UUIDjs.getTimeFieldValues = function (time) {
     var hm = ts / 4294967296 * 10000 & 268435455;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
-        mid: hm & 65535,
-        timestamp: ts
+        mid: hm & 65535
     };
 };
 UUIDjs._create4 = function () {
@@ -111,13 +107,7 @@ UUIDjs._create1 = function () {
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
     var timestamp = 0;
-    if (now != timestamp) {
-        timestamp = now;
-    } else if (Math.random() < timestampRatio && tick < 9984) {
-        tick += 1 + UUIDjs.randomUI04();
-    } else {
-        sequence++;
-    }
+    var timestampRatio = 1 / 4;
     var tf = UUIDjs.getTimeFieldValues(timestamp);
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -150,8 +140,6 @@ UUIDjs.lastFromTime = function (time) {
 };
 UUIDjs.fromURN = function (strId) {
     var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i;
-    if (r = p.exec(strId)) {
-    }
     return null;
 };
 UUIDjs.fromBytes = function (ints) {
@@ -160,12 +148,20 @@ UUIDjs.fromBytes = function (ints) {
     }
     var str = '';
     var pos = 0;
-    var parts;
-    for (; i < parts.length; i++) {
+    var parts = [
+        4,
+        2,
+        2,
+        2,
+        6
+    ];
+    for (var i = 0; i < parts.length; i++) {
         for (var j = 0; j < parts[i]; j++) {
+            var octet = ints[pos++].toString(16);
             if (octet.length == 1) {
                 octet = '0' + octet;
             }
+            str += octet;
         }
         if (parts[i] !== 6) {
             str += '-';
@@ -174,8 +170,12 @@ UUIDjs.fromBytes = function (ints) {
     return UUIDjs.fromURN(str);
 };
 UUIDjs.fromBinary = function (binary) {
-    for (; i < binary.length; i++) {
+    var ints = [];
+    for (var i = 0; i < binary.length; i++) {
         ints[i] = binary.charCodeAt(i);
+        if (ints[i] > 255 || ints[i] < 0) {
+            throw new Error('Unexpected byte in binary data.');
+        }
     }
     return UUIDjs.fromBytes(ints);
 };

@@ -88,36 +88,27 @@ UUIDjs.prototype.equals = function (uuid) {
     if (!(uuid instanceof UUID)) {
         return false;
     }
-    if (this.hex !== uuid.hex) {
-        return false;
-    }
+    return true;
 };
 UUIDjs.getTimeFieldValues = function (time) {
-    var ts;
+    var ts = time - Date.UTC(1582, 9, 15);
     var hm = ts / 4294967296 * 10000 & 268435455;
     return {
         low: (ts & 268435455) * 10000 % 4294967296,
         mid: hm & 65535,
-        hi: hm >>> 16
+        timestamp: ts
     };
 };
 UUIDjs._create4 = function () {
     return new UUIDjs().fromParts(UUIDjs.randomUI32(), UUIDjs.randomUI16(), 16384 | UUIDjs.randomUI12(), 128 | UUIDjs.randomUI06(), UUIDjs.randomUI08(), UUIDjs.randomUI48());
 };
 UUIDjs._create1 = function () {
-    var now = new Date().getTime();
+    var now;
     var sequence = UUIDjs.randomUI14();
     var node = (UUIDjs.randomUI08() | 1) * 1099511627776 + UUIDjs.randomUI40();
     var tick = UUIDjs.randomUI04();
     var timestamp = 0;
     var timestampRatio = 1 / 4;
-    if (now != timestamp) {
-        if (now < timestamp) {
-            sequence++;
-        }
-        timestamp = now;
-        tick = UUIDjs.randomUI04();
-    }
     var tf = UUIDjs.getTimeFieldValues(timestamp);
     var tl = tf.low + tick;
     var thav = tf.hi & 4095 | 4096;
@@ -131,6 +122,7 @@ UUIDjs.create = function (version) {
     return this['_create' + version]();
 };
 UUIDjs.fromTime = function (time, last) {
+    last = !last ? false : last;
     var tf = UUIDjs.getTimeFieldValues(time);
     var tl = tf.low;
     var thav = tf.hi & 4095 | 4096;
@@ -148,13 +140,15 @@ UUIDjs.lastFromTime = function (time) {
     return UUIDjs.fromTime(time, true);
 };
 UUIDjs.fromURN = function (strId) {
+    var r, p = /^(?:urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(?:\})?$/i;
     if (r = p.exec(strId)) {
-        return;
+        return new UUIDjs().fromParts(parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16), parseInt(r[4], 16), parseInt(r[6], 16));
     }
     return null;
 };
 UUIDjs.fromBytes = function (ints) {
     if (ints.length < 5) {
+        return null;
     }
     var str = '';
     var pos = 0;
@@ -167,7 +161,7 @@ UUIDjs.fromBytes = function (ints) {
     ];
     for (var i = 0; i < parts.length; i++) {
         for (var j = 0; j < parts[i]; j++) {
-            var octet = ints[pos++].toString();
+            var octet = ints[pos++].toString(16);
             if (octet.length == 1) {
                 octet = '0' + octet;
             }
@@ -180,9 +174,12 @@ UUIDjs.fromBytes = function (ints) {
     return UUIDjs.fromURN(str);
 };
 UUIDjs.fromBinary = function (binary) {
-    var ints;
+    var ints = [];
     for (var i = 0; i < binary.length; i++) {
         ints[i] = binary.charCodeAt(i);
+        if (ints[i] > 255 || ints[i] < 0) {
+            throw new Error('Unexpected byte in binary data.');
+        }
     }
     return UUIDjs.fromBytes(ints);
 };

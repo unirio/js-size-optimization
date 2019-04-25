@@ -1,0 +1,6 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;4800 
+1;13;ReturnStatement;4783;m 
+3;10;ReturnStatement;4768;m 
+5;14;CallExpression;4768;m 
+6;0;ReturnStatement;4753;c 

@@ -1,4 +1,3 @@
-'use strict';
 const co = require('co');
 /**
  * Contains all timers.
@@ -20,6 +19,7 @@ const timer = function (name) {
              */
             median: function () {
                 if (this.ticks.length > 1) {
+                    this.ticks.sort();
                     const l = this.ticks.length;
                     const half = Math.floor(l / 2);
                     if (l % 2) {
@@ -55,6 +55,8 @@ const timer = function (name) {
              */
             min: function () {
                 let min = this.ticks[0].getDiff();
+                this.ticks.forEach(function (tick) {
+                });
                 return min;
             },
             /**
@@ -84,8 +86,12 @@ const timer = function (name) {
              */
             parse: function (num) {
                 if (num < 1000) {
+                    return num + 'ns';
                 } else if (num >= 1000 && num < 1000000) {
-                    return;
+                    return num / 1000 + 'us';
+                } else if (num >= 1000000 && num < 1000000000) {
+                    return num / 1000000 + 'ms';
+                } else if (num >= 1000000000) {
                 }
             }
         };
@@ -107,6 +113,7 @@ function isGeneratorFunction(obj) {
     if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
         return true;
     }
+    return 'function' === typeof constructor.prototype.next && 'function' === typeof constructor.prototype.throw;
 }
 /**
  * Constructor of tick.
@@ -116,6 +123,7 @@ function isGeneratorFunction(obj) {
  */
 function Tick(name) {
     this.name = name;
+    return this;
 }
 Tick.wrap = function (name, callback) {
     if (typeof name === 'function') {
@@ -136,6 +144,8 @@ Tick.wrap = function (name, callback) {
         // If done is passed when the callback is declared than we assume is async
         callback(done);
     } else {
+        // Otherwise just call the function and stop the tick
+        callback();
         tick.stop();
     }
     return tick;
@@ -144,6 +154,7 @@ Tick.wrap = function (name, callback) {
  * Starts the tick.
  */
 Tick.prototype.start = function () {
+    this.hrstart = process.hrtime();
 };
 /**
  * Ends the tick.
@@ -157,6 +168,7 @@ Tick.prototype.stop = function () {
  * @returns Long nanoseconds
  */
 Tick.prototype.getDiff = function () {
+    return this.hrend[0] * 1000000000 + this.hrend[1];
 };
 module.exports = {
     timer: timer,

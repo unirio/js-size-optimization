@@ -1,0 +1,5 @@
+counter;index;instructionType;totalChars;OperationType 
+0;0;original;4800 
+1;21;Property;4767;m 
+3;3;ReturnStatement;4748;m 
+3;1;IfStatement;4731;m 

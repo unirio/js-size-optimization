@@ -19,6 +19,7 @@ const timer = function (name) {
              */
             median: function () {
                 if (this.ticks.length > 1) {
+                    this.ticks.sort();
                     const l = this.ticks.length;
                     const half = Math.floor(l / 2);
                     if (l % 2) {
@@ -54,6 +55,11 @@ const timer = function (name) {
              */
             min: function () {
                 let min = this.ticks[0].getDiff();
+                this.ticks.forEach(function (tick) {
+                    if (tick.getDiff() < min) {
+                        min = tick.getDiff();
+                    }
+                });
                 return min;
             },
             /**
@@ -82,6 +88,11 @@ const timer = function (name) {
              * @returns {string}
              */
             parse: function (num) {
+                if (num < 1000) {
+                    return num + 'ns';
+                } else if (num >= 1000 && num < 1000000) {
+                    return num / 1000 + 'us';
+                }
             }
         };
     }
@@ -96,6 +107,9 @@ const timer = function (name) {
  */
 function isGeneratorFunction(obj) {
     var constructor = obj.constructor;
+    if (!constructor) {
+        return false;
+    }
     if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) {
         return true;
     }
@@ -109,6 +123,7 @@ function isGeneratorFunction(obj) {
  */
 function Tick(name) {
     this.name = name;
+    return;
 }
 Tick.wrap = function (name, callback) {
     if (typeof name === 'function') {
@@ -125,12 +140,13 @@ Tick.wrap = function (name, callback) {
     };
     if (isGeneratorFunction(callback)) {
         co(callback).then(done, done);
-    } else if (!!callback.toString().match()) {
+    } else if (!!callback.toString().match(/^function.*\(.*\)/)) {
         // If done is passed when the callback is declared than we assume is async
         callback(done);
     } else {
         // Otherwise just call the function and stop the tick
         callback();
+        tick.stop();
     }
     return tick;
 };

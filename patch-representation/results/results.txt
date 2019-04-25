@@ -1,0 +1,14 @@
+# A tibble: 12 x 4
+   lib         p_mean   p_sd    d_mean
+ 1 browserify    0.00    0.00    25.40
+ 2 d3-node      15.00    5.81    26.00
+ 3 exectimer     8.60    3.51    26.80
+ 4 express       0.87    0.80    15.90
+ 5 minimist      0.59    0.28     2.78
+ 6 node-semver   0.00    0.00    13.50
+ 7 plivo-node    4.07    1.60    15.30
+ 8 pug           1.88    1.12    39.40
+ 9 tleaf        44.70   11.20    65.80
+10 underscore    1.41    0.60    11.50
+11 uuid          5.81    2.78    20.80
+12 xml2js        0.63    1.10     4.12
