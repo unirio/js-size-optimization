@@ -13,10 +13,13 @@ dfahcPerformance <- read_delim(dfahcPerformanceFilename, delim="\t");
 # Consolidate data
 patchPerformance <- patchPerformance %>% 
 						group_by(lib) %>% 
-						summarize(p_mean = mean(improvement), p_sd = sd(improvement));
+						summarize(p_median = median(improvement), p_mean = mean(improvement), p_sd = sd(improvement), p_max = max(improvement));
 
 dfahcPerformance <- dfahcPerformance %>% 
 						mutate(d_mean = improvement) %>%
 						select(lib, d_mean);
 						
-result <- patchPerformance %>% inner_join(dfahcPerformance);
+result <- dfahcPerformance %>% inner_join(patchPerformance);
+
+resultFilename <- paste(baseDir, "results.txt", sep="");
+write_csv(result, path=resultFilename);
